@@ -26,14 +26,21 @@ Tests run with **Vitest** and **jsdom**.
 ### Integration tests
 
 - Theme persistence and hydration behaviour.
-- Booking form validation and submission flow (future phase).
+- Booking state helpers, price helpers, Warsaw time helpers and booking schemas.
 - Server Actions and database interactions against the real Supabase project using
   dedicated, clearly prefixed test records. Cover: public reads, public denial of
   private tables, admin login, non-admin denial, role boundaries (editor/manager/owner),
   workshop CRUD and multi-table relations, session creation and timezone handling,
   capacity constraints, instructor lifecycle, blog draft/publish/schedule, gallery
   ordering and visibility, media metadata, audit records, slug conflicts and
-  redirect creation after slug changes. Cleanup only the records created by the test run.
+  redirect creation after slug changes.
+- Phase 5 booking integration (against the real project after migration approval):
+  atomic booking and participant creation, concurrent booking attempts,
+  expiry and capacity release, idempotent payment confirmation, duplicate webhooks,
+  late payment after expiry, cancellation and capacity release, full and partial
+  refunds, manual bookings, editor denial, manager access, public denial of
+  private booking rows, secure booking status lookup, cancellation-token validation.
+  Cleanup only the records created by the test run.
 
 ### End-to-end tests
 
@@ -106,6 +113,25 @@ End-to-end browser testing is not implemented in this phase.
 - [ ] Remote migrations were reviewed and applied only after explicit approval.
 - [ ] Real Supabase types were generated and manual types were replaced.
 - [ ] Integration tests against the real project pass and clean up their records.
+
+## Manual checklist for Phase 5
+
+- [ ] `/warsztaty/{slug}/rezerwacja` shows only upcoming, bookable sessions with capacity.
+- [ ] Public booking form validates quantity, participant ages and terms acceptance.
+- [ ] Successful booking creates a Stripe Checkout session and redirects the customer.
+- [ ] Stripe webhook confirms the booking and sends a confirmation email.
+- [ ] The success page is presentation-only and does not mark the booking paid itself.
+- [ ] Expired bookings release capacity exactly once.
+- [ ] Customer cancellation link works and respects the 24-hour refund window.
+- [ ] Staff can cancel, refund, move and retry emails from `/admin/rezerwacje/[id]`.
+- [ ] Editors cannot access the bookings section.
+- [ ] Manual bookings reserve capacity and support cash, transfer, terminal, complimentary.
+- [ ] No booking, payment or customer data is exposed on public pages.
+- [ ] Rate limiting is active in production (Upstash Redis configured).
+- [ ] The expiry cron endpoint is protected by `BOOKING_CRON_SECRET`.
+- [ ] Stripe is in test mode and the webhook is configured.
+- [ ] Resend sender domain is verified and emails are delivered.
+- [ ] No secrets appear in client bundles or logs.
 
 ## Tools
 

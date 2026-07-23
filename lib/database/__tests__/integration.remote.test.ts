@@ -211,7 +211,9 @@ describe.skipIf(!hasRemoteEnv)('remote integration tests', () => {
       .delete()
       .in(
         'user_id',
-        [ids.editorUser, ids.managerUser].filter((id): id is string => Boolean(id))
+        [ids.editorUser, ids.managerUser].filter((id): id is string =>
+          Boolean(id)
+        )
       );
 
     if (ids.nonAdminUser) {

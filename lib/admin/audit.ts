@@ -14,7 +14,9 @@ type AuditEntityType =
   | 'site_setting'
   | 'redirect'
   | 'admin_user'
-  | 'auth';
+  | 'auth'
+  | 'booking'
+  | 'payment';
 
 export type AuditEventInput = {
   actorUserId: string;

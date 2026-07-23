@@ -67,7 +67,25 @@ Phase 4 completes the administration system and prepares it for operational use:
 - Migration review and remote deployment workflow documented in `docs/ADMIN.md`.
 
 Remote migration, type generation and integration tests require explicit user approval and a
-Supabase access token (see `docs/ADMIN.md`).
+Supabase access token (see `docs/ADMIN.md` and `docs/DEPLOYMENT.md`).
+
+## Phase 5
+
+Phase 5 implements the transactional booking and payment system:
+
+- Public guest checkout for workshops without Supabase Auth accounts.
+- Atomic capacity reservation through `public.begin_booking` database function.
+- 15-minute unpaid holds with the `public.expire_pending_bookings` cron workflow.
+- Stripe Checkout hosted payments and verified, idempotent webhooks.
+- Customer cancellation via secure email token and staff cancellation with refunds.
+- Manual/offline bookings for managers and owners.
+- Resend transactional emails in Polish.
+- Rate limiting via Upstash Redis and a hidden honeypot field.
+- Admin booking list, detail and manual-creation pages at `/admin/rezerwacje`.
+- Documentation in `docs/BOOKINGS.md`, `docs/DEPLOYMENT.md` and `docs/PRIVACY.md`.
+
+Phase 5 is developed against Stripe test mode. Live Stripe payments and remote deployment require
+explicit approval.
 
 ## Scripts
 
@@ -102,8 +120,11 @@ Project documentation lives in `/docs`:
 - `ARCHITECTURE.md`
 - `DESIGN-SYSTEM.md`
 - `DATABASE.md`
-- `BOOKING-RULES.md`
-- `PAYMENT-FLOWS.md`
+- `BOOKINGS.md` — Phase 5 booking and payment system
+- `DEPLOYMENT.md` — Netlify, Stripe, Resend and Supabase setup
+- `PRIVACY.md` — booking data handling and privacy
+- `BOOKING-RULES.md` — legacy rules reference (superseded by `BOOKINGS.md`)
+- `PAYMENT-FLOWS.md` — legacy flows reference (superseded by `BOOKINGS.md`)
 - `ADMIN.md`
 - `WIX-MIGRATION.md`
 - `SEO-MIGRATION.md`

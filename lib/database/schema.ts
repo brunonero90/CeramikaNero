@@ -49,6 +49,31 @@ export const subscriberStatusSchema = z.enum([
 
 export const bookingSourceSchema = z.enum(['website', 'admin', 'wix_import']);
 
+export const manualPaymentMethodSchema = z.enum([
+  'cash',
+  'bank_transfer',
+  'card_terminal',
+  'complimentary',
+  'other',
+]);
+
+export const bookingCancelledBySchema = z.enum([
+  'customer',
+  'staff',
+  'system',
+  'expiry',
+]);
+
+export const emailTypeSchema = z.enum([
+  'confirmation',
+  'cancellation',
+  'refund',
+  'manual_confirmation',
+  'payment_problem',
+]);
+
+export const emailStatusSchema = z.enum(['pending', 'sent', 'failed']);
+
 export const adminRoleSchema = z.enum(['owner', 'manager', 'editor']);
 
 export const redirectStatusCodeSchema = z.union([
@@ -106,3 +131,51 @@ export const slugSchema = z
   .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, {
     message: 'Slug must be lowercase letters, numbers and hyphens only',
   });
+
+const participantSchema = z.object({
+  displayName: z.string().min(1).max(200),
+  age: z.coerce.number().int().positive().optional(),
+  participantType: participantTypeSchema.default('unspecified'),
+  accessibilityNotes: z.string().max(1000).optional(),
+});
+
+const baseBookingInputSchema = z.object({
+  sessionId: z.string().uuid(),
+  quantity: z.coerce.number().int().min(1).max(10),
+  purchaserEmail: z.string().email().min(1).max(255),
+  purchaserFirstName: z.string().min(1).max(200),
+  purchaserLastName: z.string().min(1).max(200),
+  purchaserPhone: z.string().min(1).max(50),
+  customerNotes: z.string().max(2000).optional(),
+  marketingConsent: z.boolean().default(false),
+  privacyPolicyVersion: z.string().min(1).max(50),
+  participants: z.array(participantSchema).min(1).max(10),
+});
+
+export const publicBookingInputSchema = baseBookingInputSchema
+  .extend({
+    termsAccepted: z.literal(true, {
+      errorMap: () => ({ message: 'Akceptacja regulaminu jest wymagana.' }),
+    }),
+  })
+  .refine((data) => data.participants.length === data.quantity, {
+    message: 'Liczba uczestników musi odpowiadać liczbie miejsc.',
+    path: ['participants'],
+  });
+
+export type PublicBookingInput = z.infer<typeof publicBookingInputSchema>;
+
+export const manualBookingInputSchema = baseBookingInputSchema.extend({
+  paymentMethod: manualPaymentMethodSchema,
+  paymentStatus: z.enum(['pending', 'confirmed']),
+  internalNotes: z.string().max(2000).optional(),
+});
+
+export type ManualBookingInput = z.infer<typeof manualBookingInputSchema>;
+
+export const refundInputSchema = z.object({
+  amountGrossGrosz: z.coerce.number().int().positive(),
+  reason: z.string().min(1).max(1000),
+});
+
+export type RefundInput = z.infer<typeof refundInputSchema>;
