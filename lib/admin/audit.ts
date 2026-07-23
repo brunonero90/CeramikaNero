@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { AdminRole, Database } from '@/lib/database/types';
+import type { AdminRole, Database, Json } from '@/lib/database/types';
 
 type AuditEntityType =
   | 'category'
@@ -43,8 +43,8 @@ export async function recordAuditEvent(
     entity_type: input.entityType,
     entity_id: input.entityId ?? null,
     summary: input.summary,
-    changed_fields: input.changedFields ?? null,
-    request_metadata: input.requestMetadata ?? null,
+    changed_fields: (input.changedFields ?? null) as Json | null,
+    request_metadata: (input.requestMetadata ?? null) as Json | null,
   });
 
   if (error) {

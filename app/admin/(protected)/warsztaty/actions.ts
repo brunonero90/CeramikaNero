@@ -11,6 +11,10 @@ import {
   slugifyTitle,
   isReservedSlug,
 } from '@/lib/admin/slugs';
+import type {
+  Json,
+  UpsertWorkshopWithRelationsArgs,
+} from '@/lib/database/types';
 
 export type WorkshopActionState =
   | { ok: true; id: string; message: string }
@@ -169,8 +173,8 @@ export async function createWorkshopAction(
       p_seo_title: data.seoTitle,
       p_seo_description: data.seoDescription,
       p_instructor_ids: data.instructorIds,
-      p_gallery_media: data.galleryMedia as unknown,
-    }
+      p_gallery_media: data.galleryMedia as Json,
+    } as unknown as UpsertWorkshopWithRelationsArgs
   );
 
   if (error || !workshopId) {
@@ -244,8 +248,8 @@ export async function updateWorkshopAction(
       p_seo_title: data.seoTitle,
       p_seo_description: data.seoDescription,
       p_instructor_ids: data.instructorIds,
-      p_gallery_media: data.galleryMedia as unknown,
-    }
+      p_gallery_media: data.galleryMedia as Json,
+    } as unknown as UpsertWorkshopWithRelationsArgs
   );
 
   if (error || !workshopId) {

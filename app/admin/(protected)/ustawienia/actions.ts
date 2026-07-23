@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server';
 import { requireOwner } from '@/lib/admin/auth';
 import { recordAuditEvent } from '@/lib/admin/audit';
 import { siteSettingsInputSchema } from '@/lib/admin/schemas';
+import type { Json } from '@/lib/database/types';
 
 export type SettingsActionState =
   | { ok: true; message: string }
@@ -46,7 +47,7 @@ export async function updateSettingsAction(
   }
 
   const values = parsed.data;
-  const keyValueMap: Record<string, unknown> = {
+  const keyValueMap: Record<string, Json> = {
     studio_name: values.studioName,
     studio_address: values.studioAddress,
     studio_email: values.studioEmail,

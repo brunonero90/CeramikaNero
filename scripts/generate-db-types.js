@@ -35,7 +35,7 @@ if (existsSync(outputPath)) {
   renameSync(outputPath, backupPath);
 }
 
-const command = `supabase gen types typescript --project-id ${ref} --schema public > "${outputPath}"`;
+const command = `npx --yes supabase gen types typescript --project-id ${ref} --schema public > "${outputPath}"`;
 console.log(`Running: ${command}`);
 
 try {

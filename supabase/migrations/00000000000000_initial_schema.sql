@@ -23,27 +23,31 @@ comment on function public.set_updated_at() is
 
 -- Generate a human-friendly booking reference without exposing sequential IDs.
 create or replace function public.generate_booking_reference()
-returns text as $$
+returns trigger as $$
 declare
   prefix text;
   suffix text;
   reference text;
   exists_count integer;
 begin
+  if NEW.booking_reference is not null then
+    return NEW;
+  end if;
   prefix := 'CN-' || to_char(timezone('utc'::text, now()), 'YYYYMMDD') || '-';
   loop
     suffix := upper(substring(encode(gen_random_bytes(3), 'hex'), 1, 4));
     reference := prefix || suffix;
     select count(*) into exists_count from public.bookings where booking_reference = reference;
     if exists_count = 0 then
-      return reference;
+      NEW.booking_reference := reference;
+      return NEW;
     end if;
   end loop;
 end;
 $$ language plpgsql;
 
 comment on function public.generate_booking_reference() is
-  'Creates a short, human-readable booking reference such as CN-20260723-A3F1.';
+  'Trigger function that creates a short, human-readable booking reference such as CN-20260723-A3F1 before insert.';
 
 -- ---------------------------------------------------------------------------
 -- Core tables

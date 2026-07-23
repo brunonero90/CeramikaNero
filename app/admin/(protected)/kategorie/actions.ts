@@ -150,7 +150,7 @@ export async function archiveCategoryAction(id: string): Promise<void> {
 
   await supabase
     .from('workshop_categories')
-    .update({ archived_at: new Date().toISOString() })
+    .update({ is_visible: false })
     .eq('id', id);
 
   await recordAuditEvent(supabase, {

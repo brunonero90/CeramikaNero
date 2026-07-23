@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import type { AdminRole } from '@/lib/database/types';
+import { adminRoleSchema } from '@/lib/database/schema';
 
 export type CurrentAdmin = {
   userId: string;
@@ -39,7 +40,7 @@ export async function getCurrentAdmin(): Promise<CurrentAdmin | null> {
   return {
     userId: session.user.id,
     email: session.user.email ?? '',
-    role: admin.role,
+    role: adminRoleSchema.parse(admin.role),
     displayName: admin.display_name,
   };
 }

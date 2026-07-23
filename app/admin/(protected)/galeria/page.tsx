@@ -92,11 +92,13 @@ export default async function GalleryAdminPage({
               className="mt-1 block rounded-md border border-gray-300 px-3 py-2 text-sm"
             >
               <option value="">Wszystkie</option>
-              {Array.from(categorySet).map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
+              {Array.from(categorySet)
+                .filter((c): c is string => Boolean(c))
+                .map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
             </select>
           </div>
           <div>

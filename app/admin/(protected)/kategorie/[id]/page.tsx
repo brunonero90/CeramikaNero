@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { requireAnyRole } from '@/lib/admin/auth';
 import { CategoryForm } from '../category-form';
 import { updateCategoryAction } from '../actions';
+import { themeSchema } from '@/lib/database/schema';
 
 export const metadata = {
   title: 'Edycja kategorii | Ceramika Nero Admin',
@@ -42,7 +43,7 @@ export default async function EditCategoryPage({
           name: category.name,
           slug: category.slug,
           description: category.description,
-          suggestedTheme: category.suggested_theme,
+          suggestedTheme: themeSchema.parse(category.suggested_theme),
           displayOrder: category.display_order,
           isVisible: category.is_visible,
         }}

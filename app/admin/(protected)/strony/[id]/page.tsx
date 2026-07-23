@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { requireAnyRole } from '@/lib/admin/auth';
 import { PageForm } from '../page-form';
 import { updatePageAction } from '../actions';
+import { contentStatusSchema, themeSchema } from '@/lib/database/schema';
 
 export const metadata = {
   title: 'Edycja strony | Ceramika Nero Admin',
@@ -43,8 +44,10 @@ export default async function EditPagePage({
           slug: page.slug,
           excerpt: page.excerpt,
           content: page.content,
-          status: page.status,
-          suggestedTheme: page.suggested_theme,
+          status: contentStatusSchema.parse(page.status),
+          suggestedTheme: page.suggested_theme
+            ? themeSchema.parse(page.suggested_theme)
+            : null,
           seoTitle: page.seo_title,
           seoDescription: page.seo_description,
           publishedAt: page.published_at,

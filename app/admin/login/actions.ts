@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { recordAuditEvent } from '@/lib/admin/audit';
 import { getCurrentAdmin } from '@/lib/admin/auth';
+import { adminRoleSchema } from '@/lib/database/schema';
 
 export type LoginActionState =
   { ok: false; error: string } | { ok: true; redirect: string };
@@ -50,7 +51,7 @@ export async function loginAction(
 
   await recordAuditEvent(supabase, {
     actorUserId: data.user.id,
-    actorRole: admin.role,
+    actorRole: adminRoleSchema.parse(admin.role),
     action: 'login',
     entityType: 'auth',
     entityId: null,
