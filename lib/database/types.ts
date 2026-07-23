@@ -1,49 +1,33 @@
 /**
  * TEMPORARY MANUAL DATABASE TYPES
  *
- * These types mirror the Supabase migration in `supabase/migrations/`. They are
- * intentionally generated-compatible: once a real Supabase project is connected,
- * replace this file with output from `supabase gen types typescript` and remove
- * this comment.
+ * These types mirror the Supabase migrations in `supabase/migrations/`. Once
+ * the real Supabase project is connected and migrations are applied, this file
+ * is replaced by the output of `npm run db:types` (which writes the generated
+ * Supabase client types to `lib/database/generated-types.ts`).
+ *
+ * Custom application/domain types are intentionally kept in
+ * `lib/database/domain.ts` so that regenerating the database types never
+ * erases them. This file re-exports domain types for convenience during the
+ * manual-type period.
  */
 
-import type { Theme } from "@/lib/types/theme";
+import type {
+  AdminRole,
+  BookingMode,
+  BookingSource,
+  BookingStatus,
+  ContentStatus,
+  MediaRole,
+  MediaSource,
+  ParticipantType,
+  PaymentStatus,
+  SessionStatus,
+  SubscriberStatus,
+  Theme,
+} from './domain';
 
-export type { Theme };
-
-export type BookingStatus =
-  | "pending"
-  | "awaiting_payment"
-  | "confirmed"
-  | "cancelled"
-  | "expired"
-  | "refunded"
-  | "partially_refunded";
-
-export type BookingMode = "scheduled" | "enquiry" | "external";
-
-export type BookingSource = "website" | "admin" | "wix_import";
-
-export type ContentStatus = "draft" | "published" | "archived";
-
-export type ParticipantType = "adult" | "child" | "unspecified";
-
-export type PaymentStatus =
-  | "created"
-  | "pending"
-  | "paid"
-  | "failed"
-  | "cancelled"
-  | "partially_refunded"
-  | "refunded";
-
-export type SessionStatus = "draft" | "scheduled" | "sold_out" | "cancelled" | "completed";
-
-export type MediaSource = "upload" | "wix_import" | "generated";
-
-export type MediaRole = "featured" | "gallery" | "detail";
-
-export type SubscriberStatus = "subscribed" | "unsubscribed" | "suppressed";
+export * from './domain';
 
 export type DbWorkshopCategory = {
   id: string;
@@ -105,6 +89,7 @@ export type DbWorkshop = {
   suggested_theme: Theme | null;
   featured_media_id: string | null;
   booking_mode: BookingMode;
+  external_booking_url: string | null;
   status: ContentStatus;
   is_featured: boolean;
   seo_title: string | null;
@@ -291,149 +276,28 @@ export type DbLegacyRedirect = {
   updated_at: string;
 };
 
-// ---------------------------------------------------------------------------
-// Public domain types (camelCase, safe for React components)
-// ---------------------------------------------------------------------------
+export type DbAdminUser = {
+  user_id: string;
+  role: AdminRole;
+  display_name: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+  last_login_at: string | null;
+};
 
-export type WorkshopCategory = {
+export type DbAdminAuditLog = {
   id: string;
-  name: string;
-  slug: string;
-  description: string | null;
-  suggestedTheme: Theme;
-  displayOrder: number;
-  isVisible: boolean;
+  actor_user_id: string;
+  actor_role: AdminRole;
+  action: string;
+  entity_type: string;
+  entity_id: string | null;
+  summary: string;
+  changed_fields: unknown;
+  request_metadata: unknown;
+  created_at: string;
 };
-
-export type Instructor = {
-  id: string;
-  displayName: string;
-  slug: string;
-  biography: string | null;
-  profileMediaId: string | null;
-  isActive: boolean;
-  displayOrder: number;
-};
-
-export type MediaAsset = {
-  id: string;
-  originalFilename: string;
-  storageBucket: string;
-  storagePath: string;
-  mimeType: string;
-  width: number | null;
-  height: number | null;
-  fileSizeBytes: number | null;
-  altText: string;
-  caption: string | null;
-  source: MediaSource;
-  wixUrl: string | null;
-  checksum: string | null;
-  archivedAt: string | null;
-};
-
-export type Workshop = {
-  id: string;
-  categoryId: string;
-  title: string;
-  slug: string;
-  shortDescription: string | null;
-  description: string | null;
-  practicalInformation: string | null;
-  minimumAge: number | null;
-  maximumAge: number | null;
-  defaultDurationMinutes: number;
-  defaultCapacity: number;
-  defaultPriceGrossGrosz: number;
-  currency: string;
-  suggestedTheme: Theme | null;
-  featuredMediaId: string | null;
-  bookingMode: BookingMode;
-  status: ContentStatus;
-  isFeatured: boolean;
-  seoTitle: string | null;
-  seoDescription: string | null;
-  archivedAt: string | null;
-};
-
-export type WorkshopSession = {
-  id: string;
-  workshopId: string;
-  instructorId: string | null;
-  startsAt: string;
-  endsAt: string;
-  timezone: string;
-  capacity: number;
-  reservedCount: number;
-  priceGrossGrosz: number;
-  currency: string;
-  locationName: string | null;
-  locationAddress: string | null;
-  status: SessionStatus;
-  bookingOpensAt: string | null;
-  bookingClosesAt: string | null;
-  externalBookingUrl: string | null;
-};
-
-export type ContentPage = {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string | null;
-  content: string | null;
-  status: ContentStatus;
-  suggestedTheme: Theme | null;
-  seoTitle: string | null;
-  seoDescription: string | null;
-  publishedAt: string | null;
-  archivedAt: string | null;
-};
-
-export type BlogPost = {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  featuredMediaId: string | null;
-  status: ContentStatus;
-  authorName: string | null;
-  publishedAt: string | null;
-  seoTitle: string | null;
-  seoDescription: string | null;
-  legacyWixUrl: string | null;
-  archivedAt: string | null;
-};
-
-export type GalleryItem = {
-  id: string;
-  mediaAssetId: string;
-  title: string | null;
-  description: string | null;
-  category: string | null;
-  displayOrder: number;
-  isVisible: boolean;
-};
-
-export type LegacyRedirect = {
-  id: string;
-  sourcePath: string;
-  destinationPath: string;
-  statusCode: 301 | 308;
-  notes: string | null;
-};
-
-export type SiteSetting = {
-  key: string;
-  value: unknown;
-  description: string | null;
-};
-
-// ---------------------------------------------------------------------------
-// Supabase-compatible Database type for typed clients.
-// Only Row types are fully defined because this phase is read-only for public
-// data. Insert/Update types will be expanded when mutations are implemented.
-// ---------------------------------------------------------------------------
 
 export type Database = {
   public: {
@@ -489,40 +353,63 @@ export type Database = {
       legacy_redirects: {
         Row: DbLegacyRedirect;
       };
+      admin_users: {
+        Row: DbAdminUser;
+      };
+      admin_audit_log: {
+        Row: DbAdminAuditLog;
+      };
     };
-    Views: {};
+    Views: Record<string, never>;
     Functions: {
       set_updated_at: {
-        Args: {};
+        Args: Record<string, never>;
         Returns: unknown;
       };
       generate_booking_reference: {
-        Args: {};
+        Args: Record<string, never>;
+        Returns: string;
+      };
+      current_admin_role: {
+        Args: Record<string, never>;
+        Returns: string | null;
+      };
+      is_active_admin: {
+        Args: Record<string, never>;
+        Returns: boolean;
+      };
+      is_admin_role: {
+        Args: { required_role: string };
+        Returns: boolean;
+      };
+      upsert_workshop_with_relations: {
+        Args: {
+          p_workshop_id: string | null;
+          p_category_id: string;
+          p_title: string;
+          p_slug: string;
+          p_short_description: string | null;
+          p_description: string | null;
+          p_practical_information: string | null;
+          p_minimum_age: number | null;
+          p_maximum_age: number | null;
+          p_default_duration_minutes: number;
+          p_default_capacity: number;
+          p_default_price_gross_grosz: number;
+          p_suggested_theme: string | null;
+          p_featured_media_id: string | null;
+          p_booking_mode: string;
+          p_external_booking_url: string | null;
+          p_status: string;
+          p_is_featured: boolean;
+          p_seo_title: string | null;
+          p_seo_description: string | null;
+          p_instructor_ids: string[];
+          p_gallery_media: unknown;
+        };
         Returns: string;
       };
     };
-    Enums: {};
+    Enums: Record<string, never>;
   };
-};
-
-// Composite public types
-
-export type WorkshopWithCategory = Workshop & {
-  category: WorkshopCategory | null;
-};
-
-export type WorkshopWithSessions = WorkshopWithCategory & {
-  sessions: WorkshopSession[];
-  instructors: Instructor[];
-  media: MediaAsset[];
-};
-
-export type PublicSiteSettings = {
-  studioName: string;
-  studioAddress: string;
-  studioEmail: string;
-  studioPhone: string;
-  bookingCtaLabel: string;
-  defaultSeoTitle: string;
-  defaultSeoDescription: string;
 };

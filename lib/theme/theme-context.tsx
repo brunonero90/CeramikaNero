@@ -71,6 +71,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setSuggestedTheme = useCallback((suggestedTheme: Theme) => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
     if (!stored) {
       document.documentElement.setAttribute('data-theme', suggestedTheme);

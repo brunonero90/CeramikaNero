@@ -11,7 +11,7 @@ import {
   redirectStatusCodeSchema,
   themeSchema,
   bookingModeSchema,
-} from "./schema";
+} from './schema';
 import type {
   DbWorkshopCategory,
   DbInstructor,
@@ -34,7 +34,14 @@ import type {
   LegacyRedirect,
   SiteSetting,
   PublicSiteSettings,
-} from "./types";
+  BookingStatus,
+  ParticipantType,
+  PaymentStatus,
+  BookingSource,
+  SubscriberStatus,
+  MediaRole,
+  ContentStatus,
+} from './types';
 
 export function mapCategory(row: DbWorkshopCategory): WorkshopCategory {
   return {
@@ -94,9 +101,12 @@ export function mapWorkshop(row: DbWorkshop): Workshop {
     defaultCapacity: row.default_capacity,
     defaultPriceGrossGrosz: row.default_price_gross_grosz,
     currency: row.currency,
-    suggestedTheme: row.suggested_theme ? themeSchema.parse(row.suggested_theme) : null,
+    suggestedTheme: row.suggested_theme
+      ? themeSchema.parse(row.suggested_theme)
+      : null,
     featuredMediaId: row.featured_media_id,
     bookingMode: bookingModeSchema.parse(row.booking_mode),
+    externalBookingUrl: row.external_booking_url,
     status: contentStatusSchema.parse(row.status),
     isFeatured: row.is_featured,
     seoTitle: row.seo_title,
@@ -134,11 +144,14 @@ export function mapContentPage(row: DbContentPage): ContentPage {
     excerpt: row.excerpt,
     content: row.content,
     status: contentStatusSchema.parse(row.status),
-    suggestedTheme: row.suggested_theme ? themeSchema.parse(row.suggested_theme) : null,
+    suggestedTheme: row.suggested_theme
+      ? themeSchema.parse(row.suggested_theme)
+      : null,
     seoTitle: row.seo_title,
     seoDescription: row.seo_description,
     publishedAt: row.published_at,
     archivedAt: row.archived_at,
+    updatedAt: row.updated_at,
   };
 }
 
@@ -157,6 +170,7 @@ export function mapBlogPost(row: DbBlogPost): BlogPost {
     seoDescription: row.seo_description,
     legacyWixUrl: row.legacy_wix_url,
     archivedAt: row.archived_at,
+    updatedAt: row.updated_at,
   };
 }
 
@@ -169,6 +183,7 @@ export function mapGalleryItem(row: DbGalleryItem): GalleryItem {
     category: row.category,
     displayOrder: row.display_order,
     isVisible: row.is_visible,
+    updatedAt: row.updated_at,
   };
 }
 
@@ -190,25 +205,27 @@ export function mapSiteSetting(row: DbSiteSetting): SiteSetting {
   };
 }
 
-export function mapPublicSiteSettings(rows: DbSiteSetting[]): PublicSiteSettings {
+export function mapPublicSiteSettings(
+  rows: DbSiteSetting[]
+): PublicSiteSettings {
   const get = (key: string, fallback: string): string => {
     const found = rows.find((row) => row.key === key);
-    return typeof found?.value === "string" ? found.value : fallback;
+    return typeof found?.value === 'string' ? found.value : fallback;
   };
 
   return {
-    studioName: get("studio_name", "Ceramika Nero"),
-    studioAddress: get("studio_address", "Suchy Las, Polska"),
-    studioEmail: get("studio_email", "kontakt@ceramikanero.com"),
-    studioPhone: get("studio_phone", "+48 TBD"),
-    bookingCtaLabel: get("booking_cta_label", "Zarezerwuj warsztat"),
+    studioName: get('studio_name', 'Ceramika Nero'),
+    studioAddress: get('studio_address', 'Suchy Las, Polska'),
+    studioEmail: get('studio_email', 'kontakt@ceramikanero.com'),
+    studioPhone: get('studio_phone', '+48 TBD'),
+    bookingCtaLabel: get('booking_cta_label', 'Zarezerwuj warsztat'),
     defaultSeoTitle: get(
-      "default_seo_title",
-      "Ceramika Nero — Warsztaty ceramiczne w Suchym Lesie"
+      'default_seo_title',
+      'Ceramika Nero — Warsztaty ceramiczne w Suchym Lesie'
     ),
     defaultSeoDescription: get(
-      "default_seo_description",
-      "Warsztaty ceramiczne dla dzieci, dorosłych, rodzin i grup w naszej pracowni w Suchym Lesie."
+      'default_seo_description',
+      'Warsztaty ceramiczne dla dzieci, dorosłych, rodzin i grup w naszej pracowni w Suchym Lesie.'
     ),
   };
 }
@@ -217,7 +234,7 @@ export function toDbStatus(value: ContentStatus): string {
   return contentStatusSchema.parse(value);
 }
 
-export function toDbSessionStatus(value: WorkshopSession["status"]): string {
+export function toDbSessionStatus(value: WorkshopSession['status']): string {
   return sessionStatusSchema.parse(value);
 }
 
@@ -233,7 +250,7 @@ export function toDbPaymentStatus(value: PaymentStatus): string {
   return paymentStatusSchema.parse(value);
 }
 
-export function toDbMediaSource(value: MediaAsset["source"]): string {
+export function toDbMediaSource(value: MediaAsset['source']): string {
   return mediaSourceSchema.parse(value);
 }
 

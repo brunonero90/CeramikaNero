@@ -5,11 +5,11 @@
  */
 export function formatGroszAsPln(grosz: number): string {
   if (!Number.isFinite(grosz) || !Number.isInteger(grosz)) {
-    throw new Error("Price must be a finite integer number of grosz");
+    throw new Error('Price must be a finite integer number of grosz');
   }
   const zloty = Math.floor(grosz / 100);
   const groszPart = Math.abs(grosz % 100);
-  const formattedGrosz = groszPart.toString().padStart(2, "0");
+  const formattedGrosz = groszPart.toString().padStart(2, '0');
   return `${zloty},${formattedGrosz} zł`;
 }
 
@@ -19,7 +19,7 @@ export function formatGroszAsPln(grosz: number): string {
  */
 export function groszToZloty(grosz: number): string {
   if (!Number.isFinite(grosz) || !Number.isInteger(grosz)) {
-    throw new Error("Price must be a finite integer number of grosz");
+    throw new Error('Price must be a finite integer number of grosz');
   }
   return (grosz / 100).toFixed(2);
 }
@@ -29,9 +29,9 @@ export function groszToZloty(grosz: number): string {
  * Useful for parsing user input or external data before storage.
  */
 export function zlotyToGrosz(zloty: string | number): number {
-  const parsed = typeof zloty === "string" ? Number.parseFloat(zloty) : zloty;
+  const parsed = typeof zloty === 'string' ? Number.parseFloat(zloty) : zloty;
   if (!Number.isFinite(parsed)) {
-    throw new Error("Invalid zloty amount");
+    throw new Error('Invalid zloty amount');
   }
   return Math.round(parsed * 100);
 }

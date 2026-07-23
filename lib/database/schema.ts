@@ -1,55 +1,60 @@
-import { z } from "zod";
-import { THEMES } from "@/lib/types/theme";
+import { z } from 'zod';
+import { THEMES } from '@/lib/types/theme';
 
 export const themeSchema = z.enum(THEMES);
 
-export const contentStatusSchema = z.enum(["draft", "published", "archived"]);
+export const contentStatusSchema = z.enum(['draft', 'published', 'archived']);
 
-export const bookingModeSchema = z.enum(["scheduled", "enquiry", "external"]);
+export const bookingModeSchema = z.enum(['scheduled', 'enquiry', 'external']);
 
 export const sessionStatusSchema = z.enum([
-  "draft",
-  "scheduled",
-  "sold_out",
-  "cancelled",
-  "completed",
+  'draft',
+  'scheduled',
+  'sold_out',
+  'cancelled',
+  'completed',
 ]);
 
 export const bookingStatusSchema = z.enum([
-  "pending",
-  "awaiting_payment",
-  "confirmed",
-  "cancelled",
-  "expired",
-  "refunded",
-  "partially_refunded",
+  'pending',
+  'awaiting_payment',
+  'confirmed',
+  'cancelled',
+  'expired',
+  'refunded',
+  'partially_refunded',
 ]);
 
-export const participantTypeSchema = z.enum(["adult", "child", "unspecified"]);
+export const participantTypeSchema = z.enum(['adult', 'child', 'unspecified']);
 
 export const paymentStatusSchema = z.enum([
-  "created",
-  "pending",
-  "paid",
-  "failed",
-  "cancelled",
-  "partially_refunded",
-  "refunded",
+  'created',
+  'pending',
+  'paid',
+  'failed',
+  'cancelled',
+  'partially_refunded',
+  'refunded',
 ]);
 
-export const mediaSourceSchema = z.enum(["upload", "wix_import", "generated"]);
+export const mediaSourceSchema = z.enum(['upload', 'wix_import', 'generated']);
 
-export const mediaRoleSchema = z.enum(["featured", "gallery", "detail"]);
+export const mediaRoleSchema = z.enum(['featured', 'gallery', 'detail']);
 
 export const subscriberStatusSchema = z.enum([
-  "subscribed",
-  "unsubscribed",
-  "suppressed",
+  'subscribed',
+  'unsubscribed',
+  'suppressed',
 ]);
 
-export const bookingSourceSchema = z.enum(["website", "admin", "wix_import"]);
+export const bookingSourceSchema = z.enum(['website', 'admin', 'wix_import']);
 
-export const redirectStatusCodeSchema = z.union([z.literal(301), z.literal(308)]);
+export const adminRoleSchema = z.enum(['owner', 'manager', 'editor']);
+
+export const redirectStatusCodeSchema = z.union([
+  z.literal(301),
+  z.literal(308),
+]);
 
 export const legacyRedirectSchema = z
   .object({
@@ -58,8 +63,8 @@ export const legacyRedirectSchema = z
     statusCode: redirectStatusCodeSchema,
   })
   .refine((data) => data.sourcePath !== data.destinationPath, {
-    message: "Redirect source and destination must be different",
-    path: ["destinationPath"],
+    message: 'Redirect source and destination must be different',
+    path: ['destinationPath'],
   });
 
 export type LegacyRedirectInput = z.infer<typeof legacyRedirectSchema>;
@@ -99,5 +104,5 @@ export const slugSchema = z
   .min(1)
   .max(200)
   .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, {
-    message: "Slug must be lowercase letters, numbers and hyphens only",
+    message: 'Slug must be lowercase letters, numbers and hyphens only',
   });

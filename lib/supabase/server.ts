@@ -1,7 +1,7 @@
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
-import type { Database } from "@/lib/database/types";
-import { requirePublicEnv } from "./environment";
+import { createServerClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
+import type { Database } from '@/lib/database/types';
+import { requirePublicEnv } from './environment';
 
 export function createClient() {
   const env = requirePublicEnv();
@@ -9,16 +9,17 @@ export function createClient() {
 
   return createServerClient<Database>(
     env.NEXT_PUBLIC_SUPABASE_URL,
-    env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
     {
       cookies: {
-        getAll() {
-          return cookieStore.getAll();
+        async getAll() {
+          return (await cookieStore).getAll();
         },
-        setAll(cookiesToSet) {
+        async setAll(cookiesToSet) {
           try {
+            const store = await cookieStore;
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
+              store.set(name, value, options)
             );
           } catch {
             // The `setAll` method was called from a Server Component.

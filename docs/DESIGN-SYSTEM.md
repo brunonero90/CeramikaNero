@@ -61,6 +61,14 @@ Utility classes: `transition-fast`, `transition-base`, `transition-slow`.
 - Focus states use `focus-visible:ring-2` and `focus-visible:ring-offset-2` for
   keyboard visibility.
 
+## Theme suggestions
+
+Pages and categories can suggest a default visual mode. A visitor’s manual choice
+always takes precedence. The suggestion is applied by the `ThemeSuggestion`
+client component, which only calls `setSuggestedTheme` once per page render. This
+lets categories such as "Dla dzieci" default to Joyful while "Dla dorosłych"
+defaults to Atelier without overriding a user’s explicit selection.
+
 ## Accessibility
 
 - All interactive elements have focus indicators.
@@ -73,6 +81,13 @@ Utility classes: `transition-fast`, `transition-base`, `transition-slow`.
 
 The layout uses Tailwind’s default breakpoints: `sm`, `md`, `lg`, `xl`.
 Mobile navigation is shown below `lg`.
+
+## Admin interface
+
+The admin area uses a restrained, utilitarian interface. It does not apply the
+Atelier/Joyful theme system to avoid confusion with the public site, but it
+retains Ceramika Nero’s identity through typography and spacing. Forms use native
+controls with clear labels, error states and accessible focus styles.
 
 ## Decisions to clarify (TBD)
 
