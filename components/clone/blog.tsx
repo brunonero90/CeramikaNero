@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { BlogCategoryNav } from '@/components/clone/archive-page';
+import { ArchiveRichText } from '@/components/clone/archive-rich-text';
 import { archiveBlogPosts } from '@/lib/clone/content/phase2/blog-posts';
 
 const NOISE =
@@ -133,10 +134,8 @@ export function BlogPostView({
           </div>
         </div>
       ) : null}
-      <div className="mx-auto max-w-3xl space-y-5 px-4 py-10 text-base leading-relaxed text-text-muted md:px-6">
-        {body.map((p) => (
-          <p key={p.slice(0, 48)}>{p}</p>
-        ))}
+      <div className="mx-auto max-w-prose px-4 py-10 md:px-6">
+        <ArchiveRichText text={body.join('\n\n')} className="space-y-5" />
       </div>
       <div className="mx-auto max-w-3xl px-4 pb-16 md:px-6">
         <Link

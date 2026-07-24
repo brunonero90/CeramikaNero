@@ -156,7 +156,7 @@ export const urodzinyPage = {
       imageAlt: '439195153_7659636140724940_2885825421017431008_n.jpg',
       imageFirst: true,
       ctaLabel: 'Więcej szczegółów...',
-      ctaHref: '/kopia-panieński-plus-opis',
+      ctaHref: '/kopia-panienski-plus-opis',
       tinted: true,
     },
     {
@@ -294,7 +294,7 @@ export const panienskiePage = {
       imageAlt: 'Happy Women',
       imageFirst: true,
       ctaLabel: 'Więcej szczegółów...',
-      ctaHref: '/copy-of-panieński-opis',
+      ctaHref: '/copy-of-panienski-opis',
       tinted: true,
     },
   ] satisfies SplitBlock[],

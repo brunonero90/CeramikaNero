@@ -52,6 +52,27 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
+      // ASCII filesystem aliases for original unicode Wix paths (ń).
+      {
+        source: '/copy-of-panie%C5%84ski-opis',
+        destination: '/copy-of-panienski-opis',
+        permanent: true,
+      },
+      {
+        source: '/copy-of-panieński-opis',
+        destination: '/copy-of-panienski-opis',
+        permanent: true,
+      },
+      {
+        source: '/kopia-panie%C5%84ski-plus-opis',
+        destination: '/kopia-panienski-plus-opis',
+        permanent: true,
+      },
+      {
+        source: '/kopia-panieński-plus-opis',
+        destination: '/kopia-panienski-plus-opis',
+        permanent: true,
+      },
     ];
   },
 };

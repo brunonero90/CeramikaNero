@@ -1,0 +1,61 @@
+{
+  "mode": "dry-run",
+  "includeProvisional": false,
+  "target": {
+    "projectRef": "zorxzyvmcbwucvaywmuu",
+    "host": "zorxzyvmcbwucvaywmuu.supabase.co",
+    "seedEnv": null
+  },
+  "guards": [],
+  "blocked": false,
+  "categories": {
+    "inserted": 8,
+    "updated": 0,
+    "skipped": 0
+  },
+  "site_settings": {
+    "inserted": 5,
+    "updated": 0,
+    "skipped": 0
+  },
+  "missingForBruno": [
+    {
+      "entity": "workshop_sessions",
+      "reason": "Existing seed.sql / fixtures use provisional future dates not proven from the live archive schedule."
+    },
+    {
+      "entity": "workshops.default_price_gross_grosz",
+      "reason": "Fixture/seed prices are marked provisional; homepage archive shows offer prices but not a verified DB catalog mapping."
+    },
+    {
+      "entity": "instructors display names",
+      "reason": "Fixtures use Ania Nero / Kasia Nero; public archive contact uses Małgorzata Nero — needs owner confirmation before seeding instructors."
+    },
+    {
+      "entity": "published workshop catalog rows",
+      "reason": "Do not invent workshop rows beyond categories/settings without confirmed titles, capacities and booking modes."
+    }
+  ],
+  "integrityBefore": {
+    "workshop_categories": 0,
+    "workshops": 0,
+    "workshop_sessions": 0
+  },
+  "integrityAfter": {
+    "workshop_categories": 0,
+    "workshops": 0,
+    "workshop_sessions": 0
+  },
+  "counts": {
+    "categories": {
+      "inserted": 8,
+      "updated": 0,
+      "skipped": 0
+    },
+    "site_settings": {
+      "inserted": 5,
+      "updated": 0,
+      "skipped": 0
+    }
+  }
+}

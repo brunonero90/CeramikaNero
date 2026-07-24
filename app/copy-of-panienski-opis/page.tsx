@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArchivePageView } from '@/components/clone/archive-page';
-import { bookingAdaptationFor, getArchivePage } from '@/lib/clone/archive';
+import {
+  bookingAdaptationFor,
+  getArchivePage,
+  UNICODE_ROUTE_ALIASES,
+} from '@/lib/clone/archive';
 
-export const dynamic = 'force-dynamic';
-
-const ROUTE = '/kopia-panieński-plus-opis' as const;
+const ROUTE = UNICODE_ROUTE_ALIASES['/copy-of-panienski-opis'];
 
 export const metadata: Metadata = {
   title: getArchivePage(ROUTE)?.title ?? 'Ceramika Nero',

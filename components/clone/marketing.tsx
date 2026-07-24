@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils/cn';
+import { resolveCtaHref } from '@/lib/clone/link-resolve';
 
 type CloneCtaProps = {
   href: string;
@@ -16,6 +17,11 @@ export function CloneCta({
   className,
   variant = 'primary',
 }: CloneCtaProps) {
+  const resolved = resolveCtaHref(
+    typeof children === 'string' ? children : '',
+    href
+  );
+  const target = resolved.actionable ? resolved.href : href;
   const classes = cn(
     'inline-flex items-center justify-center px-6 py-3 text-sm font-semibold tracking-wide uppercase transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2',
     variant === 'primary' && 'bg-accent-primary text-white hover:brightness-95',
@@ -24,21 +30,29 @@ export function CloneCta({
     className
   );
 
+  if (!resolved.actionable && (href === '#' || !href)) {
+    return (
+      <span className={cn(classes, 'cursor-default opacity-60')} role="text">
+        {children}
+      </span>
+    );
+  }
+
   if (
-    href.startsWith('mailto:') ||
-    href.startsWith('tel:') ||
-    href.startsWith('http://') ||
-    href.startsWith('https://')
+    target.startsWith('mailto:') ||
+    target.startsWith('tel:') ||
+    target.startsWith('http://') ||
+    target.startsWith('https://')
   ) {
     return (
-      <a href={href} className={classes}>
+      <a href={target} className={classes}>
         {children}
       </a>
     );
   }
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={target} className={classes}>
       {children}
     </Link>
   );
@@ -86,7 +100,7 @@ export function MarketingHero({
             </div>
           )}
         </div>
-        <div className="mx-auto max-w-3xl px-2 py-10 text-center md:py-14">
+        <div className="mx-auto max-w-prose px-2 py-10 text-center md:py-14">
           <h1 className="font-heading text-3xl font-semibold text-text-primary md:text-4xl lg:text-5xl">
             {title}
           </h1>
@@ -167,11 +181,17 @@ export function ImageTextSplit({ block }: { block: SplitBlock }) {
               ))}
             </ul>
           )}
-          {block.ctaLabel && block.ctaHref && (
-            <div className="mt-8">
-              <CloneCta href={block.ctaHref}>{block.ctaLabel}</CloneCta>
-            </div>
-          )}
+          {block.ctaLabel &&
+            block.ctaHref &&
+            (() => {
+              const resolved = resolveCtaHref(block.ctaLabel, block.ctaHref);
+              if (!resolved.actionable) return null;
+              return (
+                <div className="mt-8">
+                  <CloneCta href={resolved.href}>{block.ctaLabel}</CloneCta>
+                </div>
+              );
+            })()}
         </div>
       </div>
     </section>

@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArchiveRichText } from '@/components/clone/archive-rich-text';
 import { CloneCta } from '@/components/clone/marketing';
+import { resolveCtaHref } from '@/lib/clone/link-resolve';
 
 export type ArchiveSection = {
   heading: string | null;
@@ -15,14 +17,6 @@ export type ArchivePageData = {
   sections: readonly ArchiveSection[];
   images?: readonly { src: string; alt: string; sectionNumber?: number }[];
 };
-
-function localizeHref(href: string) {
-  if (!href || href === '#') return '#';
-  if (href.startsWith('mailto:') || href.startsWith('tel:')) return href;
-  if (href.startsWith('http') && !href.includes('ceramikanero.com'))
-    return href;
-  return href.replace(/^https?:\/\/(www\.)?ceramikanero\.com/i, '') || '/';
-}
 
 /** Shared renderer for archived Phase 2 pages. */
 export function ArchivePageView({
@@ -40,68 +34,72 @@ export function ArchivePageView({
 
   return (
     <div className="bg-surface-bg">
-      <header className="mx-auto max-w-3xl px-4 pt-12 pb-6 text-center md:px-6 md:pt-16">
+      <header className="mx-auto max-w-prose px-4 pt-12 pb-6 text-center md:px-6 md:pt-16">
         <h1 className="font-heading text-3xl font-semibold text-text-primary md:text-4xl">
           {heading}
         </h1>
       </header>
 
-      {page.sections.map((section, index) => (
-        <section
-          key={`${section.heading ?? 'section'}-${index}`}
-          className="border-t border-surface-subtle/30"
-        >
-          <div className="mx-auto max-w-3xl px-4 py-10 md:px-6">
-            {section.heading ? (
-              <h2 className="font-heading text-2xl font-semibold text-text-primary">
-                {section.heading}
-              </h2>
-            ) : null}
-            {section.text ? (
-              <div className="mt-4 space-y-4 text-base leading-relaxed whitespace-pre-line text-text-muted">
-                {section.text}
-              </div>
-            ) : null}
-            {section.images.length > 0 ? (
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {section.images.map((img) => (
-                  <figure
-                    key={img.src + img.alt}
-                    className="relative aspect-[4/3]"
-                  >
-                    <Image
-                      src={img.src}
-                      alt={img.alt || ''}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                    />
-                  </figure>
-                ))}
-              </div>
-            ) : null}
-            {section.buttons.length > 0 ? (
-              <div className="mt-8 flex flex-wrap gap-3">
-                {section.buttons
-                  .filter((b) => !/^Udostępnij|Sortuj|Podgląd$/i.test(b.label))
-                  .slice(0, 8)
-                  .map((b) => (
-                    <CloneCta
-                      key={`${b.label}-${b.href}`}
-                      href={localizeHref(b.href)}
+      {page.sections.map((section, index) => {
+        const ctas = section.buttons
+          .map((b) => {
+            const resolved = resolveCtaHref(b.label, b.href);
+            return {
+              label: b.label.split('\n')[0]!.slice(0, 60),
+              href: resolved.href,
+              actionable: resolved.actionable,
+            };
+          })
+          .filter((b) => b.actionable)
+          .slice(0, 8);
+
+        return (
+          <section
+            key={`${section.heading ?? 'section'}-${index}`}
+            className="border-t border-surface-subtle/30"
+          >
+            <div className="mx-auto max-w-prose px-4 py-10 md:px-6">
+              {section.heading ? (
+                <h2 className="font-heading text-2xl font-semibold text-text-primary">
+                  {section.heading}
+                </h2>
+              ) : null}
+              {section.text ? <ArchiveRichText text={section.text} /> : null}
+              {section.images.length > 0 ? (
+                <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                  {section.images.map((img) => (
+                    <figure
+                      key={img.src + img.alt}
+                      className="relative aspect-[4/3]"
                     >
-                      {b.label.split('\n')[0]!.slice(0, 60)}
+                      <Image
+                        src={img.src}
+                        alt={img.alt || ''}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              ) : null}
+              {ctas.length > 0 ? (
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {ctas.map((b) => (
+                    <CloneCta key={`${b.label}-${b.href}`} href={b.href}>
+                      {b.label}
                     </CloneCta>
                   ))}
-              </div>
-            ) : null}
-          </div>
-        </section>
-      ))}
+                </div>
+              ) : null}
+            </div>
+          </section>
+        );
+      })}
 
       {bookingAdaptation ? (
         <section className="border-t border-surface-subtle/40 bg-[#f8ebe3] px-4 py-10 text-center md:px-6">
-          <p className="mx-auto max-w-2xl text-sm text-text-muted">
+          <p className="mx-auto max-w-prose text-sm text-text-muted">
             Kalendarz Wix Bookings został zastąpiony pierwszorzędną rezerwacją
             na tej stronie (bez wywołań zewnętrznych w tej fazie).
           </p>
@@ -126,7 +124,7 @@ export function BlogCategoryNav({ active }: { active?: string }) {
   return (
     <nav
       aria-label="Kategorie bloga"
-      className="mx-auto flex max-w-3xl flex-wrap justify-center gap-3 px-4 pb-8"
+      className="mx-auto flex max-w-prose flex-wrap justify-center gap-3 px-4 pb-8"
     >
       {items.map((item) => {
         const isActive =

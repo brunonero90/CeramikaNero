@@ -57,7 +57,7 @@ export default function HomePage() {
               </h2>
               <p className="mt-2">
                 <Link
-                  href={service.href}
+                  href={service.moreHref}
                   className="text-sm text-accent-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
                 >
                   Więcej

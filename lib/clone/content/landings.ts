@@ -233,6 +233,10 @@ export const galeriaImages = [
   },
 ] as const;
 
+/**
+ * Homepage service cards. moreHref / bookHref match archived index destinations
+ * (service-page / booking-calendar), not marketing landings alone.
+ */
 export const homepageServices = [
   {
     title: 'wrzesieńGLINA DO WINA PIĄTEK SUCHY LAS',
@@ -240,7 +244,8 @@ export const homepageServices = [
     price: '209 zł',
     image: '/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg',
     imageAlt: 'warsztaty glina do wina',
-    href: '/glinadowina',
+    moreHref: '/service-page/wrzesieńglina-do-wina-piątek-suchy-las',
+    href: '/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las',
     cta: 'Zarezerwuj',
   },
   {
@@ -249,7 +254,8 @@ export const homepageServices = [
     price: '149 zł',
     image: '/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg',
     imageAlt: 'Ceramika dla dorosłych',
-    href: '/dla-doroslych',
+    moreHref: '/service-page/wrzesieńceramika-dla-dorosłych-pon',
+    href: '/booking-calendar/wrzesieńceramika-dla-dorosłych-pon',
     cta: 'Zarezerwuj',
   },
   {
@@ -258,7 +264,8 @@ export const homepageServices = [
     price: '189 zł',
     image: '/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg',
     imageAlt: 'warsztaty glina do wina',
-    href: '/glinadowina',
+    moreHref: '/service-page/glina-do-wina-piątek-19-00-suchy-las',
+    href: '/booking-calendar/glina-do-wina-piątek-19-00-suchy-las',
     cta: 'Zarezerwuj',
   },
   {
@@ -267,7 +274,8 @@ export const homepageServices = [
     price: '139 zł',
     image: '/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg',
     imageAlt: 'Ceramika dla dorosłych',
-    href: '/dla-doroslych',
+    moreHref: '/service-page/ceramika-dla-dorosłych-pon-czw',
+    href: '/booking-calendar/ceramika-dla-dorosłych-pon-czw',
     cta: 'Zarezerwuj',
   },
   {
@@ -276,7 +284,8 @@ export const homepageServices = [
     price: '189 zł',
     image: '/images/wix-migrated/747d6f_b5e3aff7de8743c88922dac0ed1c8629.png',
     imageAlt: 'warsztaty glina do wina',
-    href: '/glinadowina',
+    moreHref: '/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu',
+    href: '/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu',
     cta: 'Zarezerwuj',
   },
   {
@@ -285,7 +294,8 @@ export const homepageServices = [
     price: '109 zł',
     image: '/images/wix-migrated/747d6f_ec8876726c8f4acf9f3aef15bc36b8cd.jpg',
     imageAlt: 'warsztaty ceramiczne',
-    href: '/dla-dzieci',
+    moreHref: '/service-page/letnia-akademia-rysunku-malarstwa',
+    href: '/booking-calendar/letnia-akademia-rysunku-malarstwa',
     cta: 'Zarezerwuj',
   },
   {
@@ -294,7 +304,8 @@ export const homepageServices = [
     price: 'Od 1140 zł',
     image: '/images/wix-migrated/11062b_43197d81c0d040e4867041831bae8092.jpeg',
     imageAlt: 'Kurs rysunku i malarstwa',
-    href: '/dla-dzieci',
+    moreHref: '/service-page/iv-turnus-półkolonie-artystyczne',
+    href: '/service-page/iv-turnus-półkolonie-artystyczne',
     cta: 'Zobacz kurs',
     soldOut: true,
   },
@@ -304,7 +315,8 @@ export const homepageServices = [
     price: '95 zł',
     image: '/images/wix-migrated/747d6f_355d7132929d437a94a84beaa0a6e9a1.png',
     imageAlt: 'warsztaty ceramiczne',
-    href: '/',
+    moreHref: '/service-page/glina-i-rodzina-soboty-15-00',
+    href: '/booking-calendar/glina-i-rodzina-soboty-15-00',
     cta: 'Zarezerwuj',
   },
   {
@@ -313,7 +325,8 @@ export const homepageServices = [
     price: 'Od 139 zł',
     image: '/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg',
     imageAlt: 'Poranki z ceramiką',
-    href: '/dla-doroslych',
+    moreHref: '/service-page/poranki-z-ceramiką-dla-dorosłych',
+    href: '/booking-calendar/poranki-z-ceramiką-dla-dorosłych',
     cta: 'Zarezerwuj',
   },
   {
@@ -322,7 +335,8 @@ export const homepageServices = [
     price: '',
     image: '/images/wix-migrated/747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg',
     imageAlt: 'Piknik rodzinny',
-    href: '/kontakt',
+    moreHref: '/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia',
+    href: '/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia',
     cta: 'Więcej info',
   },
   {
@@ -331,7 +345,8 @@ export const homepageServices = [
     price: '',
     image: '/images/wix-migrated/747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg',
     imageAlt: 'Piknik rodzinny',
-    href: '/kontakt',
+    moreHref: '/service-page/piknik-rodzinny-z-ceramiką-12-września',
+    href: '/service-page/piknik-rodzinny-z-ceramiką-12-września',
     cta: 'Więcej info',
   },
 ] as const;

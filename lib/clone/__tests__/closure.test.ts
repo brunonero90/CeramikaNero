@@ -39,18 +39,26 @@ describe('Clone closure', () => {
 
   it('resolves legacy-copy routes as unique implementations', () => {
     const final = JSON.parse(readFileSync(finalPath, 'utf8'));
-    for (const route of [
-      '/copy-of-panieński-opis',
-      '/kopia-panieński-plus-opis',
-      '/kopia-urodziny-ceramika',
-    ]) {
+    const implemented = [
+      {
+        original: '/copy-of-panieński-opis',
+        file: 'app/copy-of-panienski-opis/page.tsx',
+      },
+      {
+        original: '/kopia-panieński-plus-opis',
+        file: 'app/kopia-panienski-plus-opis/page.tsx',
+      },
+      {
+        original: '/kopia-urodziny-ceramika',
+        file: 'app/kopia-urodziny-ceramika/page.tsx',
+      },
+    ];
+    for (const item of implemented) {
       const row = final.routes.find(
-        (r: { originalRoute: string }) => r.originalRoute === route
+        (r: { originalRoute: string }) => r.originalRoute === item.original
       );
       expect(row.finalClassification).toBe('Implemented directly');
-      expect(
-        existsSync(path.join(root, 'app', route.slice(1), 'page.tsx'))
-      ).toBe(true);
+      expect(existsSync(path.join(root, item.file))).toBe(true);
     }
   });
 
@@ -115,13 +123,13 @@ describe('Clone closure', () => {
       path.join(root, 'lib/clone/content/glina-box-and-events.ts'),
       'utf8'
     );
-    expect(panienskie).toContain('/copy-of-panieński-opis');
+    expect(panienskie).toContain('/copy-of-panienski-opis');
   });
 
   it('production clone sources do not embed Wix hotlinks or iframes', () => {
     const files = [
-      'app/copy-of-panieński-opis/page.tsx',
-      'app/kopia-panieński-plus-opis/page.tsx',
+      'app/copy-of-panienski-opis/page.tsx',
+      'app/kopia-panienski-plus-opis/page.tsx',
       'app/kopia-urodziny-ceramika/page.tsx',
       'components/clone/archive-page.tsx',
       'lib/clone/content/phase2/archive-pages.ts',

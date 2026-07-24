@@ -32,9 +32,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/blog/page.tsx"
-      ],
+      "applicationFiles": ["app/blog/page.tsx"],
       "productionAssets": [],
       "classification": "included-marketing"
     },
@@ -61,9 +59,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/blog/categories/[category]/page.tsx"
-      ],
+      "applicationFiles": ["app/blog/categories/[category]/page.tsx"],
       "productionAssets": [],
       "classification": "included-blog-category"
     },
@@ -90,9 +86,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/blog/categories/[category]/page.tsx"
-      ],
+      "applicationFiles": ["app/blog/categories/[category]/page.tsx"],
       "productionAssets": [],
       "classification": "included-blog-category"
     },
@@ -119,17 +113,13 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/blog/categories/[category]/page.tsx"
-      ],
+      "applicationFiles": ["app/blog/categories/[category]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_448924318b194426b689bf1f332a815e~mv2.webp/v1/fill/w_454,h_341,al_c,q_90,enc_avif,quality_auto/747d6f_448924318b194426b689bf1f332a815e~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_448924318b194426b689bf1f332a815e.webp",
           "mediaId": "747d6f_448924318b194426b689bf1f332a815e",
-          "routes": [
-            "/blog/categories/o-mnie"
-          ]
+          "routes": ["/blog/categories/o-mnie"]
         }
       ],
       "classification": "included-blog-category"
@@ -157,9 +147,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/booking-calendar/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/booking-calendar/[slug]/page.tsx"],
       "productionAssets": [],
       "classification": "included-booking-service"
     },
@@ -186,9 +174,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/booking-calendar/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/booking-calendar/[slug]/page.tsx"],
       "productionAssets": [],
       "classification": "included-booking-service"
     },
@@ -215,9 +201,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/booking-calendar/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/booking-calendar/[slug]/page.tsx"],
       "productionAssets": [],
       "classification": "included-booking-service"
     },
@@ -244,9 +228,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/booking-calendar/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/booking-calendar/[slug]/page.tsx"],
       "productionAssets": [],
       "classification": "included-booking-service"
     },
@@ -273,9 +255,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/booking-calendar/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/booking-calendar/[slug]/page.tsx"],
       "productionAssets": [],
       "classification": "included-booking-service"
     },
@@ -302,9 +282,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/booking-calendar/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/booking-calendar/[slug]/page.tsx"],
       "productionAssets": [],
       "classification": "included-booking-service"
     },
@@ -331,9 +309,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/booking-calendar/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/booking-calendar/[slug]/page.tsx"],
       "productionAssets": [],
       "classification": "included-booking-service"
     },
@@ -360,9 +336,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/booking-calendar/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/booking-calendar/[slug]/page.tsx"],
       "productionAssets": [],
       "classification": "included-booking-service"
     },
@@ -389,9 +363,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/cart/page.tsx"
-      ],
+      "applicationFiles": ["app/cart/page.tsx"],
       "productionAssets": [],
       "classification": "included-marketing"
     },
@@ -418,33 +390,25 @@
         "Implemented in closure phase as unique public offer page",
         "Wix cookie/runtime omitted"
       ],
-      "applicationFiles": [
-        "app/copy-of-panieński-opis/page.tsx"
-      ],
+      "applicationFiles": ["app/copy-of-panieński-opis/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_6526e8ba379f4d0e9347f54a2dc67b70~mv2.jpg/v1/fill/w_1440,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_6526e8ba379f4d0e9347f54a2dc67b70~mv2.jpg",
           "productionPath": "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
           "mediaId": "11062b_6526e8ba379f4d0e9347f54a2dc67b70",
-          "routes": [
-            "/copy-of-panieński-opis"
-          ]
+          "routes": ["/copy-of-panieński-opis"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_147dc3a6f24349ff9a4d332be4360d81~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_147dc3a6f24349ff9a4d332be4360d81~mv2.jpg",
           "productionPath": "/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg",
           "mediaId": "11062b_147dc3a6f24349ff9a4d332be4360d81",
-          "routes": [
-            "/copy-of-panieński-opis"
-          ]
+          "routes": ["/copy-of-panieński-opis"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg/v1/fill/w_634,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg",
           "productionPath": "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
           "mediaId": "11062b_db67741365e74a03ba19d91e2ffc8721",
-          "routes": [
-            "/copy-of-panieński-opis"
-          ]
+          "routes": ["/copy-of-panieński-opis"]
         }
       ],
       "classification": "included-legacy-copy-page"
@@ -472,49 +436,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/courses/page.tsx"
-      ],
+      "applicationFiles": ["app/courses/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg/v1/fill/w_980,h_630,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
           "mediaId": "747d6f_90fd3fe84ad246c3b4f72ead538bc878",
-          "routes": [
-            "/courses"
-          ]
+          "routes": ["/courses"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_287,h_250,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pracownia%20ceramika%20NERO.png",
           "productionPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
           "mediaId": "747d6f_64bcccd9911949e7895d7325e88a5a75",
-          "routes": [
-            "/courses"
-          ]
+          "routes": ["/courses"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg/v1/fill/w_491,h_455,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
           "mediaId": "747d6f_9a02c46adb9c4b668b263600c7e8f237",
-          "routes": [
-            "/courses"
-          ]
+          "routes": ["/courses"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_045e89a3529f4e2491a7742e1da14497~mv2.jpg/v1/fill/w_491,h_411,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_045e89a3529f4e2491a7742e1da14497~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg",
           "mediaId": "747d6f_045e89a3529f4e2491a7742e1da14497",
-          "routes": [
-            "/courses"
-          ]
+          "routes": ["/courses"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp/v1/fill/w_491,h_469,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
           "mediaId": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16",
-          "routes": [
-            "/courses"
-          ]
+          "routes": ["/courses"]
         }
       ],
       "classification": "included-course"
@@ -542,25 +494,19 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/courses/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/courses/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_2ed737b9f562470691056c62ffb8e47a~mv2.jpg/v1/fill/w_1440,h_592,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/fc7570_2ed737b9f562470691056c62ffb8e47a~mv2.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_2ed737b9f562470691056c62ffb8e47a.jpg",
           "mediaId": "fc7570_2ed737b9f562470691056c62ffb8e47a",
-          "routes": [
-            "/courses/glina-do-wina-"
-          ]
+          "routes": ["/courses/glina-do-wina-"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_10a16b6e706c46b9992daa163568966c~mv2.jpg/v1/fill/w_153,h_153,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_10a16b6e706c46b9992daa163568966c.jpg",
           "mediaId": "fc7570_10a16b6e706c46b9992daa163568966c",
-          "routes": [
-            "/courses/glina-do-wina-"
-          ]
+          "routes": ["/courses/glina-do-wina-"]
         }
       ],
       "classification": "included-course"
@@ -588,25 +534,19 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/courses/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/courses/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_edede96df98b4bc5b8529d1846dac713~mv2.jpg/v1/fill/w_1440,h_592,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/fc7570_edede96df98b4bc5b8529d1846dac713~mv2.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_edede96df98b4bc5b8529d1846dac713.jpg",
           "mediaId": "fc7570_edede96df98b4bc5b8529d1846dac713",
-          "routes": [
-            "/courses/glina-i-rodzina-"
-          ]
+          "routes": ["/courses/glina-i-rodzina-"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_06fbcb382f234c7abdc3f5c66ecc2e4f~mv2.jpg/v1/fill/w_153,h_153,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_06fbcb382f234c7abdc3f5c66ecc2e4f.jpg",
           "mediaId": "fc7570_06fbcb382f234c7abdc3f5c66ecc2e4f",
-          "routes": [
-            "/courses/glina-i-rodzina-"
-          ]
+          "routes": ["/courses/glina-i-rodzina-"]
         }
       ],
       "classification": "included-course"
@@ -634,25 +574,19 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/courses/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/courses/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_a7cab894f28c483eaf093590691bf2f5~mv2.jpg/v1/fill/w_1440,h_619,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/fc7570_a7cab894f28c483eaf093590691bf2f5~mv2.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_a7cab894f28c483eaf093590691bf2f5.jpg",
           "mediaId": "fc7570_a7cab894f28c483eaf093590691bf2f5",
-          "routes": [
-            "/courses/imprezy-zamknięte-do-10-os.-"
-          ]
+          "routes": ["/courses/imprezy-zamknięte-do-10-os.-"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_25731940c59740a782d75a92964ce57f~mv2.jpg/v1/fill/w_153,h_153,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_25731940c59740a782d75a92964ce57f.jpg",
           "mediaId": "fc7570_25731940c59740a782d75a92964ce57f",
-          "routes": [
-            "/courses/imprezy-zamknięte-do-10-os.-"
-          ]
+          "routes": ["/courses/imprezy-zamknięte-do-10-os.-"]
         }
       ],
       "classification": "included-course"
@@ -680,25 +614,19 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/courses/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/courses/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_6acc41d7449b4a5f84feb519fa5ff5ef~mv2.jpg/v1/fill/w_1440,h_592,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/fc7570_6acc41d7449b4a5f84feb519fa5ff5ef~mv2.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_6acc41d7449b4a5f84feb519fa5ff5ef.jpg",
           "mediaId": "fc7570_6acc41d7449b4a5f84feb519fa5ff5ef",
-          "routes": [
-            "/courses/kręcenie-na-kole-"
-          ]
+          "routes": ["/courses/kręcenie-na-kole-"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_41edef1182c1485e8798c73fce3a17ff~mv2.jpg/v1/fill/w_153,h_153,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_41edef1182c1485e8798c73fce3a17ff.jpg",
           "mediaId": "fc7570_41edef1182c1485e8798c73fce3a17ff",
-          "routes": [
-            "/courses/kręcenie-na-kole-"
-          ]
+          "routes": ["/courses/kręcenie-na-kole-"]
         }
       ],
       "classification": "included-course"
@@ -726,25 +654,19 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/courses/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/courses/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_ac1f7e7e38a44bd2ab92fb30b5fa38d7~mv2.jpg/v1/fill/w_1440,h_627,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/fc7570_ac1f7e7e38a44bd2ab92fb30b5fa38d7~mv2.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_ac1f7e7e38a44bd2ab92fb30b5fa38d7.jpg",
           "mediaId": "fc7570_ac1f7e7e38a44bd2ab92fb30b5fa38d7",
-          "routes": [
-            "/courses/pracowania-otwarta-"
-          ]
+          "routes": ["/courses/pracowania-otwarta-"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_edd42b203bac46b8a149d18aca9f82d5~mv2.jpg/v1/fill/w_153,h_153,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_edd42b203bac46b8a149d18aca9f82d5.jpg",
           "mediaId": "fc7570_edd42b203bac46b8a149d18aca9f82d5",
-          "routes": [
-            "/courses/pracowania-otwarta-"
-          ]
+          "routes": ["/courses/pracowania-otwarta-"]
         }
       ],
       "classification": "included-course"
@@ -772,9 +694,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/dostawy-i-zwroty/page.tsx"
-      ],
+      "applicationFiles": ["app/dostawy-i-zwroty/page.tsx"],
       "productionAssets": [],
       "classification": "included-marketing"
     },
@@ -801,9 +721,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/faq/page.tsx"
-      ],
+      "applicationFiles": ["app/faq/page.tsx"],
       "productionAssets": [],
       "classification": "included-marketing"
     },
@@ -830,17 +748,13 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/gift-card/page.tsx"
-      ],
+      "applicationFiles": ["app/gift-card/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg/v1/fill/w_1440,h_1696,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
           "mediaId": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b",
-          "routes": [
-            "/gift-card"
-          ]
+          "routes": ["/gift-card"]
         }
       ],
       "classification": "included-marketing"
@@ -868,25 +782,19 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/kontakt/page.tsx"
-      ],
+      "applicationFiles": ["app/kontakt/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_75f475196e3244da9e18720cc382ba9b~mv2.jpg/v1/fill/w_980,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_75f475196e3244da9e18720cc382ba9b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_75f475196e3244da9e18720cc382ba9b.jpg",
           "mediaId": "747d6f_75f475196e3244da9e18720cc382ba9b",
-          "routes": [
-            "/kontakt"
-          ]
+          "routes": ["/kontakt"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_153,h_133,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pracownia%20ceramika%20NERO.png",
           "productionPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
           "mediaId": "747d6f_64bcccd9911949e7895d7325e88a5a75",
-          "routes": [
-            "/kontakt"
-          ]
+          "routes": ["/kontakt"]
         }
       ],
       "classification": "included-marketing"
@@ -914,33 +822,25 @@
         "Implemented in closure phase as unique public offer page",
         "Wix cookie/runtime omitted"
       ],
-      "applicationFiles": [
-        "app/kopia-panieński-plus-opis/page.tsx"
-      ],
+      "applicationFiles": ["app/kopia-panieński-plus-opis/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg/v1/fill/w_1440,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
           "mediaId": "747d6f_9a02c46adb9c4b668b263600c7e8f237",
-          "routes": [
-            "/kopia-panieński-plus-opis"
-          ]
+          "routes": ["/kopia-panieński-plus-opis"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_8e5661920eb44342af8aea4182068514~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_8e5661920eb44342af8aea4182068514~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
           "mediaId": "747d6f_8e5661920eb44342af8aea4182068514",
-          "routes": [
-            "/kopia-panieński-plus-opis"
-          ]
+          "routes": ["/kopia-panieński-plus-opis"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_c365686f6f144220b9b8da601a70d017~mv2.jpg/v1/fill/w_634,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_c365686f6f144220b9b8da601a70d017~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg",
           "mediaId": "747d6f_c365686f6f144220b9b8da601a70d017",
-          "routes": [
-            "/kopia-panieński-plus-opis"
-          ]
+          "routes": ["/kopia-panieński-plus-opis"]
         }
       ],
       "classification": "included-legacy-copy-page"
@@ -968,33 +868,25 @@
         "Implemented in closure phase as unique public offer page",
         "Wix cookie/runtime omitted"
       ],
-      "applicationFiles": [
-        "app/kopia-urodziny-ceramika/page.tsx"
-      ],
+      "applicationFiles": ["app/kopia-urodziny-ceramika/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg/v1/fill/w_1440,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
           "mediaId": "747d6f_9a02c46adb9c4b668b263600c7e8f237",
-          "routes": [
-            "/kopia-urodziny-ceramika"
-          ]
+          "routes": ["/kopia-urodziny-ceramika"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_8e5661920eb44342af8aea4182068514~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_8e5661920eb44342af8aea4182068514~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
           "mediaId": "747d6f_8e5661920eb44342af8aea4182068514",
-          "routes": [
-            "/kopia-urodziny-ceramika"
-          ]
+          "routes": ["/kopia-urodziny-ceramika"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_c365686f6f144220b9b8da601a70d017~mv2.jpg/v1/fill/w_634,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_c365686f6f144220b9b8da601a70d017~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg",
           "mediaId": "747d6f_c365686f6f144220b9b8da601a70d017",
-          "routes": [
-            "/kopia-urodziny-ceramika"
-          ]
+          "routes": ["/kopia-urodziny-ceramika"]
         }
       ],
       "classification": "included-legacy-copy-page"
@@ -1022,41 +914,31 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_ff24ad7d7859452782d34e7ac82d8133~mv2.jpg/v1/fill/w_784,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_ff24ad7d7859452782d34e7ac82d8133~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_ff24ad7d7859452782d34e7ac82d8133.jpg",
           "mediaId": "747d6f_ff24ad7d7859452782d34e7ac82d8133",
-          "routes": [
-            "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki"
-          ]
+          "routes": ["/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_834716a3d7184a77b4462bb715a0d9bf~mv2.jpg/v1/fill/w_740,h_983,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_834716a3d7184a77b4462bb715a0d9bf~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_834716a3d7184a77b4462bb715a0d9bf.jpg",
           "mediaId": "747d6f_834716a3d7184a77b4462bb715a0d9bf",
-          "routes": [
-            "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki"
-          ]
+          "routes": ["/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki"
-          ]
+          "routes": ["/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_289,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
           "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
-          "routes": [
-            "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki"
-          ]
+          "routes": ["/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki"]
         }
       ],
       "classification": "included-blog-post"
@@ -1084,9 +966,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg/v1/fill/w_740,h_830,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg",
@@ -1138,49 +1018,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_4e60c15e658a4b79a0195819e842eb93~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_4e60c15e658a4b79a0195819e842eb93~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_4e60c15e658a4b79a0195819e842eb93.jpg",
           "mediaId": "747d6f_4e60c15e658a4b79a0195819e842eb93",
-          "routes": [
-            "/post/czym-zajmuje-się-pracownia-ceramiki-nero"
-          ]
+          "routes": ["/post/czym-zajmuje-się-pracownia-ceramiki-nero"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_8af7f884525642d8b67fe0bf709a577b~mv2.png/v1/fill/w_244,h_243,fp_0.50_0.50,q_90/747d6f_8af7f884525642d8b67fe0bf709a577b~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_8af7f884525642d8b67fe0bf709a577b.png",
           "mediaId": "747d6f_8af7f884525642d8b67fe0bf709a577b",
-          "routes": [
-            "/post/czym-zajmuje-się-pracownia-ceramiki-nero"
-          ]
+          "routes": ["/post/czym-zajmuje-się-pracownia-ceramiki-nero"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
           "mediaId": "747d6f_da600fb92cac4d629b7833190b681fa2",
-          "routes": [
-            "/post/czym-zajmuje-się-pracownia-ceramiki-nero"
-          ]
+          "routes": ["/post/czym-zajmuje-się-pracownia-ceramiki-nero"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_75f475196e3244da9e18720cc382ba9b~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_75f475196e3244da9e18720cc382ba9b~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_75f475196e3244da9e18720cc382ba9b.jpg",
           "mediaId": "747d6f_75f475196e3244da9e18720cc382ba9b",
-          "routes": [
-            "/post/czym-zajmuje-się-pracownia-ceramiki-nero"
-          ]
+          "routes": ["/post/czym-zajmuje-się-pracownia-ceramiki-nero"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_c4f1c7aee49e46c295f3910e257e8f69~mv2.jpg/v1/fill/w_244,h_243,fp_0.50_0.50,q_90/747d6f_c4f1c7aee49e46c295f3910e257e8f69~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_c4f1c7aee49e46c295f3910e257e8f69.jpg",
           "mediaId": "747d6f_c4f1c7aee49e46c295f3910e257e8f69",
-          "routes": [
-            "/post/czym-zajmuje-się-pracownia-ceramiki-nero"
-          ]
+          "routes": ["/post/czym-zajmuje-się-pracownia-ceramiki-nero"]
         }
       ],
       "classification": "included-blog-post"
@@ -1208,9 +1076,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_e5ad882b2465483ebd9497dece123b1c~mv2.jpeg/v1/fill/w_740,h_987,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_e5ad882b2465483ebd9497dece123b1c~mv2.jpeg",
@@ -1270,33 +1136,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0296bb0269754a8295a47f62c62d4822~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_0296bb0269754a8295a47f62c62d4822~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_0296bb0269754a8295a47f62c62d4822.jpg",
           "mediaId": "747d6f_0296bb0269754a8295a47f62c62d4822",
-          "routes": [
-            "/post/dziękujemy-wszystkim-którzy-są-z-nami"
-          ]
+          "routes": ["/post/dziękujemy-wszystkim-którzy-są-z-nami"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/post/dziękujemy-wszystkim-którzy-są-z-nami"
-          ]
+          "routes": ["/post/dziękujemy-wszystkim-którzy-są-z-nami"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_289,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
           "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
-          "routes": [
-            "/post/dziękujemy-wszystkim-którzy-są-z-nami"
-          ]
+          "routes": ["/post/dziękujemy-wszystkim-którzy-są-z-nami"]
         }
       ],
       "classification": "included-blog-post"
@@ -1324,33 +1182,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_e9ae4fd07ea84670a4619d707e66e83e~mv2.png/v1/fill/w_551,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_e9ae4fd07ea84670a4619d707e66e83e~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_e9ae4fd07ea84670a4619d707e66e83e.png",
           "mediaId": "747d6f_e9ae4fd07ea84670a4619d707e66e83e",
-          "routes": [
-            "/post/glina-do-wina"
-          ]
+          "routes": ["/post/glina-do-wina"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/post/glina-do-wina"
-          ]
+          "routes": ["/post/glina-do-wina"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_289,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
           "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
-          "routes": [
-            "/post/glina-do-wina"
-          ]
+          "routes": ["/post/glina-do-wina"]
         }
       ],
       "classification": "included-blog-post"
@@ -1378,49 +1228,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_40f47e03350d4ef3b3d3e3c951eff7cb~mv2.jpg/v1/fill/w_1067,h_724,al_c,q_85,enc_avif,quality_auto/747d6f_40f47e03350d4ef3b3d3e3c951eff7cb~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_40f47e03350d4ef3b3d3e3c951eff7cb.jpg",
           "mediaId": "747d6f_40f47e03350d4ef3b3d3e3c951eff7cb",
-          "routes": [
-            "/post/jak-zacząć-przygodę-z-ceramiką"
-          ]
+          "routes": ["/post/jak-zacząć-przygodę-z-ceramiką"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_25f701d5db584b2cabcec04bba397ec5~mv2.jpeg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_25f701d5db584b2cabcec04bba397ec5~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_25f701d5db584b2cabcec04bba397ec5.jpeg",
           "mediaId": "747d6f_25f701d5db584b2cabcec04bba397ec5",
-          "routes": [
-            "/post/jak-zacząć-przygodę-z-ceramiką"
-          ]
+          "routes": ["/post/jak-zacząć-przygodę-z-ceramiką"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_439e4c293ab04730a3204fb223f7c0c9~mv2.jpg/v1/fill/w_244,h_243,fp_0.50_0.50,q_90/747d6f_439e4c293ab04730a3204fb223f7c0c9~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_439e4c293ab04730a3204fb223f7c0c9.jpg",
           "mediaId": "747d6f_439e4c293ab04730a3204fb223f7c0c9",
-          "routes": [
-            "/post/jak-zacząć-przygodę-z-ceramiką"
-          ]
+          "routes": ["/post/jak-zacząć-przygodę-z-ceramiką"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_d1a7cda543f04bfa93539ffe6925026b~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_d1a7cda543f04bfa93539ffe6925026b~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_d1a7cda543f04bfa93539ffe6925026b.jpg",
           "mediaId": "747d6f_d1a7cda543f04bfa93539ffe6925026b",
-          "routes": [
-            "/post/jak-zacząć-przygodę-z-ceramiką"
-          ]
+          "routes": ["/post/jak-zacząć-przygodę-z-ceramiką"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/post/jak-zacząć-przygodę-z-ceramiką"
-          ]
+          "routes": ["/post/jak-zacząć-przygodę-z-ceramiką"]
         }
       ],
       "classification": "included-blog-post"
@@ -1448,33 +1286,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_740,h_490,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/post/letnia-akademia-artystyczna-całe-wakacje"
-          ]
+          "routes": ["/post/letnia-akademia-artystyczna-całe-wakacje"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_289,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
           "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
-          "routes": [
-            "/post/letnia-akademia-artystyczna-całe-wakacje"
-          ]
+          "routes": ["/post/letnia-akademia-artystyczna-całe-wakacje"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_bf6fc0998d4a4467945a89a8340eb7cd~mv2.png/v1/fill/w_289,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_bf6fc0998d4a4467945a89a8340eb7cd~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_bf6fc0998d4a4467945a89a8340eb7cd.png",
           "mediaId": "747d6f_bf6fc0998d4a4467945a89a8340eb7cd",
-          "routes": [
-            "/post/letnia-akademia-artystyczna-całe-wakacje"
-          ]
+          "routes": ["/post/letnia-akademia-artystyczna-całe-wakacje"]
         }
       ],
       "classification": "included-blog-post"
@@ -1502,33 +1332,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_eb2cf4d2cd5646fa8cfa980723ac63c7~mv2_d_6720_4480_s_4_2.jpg/v1/fill/w_740,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_eb2cf4d2cd5646fa8cfa980723ac63c7~mv2_d_6720_4480_s_4_2.jpg",
           "productionPath": "/images/wix-migrated/11062b_eb2cf4d2cd5646fa8cfa980723ac63c7.jpg",
           "mediaId": "11062b_eb2cf4d2cd5646fa8cfa980723ac63c7",
-          "routes": [
-            "/post/nowe-warsztaty-ceramika-dla-smyka"
-          ]
+          "routes": ["/post/nowe-warsztaty-ceramika-dla-smyka"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/post/nowe-warsztaty-ceramika-dla-smyka"
-          ]
+          "routes": ["/post/nowe-warsztaty-ceramika-dla-smyka"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_289,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
           "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
-          "routes": [
-            "/post/nowe-warsztaty-ceramika-dla-smyka"
-          ]
+          "routes": ["/post/nowe-warsztaty-ceramika-dla-smyka"]
         }
       ],
       "classification": "included-blog-post"
@@ -1556,33 +1378,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_6fba4cab7fda46208092419846e777a4~mv2.png/v1/fill/w_740,h_620,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_6fba4cab7fda46208092419846e777a4~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_6fba4cab7fda46208092419846e777a4.png",
           "mediaId": "747d6f_6fba4cab7fda46208092419846e777a4",
-          "routes": [
-            "/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025"
-          ]
+          "routes": ["/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025"
-          ]
+          "routes": ["/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_289,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
           "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
-          "routes": [
-            "/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025"
-          ]
+          "routes": ["/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025"]
         }
       ],
       "classification": "included-blog-post"
@@ -1610,9 +1424,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [],
       "classification": "included-blog-post"
     },
@@ -1639,49 +1451,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/de27b2e088814fa994ff8a44f2a9a467.jpg/v1/fill/w_113,h_113,fp_0.50_0.50,q_90/de27b2e088814fa994ff8a44f2a9a467.webp",
           "productionPath": "/images/wix-migrated/de27b2e088814fa994ff8a44f2a9a467.jpg",
           "mediaId": "de27b2e088814fa994ff8a44f2a9a467",
-          "routes": [
-            "/post/o-sklepie-z-ceramiką"
-          ]
+          "routes": ["/post/o-sklepie-z-ceramiką"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/87a0d537f3654d148ba517d045f6d3ff.jpg/v1/fill/w_113,h_113,fp_0.50_0.50,q_90/87a0d537f3654d148ba517d045f6d3ff.webp",
           "productionPath": "/images/wix-migrated/87a0d537f3654d148ba517d045f6d3ff.jpg",
           "mediaId": "87a0d537f3654d148ba517d045f6d3ff",
-          "routes": [
-            "/post/o-sklepie-z-ceramiką"
-          ]
+          "routes": ["/post/o-sklepie-z-ceramiką"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/25189b4996b84d5ba2cd03f12eff06c5.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/25189b4996b84d5ba2cd03f12eff06c5.webp",
           "productionPath": "/images/wix-migrated/25189b4996b84d5ba2cd03f12eff06c5.jpg",
           "mediaId": "25189b4996b84d5ba2cd03f12eff06c5",
-          "routes": [
-            "/post/o-sklepie-z-ceramiką"
-          ]
+          "routes": ["/post/o-sklepie-z-ceramiką"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_b36c26d927764d3f859565bb328d0dae~mv2.jpg/v1/fill/w_244,h_243,fp_0.50_0.50,q_90/747d6f_b36c26d927764d3f859565bb328d0dae~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_b36c26d927764d3f859565bb328d0dae.jpg",
           "mediaId": "747d6f_b36c26d927764d3f859565bb328d0dae",
-          "routes": [
-            "/post/o-sklepie-z-ceramiką"
-          ]
+          "routes": ["/post/o-sklepie-z-ceramiką"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_9fca2391b3524803822fb730e5d8ac1b~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/11062b_9fca2391b3524803822fb730e5d8ac1b~mv2.webp",
           "productionPath": "/images/wix-migrated/11062b_9fca2391b3524803822fb730e5d8ac1b.jpg",
           "mediaId": "11062b_9fca2391b3524803822fb730e5d8ac1b",
-          "routes": [
-            "/post/o-sklepie-z-ceramiką"
-          ]
+          "routes": ["/post/o-sklepie-z-ceramiką"]
         }
       ],
       "classification": "included-blog-post"
@@ -1709,9 +1509,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_5fbe376ba5bd4db9a9118927f037d80d~mv2.jpg/v1/fill/w_740,h_494,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_5fbe376ba5bd4db9a9118927f037d80d~mv2.jpg",
@@ -1763,41 +1561,31 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg/v1/fill/w_388,h_259,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
           "productionPath": "/images/wix-migrated/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
           "mediaId": "b0c1743eec4b7984c4c5d8a5727dc0b4",
-          "routes": [
-            "/post/slow-design-co-oznacza"
-          ]
+          "routes": ["/post/slow-design-co-oznacza"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_21dbdd79270a44b8abe0d6177d2ac1f9~mv2.jpg/v1/fill/w_280,h_157,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_21dbdd79270a44b8abe0d6177d2ac1f9~mv2.jpg",
           "productionPath": "/images/wix-migrated/11062b_21dbdd79270a44b8abe0d6177d2ac1f9.jpg",
           "mediaId": "11062b_21dbdd79270a44b8abe0d6177d2ac1f9",
-          "routes": [
-            "/post/slow-design-co-oznacza"
-          ]
+          "routes": ["/post/slow-design-co-oznacza"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_30c5ffa57f61439aa48f705fe3d49dd8~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/11062b_30c5ffa57f61439aa48f705fe3d49dd8~mv2.webp",
           "productionPath": "/images/wix-migrated/11062b_30c5ffa57f61439aa48f705fe3d49dd8.jpg",
           "mediaId": "11062b_30c5ffa57f61439aa48f705fe3d49dd8",
-          "routes": [
-            "/post/slow-design-co-oznacza"
-          ]
+          "routes": ["/post/slow-design-co-oznacza"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/595cb32628cf4476abc9c0d74e063e07.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/595cb32628cf4476abc9c0d74e063e07.jpg",
           "productionPath": "/images/wix-migrated/595cb32628cf4476abc9c0d74e063e07.jpg",
           "mediaId": "595cb32628cf4476abc9c0d74e063e07",
-          "routes": [
-            "/post/slow-design-co-oznacza"
-          ]
+          "routes": ["/post/slow-design-co-oznacza"]
         }
       ],
       "classification": "included-blog-post"
@@ -1825,9 +1613,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_71c100aa03c04a2393e0deb186d0dfe1~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_71c100aa03c04a2393e0deb186d0dfe1~mv2.webp",
@@ -1895,33 +1681,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_ffa722856f6d45fcbf568b5e5bb50fbb~mv2.jpg/v1/fill/w_592,h_935,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_ffa722856f6d45fcbf568b5e5bb50fbb~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_ffa722856f6d45fcbf568b5e5bb50fbb.jpg",
           "mediaId": "747d6f_ffa722856f6d45fcbf568b5e5bb50fbb",
-          "routes": [
-            "/post/twój-tytuł-jak-nazwałbyś-swój-przepis"
-          ]
+          "routes": ["/post/twój-tytuł-jak-nazwałbyś-swój-przepis"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/post/twój-tytuł-jak-nazwałbyś-swój-przepis"
-          ]
+          "routes": ["/post/twój-tytuł-jak-nazwałbyś-swój-przepis"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_289,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
           "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
-          "routes": [
-            "/post/twój-tytuł-jak-nazwałbyś-swój-przepis"
-          ]
+          "routes": ["/post/twój-tytuł-jak-nazwałbyś-swój-przepis"]
         }
       ],
       "classification": "included-blog-post"
@@ -1949,33 +1727,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/nsplsh_bb3bccc5280d4c56a81635bea456738b~mv2.jpg/v1/fill/w_143,h_215,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/nsplsh_bb3bccc5280d4c56a81635bea456738b~mv2.jpg",
           "productionPath": "/images/wix-migrated/nsplsh_bb3bccc5280d4c56a81635bea456738b.jpg",
           "mediaId": "nsplsh_bb3bccc5280d4c56a81635bea456738b",
-          "routes": [
-            "/post/warsztatyzgliny"
-          ]
+          "routes": ["/post/warsztatyzgliny"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/post/warsztatyzgliny"
-          ]
+          "routes": ["/post/warsztatyzgliny"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_289,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
           "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
-          "routes": [
-            "/post/warsztatyzgliny"
-          ]
+          "routes": ["/post/warsztatyzgliny"]
         }
       ],
       "classification": "included-blog-post"
@@ -2003,25 +1773,19 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/595cb32628cf4476abc9c0d74e063e07.jpg/v1/fill/w_740,h_501,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/595cb32628cf4476abc9c0d74e063e07.jpg",
           "productionPath": "/images/wix-migrated/595cb32628cf4476abc9c0d74e063e07.jpg",
           "mediaId": "595cb32628cf4476abc9c0d74e063e07",
-          "routes": [
-            "/post/wpływ-pracy-z-gliną-na-człowieka"
-          ]
+          "routes": ["/post/wpływ-pracy-z-gliną-na-człowieka"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg/v1/fill/w_289,h_162,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
           "productionPath": "/images/wix-migrated/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
           "mediaId": "b0c1743eec4b7984c4c5d8a5727dc0b4",
-          "routes": [
-            "/post/wpływ-pracy-z-gliną-na-człowieka"
-          ]
+          "routes": ["/post/wpływ-pracy-z-gliną-na-człowieka"]
         }
       ],
       "classification": "included-blog-post"
@@ -2049,9 +1813,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_25f701d5db584b2cabcec04bba397ec5~mv2.jpeg/v1/fill/w_740,h_1110,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_25f701d5db584b2cabcec04bba397ec5~mv2.jpeg",
@@ -2103,33 +1865,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/post/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/post/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_6a39bd22cbe142c8a1aada6b04e8a120~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_6a39bd22cbe142c8a1aada6b04e8a120~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_6a39bd22cbe142c8a1aada6b04e8a120.jpg",
           "mediaId": "747d6f_6a39bd22cbe142c8a1aada6b04e8a120",
-          "routes": [
-            "/post/zaczynamy-nowe-warsztaty-już-we-wrześniu"
-          ]
+          "routes": ["/post/zaczynamy-nowe-warsztaty-już-we-wrześniu"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_b36c26d927764d3f859565bb328d0dae~mv2.jpg/v1/fill/w_244,h_243,fp_0.50_0.50,q_90/747d6f_b36c26d927764d3f859565bb328d0dae~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_b36c26d927764d3f859565bb328d0dae.jpg",
           "mediaId": "747d6f_b36c26d927764d3f859565bb328d0dae",
-          "routes": [
-            "/post/zaczynamy-nowe-warsztaty-już-we-wrześniu"
-          ]
+          "routes": ["/post/zaczynamy-nowe-warsztaty-już-we-wrześniu"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc.jpg",
           "mediaId": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc",
-          "routes": [
-            "/post/zaczynamy-nowe-warsztaty-już-we-wrześniu"
-          ]
+          "routes": ["/post/zaczynamy-nowe-warsztaty-już-we-wrześniu"]
         }
       ],
       "classification": "included-blog-post"
@@ -2157,9 +1911,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/product-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/product-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0fe41123a0a34078b88b14d085b6b727~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0fe41123a0a34078b88b14d085b6b727~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
@@ -2227,9 +1979,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/product-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/product-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
@@ -2297,25 +2047,19 @@
         "Closure: permanent redirect configured in next.config.ts",
         "Redirect handled in next.config / clone-final.json; not a content-complete Phase 2 page"
       ],
-      "applicationFiles": [
-        "app/profile/gosianowicka/events/page.tsx"
-      ],
+      "applicationFiles": ["app/profile/gosianowicka/events/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_448924318b194426b689bf1f332a815e~mv2.webp/v1/fill/w_147,h_147,al_c,q_80,usm_0.66_1.00_0.01,blur_2,enc_auto/747d6f_448924318b194426b689bf1f332a815e~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_448924318b194426b689bf1f332a815e.webp",
           "mediaId": "747d6f_448924318b194426b689bf1f332a815e",
-          "routes": [
-            "/profile/gosianowicka/events"
-          ]
+          "routes": ["/profile/gosianowicka/events"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_448924318b194426b689bf1f332a815e~mv2.webp/v1/fill/w_859,h_409,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/747d6f_448924318b194426b689bf1f332a815e~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_448924318b194426b689bf1f332a815e.webp",
           "mediaId": "747d6f_448924318b194426b689bf1f332a815e",
-          "routes": [
-            "/profile/gosianowicka/events"
-          ]
+          "routes": ["/profile/gosianowicka/events"]
         }
       ],
       "classification": "included-author-profile-surface"
@@ -2344,9 +2088,7 @@
         "Wix runtime mesh/animation omitted",
         "Wix author/member profile surface deferred"
       ],
-      "applicationFiles": [
-        "app/profile/gosianowicka/forum-comments/page.tsx"
-      ],
+      "applicationFiles": ["app/profile/gosianowicka/forum-comments/page.tsx"],
       "productionAssets": [],
       "classification": "included-author-profile-surface"
     },
@@ -2374,9 +2116,7 @@
         "Wix runtime mesh/animation omitted",
         "Wix author/member profile surface deferred"
       ],
-      "applicationFiles": [
-        "app/profile/gosianowicka/forum-posts/page.tsx"
-      ],
+      "applicationFiles": ["app/profile/gosianowicka/forum-posts/page.tsx"],
       "productionAssets": [],
       "classification": "included-author-profile-surface"
     },
@@ -2403,49 +2143,37 @@
         "Closure: permanent redirect configured in next.config.ts",
         "Redirect handled in next.config / clone-final.json; not a content-complete Phase 2 page"
       ],
-      "applicationFiles": [
-        "app/profile/gosianowicka/profile/page.tsx"
-      ],
+      "applicationFiles": ["app/profile/gosianowicka/profile/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_598,h_216,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
           "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
-          "routes": [
-            "/profile/gosianowicka/profile"
-          ]
+          "routes": ["/profile/gosianowicka/profile"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_598,h_216,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
           "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
-          "routes": [
-            "/profile/gosianowicka/profile"
-          ]
+          "routes": ["/profile/gosianowicka/profile"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_bf6fc0998d4a4467945a89a8340eb7cd~mv2.png/v1/fill/w_598,h_216,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/747d6f_bf6fc0998d4a4467945a89a8340eb7cd~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_bf6fc0998d4a4467945a89a8340eb7cd.png",
           "mediaId": "747d6f_bf6fc0998d4a4467945a89a8340eb7cd",
-          "routes": [
-            "/profile/gosianowicka/profile"
-          ]
+          "routes": ["/profile/gosianowicka/profile"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_5fbe376ba5bd4db9a9118927f037d80d~mv2.jpg/v1/fill/w_598,h_216,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/747d6f_5fbe376ba5bd4db9a9118927f037d80d~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_5fbe376ba5bd4db9a9118927f037d80d.jpg",
           "mediaId": "747d6f_5fbe376ba5bd4db9a9118927f037d80d",
-          "routes": [
-            "/profile/gosianowicka/profile"
-          ]
+          "routes": ["/profile/gosianowicka/profile"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg/v1/fill/w_598,h_216,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
           "mediaId": "747d6f_da600fb92cac4d629b7833190b681fa2",
-          "routes": [
-            "/profile/gosianowicka/profile"
-          ]
+          "routes": ["/profile/gosianowicka/profile"]
         }
       ],
       "classification": "included-author-profile"
@@ -2473,9 +2201,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/regulamin/page.tsx"
-      ],
+      "applicationFiles": ["app/regulamin/page.tsx"],
       "productionAssets": [],
       "classification": "included-marketing"
     },
@@ -2502,49 +2228,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_beb2180b228e46b99d49a5a2f1eac63b~mv2.png/v1/fill/w_1440,h_360,fp_0.50_0.50,q_90,usm_0.66_1.00_0.01,enc_auto/747d6f_beb2180b228e46b99d49a5a2f1eac63b~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_beb2180b228e46b99d49a5a2f1eac63b.png",
           "mediaId": "747d6f_beb2180b228e46b99d49a5a2f1eac63b",
-          "routes": [
-            "/service-page/ceramika-dla-dorosłych-pon-czw"
-          ]
+          "routes": ["/service-page/ceramika-dla-dorosłych-pon-czw"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
           "mediaId": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b",
-          "routes": [
-            "/service-page/ceramika-dla-dorosłych-pon-czw"
-          ]
+          "routes": ["/service-page/ceramika-dla-dorosłych-pon-czw"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_b8b4604091d64cd08fc792d41d76287e~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_b8b4604091d64cd08fc792d41d76287e~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_b8b4604091d64cd08fc792d41d76287e.jpg",
           "mediaId": "747d6f_b8b4604091d64cd08fc792d41d76287e",
-          "routes": [
-            "/service-page/ceramika-dla-dorosłych-pon-czw"
-          ]
+          "routes": ["/service-page/ceramika-dla-dorosłych-pon-czw"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_232,h_232,al_c,usm_0.66_1.00_0.01/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
           "mediaId": "747d6f_64bcccd9911949e7895d7325e88a5a75",
-          "routes": [
-            "/service-page/ceramika-dla-dorosłych-pon-czw"
-          ]
+          "routes": ["/service-page/ceramika-dla-dorosłych-pon-czw"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc.jpg",
           "mediaId": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc",
-          "routes": [
-            "/service-page/ceramika-dla-dorosłych-pon-czw"
-          ]
+          "routes": ["/service-page/ceramika-dla-dorosłych-pon-czw"]
         }
       ],
       "classification": "included-booking-service"
@@ -2572,49 +2286,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_7440489991eb4b4b82871c79341ad3b9~mv2.jpg/v1/fill/w_1440,h_360,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_auto/747d6f_7440489991eb4b4b82871c79341ad3b9~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_7440489991eb4b4b82871c79341ad3b9.jpg",
           "mediaId": "747d6f_7440489991eb4b4b82871c79341ad3b9",
-          "routes": [
-            "/service-page/glina-do-wina-piątek-19-00-suchy-las"
-          ]
+          "routes": ["/service-page/glina-do-wina-piątek-19-00-suchy-las"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_3856dd866c104349b1cbe529e8a393fd.jpg",
           "mediaId": "747d6f_3856dd866c104349b1cbe529e8a393fd",
-          "routes": [
-            "/service-page/glina-do-wina-piątek-19-00-suchy-las"
-          ]
+          "routes": ["/service-page/glina-do-wina-piątek-19-00-suchy-las"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_90e90c61b57d4029a48950eacd31468b.jpg",
           "mediaId": "747d6f_90e90c61b57d4029a48950eacd31468b",
-          "routes": [
-            "/service-page/glina-do-wina-piątek-19-00-suchy-las"
-          ]
+          "routes": ["/service-page/glina-do-wina-piątek-19-00-suchy-las"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
           "mediaId": "747d6f_06537da9d32549fa905346fcc8e05f7e",
-          "routes": [
-            "/service-page/glina-do-wina-piątek-19-00-suchy-las"
-          ]
+          "routes": ["/service-page/glina-do-wina-piątek-19-00-suchy-las"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
           "mediaId": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b",
-          "routes": [
-            "/service-page/glina-do-wina-piątek-19-00-suchy-las"
-          ]
+          "routes": ["/service-page/glina-do-wina-piątek-19-00-suchy-las"]
         }
       ],
       "classification": "included-booking-service"
@@ -2642,49 +2344,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_742f7fd280b0480085fbdc19faf13923~mv2.jpg/v1/fill/w_1080,h_270,fp_0.50_0.50,q_80,enc_auto/747d6f_742f7fd280b0480085fbdc19faf13923~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_742f7fd280b0480085fbdc19faf13923.jpg",
           "mediaId": "747d6f_742f7fd280b0480085fbdc19faf13923",
-          "routes": [
-            "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"
-          ]
+          "routes": ["/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_3856dd866c104349b1cbe529e8a393fd.jpg",
           "mediaId": "747d6f_3856dd866c104349b1cbe529e8a393fd",
-          "routes": [
-            "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"
-          ]
+          "routes": ["/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_63a4715edaeb43029411c6b6de222703~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_63a4715edaeb43029411c6b6de222703~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_63a4715edaeb43029411c6b6de222703.jpg",
           "mediaId": "747d6f_63a4715edaeb43029411c6b6de222703",
-          "routes": [
-            "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"
-          ]
+          "routes": ["/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
           "mediaId": "747d6f_06537da9d32549fa905346fcc8e05f7e",
-          "routes": [
-            "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"
-          ]
+          "routes": ["/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
           "mediaId": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b",
-          "routes": [
-            "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"
-          ]
+          "routes": ["/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu"]
         }
       ],
       "classification": "included-booking-service"
@@ -2712,49 +2402,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_939c4a28e30b423aae42088184598b32~mv2.png/v1/fill/w_1080,h_270,fp_0.50_0.50,q_85,enc_auto/747d6f_939c4a28e30b423aae42088184598b32~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_939c4a28e30b423aae42088184598b32.png",
           "mediaId": "747d6f_939c4a28e30b423aae42088184598b32",
-          "routes": [
-            "/service-page/glina-i-rodzina-soboty-15-00"
-          ]
+          "routes": ["/service-page/glina-i-rodzina-soboty-15-00"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_e90fa0c2226c4d72bb3a814d5b815ab6~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_e90fa0c2226c4d72bb3a814d5b815ab6~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_e90fa0c2226c4d72bb3a814d5b815ab6.jpg",
           "mediaId": "747d6f_e90fa0c2226c4d72bb3a814d5b815ab6",
-          "routes": [
-            "/service-page/glina-i-rodzina-soboty-15-00"
-          ]
+          "routes": ["/service-page/glina-i-rodzina-soboty-15-00"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_ecd02fc102ac4073a257e0118506cadd~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_ecd02fc102ac4073a257e0118506cadd~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_ecd02fc102ac4073a257e0118506cadd.jpg",
           "mediaId": "747d6f_ecd02fc102ac4073a257e0118506cadd",
-          "routes": [
-            "/service-page/glina-i-rodzina-soboty-15-00"
-          ]
+          "routes": ["/service-page/glina-i-rodzina-soboty-15-00"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_5189ce27ac69426f8e7ee0f701b25f14~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_5189ce27ac69426f8e7ee0f701b25f14.webp",
           "mediaId": "747d6f_5189ce27ac69426f8e7ee0f701b25f14",
-          "routes": [
-            "/service-page/glina-i-rodzina-soboty-15-00"
-          ]
+          "routes": ["/service-page/glina-i-rodzina-soboty-15-00"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_565523d2b38546f582a8ddb7f0a5dd67.jpg",
           "mediaId": "747d6f_565523d2b38546f582a8ddb7f0a5dd67",
-          "routes": [
-            "/service-page/glina-i-rodzina-soboty-15-00"
-          ]
+          "routes": ["/service-page/glina-i-rodzina-soboty-15-00"]
         }
       ],
       "classification": "included-booking-service"
@@ -2782,49 +2460,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/4972bc97a3da4931ba6c18a6cf8df7e1.jpg/v1/fill/w_1440,h_360,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_auto/4972bc97a3da4931ba6c18a6cf8df7e1.jpg",
           "productionPath": "/images/wix-migrated/4972bc97a3da4931ba6c18a6cf8df7e1.jpg",
           "mediaId": "4972bc97a3da4931ba6c18a6cf8df7e1",
-          "routes": [
-            "/service-page/iv-turnus-półkolonie-artystyczne"
-          ]
+          "routes": ["/service-page/iv-turnus-półkolonie-artystyczne"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_4f691e3ded7e4211a2d6f2947a5186ea~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_4f691e3ded7e4211a2d6f2947a5186ea~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_4f691e3ded7e4211a2d6f2947a5186ea.jpg",
           "mediaId": "747d6f_4f691e3ded7e4211a2d6f2947a5186ea",
-          "routes": [
-            "/service-page/iv-turnus-półkolonie-artystyczne"
-          ]
+          "routes": ["/service-page/iv-turnus-półkolonie-artystyczne"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_9653e644591c401480e2390aadca4cf6~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_9653e644591c401480e2390aadca4cf6~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_9653e644591c401480e2390aadca4cf6.jpg",
           "mediaId": "747d6f_9653e644591c401480e2390aadca4cf6",
-          "routes": [
-            "/service-page/iv-turnus-półkolonie-artystyczne"
-          ]
+          "routes": ["/service-page/iv-turnus-półkolonie-artystyczne"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_6e4389df7e7f4087ae1308a3c44b14f2~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_6e4389df7e7f4087ae1308a3c44b14f2.webp",
           "mediaId": "747d6f_6e4389df7e7f4087ae1308a3c44b14f2",
-          "routes": [
-            "/service-page/iv-turnus-półkolonie-artystyczne"
-          ]
+          "routes": ["/service-page/iv-turnus-półkolonie-artystyczne"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/f829a8f81b1348e8a2a532e9159018b4.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/f829a8f81b1348e8a2a532e9159018b4.jpg",
           "productionPath": "/images/wix-migrated/f829a8f81b1348e8a2a532e9159018b4.jpg",
           "mediaId": "f829a8f81b1348e8a2a532e9159018b4",
-          "routes": [
-            "/service-page/iv-turnus-półkolonie-artystyczne"
-          ]
+          "routes": ["/service-page/iv-turnus-półkolonie-artystyczne"]
         }
       ],
       "classification": "included-booking-service"
@@ -2852,49 +2518,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_03425894e06f4fd8af3e15755bafeea7~mv2.png/v1/fill/w_1080,h_270,fp_0.50_0.50,q_85,enc_auto/747d6f_03425894e06f4fd8af3e15755bafeea7~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_03425894e06f4fd8af3e15755bafeea7.png",
           "mediaId": "747d6f_03425894e06f4fd8af3e15755bafeea7",
-          "routes": [
-            "/service-page/letnia-akademia-rysunku-malarstwa"
-          ]
+          "routes": ["/service-page/letnia-akademia-rysunku-malarstwa"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_5189ce27ac69426f8e7ee0f701b25f14~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_5189ce27ac69426f8e7ee0f701b25f14.webp",
           "mediaId": "747d6f_5189ce27ac69426f8e7ee0f701b25f14",
-          "routes": [
-            "/service-page/letnia-akademia-rysunku-malarstwa"
-          ]
+          "routes": ["/service-page/letnia-akademia-rysunku-malarstwa"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_565523d2b38546f582a8ddb7f0a5dd67.jpg",
           "mediaId": "747d6f_565523d2b38546f582a8ddb7f0a5dd67",
-          "routes": [
-            "/service-page/letnia-akademia-rysunku-malarstwa"
-          ]
+          "routes": ["/service-page/letnia-akademia-rysunku-malarstwa"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5.jpg",
           "mediaId": "747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5",
-          "routes": [
-            "/service-page/letnia-akademia-rysunku-malarstwa"
-          ]
+          "routes": ["/service-page/letnia-akademia-rysunku-malarstwa"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_e5ad882b2465483ebd9497dece123b1c~mv2.jpeg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_e5ad882b2465483ebd9497dece123b1c~mv2.jpeg",
           "productionPath": "/images/wix-migrated/747d6f_e5ad882b2465483ebd9497dece123b1c.jpeg",
           "mediaId": "747d6f_e5ad882b2465483ebd9497dece123b1c",
-          "routes": [
-            "/service-page/letnia-akademia-rysunku-malarstwa"
-          ]
+          "routes": ["/service-page/letnia-akademia-rysunku-malarstwa"]
         }
       ],
       "classification": "included-booking-service"
@@ -2922,41 +2576,31 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_b34b940cfd314426aa2fc778c982eb8b~mv2.jpg/v1/fill/w_1440,h_360,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_auto/747d6f_b34b940cfd314426aa2fc778c982eb8b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg",
           "mediaId": "747d6f_b34b940cfd314426aa2fc778c982eb8b",
-          "routes": [
-            "/service-page/piknik-rodzinny-z-ceramiką-12-września"
-          ]
+          "routes": ["/service-page/piknik-rodzinny-z-ceramiką-12-września"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_448924318b194426b689bf1f332a815e~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_448924318b194426b689bf1f332a815e.webp",
           "mediaId": "747d6f_448924318b194426b689bf1f332a815e",
-          "routes": [
-            "/service-page/piknik-rodzinny-z-ceramiką-12-września"
-          ]
+          "routes": ["/service-page/piknik-rodzinny-z-ceramiką-12-września"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_c6ba27e517f64531a718d44d6861d2b0~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_c6ba27e517f64531a718d44d6861d2b0~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_c6ba27e517f64531a718d44d6861d2b0.jpg",
           "mediaId": "747d6f_c6ba27e517f64531a718d44d6861d2b0",
-          "routes": [
-            "/service-page/piknik-rodzinny-z-ceramiką-12-września"
-          ]
+          "routes": ["/service-page/piknik-rodzinny-z-ceramiką-12-września"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_b23dca3217b744eab898a010fc1654d6~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_b23dca3217b744eab898a010fc1654d6.webp",
           "mediaId": "747d6f_b23dca3217b744eab898a010fc1654d6",
-          "routes": [
-            "/service-page/piknik-rodzinny-z-ceramiką-12-września"
-          ]
+          "routes": ["/service-page/piknik-rodzinny-z-ceramiką-12-września"]
         }
       ],
       "classification": "included-booking-service"
@@ -2984,41 +2628,31 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_b34b940cfd314426aa2fc778c982eb8b~mv2.jpg/v1/fill/w_1440,h_360,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_auto/747d6f_b34b940cfd314426aa2fc778c982eb8b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg",
           "mediaId": "747d6f_b34b940cfd314426aa2fc778c982eb8b",
-          "routes": [
-            "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia"
-          ]
+          "routes": ["/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_448924318b194426b689bf1f332a815e~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_448924318b194426b689bf1f332a815e.webp",
           "mediaId": "747d6f_448924318b194426b689bf1f332a815e",
-          "routes": [
-            "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia"
-          ]
+          "routes": ["/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_c6ba27e517f64531a718d44d6861d2b0~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_c6ba27e517f64531a718d44d6861d2b0~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_c6ba27e517f64531a718d44d6861d2b0.jpg",
           "mediaId": "747d6f_c6ba27e517f64531a718d44d6861d2b0",
-          "routes": [
-            "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia"
-          ]
+          "routes": ["/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_b23dca3217b744eab898a010fc1654d6~mv2.webp",
           "productionPath": "/images/wix-migrated/747d6f_b23dca3217b744eab898a010fc1654d6.webp",
           "mediaId": "747d6f_b23dca3217b744eab898a010fc1654d6",
-          "routes": [
-            "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia"
-          ]
+          "routes": ["/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia"]
         }
       ],
       "classification": "included-booking-service"
@@ -3046,49 +2680,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_dd9f283803834f07b7a7d280c74af5aa~mv2.png/v1/fill/w_1440,h_360,fp_0.50_0.50,q_90,usm_0.66_1.00_0.01,enc_auto/747d6f_dd9f283803834f07b7a7d280c74af5aa~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_dd9f283803834f07b7a7d280c74af5aa.png",
           "mediaId": "747d6f_dd9f283803834f07b7a7d280c74af5aa",
-          "routes": [
-            "/service-page/poranki-z-ceramiką-dla-dorosłych"
-          ]
+          "routes": ["/service-page/poranki-z-ceramiką-dla-dorosłych"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
           "mediaId": "747d6f_06537da9d32549fa905346fcc8e05f7e",
-          "routes": [
-            "/service-page/poranki-z-ceramiką-dla-dorosłych"
-          ]
+          "routes": ["/service-page/poranki-z-ceramiką-dla-dorosłych"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_4bc1bec239df452d9c4e205c46a8a33e~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_4bc1bec239df452d9c4e205c46a8a33e~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_4bc1bec239df452d9c4e205c46a8a33e.jpg",
           "mediaId": "747d6f_4bc1bec239df452d9c4e205c46a8a33e",
-          "routes": [
-            "/service-page/poranki-z-ceramiką-dla-dorosłych"
-          ]
+          "routes": ["/service-page/poranki-z-ceramiką-dla-dorosłych"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857.jpg",
           "mediaId": "747d6f_df6f4a2f5b3a41ad8914b416ef4c7857",
-          "routes": [
-            "/service-page/poranki-z-ceramiką-dla-dorosłych"
-          ]
+          "routes": ["/service-page/poranki-z-ceramiką-dla-dorosłych"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_88382165162c4d72b411c18f7072fb10~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_88382165162c4d72b411c18f7072fb10~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_88382165162c4d72b411c18f7072fb10.jpg",
           "mediaId": "747d6f_88382165162c4d72b411c18f7072fb10",
-          "routes": [
-            "/service-page/poranki-z-ceramiką-dla-dorosłych"
-          ]
+          "routes": ["/service-page/poranki-z-ceramiką-dla-dorosłych"]
         }
       ],
       "classification": "included-booking-service"
@@ -3116,49 +2738,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_beb2180b228e46b99d49a5a2f1eac63b~mv2.png/v1/fill/w_1440,h_360,fp_0.50_0.50,q_90,usm_0.66_1.00_0.01,enc_auto/747d6f_beb2180b228e46b99d49a5a2f1eac63b~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_beb2180b228e46b99d49a5a2f1eac63b.png",
           "mediaId": "747d6f_beb2180b228e46b99d49a5a2f1eac63b",
-          "routes": [
-            "/service-page/wrzesieńceramika-dla-dorosłych-pon"
-          ]
+          "routes": ["/service-page/wrzesieńceramika-dla-dorosłych-pon"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
           "mediaId": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b",
-          "routes": [
-            "/service-page/wrzesieńceramika-dla-dorosłych-pon"
-          ]
+          "routes": ["/service-page/wrzesieńceramika-dla-dorosłych-pon"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_b8b4604091d64cd08fc792d41d76287e~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_b8b4604091d64cd08fc792d41d76287e~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_b8b4604091d64cd08fc792d41d76287e.jpg",
           "mediaId": "747d6f_b8b4604091d64cd08fc792d41d76287e",
-          "routes": [
-            "/service-page/wrzesieńceramika-dla-dorosłych-pon"
-          ]
+          "routes": ["/service-page/wrzesieńceramika-dla-dorosłych-pon"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_232,h_232,al_c,usm_0.66_1.00_0.01/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png",
           "productionPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
           "mediaId": "747d6f_64bcccd9911949e7895d7325e88a5a75",
-          "routes": [
-            "/service-page/wrzesieńceramika-dla-dorosłych-pon"
-          ]
+          "routes": ["/service-page/wrzesieńceramika-dla-dorosłych-pon"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc.jpg",
           "mediaId": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc",
-          "routes": [
-            "/service-page/wrzesieńceramika-dla-dorosłych-pon"
-          ]
+          "routes": ["/service-page/wrzesieńceramika-dla-dorosłych-pon"]
         }
       ],
       "classification": "included-booking-service"
@@ -3186,49 +2796,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/service-page/[slug]/page.tsx"
-      ],
+      "applicationFiles": ["app/service-page/[slug]/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_7440489991eb4b4b82871c79341ad3b9~mv2.jpg/v1/fill/w_1440,h_360,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_auto/747d6f_7440489991eb4b4b82871c79341ad3b9~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_7440489991eb4b4b82871c79341ad3b9.jpg",
           "mediaId": "747d6f_7440489991eb4b4b82871c79341ad3b9",
-          "routes": [
-            "/service-page/wrzesieńglina-do-wina-piątek-suchy-las"
-          ]
+          "routes": ["/service-page/wrzesieńglina-do-wina-piątek-suchy-las"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_3856dd866c104349b1cbe529e8a393fd.jpg",
           "mediaId": "747d6f_3856dd866c104349b1cbe529e8a393fd",
-          "routes": [
-            "/service-page/wrzesieńglina-do-wina-piątek-suchy-las"
-          ]
+          "routes": ["/service-page/wrzesieńglina-do-wina-piątek-suchy-las"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_90e90c61b57d4029a48950eacd31468b.jpg",
           "mediaId": "747d6f_90e90c61b57d4029a48950eacd31468b",
-          "routes": [
-            "/service-page/wrzesieńglina-do-wina-piątek-suchy-las"
-          ]
+          "routes": ["/service-page/wrzesieńglina-do-wina-piątek-suchy-las"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
           "mediaId": "747d6f_06537da9d32549fa905346fcc8e05f7e",
-          "routes": [
-            "/service-page/wrzesieńglina-do-wina-piątek-suchy-las"
-          ]
+          "routes": ["/service-page/wrzesieńglina-do-wina-piątek-suchy-las"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
           "mediaId": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b",
-          "routes": [
-            "/service-page/wrzesieńglina-do-wina-piątek-suchy-las"
-          ]
+          "routes": ["/service-page/wrzesieńglina-do-wina-piątek-suchy-las"]
         }
       ],
       "classification": "included-booking-service"
@@ -3256,49 +2854,37 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/services/page.tsx"
-      ],
+      "applicationFiles": ["app/services/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_8291d98106cf473fb0acfcfdc825f35c~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_8291d98106cf473fb0acfcfdc825f35c.jpg",
           "mediaId": "fc7570_8291d98106cf473fb0acfcfdc825f35c",
-          "routes": [
-            "/services"
-          ]
+          "routes": ["/services"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_f6df90b05cdb4312b9e5a6d93562cc0e~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_f6df90b05cdb4312b9e5a6d93562cc0e.jpg",
           "mediaId": "fc7570_f6df90b05cdb4312b9e5a6d93562cc0e",
-          "routes": [
-            "/services"
-          ]
+          "routes": ["/services"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_2d0a568918bf40419fc1caa66cff4134~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_2d0a568918bf40419fc1caa66cff4134.jpg",
           "mediaId": "fc7570_2d0a568918bf40419fc1caa66cff4134",
-          "routes": [
-            "/services"
-          ]
+          "routes": ["/services"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_ca2006d489d8400bbba1bc97b62072d4~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_ca2006d489d8400bbba1bc97b62072d4.jpg",
           "mediaId": "fc7570_ca2006d489d8400bbba1bc97b62072d4",
-          "routes": [
-            "/services"
-          ]
+          "routes": ["/services"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_c6280744ca9f4db5830075a85810207e~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_c6280744ca9f4db5830075a85810207e.jpg",
           "mediaId": "fc7570_c6280744ca9f4db5830075a85810207e",
-          "routes": [
-            "/services"
-          ]
+          "routes": ["/services"]
         }
       ],
       "classification": "included-marketing"
@@ -3326,17 +2912,13 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/services/glina-do-wina/page.tsx"
-      ],
+      "applicationFiles": ["app/services/glina-do-wina/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/fc7570_bc49e99650ac4175bb5ea40d340ce055~mv2.jpg/v1/fill/w_720,h_531,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/fc7570_bc49e99650ac4175bb5ea40d340ce055~mv2.jpg",
           "productionPath": "reference/original-site/assets/media/fc7570_bc49e99650ac4175bb5ea40d340ce055.jpg",
           "mediaId": "fc7570_bc49e99650ac4175bb5ea40d340ce055",
-          "routes": [
-            "/services/glina-do-wina"
-          ]
+          "routes": ["/services/glina-do-wina"]
         }
       ],
       "classification": "included-marketing"
@@ -3364,25 +2946,19 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/sklep/page.tsx"
-      ],
+      "applicationFiles": ["app/sklep/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_470,h_470,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
           "productionPath": "/images/wix-migrated/747d6f_632dd58fd1e5410496220f95241a4bbc.jpg",
           "mediaId": "747d6f_632dd58fd1e5410496220f95241a4bbc",
-          "routes": [
-            "/sklep"
-          ]
+          "routes": ["/sklep"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_0fe41123a0a34078b88b14d085b6b727~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_470,h_470,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0fe41123a0a34078b88b14d085b6b727~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
           "productionPath": "/images/wix-migrated/747d6f_0fe41123a0a34078b88b14d085b6b727.jpg",
           "mediaId": "747d6f_0fe41123a0a34078b88b14d085b6b727",
-          "routes": [
-            "/sklep"
-          ]
+          "routes": ["/sklep"]
         }
       ],
       "classification": "included-marketing"
@@ -3456,9 +3032,7 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/terms-conditions/page.tsx"
-      ],
+      "applicationFiles": ["app/terms-conditions/page.tsx"],
       "productionAssets": [],
       "classification": "included-marketing"
     },
@@ -3485,25 +3059,19 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/vouchery/page.tsx"
-      ],
+      "applicationFiles": ["app/vouchery/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_aa1bfec10d124209aa38d0d0dcbc1583~mv2.jpg/v1/fill/w_980,h_630,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_aa1bfec10d124209aa38d0d0dcbc1583~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
           "mediaId": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583",
-          "routes": [
-            "/vouchery"
-          ]
+          "routes": ["/vouchery"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_287,h_250,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pracownia%20ceramika%20NERO.png",
           "productionPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
           "mediaId": "747d6f_64bcccd9911949e7895d7325e88a5a75",
-          "routes": [
-            "/vouchery"
-          ]
+          "routes": ["/vouchery"]
         }
       ],
       "classification": "included-marketing"
@@ -3531,33 +3099,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/webinar-registration/page.tsx"
-      ],
+      "applicationFiles": ["app/webinar-registration/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/60975bc6b6c14bd88ea5618a85e14da1.jpg/v1/fill/w_1440,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/60975bc6b6c14bd88ea5618a85e14da1.jpg",
           "productionPath": "/images/wix-migrated/60975bc6b6c14bd88ea5618a85e14da1.jpg",
           "mediaId": "60975bc6b6c14bd88ea5618a85e14da1",
-          "routes": [
-            "/webinar-registration"
-          ]
+          "routes": ["/webinar-registration"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/747d6f_f7dbb82b083943689efa367416eb192a~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_f7dbb82b083943689efa367416eb192a~mv2.jpg",
           "productionPath": "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg",
           "mediaId": "747d6f_f7dbb82b083943689efa367416eb192a",
-          "routes": [
-            "/webinar-registration"
-          ]
+          "routes": ["/webinar-registration"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg/v1/fill/w_634,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg",
           "productionPath": "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
           "mediaId": "11062b_db67741365e74a03ba19d91e2ffc8721",
-          "routes": [
-            "/webinar-registration"
-          ]
+          "routes": ["/webinar-registration"]
         }
       ],
       "classification": "included-webinar"
@@ -3585,33 +3145,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/webinar-registration-1/page.tsx"
-      ],
+      "applicationFiles": ["app/webinar-registration-1/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_f5420b566fbe45bf931871861e8cbf46~mv2.jpeg/v1/fill/w_1440,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_f5420b566fbe45bf931871861e8cbf46~mv2.jpeg",
           "productionPath": "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
           "mediaId": "11062b_f5420b566fbe45bf931871861e8cbf46",
-          "routes": [
-            "/webinar-registration-1"
-          ]
+          "routes": ["/webinar-registration-1"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_66bd1d55c36c4eb9b8db106cf691f67e~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_66bd1d55c36c4eb9b8db106cf691f67e~mv2.jpg",
           "productionPath": "/images/wix-migrated/11062b_66bd1d55c36c4eb9b8db106cf691f67e.jpg",
           "mediaId": "11062b_66bd1d55c36c4eb9b8db106cf691f67e",
-          "routes": [
-            "/webinar-registration-1"
-          ]
+          "routes": ["/webinar-registration-1"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg/v1/fill/w_634,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg",
           "productionPath": "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
           "mediaId": "11062b_db67741365e74a03ba19d91e2ffc8721",
-          "routes": [
-            "/webinar-registration-1"
-          ]
+          "routes": ["/webinar-registration-1"]
         }
       ],
       "classification": "included-webinar"
@@ -3639,33 +3191,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/webinar-registration-2/page.tsx"
-      ],
+      "applicationFiles": ["app/webinar-registration-2/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/d01231e46af34161be7ad101d281a441.jpg/v1/fill/w_1440,h_513,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d01231e46af34161be7ad101d281a441.jpg",
           "productionPath": "/images/wix-migrated/d01231e46af34161be7ad101d281a441.jpg",
           "mediaId": "d01231e46af34161be7ad101d281a441",
-          "routes": [
-            "/webinar-registration-2"
-          ]
+          "routes": ["/webinar-registration-2"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/7ce4eff7766e4d5f905b18cd5f8c43ce.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/7ce4eff7766e4d5f905b18cd5f8c43ce.jpg",
           "productionPath": "/images/wix-migrated/7ce4eff7766e4d5f905b18cd5f8c43ce.jpg",
           "mediaId": "7ce4eff7766e4d5f905b18cd5f8c43ce",
-          "routes": [
-            "/webinar-registration-2"
-          ]
+          "routes": ["/webinar-registration-2"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg/v1/fill/w_586,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg",
           "productionPath": "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
           "mediaId": "a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648",
-          "routes": [
-            "/webinar-registration-2"
-          ]
+          "routes": ["/webinar-registration-2"]
         }
       ],
       "classification": "included-webinar"
@@ -3693,33 +3237,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/webinar-registration-3/page.tsx"
-      ],
+      "applicationFiles": ["app/webinar-registration-3/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/e0b46ce0b8284bdbb676d5b51b90aeb3.jpg/v1/fill/w_1440,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/e0b46ce0b8284bdbb676d5b51b90aeb3.jpg",
           "productionPath": "/images/wix-migrated/e0b46ce0b8284bdbb676d5b51b90aeb3.jpg",
           "mediaId": "e0b46ce0b8284bdbb676d5b51b90aeb3",
-          "routes": [
-            "/webinar-registration-3"
-          ]
+          "routes": ["/webinar-registration-3"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/4960cfa6cf2a4a44a7ba1695c421cb84.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/4960cfa6cf2a4a44a7ba1695c421cb84.jpg",
           "productionPath": "/images/wix-migrated/4960cfa6cf2a4a44a7ba1695c421cb84.jpg",
           "mediaId": "4960cfa6cf2a4a44a7ba1695c421cb84",
-          "routes": [
-            "/webinar-registration-3"
-          ]
+          "routes": ["/webinar-registration-3"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg/v1/fill/w_586,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg",
           "productionPath": "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
           "mediaId": "a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648",
-          "routes": [
-            "/webinar-registration-3"
-          ]
+          "routes": ["/webinar-registration-3"]
         }
       ],
       "classification": "included-webinar"
@@ -3747,33 +3283,25 @@
         "Wix cookie chrome omitted",
         "Wix runtime mesh/animation omitted"
       ],
-      "applicationFiles": [
-        "app/webinar-registration-4/page.tsx"
-      ],
+      "applicationFiles": ["app/webinar-registration-4/page.tsx"],
       "productionAssets": [
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_d5722b6f5d7249279adcbb06483186b1~mv2.jpg/v1/fill/w_1440,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_d5722b6f5d7249279adcbb06483186b1~mv2.jpg",
           "productionPath": "/images/wix-migrated/11062b_d5722b6f5d7249279adcbb06483186b1.jpg",
           "mediaId": "11062b_d5722b6f5d7249279adcbb06483186b1",
-          "routes": [
-            "/webinar-registration-4"
-          ]
+          "routes": ["/webinar-registration-4"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/11062b_541486568d644691a35279862f8fd254~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_541486568d644691a35279862f8fd254~mv2.jpg",
           "productionPath": "/images/wix-migrated/11062b_541486568d644691a35279862f8fd254.jpg",
           "mediaId": "11062b_541486568d644691a35279862f8fd254",
-          "routes": [
-            "/webinar-registration-4"
-          ]
+          "routes": ["/webinar-registration-4"]
         },
         {
           "referencePath": "https://static.wixstatic.com/media/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg/v1/fill/w_586,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg",
           "productionPath": "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
           "mediaId": "a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648",
-          "routes": [
-            "/webinar-registration-4"
-          ]
+          "routes": ["/webinar-registration-4"]
         }
       ],
       "classification": "included-webinar"

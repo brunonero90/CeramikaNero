@@ -60,13 +60,19 @@ describe('Clone Phase 2 completeness', () => {
       routes.filter((r) => r.startsWith('/webinar-registration')).length
     ).toBe(5);
 
+    const asciiAliases: Record<string, string> = {
+      '/copy-of-panieński-opis': 'copy-of-panienski-opis',
+      '/kopia-panieński-plus-opis': 'kopia-panienski-plus-opis',
+    };
+
     for (const route of routes) {
       const page = (archivePages as Record<string, { title: string }>)[route];
       expect(page?.title).toBeTruthy();
+      const folder = asciiAliases[route] ?? route.slice(1);
       const fileGuess = path.join(
         root,
         'app',
-        route === '/courses' ? 'courses/page.tsx' : `${route.slice(1)}/page.tsx`
+        route === '/courses' ? 'courses/page.tsx' : `${folder}/page.tsx`
       );
       // dynamic routes covered separately
       if (

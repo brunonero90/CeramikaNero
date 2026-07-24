@@ -9,12 +9,22 @@ import {
 
 const PREFIX = '/service-page/' as const;
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
   return listArchiveRoutes()
     .filter((r) => r.startsWith(PREFIX))
-    .map((r) => ({ slug: decodeURIComponent(r.slice(PREFIX.length)) }));
+    .map((r) => {
+      const raw = r.slice(PREFIX.length);
+      try {
+        return { slug: decodeURIComponent(raw) };
+      } catch {
+        return { slug: raw };
+      }
+    });
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -22,13 +22,13 @@
   "closureDecisions": {
     "/copy-of-panieński-opis": {
       "classification": "Implemented directly",
-      "reason": "Unique public PAKIET VIP detail page (not a duplicate of /panienskie). Closest webinar-registration match ratio 0.714 with unique VIP/session-photo copy and images.",
-      "canonical": "/copy-of-panieński-opis"
+      "reason": "Unique public PAKIET VIP detail page (not a duplicate of /panienskie). Closest webinar-registration match ratio 0.714 with unique VIP/session-photo copy and images. Served via ASCII alias /copy-of-panienski-opis for Windows/Next path safety; unicode original redirects.",
+      "canonical": "/copy-of-panienski-opis"
     },
     "/kopia-panieński-plus-opis": {
       "classification": "Implemented directly",
-      "reason": "Misnamed Wix copy URL; content is unique “Urodziny z ceramiką dla dzieci” offer (match vs /urodziny 0.192). Implemented as its own public route.",
-      "canonical": "/kopia-panieński-plus-opis"
+      "reason": "Misnamed Wix copy URL; content is unique “Urodziny z ceramiką dla dzieci” offer (match vs /urodziny 0.192). Implemented as its own public route via ASCII alias /kopia-panienski-plus-opis.",
+      "canonical": "/kopia-panienski-plus-opis"
     },
     "/kopia-urodziny-ceramika": {
       "classification": "Implemented directly",
@@ -65,8 +65,8 @@
     "rules": [
       "Booking calendars and service pages CTA → first-party catalog / when live Wix calendar removed",
       "Webinar registration CTAs preserved as informational archive pages + /kontakt adaptation where forms existed",
-      "Panieńskie STANDARD → /webinar-registration, PLUS → /webinar-registration-1, VIP → /copy-of-panieński-opis",
-      "Urodziny ceramika detail → /kopia-panieński-plus-opis; malowanie detail → /kopia-urodziny-ceramika",
+      "Panieńskie STANDARD → /webinar-registration, PLUS → /webinar-registration-1, VIP → /copy-of-panienski-opis",
+      "Urodziny ceramika detail → /kopia-panienski-plus-opis; malowanie detail → /kopia-urodziny-ceramika",
       "No invented workshop IDs or deep booking parameters"
     ],
     "totals": {
@@ -578,11 +578,11 @@
       "genuineCeramikaNeroContent": true,
       "inventoryClassification": "included-legacy-copy-page",
       "pageType": "marketing",
-      "canonicalNewRoute": "/copy-of-panieński-opis",
+      "canonicalNewRoute": "/copy-of-panienski-opis",
       "finalClassification": "Implemented directly",
       "redirectDestination": null,
       "redirectStatus": null,
-      "implementationFile": "app/copy-of-panieński-opis/page.tsx",
+      "implementationFile": "app/copy-of-panienski-opis/page.tsx",
       "phase": "closure",
       "contentParityStatus": "archive-fixture",
       "imageParityStatus": "local-migrated",
@@ -1113,11 +1113,11 @@
       "genuineCeramikaNeroContent": true,
       "inventoryClassification": "included-legacy-copy-page",
       "pageType": "marketing",
-      "canonicalNewRoute": "/kopia-panieński-plus-opis",
+      "canonicalNewRoute": "/kopia-panienski-plus-opis",
       "finalClassification": "Implemented directly",
       "redirectDestination": null,
       "redirectStatus": null,
-      "implementationFile": "app/kopia-panieński-plus-opis/page.tsx",
+      "implementationFile": "app/kopia-panienski-plus-opis/page.tsx",
       "phase": "closure",
       "contentParityStatus": "archive-fixture",
       "imageParityStatus": "local-migrated",

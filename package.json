@@ -12,7 +12,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "db:types": "node scripts/generate-db-types.js"
+    "db:types": "node scripts/generate-db-types.js",
+    "audit:links": "node scripts/audit-site-links.js",
+    "seed:operational": "node scripts/seed-operational-data.js",
+    "seed:operational:apply": "node scripts/seed-operational-data.js --apply"
   },
   "dependencies": {
     "@supabase/ssr": "0.6.0",
