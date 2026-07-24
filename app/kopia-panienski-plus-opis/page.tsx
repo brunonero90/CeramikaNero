@@ -1,25 +1,20 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { ArchivePageView } from '@/components/clone/archive-page';
+﻿import type { Metadata } from 'next';
 import {
-  bookingAdaptationFor,
-  getArchivePage,
-  UNICODE_ROUTE_ALIASES,
-} from '@/lib/clone/archive';
+  ResolvedArchivePage,
+  resolvedArchiveTitle,
+} from '@/components/clone/resolved-archive-page';
+import { UNICODE_ROUTE_ALIASES } from '@/lib/clone/archive';
 
 const ROUTE = UNICODE_ROUTE_ALIASES['/kopia-panienski-plus-opis'];
 
-export const metadata: Metadata = {
-  title: getArchivePage(ROUTE)?.title ?? 'Ceramika Nero',
-};
+export const dynamic = 'force-dynamic';
 
-export default function ArchiveRoutePage() {
-  const page = getArchivePage(ROUTE);
-  if (!page) notFound();
-  return (
-    <ArchivePageView
-      page={page}
-      bookingAdaptation={bookingAdaptationFor(ROUTE) ?? undefined}
-    />
-  );
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: await resolvedArchiveTitle(ROUTE, 'Ceramika Nero'),
+  };
+}
+
+export default async function ArchiveRoutePage() {
+  return <ResolvedArchivePage route={ROUTE} />;
 }

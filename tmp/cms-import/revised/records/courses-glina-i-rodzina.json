@@ -1,0 +1,69 @@
+{
+  "title": "Glina i rodzina | Pracownia Ceramiki N",
+  "slug": "courses-glina-i-rodzina",
+  "excerpt": null,
+  "content": {
+    "format": "clone-page-v1",
+    "template": "archive",
+    "route": "/courses/glina-i-rodzina-",
+    "title": "Glina i rodzina | Pracownia Ceramiki N",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/phase2/archive-pages.ts:/courses/glina-i-rodzina-",
+        "reference/original-site/pages/courses/glina-i-rodzina-"
+      ]
+    },
+    "sections": [
+      {
+        "type": "archive-section",
+        "heading": "Glina i rodzina",
+        "text": "Glina i rodzina\n\nPrice\n\nPiekiet dziecko + rodzic 80\n\nDuration\n\n12 Weeks\n\nEnroll\n< Back\nAbout the Course\n\nThis is placeholder text. To change this content, double-click on the element and click Change Content. Want to view and manage all your collections? Click on the Content Manager button in the Add panel on the left. Here, you can make changes to your content, add new fields, create dynamic pages and more.\n\nYour collection is already set up for you with fields and content. Add your own content or import it from a CSV file. Add fields for any type of content you want to display, such as rich text, images, and videos. Be sure to click Sync after making changes in a collection, so visitors can see your newest content on your live site.\n\nYour Instructor\n\nMałgorzata Nero\n\nThis is placeholder text. To change this content, double-click on the element and click Change Content. To manage all your collections, click on the Content Manager button in the Add panel on the left.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "< Back",
+            "href": "/courses"
+          }
+        ]
+      },
+      {
+        "type": "archive-section",
+        "heading": "Pracownia ceramiki Nero",
+        "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "nerogosia@gmail.com",
+            "href": "mailto:nerogosia@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Polityka prywatności",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "© 2023 by Ceramika Nero.",
+            "href": "/terms-conditions"
+          }
+        ]
+      }
+    ],
+    "cmsSlug": "courses-glina-i-rodzina"
+  },
+  "status": "draft",
+  "seo_title": "Glina i rodzina | Pracownia Ceramiki N",
+  "seo_description": null,
+  "provenance": {
+    "sources": [
+      "lib/clone/content/phase2/archive-pages.ts:/courses/glina-i-rodzina-",
+      "reference/original-site/pages/courses/glina-i-rodzina-"
+    ]
+  }
+}

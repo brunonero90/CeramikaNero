@@ -1,0 +1,84 @@
+{
+  "title": "Kontakt | Ceramika Nero",
+  "slug": "kontakt",
+  "excerpt": null,
+  "content": {
+    "format": "clone-page-v1",
+    "template": "archive",
+    "route": "/kontakt",
+    "title": "Kontakt | Ceramika Nero",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/phase2/archive-pages.ts:/kontakt",
+        "reference/original-site/pages/kontakt"
+      ]
+    },
+    "sections": [
+      {
+        "type": "archive-section",
+        "heading": "Rękodzieło jako joga umysłu",
+        "text": "Rękodzieło jako joga umysłu\nKontakt\n\nPracownia ceramiki Nero\n\nMałgorzata Nero\n\nwarsztaty ceramiki, rysunku, malarstwa, sklep z rękodziełem\n\nul. Podgórna 3/boczna Alejowej, 62-002 Suchy Las\n\n​​\n\nNumer Konta: 30 1140 2004 0000 3102 8314 9467\n\nNIP 9721134965\n\n​\n\nGodziny otwarcia:\n\nstacjonarnie: po wcześniejszym umówieniu się\n\nNumer telefonu: + 48 532 279 101\n\nkontakt.ceramikanero@gmail.com\n\nFormularz kontaktowy:\n\nAkceptuję regulaminZobacz warunki",
+        "images": [
+          {
+            "src": "/images/wix-migrated/747d6f_75f475196e3244da9e18720cc382ba9b.jpg",
+            "alt": "DSC_0093.jpg",
+            "dims": "980x523"
+          },
+          {
+            "src": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+            "alt": "warsztaty ceramiki, warsztaty rysunku malarstwa",
+            "dims": "153x133"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "kontakt.ceramikanero@gmail.com",
+            "href": "mailto:kontakt.ceramikanero@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/regulamin"
+          }
+        ]
+      },
+      {
+        "type": "archive-section",
+        "heading": "Pracownia ceramiki Nero",
+        "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "nerogosia@gmail.com",
+            "href": "mailto:nerogosia@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Polityka prywatności",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "© 2023 by Ceramika Nero.",
+            "href": "/terms-conditions"
+          }
+        ]
+      }
+    ],
+    "cmsSlug": "kontakt"
+  },
+  "status": "draft",
+  "seo_title": "Kontakt | Ceramika Nero",
+  "seo_description": null,
+  "provenance": {
+    "sources": [
+      "lib/clone/content/phase2/archive-pages.ts:/kontakt",
+      "reference/original-site/pages/kontakt"
+    ]
+  }
+}

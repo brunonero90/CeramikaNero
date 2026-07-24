@@ -1,0 +1,2016 @@
+{
+  "generatedAt": "2026-07-24T13:37:32.130Z",
+  "mode": "local-preview-only",
+  "productionMutation": false,
+  "targetProjectRef": "zorxzyvmcbwucvaywmuu",
+  "awaitingBrunoApproval": true,
+  "schemaMigrationRequired": false,
+  "schemaNote": "Additive clone-page-v1 section types only; content_pages.content JSON; no SQL migration",
+  "homeContradiction": {
+    "explanation": "Previous preview listed `home` for import while `/` and `/home` were still static-primary because app/page.tsx and app/home/page.tsx were not wired to resolveClonePage. That wiring is now done.",
+    "afterImport": {
+      "/": {
+        "cmsSlug": "root",
+        "template": "homepage-services",
+        "winner": "Published valid content_pages row for slug=root wins; otherwise static homepageServices registry document.",
+        "notTheSameAs": "/home"
+      },
+      "/home": {
+        "cmsSlug": "home",
+        "template": "glina-box",
+        "winner": "Published valid content_pages row for slug=home wins; otherwise static glinaBoxPage registry document.",
+        "note": "/home is the GLINA BOX marketing page — distinct from `/` workshop picker."
+      }
+    }
+  },
+  "omittedResolved": {
+    "pracowniaMidCopy": "Represented as section type mid-copy (no schema migration)",
+    "grupyIntroWho": "Represented as section type bullet-list (ids intro-bullets, who-bullets)",
+    "servicePageNested": "Each /service-page/* archive fixture registered as content_pages clone-page-v1 with ASCII cmsSlug",
+    "bookingCalendarNested": "Each /booking-calendar/* archive fixture registered likewise",
+    "blogArchive": "Intentionally NOT in content_pages import — separate blog_posts cutover with archive fallback; unicode slug mapping required before apply"
+  },
+  "workshopCatalog": {
+    "status": "NOT included in this import",
+    "reason": "No verified business data for prices/capacities/instructors/dates; workshops/sessions remain separate operational tables"
+  },
+  "counts": {
+    "implementedDirectlyRoutes": 77,
+    "contentPagesProposed": 57,
+    "blogRoutesDeferred": 24,
+    "insert": 57,
+    "update": 0,
+    "skip": 0,
+    "existingRemoteAssumption": 0
+  },
+  "validationSummary": {
+    "allParseOk": true,
+    "allHrefOk": true,
+    "allAdapterOk": true,
+    "failures": []
+  },
+  "adminEditingCoverage": {
+    "structuredEditorPrimary": true,
+    "rawJsonAdvancedOnly": true,
+    "draftPublishArchived": true,
+    "inPlacePreviewForAdmins": true,
+    "rollback": "Unpublish/archive/delete content_pages row by slug → public resolveClonePage falls back to static registry automatically",
+    "fieldCoverageNote": "Every section type in proposed documents has ClonePageEditor fields"
+  },
+  "visualParity": {
+    "method": "Structural fingerprint equality + adapter round-trip for every proposed document; Playwright viewport renders generated in cms-visual-parity.ts when server available",
+    "widths": [
+      1440,
+      390
+    ],
+    "materialDifferences": [],
+    "note": "With empty Supabase content_pages, live pages already use static-fallback documents identical to proposed seed JSON — DB-backed render equals static when content matches fingerprint."
+  },
+  "matrix": [
+    {
+      "route": "/",
+      "pageType": "home",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=root clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:homepage-header",
+        "section:service-card",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome",
+        "Grafik zajęć structural CTA section"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "root",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/blog",
+      "pageType": "blog-index",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/blog/categories/aktualności",
+      "pageType": "blog-category",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/blog/categories/ciekawostki",
+      "pageType": "blog-category",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/blog/categories/o-mnie",
+      "pageType": "blog-category",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/booking-calendar/ceramika-dla-dorosłych-pon-czw",
+      "pageType": "booking-calendar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=booking-calendar-ceramika-dla-doroslych-pon-czw clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "booking-calendar-ceramika-dla-doroslych-pon-czw",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/booking-calendar/glina-do-wina-piątek-19-00-suchy-las",
+      "pageType": "booking-calendar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=booking-calendar-glina-do-wina-piatek-19-00-suchy-las clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "booking-calendar-glina-do-wina-piatek-19-00-suchy-las",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "pageType": "booking-calendar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=booking-calendar-glina-do-wina-w-poznaniu-w-ptasim-radiu clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "booking-calendar-glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/booking-calendar/glina-i-rodzina-soboty-15-00",
+      "pageType": "booking-calendar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=booking-calendar-glina-i-rodzina-soboty-15-00 clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "booking-calendar-glina-i-rodzina-soboty-15-00",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/booking-calendar/letnia-akademia-rysunku-malarstwa",
+      "pageType": "booking-calendar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=booking-calendar-letnia-akademia-rysunku-malarstwa clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "booking-calendar-letnia-akademia-rysunku-malarstwa",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/booking-calendar/poranki-z-ceramiką-dla-dorosłych",
+      "pageType": "booking-calendar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=booking-calendar-poranki-z-ceramika-dla-doroslych clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "booking-calendar-poranki-z-ceramika-dla-doroslych",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/booking-calendar/wrzesieńceramika-dla-dorosłych-pon",
+      "pageType": "booking-calendar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=booking-calendar-wrzesienceramika-dla-doroslych-pon clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "booking-calendar-wrzesienceramika-dla-doroslych-pon",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las",
+      "pageType": "booking-calendar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=booking-calendar-wrzesienglina-do-wina-piatek-suchy-las clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "booking-calendar-wrzesienglina-do-wina-piatek-suchy-las",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/cart",
+      "pageType": "cart",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=cart clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "cart",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/copy-of-panieński-opis",
+      "pageType": "marketing",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=copy-of-panienski-opis clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "copy-of-panienski-opis",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/courses",
+      "pageType": "course",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=courses clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "courses",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/courses/glina-do-wina-",
+      "pageType": "course",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=courses-glina-do-wina clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "courses-glina-do-wina",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/courses/glina-i-rodzina-",
+      "pageType": "course",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=courses-glina-i-rodzina clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "courses-glina-i-rodzina",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/courses/imprezy-zamknięte-do-10-os.-",
+      "pageType": "course",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=courses-imprezy-zamkniete-do-10-os clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "courses-imprezy-zamkniete-do-10-os",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/courses/kręcenie-na-kole-",
+      "pageType": "course",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=courses-krecenie-na-kole clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "courses-krecenie-na-kole",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/courses/pracowania-otwarta-",
+      "pageType": "course",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=courses-pracowania-otwarta clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "courses-pracowania-otwarta",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/dostawy-i-zwroty",
+      "pageType": "legal",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=dostawy-i-zwroty clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "dostawy-i-zwroty",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/faq",
+      "pageType": "faq",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=faq clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "faq",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/galeria",
+      "pageType": "gallery",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=galeria clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:gallery-grid",
+        "section:hero",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "galeria",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/gift-card",
+      "pageType": "shop",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=gift-card clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "gift-card",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/glinadowina",
+      "pageType": "workshop-landing",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=glinadowina clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:hero",
+        "section:split-block",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "glinadowina",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/home",
+      "pageType": "home-alias",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=home clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:cta-block",
+        "section:hero",
+        "section:labeled-image",
+        "section:paragraphs",
+        "section:product-card",
+        "section:split-block",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome",
+        "Podgląd · badge prefix + cart disclaimer"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "home",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/kontakt",
+      "pageType": "contact",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=kontakt clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "kontakt",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/kopia-panieński-plus-opis",
+      "pageType": "marketing",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=kopia-panienski-plus-opis clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "kopia-panienski-plus-opis",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/kopia-urodziny-ceramika",
+      "pageType": "marketing",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=kopia-urodziny-ceramika clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "kopia-urodziny-ceramika",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/panienskie",
+      "pageType": "marketing",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=panienskie clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:hero",
+        "section:split-block",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "panienskie",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/czym-zajmuje-się-pracownia-ceramiki-nero",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/dziękujemy-wszystkim-którzy-są-z-nami",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/glina-do-wina",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/jak-zacząć-przygodę-z-ceramiką",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/letnia-akademia-artystyczna-całe-wakacje",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/nowe-warsztaty-ceramika-dla-smyka",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/o-mnie",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/o-sklepie-z-ceramiką",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/slow-design-co-oznacza",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/twój-tytuł-jak-nazwałbyś-swój-przepis",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/warsztatyzgliny",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/wpływ-pracy-z-gliną-na-człowieka",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/post/zaczynamy-nowe-warsztaty-już-we-wrześniu",
+      "pageType": "blog-post",
+      "currentSource": "clone archive fixtures (blog-posts.ts / BlogIndexView)",
+      "proposedSource": "blog_posts table (separate from content_pages) + archive fallback",
+      "dbBackedFields": [
+        "title",
+        "slug(ascii)",
+        "excerpt",
+        "content",
+        "authorName",
+        "status",
+        "seo*",
+        "legacyWixUrl"
+      ],
+      "staticPresentationFields": [
+        "BlogIndexView / BlogPostView layout",
+        "category chrome",
+        "share noise filters"
+      ],
+      "fallback": "archiveBlogPosts fixtures until blog import approved",
+      "reasonIfStatic": "Kept on separate blog_posts cutover; unicode slugs need ASCII mapping; not part of content_pages apply",
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    },
+    {
+      "route": "/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+      "pageType": "product",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=product-page-glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "product-page-glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+      "pageType": "product",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=product-page-szkliwienie-prac-w-pracowni-ceramika-nero-1 clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "product-page-szkliwienie-prac-w-pracowni-ceramika-nero-1",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/regulamin",
+      "pageType": "legal",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=regulamin clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "regulamin",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/ceramika-dla-dorosłych-pon-czw",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-ceramika-dla-doroslych-pon-czw clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-ceramika-dla-doroslych-pon-czw",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/glina-do-wina-piątek-19-00-suchy-las",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-glina-do-wina-piatek-19-00-suchy-las clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-glina-do-wina-piatek-19-00-suchy-las",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-glina-do-wina-w-poznaniu-w-ptasim-radiu clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/glina-i-rodzina-soboty-15-00",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-glina-i-rodzina-soboty-15-00 clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-glina-i-rodzina-soboty-15-00",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/iv-turnus-półkolonie-artystyczne",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-iv-turnus-polkolonie-artystyczne clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-iv-turnus-polkolonie-artystyczne",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/letnia-akademia-rysunku-malarstwa",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-letnia-akademia-rysunku-malarstwa clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-letnia-akademia-rysunku-malarstwa",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/piknik-rodzinny-z-ceramiką-12-września",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-piknik-rodzinny-z-ceramika-12-wrzesnia clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-piknik-rodzinny-z-ceramika-12-wrzesnia",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-piknik-rodzinny-z-ceramika-29-sierpnia clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-piknik-rodzinny-z-ceramika-29-sierpnia",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/poranki-z-ceramiką-dla-dorosłych",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-poranki-z-ceramika-dla-doroslych clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-poranki-z-ceramika-dla-doroslych",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/wrzesieńceramika-dla-dorosłych-pon",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-wrzesienceramika-dla-doroslych-pon clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-wrzesienceramika-dla-doroslych-pon",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/service-page/wrzesieńglina-do-wina-piątek-suchy-las",
+      "pageType": "service-page",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=service-page-wrzesienglina-do-wina-piatek-suchy-las clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "service-page-wrzesienglina-do-wina-piatek-suchy-las",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/services",
+      "pageType": "services-index",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=services clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "services",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/services/glina-do-wina",
+      "pageType": "service-alias",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=services-glina-do-wina clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "services-glina-do-wina",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/sklep",
+      "pageType": "shop",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=sklep clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "sklep",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny",
+      "pageType": "event",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=szczeg-y-wydarzenia-i-rejestracja-piknik-rodzinny-warsztaty-wstep-wolny clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "szczeg-y-wydarzenia-i-rejestracja-piknik-rodzinny-warsztaty-wstep-wolny",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/terms-conditions",
+      "pageType": "legal",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=terms-conditions clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "terms-conditions",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/urodziny",
+      "pageType": "workshop-landing",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=urodziny clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:hero",
+        "section:offer-intro",
+        "section:split-block",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "urodziny",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/vouchery",
+      "pageType": "shop",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=vouchery clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "vouchery",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/webinar-registration",
+      "pageType": "webinar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=webinar-registration clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "webinar-registration",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/webinar-registration-1",
+      "pageType": "webinar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=webinar-registration-1 clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "webinar-registration-1",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/webinar-registration-2",
+      "pageType": "webinar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=webinar-registration-2 clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "webinar-registration-2",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/webinar-registration-3",
+      "pageType": "webinar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=webinar-registration-3 clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "webinar-registration-3",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/webinar-registration-4",
+      "pageType": "webinar",
+      "currentSource": "static-fallback via resolveClonePage (fixtures)",
+      "proposedSource": "content_pages.slug=webinar-registration-4 clone-page-v1",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:archive-section",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React template/layout/CSS",
+        "bookingAdaptation chrome"
+      ],
+      "fallback": "static registry document if DB missing/invalid",
+      "reasonIfStatic": null,
+      "cmsSlug": "webinar-registration-4",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/pracownia",
+      "pageType": "live-remap-marketing",
+      "currentSource": "static-fallback via resolveClonePage",
+      "proposedSource": "content_pages.slug=pracownia",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:hero",
+        "section:mid-copy",
+        "section:split-block",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React marketing template"
+      ],
+      "fallback": "static registry",
+      "reasonIfStatic": null,
+      "cmsSlug": "pracownia",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/dla-dzieci",
+      "pageType": "live-remap-marketing",
+      "currentSource": "static-fallback via resolveClonePage",
+      "proposedSource": "content_pages.slug=dla-dzieci",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:hero",
+        "section:split-block",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React marketing template"
+      ],
+      "fallback": "static registry",
+      "reasonIfStatic": null,
+      "cmsSlug": "dla-dzieci",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/dla-doroslych",
+      "pageType": "live-remap-marketing",
+      "currentSource": "static-fallback via resolveClonePage",
+      "proposedSource": "content_pages.slug=dla-doroslych",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:hero",
+        "section:split-block",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React marketing template"
+      ],
+      "fallback": "static registry",
+      "reasonIfStatic": null,
+      "cmsSlug": "dla-doroslych",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/grupy-i-firmy",
+      "pageType": "live-remap-marketing",
+      "currentSource": "static-fallback via resolveClonePage",
+      "proposedSource": "content_pages.slug=grupy-i-firmy",
+      "dbBackedFields": [
+        "metaDescription",
+        "section:bullet-list",
+        "section:hero",
+        "section:split-block",
+        "seoDescription",
+        "seoTitle",
+        "status(draft|published|archived)",
+        "title"
+      ],
+      "staticPresentationFields": [
+        "React marketing template"
+      ],
+      "fallback": "static registry",
+      "reasonIfStatic": null,
+      "cmsSlug": "grupy-i-firmy",
+      "inContentPagesImport": true
+    },
+    {
+      "route": "/kalendarz",
+      "pageType": "operational-calendar",
+      "currentSource": "workshop_sessions query",
+      "proposedSource": "workshop_sessions (not content_pages)",
+      "dbBackedFields": [
+        "published workshops",
+        "scheduled/sold_out sessions"
+      ],
+      "staticPresentationFields": [
+        "calendar UI chrome"
+      ],
+      "fallback": "empty state when no sessions",
+      "reasonIfStatic": null,
+      "cmsSlug": null,
+      "inContentPagesImport": false
+    }
+  ],
+  "proposedSlugs": [
+    "booking-calendar-ceramika-dla-doroslych-pon-czw",
+    "booking-calendar-glina-do-wina-piatek-19-00-suchy-las",
+    "booking-calendar-glina-do-wina-w-poznaniu-w-ptasim-radiu",
+    "booking-calendar-glina-i-rodzina-soboty-15-00",
+    "booking-calendar-letnia-akademia-rysunku-malarstwa",
+    "booking-calendar-poranki-z-ceramika-dla-doroslych",
+    "booking-calendar-wrzesienceramika-dla-doroslych-pon",
+    "booking-calendar-wrzesienglina-do-wina-piatek-suchy-las",
+    "cart",
+    "copy-of-panienski-opis",
+    "courses",
+    "courses-glina-do-wina",
+    "courses-glina-i-rodzina",
+    "courses-imprezy-zamkniete-do-10-os",
+    "courses-krecenie-na-kole",
+    "courses-pracowania-otwarta",
+    "dla-doroslych",
+    "dla-dzieci",
+    "dostawy-i-zwroty",
+    "faq",
+    "galeria",
+    "gift-card",
+    "glinadowina",
+    "grupy-i-firmy",
+    "home",
+    "kontakt",
+    "kopia-panienski-plus-opis",
+    "kopia-urodziny-ceramika",
+    "panienskie",
+    "pracownia",
+    "product-page-glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+    "product-page-szkliwienie-prac-w-pracowni-ceramika-nero-1",
+    "regulamin",
+    "root",
+    "service-page-ceramika-dla-doroslych-pon-czw",
+    "service-page-glina-do-wina-piatek-19-00-suchy-las",
+    "service-page-glina-do-wina-w-poznaniu-w-ptasim-radiu",
+    "service-page-glina-i-rodzina-soboty-15-00",
+    "service-page-iv-turnus-polkolonie-artystyczne",
+    "service-page-letnia-akademia-rysunku-malarstwa",
+    "service-page-piknik-rodzinny-z-ceramika-12-wrzesnia",
+    "service-page-piknik-rodzinny-z-ceramika-29-sierpnia",
+    "service-page-poranki-z-ceramika-dla-doroslych",
+    "service-page-wrzesienceramika-dla-doroslych-pon",
+    "service-page-wrzesienglina-do-wina-piatek-suchy-las",
+    "services",
+    "services-glina-do-wina",
+    "sklep",
+    "szczeg-y-wydarzenia-i-rejestracja-piknik-rodzinny-warsztaty-wstep-wolny",
+    "terms-conditions",
+    "urodziny",
+    "vouchery",
+    "webinar-registration",
+    "webinar-registration-1",
+    "webinar-registration-2",
+    "webinar-registration-3",
+    "webinar-registration-4"
+  ]
+}

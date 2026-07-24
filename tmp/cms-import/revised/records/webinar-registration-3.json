@@ -1,0 +1,80 @@
+{
+  "title": "Dla firm Szkliwienie 2 | Pracownia Ceramiki N",
+  "slug": "webinar-registration-3",
+  "excerpt": null,
+  "content": {
+    "format": "clone-page-v1",
+    "template": "archive",
+    "route": "/webinar-registration-3",
+    "title": "Dla firm Szkliwienie 2 | Pracownia Ceramiki N",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/phase2/archive-pages.ts:/webinar-registration-3",
+        "reference/original-site/pages/webinar-registration-3"
+      ]
+    },
+    "sections": [
+      {
+        "type": "archive-section",
+        "heading": "Oferta dla firm",
+        "text": "Oferta dla firm\nWarsztaty szkliwienia w Pracowni gotowych produktów z włoskimi przystawkami i lampką wina\nZapraszamy do zorganizowania niezapomnianej imprezy integracyjnej z naszą pomocą!\n■ imprezy od 5 do 12 osób\n■ czas trwania ok. 3 godziny\n■ cena: 180 zł. od osoby + cena przemiotu do poszkliwienia w zależności od wyboru ceny od 50 zł.\nKażdy poszliwi zakupiony u mnie w pracowni przedmiot\n\nPosiadam przedmioty już wypalone na biskwit, ceny od 50 zł. za przedmiot. Do wyboru talerzyki, kubki, miseczki i inne. Zapewniam fachową pomoc w szkliwieniu, wszystkie materiały i narzędzia oraz wypał. To trwała pamiątka na całe życie.\n\nWłoskie przekąski\n\nKlimatyczna Pracownia ceramiki w Suchym Lesie, warsztaty są prowadzone w klimacie włoskim, włoskie przekąski, lampka wina,włoska muzyka i aranżacja wnętrza\n\nPoszkliwione przedmioty będą do odbioru w ciągu tygodnia\n\nPoszkliwione przedmioty zostaną wypalone.Takie gotowe produkty będą gotowe do odbioru.\n\nNasza oferta dla firm zawiera\n\nProszę o wycenę\nImię i nazwisko\nNazwa firmy\nNumer telefonu\nEmail\nTreść wiadomości\nWyślij",
+        "images": [
+          {
+            "src": "/images/wix-migrated/e0b46ce0b8284bdbb676d5b51b90aeb3.jpg",
+            "alt": "Painting Pottery",
+            "dims": "1440x663"
+          },
+          {
+            "src": "/images/wix-migrated/4960cfa6cf2a4a44a7ba1695c421cb84.jpg",
+            "alt": "Mugs and Bowls",
+            "dims": "590x483"
+          },
+          {
+            "src": "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
+            "alt": "(no alt)",
+            "dims": "586x483"
+          }
+        ],
+        "buttons": []
+      },
+      {
+        "type": "archive-section",
+        "heading": "Pracownia ceramiki Nero",
+        "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "nerogosia@gmail.com",
+            "href": "mailto:nerogosia@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Polityka prywatności",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "© 2023 by Ceramika Nero.",
+            "href": "/terms-conditions"
+          }
+        ]
+      }
+    ],
+    "cmsSlug": "webinar-registration-3"
+  },
+  "status": "draft",
+  "seo_title": "Dla firm Szkliwienie 2 | Pracownia Ceramiki N",
+  "seo_description": null,
+  "provenance": {
+    "sources": [
+      "lib/clone/content/phase2/archive-pages.ts:/webinar-registration-3",
+      "reference/original-site/pages/webinar-registration-3"
+    ]
+  }
+}

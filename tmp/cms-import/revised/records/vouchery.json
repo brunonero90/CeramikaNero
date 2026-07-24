@@ -1,0 +1,80 @@
+{
+  "title": "Vouchery | Pracownia Ceramiki N",
+  "slug": "vouchery",
+  "excerpt": null,
+  "content": {
+    "format": "clone-page-v1",
+    "template": "archive",
+    "route": "/vouchery",
+    "title": "Vouchery | Pracownia Ceramiki N",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/phase2/archive-pages.ts:/vouchery",
+        "reference/original-site/pages/vouchery"
+      ]
+    },
+    "sections": [
+      {
+        "type": "archive-section",
+        "heading": "Rękodzieło jako joga umysłu",
+        "text": "Rękodzieło jako joga umysłu\nPrzejdź do sklepu\nVouchery\n\nZapraszamy do zakupu Voucherów prezentowych. Spraw radość swoim bliskim lub przeżyj z przyjaciółkami niezapomniane chwile.\n\nBrak produktu\n\nBrak produktu\n\nBrak produktu\n\nBrak produktu\n\nBrak produktu",
+        "images": [
+          {
+            "src": "/images/wix-migrated/747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+            "alt": "TOP_vouchery.jpg",
+            "dims": "980x630"
+          },
+          {
+            "src": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+            "alt": "pracownia ceramika NERO.png",
+            "dims": "287x250"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Przejdź do sklepu",
+            "href": "/home"
+          }
+        ]
+      },
+      {
+        "type": "archive-section",
+        "heading": "Pracownia ceramiki Nero",
+        "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "nerogosia@gmail.com",
+            "href": "mailto:nerogosia@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Polityka prywatności",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "© 2023 by Ceramika Nero.",
+            "href": "/terms-conditions"
+          }
+        ]
+      }
+    ],
+    "cmsSlug": "vouchery"
+  },
+  "status": "draft",
+  "seo_title": "Vouchery | Pracownia Ceramiki N",
+  "seo_description": null,
+  "provenance": {
+    "sources": [
+      "lib/clone/content/phase2/archive-pages.ts:/vouchery",
+      "reference/original-site/pages/vouchery"
+    ]
+  }
+}

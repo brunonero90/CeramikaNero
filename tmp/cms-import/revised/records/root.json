@@ -1,0 +1,173 @@
+{
+  "title": "Ceramika Nero | warsztaty z ceramiki Poznań",
+  "slug": "root",
+  "excerpt": "Wybierz warsztat i zarezerwuj dogodny termin w Pracowni Ceramiki Nero — Suchy Las / Poznań.",
+  "content": {
+    "format": "clone-page-v1",
+    "template": "homepage-services",
+    "route": "/",
+    "title": "Ceramika Nero | warsztaty z ceramiki Poznań",
+    "metaDescription": "Wybierz warsztat i zarezerwuj dogodny termin w Pracowni Ceramiki Nero — Suchy Las / Poznań.",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/landings.ts#homepageServices",
+        "app/page.tsx"
+      ]
+    },
+    "sections": [
+      {
+        "type": "homepage-header",
+        "title": "Wybierz warsztat",
+        "subtitle": "ZAREZERWUJ DOGODNY TERMIN",
+        "chips": [
+          "Wszystkie usługi",
+          "CERAMIKA NERO PODGÓRNA 3 SUCHY LAS",
+          "Inne lokalizacje"
+        ]
+      },
+      {
+        "type": "service-card",
+        "id": "svc-0",
+        "title": "wrzesieńGLINA DO WINA PIĄTEK SUCHY LAS",
+        "day": "pt.",
+        "price": "209 zł",
+        "imageSrc": "/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg",
+        "imageAlt": "warsztaty glina do wina",
+        "moreHref": "/service-page/wrzesieńglina-do-wina-piątek-suchy-las",
+        "href": "/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las",
+        "cta": "Zarezerwuj"
+      },
+      {
+        "type": "service-card",
+        "id": "svc-1",
+        "title": "wrzesieńCERAMIKA DLA DOROSŁYCH PON",
+        "day": "pon.",
+        "price": "149 zł",
+        "imageSrc": "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+        "imageAlt": "Ceramika dla dorosłych",
+        "moreHref": "/service-page/wrzesieńceramika-dla-dorosłych-pon",
+        "href": "/booking-calendar/wrzesieńceramika-dla-dorosłych-pon",
+        "cta": "Zarezerwuj"
+      },
+      {
+        "type": "service-card",
+        "id": "svc-2",
+        "title": "GLINA DO WINA PIĄTEK 19.00 SUCHY LAS",
+        "day": "pt.",
+        "price": "189 zł",
+        "imageSrc": "/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg",
+        "imageAlt": "warsztaty glina do wina",
+        "moreHref": "/service-page/glina-do-wina-piątek-19-00-suchy-las",
+        "href": "/booking-calendar/glina-do-wina-piątek-19-00-suchy-las",
+        "cta": "Zarezerwuj"
+      },
+      {
+        "type": "service-card",
+        "id": "svc-3",
+        "title": "CERAMIKA DLA DOROSŁYCH PON.CZW.",
+        "day": "pon.",
+        "price": "139 zł",
+        "imageSrc": "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+        "imageAlt": "Ceramika dla dorosłych",
+        "moreHref": "/service-page/ceramika-dla-dorosłych-pon-czw",
+        "href": "/booking-calendar/ceramika-dla-dorosłych-pon-czw",
+        "cta": "Zarezerwuj"
+      },
+      {
+        "type": "service-card",
+        "id": "svc-4",
+        "title": "GLINA DO WINA W POZNANIU W PTASIM RADIU",
+        "day": "czw.",
+        "price": "189 zł",
+        "imageSrc": "/images/wix-migrated/747d6f_b5e3aff7de8743c88922dac0ed1c8629.png",
+        "imageAlt": "warsztaty glina do wina",
+        "moreHref": "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+        "href": "/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+        "cta": "Zarezerwuj"
+      },
+      {
+        "type": "service-card",
+        "id": "svc-5",
+        "title": "🌞🎨LETNIA AKADEMIA RYSUNKU, MALARSTWA",
+        "day": "",
+        "price": "109 zł",
+        "imageSrc": "/images/wix-migrated/747d6f_ec8876726c8f4acf9f3aef15bc36b8cd.jpg",
+        "imageAlt": "warsztaty ceramiczne",
+        "moreHref": "/service-page/letnia-akademia-rysunku-malarstwa",
+        "href": "/booking-calendar/letnia-akademia-rysunku-malarstwa",
+        "cta": "Zarezerwuj"
+      },
+      {
+        "type": "service-card",
+        "id": "svc-6",
+        "title": "IV TURNUS PÓŁKOLONIE ARTYSTYCZNE",
+        "day": "",
+        "price": "Od 1140 zł",
+        "imageSrc": "/images/wix-migrated/11062b_43197d81c0d040e4867041831bae8092.jpeg",
+        "imageAlt": "Kurs rysunku i malarstwa",
+        "moreHref": "/service-page/iv-turnus-półkolonie-artystyczne",
+        "href": "/service-page/iv-turnus-półkolonie-artystyczne",
+        "cta": "Zobacz kurs",
+        "soldOut": true
+      },
+      {
+        "type": "service-card",
+        "id": "svc-7",
+        "title": "GLINA I RODZINA SOBOTY 15.00",
+        "day": "sob.",
+        "price": "95 zł",
+        "imageSrc": "/images/wix-migrated/747d6f_355d7132929d437a94a84beaa0a6e9a1.png",
+        "imageAlt": "warsztaty ceramiczne",
+        "moreHref": "/service-page/glina-i-rodzina-soboty-15-00",
+        "href": "/booking-calendar/glina-i-rodzina-soboty-15-00",
+        "cta": "Zarezerwuj"
+      },
+      {
+        "type": "service-card",
+        "id": "svc-8",
+        "title": "PORANKI Z CERAMIKĄ DLA DOROSŁYCH",
+        "day": "",
+        "price": "Od 139 zł",
+        "imageSrc": "/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+        "imageAlt": "Poranki z ceramiką",
+        "moreHref": "/service-page/poranki-z-ceramiką-dla-dorosłych",
+        "href": "/booking-calendar/poranki-z-ceramiką-dla-dorosłych",
+        "cta": "Zarezerwuj"
+      },
+      {
+        "type": "service-card",
+        "id": "svc-9",
+        "title": "PIKNIK RODZINNY Z CERAMIKĄ 29 sierpnia",
+        "day": "sob.",
+        "price": "",
+        "imageSrc": "/images/wix-migrated/747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg",
+        "imageAlt": "Piknik rodzinny",
+        "moreHref": "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia",
+        "href": "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia",
+        "cta": "Więcej info"
+      },
+      {
+        "type": "service-card",
+        "id": "svc-10",
+        "title": "PIKNIK RODZINNY Z CERAMIKĄ 12 września",
+        "day": "sob.",
+        "price": "",
+        "imageSrc": "/images/wix-migrated/747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg",
+        "imageAlt": "Piknik rodzinny",
+        "moreHref": "/service-page/piknik-rodzinny-z-ceramiką-12-września",
+        "href": "/service-page/piknik-rodzinny-z-ceramiką-12-września",
+        "cta": "Więcej info"
+      }
+    ],
+    "cmsSlug": "root"
+  },
+  "status": "draft",
+  "seo_title": "Ceramika Nero | warsztaty z ceramiki Poznań",
+  "seo_description": "Wybierz warsztat i zarezerwuj dogodny termin w Pracowni Ceramiki Nero — Suchy Las / Poznań.",
+  "provenance": {
+    "sources": [
+      "lib/clone/content/landings.ts#homepageServices",
+      "app/page.tsx"
+    ]
+  }
+}

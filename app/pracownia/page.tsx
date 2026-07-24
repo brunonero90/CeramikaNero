@@ -9,11 +9,12 @@ import '@/lib/cms/static-registry';
 import { resolveClonePage } from '@/lib/cms/resolve-page';
 import { documentToMarketingParts } from '@/lib/cms/document-adapters';
 import { pracowniaPage } from '@/lib/clone/content/pracownia';
+import { cmsSlugFromRoute } from '@/lib/cms/route-slug';
 
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const resolved = await resolveClonePage('pracownia', {
+  const resolved = await resolveClonePage(cmsSlugFromRoute('/pracownia'), {
     allowDraftPreview: true,
   });
   return buildMarketingMetadata(
@@ -23,12 +24,13 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PracowniaPage() {
-  const resolved = await resolveClonePage('pracownia', {
+  const resolved = await resolveClonePage(cmsSlugFromRoute('/pracownia'), {
     allowDraftPreview: true,
   });
   const parts =
     (resolved && documentToMarketingParts(resolved.document)) || null;
 
+  const mid = parts?.midCopy ?? pracowniaPage.midCopy;
   const hero = parts?.hero ?? {
     title: pracowniaPage.hero.title,
     imageSrc: pracowniaPage.hero.imageSrc,
@@ -46,23 +48,22 @@ export default async function PracowniaPage() {
         afterHero={
           <section className="mx-auto max-w-3xl px-4 pb-10 text-center md:px-6">
             <h2 className="font-heading text-2xl font-semibold text-text-primary">
-              {pracowniaPage.midCopy.workshopsHeading}
+              {mid.workshopsHeading}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-text-muted">
-              {pracowniaPage.midCopy.workshopsBody}
+              {mid.workshopsBody}
             </p>
             <h2 className="mt-10 font-heading text-2xl font-semibold text-text-primary">
-              {pracowniaPage.midCopy.contactHeading}
+              {mid.contactHeading}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-text-muted">
-              {pracowniaPage.midCopy.contactBody}
+              {mid.contactBody}
             </p>
-            <PartnerBadge
-              src={pracowniaPage.midCopy.badgeSrc}
-              alt={pracowniaPage.midCopy.badgeAlt}
-            />
+            <PartnerBadge src={mid.badgeSrc} alt={mid.badgeAlt} />
             <p className="mt-6 text-sm font-semibold tracking-wide text-text-primary uppercase">
-              Dostępne warsztaty:
+              {'packagesLabel' in mid && mid.packagesLabel
+                ? mid.packagesLabel
+                : 'Dostępne warsztaty:'}
             </p>
           </section>
         }

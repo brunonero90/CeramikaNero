@@ -8,11 +8,12 @@ import '@/lib/cms/static-registry';
 import { resolveClonePage } from '@/lib/cms/resolve-page';
 import { documentToMarketingParts } from '@/lib/cms/document-adapters';
 import { dlaDzieciPage } from '@/lib/clone/content/audience-pages';
+import { cmsSlugFromRoute } from '@/lib/cms/route-slug';
 
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const resolved = await resolveClonePage('dla-dzieci', {
+  const resolved = await resolveClonePage(cmsSlugFromRoute('/dla-dzieci'), {
     allowDraftPreview: true,
   });
   return buildMarketingMetadata(
@@ -22,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function DlaDzieciPage() {
-  const resolved = await resolveClonePage('dla-dzieci', {
+  const resolved = await resolveClonePage(cmsSlugFromRoute('/dla-dzieci'), {
     allowDraftPreview: true,
   });
   const parts =

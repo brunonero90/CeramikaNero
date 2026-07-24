@@ -1,0 +1,111 @@
+{
+  "title": "Glina do wina | Pracownia Ceramiki N",
+  "slug": "glinadowina",
+  "excerpt": "Zapraszamy na wyjątkowe warsztaty \"Glina do Wina\" w Pracowni Ceramiki Nero w Suchym Lesie przy ul. Podgórnej 3.",
+  "content": {
+    "format": "clone-page-v1",
+    "template": "marketing-split",
+    "route": "/glinadowina",
+    "title": "Glina do wina | Pracownia Ceramiki N",
+    "metaDescription": "Zapraszamy na wyjątkowe warsztaty \"Glina do Wina\" w Pracowni Ceramiki Nero w Suchym Lesie przy ul. Podgórnej 3.",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/landings.ts#glinaDoWinaPage",
+        "reference/original-site/pages/glinadowina"
+      ]
+    },
+    "sections": [
+      {
+        "type": "hero",
+        "title": "Glina do wina",
+        "imageSrc": "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+        "imageAlt": "warsztaty ceramiki poznan suchy las lepienie z gliny, ceramika dla dorosłych, kurs ceramiczny",
+        "logoSrc": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+        "intro": [
+          "Zapraszamy na wyjątkowe warsztaty \"Glina do Wina\"",
+          "w Pracowni Ceramiki Nero w Suchym Lesie przy ul. Podgórnej 3.",
+          "To wieczór pełen kreatywności, relaksu i przyjemności, idealny na spędzenie czasu w inspirującej atmosferze."
+        ]
+      },
+      {
+        "type": "split-block",
+        "id": "oferta",
+        "title": "Warsztaty glina do wina",
+        "bullets": [
+          "Twórcze warsztaty ceramiczne",
+          "pierwsze spotkanie- lepienie, drugie spotkanie po dwóch tygodniach - szkliwienie",
+          "Degustacja wina",
+          "Włoskie przystawki",
+          "Włoska muzyka",
+          "Profesjonalne prowadzenie",
+          "Zapewnione wszystkie materiały",
+          "Pomożemy wam stworzyć piękne ozdoby dla was i na prezenty dla najbliższych."
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+        "imageAlt": "ceramika glina do wina.jpg",
+        "imageFirst": true,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "/",
+        "tinted": true
+      },
+      {
+        "type": "split-block",
+        "id": "wloska-nuta",
+        "title": "Wyjątkowe warsztaty ceramiczne z włoską nutą!",
+        "paragraphs": [
+          "Zapraszamy na warsztaty, które łączą sztukę z degustacją włoskich przystawek! Podczas tych kreatywnych zajęć stworzysz unikalne ceramiczne dzieła, takie jak talerze, kubki czy ozdoby, a jednocześnie skosztujesz wyśmienitego wina dla dorosłych.",
+          "To idealna okazja, aby połączyć pasję do ceramiki z przyjemnością smakowania włoskich przysmaków. Zrelaksuj się przy włoskiej muzyce, twórz własne dzieła i ciesz się wyjątkową atmosferą w gronie przyjaciół.",
+          "Dołącz do nas i odkryj radość tworzenia w niepowtarzalnej, twórczej przestrzeni!"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b.jpg",
+        "imageAlt": "DSC_8809.jpg",
+        "imageFirst": false,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "/",
+        "tinted": false
+      },
+      {
+        "type": "split-block",
+        "id": "co-lepic",
+        "title": "co można lepić?",
+        "subtitle": "Twórz swoje ceramiczne dzieła – warsztaty ceramiczne i lepienie z gliny",
+        "paragraphs": [
+          "Podczas naszych warsztatów ceramicznych poznasz radość lepienia z gliny i wykonasz wyjątkowe prace: miseczki, kubki, talerze, ozdoby dekoracyjne, zawieszki, doniczki i kafelki. To idealna okazja, aby rozwijać kreatywność, eksperymentować z formą i dekoracją oraz tworzyć unikalne przedmioty, które zachwycą Ciebie i Twoich bliskich."
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+        "imageAlt": "ceramika glina do wina.jpg",
+        "imageFirst": true,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "/",
+        "tinted": true
+      },
+      {
+        "type": "split-block",
+        "id": "szkliwienie",
+        "title": "co ze szkliwieniem prac?",
+        "subtitle": "Warsztaty ceramiczne – szkliwienie i kolorowanie Twoich dzieł",
+        "paragraphs": [
+          "Po pierwszych zajęciach spotykamy się ponownie – zwykle po 2 lub 4 tygodniach – aby nadać Twoim pracom piękne kolory i wykończenie. Podczas tego spotkania nauczysz się technik zdobienia ceramiki, dzięki którym Twoje kubki, talerze, miseczki czy ozdoby zyskają wyjątkowy, trwały wygląd.",
+          "Nie możesz wziąć udziału w kolejnym spotkaniu? Żaden problem! Zadbamy o Twoje prace za Ciebie i możemy je nawet wysłać prosto do Ciebie, abyś mógł cieszyć się swoimi dziełami w domu.",
+          "Dzięki temu Twoje doświadczenie z warsztatami ceramicznymi i lepieniem z gliny jest w pełni komfortowe i elastyczne – niezależnie od grafiku!"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_bafb828b6a10428e91beb922a773e6a1.jpg",
+        "imageAlt": "DSC_8871.jpg",
+        "imageFirst": false,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "/",
+        "tinted": false
+      }
+    ],
+    "cmsSlug": "glinadowina"
+  },
+  "status": "draft",
+  "seo_title": "Glina do wina | Pracownia Ceramiki N",
+  "seo_description": "Zapraszamy na wyjątkowe warsztaty \"Glina do Wina\" w Pracowni Ceramiki Nero w Suchym Lesie przy ul. Podgórnej 3.",
+  "provenance": {
+    "sources": [
+      "lib/clone/content/landings.ts#glinaDoWinaPage",
+      "reference/original-site/pages/glinadowina"
+    ]
+  }
+}

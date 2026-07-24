@@ -4,6 +4,7 @@ import {
   parseClonePageDocument,
   type ClonePageDocument,
 } from '@/lib/cms/page-document';
+import { documentMatchesSlug } from '@/lib/cms/route-slug';
 
 export type ResolvedClonePage = {
   document: ClonePageDocument;
@@ -34,14 +35,12 @@ export function getStaticClonePage(slug: string): ClonePageDocument | null {
 /**
  * Prefer published Supabase content_pages JSON; fall back to verified static
  * fixtures when missing or invalid. Never throws for missing CMS rows.
- * When allowDraftPreview is true and the viewer is an admin, unpublished rows
- * can be resolved for in-place preview.
  */
 export async function resolveClonePage(
   routeOrSlug: string,
   options?: { allowDraftPreview?: boolean }
 ): Promise<ResolvedClonePage | null> {
-  const slug = routeOrSlug.replace(/^\//, '');
+  const slug = routeOrSlug.replace(/^\//, '') || 'root';
   const staticDoc = getStaticClonePage(slug);
   const allowDraft =
     options?.allowDraftPreview === true && (await isAdminPreviewAllowed());
@@ -50,12 +49,10 @@ export async function resolveClonePage(
     const page = await services.contentPages.getBySlug(slug, allowDraft);
     if (page?.content) {
       const doc = parseClonePageDocument(page.content);
-      if (doc && doc.route.replace(/^\//, '') === slug) {
+      if (doc && documentMatchesSlug(doc, slug)) {
         const isPreview =
           page.status !== 'published' || page.archivedAt !== null;
-        if (isPreview && !allowDraft) {
-          // Unpublished content is never public.
-        } else {
+        if (!isPreview || allowDraft) {
           return {
             document: doc,
             source: 'supabase',

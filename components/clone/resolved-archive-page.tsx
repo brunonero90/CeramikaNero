@@ -5,13 +5,16 @@ import { bookingAdaptationFor } from '@/lib/clone/archive';
 import '@/lib/cms/static-registry';
 import { resolveClonePage } from '@/lib/cms/resolve-page';
 import { documentToArchivePage } from '@/lib/cms/document-adapters';
+import { cmsSlugFromRoute } from '@/lib/cms/route-slug';
 
 /**
  * Shared archive route renderer: published CMS → static fallback.
  * Draft/unpublished rows are visible only to authenticated admins.
  */
 export async function ResolvedArchivePage({ route }: { route: string }) {
-  const resolved = await resolveClonePage(route, { allowDraftPreview: true });
+  const resolved = await resolveClonePage(cmsSlugFromRoute(route), {
+    allowDraftPreview: true,
+  });
   const page = resolved ? documentToArchivePage(resolved.document) : null;
   if (!page) notFound();
 
@@ -30,6 +33,8 @@ export async function resolvedArchiveTitle(
   route: string,
   fallback: string
 ): Promise<string> {
-  const resolved = await resolveClonePage(route, { allowDraftPreview: true });
+  const resolved = await resolveClonePage(cmsSlugFromRoute(route), {
+    allowDraftPreview: true,
+  });
   return resolved?.document.title ?? fallback;
 }

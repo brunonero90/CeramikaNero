@@ -1,0 +1,69 @@
+{
+  "title": "Glina do wina | Pracownia Ceramiki N",
+  "slug": "services-glina-do-wina",
+  "excerpt": null,
+  "content": {
+    "format": "clone-page-v1",
+    "template": "archive",
+    "route": "/services/glina-do-wina",
+    "title": "Glina do wina | Pracownia Ceramiki N",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/phase2/archive-pages.ts:/services/glina-do-wina",
+        "reference/original-site/pages/services/glina-do-wina"
+      ]
+    },
+    "sections": [
+      {
+        "type": "archive-section",
+        "heading": "Glina do wina",
+        "text": "< Back\nGlina do wina\n\n149 zł.\n\n2.5 h\n\nBook Now\nAbout\n\nGlina do wina to spotkanie\n\nPrevious\nNext",
+        "images": [],
+        "buttons": [
+          {
+            "label": "< Back",
+            "href": "/services"
+          }
+        ]
+      },
+      {
+        "type": "archive-section",
+        "heading": "Pracownia ceramiki Nero",
+        "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "nerogosia@gmail.com",
+            "href": "mailto:nerogosia@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Polityka prywatności",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "© 2023 by Ceramika Nero.",
+            "href": "/terms-conditions"
+          }
+        ]
+      }
+    ],
+    "cmsSlug": "services-glina-do-wina"
+  },
+  "status": "draft",
+  "seo_title": "Glina do wina | Pracownia Ceramiki N",
+  "seo_description": null,
+  "provenance": {
+    "sources": [
+      "lib/clone/content/phase2/archive-pages.ts:/services/glina-do-wina",
+      "reference/original-site/pages/services/glina-do-wina"
+    ]
+  }
+}

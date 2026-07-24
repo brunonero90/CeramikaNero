@@ -1,0 +1,85 @@
+{
+  "title": "Panieński pakiet VIP 2 | Pracownia Ceramiki N",
+  "slug": "copy-of-panienski-opis",
+  "excerpt": null,
+  "content": {
+    "format": "clone-page-v1",
+    "template": "archive",
+    "route": "/copy-of-panieński-opis",
+    "title": "Panieński pakiet VIP 2 | Pracownia Ceramiki N",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/phase2/archive-pages.ts:/copy-of-panieński-opis",
+        "reference/original-site/pages/copy-of-panieński-opis"
+      ]
+    },
+    "sections": [
+      {
+        "type": "archive-section",
+        "heading": "Wieczór panieński",
+        "text": "PAKIET VIP\n\nWieczór panieński\nPAKIET VIP\n\nGlina do wina +koło garncarskie + sesja zdjęciowa\n\nZapraszamy do zorganizowania niezapomnianego wieczoru panieńskiego z naszą pomocą!\n■ imprezy od 5 do 15 osób\n\nWspólne lepienie z gliny dla kobiet w klimacie włoskim z włoską muzyką, przystawkami i lampką wina. Tematyczna dekekoracja sali, sesja zdjęciowa, kręcenie na kole\n\nNasza oferta wieczoru panieńskiego obejmuje:\nKażdy ulepi swój przedmiot popi popijając włoskie wino i jedząc włoskie przystawki\n\nZapewniam fachową pomoc w lepieniu z gliny, narzędzia, materiały, wypał w piecu\n\nKręcenie na kole\n\nSpróbuj swoich sił na profesjonalnym kole garncarskim, Poczuj się jak Deni Moore w filmie uwierz w ducha i uwiecznij to na zdjęciach\n\nProfesjonalna sesja zdjęciowa\n\nSesja będzie przeprowadzona przez profesjonalną fotografkę dla wszystkich uczestniczek , pakiet zdjęć do uzgodnienia\n\nZadzwoń do mnie pod numer telefonu 532 279 101 lub napisz na maila kontakt.ceramikanero@gmail.com\na wyślę Ci ofertę.\nPodaj imię i nazwisko organizatorki\nImię i nazwisko przyszłej panny młodej\nIlość uczestników\nKtóry pakiet wybierasz\nPodaj swój numer telefonu",
+        "images": [
+          {
+            "src": "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+            "alt": "Happy Women",
+            "dims": "1440x663"
+          },
+          {
+            "src": "/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg",
+            "alt": "Pottery Class",
+            "dims": "590x483"
+          },
+          {
+            "src": "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
+            "alt": "Love Wedding Decoration",
+            "dims": "634x483"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "kontakt.ceramikanero@gmail.com",
+            "href": "mailto:kontakt.ceramikanero@gmail.com"
+          }
+        ]
+      },
+      {
+        "type": "archive-section",
+        "heading": "Pracownia ceramiki Nero",
+        "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "nerogosia@gmail.com",
+            "href": "mailto:nerogosia@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Polityka prywatności",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "© 2023 by Ceramika Nero.",
+            "href": "/terms-conditions"
+          }
+        ]
+      }
+    ],
+    "cmsSlug": "copy-of-panienski-opis"
+  },
+  "status": "draft",
+  "seo_title": "Panieński pakiet VIP 2 | Pracownia Ceramiki N",
+  "seo_description": null,
+  "provenance": {
+    "sources": [
+      "lib/clone/content/phase2/archive-pages.ts:/copy-of-panieński-opis",
+      "reference/original-site/pages/copy-of-panieński-opis"
+    ]
+  }
+}

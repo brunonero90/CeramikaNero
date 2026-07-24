@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   clonePageDocumentSchema,
+  fingerprintClonePageDocument,
   isSafeInternalHref,
   parseClonePageDocument,
   serializeClonePageDocument,
@@ -11,8 +12,11 @@ import {
   getStaticClonePage,
   listRegisteredStaticSlugs,
 } from '@/lib/cms/resolve-page';
+import { cmsSlugFromRoute } from '@/lib/cms/route-slug';
 import {
   documentToArchivePage,
+  documentToGallery,
+  documentToHomepageServices,
   documentToMarketingParts,
 } from '@/lib/cms/document-adapters';
 import { mobileContactTargets } from '@/components/layout/mobile-contact-fab';
@@ -69,33 +73,60 @@ describe('clone-page-v1 document', () => {
     expect(validateClonePageContentForSave(bad)).toMatch(/Niedozwolony link/);
     expect(validateClonePageContentForSave('plain markdown')).toBeNull();
   });
+
+  it('accepts mid-copy and bullet-list sections', () => {
+    const doc = getStaticClonePage(cmsSlugFromRoute('/pracownia'));
+    expect(doc?.sections.some((s) => s.type === 'mid-copy')).toBe(true);
+    const firm = getStaticClonePage(cmsSlugFromRoute('/grupy-i-firmy'));
+    expect(firm?.sections.some((s) => s.type === 'bullet-list')).toBe(true);
+    expect(documentToMarketingParts(firm!)?.bulletLists.length).toBe(2);
+    expect(documentToMarketingParts(doc!)?.midCopy?.badgeSrc).toBeTruthy();
+  });
 });
 
 describe('static CMS registry', () => {
-  it('registers core marketing and archive pages', () => {
+  it('registers core marketing, homepage, gallery and nested archives', () => {
     const slugs = listRegisteredStaticSlugs();
-    for (const slug of [
-      'kontakt',
-      'glinadowina',
-      'dla-dzieci',
-      'dla-doroslych',
-      'grupy-i-firmy',
-      'pracownia',
+    for (const route of [
+      '/',
+      '/home',
+      '/galeria',
+      '/kontakt',
+      '/glinadowina',
+      '/urodziny',
+      '/panienskie',
+      '/pracownia',
+      '/service-page/ceramika-dla-dorosłych-pon-czw',
+      '/booking-calendar/glina-do-wina-piątek-19-00-suchy-las',
     ]) {
+      const slug = cmsSlugFromRoute(route);
       expect(slugs).toContain(slug);
       const doc = getStaticClonePage(slug);
       expect(doc?.format).toBe('clone-page-v1');
-      expect(doc?.route.replace(/^\//, '')).toBe(slug);
+      expect(doc?.cmsSlug).toBe(slug);
     }
   });
 
-  it('adapts archive and marketing documents to existing view models', () => {
-    const kontakt = getStaticClonePage('kontakt');
+  it('adapts documents to existing view models without content loss', () => {
+    const kontakt = getStaticClonePage(cmsSlugFromRoute('/kontakt'));
     expect(documentToArchivePage(kontakt!)?.sections.length).toBeGreaterThan(0);
-    const glina = getStaticClonePage('glinadowina');
+    const glina = getStaticClonePage(cmsSlugFromRoute('/glinadowina'));
     const parts = documentToMarketingParts(glina!);
     expect(parts?.hero.title).toBeTruthy();
     expect(parts?.blocks.length).toBeGreaterThan(0);
+    const home = getStaticClonePage(cmsSlugFromRoute('/'));
+    expect(documentToHomepageServices(home!)?.services.length).toBe(11);
+    const galeria = getStaticClonePage(cmsSlugFromRoute('/galeria'));
+    expect(documentToGallery(galeria!)?.images.length).toBe(33);
+  });
+
+  it('fingerprints are stable for seed parity', () => {
+    const doc = getStaticClonePage(cmsSlugFromRoute('/faq'))!;
+    const a = fingerprintClonePageDocument(doc);
+    const b = fingerprintClonePageDocument(
+      parseClonePageDocument(serializeClonePageDocument(doc))!
+    );
+    expect(a).toBe(b);
   });
 });
 

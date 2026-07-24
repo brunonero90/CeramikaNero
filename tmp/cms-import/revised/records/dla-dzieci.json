@@ -1,0 +1,188 @@
+{
+  "title": "Dla dzieci | Pracownia Ceramiki N",
+  "slug": "dla-dzieci",
+  "excerpt": "Zapewnij swojemu dziecku wyjątkowe warsztaty artystyczne pełne kreatywności, zabawy i radości w Pracowni Ceramiki NERO.",
+  "content": {
+    "format": "clone-page-v1",
+    "template": "marketing-split",
+    "route": "/dla-dzieci",
+    "title": "Dla dzieci | Pracownia Ceramiki N",
+    "metaDescription": "Zapewnij swojemu dziecku wyjątkowe warsztaty artystyczne pełne kreatywności, zabawy i radości w Pracowni Ceramiki NERO.",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/audience-pages.ts#dlaDzieciPage"
+      ]
+    },
+    "sections": [
+      {
+        "type": "hero",
+        "title": "Warsztaty dla dzieci",
+        "imageSrc": "/images/wix-migrated/747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+        "imageAlt": "dladzieci",
+        "logoSrc": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+        "intro": [
+          "DRODZY RODZICE,",
+          "Tworzymy nowe grupy,- można dołączać cały rok szkolny, zapraszamy Twoje dziecko na darmowe zajęcia próbne.",
+          "Zapewnij swojemu dziecku wyjątkowe warsztaty artystyczne pełne kreatywności, zabawy i radości! W Pracowni Ceramiki NERO czekają na najmłodszych i młodzież inspirujące zajęcia: warsztaty rysunku, malarstwa, ceramiki, architektury.",
+          "To idealne kursy dla dzieci, które chcą rozwijać swoje pasje, uczyć się nowych technik i odkrywać świat sztuki w kameralnej, twórczej atmosferze. Nasze warsztaty dla dzieci i młodzieży to nie tylko nauka – to także budowanie pewności siebie, rozwój wyobraźni i tworzenie niezapomnianych wspomnień.",
+          "👉 Sprawdź ofertę poniżej i zapisz swoje dziecko na zajęcia w Pracowni Ceramiki NERO!",
+          "Zapoznaj się z naszą ofertą poniżej:"
+        ]
+      },
+      {
+        "type": "split-block",
+        "id": "kurs-6-10",
+        "title": "KURS RYSUNEK MALARSTWO CERAMIKA 6-10 LAT",
+        "subtitle": "PON. 16.00 / WTOREK 17.15",
+        "bullets": [
+          "Zapraszamy serdecznie na warsztaty \"Kurs ceramiki, rysunku i malarstwa dla dzieci\" przeznaczone dla młodych artystów",
+          "Techniki rysunku i malarstwa: ołówek, kredki, akwarele, farby akrylowe",
+          "Lepienie z gliny, tworzenie prostych form",
+          "Tworzenie prac inspirowanych naturą,artystamii i światem wyobraźni",
+          "Ćwiczenia koordynacyjne, rozwijające koordynację ręka-oko i precyzję ruchów",
+          "Historia sztuki opowiedziana w zabawny sposób"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_31092dec535d44fda01b193d542727de.jpg",
+        "imageAlt": "Kurs rysunek malarstwo ceramika 6-10 lat",
+        "imageFirst": true,
+        "ctaLabel": "Rezerwuj termin",
+        "ctaHref": "/",
+        "tinted": true
+      },
+      {
+        "type": "split-block",
+        "id": "kurs-11-plus",
+        "title": "KURS CERAMIKI DLA MŁODZIEŻY 11+",
+        "subtitle": "PON. 17.15 ŚREDNIOZAAWANSOWANA / WTOREK 18.30 PODSTAWOWA",
+        "paragraphs": [
+          "To doskonała okazja, aby Twoje dziecko wyraziło swoją wyobraźnię i stworzyło unikalne dzieła-GRUPA PODSTAWOWA I  ŚREDNIOZAAWANSOWANA"
+        ],
+        "bullets": [
+          "Tworzenie bardziej skomplikowanych form z gliny, takich jak rzeźby, wazy czy filiżanki",
+          "Nauka zaawansowanych technik zdobienia, takich jak rzeźbienie detali, wydrążanie, rylcowanie",
+          "Doskonalenie umiejętności korzystania z profesjonalnych narzędzi używanych w ceramice",
+          "Eksperymentowanie z zaawansowanymi technikami dekoracyjnymi, takimi jak dekalkomania, transfer obrazów, szkliwienie w warstwach",
+          "Głębsze zrozumienie procesu wypału ceramiki i jego wpływu na wygląd i trwałość końcowego produktu"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_f560d7a2e95a49aebcda0065309a0783.jpg",
+        "imageAlt": "Kurs ceramiki dla młodzieży 11+",
+        "imageFirst": false,
+        "ctaLabel": "Rezerwuj termin",
+        "ctaHref": "/",
+        "tinted": false
+      },
+      {
+        "type": "split-block",
+        "id": "architektura",
+        "title": "RYSUNEK ARCHITEKTURA 11+",
+        "subtitle": "PONIEDZIAŁEK 17.15",
+        "bullets": [
+          "🔹 Rozwijamy rysunek i wyobraźnię – uczymy się proporcji, perspektywy, światłocienia i pracy różnymi technikami.",
+          "🔹 Poznajemy architekturę – od klasyki po nowoczesność, projektujemy wnętrza, budynki i elementy urbanistyki.",
+          "🔹 Tworzymy w kameralnej atmosferze – małe grupy, indywidualne podejście, profesjonalne wsparcie architektki.",
+          "🔹 Budujemy kreatywny warsztat – szkicownik pełen ćwiczeń, inspiracji i pomysłów, przygotowujący do szkół artystycznych."
+        ],
+        "imageSrc": "/images/wix-migrated/11062b_e4cd34a55ede422ea0121c65375b84c0.jpg",
+        "imageAlt": "Architektura",
+        "imageFirst": true,
+        "ctaLabel": "Rezerwuj termin",
+        "ctaHref": "/",
+        "tinted": true
+      },
+      {
+        "type": "split-block",
+        "id": "rysunek-11",
+        "title": "RYSUNEK MALARSTWO CERAMIKA 11+",
+        "subtitle": "CZWARTEK 17.15",
+        "bullets": [
+          "Zajęcia obejmują różnorodne techniki rysunkowe i malarskie: ołówek, cienkopis, pastele, akwarele oraz farby akrylowe.",
+          "Wprowadzamy w świat ceramiki: lepienie z gliny, tworzenie użytkowych i dekoracyjnych form, a także podstawy zdobienia i szkliwienia.",
+          "Tematy prac inspirowane naturą, architekturą, kulturą i światem wyobraźni – z naciskiem na rozwijanie indywidualnego stylu i kreatywnego myślenia.",
+          "Ćwiczenia rozwijające sprawność manualną, precyzję oraz wyczucie formy i koloru.",
+          "Przyjazna atmosfera, twórcza swoboda i inspirujące wyzwania plastyczne – wszystko dostosowane do poziomu i potrzeb młodych artystów."
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_af946e4dbc8d40208b3d1c05be4cebbe.jpg",
+        "imageAlt": "DSC_8498.jpg",
+        "imageFirst": false,
+        "ctaLabel": "Rezerwuj termin",
+        "ctaHref": "/",
+        "tinted": false
+      },
+      {
+        "type": "split-block",
+        "id": "kurs-3-7",
+        "title": "KURS RYSUNEK MALARSTWO CERAMIKA 3-7 LAT",
+        "bullets": [
+          "Zajęcia odbywają się we wtorki o 16.15",
+          "najmłodsi poznają z nami świat sztuki poprzez zabawę w sali i na polanie przed pracownią, mają wiele elementów sensoplastyki na zajęciach i szykują się, aby kontynuować swoje umiejętności na kolejnych poziomach  6-10 lat",
+          "na Obserwuj nas na FB i Instagramie- tam publikujemy najnowsze wydarzenia oraz relacje z warsztatów i prace naszych zdolnych uczniów"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_71c100aa03c04a2393e0deb186d0dfe1.jpg",
+        "imageAlt": "RYSUNEK6_edited_edited.jpg",
+        "imageFirst": true,
+        "ctaLabel": "Rezerwuj termin",
+        "ctaHref": "/",
+        "tinted": true
+      },
+      {
+        "type": "split-block",
+        "id": "pomysl",
+        "title": "POMYSŁ NA TWOJE WARSZTATY?",
+        "paragraphs": [
+          "masz pomysł na ciekawe zajęcia",
+          "chcesz spędzić kreatywne urodzinki",
+          "napisz do nas i poproś o ofertę na: nerogosia@gmail.com",
+          "wejdź na podstronę: urodziny"
+        ],
+        "imageSrc": "/images/wix-migrated/11062b_7577da3017c54ec18762d3d28e041a1d.jpg",
+        "imageAlt": "Potwór z plasteliny",
+        "imageFirst": false,
+        "ctaLabel": "Rezerwuj termin",
+        "ctaHref": "/urodziny",
+        "tinted": false
+      },
+      {
+        "type": "split-block",
+        "id": "koraliki",
+        "title": "WARSZTATY KORALIKOWE",
+        "bullets": [
+          "spotkanie możemy zorganizować dla grup od 5 osób",
+          "napisz do nas, jeżeli jesteś zainteresowany",
+          "na Obserwuj nas na FB i Instagramie- tam publikujemy najnowsze wydarzenia oraz relacje z warsztatów i prace naszych zdolnych uczniów"
+        ],
+        "imageSrc": "/images/wix-migrated/11062b_f468647e8e6d4d54ba57a93ea792af1e.jpg",
+        "imageAlt": "Metalowe koraliki",
+        "imageFirst": true,
+        "ctaLabel": "Rezerwuj termin",
+        "ctaHref": "mailto:nerogosia@gmail.com",
+        "tinted": true
+      },
+      {
+        "type": "split-block",
+        "id": "kreatywne",
+        "title": "KREATYWNE WARSZTATY",
+        "bullets": [
+          "masz pomysł na kreatywne warsztaty, napisz do nas nerogosia@gmail.com",
+          "Kreatywność bez granic! Organizujemy różne warsztaty i kursy od 4 do 106 lat!",
+          "co miesiąc inne tematy",
+          "na Obserwuj nas na FB i Instagramie- tam publikujemy najnowsze wydarzenia oraz relacje z warsztatów i prace naszych zdolnych uczniów"
+        ],
+        "imageSrc": "/images/wix-migrated/11062b_142aa905b7024f9c96077a6cc473b6d6.jpg",
+        "imageAlt": "Kolorowe wycinanki",
+        "imageFirst": false,
+        "ctaLabel": "Rezerwuj termin",
+        "ctaHref": "mailto:nerogosia@gmail.com",
+        "tinted": false
+      }
+    ],
+    "cmsSlug": "dla-dzieci"
+  },
+  "status": "draft",
+  "seo_title": "Dla dzieci | Pracownia Ceramiki N",
+  "seo_description": "Zapewnij swojemu dziecku wyjątkowe warsztaty artystyczne pełne kreatywności, zabawy i radości w Pracowni Ceramiki NERO.",
+  "provenance": {
+    "sources": [
+      "lib/clone/content/audience-pages.ts#dlaDzieciPage"
+    ]
+  }
+}

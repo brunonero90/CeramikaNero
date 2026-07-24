@@ -1,0 +1,98 @@
+{
+  "title": "Panieńskie | Pracownia Ceramiki N",
+  "slug": "panienskie",
+  "excerpt": "Wieczory panieńskie w Pracowni Ceramiki NERO w Suchym Lesie — pakiety Glina do wina.",
+  "content": {
+    "format": "clone-page-v1",
+    "template": "marketing-split",
+    "route": "/panienskie",
+    "title": "Panieńskie | Pracownia Ceramiki N",
+    "metaDescription": "Wieczory panieńskie w Pracowni Ceramiki NERO w Suchym Lesie — pakiety Glina do wina.",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/glina-box-and-events.ts#panienskiePage"
+      ]
+    },
+    "sections": [
+      {
+        "type": "hero",
+        "title": "Wieczory panieńskie",
+        "imageSrc": "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+        "imageAlt": "wieczor paniesnki poznan",
+        "logoSrc": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+        "intro": [
+          "Szukasz pomysłu na wyjątkowy wieczór panieński pod Poznaniem?",
+          "Pracownia Ceramiki NERO w Suchym Lesie zaprasza na kreatywne warsztaty „Glina do Wina” – idealne połączenie zabawy, wina i tworzenia własnych dzieł z gliny.",
+          "To oryginalna atrakcja na wieczór panieński w Suchym Lesie, która gwarantuje świetną atmosferę, śmiech i niezapomniane wspomnienia z przyjaciółkami.",
+          "Zorganizuj swój kreatywny wieczór panieński i wybierz pakiet dopasowany do Waszych potrzeb!",
+          "Zorganizuj idealny wieczór panieński - wybierz swój PAKIET!"
+        ]
+      },
+      {
+        "type": "split-block",
+        "id": "standard",
+        "title": "Panieński PAKIET STANDARD — Glina do wina",
+        "bullets": [
+          "Każdy ulepi swoje przedmioty z gliny z moją pomocą",
+          "Zapewniam włoskie przystawki",
+          "Lampka wina",
+          "Włoska muzyka",
+          "Cudowny, klimatyczny lokal"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg",
+        "imageAlt": "3a.jpg",
+        "imageFirst": true,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "/webinar-registration",
+        "tinted": true
+      },
+      {
+        "type": "split-block",
+        "id": "plus",
+        "title": "Panieński PAKIET PLUS — Glina do wina",
+        "subtitle": "kręcenie na kole",
+        "bullets": [
+          "Każdy ulepi swoje przedmioty",
+          "Zapewniam włoskie przystawki",
+          "Lampka wina",
+          "Włoska muzyka",
+          "Cudowny, klimatyczny lokal",
+          "Kręcenie na kole garncarskim jak Demi Moore w \"Uwierz w ducha\""
+        ],
+        "imageSrc": "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+        "imageAlt": "Pottery and Clay",
+        "imageFirst": false,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "/webinar-registration-1",
+        "tinted": false
+      },
+      {
+        "type": "split-block",
+        "id": "vip",
+        "title": "Panieński PAKIET VIP — Glina do wina",
+        "subtitle": "koło garncarskie · sesja fotograficzna",
+        "bullets": [
+          "Każdy ulepi swoje przedmioty",
+          "Zapewniam lampkę wina i włoskie przystawki",
+          "Kręcenie na kole garncarskim jak Demi Moore w \"Uwierz w ducha\"",
+          "Sesja fotograficzna zrobiona przez profesjonalną fotografkę dla wszystkich dziewczyn, pakiet zdjęć do wyboru"
+        ],
+        "imageSrc": "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+        "imageAlt": "Happy Women",
+        "imageFirst": true,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "/copy-of-panienski-opis",
+        "tinted": true
+      }
+    ],
+    "cmsSlug": "panienskie"
+  },
+  "status": "draft",
+  "seo_title": "Panieńskie | Pracownia Ceramiki N",
+  "seo_description": "Wieczory panieńskie w Pracowni Ceramiki NERO w Suchym Lesie — pakiety Glina do wina.",
+  "provenance": {
+    "sources": [
+      "lib/clone/content/glina-box-and-events.ts#panienskiePage"
+    ]
+  }
+}

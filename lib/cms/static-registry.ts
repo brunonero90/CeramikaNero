@@ -1,5 +1,6 @@
 import type { ClonePageDocument } from '@/lib/cms/page-document';
 import { registerStaticClonePage } from '@/lib/cms/resolve-page';
+import { cmsSlugFromRoute } from '@/lib/cms/route-slug';
 import { archivePages } from '@/lib/clone/content/phase2/archive-pages';
 import type { ArchivePageData } from '@/components/clone/archive-page';
 import {
@@ -13,14 +14,25 @@ import {
   dlaFirmPage,
 } from '@/lib/clone/content/audience-pages';
 import { pracowniaPage } from '@/lib/clone/content/pracownia';
-import { glinaBoxPage } from '@/lib/clone/content/glina-box-and-events';
+import {
+  glinaBoxPage,
+  urodzinyPage,
+  panienskiePage,
+} from '@/lib/clone/content/glina-box-and-events';
+
+function stamp(doc: Omit<ClonePageDocument, 'cmsSlug'>): ClonePageDocument {
+  return {
+    ...doc,
+    cmsSlug: cmsSlugFromRoute(doc.route),
+  };
+}
 
 function fromArchive(route: string): ClonePageDocument | null {
   const page = (archivePages as unknown as Record<string, ArchivePageData>)[
     route
   ];
   if (!page) return null;
-  return {
+  return stamp({
     format: 'clone-page-v1',
     template: 'archive',
     route,
@@ -40,12 +52,15 @@ function fromArchive(route: string): ClonePageDocument | null {
         alt: img.alt,
         dims: img.dims,
       })),
-      buttons: section.buttons.map((b) => ({
-        label: b.label,
-        href: b.href,
-      })),
+      buttons: section.buttons
+        .map((b) => ({
+          label: b.label,
+          href: b.href,
+        }))
+        // Drop archive noise anchors; public clone already filters these in link UI.
+        .filter((b) => b.href && b.href !== '#' && !b.href.startsWith('#')),
     })),
-  };
+  });
 }
 
 function fromMarketingSplit(
@@ -75,9 +90,10 @@ function fromMarketingSplit(
       tinted?: boolean;
     }[];
   },
-  sources: string[]
+  sources: string[],
+  extras: ClonePageDocument['sections'] = []
 ): ClonePageDocument {
-  return {
+  return stamp({
     format: 'clone-page-v1',
     template: 'marketing-split',
     route,
@@ -94,6 +110,7 @@ function fromMarketingSplit(
         logoAlt: page.hero.logoAlt,
         intro: page.hero.intro ? [...page.hero.intro] : undefined,
       },
+      ...extras,
       ...page.blocks.map((block) => ({
         type: 'split-block' as const,
         id: block.id,
@@ -109,129 +126,275 @@ function fromMarketingSplit(
         tinted: block.tinted,
       })),
     ],
-  };
+  });
+}
+
+function register(doc: ClonePageDocument | null): void {
+  if (!doc) return;
+  const slug = doc.cmsSlug ?? cmsSlugFromRoute(doc.route);
+  registerStaticClonePage(slug, () => doc);
 }
 
 /** Register Phase 1/2 clone fixtures as CMS static fallbacks. */
 export function registerAllStaticClonePages(): void {
-  registerStaticClonePage('kontakt', () => fromArchive('/kontakt'));
-  registerStaticClonePage('faq', () => fromArchive('/faq'));
-  registerStaticClonePage('regulamin', () => fromArchive('/regulamin'));
-  registerStaticClonePage('terms-conditions', () =>
-    fromArchive('/terms-conditions')
-  );
-  registerStaticClonePage('dostawy-i-zwroty', () =>
-    fromArchive('/dostawy-i-zwroty')
-  );
-  registerStaticClonePage('sklep', () => fromArchive('/sklep'));
-  registerStaticClonePage('vouchery', () => fromArchive('/vouchery'));
-  registerStaticClonePage('gift-card', () => fromArchive('/gift-card'));
-  registerStaticClonePage('cart', () => fromArchive('/cart'));
-  registerStaticClonePage('services', () => fromArchive('/services'));
-
+  // All archive fixtures (nested service/booking/product/course/webinar included).
   for (const route of Object.keys(archivePages)) {
-    const slug = route.replace(/^\//, '');
-    if (!slug || slug.includes('/')) continue;
-    registerStaticClonePage(slug, () => fromArchive(route));
+    register(fromArchive(route));
   }
 
-  registerStaticClonePage('glinadowina', () =>
+  register(
     fromMarketingSplit('/glinadowina', glinaDoWinaPage, [
       'lib/clone/content/landings.ts#glinaDoWinaPage',
       'reference/original-site/pages/glinadowina',
     ])
   );
-  registerStaticClonePage('dla-dzieci', () =>
+  register(
     fromMarketingSplit('/dla-dzieci', dlaDzieciPage, [
       'lib/clone/content/audience-pages.ts#dlaDzieciPage',
     ])
   );
-  registerStaticClonePage('dla-doroslych', () =>
+  register(
     fromMarketingSplit('/dla-doroslych', dlaDoroslychPage, [
       'lib/clone/content/audience-pages.ts#dlaDoroslychPage',
     ])
   );
-  registerStaticClonePage('grupy-i-firmy', () =>
-    fromMarketingSplit('/grupy-i-firmy', dlaFirmPage, [
-      'lib/clone/content/audience-pages.ts#dlaFirmPage',
-    ])
+  register(
+    fromMarketingSplit(
+      '/grupy-i-firmy',
+      dlaFirmPage,
+      ['lib/clone/content/audience-pages.ts#dlaFirmPage'],
+      [
+        {
+          type: 'bullet-list',
+          id: 'intro-bullets',
+          heading: null,
+          bullets: [...dlaFirmPage.introBullets],
+        },
+        {
+          type: 'bullet-list',
+          id: 'who-bullets',
+          heading: dlaFirmPage.whoHeading,
+          bullets: [...dlaFirmPage.whoBullets],
+          footerNote: 'Dostępne pakiety:',
+        },
+      ]
+    )
   );
-  registerStaticClonePage('pracownia', () =>
-    fromMarketingSplit('/pracownia', pracowniaPage, [
-      'lib/clone/content/pracownia.ts',
+  register(
+    fromMarketingSplit(
+      '/pracownia',
+      pracowniaPage,
+      ['lib/clone/content/pracownia.ts'],
+      [
+        {
+          type: 'mid-copy',
+          workshopsHeading: pracowniaPage.midCopy.workshopsHeading,
+          workshopsBody: pracowniaPage.midCopy.workshopsBody,
+          contactHeading: pracowniaPage.midCopy.contactHeading,
+          contactBody: pracowniaPage.midCopy.contactBody,
+          badgeSrc: pracowniaPage.midCopy.badgeSrc,
+          badgeAlt: pracowniaPage.midCopy.badgeAlt,
+          packagesLabel: 'Dostępne warsztaty:',
+        },
+      ]
+    )
+  );
+  register(
+    fromMarketingSplit(
+      '/urodziny',
+      urodzinyPage,
+      ['lib/clone/content/glina-box-and-events.ts#urodzinyPage'],
+      [
+        {
+          type: 'offer-intro',
+          heading: urodzinyPage.offerIntro.heading,
+          paragraphs: [...urodzinyPage.offerIntro.paragraphs],
+        },
+      ]
+    )
+  );
+  register(
+    fromMarketingSplit('/panienskie', panienskiePage, [
+      'lib/clone/content/glina-box-and-events.ts#panienskiePage',
     ])
   );
 
-  registerStaticClonePage('galeria', () => ({
-    format: 'clone-page-v1',
-    template: 'gallery',
-    route: '/galeria',
-    title: 'Galeria | Pracownia Ceramiki N',
-    provenance: {
-      sources: ['lib/clone/content/landings.ts#galeriaImages'],
-    },
-    sections: [
-      {
-        type: 'paragraphs',
-        paragraphs: [
-          'Rękodzieło jako joga umysłu',
-          'Moja pasja ... w obiektywie aparatu.',
+  register(
+    stamp({
+      format: 'clone-page-v1',
+      template: 'gallery',
+      route: '/galeria',
+      title: 'Galeria | Pracownia Ceramiki N',
+      metaDescription:
+        'Galeria prac i warsztatów Pracowni Ceramiki Nero — oryginalny zestaw zdjęć ze strony Galeria.',
+      provenance: {
+        sources: [
+          'lib/clone/content/landings.ts#galeriaImages',
+          'app/galeria/page.tsx',
         ],
       },
-      ...galeriaImages.map((img) => ({
-        type: 'archive-section' as const,
-        heading: null as string | null,
-        text: '',
-        images: [{ src: img.src, alt: img.alt }],
-        buttons: [] as { label: string; href: string }[],
-      })),
-    ],
-  }));
+      sections: [
+        {
+          type: 'hero',
+          title: 'Rękodzieło jako joga umysłu',
+          imageSrc:
+            '/images/wix-migrated/747d6f_b6b2ebdcb95f424984ee80e8e58a604d.jpg',
+          imageAlt: 'iStock-1302287658 kopia.jpg',
+          logoSrc:
+            '/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png',
+          logoAlt: 'warsztaty ceramiczne, sklep z ceramika',
+          intro: ['Galeria', 'Moja pasja ... w obiektywie aparatu.'],
+        },
+        {
+          type: 'gallery-grid',
+          images: galeriaImages.map((img) => ({
+            src: img.src,
+            alt: img.alt,
+          })),
+        },
+      ],
+    })
+  );
 
-  registerStaticClonePage('home', () => ({
-    format: 'clone-page-v1',
-    template: 'glina-box',
-    route: '/home',
-    title: glinaBoxPage.title,
-    metaDescription: glinaBoxPage.metaDescription,
-    provenance: {
-      sources: ['lib/clone/content/glina-box-and-events.ts#glinaBoxPage'],
-    },
-    sections: [
-      {
-        type: 'hero',
-        title: glinaBoxPage.hero.title,
-        imageSrc: glinaBoxPage.hero.imageSrc,
-        imageAlt: glinaBoxPage.hero.imageAlt,
-        logoSrc: glinaBoxPage.hero.logoSrc,
-        intro: [...glinaBoxPage.hero.intro],
+  register(
+    stamp({
+      format: 'clone-page-v1',
+      template: 'homepage-services',
+      route: '/',
+      title: 'Ceramika Nero | warsztaty z ceramiki Poznań',
+      metaDescription:
+        'Wybierz warsztat i zarezerwuj dogodny termin w Pracowni Ceramiki Nero — Suchy Las / Poznań.',
+      provenance: {
+        sources: [
+          'lib/clone/content/landings.ts#homepageServices',
+          'app/page.tsx',
+        ],
       },
-      {
-        type: 'paragraphs',
-        paragraphs: [...glinaBoxPage.introBlocks],
-      },
-    ],
-  }));
+      sections: [
+        {
+          type: 'homepage-header',
+          title: 'Wybierz warsztat',
+          subtitle: 'ZAREZERWUJ DOGODNY TERMIN',
+          chips: [
+            'Wszystkie usługi',
+            'CERAMIKA NERO PODGÓRNA 3 SUCHY LAS',
+            'Inne lokalizacje',
+          ],
+        },
+        ...homepageServices.map((service, index) => ({
+          type: 'service-card' as const,
+          id: `svc-${index}`,
+          title: service.title,
+          day: service.day,
+          price: service.price,
+          imageSrc: service.image,
+          imageAlt: service.imageAlt,
+          moreHref: service.moreHref,
+          href: service.href,
+          cta: service.cta,
+          soldOut: 'soldOut' in service ? service.soldOut : undefined,
+        })),
+      ],
+    })
+  );
 
-  registerStaticClonePage('_homepage-services', () => ({
-    format: 'clone-page-v1',
-    template: 'homepage-services',
-    route: '/',
-    title: 'Wybierz warsztat',
-    provenance: {
-      sources: ['lib/clone/content/landings.ts#homepageServices'],
-    },
-    sections: homepageServices.map((service, index) => ({
-      type: 'split-block' as const,
-      id: `svc-${index}`,
-      title: service.title,
-      paragraphs: [service.price, service.day].filter(Boolean) as string[],
-      imageSrc: service.image,
-      imageAlt: service.imageAlt,
-      ctaLabel: service.cta,
-      ctaHref: service.href,
-    })),
-  }));
+  register(
+    stamp({
+      format: 'clone-page-v1',
+      template: 'glina-box',
+      route: '/home',
+      title: glinaBoxPage.title,
+      metaDescription: glinaBoxPage.metaDescription,
+      provenance: {
+        sources: [
+          'lib/clone/content/glina-box-and-events.ts#glinaBoxPage',
+          'app/home/page.tsx',
+        ],
+      },
+      sections: [
+        {
+          type: 'hero',
+          title: glinaBoxPage.hero.title,
+          imageSrc: glinaBoxPage.hero.imageSrc,
+          imageAlt: glinaBoxPage.hero.imageAlt,
+          logoSrc: glinaBoxPage.hero.logoSrc,
+          intro: [...glinaBoxPage.hero.intro],
+        },
+        {
+          type: 'paragraphs',
+          paragraphs: [...glinaBoxPage.introBlocks],
+        },
+        {
+          type: 'labeled-image',
+          id: 'gift-banner',
+          src: glinaBoxPage.giftBannerSrc,
+          alt: glinaBoxPage.giftBannerAlt,
+        },
+        {
+          type: 'cta-block',
+          id: 'primary-cta',
+          label: glinaBoxPage.primaryCta.label,
+          href: glinaBoxPage.primaryCta.href,
+        },
+        {
+          type: 'labeled-image',
+          id: 'strip-banner',
+          src: glinaBoxPage.bannerSrc,
+          alt: '',
+          decorative: true,
+        },
+        {
+          type: 'split-block',
+          id: 'breath',
+          title: glinaBoxPage.breath.title,
+          paragraphs: [...glinaBoxPage.breath.paragraphs],
+          bullets: [...glinaBoxPage.breath.bullets],
+          imageSrc: glinaBoxPage.breath.imageSrc,
+          imageAlt: glinaBoxPage.breath.imageAlt,
+          imageFirst: true,
+          ctaLabel: glinaBoxPage.breath.ctaLabel,
+          ctaHref: glinaBoxPage.breath.ctaHref,
+        },
+        {
+          type: 'split-block',
+          id: 'course',
+          title: glinaBoxPage.course.title,
+          paragraphs: [...glinaBoxPage.course.paragraphs],
+          bullets: [...glinaBoxPage.course.bullets],
+          imageSrc: glinaBoxPage.course.imageSrc,
+          imageAlt: glinaBoxPage.course.imageAlt,
+          imageFirst: false,
+          ctaLabel: glinaBoxPage.course.ctaLabel,
+          ctaHref: glinaBoxPage.course.ctaHref,
+        },
+        ...glinaBoxPage.products.map((product) => ({
+          type: 'product-card' as const,
+          id: product.id,
+          badge: product.badge,
+          title: product.title,
+          priceLabel: product.priceLabel,
+          price: product.price,
+          saleLabel: 'saleLabel' in product ? product.saleLabel : undefined,
+          salePrice: 'salePrice' in product ? product.salePrice : undefined,
+          href: product.href,
+          imageSrc: product.imageSrc,
+          imageAlt: product.imageAlt,
+          ctaLabel: product.ctaLabel,
+        })),
+        {
+          type: 'split-block',
+          id: 'shipping',
+          title: glinaBoxPage.shipping.title,
+          paragraphs: [...glinaBoxPage.shipping.paragraphs],
+          bullets: [...glinaBoxPage.shipping.bullets],
+          imageSrc: glinaBoxPage.shipping.imageSrc,
+          imageAlt: glinaBoxPage.shipping.imageAlt,
+          ctaLabel: glinaBoxPage.shipping.ctaLabel,
+          ctaHref: glinaBoxPage.shipping.ctaHref,
+        },
+      ],
+    })
+  );
 }
 
 // Side-effect registration for server imports.

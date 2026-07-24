@@ -1,0 +1,85 @@
+{
+  "title": "Panieński pakiet PLUS 2 | Pracownia Ceramiki N",
+  "slug": "webinar-registration-1",
+  "excerpt": null,
+  "content": {
+    "format": "clone-page-v1",
+    "template": "archive",
+    "route": "/webinar-registration-1",
+    "title": "Panieński pakiet PLUS 2 | Pracownia Ceramiki N",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/phase2/archive-pages.ts:/webinar-registration-1",
+        "reference/original-site/pages/webinar-registration-1"
+      ]
+    },
+    "sections": [
+      {
+        "type": "archive-section",
+        "heading": "Wieczór Panieński",
+        "text": "PAKIET PLUS\n\nWieczór Panieński\nPAKIET PLUS\n\nGlina do wina + kręcenie na kole\n\nZapraszamy do zorganizowania niezapomnianego wieczoru panieńskiego z naszą pomocą!\n■ imprezy od 5 do 15 osób\n\nWspólne lepienie z gliny dla kobiet w klimacie włoskim z włoską muzyką, przystawkami i lampką wina. Tematyczna dekoracja sali. Każda z uczestniczek może spróbować swoich sił na kole garncarskim.\n\nNasza oferta wieczoru panieńskiego obejmuje:\nKażdy ulepi swój przedmiot\n\nZapewniam fachową pomoc w lepieniu z gliny, narzędzia, materiały, wypał w piecu\n\nLampka wina+Włoskie przystawki\n\nResztę napoi, tort lub inne dodatki można przywieść swoje po uzgodnieniu\n\nKręcenie na kole\n\nSpróbuj swoich sił na profesjonalnym kole garncarskim, Poczuj się jak Deni Moore w filmie Uwierz w ducha i uwiecznij to na zdjęciach\n\nZadzwoń do mnie pod numer telefonu 532 279 101 lub napisz na maila kontakt.ceramikanero@gmail.com\na wyślę Ci ofertę.\nPodaj imię i nazwisko organizatorki\nImię i nazwisko przyszłej panny młodej\nIlość uczestników\nKtóry pakiet wybierasz\nPodaj swój numer telefonu",
+        "images": [
+          {
+            "src": "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+            "alt": "Pottery and Clay",
+            "dims": "1440x663"
+          },
+          {
+            "src": "/images/wix-migrated/11062b_66bd1d55c36c4eb9b8db106cf691f67e.jpg",
+            "alt": "Bowl of Fruits",
+            "dims": "590x483"
+          },
+          {
+            "src": "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
+            "alt": "Love Wedding Decoration",
+            "dims": "634x483"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "kontakt.ceramikanero@gmail.com",
+            "href": "mailto:kontakt.ceramikanero@gmail.com"
+          }
+        ]
+      },
+      {
+        "type": "archive-section",
+        "heading": "Pracownia ceramiki Nero",
+        "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "nerogosia@gmail.com",
+            "href": "mailto:nerogosia@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Polityka prywatności",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "© 2023 by Ceramika Nero.",
+            "href": "/terms-conditions"
+          }
+        ]
+      }
+    ],
+    "cmsSlug": "webinar-registration-1"
+  },
+  "status": "draft",
+  "seo_title": "Panieński pakiet PLUS 2 | Pracownia Ceramiki N",
+  "seo_description": null,
+  "provenance": {
+    "sources": [
+      "lib/clone/content/phase2/archive-pages.ts:/webinar-registration-1",
+      "reference/original-site/pages/webinar-registration-1"
+    ]
+  }
+}

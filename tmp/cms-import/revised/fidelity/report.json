@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-07-24T13:37:37.641Z",
+  "recordsChecked": 57,
+  "materialDifferences": [],
+  "ok": true,
+  "viewports": [
+    1440,
+    390
+  ],
+  "screenshots": {
+    "attempted": false,
+    "note": "Skipped (set PLAYWRIGHT_FIDELITY=1 with running Next server)"
+  },
+  "interpretation": "With empty remote content_pages, public pages already render static-fallback documents identical to proposed seed JSON. After import of identical fingerprints, DB-backed and static-fallback outlines remain equal."
+}

@@ -1,0 +1,80 @@
+{
+  "title": "Dla firm Lepienie 1 | Pracownia Ceramiki N",
+  "slug": "webinar-registration-2",
+  "excerpt": null,
+  "content": {
+    "format": "clone-page-v1",
+    "template": "archive",
+    "route": "/webinar-registration-2",
+    "title": "Dla firm Lepienie 1 | Pracownia Ceramiki N",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/phase2/archive-pages.ts:/webinar-registration-2",
+        "reference/original-site/pages/webinar-registration-2"
+      ]
+    },
+    "sections": [
+      {
+        "type": "archive-section",
+        "heading": "Oferta dla firm",
+        "text": "Oferta dla firm\nWarsztaty lepienia w Pracowni/ bez szkliwienia z włoskimi przystawkami i lampką wina\nZapraszamy do zorganizowania niezapomnianej imprezy integracyjnej z naszą pomocą!\n■ imprezy od 5 do 12 osób\n■ czas trwania ok. 3 godzin\n■cena: 180 zł. od osoby\n■ szkliwienie przez nas\n50-80 zł opcjonalnie\n\nNasza oferta dla firm zawiera\n\nKażdy ulepi swoje przedmioty z gliny\n\nZapewniam fachową pomoc, wszystkie materiały i narzędzia oraz wypał. To trwała pamiątka na całe życie.\n\nWłoskie przekąski\n\nKlimatyczna Pracownia ceramiki w Suchym Lesie, warsztaty są prowadzone w klimacie włoskim, włoskie przekąski, lampka wina,włoska muzyka i aranżacja wnętrza\n\nSzkliwienie przedmiotów przez nas i odbiór gotowych produktów\n\nUformowane przedmioty po wyschnięciu zostaną wypalone, następnie poszliwione przeze mnie i ponownie wypalone. Takie gotowe produkty będą gotowe do odbioru. Szkliwienie kosztuje 50 zł. od osoby.\n\nProszę o wycenę\nImię i nazwisko\nNazwa firmy\nNumer telefonu\nEmail\nTreść wiadomości\nWyślij",
+        "images": [
+          {
+            "src": "/images/wix-migrated/d01231e46af34161be7ad101d281a441.jpg",
+            "alt": "Ceramic Collection",
+            "dims": "1440x513"
+          },
+          {
+            "src": "/images/wix-migrated/7ce4eff7766e4d5f905b18cd5f8c43ce.jpg",
+            "alt": "Shaping Clay",
+            "dims": "590x483"
+          },
+          {
+            "src": "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
+            "alt": "(no alt)",
+            "dims": "586x483"
+          }
+        ],
+        "buttons": []
+      },
+      {
+        "type": "archive-section",
+        "heading": "Pracownia ceramiki Nero",
+        "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "nerogosia@gmail.com",
+            "href": "mailto:nerogosia@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Polityka prywatności",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "© 2023 by Ceramika Nero.",
+            "href": "/terms-conditions"
+          }
+        ]
+      }
+    ],
+    "cmsSlug": "webinar-registration-2"
+  },
+  "status": "draft",
+  "seo_title": "Dla firm Lepienie 1 | Pracownia Ceramiki N",
+  "seo_description": null,
+  "provenance": {
+    "sources": [
+      "lib/clone/content/phase2/archive-pages.ts:/webinar-registration-2",
+      "reference/original-site/pages/webinar-registration-2"
+    ]
+  }
+}

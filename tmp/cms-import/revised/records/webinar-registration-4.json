@@ -1,0 +1,80 @@
+{
+  "title": "Dla firm outdoor 3 | Pracownia Ceramiki N",
+  "slug": "webinar-registration-4",
+  "excerpt": null,
+  "content": {
+    "format": "clone-page-v1",
+    "template": "archive",
+    "route": "/webinar-registration-4",
+    "title": "Dla firm outdoor 3 | Pracownia Ceramiki N",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/phase2/archive-pages.ts:/webinar-registration-4",
+        "reference/original-site/pages/webinar-registration-4"
+      ]
+    },
+    "sections": [
+      {
+        "type": "archive-section",
+        "heading": "Oferta dla firm",
+        "text": "Oferta dla firm\nWarsztaty z ceramiki outdoorowe, lepienie lub szkliwienie od 20 do 100 osób\nZapraszamy do zorganizowania niezapomnianej imprezy integracyjnej z naszą pomocą!\n■ Imprezy od 20 do 100 osób\n■ Lepienie i/lub szkliwienie w grupach do 10 osób na raz\n■Możemy zorganizować mini warsztaty podczas pikników firmowych dla dzieci i/lub dorosłych\nKażdy poszliwi zakupiony u mnie w pracowni przedmiot\n\nPosiadam przedmioty już wypalone na biskwit, ceny od 50 zł. za przedmiot. Do wyboru talerzyki, kubki, miseczki i inne. Zapewniam fachową pomoc w szkliwieniu, wszystkie materiały i narzędzia oraz wypał. To trwała pamiątka na całe życie.\n\nKażdy ulepi swój przedmiot z gliny\n\nW grupach do 10 osób każdy tworzy swój przedmiot według własnego projektu z naszą pomocą przy użyciu odpowiednich narzędzi i materiałów\n\nGotowe przedmioty będą wypalane w naszej pracowni\n\nPrace wypalone w profesjonalnym piecu ceramicznym będą gotowe do odbioru w ciągu 2 tyg. po lepieniu lub 1 tygodnia po szkliwieniu\n\nProszę o wycenę\nImię i nazwisko\nNazwa firmy\nNumer telefonu\nEmail\nTreść wiadomości\nWyślij",
+        "images": [
+          {
+            "src": "/images/wix-migrated/11062b_d5722b6f5d7249279adcbb06483186b1.jpg",
+            "alt": "Miejsce ślubu w ogrodzie",
+            "dims": "1440x663"
+          },
+          {
+            "src": "/images/wix-migrated/11062b_541486568d644691a35279862f8fd254.jpg",
+            "alt": "Impreza plenerowa",
+            "dims": "590x483"
+          },
+          {
+            "src": "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
+            "alt": "(no alt)",
+            "dims": "586x483"
+          }
+        ],
+        "buttons": []
+      },
+      {
+        "type": "archive-section",
+        "heading": "Pracownia ceramiki Nero",
+        "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+        "images": [],
+        "buttons": [
+          {
+            "label": "nerogosia@gmail.com",
+            "href": "mailto:nerogosia@gmail.com"
+          },
+          {
+            "label": "Zobacz warunki",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "Polityka prywatności",
+            "href": "/terms-conditions"
+          },
+          {
+            "label": "© 2023 by Ceramika Nero.",
+            "href": "/terms-conditions"
+          }
+        ]
+      }
+    ],
+    "cmsSlug": "webinar-registration-4"
+  },
+  "status": "draft",
+  "seo_title": "Dla firm outdoor 3 | Pracownia Ceramiki N",
+  "seo_description": null,
+  "provenance": {
+    "sources": [
+      "lib/clone/content/phase2/archive-pages.ts:/webinar-registration-4",
+      "reference/original-site/pages/webinar-registration-4"
+    ]
+  }
+}

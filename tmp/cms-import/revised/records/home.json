@@ -1,0 +1,150 @@
+{
+  "title": "GLINA BOX | Pracownia Ceramiki N",
+  "slug": "home",
+  "excerpt": "Stwórz wiosenną podstawkę własnymi rękami! BOX CERAMICZNY – Twój pierwszy krok w świat ceramiki.",
+  "content": {
+    "format": "clone-page-v1",
+    "template": "glina-box",
+    "route": "/home",
+    "title": "GLINA BOX | Pracownia Ceramiki N",
+    "metaDescription": "Stwórz wiosenną podstawkę własnymi rękami! BOX CERAMICZNY – Twój pierwszy krok w świat ceramiki.",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/glina-box-and-events.ts#glinaBoxPage",
+        "app/home/page.tsx"
+      ]
+    },
+    "sections": [
+      {
+        "type": "hero",
+        "title": "GLINA BOX",
+        "imageSrc": "/images/wix-migrated/747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+        "imageAlt": "PHOTO-2026-03-16-11-51-54_6.jpg",
+        "logoSrc": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+        "intro": [
+          "Stwórz wiosenną podstawkę",
+          "własnymi rękami!"
+        ]
+      },
+      {
+        "type": "paragraphs",
+        "paragraphs": [
+          "BOX CERAMICZNY – Twój pierwszy krok w świat ceramiki",
+          "Stworzony z pasji do gliny, nasz box pozwala w domowym zaciszu wykonać własną, świąteczną podstawkę lub miseczkę.",
+          "Do zestawu dołączony jest FILM INSTUKTAŻOWY krok po kroku oraz wszystkie niezbędne narzędzia.",
+          "Opcjonalnie możesz wysłać swoją pracę do naszej pracowni, a my ją profesjonalnie wypalimy."
+        ]
+      },
+      {
+        "type": "labeled-image",
+        "id": "gift-banner",
+        "src": "/images/wix-migrated/747d6f_632dd58fd1e5410496220f95241a4bbc.jpg",
+        "alt": "WYJĄTKOWY PREZENT"
+      },
+      {
+        "type": "cta-block",
+        "id": "primary-cta",
+        "label": "Zamawiam z kursem krok po kroku",
+        "href": "/sklep"
+      },
+      {
+        "type": "labeled-image",
+        "id": "strip-banner",
+        "src": "/images/wix-migrated/11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+        "alt": "",
+        "decorative": true
+      },
+      {
+        "type": "split-block",
+        "id": "breath",
+        "title": "Chwila oddechu...",
+        "paragraphs": [
+          "Pomaga zwolnić i zrobić coś tylko dla siebie — w atmosferze ciepła, spokoju i kreatywności.",
+          "Dla kogo sprawdzi się najlepiej:"
+        ],
+        "bullets": [
+          "dla osób potrzebujących odpoczynku i wyciszenia",
+          "dla zapracowanych, aby na chwilę oderwać głowę",
+          "dla tych, którzy chcą poczuć magię tworzenia",
+          "dla osób szukających wyjątkowego prezentu"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+        "imageAlt": "PHOTO-2026-01-20-13-57-34.jpg",
+        "imageFirst": true,
+        "ctaLabel": "Chcę to poczuć!",
+        "ctaHref": "/sklep"
+      },
+      {
+        "type": "split-block",
+        "id": "course",
+        "title": "Kurs krok po kroku",
+        "paragraphs": [
+          "KURS GLINA BOX poprowadzi Cię za rękę, nawet jeśli nigdy wcześniej nie lepiłaś.",
+          "Dlaczego to pokochasz:"
+        ],
+        "bullets": [
+          "miękka, gotowa do użycia glina, stworzona do formowania w domowych warunkach",
+          "komplet narzędzi do lepienia i dekorowania",
+          "film krok po kroku z instrukcją tworzenia",
+          "tworzenie bez stresu, idealne na spokojny, świąteczny wieczór."
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_0fe41123a0a34078b88b14d085b6b727.jpg",
+        "imageAlt": "PHOTO-2026-02-04-20-06-56 (1).jpg",
+        "imageFirst": false,
+        "ctaLabel": "Chcę spróbować!",
+        "ctaHref": "/sklep"
+      },
+      {
+        "type": "product-card",
+        "id": "szkliwienie",
+        "badge": "Nowość",
+        "title": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+        "priceLabel": "Cena",
+        "price": "69,00 zł",
+        "href": "/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+        "imageSrc": "/images/wix-migrated/747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+        "imageAlt": "Szkliwienie prac",
+        "ctaLabel": "Dodaj do koszyka"
+      },
+      {
+        "type": "product-card",
+        "id": "glina-box",
+        "badge": "Nowość",
+        "title": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+        "priceLabel": "Regularna cena",
+        "price": "229,00 zł",
+        "saleLabel": "Cena rabatowa",
+        "salePrice": "137,00 zł",
+        "href": "/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+        "imageSrc": "/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+        "imageAlt": "PHOTO-2026-03-16-11-51-54_4.jpg",
+        "ctaLabel": "Dodaj do koszyka"
+      },
+      {
+        "type": "split-block",
+        "id": "shipping",
+        "title": "WYSYŁKA PRACY DO SZKLIWIENIA",
+        "paragraphs": [
+          "Wyślij do nas wyschniętą, wypaloną pracę — starannie ją zapakuj i nadaj przesyłkę lub przywieź ją osobiście do naszej pracowni.",
+          "My zajmiemy się szkliwieniem i wypałem w kolorach, które wybierzesz z próbników. Prosimy o przesłanie maila z informacją, jakie kolory szkliwa wybierasz.",
+          "Gotową pracę odeślemy do Ciebie w ciągu 2 tygodni 🤍"
+        ],
+        "bullets": [],
+        "imageSrc": "/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+        "imageAlt": "Wysyłka do szkliwienia",
+        "ctaLabel": "wysyłam pracę do poszkliwienia!",
+        "ctaHref": "/sklep"
+      }
+    ],
+    "cmsSlug": "home"
+  },
+  "status": "draft",
+  "seo_title": "GLINA BOX | Pracownia Ceramiki N",
+  "seo_description": "Stwórz wiosenną podstawkę własnymi rękami! BOX CERAMICZNY – Twój pierwszy krok w świat ceramiki.",
+  "provenance": {
+    "sources": [
+      "lib/clone/content/glina-box-and-events.ts#glinaBoxPage",
+      "app/home/page.tsx"
+    ]
+  }
+}

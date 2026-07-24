@@ -8,11 +8,12 @@ import '@/lib/cms/static-registry';
 import { resolveClonePage } from '@/lib/cms/resolve-page';
 import { documentToMarketingParts } from '@/lib/cms/document-adapters';
 import { glinaDoWinaPage } from '@/lib/clone/content/landings';
+import { cmsSlugFromRoute } from '@/lib/cms/route-slug';
 
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const resolved = await resolveClonePage('glinadowina', {
+  const resolved = await resolveClonePage(cmsSlugFromRoute('/glinadowina'), {
     allowDraftPreview: true,
   });
   const title = resolved?.document.title ?? glinaDoWinaPage.title;
@@ -22,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function GlinaDoWinaPage() {
-  const resolved = await resolveClonePage('glinadowina', {
+  const resolved = await resolveClonePage(cmsSlugFromRoute('/glinadowina'), {
     allowDraftPreview: true,
   });
   const parts =

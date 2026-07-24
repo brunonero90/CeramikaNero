@@ -1,0 +1,138 @@
+{
+  "title": "Dla firm | Pracownia Ceramiki N",
+  "slug": "grupy-i-firmy",
+  "excerpt": "Oferta imprez integracyjnych dla firm — warsztaty ceramiczne w Pracowni Ceramiki Nero.",
+  "content": {
+    "format": "clone-page-v1",
+    "template": "marketing-split",
+    "route": "/grupy-i-firmy",
+    "title": "Dla firm | Pracownia Ceramiki N",
+    "metaDescription": "Oferta imprez integracyjnych dla firm — warsztaty ceramiczne w Pracowni Ceramiki Nero.",
+    "provenance": {
+      "sources": [
+        "lib/clone/content/audience-pages.ts#dlaFirmPage"
+      ]
+    },
+    "sections": [
+      {
+        "type": "hero",
+        "title": "Imprezy integracyjne dla firm",
+        "imageSrc": "/images/wix-migrated/747d6f_858ea5b1d9ce415c8d2ce2c3977c5d56.jpg",
+        "imageAlt": "zajecia z jogi, impreza integracyjna z warsztatami ceramiki",
+        "logoSrc": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+        "intro": [
+          "Zapraszamy do skorzystania z naszej oferty na organizację imprez integracyjnych dla firm! Jesteśmy doświadczoną firmą, specjalizującą się w tworzeniu niezapomnianych wydarzeń, które umożliwiają zintegrowanie zespołów i budowanie silnych relacji między pracownikami.",
+          "Dla kogo warsztaty z gliny?",
+          "Jeżeli szukasz czegoś bardziej oryginalnego to dobrze trafiłeś. Możemy zorganizować dla ciebie warsztaty tworzenia przedmiotów z ceramiki."
+        ]
+      },
+      {
+        "type": "bullet-list",
+        "id": "intro-bullets",
+        "heading": null,
+        "bullets": [
+          "Pomoże to pracownikom rozwinąć umiejętności artystyczne, kreatywne myślenie.",
+          "Pomoże się zrelaksować, gdyż glina ma właściwości uspokajające nerwy i terapeutyczne.",
+          "Tego typu warsztaty są również angażujące, inspirujące i można wynieść dużą dawkę wiedzy na temat ceramiki."
+        ]
+      },
+      {
+        "type": "bullet-list",
+        "id": "who-bullets",
+        "heading": "Kto może brać udział w warsztatach?",
+        "bullets": [
+          "Glina jest całkowicie naturalna i nie powoduje alergii",
+          "Lepić może każdy od 3 do 103 lat.",
+          "Na warsztatach u mnie każdemu się uda stworzyć swój indywidualny przedmiot, który będzie mógł używać w domu:",
+          "ulubiony kubek do pracy ■ stojak na długopisy ■ talerzyk ■ miseczka na płatki ■ świecznik ■ wazonik",
+          "podstawka na biżuterię ■ kadzidełko ■ cokolwiek innego"
+        ],
+        "footerNote": "Dostępne pakiety:"
+      },
+      {
+        "type": "split-block",
+        "id": "swiateczne",
+        "title": "ŚWIĄTECZNE WARSZTATY FIRMOWE",
+        "bullets": [
+          "szukasz pomysłu na warsztaty świąteczne ?",
+          "napisz do nas i poproś o ofertę, napisz ilu jest pracowników, czy chcecie zrobić imprezę u nas do 15 osób czy mamy dojechać do was?",
+          "To trwała pamiątka na całe życie",
+          "Prace wypalone w profesjonalnym piecu ceramicznym będą gotowe do odbioru w ciągu 2 tyg. po lepieniu lub 1 tygodnia po szkliwieniu"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_bfd4d83b5e324760969c7f4db1b2b41f.png",
+        "imageAlt": "21.png",
+        "imageFirst": true,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "mailto:nerogosia@gmail.com",
+        "tinted": true
+      },
+      {
+        "type": "split-block",
+        "id": "lepienie",
+        "title": "Warsztaty lepienia z gliny w Pracowni bez szkliwienia do 12 osób",
+        "bullets": [
+          "Każdy ulepi swoje przedmioty z gliny",
+          "Zapewniam wszystkie materiały i narzędzia",
+          "To trwała pamiątka na całe życie",
+          "Włoskie przekąski",
+          "Lampka wina",
+          "Włoska muzyka i aranżacja wnętrza",
+          "Szkliwienie przedmiotów przez nas",
+          "Odbiór gotowych produktów"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+        "imageAlt": "2a.jpg",
+        "imageFirst": false,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "mailto:nerogosia@gmail.com",
+        "tinted": false
+      },
+      {
+        "type": "split-block",
+        "id": "szkliwienie",
+        "title": "Warsztaty szkliwienia gotowych produktów w Pracowni do 12 osób",
+        "bullets": [
+          "Każdy namaluje szkliwem niepowtarzalny wzór na  zakupionym w Pracowni produkcie",
+          "Zapewniam wszystkie materiały i narzędzia",
+          "To trwała pamiątka na całe życie",
+          "Włoskie przekąski",
+          "Lampka wina",
+          "Włoska muzyka i aranżacja wnętrza",
+          "Odbiór gotowych produktów"
+        ],
+        "imageSrc": "/images/wix-migrated/747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg",
+        "imageAlt": "Warsztaty szkliwienia",
+        "imageFirst": true,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "mailto:nerogosia@gmail.com",
+        "tinted": true
+      },
+      {
+        "type": "split-block",
+        "id": "outdoor",
+        "title": "Warsztaty outdoorowe pikniki firmowe od 20 do 100 osób",
+        "bullets": [
+          "kaædy tworzy swój przedmiot według własnego projektu z naszą pomocą przy użyciu odpowiednich narzędzi i materiałów",
+          "Zapewniam wszystkie materiały i narzędzia",
+          "To trwała pamiątka na całe życie",
+          "Prace wypalone w profesjonalnym piecu ceramicznym będą gotowe do odbioru w ciągu 2 tyg. po lepieniu lub 1 tygodnia po szkliwieniu"
+        ],
+        "imageSrc": "/images/wix-migrated/11062b_541486568d644691a35279862f8fd254.jpg",
+        "imageAlt": "Impreza plenerowa",
+        "imageFirst": false,
+        "ctaLabel": "Więcej szczegółów...",
+        "ctaHref": "mailto:nerogosia@gmail.com",
+        "tinted": false
+      }
+    ],
+    "cmsSlug": "grupy-i-firmy"
+  },
+  "status": "draft",
+  "seo_title": "Dla firm | Pracownia Ceramiki N",
+  "seo_description": "Oferta imprez integracyjnych dla firm — warsztaty ceramiczne w Pracowni Ceramiki Nero.",
+  "provenance": {
+    "sources": [
+      "lib/clone/content/audience-pages.ts#dlaFirmPage"
+    ]
+  }
+}
