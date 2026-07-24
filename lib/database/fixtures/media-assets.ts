@@ -3286,6 +3286,82 @@ export const wixMediaAssets: MediaAsset[] = [
       'da3ecc5b109084e0dc9efd720878c2ca36adefa03ae32bc2c8901e66dece803b',
     archivedAt: null,
   },
+  {
+    id: 'wix-747d6f_aa1bfec10d124209aa38d0d0dcbc1583',
+    originalFilename: '747d6f_aa1bfec10d124209aa38d0d0dcbc1583~mv2.jpg',
+    storageBucket: 'public',
+    storagePath:
+      'images/wix-migrated/747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg',
+    mimeType: 'image/jpg',
+    width: 5858,
+    height: 3952,
+    fileSizeBytes: 17352414,
+    altText: 'Prezent z pracowni Ceramika Nero – opakowanie i suchy bukiet',
+    caption: null,
+    source: 'wix_import',
+    wixUrl:
+      'https://static.wixstatic.com/media/747d6f_aa1bfec10d124209aa38d0d0dcbc1583~mv2.jpg',
+    checksum:
+      '8d83d109ea89ca7ee15ef2bfb6f73d525090f05f5458d6508f94b7118293a934',
+    archivedAt: null,
+  },
+  {
+    id: 'wix-747d6f_90fd3fe84ad246c3b4f72ead538bc878',
+    originalFilename: '747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg',
+    storageBucket: 'public',
+    storagePath:
+      'images/wix-migrated/747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg',
+    mimeType: 'image/jpg',
+    width: 2996,
+    height: 1803,
+    fileSizeBytes: 2107662,
+    altText: 'Narzędzia ceramiczne i miseczka z gliny w pracowni Ceramika Nero',
+    caption: null,
+    source: 'wix_import',
+    wixUrl:
+      'https://static.wixstatic.com/media/747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg',
+    checksum:
+      '2b2a7020e0941065ea3c04333578d52b76d911c499fb31a401c896742cc0ce8c',
+    archivedAt: null,
+  },
+  {
+    id: 'wix-747d6f_8a2d596fd10b4cd98573ac95e0eb4e16',
+    originalFilename: '747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp',
+    storageBucket: 'public',
+    storagePath:
+      'images/wix-migrated/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg',
+    mimeType: 'image/jpg',
+    width: 1080,
+    height: 1080,
+    fileSizeBytes: 92640,
+    altText: 'Ręcznie formowany kubek ceramiczny Ceramika Nero',
+    caption: null,
+    source: 'wix_import',
+    wixUrl:
+      'https://static.wixstatic.com/media/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp',
+    checksum:
+      'ab80593c094dc5d7cdb9205fd4d3e9f8aefb31bcef932f5aa9a15f6476159676',
+    archivedAt: null,
+  },
+  {
+    id: 'wix-747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b',
+    originalFilename: '747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg',
+    storageBucket: 'public',
+    storagePath:
+      'images/wix-migrated/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg',
+    mimeType: 'image/jpg',
+    width: 2048,
+    height: 2048,
+    fileSizeBytes: 451224,
+    altText: 'Świece sojowe NERO i ceramiczny domek z pracowni',
+    caption: null,
+    source: 'wix_import',
+    wixUrl:
+      'https://static.wixstatic.com/media/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg',
+    checksum:
+      '8ea5de2b1aa3432f17f2bdbd62aa8c5dbbc40ed2d35a06a9cae8d88b1cd97026',
+    archivedAt: null,
+  },
 ];
 
 export const wixMediaById = new Map(wixMediaAssets.map((m) => [m.id, m]));
@@ -3463,6 +3539,10 @@ export const wixMediaCategories = new Map<string, string>([
   ['wix-4960cfa6cf2a4a44a7ba1695c421cb84', 'gallery'],
   ['wix-87a0d537f3654d148ba517d045f6d3ff', 'blog'],
   ['wix-25189b4996b84d5ba2cd03f12eff06c5', 'blog'],
+  ['wix-747d6f_aa1bfec10d124209aa38d0d0dcbc1583', 'gallery'],
+  ['wix-747d6f_90fd3fe84ad246c3b4f72ead538bc878', 'gallery'],
+  ['wix-747d6f_8a2d596fd10b4cd98573ac95e0eb4e16', 'gallery'],
+  ['wix-747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b', 'gallery'],
 ]);
 
 export function getWixMediaByCategory(

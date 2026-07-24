@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-07-24T09:30:00.000Z",
+  "auditName": "Ceramika Nero image migration completeness",
+  "phase5Actions": "none",
+  "databaseMigrations": "none",
+  "externalServicesConfigured": "none",
+  "commitsPushesDeploys": "none",
+  "correctedTotals": {
+    "pagesVisitedRaw": 71,
+    "pagesVisitedCanonicalHttps": 70,
+    "imageReferencesAudited": 518,
+    "crawlUniqueContentHashes": 307,
+    "uniqueWixMediaIdsInCrawlRefs": 172,
+    "localOriginalQualityFiles": 176,
+    "localUniqueByteHashes": 170,
+    "byteIdenticalDuplicatePairs": 6,
+    "genuineUniqueVisualOriginalsAmongLocalFiles": 170,
+    "display": {
+      "genuinelyRendered": 174,
+      "brandOrDecorative": 2,
+      "preservedNotDisplayed": 0
+    },
+    "previouslyUnavailableReferences": 210,
+    "unavailableRecoveredToExistingLocalAsset": 210,
+    "unavailableStillAdditionalAssetCandidates": 0,
+    "additionalAssetsRecoveredDuringAudit": 4,
+    "wixTemplateStockDetectedAndExcluded": 2,
+    "wixTemplateAboutPlaceholdersDiscarded": 6
+  },
+  "hashReduction307to176": {
+    "why307CrawlHashes": "Crawl hashed CDN /v1/fill and /v1/fit response bodies at many widths; different transforms of the same photograph produce different SHA-256 digests.",
+    "why176LocalFiles": "Migration stores one original-quality file per Wix media ID. Audit recovered 4 additional Ceramika media IDs from sitemap-orphan pages (vouchery/courses/gift-card), raising 172→176.",
+    "why170UniqueLocalHashes": "6 local file pairs are byte-identical under different Wix media IDs (duplicate uploads).",
+    "errorPagesHtmlPlaceholders": "Not counted as unique originals among the 176; unavailable refs reconstructed to existing media IDs rather than treated as new assets."
+  },
+  "referenceClassificationCounts": {
+    "duplicate-transform": 417,
+    "malformed-but-recovered": 66,
+    "migrated-and-displayed": 35
+  },
+  "artifacts": [
+    "tmp/wix-crawl/completeness-audit.json",
+    "tmp/wix-crawl/display-coverage.json",
+    "tmp/wix-crawl/hash-reconciliation.json",
+    "tmp/wix-crawl/unavailable-reconciliation.json",
+    "tmp/wix-crawl/page-discovery.json",
+    "tmp/wix-crawl/quality-verification.json",
+    "tmp/wix-crawl/visual-verification.json",
+    "tmp/wix-crawl/orphan-page-recovery.json",
+    "tmp/wix-crawl/screenshots/"
+  ]
+}

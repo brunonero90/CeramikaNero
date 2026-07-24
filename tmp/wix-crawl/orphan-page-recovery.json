@@ -1,0 +1,211 @@
+{
+  "generatedAt": "2026-07-24T09:16:46.628Z",
+  "results": [
+    {
+      "id": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/vouchery",
+      "note": "Voucher page imagery",
+      "status": "downloaded",
+      "filename": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+      "localPath": "/images/wix-migrated/747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/747d6f_aa1bfec10d124209aa38d0d0dcbc1583~mv2.jpg",
+      "byteSize": 17352414,
+      "dimensions": {
+        "height": 3952,
+        "orientation": 1,
+        "width": 5858,
+        "type": "jpg"
+      },
+      "sha256": "8d83d109ea89ca7ee15ef2bfb6f73d525090f05f5458d6508f94b7118293a934"
+    },
+    {
+      "id": "747d6f_90fd3fe84ad246c3b4f72ead538bc878",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/courses",
+      "note": "Courses listing imagery",
+      "status": "downloaded",
+      "filename": "747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+      "localPath": "/images/wix-migrated/747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg",
+      "byteSize": 2107662,
+      "dimensions": {
+        "height": 1803,
+        "width": 2996,
+        "type": "jpg"
+      },
+      "sha256": "2b2a7020e0941065ea3c04333578d52b76d911c499fb31a401c896742cc0ce8c"
+    },
+    {
+      "id": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/courses",
+      "note": "Courses listing imagery",
+      "status": "downloaded",
+      "filename": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+      "localPath": "/images/wix-migrated/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp",
+      "byteSize": 92640,
+      "dimensions": {
+        "height": 1080,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "sha256": "ab80593c094dc5d7cdb9205fd4d3e9f8aefb31bcef932f5aa9a15f6476159676"
+    },
+    {
+      "id": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/gift-card",
+      "note": "Gift card page imagery",
+      "status": "downloaded",
+      "filename": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+      "localPath": "/images/wix-migrated/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg",
+      "byteSize": 451224,
+      "dimensions": {
+        "height": 2048,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "sha256": "8ea5de2b1aa3432f17f2bdbd62aa8c5dbbc40ed2d35a06a9cae8d88b1cd97026"
+    },
+    {
+      "id": "a3c153_20122b9a32cc4e9a9faca835b9f82d14",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/about-2",
+      "note": "about-2 template/page asset — inspect after download",
+      "status": "downloaded",
+      "filename": "a3c153_20122b9a32cc4e9a9faca835b9f82d14.jpg",
+      "localPath": "/images/wix-migrated/a3c153_20122b9a32cc4e9a9faca835b9f82d14.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/a3c153_20122b9a32cc4e9a9faca835b9f82d14~mv2.jpg",
+      "byteSize": 885765,
+      "dimensions": {
+        "height": 1409,
+        "width": 2832,
+        "type": "jpg"
+      },
+      "sha256": "fdb0cd2c8d96b89f5bf8a434eadfea3958312ef8b4c2faf01f56e0c91ec988d9"
+    },
+    {
+      "id": "a3c153_bbf1019446e34069a3b96c18f172e810",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/about-2",
+      "note": "about-2 template/page asset — inspect after download",
+      "status": "downloaded",
+      "filename": "a3c153_bbf1019446e34069a3b96c18f172e810.jpg",
+      "localPath": "/images/wix-migrated/a3c153_bbf1019446e34069a3b96c18f172e810.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/a3c153_bbf1019446e34069a3b96c18f172e810~mv2.jpg",
+      "byteSize": 17305576,
+      "dimensions": {
+        "height": 4724,
+        "orientation": 1,
+        "width": 8661,
+        "type": "jpg"
+      },
+      "sha256": "2907fd9caa96fcae070f6737287a033a8ee1e3b825cc653d247214d5b19aaa81"
+    },
+    {
+      "id": "0fdef751204647a3bbd7eaa2827ed4f9",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/about-2",
+      "note": "about-2 hex-id asset — likely Wix stock",
+      "status": "downloaded",
+      "filename": "0fdef751204647a3bbd7eaa2827ed4f9.png",
+      "localPath": "/images/wix-migrated/0fdef751204647a3bbd7eaa2827ed4f9.png",
+      "sourceUrl": "https://static.wixstatic.com/media/0fdef751204647a3bbd7eaa2827ed4f9.png",
+      "byteSize": 833,
+      "dimensions": {
+        "height": 200,
+        "width": 200,
+        "type": "png"
+      },
+      "sha256": "e8141d92078bba8a5d432c009a829c7acf6cc959869d4a81a4d949704d2ac0f4"
+    },
+    {
+      "id": "c7d035ba85f6486680c2facedecdcf4d",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/about-2",
+      "note": "about-2 hex-id asset — likely Wix stock",
+      "status": "downloaded",
+      "filename": "c7d035ba85f6486680c2facedecdcf4d.png",
+      "localPath": "/images/wix-migrated/c7d035ba85f6486680c2facedecdcf4d.png",
+      "sourceUrl": "https://static.wixstatic.com/media/c7d035ba85f6486680c2facedecdcf4d.png",
+      "byteSize": 1900,
+      "dimensions": {
+        "height": 200,
+        "width": 200,
+        "type": "png"
+      },
+      "sha256": "276e07ea2f02a047c84ffcc7aa33f8d61846d0bf00874ff591f4bc6f9a5ce4cc"
+    },
+    {
+      "id": "6ea5b4a88f0b4f91945b40499aa0af00",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/about-2",
+      "note": "about-2 hex-id asset — likely Wix stock",
+      "status": "downloaded",
+      "filename": "6ea5b4a88f0b4f91945b40499aa0af00.png",
+      "localPath": "/images/wix-migrated/6ea5b4a88f0b4f91945b40499aa0af00.png",
+      "sourceUrl": "https://static.wixstatic.com/media/6ea5b4a88f0b4f91945b40499aa0af00.png",
+      "byteSize": 1213,
+      "dimensions": {
+        "height": 200,
+        "width": 200,
+        "type": "png"
+      },
+      "sha256": "b2a4505c55a3592526fbe2f86f197438c50898ae0cfdb41423082d6dbb1c7713"
+    },
+    {
+      "id": "01c3aff52f2a4dffa526d7a9843d46ea",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/about-2",
+      "note": "about-2 hex-id asset — likely Wix stock",
+      "status": "downloaded",
+      "filename": "01c3aff52f2a4dffa526d7a9843d46ea.png",
+      "localPath": "/images/wix-migrated/01c3aff52f2a4dffa526d7a9843d46ea.png",
+      "sourceUrl": "https://static.wixstatic.com/media/01c3aff52f2a4dffa526d7a9843d46ea.png",
+      "byteSize": 21665,
+      "dimensions": {
+        "height": 200,
+        "width": 200,
+        "type": "png"
+      },
+      "sha256": "a77d9274fc196cca0035dd2be4eca8b59577846eeedaf1571bb35a354845ebcd"
+    },
+    {
+      "id": "fc7570_bc49e99650ac4175bb5ea40d340ce055",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/services/glina-do-wina",
+      "note": "Wix Beauty Spa template stock (Professional Makeup.jpg) — not Ceramika content",
+      "templateStock": true,
+      "status": "template-stock-not-saved",
+      "sourceUrl": "https://static.wixstatic.com/media/fc7570_bc49e99650ac4175bb5ea40d340ce055~mv2.jpg",
+      "byteSize": 8359448,
+      "dimensions": {
+        "height": 3582,
+        "orientation": 1,
+        "width": 5371,
+        "type": "jpg"
+      },
+      "sha256": "d35351234c346972fe09457d023f0c24d2e3e227e274fcd43f2c980ab2152bee"
+    },
+    {
+      "id": "fc7570_c6280744ca9f4db5830075a85810207e",
+      "ext": "jpg",
+      "foundOn": "https://www.ceramikanero.com/services/manicure",
+      "note": "Wix Beauty Spa template stock (Manicure.jpg) — not Ceramika content",
+      "templateStock": true,
+      "status": "template-stock-not-saved",
+      "sourceUrl": "https://static.wixstatic.com/media/fc7570_c6280744ca9f4db5830075a85810207e~mv2.jpg",
+      "byteSize": 5779350,
+      "dimensions": {
+        "height": 3338,
+        "orientation": 1,
+        "width": 5000,
+        "type": "jpg"
+      },
+      "sha256": "aee39e8243120d09e802a7940693d2ff7772a2fe764a05c19e43c10cc6712468"
+    }
+  ]
+}

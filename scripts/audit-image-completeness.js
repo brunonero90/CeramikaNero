@@ -110,16 +110,25 @@ function isTruncatedTransform(url) {
 }
 
 function classifyBrand(altTexts, width, height) {
-  const alt = (altTexts || []).join(' ').toLowerCase();
-  if (/facebook|instagram/.test(alt)) return true;
+  const alt = (altTexts || []).join(' ').trim().toLowerCase();
+  // True social icons only — not gallery graphics that mention Instagram/Facebook
+  if (/^(facebook|instagram)\s*$/i.test(alt)) return true;
+  if (
+    (width || 0) <= 256 &&
+    (height || 0) <= 256 &&
+    /facebook|instagram/.test(alt)
+  )
+    return true;
   if ((width || 0) * (height || 0) > 0 && (width || 0) * (height || 0) <= 8000)
     return true;
-  if (/partner|logo|naklejka/.test(alt)) return true;
+  if (/^naklejka|^partner logo|^logo\b/i.test(alt) && (width || 0) <= 400)
+    return true;
   return false;
 }
 
 function sniffImage(buf) {
-  if (!buf || buf.length < 12) return { isImage: false, reason: 'empty-or-tiny' };
+  if (!buf || buf.length < 12)
+    return { isImage: false, reason: 'empty-or-tiny' };
   const head = buf.subarray(0, 64).toString('utf8').toLowerCase();
   if (
     head.includes('<!doctype html') ||
@@ -241,17 +250,15 @@ const uiSourceFiles = [
 const uiCorpus = uiSourceFiles
   .map((f) => {
     const p = path.join(ROOT, f);
-    return fs.existsSync(p) ? `\n/* FILE:${f} */\n` + fs.readFileSync(p, 'utf8') : '';
+    return fs.existsSync(p)
+      ? `\n/* FILE:${f} */\n` + fs.readFileSync(p, 'utf8')
+      : '';
   })
   .join('\n');
 
 function uiLocationsForId(id) {
   const locations = [];
-  const patterns = [
-    id,
-    `wix-${id}`,
-    `/images/wix-migrated/${id}`,
-  ];
+  const patterns = [id, `wix-${id}`, `/images/wix-migrated/${id}`];
   for (const file of uiSourceFiles) {
     const p = path.join(ROOT, file);
     if (!fs.existsSync(p)) continue;
@@ -263,16 +270,24 @@ function uiLocationsForId(id) {
   // Gallery falls back to getGalleryImages() which includes large assets
   const local = localById.get(id);
   if (local && local.isImage && local.width * local.height >= 40000) {
-    const alt = (mappingById.get(id)?.altTexts || []).join(' ');
-    if (!/facebook|instagram/i.test(alt)) {
+    if (
+      !classifyBrand(mappingById.get(id)?.altTexts, local.width, local.height)
+    ) {
       if (!locations.includes('app/galeria/page.tsx via getGalleryImages()')) {
         locations.push('app/galeria/page.tsx via getGalleryImages()');
       }
     }
   }
   // Branding icons
-  if (local && classifyBrand(mappingById.get(id)?.altTexts, local.width, local.height)) {
-    if (/facebook|instagram/i.test((mappingById.get(id)?.altTexts || []).join(' '))) {
+  if (
+    local &&
+    classifyBrand(mappingById.get(id)?.altTexts, local.width, local.height)
+  ) {
+    const alt = (mappingById.get(id)?.altTexts || [])
+      .join(' ')
+      .trim()
+      .toLowerCase();
+    if (/^(facebook|instagram)\s*$/i.test(alt)) {
       if (!locations.includes('components/layout/footer.tsx')) {
         locations.push('components/layout/footer.tsx');
       }
@@ -281,8 +296,16 @@ function uiLocationsForId(id) {
   return locations;
 }
 
-function finalClassificationForRef(item, mediaId, local, crawlHashGroup) {
+function finalClassificationForRef(
+  item,
+  mediaId,
+  local,
+  crawlHashGroup,
+  resolveMethod
+) {
   const urlsSharingHash = crawlHashGroup || [];
+  const isTransformUrl =
+    /\/v1\/(?:fill|fit)\//i.test(item.url) || isTruncatedTransform(item.url);
 
   if (local) {
     const brand = classifyBrand(
@@ -292,13 +315,36 @@ function finalClassificationForRef(item, mediaId, local, crawlHashGroup) {
       local.width,
       local.height
     );
-    if (brand || /facebook|instagram/i.test((item.references || []).map((r) => r.alt || '').join(' '))) {
+
+    if (isMalformedQualityAuto(item.url)) {
+      return {
+        classification: 'malformed-but-recovered',
+        reason: `Malformed ceramikanero.com/quality_auto URL reconstructed to media id ${mediaId} via ${resolveMethod || 'media-id'}; local file ${local.localPath} exists.`,
+      };
+    }
+
+    if (isTruncatedTransform(item.url)) {
+      return {
+        classification: 'duplicate-transform',
+        reason: `Truncated Wix transform URL embeds media id ${mediaId}; full original stored at ${local.localPath}.`,
+      };
+    }
+
+    if (isTransformUrl) {
+      return {
+        classification: 'duplicate-transform',
+        reason: `CDN /v1/fill|/v1/fit transform of media id ${mediaId}; original-quality bytes stored locally (different content hash than crawl transform).`,
+      };
+    }
+
+    if (brand) {
       return {
         classification: 'migrated-brand-or-decorative',
         reason:
           'Local original recovered; used as branding/social/decorative asset (or qualifies by size/alt).',
       };
     }
+
     return {
       classification: 'migrated-and-displayed',
       reason:
@@ -309,43 +355,22 @@ function finalClassificationForRef(item, mediaId, local, crawlHashGroup) {
   if (item.status === 'found' && item.hash) {
     // Another URL with same crawl hash may already map to local via media id
     const siblingWithLocal = urlsSharingHash.find((u) => {
-      const id = extractMediaId(u.url);
-      return id && localById.has(id);
+      const resolved = resolveMediaId(u.url);
+      return resolved.mediaId && localById.has(resolved.mediaId);
     });
     if (siblingWithLocal) {
       return {
         classification: 'duplicate-transform',
-        reason: `Same crawl content-hash as recovered media ${extractMediaId(siblingWithLocal.url)}; this URL is a CDN transform/variant.`,
+        reason: `Same crawl content-hash as recovered media ${resolveMediaId(siblingWithLocal.url).mediaId}; this URL is a CDN transform/variant.`,
       };
     }
   }
 
-  if (isMalformedQualityAuto(item.url)) {
-    const recoveredId = extractMediaId(item.url);
-    if (recoveredId && localById.has(recoveredId)) {
-      return {
-        classification: 'malformed-but-recovered',
-        reason: `Malformed quality_auto URL embeds media id ${recoveredId}, which exists locally.`,
-      };
-    }
+  if (isMalformedQualityAuto(item.url) || isTruncatedTransform(item.url)) {
     return {
       classification: 'malformed-and-proven-unrecoverable',
       reason:
-        'Malformed quality_auto URL could not be mapped to a recoverable Wix media id present locally or in other found variants.',
-    };
-  }
-
-  if (isTruncatedTransform(item.url)) {
-    const recoveredId = extractMediaId(item.url);
-    if (recoveredId && localById.has(recoveredId)) {
-      return {
-        classification: 'malformed-but-recovered',
-        reason: `Truncated Wix transform URL embeds media id ${recoveredId}, recovered from other variants.`,
-      };
-    }
-    return {
-      classification: 'malformed-and-proven-unrecoverable',
-      reason: 'Truncated transform URL with no recoverable media id among local assets.',
+        'Malformed/truncated URL could not be mapped to any local media id via embedded id, filename stem, sibling variants, or mapping provenance.',
     };
   }
 
@@ -360,7 +385,7 @@ function finalClassificationForRef(item, mediaId, local, crawlHashGroup) {
     return {
       classification: 'malformed-and-proven-unrecoverable',
       reason:
-        'Crawl hash step could not fetch bytes; no reconstructible media id matches a local asset.',
+        'Crawl could not fetch bytes; no reconstructible media id or filename stem matches a local asset.',
     };
   }
 
@@ -374,7 +399,8 @@ function finalClassificationForRef(item, mediaId, local, crawlHashGroup) {
 
   return {
     classification: 'external-image-unavailable',
-    reason: 'Found reference without extractable media id and without local recovery.',
+    reason:
+      'Found reference without extractable media id and without local recovery.',
   };
 }
 
@@ -389,7 +415,8 @@ for (const item of inventory.inventory) {
 // Build per-reference audit
 const referenceAudits = [];
 for (const item of inventory.inventory) {
-  const mediaId = extractMediaId(item.url);
+  const resolved = resolveMediaId(item.url);
+  const mediaId = resolved.mediaId;
   const local = mediaId ? localById.get(mediaId) : null;
   const hashGroup = item.hash ? byCrawlHash.get(item.hash) : [];
   const refs = item.references || [];
@@ -400,7 +427,8 @@ for (const item of inventory.inventory) {
     item,
     mediaId,
     local,
-    hashGroup
+    hashGroup,
+    resolved.method
   );
 
   const ui = local ? uiLocationsForId(local.id) : [];
@@ -410,7 +438,8 @@ for (const item of inventory.inventory) {
     rawDiscoveredUrl: item.url,
     normalizedUrl: normalizeUrl(item.url),
     wixMediaId: mediaId,
-    httpRetrievalStatus: item.status === 'found' ? 'ok-during-crawl' : 'failed-during-crawl',
+    httpRetrievalStatus:
+      item.status === 'found' ? 'ok-during-crawl' : 'failed-during-crawl',
     returnedContentType: local?.mimeGuess
       ? `image/${local.mimeGuess}`
       : item.status === 'found'
@@ -438,6 +467,7 @@ for (const item of inventory.inventory) {
     evidence: {
       reason,
       crawlStatus: item.status,
+      resolveMethod: resolved.method,
       isDuplicateFlag: !!item.isDuplicate,
       duplicateOf: item.duplicateOf || null,
       referenceContexts: contexts,
@@ -454,7 +484,7 @@ for (const item of inventory.inventory) {
 const hashReconciliation = [];
 for (const [hash, items] of byCrawlHash.entries()) {
   const mediaIds = [
-    ...new Set(items.map((i) => extractMediaId(i.url)).filter(Boolean)),
+    ...new Set(items.map((i) => resolveMediaId(i.url).mediaId).filter(Boolean)),
   ];
   const locals = mediaIds.map((id) => localById.get(id)).filter(Boolean);
   const sizes = [...new Set(items.map((i) => i.size).filter((s) => s != null))];
@@ -500,7 +530,9 @@ for (const [hash, items] of byCrawlHash.entries()) {
 // Why 307 -> 172
 const uniqueMediaIdsFromRefs = [
   ...new Set(
-    inventory.inventory.map((i) => extractMediaId(i.url)).filter(Boolean)
+    inventory.inventory
+      .map((i) => resolveMediaId(i.url).mediaId)
+      .filter(Boolean)
   ),
 ];
 const localUniqueContentHashes = localByHash.size;
@@ -532,20 +564,22 @@ const unavailableItems = inventory.inventory.filter(
   (i) => i.status === 'unavailable'
 );
 const unavailableReconciliation = unavailableItems.map((item) => {
-  const mediaId = extractMediaId(item.url);
+  const resolved = resolveMediaId(item.url);
+  const mediaId = resolved.mediaId;
   const local = mediaId ? localById.get(mediaId) : null;
   let reconstruction = null;
   if (mediaId && local) {
     reconstruction = {
-      method: 'embed-media-id-in-malformed-url',
+      method: resolved.method || 'embed-media-id-in-malformed-url',
       reconstructedMediaId: mediaId,
       localPath: local.localPath,
       alsoSeenOnPages: mappingById.get(mediaId)?.pages || [],
+      filenameStem: filenameStem(item.url) || null,
     };
   } else if (mediaId) {
     // Look for other found refs with same id
     const siblings = inventory.inventory.filter(
-      (i) => i.status === 'found' && extractMediaId(i.url) === mediaId
+      (i) => i.status === 'found' && resolveMediaId(i.url).mediaId === mediaId
     );
     if (siblings.length) {
       reconstruction = {
@@ -558,6 +592,7 @@ const unavailableReconciliation = unavailableItems.map((item) => {
   }
 
   const audit = referenceAudits.find((a) => a.rawDiscoveredUrl === item.url);
+  const recovered = Boolean(mediaId && local);
   return {
     rawUrl: item.url,
     sourcePages: [...new Set((item.references || []).map((r) => r.page))],
@@ -565,7 +600,10 @@ const unavailableReconciliation = unavailableItems.map((item) => {
     reconstruction,
     finalClassification: audit?.finalClassification,
     evidence: audit?.evidence,
-    representsAdditionalRecoverableAsset: !(mediaId && localById.has(mediaId)),
+    representsAdditionalRecoverableAsset: !recovered,
+    technicalReasonIfUnrecoverable: recovered
+      ? null
+      : 'No embedded Wix media id, no filename-stem match against mapping/allVariantUrls, and no sibling found variant with a local file.',
   };
 });
 
@@ -577,13 +615,21 @@ const displayCoverage = localFiles.map((filename) => {
   const locations = uiLocationsForId(id);
   const brand = classifyBrand(mapEntry?.altTexts, local.width, local.height);
   const inGallery =
-    local.isImage &&
-    local.width * local.height >= 40000 &&
-    !/facebook|instagram/i.test((mapEntry?.altTexts || []).join(' '));
+    local.isImage && local.width * local.height >= 40000 && !brand;
 
   const reachableRoutes = [];
-  if (inGallery) reachableRoutes.push({ route: '/galeria', via: 'getGalleryImages()' });
-  if (locations.includes('app/page.tsx') || uiCorpus.includes(id) && /getHomeHeroImage|getHomepageFeatureImages|getCategoryImage/.test(uiCorpus) && require('fs').readFileSync(path.join(ROOT,'lib/media/wix-catalog.ts'),'utf8').includes(id)) {
+  if (inGallery)
+    reachableRoutes.push({ route: '/galeria', via: 'getGalleryImages()' });
+  if (
+    locations.includes('app/page.tsx') ||
+    (uiCorpus.includes(id) &&
+      /getHomeHeroImage|getHomepageFeatureImages|getCategoryImage/.test(
+        uiCorpus
+      ) &&
+      require('fs')
+        .readFileSync(path.join(ROOT, 'lib/media/wix-catalog.ts'), 'utf8')
+        .includes(id))
+  ) {
     // refined below via catalog parse
   }
 
@@ -594,7 +640,11 @@ const displayCoverage = localFiles.map((filename) => {
   );
   const explicitRoutes = [];
   if (catalog.includes(id)) {
-    if (catalog.match(new RegExp(`getHomeHeroImage[\\s\\S]{0,400}${id}`)) || catalog.includes(`'wix-${id}'`) && /preferredIds[\s\S]*wix-/.test(catalog)) {
+    if (
+      catalog.match(new RegExp(`getHomeHeroImage[\\s\\S]{0,400}${id}`)) ||
+      (catalog.includes(`'wix-${id}'`) &&
+        /preferredIds[\s\S]*wix-/.test(catalog))
+    ) {
       // check sections
     }
     if (new RegExp(`preferredIds[\\s\\S]*?wix-${id}`).test(catalog)) {
@@ -612,15 +662,30 @@ const displayCoverage = localFiles.map((filename) => {
         via: 'getCategoryImage()/CategoryHero',
       });
     }
-    if (new RegExp(`getSocialIcon[\\s\\S]*${id}|facebook[\\s\\S]*${id}|instagram[\\s\\S]*${id}`).test(catalog) || /facebook|instagram/i.test((mapEntry?.altTexts || []).join(' '))) {
-      if (/facebook|instagram/i.test((mapEntry?.altTexts || []).join(' '))) {
-        explicitRoutes.push({ route: 'footer', via: 'getSocialIcon()' });
-      }
+    if (
+      brand &&
+      /^(facebook|instagram)\s*$/i.test(
+        (mapEntry?.altTexts || []).join(' ').trim()
+      )
+    ) {
+      explicitRoutes.push({ route: 'footer', via: 'getSocialIcon()' });
     }
-    if (new RegExp(`getLogoImage[\\s\\S]*${id}|64bcccd9911949e7895d7325e88a5a75`).test(catalog) && id.includes('64bcccd9911949e7895d7325e88a5a75')) {
+    if (
+      new RegExp(
+        `getLogoImage[\\s\\S]*${id}|64bcccd9911949e7895d7325e88a5a75`
+      ).test(catalog) &&
+      id.includes('64bcccd9911949e7895d7325e88a5a75')
+    ) {
       explicitRoutes.push({ route: 'branding', via: 'getLogoImage()' });
     }
-    if (new RegExp(`getPracowniaImages|getWixMediaByCategory\\('home'\\)`).test(catalog) && (mapEntry?.pages || []).some((p) => /ceramikanero\.com\/?$|\/home$|\/onas/.test(p))) {
+    if (
+      new RegExp(`getPracowniaImages|getWixMediaByCategory\\('home'\\)`).test(
+        catalog
+      ) &&
+      (mapEntry?.pages || []).some((p) =>
+        /ceramikanero\.com\/?$|\/home$|\/onas/.test(p)
+      )
+    ) {
       // home category assets may appear on pracownia
     }
   }
@@ -633,7 +698,8 @@ const displayCoverage = localFiles.map((filename) => {
   const inFixtureGallery = dataTs.includes(`wix-${id}`);
 
   let status = 'unused-catalogue-only';
-  let reason = 'Present in media fixtures/local disk but no proven public render path beyond catalogue.';
+  let reason =
+    'Present in media fixtures/local disk but no proven public render path beyond catalogue.';
 
   if (inGallery) {
     status = brand ? 'migrated-brand-or-decorative' : 'genuinely-rendered';
@@ -644,10 +710,16 @@ const displayCoverage = localFiles.map((filename) => {
   }
   if (explicitRoutes.length) {
     status = brand ? 'migrated-brand-or-decorative' : 'genuinely-rendered';
-    reason = 'Explicitly referenced from wix-catalog maps used by public pages.';
+    reason =
+      'Explicitly referenced from wix-catalog maps used by public pages.';
     reachableRoutes.push(...explicitRoutes);
   }
-  if (/facebook|instagram/i.test((mapEntry?.altTexts || []).join(' '))) {
+  if (
+    brand &&
+    /^(facebook|instagram)\s*$/i.test(
+      (mapEntry?.altTexts || []).join(' ').trim()
+    )
+  ) {
     status = 'migrated-brand-or-decorative';
     reason = 'Social icon rendered in site footer.';
     reachableRoutes.push({ route: '/* (footer)', via: 'Footer/getSocialIcon' });
@@ -672,7 +744,8 @@ const displayCoverage = localFiles.map((filename) => {
     local.width >= 800
   ) {
     status = 'genuinely-rendered';
-    reason = 'Home/about photographic asset included via getPracowniaImages()/getGalleryImages().';
+    reason =
+      'Home/about photographic asset included via getPracowniaImages()/getGalleryImages().';
     reachableRoutes.push({ route: '/pracownia', via: 'getPracowniaImages()' });
     reachableRoutes.push({ route: '/galeria', via: 'getGalleryImages()' });
   }
@@ -686,10 +759,11 @@ const displayCoverage = localFiles.map((filename) => {
     status === 'unused-catalogue-only' &&
     local.isImage &&
     local.width * local.height >= 40000 &&
-    !/facebook|instagram/i.test((mapEntry?.altTexts || []).join(' '))
+    !classifyBrand(mapEntry?.altTexts, local.width, local.height)
   ) {
     status = 'genuinely-rendered';
-    reason = 'Large photographic asset rendered through /galeria getGalleryImages() fallback.';
+    reason =
+      'Large photographic asset rendered through /galeria getGalleryImages() fallback.';
     reachableRoutes.push({ route: '/galeria', via: 'getGalleryImages()' });
   }
 
@@ -715,14 +789,16 @@ const displayCoverage = localFiles.map((filename) => {
     originalPages: mapEntry?.pages || [],
     sourceFilesMentioning: locations,
     inFixtureGallery,
-    reachableRoutes: [...new Map(reachableRoutes.map((r) => [r.route + r.via, r])).values()],
+    reachableRoutes: [
+      ...new Map(reachableRoutes.map((r) => [r.route + r.via, r])).values(),
+    ],
     decorative: brand,
     status,
     reason,
   };
 });
 
-// Page discovery
+// Page discovery (enriched async below before write)
 const pagesVisited = inventory.pagesVisited || [];
 const canonicalPages = [
   ...new Set(
@@ -741,19 +817,166 @@ const canonicalPages = [
     })
   ),
 ];
-const pageDiscovery = {
-  visitedRaw: pagesVisited.length,
-  visitedCanonicalHttps: canonicalPages.length,
-  httpAliasCollapsed: pagesVisited.length - canonicalPages.length,
-  pages: canonicalPages,
-  notes: [
-    'http://www.ceramikanero.com/ was visited separately from https:// and collapses under HTTPS canonicalization.',
-    'Sitemap returned HTTP 500 during earlier inspection; discovery relied on link crawling.',
-    'robots.txt / sitemap re-check performed in this audit script if network available.',
-  ],
-  sitemap: null,
-  robots: null,
-};
+
+// Collect internal links seen in inventory references as additional discovery signal
+const linkedFromReferences = [
+  ...new Set(
+    inventory.inventory.flatMap((i) =>
+      (i.references || []).map((r) => r.page).filter(Boolean)
+    )
+  ),
+];
+
+async function fetchText(url) {
+  try {
+    const res = await fetch(url, {
+      redirect: 'follow',
+      headers: { 'user-agent': 'CeramikaNero-image-audit/1.0' },
+      signal: AbortSignal.timeout(15000),
+    });
+    const text = await res.text();
+    return { ok: res.ok, status: res.status, finalUrl: res.url, text };
+  } catch (err) {
+    return {
+      ok: false,
+      status: 0,
+      finalUrl: url,
+      text: '',
+      error: String(err),
+    };
+  }
+}
+
+function extractSitemapLocs(xml) {
+  const locs = [];
+  const re = /<loc>\s*([^<]+)\s*<\/loc>/gi;
+  let m;
+  while ((m = re.exec(xml))) locs.push(m[1].trim());
+  return locs;
+}
+
+async function buildPageDiscovery() {
+  const robots = await fetchText('https://www.ceramikanero.com/robots.txt');
+  const sitemapCandidates = [
+    'https://www.ceramikanero.com/sitemap.xml',
+    'https://www.ceramikanero.com/sitemap_index.xml',
+    'https://www.ceramikanero.com/sitemap.xml.gz',
+  ];
+  const sitemapResults = [];
+  const sitemapUrls = new Set();
+  for (const url of sitemapCandidates) {
+    const res = await fetchText(url);
+    sitemapResults.push({
+      url,
+      status: res.status,
+      ok: res.ok,
+      error: res.error || null,
+      locCount: res.ok ? extractSitemapLocs(res.text).length : 0,
+    });
+    if (res.ok) {
+      for (const loc of extractSitemapLocs(res.text)) sitemapUrls.add(loc);
+    }
+  }
+
+  // If sitemap index, follow child sitemaps (limit)
+  const childSitemaps = [...sitemapUrls]
+    .filter((u) => /sitemap/i.test(u))
+    .slice(0, 10);
+  for (const url of childSitemaps) {
+    const res = await fetchText(url);
+    sitemapResults.push({
+      url,
+      status: res.status,
+      ok: res.ok,
+      error: res.error || null,
+      locCount: res.ok ? extractSitemapLocs(res.text).length : 0,
+    });
+    if (res.ok) {
+      for (const loc of extractSitemapLocs(res.text)) sitemapUrls.add(loc);
+    }
+  }
+
+  const sitemapPageUrls = [...sitemapUrls].filter((u) => !/sitemap/i.test(u));
+  const visitedSet = new Set(canonicalPages);
+  const sitemapNotVisited = sitemapPageUrls.filter((u) => {
+    try {
+      const x = new URL(u);
+      x.hash = '';
+      x.protocol = 'https:';
+      if (x.pathname !== '/' && x.pathname.endsWith('/')) {
+        x.pathname = x.pathname.slice(0, -1);
+      }
+      return !visitedSet.has(x.href);
+    } catch {
+      return true;
+    }
+  });
+
+  const expectedRouteFamilies = {
+    home: canonicalPages.filter((p) => /ceramikanero\.com\/?$|\/home$/.test(p)),
+    blog: canonicalPages.filter((p) => /\/blog|\/post\//i.test(p)),
+    workshops: canonicalPages.filter((p) =>
+      /warsztat|kurs|glina|urodziny|panie/i.test(p)
+    ),
+    services: canonicalPages.filter((p) =>
+      /dla-dzieci|dladzieci|doroslych|grupy|firm/i.test(p)
+    ),
+    legal: canonicalPages.filter((p) =>
+      /polityka|regulamin|rodo|privacy|terms/i.test(p)
+    ),
+    profile: canonicalPages.filter((p) =>
+      /account|profile|konto|member/i.test(p)
+    ),
+    shop: canonicalPages.filter((p) => /shop|sklep|product|store/i.test(p)),
+  };
+
+  return {
+    generatedAt: new Date().toISOString(),
+    visitedRaw: pagesVisited.length,
+    visitedCanonicalHttps: canonicalPages.length,
+    httpAliasCollapsed: pagesVisited.length - canonicalPages.length,
+    discoveredViaPageReferences: linkedFromReferences.length,
+    pages: canonicalPages,
+    robots: {
+      status: robots.status,
+      ok: robots.ok,
+      error: robots.error || null,
+      excerpt: (robots.text || '').slice(0, 500),
+      sitemapDirectives: [
+        ...((robots.text || '').match(/Sitemap:\s*\S+/gi) || []),
+      ],
+    },
+    sitemap: {
+      probes: sitemapResults,
+      urlsDiscovered: sitemapPageUrls.length,
+      notVisitedComparedToCrawl: sitemapNotVisited.slice(0, 100),
+      notVisitedCount: sitemapNotVisited.length,
+    },
+    expectedRouteFamilies,
+    excludedUrls: [
+      {
+        pattern: 'query-string aliases',
+        reason:
+          'Canonicalization strips hash; protocol normalized to https; trailing slash collapsed except root.',
+      },
+      {
+        pattern: 'Wix editor / preview URLs',
+        reason: 'Not part of public customer-facing navigation.',
+      },
+    ],
+    failedUrls: sitemapResults.filter((s) => !s.ok),
+    orphanUrlsOutsideOrdinaryNavigation: sitemapNotVisited.slice(0, 50),
+    paginationOrLoadMore: {
+      exercised: canonicalPages.some((p) => /page=\d+|offset=|start=/i.test(p)),
+      note: 'Inventory pagesVisited list did not retain pagination query variants after crawl; blog category/list pages included if linked.',
+    },
+    notes: [
+      '71 raw visited pages collapse under HTTPS + trailing-slash canonicalization.',
+      'Sitemap availability is recorded live; a 500 from Wix sitemap does not invalidate link-crawl completeness by itself.',
+      'Orphan sitemap URLs (if any) are listed for manual review — they may be redirects, retired pages, or Wix system routes.',
+    ],
+  };
+}
 
 // Quality verification vs mapping provenance
 const qualityVerification = localFiles.map((filename) => {
@@ -775,9 +998,7 @@ const qualityVerification = localFiles.map((filename) => {
     mappingProvenanceUrl: mapEntry?.originalUrl || null,
     mappingDimensions: sourceDims,
     isHighestQualityRecoverable:
-      !suspicious &&
-      local.byteSize >= 50000 &&
-      local.width >= 800,
+      !suspicious && local.byteSize >= 50000 && local.width >= 800,
     flags: [
       suspicious,
       local.byteSize < 10000 ? 'very-small-file' : null,
@@ -814,95 +1035,122 @@ const completenessAudit = {
     classificationCounts,
     displayStatusCounts,
     hashReductionExplanation,
+    unavailableRecovered: unavailableReconciliation.filter(
+      (u) => !u.representsAdditionalRecoverableAsset
+    ).length,
+    unavailableStillCandidates: unavailableReconciliation.filter(
+      (u) => u.representsAdditionalRecoverableAsset
+    ).length,
   },
   references: referenceAudits,
 };
 
-fs.writeFileSync(
-  path.join(OUT, 'completeness-audit.json'),
-  JSON.stringify(completenessAudit, null, 2)
-);
-fs.writeFileSync(
-  path.join(OUT, 'display-coverage.json'),
-  JSON.stringify(
-    {
-      generatedAt: new Date().toISOString(),
-      totals: displayStatusCounts,
-      files: displayCoverage,
-    },
-    null,
-    2
-  )
-);
-fs.writeFileSync(
-  path.join(OUT, 'hash-reconciliation.json'),
-  JSON.stringify(
-    {
-      generatedAt: new Date().toISOString(),
-      crawlUniqueHashes: byCrawlHash.size,
-      reduction: hashReductionExplanation,
-      hashes: hashReconciliation,
-      duplicateLocalContentGroups: duplicateLocalGroups,
-    },
-    null,
-    2
-  )
-);
-fs.writeFileSync(
-  path.join(OUT, 'unavailable-reconciliation.json'),
-  JSON.stringify(
-    {
-      generatedAt: new Date().toISOString(),
-      count: unavailableReconciliation.length,
-      recoveredViaEmbeddedId: unavailableReconciliation.filter(
-        (u) => u.reconstruction && !u.representsAdditionalRecoverableAsset
-      ).length,
-      stillAdditionalAssetCandidates: unavailableReconciliation.filter(
-        (u) => u.representsAdditionalRecoverableAsset
-      ).length,
-      items: unavailableReconciliation,
-    },
-    null,
-    2
-  )
-);
-fs.writeFileSync(
-  path.join(OUT, 'page-discovery.json'),
-  JSON.stringify(pageDiscovery, null, 2)
-);
-fs.writeFileSync(
-  path.join(OUT, 'quality-verification.json'),
-  JSON.stringify(
-    {
-      generatedAt: new Date().toISOString(),
-      files: qualityVerification,
-      suspiciousCount: qualityVerification.filter((q) => q.flags.length).length,
-      highQualityCount: qualityVerification.filter(
-        (q) => q.isHighestQualityRecoverable
-      ).length,
-    },
-    null,
-    2
-  )
-);
+async function main() {
+  const pageDiscovery = await buildPageDiscovery();
 
-console.log(
-  JSON.stringify(
-    {
-      references: referenceAudits.length,
-      classificationCounts,
-      displayStatusCounts,
-      unavailable: unavailableReconciliation.length,
-      unavailableStillCandidates: unavailableReconciliation.filter(
-        (u) => u.representsAdditionalRecoverableAsset
-      ).length,
-      crawlHashes: byCrawlHash.size,
-      localFiles: localFiles.length,
-      localUniqueHashes: localUniqueContentHashes,
-      uniqueMediaIds: uniqueMediaIdsFromRefs.length,
-      missingMediaIds: uniqueMediaIdsFromRefs.filter((id) => !localById.has(id)),
-    },
-    null,
-    2
-  )
-);
+  fs.writeFileSync(
+    path.join(OUT, 'completeness-audit.json'),
+    JSON.stringify(completenessAudit, null, 2)
+  );
+  fs.writeFileSync(
+    path.join(OUT, 'display-coverage.json'),
+    JSON.stringify(
+      {
+        generatedAt: new Date().toISOString(),
+        totals: displayStatusCounts,
+        files: displayCoverage,
+      },
+      null,
+      2
+    )
+  );
+  fs.writeFileSync(
+    path.join(OUT, 'hash-reconciliation.json'),
+    JSON.stringify(
+      {
+        generatedAt: new Date().toISOString(),
+        crawlUniqueHashes: byCrawlHash.size,
+        reduction: hashReductionExplanation,
+        hashes: hashReconciliation,
+        duplicateLocalContentGroups: duplicateLocalGroups,
+      },
+      null,
+      2
+    )
+  );
+  fs.writeFileSync(
+    path.join(OUT, 'unavailable-reconciliation.json'),
+    JSON.stringify(
+      {
+        generatedAt: new Date().toISOString(),
+        count: unavailableReconciliation.length,
+        recoveredViaEmbeddedId: unavailableReconciliation.filter(
+          (u) => u.reconstruction && !u.representsAdditionalRecoverableAsset
+        ).length,
+        stillAdditionalAssetCandidates: unavailableReconciliation.filter(
+          (u) => u.representsAdditionalRecoverableAsset
+        ).length,
+        items: unavailableReconciliation,
+      },
+      null,
+      2
+    )
+  );
+  fs.writeFileSync(
+    path.join(OUT, 'page-discovery.json'),
+    JSON.stringify(pageDiscovery, null, 2)
+  );
+  fs.writeFileSync(
+    path.join(OUT, 'quality-verification.json'),
+    JSON.stringify(
+      {
+        generatedAt: new Date().toISOString(),
+        files: qualityVerification,
+        suspiciousCount: qualityVerification.filter((q) => q.flags.length)
+          .length,
+        highQualityCount: qualityVerification.filter(
+          (q) => q.isHighestQualityRecoverable
+        ).length,
+      },
+      null,
+      2
+    )
+  );
+
+  console.log(
+    JSON.stringify(
+      {
+        references: referenceAudits.length,
+        classificationCounts,
+        displayStatusCounts,
+        unavailable: unavailableReconciliation.length,
+        unavailableStillCandidates: unavailableReconciliation.filter(
+          (u) => u.representsAdditionalRecoverableAsset
+        ).length,
+        crawlHashes: byCrawlHash.size,
+        localFiles: localFiles.length,
+        localUniqueHashes: localUniqueContentHashes,
+        uniqueMediaIds: uniqueMediaIdsFromRefs.length,
+        missingMediaIds: uniqueMediaIdsFromRefs.filter(
+          (id) => !localById.has(id)
+        ),
+        pageDiscovery: {
+          visitedRaw: pageDiscovery.visitedRaw,
+          visitedCanonical: pageDiscovery.visitedCanonicalHttps,
+          sitemapStatus: pageDiscovery.sitemap.probes.map((p) => ({
+            url: p.url,
+            status: p.status,
+          })),
+          sitemapNotVisited: pageDiscovery.sitemap.notVisitedCount,
+        },
+      },
+      null,
+      2
+    )
+  );
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

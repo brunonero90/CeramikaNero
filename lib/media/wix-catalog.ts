@@ -43,11 +43,21 @@ export function getMigratedImageById(id: string): SiteImage | null {
 export function getGalleryImages(): SiteImage[] {
   // Include large photographic assets even when the crawl tagged them as
   // social/OG metadata — they are still part of the original site collection.
+  // Only exclude true social *icons* (tiny square assets with Facebook/Instagram
+  // as the sole alt), not gallery graphics whose alt merely mentions social media.
   return wixMediaAssets
     .map(toSiteImage)
     .filter((img): img is SiteImage => img !== null)
     .filter((img) => img.width * img.height >= 40000)
-    .filter((img) => !/facebook|instagram/i.test(img.alt))
+    .filter((img) => {
+      const alt = (img.alt || '').trim().toLowerCase();
+      const isSocialIconOnly =
+        /^(facebook|instagram)\s*$/i.test(alt) ||
+        (img.width <= 256 &&
+          img.height <= 256 &&
+          /facebook|instagram/i.test(alt));
+      return !isSocialIconOnly;
+    })
     .filter(
       (img, index, arr) =>
         arr.findIndex((other) => other.src === img.src) === index
@@ -63,9 +73,12 @@ export function getBrandingImages(): SiteImage[] {
 export function getSocialIcon(
   name: 'facebook' | 'instagram'
 ): SiteImage | null {
-  const match = wixMediaAssets.find((asset) =>
-    (asset.altText || '').toLowerCase().includes(name)
-  );
+  const match = wixMediaAssets.find((asset) => {
+    const alt = (asset.altText || '').trim().toLowerCase();
+    const isExact = alt === name || new RegExp(`^${name}\\s*$`).test(alt);
+    const isTiny = (asset.width ?? 0) <= 256 && (asset.height ?? 0) <= 256;
+    return isExact || (isTiny && alt.includes(name));
+  });
   return match ? toSiteImage(match) : null;
 }
 

@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-24T09:11:11.059Z",
+  "generatedAt": "2026-07-24T09:28:39.109Z",
   "crawlUniqueHashes": 307,
   "reduction": {
     "crawlUniqueHashes": 307,
     "uniqueMediaIdsExtractedFrom518Refs": 172,
-    "localFiles": 172,
-    "localUniqueContentHashes": 166,
+    "localFiles": 176,
+    "localUniqueContentHashes": 170,
     "duplicateLocalContentGroups": 6,
     "explanation": [
       "The crawl hashed whatever URL bytes were fetched during inventory — usually Wix /v1/fill/ transforms at many widths.",
       "Different transforms of the same photograph produce different content hashes, so 307 crawl hashes >> unique photographs.",
       "Local migration stores one original-quality file per Wix media ID (172 files).",
-      "6 local hash groups show identical bytes under different media IDs (true duplicate uploads), so unique visual originals among local files = 166.",
+      "6 local hash groups show identical bytes under different media IDs (true duplicate uploads), so unique visual originals among local files = 170.",
       "Therefore: 307 crawl hashes are transform/variant hashes; 172 local files are per-media-id originals; 166 unique local content hashes after byte-identical duplicates."
     ]
   },

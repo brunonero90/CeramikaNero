@@ -1,0 +1,2771 @@
+{
+  "generatedAt": "2026-07-24T09:28:03.728Z",
+  "baseUrl": "http://localhost:3002",
+  "method": "playwright-chromium-live-render",
+  "routeResults": [
+    {
+      "route": "/",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/",
+      "imageCount": 6,
+      "migratedImageCount": 6,
+      "migratedSrcs": [
+        "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+        "/images/wix-migrated/747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+        "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+        "/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+          "alt": "pracownia ceramiczne pracownia ceramiki w poznaniu w okolicach",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+          "alt": "dladzieci",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+          "alt": "Warsztaty dla dorosłych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+          "alt": "Grupy i firmy",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/desktop_.png",
+      "ok": true
+    },
+    {
+      "route": "/galeria",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/galeria",
+      "imageCount": 176,
+      "migratedImageCount": 176,
+      "migratedSrcs": [
+        "/images/wix-migrated/11062b_142aa905b7024f9c96077a6cc473b6d6.jpg",
+        "/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg",
+        "/images/wix-migrated/11062b_21dbdd79270a44b8abe0d6177d2ac1f9.jpg",
+        "/images/wix-migrated/11062b_30c5ffa57f61439aa48f705fe3d49dd8.jpg",
+        "/images/wix-migrated/11062b_43197d81c0d040e4867041831bae8092.jpeg",
+        "/images/wix-migrated/11062b_541486568d644691a35279862f8fd254.jpg",
+        "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+        "/images/wix-migrated/11062b_66bd1d55c36c4eb9b8db106cf691f67e.jpg",
+        "/images/wix-migrated/11062b_7577da3017c54ec18762d3d28e041a1d.jpg",
+        "/images/wix-migrated/11062b_9fca2391b3524803822fb730e5d8ac1b.jpg",
+        "/images/wix-migrated/11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+        "/images/wix-migrated/11062b_cf4f37b0cadb4bbdb9e1b61241138aef.jpg",
+        "/images/wix-migrated/11062b_d5722b6f5d7249279adcbb06483186b1.jpg",
+        "/images/wix-migrated/11062b_d62cc9bc024a4fafb2f3649ba987b2c7.jpg",
+        "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
+        "/images/wix-migrated/11062b_e4cd34a55ede422ea0121c65375b84c0.jpg",
+        "/images/wix-migrated/11062b_eb2cf4d2cd5646fa8cfa980723ac63c7.jpg",
+        "/images/wix-migrated/11062b_f468647e8e6d4d54ba57a93ea792af1e.jpg",
+        "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+        "/images/wix-migrated/747d6f_016e5ab390694b1faf1ed4e14a14c5e7.png",
+        "/images/wix-migrated/747d6f_0296bb0269754a8295a47f62c62d4822.jpg",
+        "/images/wix-migrated/747d6f_03425894e06f4fd8af3e15755bafeea7.png",
+        "/images/wix-migrated/747d6f_0397de818e314f72ad3b684dc55b9c43.jpg",
+        "/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg",
+        "/images/wix-migrated/747d6f_057cc0c66cf348268e9d25499f057beb.jpg",
+        "/images/wix-migrated/747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
+        "/images/wix-migrated/747d6f_085171d978274d52ab228ceb93aa9847.png",
+        "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
+        "/images/wix-migrated/747d6f_0e252de9992048d2a98d1ff8761c8ddf.jpeg",
+        "/images/wix-migrated/747d6f_0f3b800e5b7a407baf665c1170430ecd.jpg",
+        "/images/wix-migrated/747d6f_0fe41123a0a34078b88b14d085b6b727.jpg",
+        "/images/wix-migrated/747d6f_11d47ff20fcf4afa9085b728719b20f0.jpg",
+        "/images/wix-migrated/747d6f_15381c8348c54adfb2a83c0670411e4e.jpg",
+        "/images/wix-migrated/747d6f_197dce9d012c4b93af7df0d001f9fb0d.jpg",
+        "/images/wix-migrated/747d6f_22273d9e08a3424aa991b87fd9fb803e.jpg",
+        "/images/wix-migrated/747d6f_2234cc741bd5422eb5d92705a021219a.jpg",
+        "/images/wix-migrated/747d6f_252d121269ee423a9a5d9a5a532922cb.webp",
+        "/images/wix-migrated/747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
+        "/images/wix-migrated/747d6f_25f701d5db584b2cabcec04bba397ec5.jpeg",
+        "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+        "/images/wix-migrated/747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+        "/images/wix-migrated/747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b.jpg",
+        "/images/wix-migrated/747d6f_31092dec535d44fda01b193d542727de.jpg",
+        "/images/wix-migrated/747d6f_31b0976c3c0e4cf3addf864e058110a2.png",
+        "/images/wix-migrated/747d6f_355d7132929d437a94a84beaa0a6e9a1.png",
+        "/images/wix-migrated/747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02.jpg",
+        "/images/wix-migrated/747d6f_3856dd866c104349b1cbe529e8a393fd.jpg",
+        "/images/wix-migrated/747d6f_38c994e6e4e54ed3a99dc62dfa01c7b3.jpg",
+        "/images/wix-migrated/747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+        "/images/wix-migrated/747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+        "/images/wix-migrated/747d6f_3dc57ba794be47e4a38a00f965a6c689.jpg",
+        "/images/wix-migrated/747d6f_40f47e03350d4ef3b3d3e3c951eff7cb.jpg",
+        "/images/wix-migrated/747d6f_431ea2ab2bee4c94b6e83dc97966c78a.png",
+        "/images/wix-migrated/747d6f_439e4c293ab04730a3204fb223f7c0c9.jpg",
+        "/images/wix-migrated/747d6f_448924318b194426b689bf1f332a815e.webp",
+        "/images/wix-migrated/747d6f_463afd8aa7234779a218dd50fd7c0fcc.jpg",
+        "/images/wix-migrated/747d6f_467152182e8a4089a2a18d1d71682254.png",
+        "/images/wix-migrated/747d6f_47a6a2b4713241168b37ff242c99303e.jpg",
+        "/images/wix-migrated/747d6f_483d3d906ea347559b7d174a489cf361.jpg",
+        "/images/wix-migrated/747d6f_4bc1bec239df452d9c4e205c46a8a33e.jpg",
+        "/images/wix-migrated/747d6f_4e60c15e658a4b79a0195819e842eb93.jpg",
+        "/images/wix-migrated/747d6f_4f691e3ded7e4211a2d6f2947a5186ea.jpg",
+        "/images/wix-migrated/747d6f_5189ce27ac69426f8e7ee0f701b25f14.webp",
+        "/images/wix-migrated/747d6f_565523d2b38546f582a8ddb7f0a5dd67.jpg",
+        "/images/wix-migrated/747d6f_5946cd9b03e84e5c8439772d49367b12.jpg",
+        "/images/wix-migrated/747d6f_5aaae6b332304ef5ba65344c8eb11ce0.jpg",
+        "/images/wix-migrated/747d6f_5c0cd869ade843ccbdca8e70b8463f50.jpg",
+        "/images/wix-migrated/747d6f_5cee2d3c27734c998452e5eae7fdfb6e.jpg",
+        "/images/wix-migrated/747d6f_5ef38d83bd5d4a33937c5ac8ae17ca75.jpg",
+        "/images/wix-migrated/747d6f_5fbe376ba5bd4db9a9118927f037d80d.jpg",
+        "/images/wix-migrated/747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5.jpg",
+        "/images/wix-migrated/747d6f_632dd58fd1e5410496220f95241a4bbc.jpg",
+        "/images/wix-migrated/747d6f_63a4715edaeb43029411c6b6de222703.jpg",
+        "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+        "/images/wix-migrated/747d6f_65957c575a244565926c21e9f48a20fd.jpg",
+        "/images/wix-migrated/747d6f_67bfb90dac9d43e1a32e80facafef2e6.jpg",
+        "/images/wix-migrated/747d6f_6a39bd22cbe142c8a1aada6b04e8a120.jpg",
+        "/images/wix-migrated/747d6f_6d1acf554eee4fbc80fbd473359a0c55.jpg",
+        "/images/wix-migrated/747d6f_6d7fede4fb5743579e7005449c2d4d29.jpg",
+        "/images/wix-migrated/747d6f_6e4389df7e7f4087ae1308a3c44b14f2.webp",
+        "/images/wix-migrated/747d6f_6fba4cab7fda46208092419846e777a4.png",
+        "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+        "/images/wix-migrated/747d6f_71c100aa03c04a2393e0deb186d0dfe1.jpg",
+        "/images/wix-migrated/747d6f_742f7fd280b0480085fbdc19faf13923.jpg",
+        "/images/wix-migrated/747d6f_7440489991eb4b4b82871c79341ad3b9.jpg",
+        "/images/wix-migrated/747d6f_74d5edfd53564d5e874eaa48216c69e1.webp",
+        "/images/wix-migrated/747d6f_75125bb1ebef47b7939d3fbd6ec73f55.png",
+        "/images/wix-migrated/747d6f_75f475196e3244da9e18720cc382ba9b.jpg",
+        "/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+        "/images/wix-migrated/747d6f_79268ec496de49ba985b6980ba3528c4.jpeg",
+        "/images/wix-migrated/747d6f_7d7f776acb8942f383a1dde065294ead.png",
+        "/images/wix-migrated/747d6f_7db2d914cc6745e5bba260e4c16be9c7.jpg",
+        "/images/wix-migrated/747d6f_834716a3d7184a77b4462bb715a0d9bf.jpg",
+        "/images/wix-migrated/747d6f_858ea5b1d9ce415c8d2ce2c3977c5d56.jpg",
+        "/images/wix-migrated/747d6f_85e6210e2fd54cd6885c6833e198c58d.jpg",
+        "/images/wix-migrated/747d6f_88382165162c4d72b411c18f7072fb10.jpg",
+        "/images/wix-migrated/747d6f_8af7f884525642d8b67fe0bf709a577b.png",
+        "/images/wix-migrated/747d6f_8b5a6384178243c5817202f1ad50b5ed.png",
+        "/images/wix-migrated/747d6f_8d41bbe5ded149c2a8cea7d5e662ef08.jpg",
+        "/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+        "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+        "/images/wix-migrated/747d6f_90e90c61b57d4029a48950eacd31468b.jpg",
+        "/images/wix-migrated/747d6f_939c4a28e30b423aae42088184598b32.png",
+        "/images/wix-migrated/747d6f_9653e644591c401480e2390aadca4cf6.jpg",
+        "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+        "/images/wix-migrated/747d6f_9d3ff910f8f94205a2240105010d6192.jpg",
+        "/images/wix-migrated/747d6f_a1a973b49bc74e2b9e097bf7b8091e76.jpeg",
+        "/images/wix-migrated/747d6f_a37f0e14350d44ccaf5bd6702f0b5439.webp",
+        "/images/wix-migrated/747d6f_af946e4dbc8d40208b3d1c05be4cebbe.jpg",
+        "/images/wix-migrated/747d6f_b23dca3217b744eab898a010fc1654d6.webp",
+        "/images/wix-migrated/747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg",
+        "/images/wix-migrated/747d6f_b36c26d927764d3f859565bb328d0dae.jpg",
+        "/images/wix-migrated/747d6f_b5e3aff7de8743c88922dac0ed1c8629.png",
+        "/images/wix-migrated/747d6f_b6b2ebdcb95f424984ee80e8e58a604d.jpg",
+        "/images/wix-migrated/747d6f_b8b4604091d64cd08fc792d41d76287e.jpg",
+        "/images/wix-migrated/747d6f_b9beeef9651e413d806d04d3230bcad8.jpeg",
+        "/images/wix-migrated/747d6f_ba3d46ee996f48adb1457d8386e8dcef.jpg",
+        "/images/wix-migrated/747d6f_bafb828b6a10428e91beb922a773e6a1.jpg",
+        "/images/wix-migrated/747d6f_bd50a8f7389540819fdfd73395d3b559.jpg",
+        "/images/wix-migrated/747d6f_bdbe8e1736984ddfae1721dbdc8492fb.jpg",
+        "/images/wix-migrated/747d6f_beb2180b228e46b99d49a5a2f1eac63b.png",
+        "/images/wix-migrated/747d6f_bf6fc0998d4a4467945a89a8340eb7cd.png",
+        "/images/wix-migrated/747d6f_bfd4d83b5e324760969c7f4db1b2b41f.png",
+        "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg",
+        "/images/wix-migrated/747d6f_c4f1c7aee49e46c295f3910e257e8f69.jpg",
+        "/images/wix-migrated/747d6f_c6ba27e517f64531a718d44d6861d2b0.jpg",
+        "/images/wix-migrated/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc.jpg",
+        "/images/wix-migrated/747d6f_cd2460d4d3c1409b91c31dba9f7db804.png",
+        "/images/wix-migrated/747d6f_d1a7cda543f04bfa93539ffe6925026b.jpg",
+        "/images/wix-migrated/747d6f_d5ab31a744f841fc8269902080e23e8b.jpg",
+        "/images/wix-migrated/747d6f_d8f9b5306c68445f95b53ab86213c36b.png",
+        "/images/wix-migrated/747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
+        "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
+        "/images/wix-migrated/747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+        "/images/wix-migrated/747d6f_dc55fa9a88ec400c852bddf31cc0b1c8.png",
+        "/images/wix-migrated/747d6f_dd9f283803834f07b7a7d280c74af5aa.png",
+        "/images/wix-migrated/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857.jpg",
+        "/images/wix-migrated/747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg",
+        "/images/wix-migrated/747d6f_e0f7a1b2accc4542a5fec56b5ba4b975.jpg",
+        "/images/wix-migrated/747d6f_e1190fb32156413690b13225eff34e14.jpg",
+        "/images/wix-migrated/747d6f_e5ad882b2465483ebd9497dece123b1c.jpeg",
+        "/images/wix-migrated/747d6f_e90fa0c2226c4d72bb3a814d5b815ab6.jpg",
+        "/images/wix-migrated/747d6f_e9ae4fd07ea84670a4619d707e66e83e.png",
+        "/images/wix-migrated/747d6f_ec8876726c8f4acf9f3aef15bc36b8cd.jpg",
+        "/images/wix-migrated/747d6f_ecba344d6d424bc0acd5444e304c190f.jpg",
+        "/images/wix-migrated/747d6f_ecd02fc102ac4073a257e0118506cadd.jpg",
+        "/images/wix-migrated/747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg",
+        "/images/wix-migrated/747d6f_f560d7a2e95a49aebcda0065309a0783.jpg",
+        "/images/wix-migrated/747d6f_f58dd3eadfef49bdb97c27f37f7405b2.jpg",
+        "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+        "/images/wix-migrated/747d6f_fac5316d826f417fa309426a15f3f820.jpg",
+        "/images/wix-migrated/747d6f_fb9903ba14334071adf53fbe9c7373ba.jpg",
+        "/images/wix-migrated/747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+        "/images/wix-migrated/747d6f_ff24ad7d7859452782d34e7ac82d8133.jpg",
+        "/images/wix-migrated/747d6f_ffa722856f6d45fcbf568b5e5bb50fbb.jpg",
+        "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
+        "/images/wix-migrated/nsplsh_bb3bccc5280d4c56a81635bea456738b.jpg",
+        "/images/wix-migrated/de27b2e088814fa994ff8a44f2a9a467.jpg",
+        "/images/wix-migrated/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
+        "/images/wix-migrated/595cb32628cf4476abc9c0d74e063e07.jpg",
+        "/images/wix-migrated/4972bc97a3da4931ba6c18a6cf8df7e1.jpg",
+        "/images/wix-migrated/f829a8f81b1348e8a2a532e9159018b4.jpg",
+        "/images/wix-migrated/cea6ce1029734103b164fb07bb36ed70.jpg",
+        "/images/wix-migrated/60975bc6b6c14bd88ea5618a85e14da1.jpg",
+        "/images/wix-migrated/d01231e46af34161be7ad101d281a441.jpg",
+        "/images/wix-migrated/7ce4eff7766e4d5f905b18cd5f8c43ce.jpg",
+        "/images/wix-migrated/e0b46ce0b8284bdbb676d5b51b90aeb3.jpg",
+        "/images/wix-migrated/4960cfa6cf2a4a44a7ba1695c421cb84.jpg",
+        "/images/wix-migrated/87a0d537f3654d148ba517d045f6d3ff.jpg",
+        "/images/wix-migrated/25189b4996b84d5ba2cd03f12eff06c5.jpg",
+        "/images/wix-migrated/747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+        "/images/wix-migrated/747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+        "/images/wix-migrated/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+        "/images/wix-migrated/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "11062b_142aa905b7024f9c96077a6cc473b6d6.jpg",
+          "alt": "Kolorowe wycinanki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_147dc3a6f24349ff9a4d332be4360d81.jpg",
+          "alt": "Pottery Class",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_21dbdd79270a44b8abe0d6177d2ac1f9.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_30c5ffa57f61439aa48f705fe3d49dd8.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_43197d81c0d040e4867041831bae8092.jpeg",
+          "alt": "Kurs rysunku i malarstwa",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_541486568d644691a35279862f8fd254.jpg",
+          "alt": "Impreza plenerowa",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+          "alt": "Happy Women",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_66bd1d55c36c4eb9b8db106cf691f67e.jpg",
+          "alt": "Bowl of Fruits",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_7577da3017c54ec18762d3d28e041a1d.jpg",
+          "alt": "Potwór z plasteliny",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_9fca2391b3524803822fb730e5d8ac1b.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_cf4f37b0cadb4bbdb9e1b61241138aef.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_d5722b6f5d7249279adcbb06483186b1.jpg",
+          "alt": "Miejsce ślubu w ogrodzie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_d62cc9bc024a4fafb2f3649ba987b2c7.jpg",
+          "alt": "Ziemista wiejska ścieżka",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
+          "alt": "Love Wedding Decoration",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_e4cd34a55ede422ea0121c65375b84c0.jpg",
+          "alt": "Architektura",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_eb2cf4d2cd5646fa8cfa980723ac63c7.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_f468647e8e6d4d54ba57a93ea792af1e.jpg",
+          "alt": "Metalowe koraliki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+          "alt": "Pottery and Clay",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_016e5ab390694b1faf1ed4e14a14c5e7.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0296bb0269754a8295a47f62c62d4822.jpg",
+          "alt": "Dziękujemy wszystkim, którzy są z nami!",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_03425894e06f4fd8af3e15755bafeea7.png",
+          "alt": "warsztaty z gliny",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0397de818e314f72ad3b684dc55b9c43.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_045e89a3529f4e2491a7742e1da14497.jpg",
+          "alt": "warsztaty glina do wina",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_057cc0c66cf348268e9d25499f057beb.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_085171d978274d52ab228ceb93aa9847.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (8)",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
+          "alt": "Dlaczego Warto Wybrać Naszą Pracownię Ceramiki dla Twoich Kreatywnych Potrzeb?",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0e252de9992048d2a98d1ff8761c8ddf.jpeg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0f3b800e5b7a407baf665c1170430ecd.jpg",
+          "alt": "włoskie przystawki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0fe41123a0a34078b88b14d085b6b727.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_11d47ff20fcf4afa9085b728719b20f0.jpg",
+          "alt": "ceramika prezent warszataty poznan suchy las",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_15381c8348c54adfb2a83c0670411e4e.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_197dce9d012c4b93af7df0d001f9fb0d.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_22273d9e08a3424aa991b87fd9fb803e.jpg",
+          "alt": "RYSUNEK6",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2234cc741bd5422eb5d92705a021219a.jpg",
+          "alt": "rysunek6+",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_252d121269ee423a9a5d9a5a532922cb.webp",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
+          "alt": "garncarstwo",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_25f701d5db584b2cabcec04bba397ec5.jpeg",
+          "alt": "Wspaniała Historia Pracowni: Od Miłości do Gotowania do Tworzenia Inspirującej Wspólnoty",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+          "alt": "warsztaty ceramiki poznan suchy las lepienie z gliny, ceramika dla dorosłych, kurs ceramiczny",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b.jpg",
+          "alt": "Warsztaty Glina do wina w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_31092dec535d44fda01b193d542727de.jpg",
+          "alt": "Warsztaty ceramiczne dla dzieci w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_31b0976c3c0e4cf3addf864e058110a2.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (9)",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_355d7132929d437a94a84beaa0a6e9a1.png",
+          "alt": "warsztaty ceramiczne",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02.jpg",
+          "alt": "skotnickanowakpl_ceramikanero_00837",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3856dd866c104349b1cbe529e8a393fd.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_38c994e6e4e54ed3a99dc62dfa01c7b3.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3dc57ba794be47e4a38a00f965a6c689.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_40f47e03350d4ef3b3d3e3c951eff7cb.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_431ea2ab2bee4c94b6e83dc97966c78a.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_439e4c293ab04730a3204fb223f7c0c9.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_448924318b194426b689bf1f332a815e.webp",
+          "alt": "Mam na imię Małgosia i jestem pasjonatką sztuki ceramicznej",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_463afd8aa7234779a218dd50fd7c0fcc.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_467152182e8a4089a2a18d1d71682254.png",
+          "alt": "pracownia ceramiki suchy las prezent złotniki piątkowo ceramiki glina",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_47a6a2b4713241168b37ff242c99303e.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_483d3d906ea347559b7d174a489cf361.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_4bc1bec239df452d9c4e205c46a8a33e.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_4e60c15e658a4b79a0195819e842eb93.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_4f691e3ded7e4211a2d6f2947a5186ea.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5189ce27ac69426f8e7ee0f701b25f14.webp",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_565523d2b38546f582a8ddb7f0a5dd67.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5946cd9b03e84e5c8439772d49367b12.jpg",
+          "alt": "rysunek 11+",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5aaae6b332304ef5ba65344c8eb11ce0.jpg",
+          "alt": "urodziny z ceramiką, kreatywne urodzinki z gliną, świetna zabawa, dla dzieci, Poznań i okolice, Suchy Las, 7 urodziny, urodzi",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5c0cd869ade843ccbdca8e70b8463f50.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5cee2d3c27734c998452e5eae7fdfb6e.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5ef38d83bd5d4a33937c5ac8ae17ca75.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5fbe376ba5bd4db9a9118927f037d80d.jpg",
+          "alt": "Pikniki artystyczne na polanie przed Pracownią ceramiki Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_632dd58fd1e5410496220f95241a4bbc.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_63a4715edaeb43029411c6b6de222703.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+          "alt": "pracownia ceramiczne pracownia ceramiki w poznaniu w okolicach",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_65957c575a244565926c21e9f48a20fd.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_67bfb90dac9d43e1a32e80facafef2e6.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6a39bd22cbe142c8a1aada6b04e8a120.jpg",
+          "alt": "Zaczynamy nowe warsztaty już we wrześniu. Śledź nasze media, jesteśmy na FACEBOOKu i INSTAGRAMie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6d1acf554eee4fbc80fbd473359a0c55.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6d7fede4fb5743579e7005449c2d4d29.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6e4389df7e7f4087ae1308a3c44b14f2.webp",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6fba4cab7fda46208092419846e777a4.png",
+          "alt": "Nowe warsztaty Ceramika dla smyka od stycznia 2025",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_71c100aa03c04a2393e0deb186d0dfe1.jpg",
+          "alt": "Warsztaty ceramiczne dla dzieci w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_742f7fd280b0480085fbdc19faf13923.jpg",
+          "alt": "warsztaty z ceramiki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_7440489991eb4b4b82871c79341ad3b9.jpg",
+          "alt": "warsztaty z ceramiki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_74d5edfd53564d5e874eaa48216c69e1.webp",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_75125bb1ebef47b7939d3fbd6ec73f55.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_75f475196e3244da9e18720cc382ba9b.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_79268ec496de49ba985b6980ba3528c4.jpeg",
+          "alt": "Widok z poziomu oczu na przestronną pracownię ceramiki z półkami pełnymi wyrobów ceramicznych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_7d7f776acb8942f383a1dde065294ead.png",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_7db2d914cc6745e5bba260e4c16be9c7.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_834716a3d7184a77b4462bb715a0d9bf.jpg",
+          "alt": "Nowe warsztaty Ceramika dla smyka",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_858ea5b1d9ce415c8d2ce2c3977c5d56.jpg",
+          "alt": "Warsztaty firmowe w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_85e6210e2fd54cd6885c6833e198c58d.jpg",
+          "alt": "Warsztaty ceramiczne dla dorosłych w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_88382165162c4d72b411c18f7072fb10.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8af7f884525642d8b67fe0bf709a577b.png",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8b5a6384178243c5817202f1ad50b5ed.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8d41bbe5ded149c2a8cea7d5e662ef08.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8e5661920eb44342af8aea4182068514.jpg",
+          "alt": "urodzinki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_90e90c61b57d4029a48950eacd31468b.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_939c4a28e30b423aae42088184598b32.png",
+          "alt": "warsztaty z gliny",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_9653e644591c401480e2390aadca4cf6.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+          "alt": "warsztaty rodzinne",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_9d3ff910f8f94205a2240105010d6192.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_a1a973b49bc74e2b9e097bf7b8091e76.jpeg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_a37f0e14350d44ccaf5bd6702f0b5439.webp",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_af946e4dbc8d40208b3d1c05be4cebbe.jpg",
+          "alt": "Warsztaty ceramiczne dla dzieci w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b23dca3217b744eab898a010fc1654d6.webp",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b36c26d927764d3f859565bb328d0dae.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b5e3aff7de8743c88922dac0ed1c8629.png",
+          "alt": "warsztaty glina do wina",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b6b2ebdcb95f424984ee80e8e58a604d.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b8b4604091d64cd08fc792d41d76287e.jpg",
+          "alt": "wino i glina",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b9beeef9651e413d806d04d3230bcad8.jpeg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ba3d46ee996f48adb1457d8386e8dcef.jpg",
+          "alt": "panienski",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bafb828b6a10428e91beb922a773e6a1.jpg",
+          "alt": "Warsztaty Glina do wina w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bd50a8f7389540819fdfd73395d3b559.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bdbe8e1736984ddfae1721dbdc8492fb.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_beb2180b228e46b99d49a5a2f1eac63b.png",
+          "alt": "icon",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bf6fc0998d4a4467945a89a8340eb7cd.png",
+          "alt": "Czym zajmuje się Pracownia Ceramiki NERO?",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bfd4d83b5e324760969c7f4db1b2b41f.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_c365686f6f144220b9b8da601a70d017.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_c4f1c7aee49e46c295f3910e257e8f69.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_c6ba27e517f64531a718d44d6861d2b0.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc.jpg",
+          "alt": "kubki ręcznie robione",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_cd2460d4d3c1409b91c31dba9f7db804.png",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_d1a7cda543f04bfa93539ffe6925026b.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_d5ab31a744f841fc8269902080e23e8b.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_d8f9b5306c68445f95b53ab86213c36b.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45))",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+          "alt": "Warsztaty ceramiczne dla dorosłych w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_dc55fa9a88ec400c852bddf31cc0b1c8.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (11)",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_dd9f283803834f07b7a7d280c74af5aa.png",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_df6f4a2f5b3a41ad8914b416ef4c7857.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e0f7a1b2accc4542a5fec56b5ba4b975.jpg",
+          "alt": "Urodziny z ceramiką w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e1190fb32156413690b13225eff34e14.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e5ad882b2465483ebd9497dece123b1c.jpeg",
+          "alt": "Widok z bliska na ręcznie formowaną ceramiczną miskę na kole garncarskim",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e90fa0c2226c4d72bb3a814d5b815ab6.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e9ae4fd07ea84670a4619d707e66e83e.png",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ec8876726c8f4acf9f3aef15bc36b8cd.jpg",
+          "alt": "warsztaty ceramiczne",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ecba344d6d424bc0acd5444e304c190f.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ecd02fc102ac4073a257e0118506cadd.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg",
+          "alt": "Urodziny z ceramiką w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_f560d7a2e95a49aebcda0065309a0783.jpg",
+          "alt": "Warsztaty ceramiczne dla dzieci w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_f58dd3eadfef49bdb97c27f37f7405b2.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+          "alt": "wieczor paniesnki poznan",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_fac5316d826f417fa309426a15f3f820.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_fb9903ba14334071adf53fbe9c7373ba.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+          "alt": "dladzieci",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ff24ad7d7859452782d34e7ac82d8133.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ffa722856f6d45fcbf568b5e5bb50fbb.jpg",
+          "alt": "Jak dekorować dom na jesień?",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "nsplsh_bb3bccc5280d4c56a81635bea456738b.jpg",
+          "alt": "O warsztatach: lepienia z gliny dla dorosłych i dzieci, tworzymy małe dzieła sztuki, zabawa i relaks",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "de27b2e088814fa994ff8a44f2a9a467.jpg",
+          "alt": "O sklepie z ceramiką ręcznie wykonaną i poszliwioną w Pracowni ceramiki NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
+          "alt": "Najpopularniejsze style wnętrzarskie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "595cb32628cf4476abc9c0d74e063e07.jpg",
+          "alt": "Dlaczego warsztaty z gliny? Wpływ pracy z gliną na człowieka. Rzemiosło.",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "4972bc97a3da4931ba6c18a6cf8df7e1.jpg",
+          "alt": "Malowanie dla dorosłych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "f829a8f81b1348e8a2a532e9159018b4.jpg",
+          "alt": "Warsztaty dla dorosłych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "cea6ce1029734103b164fb07bb36ed70.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "60975bc6b6c14bd88ea5618a85e14da1.jpg",
+          "alt": "Wine Toast",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "d01231e46af34161be7ad101d281a441.jpg",
+          "alt": "Ceramic Collection",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "7ce4eff7766e4d5f905b18cd5f8c43ce.jpg",
+          "alt": "Shaping Clay",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "e0b46ce0b8284bdbb676d5b51b90aeb3.jpg",
+          "alt": "Painting Pottery",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "4960cfa6cf2a4a44a7ba1695c421cb84.jpg",
+          "alt": "Mugs and Bowls",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "87a0d537f3654d148ba517d045f6d3ff.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "25189b4996b84d5ba2cd03f12eff06c5.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+          "alt": "Prezent z pracowni Ceramika Nero – opakowanie i suchy bukiet",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+          "alt": "Narzędzia ceramiczne i miseczka z gliny w pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+          "alt": "Ręcznie formowany kubek ceramiczny Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+          "alt": "Świece sojowe NERO i ceramiczny domek z pracowni",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/desktop_galeria.png",
+      "ok": true
+    },
+    {
+      "route": "/pracownia",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/pracownia",
+      "imageCount": 8,
+      "migratedImageCount": 8,
+      "migratedSrcs": [
+        "/images/wix-migrated/11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+        "/images/wix-migrated/747d6f_11d47ff20fcf4afa9085b728719b20f0.jpg",
+        "/images/wix-migrated/747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+        "/images/wix-migrated/747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+        "/images/wix-migrated/747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+        "/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_11d47ff20fcf4afa9085b728719b20f0.jpg",
+          "alt": "ceramika prezent warszataty poznan suchy las",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/desktop_pracownia.png",
+      "ok": true
+    },
+    {
+      "route": "/dla-dzieci",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/dla-dzieci",
+      "imageCount": 3,
+      "migratedImageCount": 3,
+      "migratedSrcs": [
+        "/images/wix-migrated/747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+          "alt": "dladzieci",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/desktop_dla_dzieci.png",
+      "ok": true
+    },
+    {
+      "route": "/dla-doroslych",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/dla-doroslych",
+      "imageCount": 3,
+      "migratedImageCount": 3,
+      "migratedSrcs": [
+        "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+          "alt": "Dla dorosłych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/desktop_dla_doroslych.png",
+      "ok": true
+    },
+    {
+      "route": "/grupy-i-firmy",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/grupy-i-firmy",
+      "imageCount": 3,
+      "migratedImageCount": 3,
+      "migratedSrcs": [
+        "/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+          "alt": "Grupy i firmy",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/desktop_grupy_i_firmy.png",
+      "ok": true
+    },
+    {
+      "route": "/warsztaty",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/warsztaty",
+      "imageCount": 2,
+      "migratedImageCount": 2,
+      "migratedSrcs": [
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/desktop_warsztaty.png",
+      "ok": true
+    },
+    {
+      "route": "/blog",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/blog",
+      "imageCount": 2,
+      "migratedImageCount": 2,
+      "migratedSrcs": [
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/desktop_blog.png",
+      "ok": true
+    },
+    {
+      "route": "/",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/",
+      "imageCount": 6,
+      "migratedImageCount": 6,
+      "migratedSrcs": [
+        "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+        "/images/wix-migrated/747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+        "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+        "/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+          "alt": "pracownia ceramiczne pracownia ceramiki w poznaniu w okolicach",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+          "alt": "dladzieci",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+          "alt": "Warsztaty dla dorosłych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+          "alt": "Grupy i firmy",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/mobile_.png",
+      "ok": true
+    },
+    {
+      "route": "/galeria",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/galeria",
+      "imageCount": 176,
+      "migratedImageCount": 176,
+      "migratedSrcs": [
+        "/images/wix-migrated/11062b_142aa905b7024f9c96077a6cc473b6d6.jpg",
+        "/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg",
+        "/images/wix-migrated/11062b_21dbdd79270a44b8abe0d6177d2ac1f9.jpg",
+        "/images/wix-migrated/11062b_30c5ffa57f61439aa48f705fe3d49dd8.jpg",
+        "/images/wix-migrated/11062b_43197d81c0d040e4867041831bae8092.jpeg",
+        "/images/wix-migrated/11062b_541486568d644691a35279862f8fd254.jpg",
+        "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+        "/images/wix-migrated/11062b_66bd1d55c36c4eb9b8db106cf691f67e.jpg",
+        "/images/wix-migrated/11062b_7577da3017c54ec18762d3d28e041a1d.jpg",
+        "/images/wix-migrated/11062b_9fca2391b3524803822fb730e5d8ac1b.jpg",
+        "/images/wix-migrated/11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+        "/images/wix-migrated/11062b_cf4f37b0cadb4bbdb9e1b61241138aef.jpg",
+        "/images/wix-migrated/11062b_d5722b6f5d7249279adcbb06483186b1.jpg",
+        "/images/wix-migrated/11062b_d62cc9bc024a4fafb2f3649ba987b2c7.jpg",
+        "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
+        "/images/wix-migrated/11062b_e4cd34a55ede422ea0121c65375b84c0.jpg",
+        "/images/wix-migrated/11062b_eb2cf4d2cd5646fa8cfa980723ac63c7.jpg",
+        "/images/wix-migrated/11062b_f468647e8e6d4d54ba57a93ea792af1e.jpg",
+        "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+        "/images/wix-migrated/747d6f_016e5ab390694b1faf1ed4e14a14c5e7.png",
+        "/images/wix-migrated/747d6f_0296bb0269754a8295a47f62c62d4822.jpg",
+        "/images/wix-migrated/747d6f_03425894e06f4fd8af3e15755bafeea7.png",
+        "/images/wix-migrated/747d6f_0397de818e314f72ad3b684dc55b9c43.jpg",
+        "/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg",
+        "/images/wix-migrated/747d6f_057cc0c66cf348268e9d25499f057beb.jpg",
+        "/images/wix-migrated/747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
+        "/images/wix-migrated/747d6f_085171d978274d52ab228ceb93aa9847.png",
+        "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
+        "/images/wix-migrated/747d6f_0e252de9992048d2a98d1ff8761c8ddf.jpeg",
+        "/images/wix-migrated/747d6f_0f3b800e5b7a407baf665c1170430ecd.jpg",
+        "/images/wix-migrated/747d6f_0fe41123a0a34078b88b14d085b6b727.jpg",
+        "/images/wix-migrated/747d6f_11d47ff20fcf4afa9085b728719b20f0.jpg",
+        "/images/wix-migrated/747d6f_15381c8348c54adfb2a83c0670411e4e.jpg",
+        "/images/wix-migrated/747d6f_197dce9d012c4b93af7df0d001f9fb0d.jpg",
+        "/images/wix-migrated/747d6f_22273d9e08a3424aa991b87fd9fb803e.jpg",
+        "/images/wix-migrated/747d6f_2234cc741bd5422eb5d92705a021219a.jpg",
+        "/images/wix-migrated/747d6f_252d121269ee423a9a5d9a5a532922cb.webp",
+        "/images/wix-migrated/747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
+        "/images/wix-migrated/747d6f_25f701d5db584b2cabcec04bba397ec5.jpeg",
+        "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+        "/images/wix-migrated/747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+        "/images/wix-migrated/747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b.jpg",
+        "/images/wix-migrated/747d6f_31092dec535d44fda01b193d542727de.jpg",
+        "/images/wix-migrated/747d6f_31b0976c3c0e4cf3addf864e058110a2.png",
+        "/images/wix-migrated/747d6f_355d7132929d437a94a84beaa0a6e9a1.png",
+        "/images/wix-migrated/747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02.jpg",
+        "/images/wix-migrated/747d6f_3856dd866c104349b1cbe529e8a393fd.jpg",
+        "/images/wix-migrated/747d6f_38c994e6e4e54ed3a99dc62dfa01c7b3.jpg",
+        "/images/wix-migrated/747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+        "/images/wix-migrated/747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+        "/images/wix-migrated/747d6f_3dc57ba794be47e4a38a00f965a6c689.jpg",
+        "/images/wix-migrated/747d6f_40f47e03350d4ef3b3d3e3c951eff7cb.jpg",
+        "/images/wix-migrated/747d6f_431ea2ab2bee4c94b6e83dc97966c78a.png",
+        "/images/wix-migrated/747d6f_439e4c293ab04730a3204fb223f7c0c9.jpg",
+        "/images/wix-migrated/747d6f_448924318b194426b689bf1f332a815e.webp",
+        "/images/wix-migrated/747d6f_463afd8aa7234779a218dd50fd7c0fcc.jpg",
+        "/images/wix-migrated/747d6f_467152182e8a4089a2a18d1d71682254.png",
+        "/images/wix-migrated/747d6f_47a6a2b4713241168b37ff242c99303e.jpg",
+        "/images/wix-migrated/747d6f_483d3d906ea347559b7d174a489cf361.jpg",
+        "/images/wix-migrated/747d6f_4bc1bec239df452d9c4e205c46a8a33e.jpg",
+        "/images/wix-migrated/747d6f_4e60c15e658a4b79a0195819e842eb93.jpg",
+        "/images/wix-migrated/747d6f_4f691e3ded7e4211a2d6f2947a5186ea.jpg",
+        "/images/wix-migrated/747d6f_5189ce27ac69426f8e7ee0f701b25f14.webp",
+        "/images/wix-migrated/747d6f_565523d2b38546f582a8ddb7f0a5dd67.jpg",
+        "/images/wix-migrated/747d6f_5946cd9b03e84e5c8439772d49367b12.jpg",
+        "/images/wix-migrated/747d6f_5aaae6b332304ef5ba65344c8eb11ce0.jpg",
+        "/images/wix-migrated/747d6f_5c0cd869ade843ccbdca8e70b8463f50.jpg",
+        "/images/wix-migrated/747d6f_5cee2d3c27734c998452e5eae7fdfb6e.jpg",
+        "/images/wix-migrated/747d6f_5ef38d83bd5d4a33937c5ac8ae17ca75.jpg",
+        "/images/wix-migrated/747d6f_5fbe376ba5bd4db9a9118927f037d80d.jpg",
+        "/images/wix-migrated/747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5.jpg",
+        "/images/wix-migrated/747d6f_632dd58fd1e5410496220f95241a4bbc.jpg",
+        "/images/wix-migrated/747d6f_63a4715edaeb43029411c6b6de222703.jpg",
+        "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+        "/images/wix-migrated/747d6f_65957c575a244565926c21e9f48a20fd.jpg",
+        "/images/wix-migrated/747d6f_67bfb90dac9d43e1a32e80facafef2e6.jpg",
+        "/images/wix-migrated/747d6f_6a39bd22cbe142c8a1aada6b04e8a120.jpg",
+        "/images/wix-migrated/747d6f_6d1acf554eee4fbc80fbd473359a0c55.jpg",
+        "/images/wix-migrated/747d6f_6d7fede4fb5743579e7005449c2d4d29.jpg",
+        "/images/wix-migrated/747d6f_6e4389df7e7f4087ae1308a3c44b14f2.webp",
+        "/images/wix-migrated/747d6f_6fba4cab7fda46208092419846e777a4.png",
+        "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+        "/images/wix-migrated/747d6f_71c100aa03c04a2393e0deb186d0dfe1.jpg",
+        "/images/wix-migrated/747d6f_742f7fd280b0480085fbdc19faf13923.jpg",
+        "/images/wix-migrated/747d6f_7440489991eb4b4b82871c79341ad3b9.jpg",
+        "/images/wix-migrated/747d6f_74d5edfd53564d5e874eaa48216c69e1.webp",
+        "/images/wix-migrated/747d6f_75125bb1ebef47b7939d3fbd6ec73f55.png",
+        "/images/wix-migrated/747d6f_75f475196e3244da9e18720cc382ba9b.jpg",
+        "/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+        "/images/wix-migrated/747d6f_79268ec496de49ba985b6980ba3528c4.jpeg",
+        "/images/wix-migrated/747d6f_7d7f776acb8942f383a1dde065294ead.png",
+        "/images/wix-migrated/747d6f_7db2d914cc6745e5bba260e4c16be9c7.jpg",
+        "/images/wix-migrated/747d6f_834716a3d7184a77b4462bb715a0d9bf.jpg",
+        "/images/wix-migrated/747d6f_858ea5b1d9ce415c8d2ce2c3977c5d56.jpg",
+        "/images/wix-migrated/747d6f_85e6210e2fd54cd6885c6833e198c58d.jpg",
+        "/images/wix-migrated/747d6f_88382165162c4d72b411c18f7072fb10.jpg",
+        "/images/wix-migrated/747d6f_8af7f884525642d8b67fe0bf709a577b.png",
+        "/images/wix-migrated/747d6f_8b5a6384178243c5817202f1ad50b5ed.png",
+        "/images/wix-migrated/747d6f_8d41bbe5ded149c2a8cea7d5e662ef08.jpg",
+        "/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+        "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+        "/images/wix-migrated/747d6f_90e90c61b57d4029a48950eacd31468b.jpg",
+        "/images/wix-migrated/747d6f_939c4a28e30b423aae42088184598b32.png",
+        "/images/wix-migrated/747d6f_9653e644591c401480e2390aadca4cf6.jpg",
+        "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+        "/images/wix-migrated/747d6f_9d3ff910f8f94205a2240105010d6192.jpg",
+        "/images/wix-migrated/747d6f_a1a973b49bc74e2b9e097bf7b8091e76.jpeg",
+        "/images/wix-migrated/747d6f_a37f0e14350d44ccaf5bd6702f0b5439.webp",
+        "/images/wix-migrated/747d6f_af946e4dbc8d40208b3d1c05be4cebbe.jpg",
+        "/images/wix-migrated/747d6f_b23dca3217b744eab898a010fc1654d6.webp",
+        "/images/wix-migrated/747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg",
+        "/images/wix-migrated/747d6f_b36c26d927764d3f859565bb328d0dae.jpg",
+        "/images/wix-migrated/747d6f_b5e3aff7de8743c88922dac0ed1c8629.png",
+        "/images/wix-migrated/747d6f_b6b2ebdcb95f424984ee80e8e58a604d.jpg",
+        "/images/wix-migrated/747d6f_b8b4604091d64cd08fc792d41d76287e.jpg",
+        "/images/wix-migrated/747d6f_b9beeef9651e413d806d04d3230bcad8.jpeg",
+        "/images/wix-migrated/747d6f_ba3d46ee996f48adb1457d8386e8dcef.jpg",
+        "/images/wix-migrated/747d6f_bafb828b6a10428e91beb922a773e6a1.jpg",
+        "/images/wix-migrated/747d6f_bd50a8f7389540819fdfd73395d3b559.jpg",
+        "/images/wix-migrated/747d6f_bdbe8e1736984ddfae1721dbdc8492fb.jpg",
+        "/images/wix-migrated/747d6f_beb2180b228e46b99d49a5a2f1eac63b.png",
+        "/images/wix-migrated/747d6f_bf6fc0998d4a4467945a89a8340eb7cd.png",
+        "/images/wix-migrated/747d6f_bfd4d83b5e324760969c7f4db1b2b41f.png",
+        "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg",
+        "/images/wix-migrated/747d6f_c4f1c7aee49e46c295f3910e257e8f69.jpg",
+        "/images/wix-migrated/747d6f_c6ba27e517f64531a718d44d6861d2b0.jpg",
+        "/images/wix-migrated/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc.jpg",
+        "/images/wix-migrated/747d6f_cd2460d4d3c1409b91c31dba9f7db804.png",
+        "/images/wix-migrated/747d6f_d1a7cda543f04bfa93539ffe6925026b.jpg",
+        "/images/wix-migrated/747d6f_d5ab31a744f841fc8269902080e23e8b.jpg",
+        "/images/wix-migrated/747d6f_d8f9b5306c68445f95b53ab86213c36b.png",
+        "/images/wix-migrated/747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
+        "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
+        "/images/wix-migrated/747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+        "/images/wix-migrated/747d6f_dc55fa9a88ec400c852bddf31cc0b1c8.png",
+        "/images/wix-migrated/747d6f_dd9f283803834f07b7a7d280c74af5aa.png",
+        "/images/wix-migrated/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857.jpg",
+        "/images/wix-migrated/747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg",
+        "/images/wix-migrated/747d6f_e0f7a1b2accc4542a5fec56b5ba4b975.jpg",
+        "/images/wix-migrated/747d6f_e1190fb32156413690b13225eff34e14.jpg",
+        "/images/wix-migrated/747d6f_e5ad882b2465483ebd9497dece123b1c.jpeg",
+        "/images/wix-migrated/747d6f_e90fa0c2226c4d72bb3a814d5b815ab6.jpg",
+        "/images/wix-migrated/747d6f_e9ae4fd07ea84670a4619d707e66e83e.png",
+        "/images/wix-migrated/747d6f_ec8876726c8f4acf9f3aef15bc36b8cd.jpg",
+        "/images/wix-migrated/747d6f_ecba344d6d424bc0acd5444e304c190f.jpg",
+        "/images/wix-migrated/747d6f_ecd02fc102ac4073a257e0118506cadd.jpg",
+        "/images/wix-migrated/747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg",
+        "/images/wix-migrated/747d6f_f560d7a2e95a49aebcda0065309a0783.jpg",
+        "/images/wix-migrated/747d6f_f58dd3eadfef49bdb97c27f37f7405b2.jpg",
+        "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+        "/images/wix-migrated/747d6f_fac5316d826f417fa309426a15f3f820.jpg",
+        "/images/wix-migrated/747d6f_fb9903ba14334071adf53fbe9c7373ba.jpg",
+        "/images/wix-migrated/747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+        "/images/wix-migrated/747d6f_ff24ad7d7859452782d34e7ac82d8133.jpg",
+        "/images/wix-migrated/747d6f_ffa722856f6d45fcbf568b5e5bb50fbb.jpg",
+        "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
+        "/images/wix-migrated/nsplsh_bb3bccc5280d4c56a81635bea456738b.jpg",
+        "/images/wix-migrated/de27b2e088814fa994ff8a44f2a9a467.jpg",
+        "/images/wix-migrated/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
+        "/images/wix-migrated/595cb32628cf4476abc9c0d74e063e07.jpg",
+        "/images/wix-migrated/4972bc97a3da4931ba6c18a6cf8df7e1.jpg",
+        "/images/wix-migrated/f829a8f81b1348e8a2a532e9159018b4.jpg",
+        "/images/wix-migrated/cea6ce1029734103b164fb07bb36ed70.jpg",
+        "/images/wix-migrated/60975bc6b6c14bd88ea5618a85e14da1.jpg",
+        "/images/wix-migrated/d01231e46af34161be7ad101d281a441.jpg",
+        "/images/wix-migrated/7ce4eff7766e4d5f905b18cd5f8c43ce.jpg",
+        "/images/wix-migrated/e0b46ce0b8284bdbb676d5b51b90aeb3.jpg",
+        "/images/wix-migrated/4960cfa6cf2a4a44a7ba1695c421cb84.jpg",
+        "/images/wix-migrated/87a0d537f3654d148ba517d045f6d3ff.jpg",
+        "/images/wix-migrated/25189b4996b84d5ba2cd03f12eff06c5.jpg",
+        "/images/wix-migrated/747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+        "/images/wix-migrated/747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+        "/images/wix-migrated/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+        "/images/wix-migrated/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "11062b_142aa905b7024f9c96077a6cc473b6d6.jpg",
+          "alt": "Kolorowe wycinanki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_147dc3a6f24349ff9a4d332be4360d81.jpg",
+          "alt": "Pottery Class",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_21dbdd79270a44b8abe0d6177d2ac1f9.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_30c5ffa57f61439aa48f705fe3d49dd8.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_43197d81c0d040e4867041831bae8092.jpeg",
+          "alt": "Kurs rysunku i malarstwa",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_541486568d644691a35279862f8fd254.jpg",
+          "alt": "Impreza plenerowa",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+          "alt": "Happy Women",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_66bd1d55c36c4eb9b8db106cf691f67e.jpg",
+          "alt": "Bowl of Fruits",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_7577da3017c54ec18762d3d28e041a1d.jpg",
+          "alt": "Potwór z plasteliny",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_9fca2391b3524803822fb730e5d8ac1b.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_cf4f37b0cadb4bbdb9e1b61241138aef.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_d5722b6f5d7249279adcbb06483186b1.jpg",
+          "alt": "Miejsce ślubu w ogrodzie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_d62cc9bc024a4fafb2f3649ba987b2c7.jpg",
+          "alt": "Ziemista wiejska ścieżka",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
+          "alt": "Love Wedding Decoration",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_e4cd34a55ede422ea0121c65375b84c0.jpg",
+          "alt": "Architektura",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_eb2cf4d2cd5646fa8cfa980723ac63c7.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_f468647e8e6d4d54ba57a93ea792af1e.jpg",
+          "alt": "Metalowe koraliki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+          "alt": "Pottery and Clay",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_016e5ab390694b1faf1ed4e14a14c5e7.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0296bb0269754a8295a47f62c62d4822.jpg",
+          "alt": "Dziękujemy wszystkim, którzy są z nami!",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_03425894e06f4fd8af3e15755bafeea7.png",
+          "alt": "warsztaty z gliny",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0397de818e314f72ad3b684dc55b9c43.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_045e89a3529f4e2491a7742e1da14497.jpg",
+          "alt": "warsztaty glina do wina",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_057cc0c66cf348268e9d25499f057beb.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_085171d978274d52ab228ceb93aa9847.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (8)",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
+          "alt": "Dlaczego Warto Wybrać Naszą Pracownię Ceramiki dla Twoich Kreatywnych Potrzeb?",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0e252de9992048d2a98d1ff8761c8ddf.jpeg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0f3b800e5b7a407baf665c1170430ecd.jpg",
+          "alt": "włoskie przystawki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_0fe41123a0a34078b88b14d085b6b727.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_11d47ff20fcf4afa9085b728719b20f0.jpg",
+          "alt": "ceramika prezent warszataty poznan suchy las",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_15381c8348c54adfb2a83c0670411e4e.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_197dce9d012c4b93af7df0d001f9fb0d.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_22273d9e08a3424aa991b87fd9fb803e.jpg",
+          "alt": "RYSUNEK6",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2234cc741bd5422eb5d92705a021219a.jpg",
+          "alt": "rysunek6+",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_252d121269ee423a9a5d9a5a532922cb.webp",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
+          "alt": "garncarstwo",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_25f701d5db584b2cabcec04bba397ec5.jpeg",
+          "alt": "Wspaniała Historia Pracowni: Od Miłości do Gotowania do Tworzenia Inspirującej Wspólnoty",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+          "alt": "warsztaty ceramiki poznan suchy las lepienie z gliny, ceramika dla dorosłych, kurs ceramiczny",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b.jpg",
+          "alt": "Warsztaty Glina do wina w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_31092dec535d44fda01b193d542727de.jpg",
+          "alt": "Warsztaty ceramiczne dla dzieci w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_31b0976c3c0e4cf3addf864e058110a2.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (9)",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_355d7132929d437a94a84beaa0a6e9a1.png",
+          "alt": "warsztaty ceramiczne",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02.jpg",
+          "alt": "skotnickanowakpl_ceramikanero_00837",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3856dd866c104349b1cbe529e8a393fd.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_38c994e6e4e54ed3a99dc62dfa01c7b3.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3dc57ba794be47e4a38a00f965a6c689.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_40f47e03350d4ef3b3d3e3c951eff7cb.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_431ea2ab2bee4c94b6e83dc97966c78a.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_439e4c293ab04730a3204fb223f7c0c9.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_448924318b194426b689bf1f332a815e.webp",
+          "alt": "Mam na imię Małgosia i jestem pasjonatką sztuki ceramicznej",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_463afd8aa7234779a218dd50fd7c0fcc.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_467152182e8a4089a2a18d1d71682254.png",
+          "alt": "pracownia ceramiki suchy las prezent złotniki piątkowo ceramiki glina",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_47a6a2b4713241168b37ff242c99303e.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_483d3d906ea347559b7d174a489cf361.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_4bc1bec239df452d9c4e205c46a8a33e.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_4e60c15e658a4b79a0195819e842eb93.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_4f691e3ded7e4211a2d6f2947a5186ea.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5189ce27ac69426f8e7ee0f701b25f14.webp",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_565523d2b38546f582a8ddb7f0a5dd67.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5946cd9b03e84e5c8439772d49367b12.jpg",
+          "alt": "rysunek 11+",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5aaae6b332304ef5ba65344c8eb11ce0.jpg",
+          "alt": "urodziny z ceramiką, kreatywne urodzinki z gliną, świetna zabawa, dla dzieci, Poznań i okolice, Suchy Las, 7 urodziny, urodzi",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5c0cd869ade843ccbdca8e70b8463f50.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5cee2d3c27734c998452e5eae7fdfb6e.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5ef38d83bd5d4a33937c5ac8ae17ca75.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_5fbe376ba5bd4db9a9118927f037d80d.jpg",
+          "alt": "Pikniki artystyczne na polanie przed Pracownią ceramiki Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_632dd58fd1e5410496220f95241a4bbc.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_63a4715edaeb43029411c6b6de222703.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+          "alt": "pracownia ceramiczne pracownia ceramiki w poznaniu w okolicach",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_65957c575a244565926c21e9f48a20fd.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_67bfb90dac9d43e1a32e80facafef2e6.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6a39bd22cbe142c8a1aada6b04e8a120.jpg",
+          "alt": "Zaczynamy nowe warsztaty już we wrześniu. Śledź nasze media, jesteśmy na FACEBOOKu i INSTAGRAMie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6d1acf554eee4fbc80fbd473359a0c55.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6d7fede4fb5743579e7005449c2d4d29.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6e4389df7e7f4087ae1308a3c44b14f2.webp",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6fba4cab7fda46208092419846e777a4.png",
+          "alt": "Nowe warsztaty Ceramika dla smyka od stycznia 2025",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_71c100aa03c04a2393e0deb186d0dfe1.jpg",
+          "alt": "Warsztaty ceramiczne dla dzieci w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_742f7fd280b0480085fbdc19faf13923.jpg",
+          "alt": "warsztaty z ceramiki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_7440489991eb4b4b82871c79341ad3b9.jpg",
+          "alt": "warsztaty z ceramiki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_74d5edfd53564d5e874eaa48216c69e1.webp",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_75125bb1ebef47b7939d3fbd6ec73f55.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_75f475196e3244da9e18720cc382ba9b.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_79268ec496de49ba985b6980ba3528c4.jpeg",
+          "alt": "Widok z poziomu oczu na przestronną pracownię ceramiki z półkami pełnymi wyrobów ceramicznych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_7d7f776acb8942f383a1dde065294ead.png",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_7db2d914cc6745e5bba260e4c16be9c7.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_834716a3d7184a77b4462bb715a0d9bf.jpg",
+          "alt": "Nowe warsztaty Ceramika dla smyka",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_858ea5b1d9ce415c8d2ce2c3977c5d56.jpg",
+          "alt": "Warsztaty firmowe w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_85e6210e2fd54cd6885c6833e198c58d.jpg",
+          "alt": "Warsztaty ceramiczne dla dorosłych w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_88382165162c4d72b411c18f7072fb10.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8af7f884525642d8b67fe0bf709a577b.png",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8b5a6384178243c5817202f1ad50b5ed.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8d41bbe5ded149c2a8cea7d5e662ef08.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8e5661920eb44342af8aea4182068514.jpg",
+          "alt": "urodzinki",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_90e90c61b57d4029a48950eacd31468b.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_939c4a28e30b423aae42088184598b32.png",
+          "alt": "warsztaty z gliny",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_9653e644591c401480e2390aadca4cf6.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+          "alt": "warsztaty rodzinne",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_9d3ff910f8f94205a2240105010d6192.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_a1a973b49bc74e2b9e097bf7b8091e76.jpeg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_a37f0e14350d44ccaf5bd6702f0b5439.webp",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_af946e4dbc8d40208b3d1c05be4cebbe.jpg",
+          "alt": "Warsztaty ceramiczne dla dzieci w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b23dca3217b744eab898a010fc1654d6.webp",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b36c26d927764d3f859565bb328d0dae.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b5e3aff7de8743c88922dac0ed1c8629.png",
+          "alt": "warsztaty glina do wina",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b6b2ebdcb95f424984ee80e8e58a604d.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b8b4604091d64cd08fc792d41d76287e.jpg",
+          "alt": "wino i glina",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_b9beeef9651e413d806d04d3230bcad8.jpeg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ba3d46ee996f48adb1457d8386e8dcef.jpg",
+          "alt": "panienski",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bafb828b6a10428e91beb922a773e6a1.jpg",
+          "alt": "Warsztaty Glina do wina w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bd50a8f7389540819fdfd73395d3b559.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bdbe8e1736984ddfae1721dbdc8492fb.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_beb2180b228e46b99d49a5a2f1eac63b.png",
+          "alt": "icon",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bf6fc0998d4a4467945a89a8340eb7cd.png",
+          "alt": "Czym zajmuje się Pracownia Ceramiki NERO?",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_bfd4d83b5e324760969c7f4db1b2b41f.png",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_c365686f6f144220b9b8da601a70d017.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_c4f1c7aee49e46c295f3910e257e8f69.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_c6ba27e517f64531a718d44d6861d2b0.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc.jpg",
+          "alt": "kubki ręcznie robione",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_cd2460d4d3c1409b91c31dba9f7db804.png",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_d1a7cda543f04bfa93539ffe6925026b.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_d5ab31a744f841fc8269902080e23e8b.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_d8f9b5306c68445f95b53ab86213c36b.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45))",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
+          "alt": "Galeria Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+          "alt": "Warsztaty ceramiczne dla dorosłych w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_dc55fa9a88ec400c852bddf31cc0b1c8.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (11)",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_dd9f283803834f07b7a7d280c74af5aa.png",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_df6f4a2f5b3a41ad8914b416ef4c7857.jpg",
+          "alt": "Praca ceramiczna z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e0f7a1b2accc4542a5fec56b5ba4b975.jpg",
+          "alt": "Urodziny z ceramiką w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e1190fb32156413690b13225eff34e14.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e5ad882b2465483ebd9497dece123b1c.jpeg",
+          "alt": "Widok z bliska na ręcznie formowaną ceramiczną miskę na kole garncarskim",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e90fa0c2226c4d72bb3a814d5b815ab6.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_e9ae4fd07ea84670a4619d707e66e83e.png",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ec8876726c8f4acf9f3aef15bc36b8cd.jpg",
+          "alt": "warsztaty ceramiczne",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ecba344d6d424bc0acd5444e304c190f.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ecd02fc102ac4073a257e0118506cadd.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg",
+          "alt": "Urodziny z ceramiką w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_f560d7a2e95a49aebcda0065309a0783.jpg",
+          "alt": "Warsztaty ceramiczne dla dzieci w Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_f58dd3eadfef49bdb97c27f37f7405b2.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+          "alt": "wieczor paniesnki poznan",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_fac5316d826f417fa309426a15f3f820.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_fb9903ba14334071adf53fbe9c7373ba.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+          "alt": "dladzieci",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ff24ad7d7859452782d34e7ac82d8133.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_ffa722856f6d45fcbf568b5e5bb50fbb.jpg",
+          "alt": "Jak dekorować dom na jesień?",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "nsplsh_bb3bccc5280d4c56a81635bea456738b.jpg",
+          "alt": "O warsztatach: lepienia z gliny dla dorosłych i dzieci, tworzymy małe dzieła sztuki, zabawa i relaks",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "de27b2e088814fa994ff8a44f2a9a467.jpg",
+          "alt": "O sklepie z ceramiką ręcznie wykonaną i poszliwioną w Pracowni ceramiki NERO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
+          "alt": "Najpopularniejsze style wnętrzarskie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "595cb32628cf4476abc9c0d74e063e07.jpg",
+          "alt": "Dlaczego warsztaty z gliny? Wpływ pracy z gliną na człowieka. Rzemiosło.",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "4972bc97a3da4931ba6c18a6cf8df7e1.jpg",
+          "alt": "Malowanie dla dorosłych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "f829a8f81b1348e8a2a532e9159018b4.jpg",
+          "alt": "Warsztaty dla dorosłych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "cea6ce1029734103b164fb07bb36ed70.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "60975bc6b6c14bd88ea5618a85e14da1.jpg",
+          "alt": "Wine Toast",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "d01231e46af34161be7ad101d281a441.jpg",
+          "alt": "Ceramic Collection",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "7ce4eff7766e4d5f905b18cd5f8c43ce.jpg",
+          "alt": "Shaping Clay",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "e0b46ce0b8284bdbb676d5b51b90aeb3.jpg",
+          "alt": "Painting Pottery",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "4960cfa6cf2a4a44a7ba1695c421cb84.jpg",
+          "alt": "Mugs and Bowls",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "87a0d537f3654d148ba517d045f6d3ff.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "25189b4996b84d5ba2cd03f12eff06c5.jpg",
+          "alt": "Zdjęcie z pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+          "alt": "Prezent z pracowni Ceramika Nero – opakowanie i suchy bukiet",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+          "alt": "Narzędzia ceramiczne i miseczka z gliny w pracowni Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+          "alt": "Ręcznie formowany kubek ceramiczny Ceramika Nero",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+          "alt": "Świece sojowe NERO i ceramiczny domek z pracowni",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/mobile_galeria.png",
+      "ok": true
+    },
+    {
+      "route": "/pracownia",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/pracownia",
+      "imageCount": 8,
+      "migratedImageCount": 8,
+      "migratedSrcs": [
+        "/images/wix-migrated/11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+        "/images/wix-migrated/747d6f_11d47ff20fcf4afa9085b728719b20f0.jpg",
+        "/images/wix-migrated/747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+        "/images/wix-migrated/747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+        "/images/wix-migrated/747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+        "/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_11d47ff20fcf4afa9085b728719b20f0.jpg",
+          "alt": "ceramika prezent warszataty poznan suchy las",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+          "alt": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+          "alt": "Pracownia Ceramika Nero w Suchym Lesie",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/mobile_pracownia.png",
+      "ok": true
+    },
+    {
+      "route": "/dla-dzieci",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/dla-dzieci",
+      "imageCount": 3,
+      "migratedImageCount": 3,
+      "migratedSrcs": [
+        "/images/wix-migrated/747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+          "alt": "dladzieci",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/mobile_dla_dzieci.png",
+      "ok": true
+    },
+    {
+      "route": "/dla-doroslych",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/dla-doroslych",
+      "imageCount": 3,
+      "migratedImageCount": 3,
+      "migratedSrcs": [
+        "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+          "alt": "Dla dorosłych",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/mobile_dla_doroslych.png",
+      "ok": true
+    },
+    {
+      "route": "/grupy-i-firmy",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/grupy-i-firmy",
+      "imageCount": 3,
+      "migratedImageCount": 3,
+      "migratedSrcs": [
+        "/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+          "alt": "Grupy i firmy",
+          "decorativeEmptyAlt": false
+        },
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/mobile_grupy_i_firmy.png",
+      "ok": true
+    },
+    {
+      "route": "/warsztaty",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/warsztaty",
+      "imageCount": 2,
+      "migratedImageCount": 2,
+      "migratedSrcs": [
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/mobile_warsztaty.png",
+      "ok": true
+    },
+    {
+      "route": "/blog",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "finalUrl": "http://localhost:3002/blog",
+      "imageCount": 2,
+      "migratedImageCount": 2,
+      "migratedSrcs": [
+        "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+        "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png"
+      ],
+      "hotlinkedWixImages": [],
+      "hotlinkedWixBackgrounds": [],
+      "brokenMigratedImages": [],
+      "stillLoadingCount": 0,
+      "loadRatio": 1,
+      "severeDistortion": [],
+      "alts": [
+        {
+          "src": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        },
+        {
+          "src": "11062b_55e4be1e75564866b6c28290f9a9d271.png",
+          "alt": "",
+          "decorativeEmptyAlt": true
+        }
+      ],
+      "screenshot": "tmp/wix-crawl/screenshots/mobile_blog.png",
+      "ok": true
+    }
+  ],
+  "summary": {
+    "checks": 16,
+    "ok": 16,
+    "failed": 0,
+    "uniqueMigratedSrcsObserved": 176,
+    "anyHotlinking": false,
+    "anyBrokenMigrated": false
+  }
+}

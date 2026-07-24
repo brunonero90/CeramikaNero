@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-24T09:11:11.055Z",
+  "generatedAt": "2026-07-24T09:28:39.106Z",
   "totals": {
-    "genuinely-rendered": 164,
-    "migrated-brand-or-decorative": 8
+    "genuinely-rendered": 174,
+    "migrated-brand-or-decorative": 2
   },
   "files": [
     {
@@ -1158,18 +1158,18 @@
       ],
       "sourceFilesMentioning": [
         "lib/database/fixtures/media-assets.ts",
-        "components/layout/footer.tsx"
+        "app/galeria/page.tsx via getGalleryImages()"
       ],
       "inFixtureGallery": false,
       "reachableRoutes": [
         {
-          "route": "/* (footer)",
-          "via": "Footer/getSocialIcon"
+          "route": "/galeria",
+          "via": "getGalleryImages()"
         }
       ],
-      "decorative": true,
-      "status": "migrated-brand-or-decorative",
-      "reason": "Social icon rendered in site footer."
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
     },
     {
       "id": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
@@ -1726,18 +1726,18 @@
       ],
       "sourceFilesMentioning": [
         "lib/database/fixtures/media-assets.ts",
-        "components/layout/footer.tsx"
+        "app/galeria/page.tsx via getGalleryImages()"
       ],
       "inFixtureGallery": false,
       "reachableRoutes": [
         {
-          "route": "/* (footer)",
-          "via": "Footer/getSocialIcon"
+          "route": "/galeria",
+          "via": "getGalleryImages()"
         }
       ],
-      "decorative": true,
-      "status": "migrated-brand-or-decorative",
-      "reason": "Social icon rendered in site footer."
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
     },
     {
       "id": "747d6f_355d7132929d437a94a84beaa0a6e9a1",
@@ -1880,6 +1880,35 @@
         "app/galeria/page.tsx via getGalleryImages()"
       ],
       "inFixtureGallery": true,
+      "reachableRoutes": [
+        {
+          "route": "/galeria",
+          "via": "getGalleryImages()"
+        }
+      ],
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
+    },
+    {
+      "id": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b",
+      "filename": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+      "localPath": "/images/wix-migrated/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+      "byteSize": 451224,
+      "width": 2048,
+      "height": 2048,
+      "sha256": "8ea5de2b1aa3432f17f2bdbd62aa8c5dbbc40ed2d35a06a9cae8d88b1cd97026",
+      "altTexts": [
+        "Świece sojowe NERO i ceramiczny domek z pracowni"
+      ],
+      "originalPages": [
+        "https://www.ceramikanero.com/gift-card"
+      ],
+      "sourceFilesMentioning": [
+        "lib/database/fixtures/media-assets.ts",
+        "app/galeria/page.tsx via getGalleryImages()"
+      ],
+      "inFixtureGallery": false,
       "reachableRoutes": [
         {
           "route": "/galeria",
@@ -2756,18 +2785,18 @@
       ],
       "sourceFilesMentioning": [
         "lib/database/fixtures/media-assets.ts",
-        "components/layout/footer.tsx"
+        "app/galeria/page.tsx via getGalleryImages()"
       ],
       "inFixtureGallery": false,
       "reachableRoutes": [
         {
-          "route": "/* (footer)",
-          "via": "Footer/getSocialIcon"
+          "route": "/galeria",
+          "via": "getGalleryImages()"
         }
       ],
-      "decorative": true,
-      "status": "migrated-brand-or-decorative",
-      "reason": "Social icon rendered in site footer."
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
     },
     {
       "id": "747d6f_6d1acf554eee4fbc80fbd473359a0c55",
@@ -3367,6 +3396,35 @@
       "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
     },
     {
+      "id": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16",
+      "filename": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+      "localPath": "/images/wix-migrated/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+      "byteSize": 92640,
+      "width": 1080,
+      "height": 1080,
+      "sha256": "ab80593c094dc5d7cdb9205fd4d3e9f8aefb31bcef932f5aa9a15f6476159676",
+      "altTexts": [
+        "Ręcznie formowany kubek ceramiczny Ceramika Nero"
+      ],
+      "originalPages": [
+        "https://www.ceramikanero.com/courses"
+      ],
+      "sourceFilesMentioning": [
+        "lib/database/fixtures/media-assets.ts",
+        "app/galeria/page.tsx via getGalleryImages()"
+      ],
+      "inFixtureGallery": false,
+      "reachableRoutes": [
+        {
+          "route": "/galeria",
+          "via": "getGalleryImages()"
+        }
+      ],
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
+    },
+    {
       "id": "747d6f_8af7f884525642d8b67fe0bf709a577b",
       "filename": "747d6f_8af7f884525642d8b67fe0bf709a577b.png",
       "localPath": "/images/wix-migrated/747d6f_8af7f884525642d8b67fe0bf709a577b.png",
@@ -3563,6 +3621,35 @@
       "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
     },
     {
+      "id": "747d6f_90fd3fe84ad246c3b4f72ead538bc878",
+      "filename": "747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+      "localPath": "/images/wix-migrated/747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+      "byteSize": 2107662,
+      "width": 2996,
+      "height": 1803,
+      "sha256": "2b2a7020e0941065ea3c04333578d52b76d911c499fb31a401c896742cc0ce8c",
+      "altTexts": [
+        "Narzędzia ceramiczne i miseczka z gliny w pracowni Ceramika Nero"
+      ],
+      "originalPages": [
+        "https://www.ceramikanero.com/courses"
+      ],
+      "sourceFilesMentioning": [
+        "lib/database/fixtures/media-assets.ts",
+        "app/galeria/page.tsx via getGalleryImages()"
+      ],
+      "inFixtureGallery": false,
+      "reachableRoutes": [
+        {
+          "route": "/galeria",
+          "via": "getGalleryImages()"
+        }
+      ],
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
+    },
+    {
       "id": "747d6f_939c4a28e30b423aae42088184598b32",
       "filename": "747d6f_939c4a28e30b423aae42088184598b32.png",
       "localPath": "/images/wix-migrated/747d6f_939c4a28e30b423aae42088184598b32.png",
@@ -3722,6 +3809,35 @@
       "altTexts": [],
       "originalPages": [
         "https://www.ceramikanero.com/blog/categories/ciekawostki"
+      ],
+      "sourceFilesMentioning": [
+        "lib/database/fixtures/media-assets.ts",
+        "app/galeria/page.tsx via getGalleryImages()"
+      ],
+      "inFixtureGallery": false,
+      "reachableRoutes": [
+        {
+          "route": "/galeria",
+          "via": "getGalleryImages()"
+        }
+      ],
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
+    },
+    {
+      "id": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583",
+      "filename": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+      "localPath": "/images/wix-migrated/747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+      "byteSize": 17352414,
+      "width": 5858,
+      "height": 3952,
+      "sha256": "8d83d109ea89ca7ee15ef2bfb6f73d525090f05f5458d6508f94b7118293a934",
+      "altTexts": [
+        "Prezent z pracowni Ceramika Nero – opakowanie i suchy bukiet"
+      ],
+      "originalPages": [
+        "https://www.ceramikanero.com/vouchery"
       ],
       "sourceFilesMentioning": [
         "lib/database/fixtures/media-assets.ts",
@@ -4435,18 +4551,18 @@
       ],
       "sourceFilesMentioning": [
         "lib/database/fixtures/media-assets.ts",
-        "components/layout/footer.tsx"
+        "app/galeria/page.tsx via getGalleryImages()"
       ],
       "inFixtureGallery": false,
       "reachableRoutes": [
         {
-          "route": "/* (footer)",
-          "via": "Footer/getSocialIcon"
+          "route": "/galeria",
+          "via": "getGalleryImages()"
         }
       ],
-      "decorative": true,
-      "status": "migrated-brand-or-decorative",
-      "reason": "Social icon rendered in site footer."
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
     },
     {
       "id": "747d6f_d1a7cda543f04bfa93539ffe6925026b",
@@ -4523,18 +4639,18 @@
       ],
       "sourceFilesMentioning": [
         "lib/database/fixtures/media-assets.ts",
-        "components/layout/footer.tsx"
+        "app/galeria/page.tsx via getGalleryImages()"
       ],
       "inFixtureGallery": false,
       "reachableRoutes": [
         {
-          "route": "/* (footer)",
-          "via": "Footer/getSocialIcon"
+          "route": "/galeria",
+          "via": "getGalleryImages()"
         }
       ],
-      "decorative": true,
-      "status": "migrated-brand-or-decorative",
-      "reason": "Social icon rendered in site footer."
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
     },
     {
       "id": "747d6f_da600fb92cac4d629b7833190b681fa2",
@@ -4675,18 +4791,18 @@
       ],
       "sourceFilesMentioning": [
         "lib/database/fixtures/media-assets.ts",
-        "components/layout/footer.tsx"
+        "app/galeria/page.tsx via getGalleryImages()"
       ],
       "inFixtureGallery": false,
       "reachableRoutes": [
         {
-          "route": "/* (footer)",
-          "via": "Footer/getSocialIcon"
+          "route": "/galeria",
+          "via": "getGalleryImages()"
         }
       ],
-      "decorative": true,
-      "status": "migrated-brand-or-decorative",
-      "reason": "Social icon rendered in site footer."
+      "decorative": false,
+      "status": "genuinely-rendered",
+      "reason": "Included in getGalleryImages() and rendered on /galeria when DB gallery is empty (current production path uses this fallback)."
     },
     {
       "id": "747d6f_dd9f283803834f07b7a7d280c74af5aa",

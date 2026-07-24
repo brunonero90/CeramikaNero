@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T09:11:11.074Z",
+  "generatedAt": "2026-07-24T09:28:39.121Z",
   "files": [
     {
       "id": "11062b_142aa905b7024f9c96077a6cc473b6d6",
@@ -1037,6 +1037,24 @@
       "transparencyPreserved": "n/a"
     },
     {
+      "id": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b",
+      "localPath": "/images/wix-migrated/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+      "localByteSize": 451224,
+      "localDimensions": {
+        "width": 2048,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
       "id": "747d6f_3cc1afd6652c406a8a85ad97d73c8c81",
       "localPath": "/images/wix-migrated/747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
       "localByteSize": 279065,
@@ -1889,6 +1907,24 @@
       "transparencyPreserved": "n/a"
     },
     {
+      "id": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16",
+      "localPath": "/images/wix-migrated/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+      "localByteSize": 92640,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
       "id": "747d6f_8af7f884525642d8b67fe0bf709a577b",
       "localPath": "/images/wix-migrated/747d6f_8af7f884525642d8b67fe0bf709a577b.png",
       "localByteSize": 1948398,
@@ -1991,6 +2027,24 @@
       "mappingDimensions": {
         "height": 2048,
         "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_90fd3fe84ad246c3b4f72ead538bc878",
+      "localPath": "/images/wix-migrated/747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+      "localByteSize": 2107662,
+      "localDimensions": {
+        "width": 2996,
+        "height": 1803
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1803,
+        "width": 2996,
         "type": "jpg"
       },
       "isHighestQualityRecoverable": true,
@@ -2106,6 +2160,25 @@
       "isHighestQualityRecoverable": true,
       "flags": [],
       "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583",
+      "localPath": "/images/wix-migrated/747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+      "localByteSize": 17352414,
+      "localDimensions": {
+        "width": 5858,
+        "height": 3952
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_aa1bfec10d124209aa38d0d0dcbc1583~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3952,
+        "width": 5858,
+        "type": "jpg",
+        "orientation": 1
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
     },
     {
       "id": "747d6f_af946e4dbc8d40208b3d1c05be4cebbe",
@@ -3150,5 +3223,5 @@
     }
   ],
   "suspiciousCount": 2,
-  "highQualityCount": 162
+  "highQualityCount": 166
 }

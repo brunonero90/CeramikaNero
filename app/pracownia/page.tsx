@@ -2,30 +2,44 @@ export const dynamic = 'force-dynamic';
 
 import Image from 'next/image';
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { services } from '@/lib/database/factory';
 import { ThemeSuggestion } from '@/components/theme-suggestion';
 import { getPracowniaImages } from '@/lib/media/wix-catalog';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await services.contentPages.getBySlug('pracownia');
-  return {
-    title: page?.seoTitle ?? 'Pracownia',
-    description: page?.seoDescription,
-  };
+  try {
+    const page = await services.contentPages.getBySlug('pracownia');
+    return {
+      title: page?.seoTitle ?? 'Pracownia',
+      description: page?.seoDescription,
+    };
+  } catch {
+    return { title: 'Pracownia' };
+  }
 }
 
 export default async function PracowniaPage() {
-  const page = await services.contentPages.getBySlug('pracownia');
   const images = getPracowniaImages();
-
-  if (!page) {
-    notFound();
+  let page = null;
+  try {
+    page = await Promise.race([
+      services.contentPages.getBySlug('pracownia'),
+      new Promise<null>((resolve) => {
+        setTimeout(() => resolve(null), 4000);
+      }),
+    ]);
+  } catch {
+    page = null;
   }
+
+  const title = page?.title ?? 'Pracownia';
+  const content =
+    page?.content ??
+    'Pracownia Ceramika Nero w Suchym Lesie — miejsce warsztatów i ręcznie tworzonej ceramiki.';
 
   return (
     <div className="px-4 py-16 md:py-24">
-      {page.suggestedTheme && <ThemeSuggestion theme={page.suggestedTheme} />}
+      {page?.suggestedTheme && <ThemeSuggestion theme={page.suggestedTheme} />}
       <div className="mx-auto max-w-5xl">
         {images[0] && (
           <div className="relative mb-10 aspect-[21/9] w-full overflow-hidden">
@@ -41,11 +55,11 @@ export default async function PracowniaPage() {
         )}
         <div className="mx-auto max-w-3xl">
           <h1 className="font-heading text-3xl font-semibold text-text-primary md:text-4xl">
-            {page.title}
+            {title}
           </h1>
-          {page.content && (
+          {content && (
             <p className="mt-6 whitespace-pre-line text-lg text-text-primary">
-              {page.content}
+              {content}
             </p>
           )}
         </div>

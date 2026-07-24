@@ -5404,5 +5404,126 @@
       "https://static.wixstatic.com/media/25189b4996b84d5ba2cd03f12eff06c5.jpg",
       "https://static.wixstatic.com/media/25189b4996b84d5ba2cd03f12eff06c5.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/25189b4996b84d5ba2cd03f12eff06c5.webp"
     ]
+  },
+  {
+    "id": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583",
+    "originalUrl": "https://static.wixstatic.com/media/747d6f_aa1bfec10d124209aa38d0d0dcbc1583~mv2.jpg",
+    "localPath": "/images/wix-migrated/747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+    "filename": "747d6f_aa1bfec10d124209aa38d0d0dcbc1583.jpg",
+    "ext": "jpg",
+    "dimensions": {
+      "height": 3952,
+      "width": 5858,
+      "type": "jpg",
+      "orientation": 1
+    },
+    "fileSizeBytes": 17352414,
+    "sha256": "8d83d109ea89ca7ee15ef2bfb6f73d525090f05f5458d6508f94b7118293a934",
+    "pages": [
+      "https://www.ceramikanero.com/vouchery"
+    ],
+    "contexts": [
+      "img",
+      "orphan-sitemap-recovery"
+    ],
+    "altTexts": [
+      "Prezent z pracowni Ceramika Nero – opakowanie i suchy bukiet"
+    ],
+    "usageCategory": "content",
+    "referenceCount": 1,
+    "allVariantUrls": [
+      "https://static.wixstatic.com/media/747d6f_aa1bfec10d124209aa38d0d0dcbc1583~mv2.jpg"
+    ],
+    "recoveredDuringCompletenessAudit": true
+  },
+  {
+    "id": "747d6f_90fd3fe84ad246c3b4f72ead538bc878",
+    "originalUrl": "https://static.wixstatic.com/media/747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg",
+    "localPath": "/images/wix-migrated/747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+    "filename": "747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+    "ext": "jpg",
+    "dimensions": {
+      "height": 1803,
+      "width": 2996,
+      "type": "jpg"
+    },
+    "fileSizeBytes": 2107662,
+    "sha256": "2b2a7020e0941065ea3c04333578d52b76d911c499fb31a401c896742cc0ce8c",
+    "pages": [
+      "https://www.ceramikanero.com/courses"
+    ],
+    "contexts": [
+      "img",
+      "orphan-sitemap-recovery"
+    ],
+    "altTexts": [
+      "Narzędzia ceramiczne i miseczka z gliny w pracowni Ceramika Nero"
+    ],
+    "usageCategory": "content",
+    "referenceCount": 1,
+    "allVariantUrls": [
+      "https://static.wixstatic.com/media/747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg"
+    ],
+    "recoveredDuringCompletenessAudit": true
+  },
+  {
+    "id": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16",
+    "originalUrl": "https://static.wixstatic.com/media/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp",
+    "localPath": "/images/wix-migrated/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+    "filename": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+    "ext": "jpg",
+    "dimensions": {
+      "height": 1080,
+      "width": 1080,
+      "type": "jpg"
+    },
+    "fileSizeBytes": 92640,
+    "sha256": "ab80593c094dc5d7cdb9205fd4d3e9f8aefb31bcef932f5aa9a15f6476159676",
+    "pages": [
+      "https://www.ceramikanero.com/courses"
+    ],
+    "contexts": [
+      "img",
+      "orphan-sitemap-recovery"
+    ],
+    "altTexts": [
+      "Ręcznie formowany kubek ceramiczny Ceramika Nero"
+    ],
+    "usageCategory": "content",
+    "referenceCount": 1,
+    "allVariantUrls": [
+      "https://static.wixstatic.com/media/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp"
+    ],
+    "recoveredDuringCompletenessAudit": true
+  },
+  {
+    "id": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b",
+    "originalUrl": "https://static.wixstatic.com/media/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg",
+    "localPath": "/images/wix-migrated/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+    "filename": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+    "ext": "jpg",
+    "dimensions": {
+      "height": 2048,
+      "width": 2048,
+      "type": "jpg"
+    },
+    "fileSizeBytes": 451224,
+    "sha256": "8ea5de2b1aa3432f17f2bdbd62aa8c5dbbc40ed2d35a06a9cae8d88b1cd97026",
+    "pages": [
+      "https://www.ceramikanero.com/gift-card"
+    ],
+    "contexts": [
+      "img",
+      "orphan-sitemap-recovery"
+    ],
+    "altTexts": [
+      "Świece sojowe NERO i ceramiczny domek z pracowni"
+    ],
+    "usageCategory": "content",
+    "referenceCount": 1,
+    "allVariantUrls": [
+      "https://static.wixstatic.com/media/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg"
+    ],
+    "recoveredDuringCompletenessAudit": true
   }
 ]
