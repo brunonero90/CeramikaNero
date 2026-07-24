@@ -1,0 +1,4596 @@
+{
+  "generatedAt": "2026-07-24T10:02:56.994Z",
+  "sampledPages": 83,
+  "fonts": [
+    "Arial, Helvetica, sans-serif",
+    "proxima-n-w01-reg, sans-serif",
+    "montserrat, sans-serif",
+    "\"Times New Roman\"",
+    "\"Madefor Display\", sans-serif"
+  ],
+  "colors": [
+    "rgb(0, 0, 0)",
+    "rgba(0, 0, 0, 0)",
+    "rgb(112, 56, 56)",
+    "rgb(126, 64, 46)",
+    "rgb(226, 165, 148)",
+    "rgb(0, 0, 238)"
+  ],
+  "borderRadii": ["0px"],
+  "breakpoints": {
+    "desktopCaptureWidth": 1440,
+    "mobileCaptureWidth": 390
+  },
+  "notes": [
+    "Tokens extracted from computed styles on captured pages.",
+    "Prefer these over dumping full Wix runtime CSS.",
+    "Per-page detail lives in pages/*/page-spec.json section desktopLayout."
+  ],
+  "perPage": [
+    {
+      "route": "/",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3210
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3210
+      }
+    },
+    {
+      "route": "/blog/categories/o-mnie",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1042
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1042
+      }
+    },
+    {
+      "route": "/booking-calendar/ceramika-dla-dorosłych-pon-czw",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1342
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1342
+      }
+    },
+    {
+      "route": "/booking-calendar/glina-do-wina-piątek-19-00-suchy-las",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1318
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1318
+      }
+    },
+    {
+      "route": "/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1318
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1318
+      }
+    },
+    {
+      "route": "/booking-calendar/glina-i-rodzina-soboty-15-00",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1318
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1318
+      }
+    },
+    {
+      "route": "/booking-calendar/letnia-akademia-rysunku-malarstwa",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1318
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1318
+      }
+    },
+    {
+      "route": "/booking-calendar/poranki-z-ceramiką-dla-dorosłych",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1318
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1318
+      }
+    },
+    {
+      "route": "/booking-calendar/wrzesieńceramika-dla-dorosłych-pon",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1342
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1342
+      }
+    },
+    {
+      "route": "/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1318
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "32px",
+          "fontWeight": "400",
+          "color": "rgb(112, 56, 56)",
+          "lineHeight": "42.56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1318
+      }
+    },
+    {
+      "route": "/cart",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1537
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1537
+      }
+    },
+    {
+      "route": "/copy-of-panieński-opis",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2880
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2880
+      }
+    },
+    {
+      "route": "/courses",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3486
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3486
+      }
+    },
+    {
+      "route": "/courses/glina-do-wina-",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2015
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2015
+      }
+    },
+    {
+      "route": "/courses/glina-i-rodzina-",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2015
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2015
+      }
+    },
+    {
+      "route": "/courses/imprezy-zamknięte-do-10-os.-",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2042
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2042
+      }
+    },
+    {
+      "route": "/courses/kręcenie-na-kole-",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2015
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2015
+      }
+    },
+    {
+      "route": "/courses/pracowania-otwarta-",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2050
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "50.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2050
+      }
+    },
+    {
+      "route": "/dladoroslych",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 4061
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 4061
+      }
+    },
+    {
+      "route": "/dladzieci",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 8536
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 8536
+      }
+    },
+    {
+      "route": "/dlafirm",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 5176
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 5176
+      }
+    },
+    {
+      "route": "/dostawy-i-zwroty",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1677
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1677
+      }
+    },
+    {
+      "route": "/faq",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1425
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1425
+      }
+    },
+    {
+      "route": "/galeria",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 7455
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 7455
+      }
+    },
+    {
+      "route": "/gift-card",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2276
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2276
+      }
+    },
+    {
+      "route": "/glinadowina",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 4502
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 4502
+      }
+    },
+    {
+      "route": "/home",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "color": "rgb(0, 0, 238)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3416
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "color": "rgb(0, 0, 238)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 4543
+      }
+    },
+    {
+      "route": "/kontakt",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2349
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2349
+      }
+    },
+    {
+      "route": "/kopia-panieński-plus-opis",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3133
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3133
+      }
+    },
+    {
+      "route": "/kopia-urodziny-ceramika",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3142
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3142
+      }
+    },
+    {
+      "route": "/onas",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 9249
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 9249
+      }
+    },
+    {
+      "route": "/panienskie",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3382
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3382
+      }
+    },
+    {
+      "route": "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 4065
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3944
+      }
+    },
+    {
+      "route": "/post/czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3314
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3194
+      }
+    },
+    {
+      "route": "/post/czym-zajmuje-się-pracownia-ceramiki-nero",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3607
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3486
+      }
+    },
+    {
+      "route": "/post/dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 6244
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 6124
+      }
+    },
+    {
+      "route": "/post/dziękujemy-wszystkim-którzy-są-z-nami",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2705
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2584
+      }
+    },
+    {
+      "route": "/post/glina-do-wina",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2924
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2803
+      }
+    },
+    {
+      "route": "/post/jak-zacząć-przygodę-z-ceramiką",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3800
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3671
+      }
+    },
+    {
+      "route": "/post/letnia-akademia-artystyczna-całe-wakacje",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2728
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2607
+      }
+    },
+    {
+      "route": "/post/nowe-warsztaty-ceramika-dla-smyka",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3232
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3112
+      }
+    },
+    {
+      "route": "/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2866
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2746
+      }
+    },
+    {
+      "route": "/post/o-mnie",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2348
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2220
+      }
+    },
+    {
+      "route": "/post/o-sklepie-z-ceramiką",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3186
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3057
+      }
+    },
+    {
+      "route": "/post/pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3414
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3294
+      }
+    },
+    {
+      "route": "/post/slow-design-co-oznacza",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3486
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3357
+      }
+    },
+    {
+      "route": "/post/startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 5335
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 5214
+      }
+    },
+    {
+      "route": "/post/twój-tytuł-jak-nazwałbyś-swój-przepis",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3628
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3508
+      }
+    },
+    {
+      "route": "/post/warsztatyzgliny",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3644
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3524
+      }
+    },
+    {
+      "route": "/post/wpływ-pracy-z-gliną-na-człowieka",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2965
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2837
+      }
+    },
+    {
+      "route": "/post/wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3906
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3785
+      }
+    },
+    {
+      "route": "/post/zaczynamy-nowe-warsztaty-już-we-wrześniu",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2124
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "50px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1996
+      }
+    },
+    {
+      "route": "/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "33.6px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3115
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "33.6px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3115
+      }
+    },
+    {
+      "route": "/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "33.6px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2683
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "28px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "33.6px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2683
+      }
+    },
+    {
+      "route": "/profile/gosianowicka/events",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1385
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1385
+      }
+    },
+    {
+      "route": "/profile/gosianowicka/forum-comments",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1240
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1240
+      }
+    },
+    {
+      "route": "/profile/gosianowicka/forum-posts",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1240
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1240
+      }
+    },
+    {
+      "route": "/profile/gosianowicka/profile",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 4183
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "28px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 7345
+      }
+    },
+    {
+      "route": "/regulamin",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2536
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2536
+      }
+    },
+    {
+      "route": "/service-page/ceramika-dla-dorosłych-pon-czw",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 5727
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 5727
+      }
+    },
+    {
+      "route": "/service-page/glina-do-wina-piątek-19-00-suchy-las",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 5859
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 5859
+      }
+    },
+    {
+      "route": "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 6450
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 6450
+      }
+    },
+    {
+      "route": "/service-page/glina-i-rodzina-soboty-15-00",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 5424
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 5424
+      }
+    },
+    {
+      "route": "/service-page/iv-turnus-półkolonie-artystyczne",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 5935
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 5935
+      }
+    },
+    {
+      "route": "/service-page/letnia-akademia-rysunku-malarstwa",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 5336
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 5336
+      }
+    },
+    {
+      "route": "/service-page/piknik-rodzinny-z-ceramiką-12-września",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 4474
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 4474
+      }
+    },
+    {
+      "route": "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3909
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3909
+      }
+    },
+    {
+      "route": "/service-page/poranki-z-ceramiką-dla-dorosłych",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 4477
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 4477
+      }
+    },
+    {
+      "route": "/service-page/wrzesieńceramika-dla-dorosłych-pon",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 6204
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 6204
+      }
+    },
+    {
+      "route": "/service-page/wrzesieńglina-do-wina-piątek-suchy-las",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 6904
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(126, 64, 46)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 6904
+      }
+    },
+    {
+      "route": "/services",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "56px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "78.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2159
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "56px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "78.4px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3527
+      }
+    },
+    {
+      "route": "/services/glina-do-wina",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1498
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "40px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "56px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1498
+      }
+    },
+    {
+      "route": "/sklep",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 1431
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "12px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "16.8px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 1439
+      }
+    },
+    {
+      "route": "/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "60px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "72px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3648
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "60px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "72px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3648
+      }
+    },
+    {
+      "route": "/terms-conditions",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 35046
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 35046
+      }
+    },
+    {
+      "route": "/urodziny",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 4662
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "53.2px"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 4662
+      }
+    },
+    {
+      "route": "/vouchery",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2831
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "montserrat, sans-serif",
+          "fontSize": "38px",
+          "fontWeight": "400",
+          "color": "rgb(226, 165, 148)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2831
+      }
+    },
+    {
+      "route": "/warsztaty",
+      "desktop": {
+        "body": {
+          "fontFamily": "\"Times New Roman\"",
+          "fontSize": "16px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "\"Madefor Display\", sans-serif",
+          "fontSize": "288px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "\"Madefor Display\", sans-serif",
+          "fontSize": "16px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 900
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "\"Times New Roman\"",
+          "fontSize": "16px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "\"Madefor Display\", sans-serif",
+          "fontSize": "191.1px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "\"Madefor Display\", sans-serif",
+          "fontSize": "16px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 844
+      }
+    },
+    {
+      "route": "/webinar-registration",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2918
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2918
+      }
+    },
+    {
+      "route": "/webinar-registration-1",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3019
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3019
+      }
+    },
+    {
+      "route": "/webinar-registration-2",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 2851
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 2851
+      }
+    },
+    {
+      "route": "/webinar-registration-3",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3077
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3077
+      }
+    },
+    {
+      "route": "/webinar-registration-4",
+      "desktop": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 1440,
+        "documentHeight": 3090
+      },
+      "mobile": {
+        "body": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "h1": {
+          "fontFamily": "proxima-n-w01-reg, sans-serif",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "color": "rgb(0, 0, 0)",
+          "lineHeight": "normal"
+        },
+        "button": {
+          "fontFamily": "Arial, Helvetica, sans-serif",
+          "fontSize": "10px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 238)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "border": "0px none rgb(0, 0, 238)"
+        },
+        "viewportWidth": 390,
+        "documentHeight": 3090
+      }
+    }
+  ]
+}

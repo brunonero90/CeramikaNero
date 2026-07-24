@@ -18,6 +18,30 @@ const nextConfig: NextConfig = {
       : [],
   },
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: '/onas',
+        destination: '/pracownia',
+        permanent: true,
+      },
+      {
+        source: '/dladzieci',
+        destination: '/dla-dzieci',
+        permanent: true,
+      },
+      {
+        source: '/dladoroslych',
+        destination: '/dla-doroslych',
+        permanent: true,
+      },
+      {
+        source: '/dlafirm',
+        destination: '/grupy-i-firmy',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

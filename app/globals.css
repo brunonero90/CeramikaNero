@@ -53,19 +53,20 @@
   as the server-rendered fallback. They are overridden by [data-theme] blocks.
 */
 :root {
-  --surface-bg: #faf7f2;
+  /* Closer to archived Ceramika Nero peach / terracotta marketing palette */
+  --surface-bg: #fdf2ed;
   --surface-raised: #ffffff;
-  --surface-subtle: #e6dccf;
-  --text-primary: #3e2723;
-  --text-muted: #6b5b55;
-  --accent-primary: #c67b5c;
+  --surface-subtle: #e8d5cb;
+  --text-primary: #4a2f28;
+  --text-muted: #6b534c;
+  --accent-primary: #b85c45;
   --accent-secondary: #8a9a84;
-  --accent-highlight: #e6dccf;
+  --accent-highlight: #f0ddd2;
   --font-heading: var(--font-cormorant);
   --font-body: var(--font-inter);
-  --radius-sm: 0.375rem;
-  --radius-md: 0.625rem;
-  --radius-lg: 1rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
   --shadow-sm: 0 1px 2px 0 rgba(62, 39, 35, 0.06);
   --shadow-md: 0 4px 12px -2px rgba(62, 39, 35, 0.1);
   --shadow-lg: 0 12px 32px -4px rgba(62, 39, 35, 0.12);

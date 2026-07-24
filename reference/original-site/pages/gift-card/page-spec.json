@@ -1,0 +1,322 @@
+{
+  "route": "/gift-card",
+  "canonicalUrl": "https://www.ceramikanero.com/gift-card",
+  "pageTitle": "Karta podarunkowa | Pracownia Ceramiki N",
+  "pageType": "shop",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "content",
+      "heading": "eKarta podarunkowa",
+      "headings": ["eKarta podarunkowa"],
+      "text": "eKarta podarunkowa\n\n100 zł\n\nKarta podarunkowa to zawsze dobry pomysł. Wybierz kwotę i napisz własną wiadomość, aby spersonalizować ten prezent.\nMniej\n\nCeramika dla dorosłych\n100 zł\n135 zł\n185 zł\nIlość\nAdres e-mail odbiorcy *\nNazwa odbiorcy\nData dostawy\nLipiec\n2026\nP\tW\tŚ\tC\tP\tS\tN\n\n29\n\t\n30\n\t\n1\n\t\n2\n\t\n3\n\t\n4\n\t\n5\n\n\n6\n\t\n7\n\t\n8\n\t\n9\n\t\n10\n\t\n11\n\t\n12\n\n\n13\n\t\n14\n\t\n15\n\t\n16\n\t\n17\n\t\n18\n\t\n19\n\n\n20\n\t\n21\n\t\n22\n\t\n23\n\t\n24\n\t\n25\n\t\n26\n\n\n27\n\t\n28\n\t\n29\n\t\n30\n\t\n31\n\t\n1\n\t\n2\n\n\n3\n\t\n4\n\t\n5\n\t\n6\n\t\n7\n\t\n8\n\t\n9\nCzas dostawy\nTeraz\n12:30\n12:45\n13:00\n13:15\n13:30\n13:45\n14:00\n14:15\n14:30\n14:45\n15:00\n15:15\n15:30\n15:45\n16:00\n16:15\n16:30\n16:45\n17:00\n17:15\n17:30\n17:45\n18:00\n18:15\n18:30\n18:45\n19:00\n19:15\n19:30\n19:45\n20:00\n20:15\n20:30\n20:45\n21:00\n21:15\n21:30\n21:45\n22:00\n22:15\n22:30\n22:45\n23:00\n23:15\n23:30\n23:45\nKarta podarunkowa wygasa 4 miesiące po zakupie.\nWiadomość\nKup teraz",
+      "buttons": [
+        {
+          "text": "Mniej",
+          "href": null
+        },
+        {
+          "text": "29",
+          "href": null
+        },
+        {
+          "text": "30",
+          "href": null
+        },
+        {
+          "text": "1",
+          "href": null
+        },
+        {
+          "text": "2",
+          "href": null
+        },
+        {
+          "text": "3",
+          "href": null
+        },
+        {
+          "text": "4",
+          "href": null
+        },
+        {
+          "text": "5",
+          "href": null
+        },
+        {
+          "text": "6",
+          "href": null
+        },
+        {
+          "text": "7",
+          "href": null
+        },
+        {
+          "text": "8",
+          "href": null
+        },
+        {
+          "text": "9",
+          "href": null
+        },
+        {
+          "text": "10",
+          "href": null
+        },
+        {
+          "text": "11",
+          "href": null
+        },
+        {
+          "text": "12",
+          "href": null
+        },
+        {
+          "text": "13",
+          "href": null
+        },
+        {
+          "text": "14",
+          "href": null
+        },
+        {
+          "text": "15",
+          "href": null
+        },
+        {
+          "text": "16",
+          "href": null
+        },
+        {
+          "text": "17",
+          "href": null
+        },
+        {
+          "text": "18",
+          "href": null
+        },
+        {
+          "text": "19",
+          "href": null
+        },
+        {
+          "text": "20",
+          "href": null
+        },
+        {
+          "text": "21",
+          "href": null
+        },
+        {
+          "text": "22",
+          "href": null
+        },
+        {
+          "text": "23",
+          "href": null
+        },
+        {
+          "text": "24",
+          "href": null
+        },
+        {
+          "text": "25",
+          "href": null
+        },
+        {
+          "text": "26",
+          "href": null
+        },
+        {
+          "text": "27",
+          "href": null
+        }
+      ],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg/v1/fill/w_1440,h_1696,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b~mv2.jpg",
+          "mediaId": "747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b",
+          "localPath": "/images/wix-migrated/747d6f_3c2b0ad9403c4fc98e4930a3a83ea21b.jpg",
+          "alt": "462535864_555467877031546_520847124191047505_n.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 1440,
+            "height": 1696,
+            "top": 97,
+            "left": 0
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 1696,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 1696,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 1793,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 1793,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 538494,
+    "warmupDataChars": 5996
+  },
+  "newSiteComponent": null,
+  "missingInNewSite": "No corresponding new-site route mapped",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 2276,
+    "captureTimestamp": "2026-07-24T10:16:44.733Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

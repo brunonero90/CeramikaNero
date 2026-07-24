@@ -1,0 +1,70 @@
+{
+  "route": "/warsztaty",
+  "canonicalUrl": "https://www.ceramikanero.com/warsztaty",
+  "pageTitle": "404 Error: Page Not Found",
+  "pageType": "workshops-index",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": "ERROR: PAGE NOT FOUND",
+      "headings": ["ERROR: PAGE NOT FOUND", "404"],
+      "text": "ERROR: PAGE NOT FOUND\n404\nThis page isn’t available.\nGo to Homepage",
+      "buttons": [
+        {
+          "text": "Go to Homepage",
+          "href": "https://www.ceramikanero.com/"
+        },
+        {
+          "text": "Go to Homepage",
+          "href": null
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 810,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 4,
+        "height": 760,
+        "width": 390,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {},
+  "newSiteComponent": "app route /warsztaty",
+  "missingInNewSite": "Compare via clone-gap-analysis",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 900,
+    "captureTimestamp": "2026-07-24T10:48:53.253Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

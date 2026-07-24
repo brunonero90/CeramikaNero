@@ -1,0 +1,288 @@
+{
+  "route": "/courses",
+  "canonicalUrl": "https://www.ceramikanero.com/courses",
+  "pageTitle": "Courses (All) | Pracownia Ceramiki N",
+  "pageType": "course",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "gallery-or-grid",
+      "heading": "Rękodzieło jako joga umysłu",
+      "headings": [
+        "Rękodzieło jako joga umysłu",
+        "WARSZTATY",
+        "Warsztaty rodzinne",
+        "Glina do wina",
+        "Pracownia otwarta"
+      ],
+      "text": "Rękodzieło jako joga umysłu\nKup teraz\nWARSZTATY\n\nZapraszam do zapoznania się z szeroką ofertą warsztatów. Każdy znajdzie tu coś dla siebie. Możesz przyjść całą rodziną, umówić się na wieczór\n\nz koleżankami albo zapisać się na zajęcia indywidualne.\n\n​\n\nWarsztaty rodzinne\n\nUmów się  z córką, z synem z mężem, przyjaciółką albo po prostu przyjdź sam/sama\n\ni wypróbuj swoich sił w pracy z gliną.\n\nZapisz się\nGlina do wina\n\nTo cykliczne spotkania kobiet z serii \"Spotkania po sąsiedzku\" i tu nie chodzi o to, że to tylko dla sąsiadek ale o to, żeby każdy kto przyjdzie na te zajęcia poczuł sięjak u sąsiadki na winie, gdzie może w luźnej atmosferze porozmawiać w gronie miłych, ciekawych ludzi i sięzrelaksować.\n\nZapisz się\nPracownia otwarta\n\nJeżeli zastanawiasz się czy praca z gliną to twoja bajka to zapraszam do mojej pracowni na zajęcia otwarte, gdzie możesz spróbować swoich sił z moją pomocą. Zapewniam wszystkie potrzebne do tego narzędzia i materiały. Jeżeli już lepisz i masz ochotę polepić u mnie w pracowni to również zapraszam. Zadzwoń i się umów.\n\nZapisz się",
+      "buttons": [
+        {
+          "text": "Kup teraz",
+          "href": "https://www.ceramikanero.com/home"
+        },
+        {
+          "text": "Zapisz się",
+          "href": "https://www.ceramikanero.com/home"
+        },
+        {
+          "text": "Zapisz się",
+          "href": "https://www.ceramikanero.com/home"
+        },
+        {
+          "text": "Zapisz się",
+          "href": "https://www.ceramikanero.com/home"
+        }
+      ],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg/v1/fill/w_980,h_630,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_90fd3fe84ad246c3b4f72ead538bc878~mv2.jpg",
+          "mediaId": "747d6f_90fd3fe84ad246c3b4f72ead538bc878",
+          "localPath": "/images/wix-migrated/747d6f_90fd3fe84ad246c3b4f72ead538bc878.jpg",
+          "alt": "iStock-1158622191_edited.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 980,
+            "height": 630,
+            "top": 97,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 2,
+          "src": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_287,h_250,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pracownia%20ceramika%20NERO.png",
+          "mediaId": "747d6f_64bcccd9911949e7895d7325e88a5a75",
+          "localPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+          "alt": "pracownia ceramika NERO.png",
+          "role": "content",
+          "desktop": {
+            "width": 287,
+            "height": 250,
+            "top": 129,
+            "left": 261
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 4,
+          "src": "https://static.wixstatic.com/media/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg/v1/fill/w_491,h_455,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg",
+          "mediaId": "747d6f_9a02c46adb9c4b668b263600c7e8f237",
+          "localPath": "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+          "alt": "iStock-1316129398 kopia.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 491,
+            "height": 455,
+            "top": 1681,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 6,
+          "src": "https://static.wixstatic.com/media/747d6f_045e89a3529f4e2491a7742e1da14497~mv2.jpg/v1/fill/w_491,h_411,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_045e89a3529f4e2491a7742e1da14497~mv2.jpg",
+          "mediaId": "747d6f_045e89a3529f4e2491a7742e1da14497",
+          "localPath": "/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg",
+          "alt": "iStock-183427174.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 491,
+            "height": 411,
+            "top": 2123,
+            "left": 719
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 8,
+          "src": "https://static.wixstatic.com/media/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp/v1/fill/w_491,h_469,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16~mv2.webp",
+          "mediaId": "747d6f_8a2d596fd10b4cd98573ac95e0eb4e16",
+          "localPath": "/images/wix-migrated/747d6f_8a2d596fd10b4cd98573ac95e0eb4e16.jpg",
+          "alt": "17934204212139744.webp",
+          "role": "content",
+          "desktop": {
+            "width": 491,
+            "height": 469,
+            "top": 2534,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 2906,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 2906,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 3002,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 3002,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 540430,
+    "warmupDataChars": 8108
+  },
+  "newSiteComponent": "app route /warsztaty",
+  "missingInNewSite": "Compare via clone-gap-analysis",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 3486,
+    "captureTimestamp": "2026-07-24T10:09:42.137Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

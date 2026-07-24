@@ -1,0 +1,3 @@
+page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3000/grupy-i-firmy
+Call log:
+  - navigating to "http://127.0.0.1:3000/grupy-i-firmy", waiting until "networkidle"

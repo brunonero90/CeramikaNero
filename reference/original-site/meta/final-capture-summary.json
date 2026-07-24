@@ -1,0 +1,180 @@
+{
+  "generatedAt": "2026-07-24T10:54:11.225Z",
+  "originalSite": "https://www.ceramikanero.com/",
+  "captureDate": "2026-07-24T09:55:12.651Z",
+  "discovered": 99,
+  "included": 85,
+  "excluded": 14,
+  "includedRoutes": [
+    "/",
+    "/blog",
+    "/blog/categories/aktualności",
+    "/blog/categories/ciekawostki",
+    "/blog/categories/o-mnie",
+    "/booking-calendar/ceramika-dla-dorosłych-pon-czw",
+    "/booking-calendar/glina-do-wina-piątek-19-00-suchy-las",
+    "/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+    "/booking-calendar/glina-i-rodzina-soboty-15-00",
+    "/booking-calendar/letnia-akademia-rysunku-malarstwa",
+    "/booking-calendar/poranki-z-ceramiką-dla-dorosłych",
+    "/booking-calendar/wrzesieńceramika-dla-dorosłych-pon",
+    "/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las",
+    "/cart",
+    "/copy-of-panieński-opis",
+    "/courses",
+    "/courses/glina-do-wina-",
+    "/courses/glina-i-rodzina-",
+    "/courses/imprezy-zamknięte-do-10-os.-",
+    "/courses/kręcenie-na-kole-",
+    "/courses/pracowania-otwarta-",
+    "/dladoroslych",
+    "/dladzieci",
+    "/dlafirm",
+    "/dostawy-i-zwroty",
+    "/faq",
+    "/galeria",
+    "/gift-card",
+    "/glinadowina",
+    "/home",
+    "/kontakt",
+    "/kopia-panieński-plus-opis",
+    "/kopia-urodziny-ceramika",
+    "/onas",
+    "/panienskie",
+    "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki",
+    "/post/czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki",
+    "/post/czym-zajmuje-się-pracownia-ceramiki-nero",
+    "/post/dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb",
+    "/post/dziękujemy-wszystkim-którzy-są-z-nami",
+    "/post/glina-do-wina",
+    "/post/jak-zacząć-przygodę-z-ceramiką",
+    "/post/letnia-akademia-artystyczna-całe-wakacje",
+    "/post/nowe-warsztaty-ceramika-dla-smyka",
+    "/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025",
+    "/post/o-mnie",
+    "/post/o-sklepie-z-ceramiką",
+    "/post/pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero",
+    "/post/slow-design-co-oznacza",
+    "/post/startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika",
+    "/post/twój-tytuł-jak-nazwałbyś-swój-przepis",
+    "/post/warsztatyzgliny",
+    "/post/wpływ-pracy-z-gliną-na-człowieka",
+    "/post/wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty",
+    "/post/zaczynamy-nowe-warsztaty-już-we-wrześniu",
+    "/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+    "/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+    "/profile/gosianowicka/events",
+    "/profile/gosianowicka/forum-comments",
+    "/profile/gosianowicka/forum-posts",
+    "/profile/gosianowicka/profile",
+    "/regulamin",
+    "/service-page/ceramika-dla-dorosłych-pon-czw",
+    "/service-page/glina-do-wina-piątek-19-00-suchy-las",
+    "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+    "/service-page/glina-i-rodzina-soboty-15-00",
+    "/service-page/iv-turnus-półkolonie-artystyczne",
+    "/service-page/letnia-akademia-rysunku-malarstwa",
+    "/service-page/piknik-rodzinny-z-ceramiką-12-września",
+    "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia",
+    "/service-page/poranki-z-ceramiką-dla-dorosłych",
+    "/service-page/wrzesieńceramika-dla-dorosłych-pon",
+    "/service-page/wrzesieńglina-do-wina-piątek-suchy-las",
+    "/services",
+    "/services/glina-do-wina",
+    "/sklep",
+    "/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny",
+    "/terms-conditions",
+    "/urodziny",
+    "/vouchery",
+    "/webinar-registration",
+    "/webinar-registration-1",
+    "/webinar-registration-2",
+    "/webinar-registration-3",
+    "/webinar-registration-4"
+  ],
+  "excludedRoutes": [
+    {
+      "route": "/about-2",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/forum",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/members",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/order-online",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/pricing-plans/list",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/refer-friends",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/referral",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/services-1",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/services/cosmetic-laser",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/services/facial",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/services/foundations-workshop",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/services/manicure",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/services/skin-product-consultation",
+      "reason": "Wix Beauty Spa template leftover or system/auth route."
+    },
+    {
+      "route": "/warsztaty",
+      "reason": "Original site returns HTTP 404 for /warsztaty. Route exists on the new Next.js site only; artifacts kept under pages/warsztaty for evidence."
+    }
+  ],
+  "artifacts": {
+    "rawHtml": 86,
+    "renderedHtml": 86,
+    "pageSpecs": 86,
+    "contentMd": 86,
+    "desktopScreenshots": 86,
+    "mobileScreenshots": 86
+  },
+  "imagePlacements": {
+    "total": 402,
+    "unresolved": 26,
+    "unresolvedBreakdown": {
+      "facebookProfile": 25,
+      "googleMapWidget": 1,
+      "other": 0
+    }
+  },
+  "additionalReferenceAssets": 16,
+  "validation": {
+    "validatedAt": "2026-07-24T10:54:02.103Z",
+    "includedPages": 85,
+    "failures": [],
+    "warnings": [
+      "26 image placements unresolved locally (see image-placement.json)"
+    ],
+    "ok": true
+  }
+}

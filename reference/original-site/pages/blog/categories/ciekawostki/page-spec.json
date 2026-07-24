@@ -1,0 +1,297 @@
+{
+  "route": "/blog/categories/ciekawostki",
+  "canonicalUrl": "https://www.ceramikanero.com/blog/categories/ciekawostki",
+  "pageTitle": "Ciekawostki",
+  "pageType": "blog-category",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "gallery-or-grid",
+      "heading": "Najpopularniejsze style wnętrzarskie",
+      "headings": [
+        "Najpopularniejsze style wnętrzarskie",
+        "Dlaczego warsztaty z gliny? Wpływ pracy z gliną na człowieka. Rzemiosło."
+      ],
+      "text": "Udostępnij post\nWszystkie\nAktualności\nO mnie\nCiekawostki\nNajpopularniejsze style wnętrzarskie\nNajpopularniejsze style wnętrzarskie zmieniają się wraz z upływem czasu, ale w 2021 roku kilka stylów było szczególnie popularnych....\nCiekawostki\nGosia Nero\nDlaczego warsztaty z gliny? Wpływ pracy z gliną na człowieka. Rzemiosło.\nPraca z gliną wpływa bardzo pozytywnie na nasz układ nerwowy. Praca z gliną, zwłaszcza w dziedzinie rzemiosła ceramicznego,wpływa bardzo...\nCiekawostki\nGosia Nero",
+      "buttons": [
+        {
+          "text": "Udostępnij post",
+          "href": null
+        },
+        {
+          "text": "Wszystkie",
+          "href": "https://www.ceramikanero.com/blog"
+        },
+        {
+          "text": "Aktualności",
+          "href": "https://www.ceramikanero.com/blog/categories/aktualno%C5%9Bci"
+        },
+        {
+          "text": "O mnie",
+          "href": "https://www.ceramikanero.com/blog/categories/o-mnie"
+        },
+        {
+          "text": "Ciekawostki",
+          "href": "https://www.ceramikanero.com/blog/categories/ciekawostki"
+        },
+        {
+          "text": "Najpopularniejsze style wnętrzarskie",
+          "href": "https://www.ceramikanero.com/post/slow-design-co-oznacza"
+        },
+        {
+          "text": "Ciekawostki",
+          "href": "https://www.ceramikanero.com/blog/categories/ciekawostki"
+        },
+        {
+          "text": "Gosia Nero",
+          "href": "https://www.ceramikanero.com/profile/gosianowicka/profile"
+        },
+        {
+          "text": "Dlaczego warsztaty z gliny? Wpływ pracy z gliną na człowieka. Rzemiosło.",
+          "href": "https://www.ceramikanero.com/post/wp%C5%82yw-pracy-z-glin%C4%85-na-cz%C5%82owieka"
+        },
+        {
+          "text": "Ciekawostki",
+          "href": "https://www.ceramikanero.com/blog/categories/ciekawostki"
+        },
+        {
+          "text": "Gosia Nero",
+          "href": "https://www.ceramikanero.com/profile/gosianowicka/profile"
+        }
+      ],
+      "images": [
+        {
+          "order": 0,
+          "src": "https://static.wixstatic.com/media/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg/v1/fill/w_454,h_341,fp_0.50_0.50,q_90,enc_avif,quality_auto/b0c1743eec4b7984c4c5d8a5727dc0b4.webp",
+          "mediaId": "b0c1743eec4b7984c4c5d8a5727dc0b4",
+          "localPath": "/images/wix-migrated/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
+          "alt": "Najpopularniejsze style wnętrzarskie",
+          "role": "content",
+          "desktop": {
+            "width": 454,
+            "height": 341,
+            "top": 197,
+            "left": 248
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 2,
+          "src": "https://graph.facebook.com/100000358912016/picture",
+          "mediaId": null,
+          "localPath": null,
+          "alt": "Zdjęcie autora: Gosia Nero",
+          "role": "content",
+          "desktop": {
+            "width": 32,
+            "height": 32,
+            "top": 223,
+            "left": 737
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 3,
+          "src": "https://static.wixstatic.com/media/595cb32628cf4476abc9c0d74e063e07.jpg/v1/fill/w_454,h_341,fp_0.50_0.50,q_90,enc_avif,quality_auto/595cb32628cf4476abc9c0d74e063e07.webp",
+          "mediaId": "595cb32628cf4476abc9c0d74e063e07",
+          "localPath": "/images/wix-migrated/595cb32628cf4476abc9c0d74e063e07.jpg",
+          "alt": "Dlaczego warsztaty z gliny? Wpływ pracy z gliną na człowieka. Rzemiosło. ",
+          "role": "content",
+          "desktop": {
+            "width": 454,
+            "height": 341,
+            "top": 569,
+            "left": 248
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 5,
+          "src": "https://graph.facebook.com/100000358912016/picture",
+          "mediaId": null,
+          "localPath": null,
+          "alt": "Zdjęcie autora: Gosia Nero",
+          "role": "content",
+          "desktop": {
+            "width": 32,
+            "height": 32,
+            "top": 595,
+            "left": 737
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 834,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 834,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 931,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 931,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 541522,
+    "warmupDataChars": 12680
+  },
+  "newSiteComponent": "app route /blog",
+  "missingInNewSite": "Compare via clone-gap-analysis",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 1414,
+    "captureTimestamp": "2026-07-24T10:01:07.618Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

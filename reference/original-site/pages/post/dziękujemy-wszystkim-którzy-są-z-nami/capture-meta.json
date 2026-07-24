@@ -1,0 +1,16 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "documentHeight": 2705,
+  "captureTimestamp": "2026-07-24T10:24:04.831Z",
+  "missingResources": [
+    {
+      "url": "https://static.wixstatic.com/media/747d6f_0296bb0269754a8295a47f62c62d4822~mv2.jpg/v1/fill/w_323,h_323,fp_0.50_0.50,q_90/747d6f_0296bb0269754a8295a47f62c62d4822~mv2.webp",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "browserErrors": [],
+  "gotoError": null
+}

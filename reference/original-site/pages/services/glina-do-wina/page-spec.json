@@ -1,0 +1,214 @@
+{
+  "route": "/services/glina-do-wina",
+  "canonicalUrl": "https://www.ceramikanero.com/services/glina-do-wina",
+  "pageTitle": "Glina do wina | Pracownia Ceramiki N",
+  "pageType": "service-alias",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "content",
+      "heading": "Glina do wina",
+      "headings": ["Glina do wina", "About"],
+      "text": "< Back\nGlina do wina\n\n149 zł.\n\n2.5 h\n\nBook Now\nAbout\n\nGlina do wina to spotkanie \n\nPrevious\nNext",
+      "buttons": [
+        {
+          "text": "< Back",
+          "href": "https://www.ceramikanero.com/services"
+        },
+        {
+          "text": "Previous",
+          "href": null
+        },
+        {
+          "text": "Next",
+          "href": null
+        }
+      ],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/fc7570_bc49e99650ac4175bb5ea40d340ce055~mv2.jpg/v1/fill/w_720,h_531,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/fc7570_bc49e99650ac4175bb5ea40d340ce055~mv2.jpg",
+          "mediaId": "fc7570_bc49e99650ac4175bb5ea40d340ce055",
+          "localPath": null,
+          "alt": "",
+          "role": "content",
+          "desktop": {
+            "width": 720,
+            "height": 531,
+            "top": 97,
+            "left": 0
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 918,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 918,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 1015,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 1015,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 540589,
+    "warmupDataChars": 8665
+  },
+  "newSiteComponent": null,
+  "missingInNewSite": "No corresponding new-site route mapped",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 1498,
+    "captureTimestamp": "2026-07-24T10:44:49.320Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

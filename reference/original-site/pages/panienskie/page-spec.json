@@ -1,0 +1,283 @@
+{
+  "route": "/panienskie",
+  "canonicalUrl": "https://www.ceramikanero.com/panienskie",
+  "pageTitle": "Panieńskie | Pracownia Ceramiki N",
+  "pageType": "marketing",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "gallery-or-grid",
+      "heading": "Wieczory panieńskie",
+      "headings": [
+        "Wieczory panieńskie",
+        "Panieński\nPAKIET STANDARD\nGlina do wina",
+        "Panieński\nPAKIET PLUS\nGlina do wina\n+ kręcenie na kole",
+        "Panieński\nPAKIET VIP\nGlina do wina\n+ koło garncarskie\n+ sesja fotograficzna"
+      ],
+      "text": "Wieczory panieńskie\n\nSzukasz pomysłu na wyjątkowy wieczór panieński pod Poznaniem?\nPracownia Ceramiki NERO w Suchym Lesie zaprasza na kreatywne warsztaty „Glina do Wina” – idealne połączenie zabawy, wina i tworzenia własnych dzieł z gliny.\nTo oryginalna atrakcja na wieczór panieński w Suchym Lesie, która gwarantuje świetną atmosferę, śmiech i niezapomniane wspomnienia z przyjaciółkami.\nZorganizuj swój kreatywny wieczór panieński i wybierz pakiet dopasowany do Waszych potrzeb!\n\n​\n\nZorganizuj idealny wieczór panieński - wybierz swój PAKIET!\n\nPanieński\nPAKIET STANDARD\nGlina do wina\n\n■ Każdy ulepi swoje przedmioty z gliny z moją pomocą\n\n■ Zapewniam włoskie przystawki\n\n■ Lampka wina\n\n■ Włoska muzyka\n\n■ Cudowny, klimatyczny lokal\n\n​\n\nWięcej szczegółów...\nPanieński\nPAKIET PLUS\nGlina do wina\n+ kręcenie na kole\n\n■ Każdy ulepi swoje przedmioty\n\n■ Zapewniam włoskie przystawki\n\n■ Lampka wina\n\n■ Włoska muzyka\n\n■ Cudowny, klimatyczny lokal \n\n■ Kręcenie na kole garncarskim\njak Demi Moore w \"Uwierz w ducha\"​\n\nWięcej szczegółów...\nPanieński\nPAKIET VIP\nGlina do wina\n+ koło garncarskie\n+ sesja fotograficzna\n\n■ Każdy ulepi swoje przedmioty\n\n■ Zapewniam lampkę wina i włoskie przystawki\n\n■ Kręcenie na kole garncarskim\njak Demi Moore w \"Uwierz w ducha\"\n\n■ Sesja fotograficzna zrobiona przez profesjonalną fotografkę dla wszystkich dziewczyn, pakiet zdjęć do wyboru​\n\nWięcej szczegółów...",
+      "buttons": [
+        {
+          "text": "Więcej szczegółów...",
+          "href": "https://www.ceramikanero.com/webinar-registration"
+        },
+        {
+          "text": "Więcej szczegółów...",
+          "href": "https://www.ceramikanero.com/webinar-registration-1"
+        },
+        {
+          "text": "Więcej szczegółów...",
+          "href": "https://www.ceramikanero.com/copy-of-panie%C5%84ski-opis"
+        }
+      ],
+      "images": [
+        {
+          "order": 0,
+          "src": "https://static.wixstatic.com/media/747d6f_f7dbb82b083943689efa367416eb192a~mv2.jpg/v1/fill/w_980,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1a.jpg",
+          "mediaId": "747d6f_f7dbb82b083943689efa367416eb192a",
+          "localPath": "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+          "alt": "wieczor paniesnki poznan ",
+          "role": "content",
+          "desktop": {
+            "width": 980,
+            "height": 523,
+            "top": 97,
+            "left": 229
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_153,h_133,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pracownia%20ceramika%20NERO.png",
+          "mediaId": "747d6f_64bcccd9911949e7895d7325e88a5a75",
+          "localPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+          "alt": "panienski suchy las, spotkanie , miejsce spotkan , warsztaty ceramiczne, warsztaty ceramiki ",
+          "role": "content",
+          "desktop": {
+            "width": 153,
+            "height": 133,
+            "top": 129,
+            "left": 261
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 3,
+          "src": "https://static.wixstatic.com/media/747d6f_dfe2828f7bac463c873af8b1df79fe47~mv2.jpg/v1/fill/w_488,h_570,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_dfe2828f7bac463c873af8b1df79fe47~mv2.jpg",
+          "mediaId": "747d6f_dfe2828f7bac463c873af8b1df79fe47",
+          "localPath": "/images/wix-migrated/747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg",
+          "alt": "3a.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 488,
+            "height": 570,
+            "top": 1023,
+            "left": 231
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 5,
+          "src": "https://static.wixstatic.com/media/11062b_f5420b566fbe45bf931871861e8cbf46~mv2.jpeg/v1/fill/w_489,h_642,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_f5420b566fbe45bf931871861e8cbf46~mv2.jpeg",
+          "mediaId": "11062b_f5420b566fbe45bf931871861e8cbf46",
+          "localPath": "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+          "alt": "Pottery and Clay",
+          "role": "content",
+          "desktop": {
+            "width": 489,
+            "height": 642,
+            "top": 1594,
+            "left": 720
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 7,
+          "src": "https://static.wixstatic.com/media/11062b_6526e8ba379f4d0e9347f54a2dc67b70~mv2.jpg/v1/fill/w_491,h_658,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_6526e8ba379f4d0e9347f54a2dc67b70~mv2.jpg",
+          "mediaId": "11062b_6526e8ba379f4d0e9347f54a2dc67b70",
+          "localPath": "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+          "alt": "Happy Women",
+          "role": "content",
+          "desktop": {
+            "width": 491,
+            "height": 658,
+            "top": 2237,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 2802,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 2802,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 2899,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 2899,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 541103,
+    "warmupDataChars": 5616
+  },
+  "newSiteComponent": "app route /warsztaty",
+  "missingInNewSite": "Compare via clone-gap-analysis",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 3382,
+    "captureTimestamp": "2026-07-24T10:21:01.234Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

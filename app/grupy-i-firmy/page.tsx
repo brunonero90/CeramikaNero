@@ -1,38 +1,50 @@
-export const dynamic = 'force-dynamic';
+import type { Metadata } from 'next';
+import {
+  buildMarketingMetadata,
+  MarketingPageView,
+} from '@/components/clone/marketing-page';
+import { dlaFirmPage } from '@/lib/clone/content/audience-pages';
 
-import { Metadata } from 'next';
-import { WorkshopList } from '@/components/workshop/workshop-list';
-import { CategoryHero } from '@/components/workshop/category-hero';
-import { ThemeSuggestion } from '@/components/theme-suggestion';
-import { services } from '@/lib/database/factory';
+export const metadata: Metadata = buildMarketingMetadata(
+  dlaFirmPage.title,
+  dlaFirmPage.metaDescription
+);
 
-export const metadata: Metadata = {
-  title: 'Warsztaty dla grup i firm',
-  description:
-    'Integracyjne warsztaty ceramiczne dla grup, firm i okazji specjalnych w pracowni Ceramika Nero.',
-};
-
-export default async function GrupyIFirmyPage() {
-  const [category, workshops] = await Promise.all([
-    services.categories.getBySlug('grupy-i-firmy'),
-    services.workshops.getByCategorySlug('grupy-i-firmy'),
-  ]);
-
+export default function GrupyIFirmyPage() {
   return (
-    <div className="px-4 py-16 md:py-24">
-      {category?.suggestedTheme && (
-        <ThemeSuggestion theme={category.suggestedTheme} />
-      )}
-      <div className="mx-auto max-w-7xl">
-        <CategoryHero
-          slug="grupy-i-firmy"
-          title="Grupy i firmy"
-          description="Warsztaty ceramiczne dla firm, zespołów i grup. Dostosowujemy program, czas trwania i formę do Twoich potrzeb."
-        />
-        <div className="mt-12">
-          <WorkshopList workshops={workshops} />
-        </div>
-      </div>
-    </div>
+    <MarketingPageView
+      hero={dlaFirmPage.hero}
+      beforeBlocks={
+        <section className="mx-auto max-w-3xl px-4 pb-6 md:px-6">
+          <ul className="space-y-2 text-base text-text-primary">
+            {dlaFirmPage.introBullets.map((item) => (
+              <li key={item.slice(0, 40)} className="flex gap-2">
+                <span className="text-accent-primary" aria-hidden>
+                  ■
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <h2 className="mt-10 font-heading text-2xl font-semibold text-text-primary">
+            {dlaFirmPage.whoHeading}
+          </h2>
+          <ul className="mt-4 space-y-2 text-base text-text-primary">
+            {dlaFirmPage.whoBullets.map((item) => (
+              <li key={item.slice(0, 40)} className="flex gap-2">
+                <span className="text-accent-primary" aria-hidden>
+                  ■
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-sm font-semibold tracking-wide text-text-primary uppercase">
+            Dostępne pakiety:
+          </p>
+        </section>
+      }
+      blocks={dlaFirmPage.blocks}
+    />
   );
 }

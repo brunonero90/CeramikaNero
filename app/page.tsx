@@ -1,113 +1,100 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { featureCards } from '@/lib/fixtures/homepage';
-import {
-  getHomeHeroImage,
-  getHomepageFeatureImages,
-} from '@/lib/media/wix-catalog';
+import type { Metadata } from 'next';
+import { CloneCta } from '@/components/clone/marketing';
+import { homepageServices } from '@/lib/clone/content/landings';
+
+export const metadata: Metadata = {
+  title: 'Ceramika Nero | warsztaty z ceramiki Poznań',
+  description:
+    'Wybierz warsztat i zarezerwuj dogodny termin w Pracowni Ceramiki Nero — Suchy Las / Poznań.',
+};
 
 export default function HomePage() {
-  const hero = getHomeHeroImage();
-  const featureImages = getHomepageFeatureImages();
-
   return (
-    <div className="flex flex-col">
-      <section className="relative min-h-[70vh] overflow-hidden md:min-h-[80vh]">
-        {hero && (
-          <Image
-            src={hero.src}
-            alt={hero.alt || 'Pracownia Ceramika Nero'}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/20" />
-        <div className="relative mx-auto flex min-h-[70vh] max-w-4xl flex-col items-center justify-end px-4 pb-16 pt-28 text-center md:min-h-[80vh] md:pb-24">
-          <p className="font-heading text-sm font-semibold tracking-[0.2em] text-white/90 uppercase">
-            Ceramika Nero
-          </p>
-          <h1 className="mt-4 font-heading text-4xl font-semibold leading-tight text-white md:text-5xl lg:text-6xl">
-            Tu glina zmienia się w coś osobistego
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/90 md:text-xl">
-            Warsztaty ceramiczne dla dzieci, dorosłych, rodzin i grup w naszej
-            pracowni w Suchym Lesie.
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href="/warsztaty" variant="primary">
-              Zarezerwuj warsztat
-            </Button>
-            <Button
-              href="/pracownia"
-              variant="outline"
-              className="border-white/70 bg-transparent text-white hover:bg-white/10"
-            >
-              Poznaj pracownię
-            </Button>
-          </div>
+    <div className="bg-surface-bg">
+      <section className="mx-auto max-w-5xl px-4 pt-12 pb-6 text-center md:px-6 md:pt-16">
+        <h1 className="font-heading text-4xl font-semibold text-text-primary md:text-5xl">
+          Wybierz warsztat
+        </h1>
+        <p className="mt-3 text-sm font-semibold tracking-[0.18em] text-text-muted uppercase">
+          ZAREZERWUJ DOGODNY TERMIN
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <span className="bg-text-primary px-4 py-2 text-xs font-semibold tracking-wide text-white uppercase">
+            Wszystkie usługi
+          </span>
+          <span className="border border-surface-subtle px-4 py-2 text-xs font-semibold tracking-wide text-text-muted uppercase">
+            CERAMIKA NERO PODGÓRNA 3 SUCHY LAS
+          </span>
+          <span className="border border-surface-subtle px-4 py-2 text-xs font-semibold tracking-wide text-text-muted uppercase">
+            Inne lokalizacje
+          </span>
         </div>
       </section>
 
-      <section className="bg-surface-raised px-4 py-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-2xl font-semibold text-text-primary md:text-3xl">
-              Co u nas tworzysz
-            </h2>
-            <p className="mt-3 text-text-muted">
-              Pracownia otwarta na różne wieki, doświadczenie i okazje. Wybierz
-              warsztat dopasowany do Ciebie.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {featureCards.map((card, index) => {
-              const image = featureImages[index];
-              return (
-                <article key={card.title} className="group flex flex-col">
-                  {image && (
-                    <div className="relative mb-4 aspect-[4/3] overflow-hidden">
-                      <Image
-                        src={image.src}
-                        alt={image.alt || card.title}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                    </div>
-                  )}
-                  <h3 className="font-heading text-xl font-semibold text-text-primary">
-                    {card.title}
-                  </h3>
-                  <p className="mt-2 text-text-muted">{card.description}</p>
-                  <Link
-                    href="/warsztaty"
-                    className="mt-4 inline-flex items-center text-sm font-medium text-accent-primary transition-base hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-                  >
-                    Zobacz terminy
-                  </Link>
-                </article>
-              );
-            })}
-          </div>
-        </div>
+      <section
+        aria-label="Lista warsztatów"
+        className="mx-auto grid max-w-5xl gap-6 px-4 pb-16 sm:grid-cols-2 md:px-6 lg:grid-cols-3"
+      >
+        {homepageServices.map((service) => (
+          <article
+            key={service.title}
+            className="flex flex-col border border-surface-subtle/50 bg-surface-raised"
+          >
+            <div className="relative aspect-[3/2] overflow-hidden">
+              <Image
+                src={service.image}
+                alt={service.imageAlt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 303px"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-4">
+              <h2 className="font-heading text-base font-semibold tracking-wide text-text-primary uppercase">
+                {service.title}
+              </h2>
+              <p className="mt-2">
+                <Link
+                  href={service.href}
+                  className="text-sm text-accent-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                >
+                  Więcej
+                </Link>
+              </p>
+              <div className="mt-4 flex items-end justify-between gap-3 text-sm text-text-muted">
+                <span>{service.day}</span>
+                <span className="font-semibold text-text-primary">
+                  {service.price}
+                </span>
+              </div>
+              <div className="mt-5">
+                {'soldOut' in service && service.soldOut ? (
+                  <p className="text-sm font-semibold text-text-muted">
+                    Brak wolnych miejsc
+                  </p>
+                ) : null}
+                <CloneCta href={service.href} className="mt-2 w-full">
+                  {service.cta}
+                </CloneCta>
+              </div>
+            </div>
+          </article>
+        ))}
       </section>
 
-      <section className="px-4 py-16">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="font-heading text-2xl font-semibold text-text-primary">
-            Zapisz się na warsztat
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-text-muted">
-            Sprawdź dostępne terminy i zarezerwuj miejsce w pracowni.
-            Przygotujemy dla Ciebie wszystko, czego potrzebujesz.
-          </p>
-          <Button href="/warsztaty" variant="primary" className="mt-6">
-            Zarezerwuj warsztat
-          </Button>
+      <section className="border-t border-surface-subtle/40 bg-[#f8ebe3] px-4 py-10 text-center md:px-6">
+        <h2 className="font-heading text-2xl font-semibold text-text-primary">
+          Grafik zajęć
+        </h2>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-text-muted">
+          Interaktywny kalendarz Wix Bookings został zastąpiony listą warsztatów
+          powyżej. Wybierz ofertę i przejdź do rezerwacji w naszym systemie —
+          bez osadzania runtime Wix.
+        </p>
+        <div className="mt-6">
+          <CloneCta href="/kontakt">Zapytaj o termin</CloneCta>
         </div>
       </section>
     </div>

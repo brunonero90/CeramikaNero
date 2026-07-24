@@ -1,0 +1,638 @@
+{
+  "platform": {
+    "ssrPropsUpdates": [
+      {
+        "comp-jyfgqx86": {
+          "items": [
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Profile",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/profile",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Orders",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-orders",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Addresses",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-addresses",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wallet",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wallet",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wishlist",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wishlist",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Subscriptions",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-subscriptions",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje rezerwacje",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-bookings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Comments",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-comments",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Posts",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-posts",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Events",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/events",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje nagrody",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-rewards",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Account",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-account",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Notifications",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/notifications",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Settings",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/settings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            }
+          ]
+        },
+        "comp-jt8im1nk": { "hidden": true },
+        "comp-jt8im1ng": { "isValid": false, "maxLength": 250 },
+        "comp-lb21z5yf": {
+          "isValid": true,
+          "required": false,
+          "shouldShowValidityIndication": false
+        }
+      }
+    ],
+    "ssrStyleUpdates": [
+      { "comp-jt8im1nk": { "visibility": "hidden !important" } }
+    ],
+    "ssrStructureUpdates": []
+  },
+  "pages": {
+    "compIdToTypeMap": {
+      "CONTROLLER_COMP_CUSTOM_ID": "AppController",
+      "comp-iy33sahv": "LinkBar",
+      "comp-iy4cwgmq": "DropDownMenu",
+      "comp-ly46xv24": "StylableButton",
+      "comp-ly478zni": "StylableButton",
+      "comp-m84o2sdv": "LanguageSelector",
+      "comp-krsxu47n": "AppController",
+      "comp-jyfgqx86": "VerticalMenu",
+      "comp-iy48z4c2": "WRichText",
+      "comp-iy46b54d": "WRichText",
+      "comp-iy4ay8dd": "WRichText",
+      "comp-jt8ip4mr": "WRichText",
+      "comp-jt8im1ni": "SiteButton",
+      "comp-jt8im1ng": "TextInput",
+      "comp-lb21z5yf": "Checkbox",
+      "comp-lbs8sxl5": "WRichText",
+      "comp-jt8im1nk": "WRichText",
+      "comp-lctn5dcp": "WRichText",
+      "masterPage": "MasterPage",
+      "SITE_HEADER": "HeaderContainer",
+      "SITE_FOOTER": "FooterContainer",
+      "PAGES_CONTAINER": "PagesContainer",
+      "SOSP_CONTAINER_CUSTOM_ID": "Container",
+      "comp-m8656k3r": "tpaWidgetNative",
+      "comp-iy45mz7m": "StripColumnsContainer",
+      "SITE_PAGES": "PageGroup",
+      "comp-jyfgqx79": "tpaWidgetNative",
+      "comp-iy45mzdy": "Column",
+      "comp-jt8im1h4": "AppWidget",
+      "comp-jt8im1i7": "FormContainer",
+      "BACKGROUND_GROUP": "BackgroundGroup",
+      "SCROLL_TO_TOP": "Anchor",
+      "SCROLL_TO_BOTTOM": "Anchor",
+      "comp-iy4cwgmq-pinned-layer": "PinnedLayer",
+      "pinnedTopCenter": "DivWithChildren",
+      "comp-iy33sahv-pinned-layer": "PinnedLayer",
+      "comp-ly46xv24-pinned-layer": "PinnedLayer",
+      "comp-ly478zni-pinned-layer": "PinnedLayer",
+      "pinnedTopRight": "DivWithChildren",
+      "soapAfterPagesContainer": "MeshGroup",
+      "SKIP_TO_CONTENT_BTN": "SkipToContentButton",
+      "pageBackground_fmjgt": "PageBackground",
+      "fmjgt": "Page",
+      "comp-lapxz18c": "ClassicSection",
+      "TPAMultiSection_lapuvdh0": "tpaWidgetNative",
+      "Containerfmjgt": "Group",
+      "DYNAMIC_STRUCTURE_CONTAINER": "DynamicStructureContainer",
+      "site-root": "DivWithChildren",
+      "main_MF": "DivWithChildren",
+      "fmjgt_wrapper": "PageMountUnmount",
+      "fmjgt_wrapper_background": "PageMountUnmount"
+    }
+  },
+  "appsWarmupData": {
+    "14cc59bc-f0b7-15b8-e1c7-89ce41d0e0c9": {
+      "initialData": { "counters": {}, "roles": {} }
+    },
+    "13d21c63-b5ec-5912-8397-c3a5ddb27a97": {
+      "TPAMultiSection_lapuvdh0_queryServices-{\"slug\":\"glina-i-rodzina-soboty-15-00\",\"isBookOnlineAllowed\":true,\"types\":[\"CLASS\",\"APPOINTMENT\"],\"withStaffLocations\":true}": {
+        "services": [
+          {
+            "id": "36ad72c1-fd2c-46d3-a051-847ce0fd8418",
+            "appId": "13d21c63-b5ec-5912-8397-c3a5ddb27a97",
+            "createdByAppId": "13d21c63-b5ec-5912-8397-c3a5ddb27a97",
+            "type": "CLASS",
+            "sortOrder": 10,
+            "name": "GLINA I RODZINA SOBOTY 15.00",
+            "description": "💛 Dlaczego warto zapisać się na warsztaty „Glina i Rodzina”?\n\n„Glina i Rodzina” to rodzinne warsztaty ceramiczne zaprojektowane tak, aby łączyć wspólny czas, twórcze działanie i realny efekt w postaci gotowej, użytkowej ceramiki.\n\nTo propozycja dla rodzin, które:\n– chcą spędzić czas razem w wartościowy sposób\n– szukają zajęć rozwijających kreatywność dzieci\n– cenią spokojną, kameralną atmosferę\n– chcą wyjść z warsztatów z czymś więcej niż tylko doświadczeniem\n\nCo zyskujecie, biorąc udział w warsztatach?\n\n✔️ konkretny efekt – własnoręcznie wykonany przedmiot z ceramiki\nAle na efekty trzeba poczekać, po pierwszym spotkaniu prace muszą wyschnąć i będą wypalone i po 2 tygodniach są gotowe do szkliwienia lub odbioru\n✔️ proces od początku do końca – lepienie + szkliwienie\nSą to 2 oddzielne spotkania- lepienie95 zł\/osoba, szkliwienie po 2 tygodniach 95 zł\/osoba \n✔️ elastyczność – zapisy na lepienie i szkliwienie odbywają się oddzielnie ( poszkliwić możesz po 2 tygodniach lub po miesiącu, twoje prace magazynujemy do miesiąca, jeżeli nie możesz przyjść poszkliwić swoich prac w tym czasie, odbierz je i przyjdź w późniejszym terminie lub zleć nam poszklwienie)\n✔️ jasne zasady – każdy etap jest wyraźnie określony\n1 spotkanie  lepienie - poznasz jak się lepi z gliny, aby stworzyć swój pierwszy przedmiot ceramiczny, \n2 spotkanie szkliwienie- to poznanie naszych pięknych kolorów szkliw i zabawa w malowanie swojej pracy  \n✔️ rodzinny format – możecie przyjść razem lub zapisać samo dziecko\n\nPo szkliwieniu i drugim wypale prace stają się trwałe i użytkowe.\nGotowe prace są do odbioru w ciągu miesiąca od warsztatu szkliwienia.\n\nJak wygląda udział w praktyce?\n\n– zapis na warsztat oznacza udział w lepieniu\n– szkliwienie wymaga osobnego zapisu i dodatkowej opłaty\n– jeśli nie zapiszecie się na szkliwienie, możecie odebrać pracę po pierwszym wypale\n(praca będzie bez koloru i nieużytkowa – biskwit)\n– alternatywnie możliwe jest szkliwienie przez pracownię (usługa dodatkowo płatna)\n\nDla kogo są te warsztaty?\n\n– dzieci od 6. roku życia\n– rodziny, rodzice z dziećmi\n– osoby, które chcą spróbować ceramiki bez zobowiązań długoterminowych\n\nTo dobre pierwsze spotkanie z ceramiką i jednocześnie format, do którego można wracać regularnie.\n\nDlaczego Ceramika Nero?\n\n– wieloletnie doświadczenie w pracy z dziećmi i rodzinami\n– kameralne grupy\n– spokojna, uporządkowana forma zajęć\n–klimatyczny domek z rękodziełem \n\n👉 Liczba miejsc jest ograniczona – zapisy obowiązują na każde spotkanie osobno.",
+            "tagLine": "WARSZTATY DLA OSÓB DOROSŁYCH I DZIECI ",
+            "defaultCapacity": 12,
+            "media": {
+              "items": [
+                {
+                  "image": {
+                    "id": "747d6f_e90fa0c2226c4d72bb3a814d5b815ab6~mv2.jpg",
+                    "url": "747d6f_e90fa0c2226c4d72bb3a814d5b815ab6~mv2.jpg",
+                    "height": 743,
+                    "width": 1163,
+                    "filename": "747d6f_e90fa0c2226c4d72bb3a814d5b815ab6~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_ecd02fc102ac4073a257e0118506cadd~mv2.jpg",
+                    "url": "747d6f_ecd02fc102ac4073a257e0118506cadd~mv2.jpg",
+                    "height": 1237,
+                    "width": 1135,
+                    "filename": "747d6f_ecd02fc102ac4073a257e0118506cadd~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_5189ce27ac69426f8e7ee0f701b25f14~mv2.webp",
+                    "url": "747d6f_5189ce27ac69426f8e7ee0f701b25f14~mv2.webp",
+                    "height": 1200,
+                    "width": 1200,
+                    "filename": "747d6f_5189ce27ac69426f8e7ee0f701b25f14~mv2.webp"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg",
+                    "url": "747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg",
+                    "height": 4034,
+                    "width": 6000,
+                    "filename": "747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5~mv2.jpg",
+                    "url": "747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5~mv2.jpg",
+                    "height": 1354,
+                    "width": 989,
+                    "filename": "747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5~mv2.jpg"
+                  }
+                }
+              ],
+              "mainMedia": {
+                "image": {
+                  "id": "747d6f_355d7132929d437a94a84beaa0a6e9a1~mv2.png",
+                  "url": "747d6f_355d7132929d437a94a84beaa0a6e9a1~mv2.png",
+                  "height": 1041,
+                  "width": 1080,
+                  "altText": "warsztaty ceramiczne",
+                  "filename": "11062b_6c7079eb4b9e416391050cabbff07345~mv2.jpg"
+                }
+              },
+              "coverMedia": {
+                "image": {
+                  "id": "747d6f_939c4a28e30b423aae42088184598b32~mv2.png",
+                  "url": "747d6f_939c4a28e30b423aae42088184598b32~mv2.png",
+                  "height": 777,
+                  "width": 1080,
+                  "altText": "warsztaty z gliny ",
+                  "filename": "747d6f_b6b2ebdcb95f424984ee80e8e58a604d~mv2.jpg"
+                }
+              }
+            },
+            "hidden": false,
+            "category": {
+              "id": "48552f51-e7c6-4f14-afe8-2e5d16d54bff",
+              "name": "Nasze usługi",
+              "sortOrder": 2000000
+            },
+            "form": {
+              "id": "d4bc98f8-c9e7-4104-ad35-0d293c44be1c",
+              "mobileSettings": {}
+            },
+            "payment": {
+              "rateType": "FIXED",
+              "fixed": { "price": { "value": "95", "currency": "PLN" } },
+              "options": {
+                "online": true,
+                "inPerson": false,
+                "deposit": false
+              },
+              "pricingPlanIds": [],
+              "addOnOption": "UNKNOWN_ADD_ON_PAYMENT_OPTIONS"
+            },
+            "onlineBooking": {
+              "enabled": true,
+              "requireManualApproval": false,
+              "allowMultipleRequests": false
+            },
+            "conferencing": { "enabled": false },
+            "locations": [
+              {
+                "id": "5f6d413b-678b-4e49-b8b5-79e0953747c3",
+                "type": "BUSINESS",
+                "calculatedAddress": {
+                  "country": "PL",
+                  "subdivision": "WP",
+                  "city": "Suchy Las",
+                  "postalCode": "62-002",
+                  "streetAddress": {
+                    "number": "3",
+                    "name": "Podgórna",
+                    "apt": ""
+                  },
+                  "formattedAddress": "Podgórna 3, Suchy Las, Polska",
+                  "geocode": { "latitude": 52.4802658, "longitude": 16.8811844 }
+                },
+                "business": {
+                  "id": "5f6d413b-678b-4e49-b8b5-79e0953747c3",
+                  "name": "CERAMIKA NERO PODGÓRNA 3 SUCHY LAS ",
+                  "default": true,
+                  "address": {
+                    "country": "PL",
+                    "subdivision": "WP",
+                    "city": "Suchy Las",
+                    "postalCode": "62-002",
+                    "streetAddress": {
+                      "number": "3",
+                      "name": "Podgórna",
+                      "apt": ""
+                    },
+                    "formattedAddress": "Podgórna 3, Suchy Las, Polska",
+                    "geocode": {
+                      "latitude": 52.4802658,
+                      "longitude": 16.8811844
+                    }
+                  },
+                  "email": "kontakt.ceramikanero@gmail.com",
+                  "phone": "532279101"
+                }
+              }
+            ],
+            "bookingPolicy": {
+              "id": "e55e3b5d-9a1a-488b-856a-d2d5c57f9437",
+              "revision": "2",
+              "createdDate": "2026-02-05T17:59:45.404Z",
+              "updatedDate": "2026-03-23T21:41:26.004Z",
+              "appId": "13d21c63-b5ec-5912-8397-c3a5ddb27a97",
+              "name": "ZASADY REZERWACJI MALOWANIE CERAMIKI",
+              "customPolicyDescription": {
+                "enabled": true,
+                "description": "Regulamin rezerwacji warsztatów „Malowanie ceramiki w rytmie włoskiej muzyki”\nRezerwacja miejsca\nMiejsce na warsztatach rezerwuje się wyłącznie poprzez formularz dostępny na stronie internetowej.\nRezerwacja jest potwierdzona dopiero po dokonaniu płatności w wysokości 179 zł \/ osoba (opcja podstawowa – kafelek).\nDopłaty na miejscu\nUczestnik może wybrać większy przedmiot do malowania i dopłacić różnicę zgodnie z cennikiem:\npodstawka \/ talerzyk → +10 zł\nfiliżanka → +20 zł\nmiseczka → +40 zł\nkubek → +50 zł\nOdbiór prac\nPrace uczestników są poszkliwione i wypalane w piecu ceramicznym.\nGotowe prace można odebrać osobiście po około 2 tygodniach od warsztatów lub – za dodatkową opłatą – wysyłamy je pocztą.\nOdwołanie rezerwacji \/ zwroty\nW przypadku rezygnacji na mniej niż 7 dni przed terminem warsztatów zaliczka nie podlega zwrotowi.\nW przypadku odwołania na więcej niż 7 dni przed warsztatami możliwy jest przeniesienie zaliczki na inny termin.\nUczestnictwo\nWarsztaty przeznaczone są dla osób dorosłych.\nKażdy uczestnik maluje wybrany przez siebie przedmiot ceramiczny.\nOdpowiedzialność\nOrganizator nie odpowiada za uszkodzenia prac powstałe po odbiorze lub wysyłce.\nUczestnicy są zobowiązani do przestrzegania zasad bezpieczeństwa podczas zajęć.\nPostanowienia końcowe\nLiczba miejsc jest ograniczona, a rezerwacje przyjmowane są w kolejności zgłoszeń i wpłat.\nOrganizator zastrzega sobie prawo do zmian regulaminu, o których uczestnicy będą informowani na stronie internetowej."
+              },
+              "default": false,
+              "limitEarlyBookingPolicy": {
+                "enabled": false,
+                "earliestBookingInMinutes": 10080
+              },
+              "limitLateBookingPolicy": {
+                "enabled": false,
+                "latestBookingInMinutes": 1440
+              },
+              "bookAfterStartPolicy": { "enabled": false },
+              "cancellationPolicy": {
+                "enabled": false,
+                "limitLatestCancellation": false,
+                "latestCancellationInMinutes": 1440,
+                "allowAnonymous": true
+              },
+              "reschedulePolicy": {
+                "enabled": false,
+                "limitLatestReschedule": false,
+                "latestRescheduleInMinutes": 1440,
+                "allowAnonymous": true
+              },
+              "waitlistPolicy": {
+                "enabled": false,
+                "capacity": 5,
+                "reservationTimeInMinutes": 30
+              },
+              "participantsPolicy": {
+                "enabled": true,
+                "maxParticipantsPerBooking": 6
+              },
+              "resourcesPolicy": {
+                "enabled": false,
+                "autoAssignAllowed": false
+              },
+              "cancellationFeePolicy": {
+                "enabled": false,
+                "cancellationWindows": [],
+                "autoCollectFeeEnabled": true
+              },
+              "saveCreditCardPolicy": { "enabled": false },
+              "staffSortingPolicy": { "sortingMethodType": "RANDOM" }
+            },
+            "schedule": {
+              "id": "43ef0816-bdaa-4bfa-9789-e45f11750503",
+              "firstSessionStart": "2025-10-11T13:00:00.000Z",
+              "lastSessionEnd": "2027-06-19T14:00:00.000Z",
+              "availabilityConstraints": {
+                "durations": [{ "minutes": 60 }],
+                "sessionDurations": [60],
+                "timeBetweenSessions": 0
+              }
+            },
+            "staffMemberIds": ["232a23fa-ad03-4a01-8ede-a7a7a79f5233"],
+            "staffMembers": [
+              {
+                "staffMemberId": "232a23fa-ad03-4a01-8ede-a7a7a79f5233",
+                "name": "Pani Weronika",
+                "workingHoursScheduleIds": [
+                  "480c3c7e-ca3c-4902-8fc7-8c05388ae59f"
+                ],
+                "eventsScheduleId": "2e27fc72-43dc-44bc-b3e6-7ee9e95f29ea",
+                "mainMedia": {
+                  "image": {
+                    "id": "11062b_79c5740ac0eb489ea0cfb034100110ca~mv2.jpg",
+                    "url": "https:\/\/static.wixstatic.com\/media\/11062b_79c5740ac0eb489ea0cfb034100110ca~mv2.jpg",
+                    "height": 3840,
+                    "width": 5760,
+                    "filename": "Sunroof .jpg",
+                    "sizeInBytes": "11892347"
+                  }
+                },
+                "workingHoursLocationCoverage": {
+                  "availableAtAllLocations": true,
+                  "locationIds": []
+                }
+              }
+            ],
+            "staffMemberDetails": {
+              "staffMembers": [
+                {
+                  "staffMemberId": "232a23fa-ad03-4a01-8ede-a7a7a79f5233",
+                  "name": "Pani Weronika",
+                  "workingHoursScheduleIds": [
+                    "480c3c7e-ca3c-4902-8fc7-8c05388ae59f"
+                  ],
+                  "eventsScheduleId": "2e27fc72-43dc-44bc-b3e6-7ee9e95f29ea",
+                  "mainMedia": {
+                    "image": {
+                      "id": "11062b_79c5740ac0eb489ea0cfb034100110ca~mv2.jpg",
+                      "url": "https:\/\/static.wixstatic.com\/media\/11062b_79c5740ac0eb489ea0cfb034100110ca~mv2.jpg",
+                      "height": 3840,
+                      "width": 5760,
+                      "filename": "Sunroof .jpg",
+                      "sizeInBytes": "11892347"
+                    }
+                  },
+                  "workingHoursLocationCoverage": {
+                    "availableAtAllLocations": true,
+                    "locationIds": []
+                  }
+                }
+              ]
+            },
+            "resourceGroups": [],
+            "serviceResources": [],
+            "supportedSlugs": [
+              {
+                "name": "glina-i-rodzina-soboty-15-00",
+                "custom": false,
+                "createdDate": "2025-10-07T19:57:30.079Z"
+              },
+              {
+                "name": "glina-i-rodzina-1",
+                "custom": false,
+                "createdDate": "2025-09-05T11:49:58.707Z"
+              },
+              {
+                "name": "kopia-glina-i-rodzina-szkliwienie-prac-1",
+                "custom": false,
+                "createdDate": "2025-09-05T11:39:57.026Z"
+              }
+            ],
+            "mainSlug": {
+              "name": "glina-i-rodzina-soboty-15-00",
+              "custom": false,
+              "createdDate": "2025-10-07T19:57:30.079Z"
+            },
+            "urls": {
+              "servicePage": {
+                "relativePath": "\/service-page\/glina-i-rodzina-soboty-15-00",
+                "url": "https:\/\/www.ceramikanero.com\/service-page\/glina-i-rodzina-soboty-15-00"
+              },
+              "bookingPage": {
+                "relativePath": "\/booking-calendar\/glina-i-rodzina-soboty-15-00",
+                "url": "https:\/\/www.ceramikanero.com\/booking-calendar\/glina-i-rodzina-soboty-15-00"
+              },
+              "calendarPage": {
+                "relativePath": "\/booking-calendar\/glina-i-rodzina-soboty-15-00",
+                "url": "https:\/\/www.ceramikanero.com\/booking-calendar\/glina-i-rodzina-soboty-15-00"
+              }
+            },
+            "seoData": {
+              "tags": [
+                {
+                  "type": "title",
+                  "children": "warsztaty ceramiczne, z gliny, pracownia,Pracownia Ceramiki, nero, warsztaty dla dzieci",
+                  "custom": false,
+                  "disabled": false
+                }
+              ],
+              "settings": {
+                "preventAutoRedirect": false,
+                "keywords": [
+                  {
+                    "term": "warsztaty ceramiczne, warsztaty z gliny, ",
+                    "isMain": true
+                  }
+                ]
+              }
+            },
+            "createdDate": "2025-09-05T11:39:57.027Z",
+            "updatedDate": "2026-07-23T20:51:46.334Z",
+            "revision": "94",
+            "addOnGroups": [],
+            "addOnDetails": [],
+            "tags": [],
+            "primaryResourceType": "1cd44cf8-756f-41c3-bd90-3e2ffcaf1155"
+          }
+        ],
+        "pagingMetadata": { "count": 1, "cursors": {}, "hasNext": false }
+      },
+      "TPAMultiSection_lapuvdh0_getBookingsSettings": {
+        "bookingsSettings": {
+          "id": "3590a982-5c9c-4068-94cc-b5d9c5e7cb2c",
+          "revision": "2",
+          "createdDate": "2025-05-21T06:00:00.814Z",
+          "updatedDate": "2026-01-27T15:21:13.640Z",
+          "cartCheckout": { "enabled": false },
+          "multiServiceAppointments": { "enabled": true },
+          "displayTimeZone": {
+            "customerCanChange": false,
+            "basedOn": "BUSINESS_TIME_ZONE"
+          },
+          "siteProperties": {
+            "locale": { "languageCode": "pl", "country": "PL" },
+            "language": "pl",
+            "paymentCurrency": "PLN",
+            "timeZone": "Europe\/Warsaw",
+            "email": "kontakt.ceramikanero@gmail.com",
+            "phone": "532279101",
+            "address": {
+              "street": "Podgórna",
+              "city": "Suchy Las",
+              "country": "PL",
+              "state": "WP",
+              "zip": "62-002",
+              "physical": true,
+              "googleFormattedAddress": "Podgórna 3, Suchy Las, Polska",
+              "streetNumber": "3",
+              "apartmentNumber": "",
+              "coordinates": { "latitude": 52.4802658, "longitude": 16.8811844 }
+            },
+            "siteDisplayName": "Pracownia Ceramiki N",
+            "businessName": "Pracownia ceramiki Nero "
+          },
+          "features": {
+            "bookingsServiceList": { "enabled": true },
+            "bookingsPayments": { "enabled": true },
+            "bookingsGroups": { "enabled": true },
+            "bookingsReminders": { "enabled": true },
+            "bookingsCourses": { "enabled": true },
+            "bookingsAppointments": { "enabled": true },
+            "bookingsSmsReminders": { "enabled": true },
+            "bookingsExternalCalendars": { "enabled": true },
+            "bookingsStaffLimit": { "enabled": true, "quotaLimit": "250" },
+            "anywhereBookingsServiceLimit": {
+              "enabled": true,
+              "quotaLimit": "1"
+            },
+            "anywhereBookingsStaffLimit": {
+              "enabled": true,
+              "quotaLimit": "1"
+            },
+            "anywhereRemoveBrand": { "enabled": false },
+            "anywhereCustomizationWidget": { "enabled": false },
+            "bookingsVideoConferencing": { "enabled": true },
+            "acceptPayments": { "enabled": true }
+          },
+          "staffSelection": {
+            "timing": "BEFORE_SLOT_SELECTION",
+            "strategy": "CUSTOMER_CANNOT_CHOOSE"
+          },
+          "locationSelection": { "timing": "BEFORE_SLOT_SELECTION" }
+        }
+      }
+    }
+  },
+  "builderComponentsWarmupData": {},
+  "ooi": { "failedInSsr": {} }
+}

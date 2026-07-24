@@ -1,0 +1,376 @@
+{
+  "route": "/profile/gosianowicka/profile",
+  "canonicalUrl": "https://www.ceramikanero.com/profile/gosianowicka/profile",
+  "pageTitle": "Gosia Nero | Profile",
+  "pageType": "profile",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": "Gosia Nero",
+      "headings": ["Gosia Nero"],
+      "text": "Gosia Nero\nAdministrator\n0\nObserwujących\n0\nObserwujesz\nObserwuj\nWiadomość\nWięcej działań\nProfile\nForum Comments\nForum Posts\nEvents",
+      "buttons": [
+        {
+          "text": "0\nObserwujących",
+          "href": null
+        },
+        {
+          "text": "0\nObserwujesz",
+          "href": null
+        },
+        {
+          "text": "Obserwuj",
+          "href": null
+        },
+        {
+          "text": "Wiadomość",
+          "href": null
+        },
+        {
+          "text": "Profile",
+          "href": "https://www.ceramikanero.com/profile/gosianowicka/profile"
+        },
+        {
+          "text": "Forum Comments",
+          "href": "https://www.ceramikanero.com/profile/gosianowicka/forum-comments"
+        },
+        {
+          "text": "Forum Posts",
+          "href": "https://www.ceramikanero.com/profile/gosianowicka/forum-posts"
+        },
+        {
+          "text": "Events",
+          "href": "https://www.ceramikanero.com/profile/gosianowicka/events"
+        }
+      ],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://graph.facebook.com/100000358912016/picture",
+          "mediaId": null,
+          "localPath": null,
+          "alt": "",
+          "role": "content",
+          "desktop": {
+            "width": 90,
+            "height": 90,
+            "top": 169,
+            "left": 330
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 1,
+        "height": 664,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 1,
+        "height": 664,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "gallery-or-grid",
+      "heading": "Profil",
+      "headings": ["Profil", "O programie", "Posty"],
+      "text": "Profil\nData dołączenia 3 paź 2022\nO programie\n0 polubień\n0 komentarzy\n0 najlepszych odpowiedzi\nPosty\n10 lip 2026 ∙ 1 min\nLetnia akademia artystyczna całe wakacje\nnauka malowania i lepienia z gliny dla Twojego dziecka w wakacje w Suchym Lesie Zapisz swoje dziecko na letnią akademię artystyczną - wybierz dowolny termin na naszej stronie www.ceramikanero.com To 2 godziny wspólnego malowani i lepienia z gliny Zajęcia dla dzieci od lat 6 do 15. Przyjdź i poznaj naszą pracownię. Zapraszamy\n2\n0\n10 lip 2026 ∙ 2 min\nDlaczego Warto Wybrać Naszą Pracownię Ceramiki dla Twoich Kreatywnych Potrzeb?\nTworzenie ceramiki to nie tylko rzemiosło, ale także sposób na wyrażenie siebie i rozwijanie kreatywności. Wybór odpowiedniej pracowni ceramiki może znacząco wpłynąć na Twoje doświadczenia i efekty pracy. Nasza pracownia wyróżnia się na tle innych miejsc, oferując unikalne podejście, wsparcie i atmosferę, które pomagają każdemu twórcy rozwinąć skrzydła. W tym wpisie wyjaśniamy, dlaczego warto postawić właśnie na naszą pracownię. Ręcznie formowana ceramiczna miska na kole garncarskim...\n1\n0\n14 sie 2025 ∙ 2 min\nStartujemy z zapisamy na wrzesień! Bogata oferta warsztatów dla dzieci Rysunek, malarstwo, ceramika, Sensoceramika, Architektura\nKursy Rysunku, Malarstwa i Ceramiki w Suchym Lesie – Zapisz się na Nowy Rok Szkolny Chcesz rozwijać artystyczne talenty swojego dziecka?...\n13\n0\n1\n8 cze 2025 ∙ 1 min\nCzym zajmuje się Pracownia Ceramiki NERO?\nPracownia Ceramiki NERO to przestrzeń twórcza, w której glina spotyka się z wyobraźnią, a rękodzieło z pasją i spokojem. Nasza pracownia...\n16\n0\n19 maj 2025 ∙ 1 min\nPikniki artystyczne na polanie przed Pracownią ceramiki Nero\nZapraszamy na \"Piknik artystyczny w Pracowni ceramiki Nero\". Jest to świetna okazja, żeby nas poznać. Zawsze zaczynamy warsztatami...\n10\n0\n19 maj 2025 ∙ 1 min\nCzy wiecie, że prowadzimy również warsztaty rysunku, malarstwa i ceramiki ?\nCzy wiecie, że w naszej pracowni prowadzimy również warsztaty z rysunku, malarstwa i ceramiki? 🎨🖌️🧱 Z ogromną radością informujemy, że...\n6\n0\nPrześlij więcej",
+      "buttons": [
+        {
+          "text": "10 lip 2026 ∙ 1 min\nLetnia akademia artystyczna całe wakacje\nnauka malowania i lepienia z gliny dla Twojego dziecka w wakacje w Suchym Lesie Zapisz swoje dziecko na letnią akademię artystyczną - wybie",
+          "href": "https://www.ceramikanero.com/post/letnia-akademia-artystyczna-ca%C5%82e-wakacje"
+        },
+        {
+          "text": "10 lip 2026 ∙ 2 min\nDlaczego Warto Wybrać Naszą Pracownię Ceramiki dla Twoich Kreatywnych Potrzeb?\nTworzenie ceramiki to nie tylko rzemiosło, ale także sposób na wyrażenie siebie i rozwijanie kreatywn",
+          "href": "https://www.ceramikanero.com/post/dlaczego-warto-wybra%C4%87-nasz%C4%85-pracowni%C4%99-ceramiki-dla-twoich-kreatywnych-potrzeb"
+        },
+        {
+          "text": "14 sie 2025 ∙ 2 min\nStartujemy z zapisamy na wrzesień! Bogata oferta warsztatów dla dzieci Rysunek, malarstwo, ceramika, Sensoceramika, Architektura\nKursy Rysunku, Malarstwa i Ceramiki w Suchym Lesie ",
+          "href": "https://www.ceramikanero.com/post/startujemy-z-zapisamy-na-wrzesie%C5%84-bogata-oferta-warsztat%C3%B3w-dla-dzieci-rysunek-malarstwo-ceramika"
+        },
+        {
+          "text": "8 cze 2025 ∙ 1 min\nCzym zajmuje się Pracownia Ceramiki NERO?\nPracownia Ceramiki NERO to przestrzeń twórcza, w której glina spotyka się z wyobraźnią, a rękodzieło z pasją i spokojem. Nasza pracownia...",
+          "href": "https://www.ceramikanero.com/post/czym-zajmuje-si%C4%99-pracownia-ceramiki-nero"
+        },
+        {
+          "text": "19 maj 2025 ∙ 1 min\nPikniki artystyczne na polanie przed Pracownią ceramiki Nero\nZapraszamy na \"Piknik artystyczny w Pracowni ceramiki Nero\". Jest to świetna okazja, żeby nas poznać. Zawsze zaczynamy ",
+          "href": "https://www.ceramikanero.com/post/pikniki-artystyczne-na-polanie-przed-pracowni%C4%85-ceramiki-nero"
+        },
+        {
+          "text": "19 maj 2025 ∙ 1 min\nCzy wiecie, że prowadzimy również warsztaty rysunku, malarstwa i ceramiki ?\nCzy wiecie, że w naszej pracowni prowadzimy również warsztaty z rysunku, malarstwa i ceramiki? 🎨🖌️🧱 Z",
+          "href": "https://www.ceramikanero.com/post/czy-wiecie-%C5%BCe-prowadzimy-r%C3%B3wnie%C5%BC-warsztaty-rysunku-malarstwa-i-ceramiki"
+        },
+        {
+          "text": "Prześlij więcej",
+          "href": null
+        }
+      ],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_598,h_216,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
+          "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
+          "localPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
+          "alt": "",
+          "role": "content",
+          "desktop": {
+            "width": 598,
+            "height": 216,
+            "top": 471,
+            "left": 561
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 3,
+          "src": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_598,h_216,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
+          "mediaId": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
+          "localPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
+          "alt": "",
+          "role": "content",
+          "desktop": {
+            "width": 598,
+            "height": 216,
+            "top": 1034,
+            "left": 561
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 5,
+          "src": "https://static.wixstatic.com/media/747d6f_bf6fc0998d4a4467945a89a8340eb7cd~mv2.png/v1/fill/w_598,h_216,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/747d6f_bf6fc0998d4a4467945a89a8340eb7cd~mv2.png",
+          "mediaId": "747d6f_bf6fc0998d4a4467945a89a8340eb7cd",
+          "localPath": "/images/wix-migrated/747d6f_bf6fc0998d4a4467945a89a8340eb7cd.png",
+          "alt": "",
+          "role": "content",
+          "desktop": {
+            "width": 598,
+            "height": 216,
+            "top": 1944,
+            "left": 561
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 7,
+          "src": "https://static.wixstatic.com/media/747d6f_5fbe376ba5bd4db9a9118927f037d80d~mv2.jpg/v1/fill/w_598,h_216,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/747d6f_5fbe376ba5bd4db9a9118927f037d80d~mv2.jpg",
+          "mediaId": "747d6f_5fbe376ba5bd4db9a9118927f037d80d",
+          "localPath": "/images/wix-migrated/747d6f_5fbe376ba5bd4db9a9118927f037d80d.jpg",
+          "alt": "",
+          "role": "content",
+          "desktop": {
+            "width": 598,
+            "height": 216,
+            "top": 2507,
+            "left": 561
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 9,
+          "src": "https://static.wixstatic.com/media/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg/v1/fill/w_598,h_216,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg",
+          "mediaId": "747d6f_da600fb92cac4d629b7833190b681fa2",
+          "localPath": "/images/wix-migrated/747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
+          "alt": "",
+          "role": "content",
+          "desktop": {
+            "width": 598,
+            "height": 216,
+            "top": 3070,
+            "left": 561
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 3603,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 6765,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "content",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 1760,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 5058,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 4,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 3700,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 6862,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 541366,
+    "warmupDataChars": 12020
+  },
+  "newSiteComponent": null,
+  "missingInNewSite": "No corresponding new-site route mapped",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 5872,
+    "captureTimestamp": "2026-07-24T10:36:17.065Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

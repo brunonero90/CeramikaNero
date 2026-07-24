@@ -1,0 +1,246 @@
+{
+  "route": "/webinar-registration",
+  "canonicalUrl": "https://www.ceramikanero.com/webinar-registration",
+  "pageTitle": "Panieński pakiet STANDARD 1 | Pracownia Ceramiki N",
+  "pageType": "webinar",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "content",
+      "heading": "Wieczór panieński\nPAKIET STANDARD",
+      "headings": [
+        "Wieczór panieński\nPAKIET STANDARD",
+        "Zapraszamy do zorganizowania niezapomnianego wieczoru panieńskiego z naszą pomocą!\n■ imprezy od 5 do 15 osób",
+        "Nasza oferta wieczoru panieńskiego obejmuje:",
+        "Każdy ulepi swoje przedmioty z gliny",
+        "Lampka wina włoskiego dla każdego",
+        "Przystawki włoskie",
+        "Zadzwoń do mnie  pod numer telefonu 532 279 101 lub napisz na maila kontakt.ceramikanero@gmail.com\na wyślę Ci ofertę.\nPodaj imię i nazwisko organizatorki\nImię i nazwisko przyszłej panny młodej\nIlość uczestników\nKtóry pakiet wybierasz\nPodaj swój numer telefonu"
+      ],
+      "text": "Wieczór panieński\nPAKIET STANDARD\n\nGlina do wina\n\nZapraszamy do zorganizowania niezapomnianego wieczoru panieńskiego z naszą pomocą!\n■ imprezy od 5 do 15 osób\n \n\nWspólne lepienie z gliny dla kobiet w klimacie włoskim z włoską muzyką, przystawkami i lampką wina. Tematyczna dekoracja sali.\n\nNasza oferta wieczoru panieńskiego obejmuje:\nKażdy ulepi swoje przedmioty z gliny\n\nZapewniam fachową pomoc, wszystkie materiały i narzędzia oraz wypał. To trwała pamiątka na całe życie dla każdej z pań.\n\nLampka wina włoskiego dla każdego\n\nResztę napoi, tort lub inne dodatki można przywieść swoje po uzgodnieniu\n\nPrzystawki włoskie\n\nZapewniam deskę włoskich przystawek dopasowaną do wina\n\nZadzwoń do mnie  pod numer telefonu 532 279 101 lub napisz na maila kontakt.ceramikanero@gmail.com\na wyślę Ci ofertę.\nPodaj imię i nazwisko organizatorki\nImię i nazwisko przyszłej panny młodej\nIlość uczestników\nKtóry pakiet wybierasz\nPodaj swój numer telefonu",
+      "buttons": [
+        {
+          "text": "kontakt.ceramikanero@gmail.com",
+          "href": "mailto:kontakt.ceramikanero@gmail.com"
+        }
+      ],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/60975bc6b6c14bd88ea5618a85e14da1.jpg/v1/fill/w_1440,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/60975bc6b6c14bd88ea5618a85e14da1.jpg",
+          "mediaId": "60975bc6b6c14bd88ea5618a85e14da1",
+          "localPath": "/images/wix-migrated/60975bc6b6c14bd88ea5618a85e14da1.jpg",
+          "alt": "Wine Toast",
+          "role": "content",
+          "desktop": {
+            "width": 1440,
+            "height": 663,
+            "top": 97,
+            "left": 0
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 3,
+          "src": "https://static.wixstatic.com/media/747d6f_f7dbb82b083943689efa367416eb192a~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_f7dbb82b083943689efa367416eb192a~mv2.jpg",
+          "mediaId": "747d6f_f7dbb82b083943689efa367416eb192a",
+          "localPath": "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+          "alt": "1a.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 590,
+            "height": 483,
+            "top": 795,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 5,
+          "src": "https://static.wixstatic.com/media/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg/v1/fill/w_634,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg",
+          "mediaId": "11062b_db67741365e74a03ba19d91e2ffc8721",
+          "localPath": "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
+          "alt": "Love Wedding Decoration",
+          "role": "content",
+          "desktop": {
+            "width": 634,
+            "height": 483,
+            "top": 1800,
+            "left": 616
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 2338,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 2338,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 2435,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 2435,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 541143,
+    "warmupDataChars": 5583
+  },
+  "newSiteComponent": null,
+  "missingInNewSite": "No corresponding new-site route mapped",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 2918,
+    "captureTimestamp": "2026-07-24T10:49:13.659Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

@@ -1,0 +1,1285 @@
+{
+  "platform": {
+    "ssrPropsUpdates": [
+      {
+        "comp-jyfgqx86": {
+          "items": [
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Profile",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/profile",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Orders",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-orders",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Addresses",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-addresses",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wallet",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wallet",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wishlist",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wishlist",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Subscriptions",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-subscriptions",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje rezerwacje",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-bookings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Comments",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-comments",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Posts",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-posts",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Events",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/events",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje nagrody",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-rewards",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Account",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-account",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Notifications",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/notifications",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Settings",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/settings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            }
+          ]
+        },
+        "comp-jt8im1nk": { "hidden": true },
+        "comp-jt8im1ng": { "isValid": false, "maxLength": 250 },
+        "comp-lb21z5yf": {
+          "isValid": true,
+          "required": false,
+          "shouldShowValidityIndication": false
+        }
+      }
+    ],
+    "ssrStyleUpdates": [
+      { "comp-jt8im1nk": { "visibility": "hidden !important" } }
+    ],
+    "ssrStructureUpdates": []
+  },
+  "pages": {
+    "compIdToTypeMap": {
+      "CONTROLLER_COMP_CUSTOM_ID": "AppController",
+      "comp-iy33sahv": "LinkBar",
+      "comp-iy4cwgmq": "DropDownMenu",
+      "comp-ly46xv24": "StylableButton",
+      "comp-ly478zni": "StylableButton",
+      "comp-m84o2sdv": "LanguageSelector",
+      "comp-krsxu47n": "AppController",
+      "comp-jyfgqx86": "VerticalMenu",
+      "comp-iy48z4c2": "WRichText",
+      "comp-iy46b54d": "WRichText",
+      "comp-iy4ay8dd": "WRichText",
+      "comp-jt8ip4mr": "WRichText",
+      "comp-jt8im1ni": "SiteButton",
+      "comp-jt8im1ng": "TextInput",
+      "comp-lb21z5yf": "Checkbox",
+      "comp-lbs8sxl5": "WRichText",
+      "comp-jt8im1nk": "WRichText",
+      "comp-lctn5dcp": "WRichText",
+      "masterPage": "MasterPage",
+      "SITE_HEADER": "HeaderContainer",
+      "SITE_FOOTER": "FooterContainer",
+      "PAGES_CONTAINER": "PagesContainer",
+      "SOSP_CONTAINER_CUSTOM_ID": "Container",
+      "comp-m8656k3r": "tpaWidgetNative",
+      "comp-iy45mz7m": "StripColumnsContainer",
+      "SITE_PAGES": "PageGroup",
+      "comp-jyfgqx79": "tpaWidgetNative",
+      "comp-iy45mzdy": "Column",
+      "comp-jt8im1h4": "AppWidget",
+      "comp-jt8im1i7": "FormContainer",
+      "BACKGROUND_GROUP": "BackgroundGroup",
+      "SCROLL_TO_TOP": "Anchor",
+      "SCROLL_TO_BOTTOM": "Anchor",
+      "comp-iy4cwgmq-pinned-layer": "PinnedLayer",
+      "pinnedTopCenter": "DivWithChildren",
+      "comp-iy33sahv-pinned-layer": "PinnedLayer",
+      "comp-ly46xv24-pinned-layer": "PinnedLayer",
+      "comp-ly478zni-pinned-layer": "PinnedLayer",
+      "pinnedTopRight": "DivWithChildren",
+      "soapAfterPagesContainer": "MeshGroup",
+      "SKIP_TO_CONTENT_BTN": "SkipToContentButton",
+      "pageBackground_jamg6": "PageBackground",
+      "jamg6": "Page",
+      "comp-ln7yieax": "ClassicSection",
+      "TPAMultiSection_lku60dgq": "tpaWidgetNative",
+      "Containerjamg6": "Group",
+      "DYNAMIC_STRUCTURE_CONTAINER": "DynamicStructureContainer",
+      "site-root": "DivWithChildren",
+      "main_MF": "DivWithChildren",
+      "jamg6_wrapper": "PageMountUnmount",
+      "jamg6_wrapper_background": "PageMountUnmount"
+    }
+  },
+  "appsWarmupData": {
+    "14cc59bc-f0b7-15b8-e1c7-89ce41d0e0c9": {
+      "initialData": { "counters": {}, "roles": {} }
+    },
+    "140603ad-af8d-84a5-2c80-a0f60cb47351": {
+      "EventsPageInitialState": {
+        "environment": {
+          "formViewState": false,
+          "seo": false,
+          "locale": "pl-pl",
+          "language": "pl",
+          "timezone": "Europe\/Warsaw",
+          "mobile": false,
+          "editor": false,
+          "preview": false,
+          "site": true,
+          "baseUrl": "https:\/\/www.ceramikanero.com",
+          "eventListPageUrl": "https:\/\/www.ceramikanero.com",
+          "homePageUrl": "https:\/\/www.ceramikanero.com",
+          "headless": false,
+          "hasHeadlessTYP": false
+        },
+        "siteSettings": {
+          "settings": {
+            "pagesType": 1,
+            "firstTimeCompleted": true,
+            "detailsPagePath": "details"
+          },
+          "locale": "pl-PL",
+          "firstEventCreated": true,
+          "ticketed": true,
+          "language": "pl",
+          "premium": "Auto",
+          "ticketingOptions": {
+            "wixServiceFee": true,
+            "delayedPaymentsCaptureConfig": {
+              "enabled": false,
+              "action": 0,
+              "delayInHours": 144
+            }
+          },
+          "appState": "ENABLED",
+          "appStateUpdated": "2023-08-02T20:12:19.000Z"
+        },
+        "multilingual": {
+          "currentLanguage": "pl",
+          "isEnabled": true,
+          "isPrimaryLanguage": true
+        },
+        "demoEvents": {},
+        "event": {
+          "event": {
+            "id": "7ea44d3a-99e9-4abb-983a-33a6f48e828e",
+            "location": {
+              "name": "Suchy Las",
+              "coordinates": {
+                "lat": 52.48027509999999,
+                "lng": 16.88115669999999
+              },
+              "address": "Podgórna 3, 62-002 Suchy Las, Polska",
+              "type": 0,
+              "fullAddress": {
+                "country": "PL",
+                "city": "Suchy Las",
+                "postalCode": "62-002",
+                "streetAddress": {
+                  "number": "3",
+                  "name": "Podgórna",
+                  "apt": ""
+                },
+                "formattedAddress": "Podgórna 3, 62-002 Suchy Las, Polska",
+                "geocode": {
+                  "latitude": 52.48027509999999,
+                  "longitude": 16.88115669999999
+                },
+                "countryFullname": "Poland",
+                "subdivisions": [
+                  {
+                    "code": "Wielkopolskie",
+                    "name": "Wielkopolskie",
+                    "type": 1
+                  },
+                  {
+                    "code": "Powiat poznański",
+                    "name": "Powiat poznański",
+                    "type": 2
+                  },
+                  { "code": "Suchy Las", "name": "Suchy Las", "type": 3 },
+                  { "code": "PL", "name": "Poland", "type": 6 }
+                ]
+              },
+              "tbd": false
+            },
+            "scheduling": {
+              "config": {
+                "scheduleTbd": false,
+                "startDate": "2025-05-24T08:30:00.000Z",
+                "endDate": "2025-05-24T11:30:00.651Z",
+                "timeZoneId": "Europe\/Warsaw",
+                "endDateHidden": false,
+                "showTimeZone": false,
+                "recurrences": { "occurrences": [], "status": 0 }
+              },
+              "formatted": "24 maja 2025, 10:30–13:30",
+              "startDateFormatted": "24 maja 2025",
+              "startTimeFormatted": "10:30",
+              "endDateFormatted": "24 maja 2025",
+              "endTimeFormatted": "13:30"
+            },
+            "title": "Piknik rodzinny + warsztaty wstęp wolny ",
+            "description": "Warsztaty Ceramiczne & Architektoniczne z Piknikiem Rodzinnym\nSpędź sobotę kreatywnie i rodzinnie! Zapraszamy na wyjątkowe warsztaty ceramiczne i architektoniczne, połączone z piknikiem na świeżym powietrzu. To doskonała okazja, aby rozwijać kreatywność, odpocząć w otoczeniu natury i wspólnie stwórz",
+            "about": "<p>Zapraszamy na Piknik Rodzinny z Rękodziełem!<\/p>\n<p>Dołącz do nas na niezapomnianą przygodę twórczą i spędź czas z rodziną na świeżym powietrzu.<\/p>\n<p>Data: 2 września<\/p>\n<p>Godzina: 15.00-18.00<\/p>\n<p>Lokalizacja: teren Pracowni ceramiki NERO (zielona polana)ul. Podgórna 3 (boczna od Alejowej, drogi idącej na Morasko), Suchy Las pod Poznaniem<\/p>\n<p>Co czeka na Ciebie:<\/p>\n<p>- Rękodzielnicze warsztaty dla wszystkich grup wiekowych<\/p>\n<p>- Tworzenie przedmiotów z ceramiki, robienie ozdób z makramy i wiele więcej<\/p>\n<p>- palenisko, na którym możecie usmażyć przyniesione przez was kiełbaski<\/p>\n<p>- stoiska z pracami rękodzielników z naszego regionu,między innymi ceramika,kaligrafia, makramy,biżuteria, przedmioty szyte, z drewna, z chrobotka i wiele innych<\/p>\n<p>Nie musisz mieć doświadczenia w rękodziele! Nasi instruktorzy będą tam, aby Ci pomóc i wprowadzić Cię w świat twórczych możliwości.<\/p>\n<p>Przyprowadź swoją rodzinę, przyjaciół i twórczość! To będzie piknik, który na długo pozostanie w Waszej pamięci.<\/p>\n<p>Nie przegap tej okazji! Dołącz do nas na Pikniku Rodzinnym z Rękodziełem i stwórzcie razem niezapomniane dzieła sztuki.<\/p>\n<p>Weźcie ze sobą koc piknikowy,kiełbaski, przekąski i napoje, będziemy wspólnie świętować przy palenisku!!!!<\/p>\n<p>Koce możecie rozłożyć na słonecznej polanie.<\/p>\n<p>Zapraszamy do kontaktu pod numerem telefonu 600 158 318 e-mailem nerogosia&#64;gmail.com<\/p>\n<p>www.ceramikanero.com w razie pytań<\/p>\n<p>Do zobaczenia na pikniku!<\/p>\n<p>Organizator:Pracownia ceramiki NERO<\/p>\n<p>FB ceramika_nero<\/p>\n<p>Ponad to będą z nami:<\/p>\n<p>FB Anesart<\/p>\n<p>Greenowacja<\/p>\n<p>FB Rekodziela_motyla<\/p>\n<p>FB personalizowane bransoletki<\/p>\n<p>By.monace<\/p>\n<p>Fifnebibelotybasiidoroty<\/p>\n<p>madebynatalia<\/p>\n<p>le.gkaart<\/p>\n<p>W przypadku deszcze organizator ma prawo odwołać wydarzenie. <\/p>",
+            "mainImage": {
+              "id": "747d6f_448924318b194426b689bf1f332a815e~mv2.webp",
+              "url": "https:\/\/static.wixstatic.com\/media\/747d6f_448924318b194426b689bf1f332a815e~mv2.webp",
+              "height": 1368,
+              "width": 1368
+            },
+            "slug": "piknik-rodzinny-warsztaty-wstep-wolny",
+            "language": "pl",
+            "created": "2023-08-19T19:47:46.390Z",
+            "modified": "2025-03-05T21:57:16.000Z",
+            "status": 2,
+            "registration": {
+              "type": 1,
+              "status": 1,
+              "rsvpCollection": {
+                "config": {
+                  "rsvpStatusOptions": 0,
+                  "waitlist": false,
+                  "confirmationMessages": {
+                    "positiveConfirmation": {
+                      "title": "Dziękujemy!",
+                      "message": "Wysłano do Ciebie wiadomość e-mail z wszystkimi informacjami o wydarzeniu.",
+                      "addToCalendarActionLabel": "Dodaj do Kalendarza",
+                      "shareActionLabel": "Udostępnienia"
+                    },
+                    "waitlistMessages": {
+                      "title": "Dzięki! Zostałeś dodany do listy oczekujących.",
+                      "message": "Powiadomimy cię jeśli zwolnią się dodatkowe miejsca.",
+                      "addToCalendarActionLabel": "Dodaj do Kalendarza",
+                      "shareActionLabel": "Udostępnienia"
+                    },
+                    "negativeMessages": {
+                      "title": "Przykro nam, że nie pojawisz się",
+                      "shareActionLabel": "Udostępnienia"
+                    }
+                  }
+                }
+              },
+              "ticketing": {
+                "config": {
+                  "guestAssignedTickets": false,
+                  "ticketLimitPerOrder": 50,
+                  "reservationDurationInMinutes": 20,
+                  "gracePeriodInMinutes": 120,
+                  "confirmationMessages": {
+                    "title": "",
+                    "message": "",
+                    "downloadTicketsLabel": "",
+                    "addToCalendarActionLabel": "Dodaj do Kalendarza",
+                    "shareActionLabel": "Udostępnienia"
+                  },
+                  "checkoutType": 1
+                },
+                "soldOut": true
+              },
+              "restrictedTo": 0,
+              "initialType": 1
+            },
+            "calendarLinks": {
+              "google": "http:\/\/calendar.google.com\/calendar\/render?action=TEMPLATE&text=Piknik+rodzinny+%2B+warsztaty+wst%C4%99p+wolny+&dates=20250524T083000Z%2F20250524T113000Z&location=Podg%C3%B3rna+3%2C+62-002+Suchy+Las%2C+Polska&details=Warsztaty+Ceramiczne+%26+Architektoniczne+z+Piknikiem+Rodzinnym%0ASp%C4%99d%C5%BA+sobot%C4%99+kreatywnie+i+rodzinnie%21+Zapraszamy+na+wyj%C4%85tkowe+warsztaty+ceramiczne+i+architektoniczne%2C+po%C5%82%C4%85czone+z+piknikiem+na+%C5%9Bwie%C5%BCym+powietrzu.+To+doskona%C5%82a+okazja%2C+aby+rozwija%C4%87+kreatywno%C5%9B%C4%87%2C+odpocz%C4%85%C4%87+w+otoczeniu+natury+i+wsp%C3%B3lnie+stw%C3%B3rz%3Cbr%3E%3Cbr%3EPiknik+rodzinny+%2B+warsztaty+wst%C4%99p+wolny+%0A24+maja+2025%2C+10%3A30%E2%80%9313%3A30%0ASuchy+Las%2C+Podg%C3%B3rna+3%2C+62-002+Suchy+Las%2C+Polska",
+              "ics": "https:\/\/www.wixevents.com\/media\/v2\/calendar?token=JWS.eyJraWQiOiJpb21iOUJ0eSIsImFsZyI6IkhTMjU2In0.eyJkYXRhIjoie1wiaW5zdGFuY2VJZFwiOlwiZTg2NjM2OTUtZWQxMy00ZTFkLTg4OWYtOWVlYTVkZGU5MjdkXCIsXCJldmVudElkXCI6e1widmFsdWVcIjpcIjdlYTQ0ZDNhLTk5ZTktNGFiYi05ODNhLTMzYTZmNDhlODI4ZVwifSxcIm9jTGlua1wiOm51bGx9IiwiaWF0IjoxNzg0ODc5NjAzfQ.t9aq9CGikzBmmdPLPYESYRcVLhcH7j0xgr_eaSjkcwU"
+            },
+            "form": {
+              "controls": [
+                {
+                  "type": 5,
+                  "system": true,
+                  "name": "name",
+                  "inputs": [
+                    {
+                      "name": "firstName",
+                      "array": false,
+                      "label": "Imię",
+                      "options": [],
+                      "mandatory": true,
+                      "maxLength": 50,
+                      "type": 0,
+                      "labels": []
+                    },
+                    {
+                      "name": "lastName",
+                      "array": false,
+                      "label": "Nazwisko",
+                      "options": [],
+                      "mandatory": true,
+                      "maxLength": 50,
+                      "type": 0,
+                      "labels": []
+                    }
+                  ],
+                  "label": "Imię, Nazwisko",
+                  "orderIndex": 0,
+                  "id": "name",
+                  "deleted": false
+                },
+                {
+                  "type": 0,
+                  "system": true,
+                  "name": "email",
+                  "inputs": [
+                    {
+                      "name": "email",
+                      "array": false,
+                      "label": "E-mail",
+                      "options": [],
+                      "mandatory": true,
+                      "maxLength": 255,
+                      "type": 0,
+                      "labels": []
+                    }
+                  ],
+                  "label": "E-mail",
+                  "orderIndex": 1,
+                  "id": "email",
+                  "deleted": false
+                }
+              ],
+              "messages": {
+                "rsvp": {
+                  "rsvpYesOption": "Wezmę udział",
+                  "rsvpNoOption": "Nie weźmie udziału",
+                  "positiveMessages": {
+                    "title": "Dodaj swoje dane",
+                    "confirmation": {
+                      "title": "Dziękujemy!",
+                      "message": "Wysłano do Ciebie wiadomość e-mail z wszystkimi informacjami o wydarzeniu.",
+                      "addToCalendarActionLabel": "Dodaj do Kalendarza",
+                      "shareActionLabel": "Udostępnienia"
+                    }
+                  },
+                  "waitlistMessages": {
+                    "title": "Dodaj swoje dane",
+                    "confirmation": {
+                      "title": "Dzięki! Zostałeś dodany do listy oczekujących.",
+                      "message": "Powiadomimy cię jeśli zwolnią się dodatkowe miejsca.",
+                      "addToCalendarActionLabel": "Dodaj do Kalendarza",
+                      "shareActionLabel": "Udostępnienia"
+                    }
+                  },
+                  "negativeMessages": {
+                    "title": "Dodaj swoje dane",
+                    "confirmation": {
+                      "title": "Przykro nam, że nie pojawisz się",
+                      "shareActionLabel": "Udostępnienia"
+                    }
+                  },
+                  "submitActionLabel": "PRZEŚLIJ"
+                },
+                "checkout": {
+                  "title": "Dodaj swoje dane",
+                  "submitActionLabel": "Kontynuuj",
+                  "confirmation": {
+                    "title": "",
+                    "message": "",
+                    "downloadTicketsLabel": "",
+                    "addToCalendarLabel": "Dodaj do Kalendarza",
+                    "shareEventLabel": "Udostępnienia"
+                  }
+                },
+                "registrationClosed": {
+                  "message": "Rejestracja jest zamknięta",
+                  "exploreEventsActionLabel": "Zobacz inne wydarzenia"
+                },
+                "ticketsUnavailable": {
+                  "message": "Nie prowadzimy sprzedaży biletów",
+                  "exploreEventsActionLabel": "Zobacz inne wydarzenia"
+                }
+              }
+            },
+            "instanceId": "e8663695-ed13-4e1d-889f-9eea5dde927d",
+            "guestListConfig": { "publicGuestList": true },
+            "userId": "747d6f83-85e9-4dc8-beac-c643783ec405",
+            "onlineConferencing": { "providerName": "" },
+            "assignedContactsLabel": "custom.piknik-rodzinny-z-rekodzielem-9-2-23-3-00-pm",
+            "categories": [],
+            "eventDisplaySettings": { "hideEventDetailsPage": false },
+            "labellingSettings": { "assignedContactsLabelDeleted": false },
+            "longDescription": {
+              "nodes": [
+                {
+                  "type": "HEADING",
+                  "id": "qr8eh2758",
+                  "nodes": [],
+                  "headingData": {
+                    "level": 3,
+                    "textStyle": { "textAlignment": "AUTO" }
+                  }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "wyqm13678",
+                  "nodes": [],
+                  "paragraphData": {}
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "7498x3763",
+                  "nodes": [],
+                  "paragraphData": {}
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "8tf113764",
+                  "nodes": [],
+                  "paragraphData": {}
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "6rylm3679",
+                  "nodes": [],
+                  "paragraphData": {}
+                },
+                {
+                  "type": "HEADING",
+                  "id": "cyjj93680",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "Warsztaty Ceramiczne & Architektoniczne z Piknikiem Rodzinnym",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    }
+                  ],
+                  "headingData": {
+                    "level": 3,
+                    "textStyle": { "textAlignment": "AUTO" }
+                  }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "i40ma2760",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "Spędź sobotę kreatywnie i rodzinnie! Zapraszamy na wyjątkowe ",
+                        "decorations": []
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "warsztaty ceramiczne i architektoniczne",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": ", połączone z piknikiem na świeżym powietrzu. To doskonała okazja, aby rozwijać kreatywność, odpocząć w otoczeniu natury i wspólnie stworzyć coś wyjątkowego!",
+                        "decorations": []
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                },
+                {
+                  "type": "HEADING",
+                  "id": "wh5s12764",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "📝 Program wydarzenia:",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    }
+                  ],
+                  "headingData": {
+                    "level": 3,
+                    "textStyle": { "textAlignment": "AUTO" }
+                  }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "2alfr2766",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": { "text": "🎨 ", "decorations": [] }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "10:30 - 11:30 Warsztaty ceramiczne",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": " – stwórz własne dzieło pod okiem doświadczonych instruktorów! Dla dorosłych i dzieci od lat 6. ",
+                        "decorations": []
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "Wymagana rezerwacja przez stronę internetową.",
+                        "decorations": [
+                          { "type": "ITALIC", "italicData": true }
+                        ]
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "w5jte2771",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": { "text": "🏡 ", "decorations": [] }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "10:30 - 11:30 Warsztaty architektoniczne: \"Zaprojektuj pokój marzeń\"",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": " – kreatywne zajęcia dla dzieci ",
+                        "decorations": []
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "w wieku 6-10 lat",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": ". Uczestnicy stworzą własny projekt wymarzonego pokoju, ucząc się podstaw projektowania wnętrz. ",
+                        "decorations": []
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "(Limit miejsc: 15, obowiązują zapisy.)",
+                        "decorations": [
+                          { "type": "ITALIC", "italicData": true }
+                        ]
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "um12l2778",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": { "text": "🌿 ", "decorations": [] }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "11:30 - 13:00 Piknik na polanie przed pracownią",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": " – przynieś koc, przekąski i zrelaksuj się w miłej atmosferze. Można przyjść na sam piknik – ",
+                        "decorations": []
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "wstęp darmowy!",
+                        "decorations": [
+                          { "type": "ITALIC", "italicData": true }
+                        ]
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "dmot32783",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": { "text": "🏠 ", "decorations": [] }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "13:30 - 14:30 Warsztaty architektoniczne: \"Zaprojektuj swoje mieszkanie\"",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": " – dla dzieci i młodzieży ",
+                        "decorations": []
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "w wieku 11-16 lat",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": ". Każdy uczestnik samodzielnie zaprojektuje funkcjonalne wnętrze i stworzy własną wizję idealnego mieszkania. ",
+                        "decorations": []
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "(Obowiązują zapisy.)",
+                        "decorations": [
+                          { "type": "ITALIC", "italicData": true }
+                        ]
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "scwvi2790",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": { "text": "🔥 ", "decorations": [] }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "Dodatkowe atrakcje:",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "🛍 Możliwość zakupu pięknego rękodzieła, ceramiki i świec sojowych.🎨 Mini warsztaty ozdabiania ceramiki – koszt 30 zł, dostępne przez cały czas pikniku.🔥 Palenisko – przynieś swoje kiełbaski i upiecz je na ogniu!",
+                        "decorations": []
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                },
+                {
+                  "type": "HEADING",
+                  "id": "m79zr2794",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "📅 Kolejne terminy wydarzenia:",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    }
+                  ],
+                  "headingData": {
+                    "level": 3,
+                    "textStyle": { "textAlignment": "AUTO" }
+                  }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "3zqaf2796",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "📍 24 maja, 7 czerwca, 5 lipca, 9 sierpnia, 30 sierpnia",
+                        "decorations": []
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "npf5l2798",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "Zapewniamy wszystkie materiały, inspirującą atmosferę i niezapomniane wrażenia!",
+                        "decorations": []
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "o8v512800",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": { "text": "📞 ", "decorations": [] }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "Kontakt:",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": " 600 158 318🌐 ",
+                        "decorations": []
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "Zapisy i więcej informacji:",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": { "text": " ", "decorations": [] }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "www.ceramikanero.com",
+                        "decorations": [
+                          {
+                            "type": "LINK",
+                            "linkData": {
+                              "link": {
+                                "url": "http:\/\/www.ceramikanero.com",
+                                "target": "SELF"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                },
+                {
+                  "type": "PARAGRAPH",
+                  "id": "3bo9c2807",
+                  "nodes": [
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": { "text": "➡️ ", "decorations": [] }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": "Nie zwlekaj – liczba miejsc ograniczona!",
+                        "decorations": [
+                          { "type": "BOLD", "fontWeightValue": 700 }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "id": "",
+                      "nodes": [],
+                      "textData": {
+                        "text": " Zapisz swoje dziecko już dziś i spędź kreatywną sobotę z nami! 🎨🏡🔥",
+                        "decorations": []
+                      }
+                    }
+                  ],
+                  "paragraphData": { "textStyle": { "textAlignment": "AUTO" } }
+                }
+              ],
+              "documentStyle": {}
+            },
+            "badges": [],
+            "members": [],
+            "totalGuests": { "YES": 1, "NO": 0 }
+          }
+        },
+        "eventsSettings": {
+          "id": "e8663695-ed13-4e1d-889f-9eea5dde927d",
+          "createdDate": "2023-08-02T20:12:19.000Z",
+          "updatedDate": "2025-03-11T16:00:18.230Z",
+          "revision": "6",
+          "freePremium": false,
+          "checkoutType": "UNKNOWN_CHECKOUT_TYPE",
+          "wixFormsEnabled": false,
+          "features": {
+            "wixFormsEnabled": false,
+            "notificationsEnabled": true,
+            "automationTriggersEnabled": true,
+            "customUrlMappingEnabled": false
+          }
+        },
+        "navigation": {
+          "sectionPath": "szczeg-y-wydarzenia-i-rejestracja",
+          "slug": "piknik-rodzinny-warsztaty-wstep-wolny",
+          "route": "details",
+          "shouldNavigateBack": false,
+          "query": {}
+        },
+        "currentMemberDetails": {},
+        "memberRsvp": { "rsvp": null, "loaded": true },
+        "checkoutOptions": {
+          "loaded": false,
+          "options": {
+            "premiumServices": true,
+            "paymentMethodConfigured": true,
+            "acceptCoupons": true,
+            "acceptGiftCards": true
+          }
+        },
+        "selectedTickets": {},
+        "pendingRequests": {
+          "loading": { "HANDLE_INITIAL_NAVIGATION": false, "NAVIGATE": false }
+        },
+        "tickets": [],
+        "demoTickets": [],
+        "reservation": { "data": null, "error": null },
+        "ticketsPicker": { "tickets": {} },
+        "paidPlans": {
+          "planList": [],
+          "purchasedPlanList": [],
+          "selectedPaidPlanOrderId": null,
+          "translatedDetails": {}
+        },
+        "instance": {
+          "instance": "rIVz_rc31B3MIRsho26kqthDT-eGAMD7X9a1CrG-lXM.eyJpbnN0YW5jZUlkIjoiZTg2NjM2OTUtZWQxMy00ZTFkLTg4OWYtOWVlYTVkZGU5MjdkIiwiYXBwRGVmSWQiOiIxNDA2MDNhZC1hZjhkLTg0YTUtMmM4MC1hMGY2MGNiNDczNTEiLCJtZXRhU2l0ZUlkIjoiZDU1MDJhY2EtMzVmOS00ODgxLWE2MjYtOWI0NjU3ZThmZjZhIiwic2lnbkRhdGUiOiIyMDI2LTA3LTI0VDA3OjUzOjIxLjc5N1oiLCJkZW1vTW9kZSI6ZmFsc2UsImJpVG9rZW4iOiIzZDM2MWM1Zi1kOGVhLTA2OWMtMmViOS0wNWFjMGEzNjZkMTciLCJzaXRlT3duZXJJZCI6Ijc0N2Q2ZjgzLTg1ZTktNGRjOC1iZWFjLWM2NDM3ODNlYzQwNSIsImNhY2hlIjp0cnVlLCJicyI6ImNYOGgxUWIzNFdZYTUtYnhwejRXdFRqMVNTNjlZR3EwQ19QVHk2aHdBMG8iLCJzY2QiOiIyMDIyLTEwLTAzVDA4OjAxOjA2LjM2NloifQ",
+          "instanceId": "e8663695-ed13-4e1d-889f-9eea5dde927d",
+          "appDefId": "140603ad-af8d-84a5-2c80-a0f60cb47351",
+          "metaSiteId": "d5502aca-35f9-4881-a626-9b4657e8ff6a",
+          "signDate": "2026-07-24T07:53:21.797Z",
+          "demoMode": false,
+          "biToken": "3d361c5f-d8ea-069c-2eb9-05ac0a366d17",
+          "siteOwnerId": "747d6f83-85e9-4dc8-beac-c643783ec405",
+          "cache": true,
+          "bs": "cX8h1Qb34WYa5-bxpz4WtTj1SS69YGq0C_PTy6hwA0o",
+          "scd": "2022-10-03T08:01:06.366Z",
+          "visitorId": null,
+          "msid": "d5502aca-35f9-4881-a626-9b4657e8ff6a",
+          "siteIsTemplate": false
+        },
+        "placedOrder": {
+          "loadingTicketsUrl": true,
+          "orderPageUrl": null,
+          "chargeToken": null,
+          "clientStatus": null,
+          "pollEnded": false
+        },
+        "checkout": {
+          "useBuyerDetails": false,
+          "currentStep": "form",
+          "validPaymentAdded": false,
+          "buyerDetailsOld": null,
+          "ticketsDetailsOld": [],
+          "buyerDetails": null,
+          "ticketsDetails": [],
+          "ticketsDetailsValidity": [],
+          "expandedTicketIndex": 0,
+          "reservations": []
+        },
+        "invoice": {
+          "couponError": null,
+          "giftCardError": null,
+          "invoice": null,
+          "coupon": {
+            "submitted": false,
+            "ticketId": null,
+            "validating": false
+          },
+          "giftCard": { "submitted": false, "validating": false }
+        },
+        "calendarLinks": null,
+        "guest": null,
+        "policies": { "agreed": false, "policies": [], "showAlert": false },
+        "rsvp": {
+          "currentStep": "form",
+          "rsvpDetails": null,
+          "submissions": null,
+          "response": 0
+        },
+        "modals": {},
+        "schedule": {
+          "total": 4,
+          "limit": 2,
+          "offset": 0,
+          "items": [
+            {
+              "id": "46a9455d-d9c8-41e4-a42c-33211e0fe7e8",
+              "hidden": false,
+              "name": "Warsztaty ceramiczne dla rodzin ",
+              "timeSlot": {
+                "start": "2025-05-24T08:30:00.000Z",
+                "end": "2025-05-24T09:30:00.000Z",
+                "timeZoneId": "Europe\/Warsaw"
+              },
+              "description": "",
+              "stageName": "Pracownia",
+              "tags": [],
+              "status": "SCHEDULED",
+              "createdDate": "2025-03-05T21:47:55.171Z",
+              "updatedDate": "2025-03-05T21:47:55.171Z",
+              "eventId": "7ea44d3a-99e9-4abb-983a-33a6f48e828e",
+              "draft": false,
+              "formattedDuration": "1 godzina",
+              "formattedTime": "10:30 - 11:30",
+              "key": "20250524",
+              "formattedUpdatedDate": null,
+              "shortDate": "sob., 24 maj"
+            },
+            {
+              "id": "8d278548-3553-4aac-b26f-c58aff92f82d",
+              "hidden": false,
+              "name": "Warsztaty architektoniczne dla dzieci 6-10",
+              "timeSlot": {
+                "start": "2025-05-24T08:30:00.000Z",
+                "end": "2025-05-24T09:30:00.000Z",
+                "timeZoneId": "Europe\/Warsaw"
+              },
+              "description": "",
+              "stageName": "Pracownia",
+              "tags": [],
+              "status": "SCHEDULED",
+              "createdDate": "2025-03-05T21:48:23.338Z",
+              "updatedDate": "2025-03-05T21:49:29.541Z",
+              "eventId": "7ea44d3a-99e9-4abb-983a-33a6f48e828e",
+              "draft": false,
+              "formattedDuration": "1 godzina",
+              "formattedTime": "10:30 - 11:30",
+              "key": "20250524",
+              "formattedUpdatedDate": null,
+              "shortDate": "sob., 24 maj"
+            }
+          ],
+          "facets": {},
+          "pagingMetadata": { "count": 2, "offset": 0, "total": 4 }
+        },
+        "dates": {
+          "events": {
+            "7ea44d3a-99e9-4abb-983a-33a6f48e828e": {
+              "utcOffset": 120,
+              "startDateISOFormatNotUTC": "2025-05-24T10:30:00+02:00",
+              "endDateISOFormatNotUTC": "2025-05-24T13:30:00+02:00",
+              "monthDay": "24",
+              "weekDay": "sob.",
+              "month": "maj",
+              "fullDate": "24 maj 2025, 10:30 – 13:30",
+              "shortStartDate": "sob., 24 maj",
+              "shortStartDateTime": "sob., 24 maj, 10:30",
+              "startDate": "24 maj 2025, 10:30",
+              "startTime": "10:30",
+              "daysLeft": 0,
+              "day": "24",
+              "year": "2025",
+              "yearMonth": "maj 2025"
+            }
+          },
+          "common": { "nowYearMonthDayFormatted": "24 lip 2026" }
+        },
+        "currentUser": { "role": "Visitor", "loggedIn": false },
+        "upcomingOccurrencesCount": 0,
+        "upcomingOccurrencesSuggestions": [],
+        "groups": {},
+        "seating": {
+          "plan": null,
+          "loading": false,
+          "errors": {
+            "error": null,
+            "planPlaceId": null,
+            "donationErrors": {}
+          },
+          "places": { "places": [], "areaCounterValues": {} },
+          "filters": { "selectedPrice": null, "selectedZone": null },
+          "mode": {
+            "accessibility": false,
+            "mobileBasket": false,
+            "selectedPlaceId": null,
+            "showDescription": false,
+            "descriptionPlace": null,
+            "showPricingOptionsPlace": null,
+            "lastKnownOrigin": ""
+          }
+        },
+        "focusHandler": { "activeElement": null },
+        "formSubmitErrors": {
+          "error": {},
+          "errorTime": null,
+          "canRetry": false
+        },
+        "staticMapUrl": null,
+        "installedApps": {
+          "members": true,
+          "schedule": true,
+          "groups": false,
+          "paidPlans": true,
+          "eventsInMembersInstalled": true
+        },
+        "consentPolicy": {
+          "defaultPolicy": true,
+          "policy": {
+            "functional": true,
+            "analytics": true,
+            "advertising": true,
+            "dataToThirdParty": true,
+            "essential": true
+          }
+        },
+        "occurrences": {
+          "events": [],
+          "dates": { "events": {} },
+          "total": 0,
+          "loading": false
+        }
+      }
+    }
+  },
+  "ooi": { "failedInSsr": {} },
+  "builderComponentsWarmupData": {}
+}

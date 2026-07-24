@@ -1,0 +1,193 @@
+{
+  "updatedAt": "2026-07-24T10:54:35.357Z",
+  "updates": [],
+  "statuses": {
+    "captured": 85,
+    "excluded": 14
+  },
+  "unresolvedCount": 26,
+  "unresolvedSample": [
+    {
+      "page": "/blog/categories/o-mnie",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/kontakt",
+      "mediaId": null,
+      "src": "https://static.parastorage.com/services/editor-elements-library/dist/thunderbolt/media/googleMap.f3347ff6.html?defaultLo",
+      "role": "content",
+      "alt": ""
+    },
+    {
+      "page": "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/czym-zajmuje-się-pracownia-ceramiki-nero",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/dziękujemy-wszystkim-którzy-są-z-nami",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/glina-do-wina",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/jak-zacząć-przygodę-z-ceramiką",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/letnia-akademia-artystyczna-całe-wakacje",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/nowe-warsztaty-ceramika-dla-smyka",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/o-mnie",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/o-sklepie-z-ceramiką",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/slow-design-co-oznacza",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/twój-tytuł-jak-nazwałbyś-swój-przepis",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/warsztatyzgliny",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/wpływ-pracy-z-gliną-na-człowieka",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/post/zaczynamy-nowe-warsztaty-już-we-wrześniu",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": "Zdjęcie autora: Gosia Nero"
+    },
+    {
+      "page": "/profile/gosianowicka/events",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": ""
+    },
+    {
+      "page": "/profile/gosianowicka/forum-comments",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": ""
+    },
+    {
+      "page": "/profile/gosianowicka/forum-posts",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": ""
+    },
+    {
+      "page": "/profile/gosianowicka/profile",
+      "mediaId": null,
+      "src": "https://graph.facebook.com/100000358912016/picture",
+      "role": "content",
+      "alt": ""
+    }
+  ]
+}

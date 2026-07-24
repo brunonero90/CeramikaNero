@@ -1,0 +1,116 @@
+[
+  {
+    "url": "https://www.ceramikanero.com/sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 9
+  },
+  {
+    "url": "https://www.ceramikanero.com/event-pages-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 1
+  },
+  {
+    "url": "https://www.ceramikanero.com/blog-posts-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 20
+  },
+  {
+    "url": "https://www.ceramikanero.com/blog-categories-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 4
+  },
+  {
+    "url": "https://www.ceramikanero.com/booking-services-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 11
+  },
+  {
+    "url": "https://www.ceramikanero.com/store-products-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 2
+  },
+  {
+    "url": "https://www.ceramikanero.com/dynamic-services_p_c68517b3_f0c7_4d3c_8f05_b5d928ad24b6_0_5000-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 6
+  },
+  {
+    "url": "https://www.ceramikanero.com/pricing-plans-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 1
+  },
+  {
+    "url": "https://www.ceramikanero.com/dynamic-courses_p_8b992d32_f8a5_45eb_a1e5_acde25b3562d_0_5000-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 5
+  },
+  {
+    "url": "https://www.ceramikanero.com/pages-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 36
+  },
+  {
+    "url": "https://www.ceramikanero.com/pages-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 36
+  },
+  {
+    "url": "https://www.ceramikanero.com/blog-posts-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 20
+  },
+  {
+    "url": "https://www.ceramikanero.com/blog-categories-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 4
+  },
+  {
+    "url": "https://www.ceramikanero.com/booking-services-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 11
+  },
+  {
+    "url": "https://www.ceramikanero.com/store-products-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 2
+  },
+  {
+    "url": "https://www.ceramikanero.com/event-pages-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 1
+  },
+  {
+    "url": "https://www.ceramikanero.com/pricing-plans-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 1
+  },
+  {
+    "url": "https://www.ceramikanero.com/dynamic-services_p_c68517b3_f0c7_4d3c_8f05_b5d928ad24b6_0_5000-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 6
+  },
+  {
+    "url": "https://www.ceramikanero.com/dynamic-courses_p_8b992d32_f8a5_45eb_a1e5_acde25b3562d_0_5000-sitemap.xml",
+    "status": 200,
+    "ok": true,
+    "locCount": 5
+  }
+]

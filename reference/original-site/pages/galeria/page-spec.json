@@ -1,0 +1,761 @@
+{
+  "route": "/galeria",
+  "canonicalUrl": "https://www.ceramikanero.com/galeria",
+  "pageTitle": "Galeria | Ceramika Nero",
+  "pageType": "gallery",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "gallery-or-grid",
+      "heading": "Rękodzieło jako joga umysłu",
+      "headings": ["Rękodzieło jako joga umysłu", "Galeria"],
+      "text": "Rękodzieło jako joga umysłu\nGaleria\n\nMoja pasja ... w obiektywie aparatu.\n\n1/1\n1/1",
+      "buttons": [],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/747d6f_b6b2ebdcb95f424984ee80e8e58a604d~mv2.jpg/v1/fill/w_980,h_521,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_b6b2ebdcb95f424984ee80e8e58a604d~mv2.jpg",
+          "mediaId": "747d6f_b6b2ebdcb95f424984ee80e8e58a604d",
+          "localPath": "/images/wix-migrated/747d6f_b6b2ebdcb95f424984ee80e8e58a604d.jpg",
+          "alt": "iStock-1302287658 kopia.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 980,
+            "height": 521,
+            "top": 99,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 2,
+          "src": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_153,h_133,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pracownia%20ceramika%20NERO.png",
+          "mediaId": "747d6f_64bcccd9911949e7895d7325e88a5a75",
+          "localPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+          "alt": "warsztaty ceramiczne, sklep z ceramika, ",
+          "role": "content",
+          "desktop": {
+            "width": 153,
+            "height": 133,
+            "top": 129,
+            "left": 261
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 4,
+          "src": "https://static.wixstatic.com/media/747d6f_c4f1c7aee49e46c295f3910e257e8f69~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_c4f1c7aee49e46c295f3910e257e8f69~mv2.jpg",
+          "mediaId": "747d6f_c4f1c7aee49e46c295f3910e257e8f69",
+          "localPath": "/images/wix-migrated/747d6f_c4f1c7aee49e46c295f3910e257e8f69.jpg",
+          "alt": "DSC_8311",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 787,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 6,
+          "src": "https://static.wixstatic.com/media/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg",
+          "mediaId": "747d6f_da600fb92cac4d629b7833190b681fa2",
+          "localPath": "/images/wix-migrated/747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
+          "alt": "DSC_8513",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 787,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 8,
+          "src": "https://static.wixstatic.com/media/747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg",
+          "mediaId": "747d6f_565523d2b38546f582a8ddb7f0a5dd67",
+          "localPath": "/images/wix-migrated/747d6f_565523d2b38546f582a8ddb7f0a5dd67.jpg",
+          "alt": "DSC_0098",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 787,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 10,
+          "src": "https://static.wixstatic.com/media/747d6f_2234cc741bd5422eb5d92705a021219a~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_2234cc741bd5422eb5d92705a021219a~mv2.jpg",
+          "mediaId": "747d6f_2234cc741bd5422eb5d92705a021219a",
+          "localPath": "/images/wix-migrated/747d6f_2234cc741bd5422eb5d92705a021219a.jpg",
+          "alt": "rysunek6+",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 1201,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 12,
+          "src": "https://static.wixstatic.com/media/747d6f_5946cd9b03e84e5c8439772d49367b12~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_5946cd9b03e84e5c8439772d49367b12~mv2.jpg",
+          "mediaId": "747d6f_5946cd9b03e84e5c8439772d49367b12",
+          "localPath": "/images/wix-migrated/747d6f_5946cd9b03e84e5c8439772d49367b12.jpg",
+          "alt": "rysunek 11+",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 1201,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 14,
+          "src": "https://static.wixstatic.com/media/747d6f_22273d9e08a3424aa991b87fd9fb803e~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_22273d9e08a3424aa991b87fd9fb803e~mv2.jpg",
+          "mediaId": "747d6f_22273d9e08a3424aa991b87fd9fb803e",
+          "localPath": "/images/wix-migrated/747d6f_22273d9e08a3424aa991b87fd9fb803e.jpg",
+          "alt": "RYSUNEK6",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 1201,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 16,
+          "src": "https://static.wixstatic.com/media/747d6f_9d3ff910f8f94205a2240105010d6192~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_9d3ff910f8f94205a2240105010d6192~mv2.jpg",
+          "mediaId": "747d6f_9d3ff910f8f94205a2240105010d6192",
+          "localPath": "/images/wix-migrated/747d6f_9d3ff910f8f94205a2240105010d6192.jpg",
+          "alt": "373713355_6818819364806626_6872844691726754735_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 1616,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 18,
+          "src": "https://static.wixstatic.com/media/747d6f_5aaae6b332304ef5ba65344c8eb11ce0~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_5aaae6b332304ef5ba65344c8eb11ce0~mv2.jpg",
+          "mediaId": "747d6f_5aaae6b332304ef5ba65344c8eb11ce0",
+          "localPath": "/images/wix-migrated/747d6f_5aaae6b332304ef5ba65344c8eb11ce0.jpg",
+          "alt": "439158551_7659637027391518_7567752408518004705_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 1616,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 20,
+          "src": "https://static.wixstatic.com/media/747d6f_197dce9d012c4b93af7df0d001f9fb0d~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_197dce9d012c4b93af7df0d001f9fb0d~mv2.jpg",
+          "mediaId": "747d6f_197dce9d012c4b93af7df0d001f9fb0d",
+          "localPath": "/images/wix-migrated/747d6f_197dce9d012c4b93af7df0d001f9fb0d.jpg",
+          "alt": "403620227_7088148497873710_6135440016063116492_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 1616,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 22,
+          "src": "https://static.wixstatic.com/media/747d6f_5c0cd869ade843ccbdca8e70b8463f50~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_5c0cd869ade843ccbdca8e70b8463f50~mv2.jpg",
+          "mediaId": "747d6f_5c0cd869ade843ccbdca8e70b8463f50",
+          "localPath": "/images/wix-migrated/747d6f_5c0cd869ade843ccbdca8e70b8463f50.jpg",
+          "alt": "104540470_3202665686422030_8093031977712050203_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 2031,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 24,
+          "src": "https://static.wixstatic.com/media/747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg",
+          "mediaId": "747d6f_90e90c61b57d4029a48950eacd31468b",
+          "localPath": "/images/wix-migrated/747d6f_90e90c61b57d4029a48950eacd31468b.jpg",
+          "alt": "345030057_3566548393628785_8512488156538361931_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 2031,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 26,
+          "src": "https://static.wixstatic.com/media/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg",
+          "mediaId": "747d6f_06537da9d32549fa905346fcc8e05f7e",
+          "localPath": "/images/wix-migrated/747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
+          "alt": "403621953_7088147811207112_2608946329064972893_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 2031,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 28,
+          "src": "https://static.wixstatic.com/media/747d6f_bdbe8e1736984ddfae1721dbdc8492fb~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_bdbe8e1736984ddfae1721dbdc8492fb~mv2.jpg",
+          "mediaId": "747d6f_bdbe8e1736984ddfae1721dbdc8492fb",
+          "localPath": "/images/wix-migrated/747d6f_bdbe8e1736984ddfae1721dbdc8492fb.jpg",
+          "alt": "336188087_172745068594542_1270467971508684902_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 2446,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 30,
+          "src": "https://static.wixstatic.com/media/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857~mv2.jpg",
+          "mediaId": "747d6f_df6f4a2f5b3a41ad8914b416ef4c7857",
+          "localPath": "/images/wix-migrated/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857.jpg",
+          "alt": "374765660_6818820514806511_3630846966589525620_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 2446,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 32,
+          "src": "https://static.wixstatic.com/media/747d6f_483d3d906ea347559b7d174a489cf361~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_483d3d906ea347559b7d174a489cf361~mv2.jpg",
+          "mediaId": "747d6f_483d3d906ea347559b7d174a489cf361",
+          "localPath": "/images/wix-migrated/747d6f_483d3d906ea347559b7d174a489cf361.jpg",
+          "alt": "387330413_1482986915604696_7764046331892097731_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 2446,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 34,
+          "src": "https://static.wixstatic.com/media/747d6f_252d121269ee423a9a5d9a5a532922cb~mv2.webp/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_252d121269ee423a9a5d9a5a532922cb~mv2.webp",
+          "mediaId": "747d6f_252d121269ee423a9a5d9a5a532922cb",
+          "localPath": "/images/wix-migrated/747d6f_252d121269ee423a9a5d9a5a532922cb.webp",
+          "alt": "17913019163630393",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 2861,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 36,
+          "src": "https://static.wixstatic.com/media/747d6f_74d5edfd53564d5e874eaa48216c69e1~mv2.webp/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_74d5edfd53564d5e874eaa48216c69e1~mv2.webp",
+          "mediaId": "747d6f_74d5edfd53564d5e874eaa48216c69e1",
+          "localPath": "/images/wix-migrated/747d6f_74d5edfd53564d5e874eaa48216c69e1.webp",
+          "alt": "18195645340206270",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 2861,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 38,
+          "src": "https://static.wixstatic.com/media/747d6f_15381c8348c54adfb2a83c0670411e4e~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_15381c8348c54adfb2a83c0670411e4e~mv2.jpg",
+          "mediaId": "747d6f_15381c8348c54adfb2a83c0670411e4e",
+          "localPath": "/images/wix-migrated/747d6f_15381c8348c54adfb2a83c0670411e4e.jpg",
+          "alt": "299274185_5552974138057828_7884853046035413293_n",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 2861,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 40,
+          "src": "https://static.wixstatic.com/media/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg",
+          "mediaId": "747d6f_9a02c46adb9c4b668b263600c7e8f237",
+          "localPath": "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+          "alt": "warsztaty rodzinne",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 3272,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 42,
+          "src": "https://static.wixstatic.com/media/747d6f_ba3d46ee996f48adb1457d8386e8dcef~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_ba3d46ee996f48adb1457d8386e8dcef~mv2.jpg",
+          "mediaId": "747d6f_ba3d46ee996f48adb1457d8386e8dcef",
+          "localPath": "/images/wix-migrated/747d6f_ba3d46ee996f48adb1457d8386e8dcef.jpg",
+          "alt": "panienski",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 3272,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 44,
+          "src": "https://static.wixstatic.com/media/747d6f_016e5ab390694b1faf1ed4e14a14c5e7~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_016e5ab390694b1faf1ed4e14a14c5e7~mv2.png",
+          "mediaId": "747d6f_016e5ab390694b1faf1ed4e14a14c5e7",
+          "localPath": "/images/wix-migrated/747d6f_016e5ab390694b1faf1ed4e14a14c5e7.png",
+          "alt": "22",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 3272,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 46,
+          "src": "https://static.wixstatic.com/media/747d6f_8b5a6384178243c5817202f1ad50b5ed~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_8b5a6384178243c5817202f1ad50b5ed~mv2.png",
+          "mediaId": "747d6f_8b5a6384178243c5817202f1ad50b5ed",
+          "localPath": "/images/wix-migrated/747d6f_8b5a6384178243c5817202f1ad50b5ed.png",
+          "alt": "23",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 3686,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 48,
+          "src": "https://static.wixstatic.com/media/747d6f_431ea2ab2bee4c94b6e83dc97966c78a~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_431ea2ab2bee4c94b6e83dc97966c78a~mv2.png",
+          "mediaId": "747d6f_431ea2ab2bee4c94b6e83dc97966c78a",
+          "localPath": "/images/wix-migrated/747d6f_431ea2ab2bee4c94b6e83dc97966c78a.png",
+          "alt": "grafiki Ceramika nero (1)",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 3686,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 50,
+          "src": "https://static.wixstatic.com/media/747d6f_bfd4d83b5e324760969c7f4db1b2b41f~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_bfd4d83b5e324760969c7f4db1b2b41f~mv2.png",
+          "mediaId": "747d6f_bfd4d83b5e324760969c7f4db1b2b41f",
+          "localPath": "/images/wix-migrated/747d6f_bfd4d83b5e324760969c7f4db1b2b41f.png",
+          "alt": "21",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 3686,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 52,
+          "src": "https://static.wixstatic.com/media/747d6f_d8f9b5306c68445f95b53ab86213c36b~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_d8f9b5306c68445f95b53ab86213c36b~mv2.png",
+          "mediaId": "747d6f_d8f9b5306c68445f95b53ab86213c36b",
+          "localPath": "/images/wix-migrated/747d6f_d8f9b5306c68445f95b53ab86213c36b.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45))",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 4101,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 54,
+          "src": "https://static.wixstatic.com/media/747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02~mv2.jpg",
+          "mediaId": "747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02",
+          "localPath": "/images/wix-migrated/747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02.jpg",
+          "alt": "skotnickanowakpl_ceramikanero_00837",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 4101,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 56,
+          "src": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
+          "mediaId": "747d6f_db20092f210148bdb5f759fb972dcbe1",
+          "localPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
+          "alt": "DSC_8582",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 4101,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 58,
+          "src": "https://static.wixstatic.com/media/747d6f_beb2180b228e46b99d49a5a2f1eac63b~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_beb2180b228e46b99d49a5a2f1eac63b~mv2.png",
+          "mediaId": "747d6f_beb2180b228e46b99d49a5a2f1eac63b",
+          "localPath": "/images/wix-migrated/747d6f_beb2180b228e46b99d49a5a2f1eac63b.png",
+          "alt": "ceramikadladoroslych_edited",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 4516,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 60,
+          "src": "https://static.wixstatic.com/media/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg",
+          "mediaId": "747d6f_da600fb92cac4d629b7833190b681fa2",
+          "localPath": "/images/wix-migrated/747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
+          "alt": "DSC_8513",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 4516,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 62,
+          "src": "https://static.wixstatic.com/media/747d6f_dc55fa9a88ec400c852bddf31cc0b1c8~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_dc55fa9a88ec400c852bddf31cc0b1c8~mv2.png",
+          "mediaId": "747d6f_dc55fa9a88ec400c852bddf31cc0b1c8",
+          "localPath": "/images/wix-migrated/747d6f_dc55fa9a88ec400c852bddf31cc0b1c8.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (11)",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 4516,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 64,
+          "src": "https://static.wixstatic.com/media/747d6f_085171d978274d52ab228ceb93aa9847~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_085171d978274d52ab228ceb93aa9847~mv2.png",
+          "mediaId": "747d6f_085171d978274d52ab228ceb93aa9847",
+          "localPath": "/images/wix-migrated/747d6f_085171d978274d52ab228ceb93aa9847.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (8)",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 4931,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 66,
+          "src": "https://static.wixstatic.com/media/747d6f_31b0976c3c0e4cf3addf864e058110a2~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_31b0976c3c0e4cf3addf864e058110a2~mv2.png",
+          "mediaId": "747d6f_31b0976c3c0e4cf3addf864e058110a2",
+          "localPath": "/images/wix-migrated/747d6f_31b0976c3c0e4cf3addf864e058110a2.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (9)",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 4931,
+            "left": 564
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 68,
+          "src": "https://static.wixstatic.com/media/747d6f_cd2460d4d3c1409b91c31dba9f7db804~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_cd2460d4d3c1409b91c31dba9f7db804~mv2.png",
+          "mediaId": "747d6f_cd2460d4d3c1409b91c31dba9f7db804",
+          "localPath": "/images/wix-migrated/747d6f_cd2460d4d3c1409b91c31dba9f7db804.png",
+          "alt": "grafiki Ceramika nero – kopia (Post na Instagram (45)) (15)",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 4931,
+            "left": 898
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 70,
+          "src": "https://static.wixstatic.com/media/747d6f_75125bb1ebef47b7939d3fbd6ec73f55~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_75125bb1ebef47b7939d3fbd6ec73f55~mv2.png",
+          "mediaId": "747d6f_75125bb1ebef47b7939d3fbd6ec73f55",
+          "localPath": "/images/wix-migrated/747d6f_75125bb1ebef47b7939d3fbd6ec73f55.png",
+          "alt": "24",
+          "role": "content",
+          "desktop": {
+            "width": 312,
+            "height": 393,
+            "top": 5346,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 6875,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 6875,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 6972,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 6972,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 541092,
+    "warmupDataChars": 5215
+  },
+  "newSiteComponent": "app route /galeria",
+  "missingInNewSite": "Compare via clone-gap-analysis",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 7455,
+    "captureTimestamp": "2026-07-24T10:15:59.532Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

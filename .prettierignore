@@ -3,3 +3,7 @@ node_modules
 package-lock.json
 *.log
 tmp
+reference/original-site/pages
+reference/original-site/meta
+reference/original-site/assets
+reference/original-site/screenshots

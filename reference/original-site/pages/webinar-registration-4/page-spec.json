@@ -1,0 +1,288 @@
+{
+  "route": "/webinar-registration-4",
+  "canonicalUrl": "https://www.ceramikanero.com/webinar-registration-4",
+  "pageTitle": "Dla firm outdoor 3 | Pracownia Ceramiki N",
+  "pageType": "webinar",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "form",
+      "heading": "Oferta dla firm",
+      "headings": [
+        "Oferta dla firm",
+        "Warsztaty z ceramiki  outdoorowe, lepienie lub szkliwienie od 20 do 100 osób",
+        "Zapraszamy do zorganizowania niezapomnianej imprezy integracyjnej z naszą pomocą!\n■ Imprezy od 20 do 100 osób\n■ Lepienie i/lub  szkliwienie w grupach do 10 osób na raz \n■Możemy zorganizować mini warsztaty podczas pikników firmowych dla dzieci i/lub dorosłych",
+        "Każdy poszliwi zakupiony u mnie w pracowni przedmiot",
+        "Każdy ulepi swój przedmiot z gliny",
+        "Gotowe przedmioty będą wypalane w naszej pracowni",
+        "Proszę o wycenę"
+      ],
+      "text": "Oferta dla firm\nWarsztaty z ceramiki  outdoorowe, lepienie lub szkliwienie od 20 do 100 osób \nZapraszamy do zorganizowania niezapomnianej imprezy integracyjnej z naszą pomocą!\n■ Imprezy od 20 do 100 osób\n■ Lepienie i/lub  szkliwienie w grupach do 10 osób na raz \n■Możemy zorganizować mini warsztaty podczas pikników firmowych dla dzieci i/lub dorosłych\nKażdy poszliwi zakupiony u mnie w pracowni przedmiot\n\nPosiadam przedmioty już wypalone na biskwit, ceny od 50 zł. za przedmiot. Do wyboru talerzyki, kubki, miseczki i inne. Zapewniam fachową pomoc w szkliwieniu, wszystkie materiały i narzędzia oraz wypał. To trwała pamiątka na całe życie.\n\nKażdy ulepi swój przedmiot z gliny\n\nW grupach do 10 osób każdy tworzy swój przedmiot według własnego projektu z naszą pomocą przy użyciu odpowiednich narzędzi i materiałów\n\nGotowe przedmioty będą wypalane w naszej pracowni\n\nPrace wypalone w profesjonalnym piecu ceramicznym będą gotowe do odbioru w ciągu 2 tyg. po lepieniu lub 1 tygodnia po szkliwieniu\n\nProszę o wycenę\nImię i nazwisko\nNazwa firmy\nNumer telefonu\nEmail\nTreść wiadomości\nWyślij",
+      "buttons": [
+        {
+          "text": "Wyślij",
+          "href": null
+        }
+      ],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/11062b_d5722b6f5d7249279adcbb06483186b1~mv2.jpg/v1/fill/w_1440,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_d5722b6f5d7249279adcbb06483186b1~mv2.jpg",
+          "mediaId": "11062b_d5722b6f5d7249279adcbb06483186b1",
+          "localPath": "/images/wix-migrated/11062b_d5722b6f5d7249279adcbb06483186b1.jpg",
+          "alt": "Miejsce ślubu w ogrodzie",
+          "role": "content",
+          "desktop": {
+            "width": 1440,
+            "height": 663,
+            "top": 97,
+            "left": 0
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 3,
+          "src": "https://static.wixstatic.com/media/11062b_541486568d644691a35279862f8fd254~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_541486568d644691a35279862f8fd254~mv2.jpg",
+          "mediaId": "11062b_541486568d644691a35279862f8fd254",
+          "localPath": "/images/wix-migrated/11062b_541486568d644691a35279862f8fd254.jpg",
+          "alt": "Impreza plenerowa",
+          "role": "content",
+          "desktop": {
+            "width": 590,
+            "height": 483,
+            "top": 851,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 5,
+          "src": "https://static.wixstatic.com/media/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg/v1/fill/w_586,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg",
+          "mediaId": "a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648",
+          "localPath": "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
+          "alt": "",
+          "role": "content",
+          "desktop": {
+            "width": 586,
+            "height": 483,
+            "top": 2020,
+            "left": 624
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "phone",
+              "type": "tel",
+              "placeholder": "Add your name",
+              "required": false,
+              "label": "Imię i nazwisko"
+            },
+            {
+              "name": "nazwa-firmy",
+              "type": "text",
+              "placeholder": "",
+              "required": false,
+              "label": "Nazwa firmy"
+            },
+            {
+              "name": "phone",
+              "type": "tel",
+              "placeholder": "",
+              "required": true,
+              "label": "Numer telefonu"
+            },
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "",
+              "required": true,
+              "label": "Email"
+            },
+            {
+              "name": null,
+              "type": "textarea",
+              "placeholder": "Podaj ilość osób, zapytaj się o dostępność terminu, daj znać, która opcja państwa interesuje, lepienie czy szkliwienie, czy jedno i drugie, jeżeli tak to ile zestawów do lepienia i ile do szkliwnia przygotować. Przy szkliweniu dochodzi koszt przemiotu, który państwo wybierzecie. ",
+              "required": false,
+              "label": "Treść wiadomości"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 97,
+        "height": 2510,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 2510,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 2607,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 2607,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 541242,
+    "warmupDataChars": 6086
+  },
+  "newSiteComponent": null,
+  "missingInNewSite": "No corresponding new-site route mapped",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 3090,
+    "captureTimestamp": "2026-07-24T10:51:32.791Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

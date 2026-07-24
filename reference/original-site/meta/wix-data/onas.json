@@ -1,0 +1,309 @@
+{
+  "platform": {
+    "ssrPropsUpdates": [
+      {
+        "comp-jyfgqx86": {
+          "items": [
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Profile",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/profile",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Orders",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-orders",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Addresses",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-addresses",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wallet",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wallet",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wishlist",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wishlist",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Subscriptions",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-subscriptions",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje rezerwacje",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-bookings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Comments",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-comments",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Posts",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-posts",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Events",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/events",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje nagrody",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-rewards",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Account",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-account",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Notifications",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/notifications",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Settings",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/settings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            }
+          ]
+        },
+        "comp-jt8im1nk": { "hidden": true },
+        "comp-jt8im1ng": { "isValid": false, "maxLength": 250 },
+        "comp-lb21z5yf": {
+          "isValid": true,
+          "required": false,
+          "shouldShowValidityIndication": false
+        }
+      }
+    ],
+    "ssrStyleUpdates": [
+      { "comp-jt8im1nk": { "visibility": "hidden !important" } }
+    ],
+    "ssrStructureUpdates": []
+  },
+  "pages": {
+    "compIdToTypeMap": {
+      "CONTROLLER_COMP_CUSTOM_ID": "AppController",
+      "comp-iy33sahv": "LinkBar",
+      "comp-iy4cwgmq": "DropDownMenu",
+      "comp-ly46xv24": "StylableButton",
+      "comp-ly478zni": "StylableButton",
+      "comp-m84o2sdv": "LanguageSelector",
+      "comp-krsxu47n": "AppController",
+      "comp-jyfgqx86": "VerticalMenu",
+      "comp-iy48z4c2": "WRichText",
+      "comp-iy46b54d": "WRichText",
+      "comp-iy4ay8dd": "WRichText",
+      "comp-jt8ip4mr": "WRichText",
+      "comp-jt8im1ni": "SiteButton",
+      "comp-jt8im1ng": "TextInput",
+      "comp-lb21z5yf": "Checkbox",
+      "comp-lbs8sxl5": "WRichText",
+      "comp-jt8im1nk": "WRichText",
+      "comp-lctn5dcp": "WRichText",
+      "masterPage": "MasterPage",
+      "SITE_HEADER": "HeaderContainer",
+      "SITE_FOOTER": "FooterContainer",
+      "PAGES_CONTAINER": "PagesContainer",
+      "SOSP_CONTAINER_CUSTOM_ID": "Container",
+      "comp-m8656k3r": "tpaWidgetNative",
+      "comp-iy45mz7m": "StripColumnsContainer",
+      "SITE_PAGES": "PageGroup",
+      "comp-jyfgqx79": "tpaWidgetNative",
+      "comp-iy45mzdy": "Column",
+      "comp-jt8im1h4": "AppWidget",
+      "comp-jt8im1i7": "FormContainer",
+      "BACKGROUND_GROUP": "BackgroundGroup",
+      "SCROLL_TO_TOP": "Anchor",
+      "SCROLL_TO_BOTTOM": "Anchor",
+      "comp-iy4cwgmq-pinned-layer": "PinnedLayer",
+      "pinnedTopCenter": "DivWithChildren",
+      "comp-iy33sahv-pinned-layer": "PinnedLayer",
+      "comp-ly46xv24-pinned-layer": "PinnedLayer",
+      "comp-ly478zni-pinned-layer": "PinnedLayer",
+      "pinnedTopRight": "DivWithChildren",
+      "soapAfterPagesContainer": "MeshGroup",
+      "SKIP_TO_CONTENT_BTN": "SkipToContentButton",
+      "comp-ly2ylvys1": "WPhoto",
+      "comp-ly2ylvyv1": "WPhoto",
+      "comp-ly2yoipd": "WRichText",
+      "comp-ly2yqg35": "WRichText",
+      "comp-m1yxbwh7": "WPhoto",
+      "comp-ly3nest1": "WRichText",
+      "comp-ly3nest7": "WRichText",
+      "comp-ly3nest84": "StylableButton",
+      "comp-mez4bwxt2": "WRichText",
+      "comp-mez4bwxw": "WRichText",
+      "comp-mez4bwxy": "StylableButton",
+      "comp-ly3nfumq2": "WRichText",
+      "comp-ly3nfumt": "WRichText",
+      "comp-ly3nfumv": "StylableButton",
+      "comp-ly3nmrcq": "WRichText",
+      "comp-ly3nmrct": "WRichText",
+      "comp-ly3nmrcu3": "StylableButton",
+      "comp-ly3nja3q4": "WRichText",
+      "comp-ly3nja3s2": "WRichText",
+      "comp-ly3nja3u": "StylableButton",
+      "comp-ly3nuauy1": "WRichText",
+      "comp-ly3nuav2": "WRichText",
+      "comp-ly3nuav5": "StylableButton",
+      "comp-ly3nxs75": "WRichText",
+      "comp-ly3nxs77": "WRichText",
+      "comp-ly3nxs79": "StylableButton",
+      "comp-mg46fa2c2": "WRichText",
+      "comp-mg46fa2h": "WRichText",
+      "comp-mg46fa2i": "StylableButton",
+      "comp-mg46ibgu5": "WRichText",
+      "comp-mg46ibgw": "WRichText",
+      "comp-mg46ibgx": "StylableButton",
+      "comp-mg46o75p5": "WRichText",
+      "comp-mg46o75r2": "WRichText",
+      "comp-mg46o75s2": "StylableButton",
+      "pageBackground_mtf7k": "PageBackground",
+      "mtf7k": "Page",
+      "comp-ly2ylvxu": "ClassicSection",
+      "comp-ly3nesqv": "ClassicSection",
+      "comp-mez4bwx3": "ClassicSection",
+      "comp-ly3nfula": "ClassicSection",
+      "comp-ly3nja1j": "ClassicSection",
+      "comp-ly3nuas8": "ClassicSection",
+      "comp-ly3nxs5u": "ClassicSection",
+      "comp-ly3nessj": "StripColumnsContainer",
+      "comp-mez4bwxl": "StripColumnsContainer",
+      "comp-ly3nfumj": "StripColumnsContainer",
+      "comp-ly3nmrch": "StripColumnsContainer",
+      "comp-ly3nja3l": "StripColumnsContainer",
+      "comp-ly3nuauu": "StripColumnsContainer",
+      "comp-ly3nxs70": "StripColumnsContainer",
+      "comp-mg46fa24": "StripColumnsContainer",
+      "comp-mg46ibgm": "StripColumnsContainer",
+      "comp-mg46o75j": "StripColumnsContainer",
+      "comp-ly3nessy1": "Column",
+      "comp-ly3nessq": "Column",
+      "comp-mez4bwxo": "Column",
+      "comp-mez4bwxr2": "Column",
+      "comp-ly3nfumo": "Column",
+      "comp-ly3nfumm": "Column",
+      "comp-ly3nmrck": "Column",
+      "comp-ly3nmrcm1": "Column",
+      "comp-ly3nja3p": "Column",
+      "comp-ly3nja3n": "Column",
+      "comp-ly3nuavb": "Column",
+      "comp-ly3nuauw1": "Column",
+      "comp-ly3nxs73": "Column",
+      "comp-ly3nxs7c": "Column",
+      "comp-mg46fa2x": "Column",
+      "comp-mg46fa2b": "Column",
+      "comp-mg46ibgt2": "Column",
+      "comp-mg46ibgr2": "Column",
+      "comp-mg46o75u1": "Column",
+      "comp-mg46o75o3": "Column",
+      "Containermtf7k": "Group",
+      "DYNAMIC_STRUCTURE_CONTAINER": "DynamicStructureContainer",
+      "site-root": "DivWithChildren",
+      "main_MF": "DivWithChildren",
+      "mtf7k_wrapper": "PageMountUnmount",
+      "mtf7k_wrapper_background": "PageMountUnmount"
+    }
+  },
+  "appsWarmupData": {
+    "14cc59bc-f0b7-15b8-e1c7-89ce41d0e0c9": {
+      "initialData": { "counters": {}, "roles": {} }
+    }
+  },
+  "ooi": { "failedInSsr": {} },
+  "builderComponentsWarmupData": {}
+}

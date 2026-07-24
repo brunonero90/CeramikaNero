@@ -1,0 +1,340 @@
+{
+  "route": "/dladoroslych",
+  "canonicalUrl": "https://www.ceramikanero.com/dladoroslych",
+  "pageTitle": "Dla dorosłych | Pracownia Ceramiki N",
+  "pageType": "audience",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "gallery-or-grid",
+      "heading": "Warsztaty dla dorosłych",
+      "headings": [
+        "Warsztaty dla dorosłych",
+        "Warsztaty\nglina do wina",
+        "Ceramika dla dorosłych",
+        "Poranki z ceramiką",
+        "Kreatywne warsztaty"
+      ],
+      "text": "Warsztaty dla dorosłych\n\nZapraszamy na wyjątkowe warsztaty dla dorosłych\n\nw Pracowni Ceramiki Nero w Suchym Lesie przy ul. Podgórnej 3.\n\nTo zajęcia pełne kreatywności, relaksu i przyjemności, idealny na spędzenie czasu w inspirującej atmosferze.\n\nWarsztaty\nglina do wina\n\n■ Twórcze warsztaty ceramiczne\n\n■ Stworzysz unikalne talerze, kubki, zestawy do sushi, doniczki i inne ceramiczne dzieła\n\n■ Degustacja wina i włoskich przystawek\n\n■ 1 spotkanie = lepienie z gliny \n\n1      spotkanie = szkliwienie prac \n\n■ Włoska muzyka\n\n■ Profesjonalne prowadzenie\n\n■ Zapewnione wszystkie materiały\n\n■ Pomożemy wam stworzyć piękne ozdoby dla was i na prezenty dla najbliższych.​\n\nRezerwuj termin\nCeramika dla dorosłych\n\n■ Nasze warsztaty prowadzone są w stylu slow\n\n■ Skupiamy się na jakości, spokoju i pełnym zanurzeniu w procesie tworzenia\n\n■ Każde zajęcia to czas na relaks i twórcze wyzwania\n\n■ Warsztaty prowadzone są przez doświadczonych ceramików, którzy z pasją dzielą się swoją wiedzą i umiejętnościami\n\n■ Zapewniamy wszelkie niezbędne materiały wysokiej jakości\n\n■ Pierwsze spotkanie to lepienie, drugie spotkanie to szkliwienie prac po 2 tygodniach \n\n■ Przestronna i dobrze wyposażona pracownia zapewnia idealne warunki do pracy z gliną\n\nRezerwuj termin\nPoranki z ceramiką\n\n■ Rozpocznij swój dzień w twórczy i relaksujący sposób\n\n■ Odkryj  swoją kreatywność od samego rana, z dala od codziennego zgiełku\n\n■ Relaksująca poranna atmosfera\n\n■ Profesjonalne prowadzenie\n\n■ Kompleksowe materiały niezbędne do pracy z ceramiką\n\n■ Kameralne grupy, co sprzyja indywidualnemu podejściu do każdego uczestnika i pozwala na pełne zanurzenie się w twórczej pracy\n\n■ Przestronna i dobrze wyposażona pracownia zapewnia idealne warunki do pracy z gliną\n\nRezerwuj termin\nKreatywne warsztaty \n\n■ masz pomysł na kreatywne warsztaty, napisz do nas nerogosia@gmail.com \n\n■Kreatywność bez granic! Organizujemy różne warsztaty i kursy od 6 do 106 lat! \n\n■ co miesiąc inne tematy\n\n■ na Obserwuj nas na FB i Instagramie- tam publikujemy najnowsze wydarzenia oraz relacje z warsztatów i prace naszych zdolnych uczniów \n\nRezerwuj termin",
+      "buttons": [
+        {
+          "text": "Rezerwuj termin",
+          "href": "https://www.ceramikanero.com/"
+        },
+        {
+          "text": "Rezerwuj termin",
+          "href": "https://www.ceramikanero.com/"
+        },
+        {
+          "text": "Rezerwuj termin",
+          "href": "https://www.ceramikanero.com/"
+        },
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Rezerwuj termin",
+          "href": "https://www.ceramikanero.com/"
+        }
+      ],
+      "images": [
+        {
+          "order": 0,
+          "src": "https://static.wixstatic.com/media/747d6f_6fc6a003b39840b58b4c14fa6e386e28~mv2.jpg/v1/fill/w_980,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ceramikadladoroslych.jpg",
+          "mediaId": "747d6f_6fc6a003b39840b58b4c14fa6e386e28",
+          "localPath": "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+          "alt": "warsztaty z gliny, warsztaty ceramiczne poznan lepienie z gliny w poznaniu w Suchym Lesie glina i wino, wloskie warszaty, ",
+          "role": "content",
+          "desktop": {
+            "width": 980,
+            "height": 523,
+            "top": 97,
+            "left": 229
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_153,h_133,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pracownia%20ceramika%20NERO.png",
+          "mediaId": "747d6f_64bcccd9911949e7895d7325e88a5a75",
+          "localPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+          "alt": "poznan , warsztaty, przy glinie, przy winie, i glinie, prezent dla dziewczyny poznan",
+          "role": "content",
+          "desktop": {
+            "width": 153,
+            "height": 133,
+            "top": 129,
+            "left": 261
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 3,
+          "src": "https://static.wixstatic.com/media/747d6f_db69baa543fb49fb8e204a00dc0016c6~mv2.jpg/v1/fill/w_488,h_647,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db69baa543fb49fb8e204a00dc0016c6~mv2.jpg",
+          "mediaId": "747d6f_db69baa543fb49fb8e204a00dc0016c6",
+          "localPath": "/images/wix-migrated/747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+          "alt": "ceramika glina do wina.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 488,
+            "height": 647,
+            "top": 852,
+            "left": 231
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 5,
+          "src": "https://static.wixstatic.com/media/747d6f_85e6210e2fd54cd6885c6833e198c58d~mv2.jpg/v1/fill/w_980,h_720,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_85e6210e2fd54cd6885c6833e198c58d~mv2.jpg",
+          "mediaId": "747d6f_85e6210e2fd54cd6885c6833e198c58d",
+          "localPath": "/images/wix-migrated/747d6f_85e6210e2fd54cd6885c6833e198c58d.jpg",
+          "alt": "skotnickanowakpl_ceramikanero_6146.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 980,
+            "height": 720,
+            "top": 1500,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 7,
+          "src": "https://static.wixstatic.com/media/747d6f_6fc6a003b39840b58b4c14fa6e386e28~mv2.jpg/v1/fill/w_488,h_718,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_6fc6a003b39840b58b4c14fa6e386e28~mv2.jpg",
+          "mediaId": "747d6f_6fc6a003b39840b58b4c14fa6e386e28",
+          "localPath": "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+          "alt": "ceramikadladoroslych.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 488,
+            "height": 718,
+            "top": 1501,
+            "left": 721
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 9,
+          "src": "https://static.wixstatic.com/media/747d6f_8e0a38114728487bade7b52335892f5a~mv2.jpg/v1/fill/w_488,h_634,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_8e0a38114728487bade7b52335892f5a~mv2.jpg",
+          "mediaId": "747d6f_8e0a38114728487bade7b52335892f5a",
+          "localPath": "/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+          "alt": "DSC_8724.jpg",
+          "role": "content",
+          "desktop": {
+            "width": 488,
+            "height": 634,
+            "top": 2221,
+            "left": 231
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 11,
+          "src": "https://static.wixstatic.com/media/11062b_d62cc9bc024a4fafb2f3649ba987b2c7~mv2.jpg/v1/fill/w_980,h_716,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_d62cc9bc024a4fafb2f3649ba987b2c7~mv2.jpg",
+          "mediaId": "11062b_d62cc9bc024a4fafb2f3649ba987b2c7",
+          "localPath": "/images/wix-migrated/11062b_d62cc9bc024a4fafb2f3649ba987b2c7.jpg",
+          "alt": "Ziemista wiejska ścieżka",
+          "role": "content",
+          "desktop": {
+            "width": 980,
+            "height": 716,
+            "top": 2856,
+            "left": 230
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 13,
+          "src": "https://static.wixstatic.com/media/11062b_d62cc9bc024a4fafb2f3649ba987b2c7~mv2.jpg/v1/fill/w_488,h_714,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_d62cc9bc024a4fafb2f3649ba987b2c7~mv2.jpg",
+          "mediaId": "11062b_d62cc9bc024a4fafb2f3649ba987b2c7",
+          "localPath": "/images/wix-migrated/11062b_d62cc9bc024a4fafb2f3649ba987b2c7.jpg",
+          "alt": "Ziemista wiejska ścieżka",
+          "role": "content",
+          "desktop": {
+            "width": 488,
+            "height": 714,
+            "top": 2857,
+            "left": 721
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 3481,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 3481,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 3577,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 3577,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 541140,
+    "warmupDataChars": 5815
+  },
+  "newSiteComponent": "app route /dla-doroslych",
+  "missingInNewSite": "Compare via clone-gap-analysis",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 4061,
+    "captureTimestamp": "2026-07-24T10:12:53.936Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

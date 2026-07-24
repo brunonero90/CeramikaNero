@@ -1,0 +1,126 @@
+{
+  "phase": 1,
+  "updatedAt": "2026-07-24T11:10:00.000Z",
+  "status": "implemented-with-documented-differences",
+  "routes": [
+    {
+      "originalRoute": "/",
+      "implementedRoute": "/",
+      "status": "complete-with-minor-differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalTextBlocksAccountedFor": true,
+      "originalImageOccurrencesAccountedFor": 11,
+      "redirectStatus": "n/a",
+      "desktopVerification": "pending-qa-capture",
+      "mobileVerification": "pending-qa-capture",
+      "knownDifferences": [
+        "Interactive Wix Bookings calendar replaced with static service catalog + first-party CTAs",
+        "Cookie consent chrome omitted"
+      ],
+      "applicationFiles": ["app/page.tsx", "lib/clone/content/landings.ts"]
+    },
+    {
+      "originalRoute": "/onas",
+      "implementedRoute": "/pracownia",
+      "status": "complete-with-minor-differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 12,
+      "originalTextBlocksAccountedFor": true,
+      "originalImageOccurrencesAccountedFor": 15,
+      "redirectStatus": "301 /onas → /pracownia",
+      "knownDifferences": ["Wix editor login chrome omitted"],
+      "applicationFiles": [
+        "app/pracownia/page.tsx",
+        "lib/clone/content/pracownia.ts"
+      ]
+    },
+    {
+      "originalRoute": "/dladzieci",
+      "implementedRoute": "/dla-dzieci",
+      "status": "complete-with-minor-differences",
+      "implementedSectionCount": 9,
+      "originalImageOccurrencesAccountedFor": 11,
+      "redirectStatus": "301 /dladzieci → /dla-dzieci",
+      "applicationFiles": [
+        "app/dla-dzieci/page.tsx",
+        "lib/clone/content/audience-pages.ts"
+      ]
+    },
+    {
+      "originalRoute": "/dladoroslych",
+      "implementedRoute": "/dla-doroslych",
+      "status": "complete-with-minor-differences",
+      "implementedSectionCount": 5,
+      "originalImageOccurrencesAccountedFor": 8,
+      "redirectStatus": "301 /dladoroslych → /dla-doroslych",
+      "applicationFiles": ["app/dla-doroslych/page.tsx"]
+    },
+    {
+      "originalRoute": "/dlafirm",
+      "implementedRoute": "/grupy-i-firmy",
+      "status": "complete-with-minor-differences",
+      "implementedSectionCount": 5,
+      "originalImageOccurrencesAccountedFor": 6,
+      "redirectStatus": "301 /dlafirm → /grupy-i-firmy",
+      "applicationFiles": ["app/grupy-i-firmy/page.tsx"]
+    },
+    {
+      "originalRoute": "/glinadowina",
+      "implementedRoute": "/glinadowina",
+      "status": "complete-with-minor-differences",
+      "implementedSectionCount": 5,
+      "originalImageOccurrencesAccountedFor": 7,
+      "redirectStatus": "n/a",
+      "applicationFiles": ["app/glinadowina/page.tsx"]
+    },
+    {
+      "originalRoute": "/urodziny",
+      "implementedRoute": "/urodziny",
+      "status": "complete-with-minor-differences",
+      "implementedSectionCount": 5,
+      "originalImageOccurrencesAccountedFor": 6,
+      "applicationFiles": ["app/urodziny/page.tsx"]
+    },
+    {
+      "originalRoute": "/panienskie",
+      "implementedRoute": "/panienskie",
+      "status": "complete-with-minor-differences",
+      "implementedSectionCount": 4,
+      "originalImageOccurrencesAccountedFor": 5,
+      "applicationFiles": ["app/panienskie/page.tsx"]
+    },
+    {
+      "originalRoute": "/home",
+      "implementedRoute": "/home",
+      "status": "complete-with-minor-differences",
+      "knownDifferences": [
+        "GLINA BOX long-form product copy may need Phase 2 enrichment from rendered.html detail",
+        "Not aliased to / — dedicated landing"
+      ],
+      "originalImageOccurrencesAccountedFor": 10,
+      "applicationFiles": ["app/home/page.tsx"]
+    },
+    {
+      "originalRoute": "/galeria",
+      "implementedRoute": "/galeria",
+      "status": "complete-with-minor-differences",
+      "originalImageOccurrencesAccountedFor": 33,
+      "knownDifferences": [
+        "Hero + logo + 33 content tiles from archive order; excluded tiny duplicate logo placements from grid"
+      ],
+      "applicationFiles": ["app/galeria/page.tsx"]
+    }
+  ],
+  "sharedShellFiles": [
+    "components/layout/header.tsx",
+    "components/layout/footer.tsx",
+    "components/clone/marketing.tsx",
+    "components/clone/newsletter-signup.tsx",
+    "lib/fixtures/navigation.ts",
+    "app/globals.css",
+    "next.config.ts"
+  ],
+  "productionAssetsAddedFromReference": [],
+  "tests": ["lib/clone/__tests__/phase1-completeness.test.ts"]
+}

@@ -1,0 +1,203 @@
+{
+  "route": "/regulamin",
+  "canonicalUrl": "https://www.ceramikanero.com/regulamin",
+  "pageTitle": "Regulamin | Pracownia Ceramiki N",
+  "pageType": "legal",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "content",
+      "heading": "Regulaminy",
+      "headings": [
+        "Regulaminy",
+        "Warsztaty:",
+        "INFORMACJE OGÓLNE",
+        "ZAPISY NA WARSZTATY:",
+        "PŁATNOŚĆ:",
+        "NIEOBECNOŚĆ UCZESTNIKA:",
+        "ODWOŁANIE WARSZTATÓW:",
+        "UDOSTĘPNIANIE WIZERUNKU:",
+        "REKLAMACJE:"
+      ],
+      "text": "Regulaminy\nWarsztaty:\n\nZłożenie zamówienia i opłacenie udziału jest jednoznaczne z akceptacją regulaminu warsztatów:\n\nINFORMACJE OGÓLNE\n\nOrganizatorem warsztatów jest Pracownia ceramiki Nero NIP 9721134965\n\nUczestnikiem warsztatów może zostać każda osoba fizyczna, która dokonana zgłoszenia i opłaci udział w warsztatach, a co za tym idzie zaakceptuje warunki Regulaminu.\n\nUczestnicy zobowiązani się do przestrzegania zasad BHP oraz bezpośrednich zaleceń oraz uwag osoby prowadzącej warsztaty. Dodatkowo wszyscy warsztatowicze zobowiązani są do zachowania czystości w miejscu prowadzenia warsztatów.\n\nOrganizator nie ponosi odpowiedzialności za ewentualne szkody powstałe na skutek nieprzestrzegania regulaminu i zaleceń instruktora.\n\nZAPISY NA WARSZTATY:\n\nZgłoszenia można dokonać poprzez zakup warsztatu przez sklep internetowy dostępny na www.ceramikanero.com w zakładce WARSZTATY\n\nGwarancją rezerwacji miejsca jest opłacenie udziału poprzez płatność dokonaną na konto.\n\nPŁATNOŚĆ:\n\nPłatności można dokonać przelewem lub BLIKIEM na konto: 30 1140 2004 0000 3102 8314 9467.\n\nNIEOBECNOŚĆ UCZESTNIKA:\n\nNajpóźniej 24 godziny przed rozpoczęciem warsztatów należy poinformować organizatora o nieobecności telefonicznie pod numerem telefonu 600 158 318 aby bezkosztowo ustalić nowy termin spotkania. Uczestnik ma 2 miesiące od terminu, na którym się nie pojawił, aby umówić się na kolejny termin.\n\nJeśli uczestnik odwołuje udział na krócej niż 24 godziny przed spotkaniem lub nie stawi się na zajęciach bez uprzedniej informacji na ten temat wpłata za warsztaty nie podlega zwrotowi.\n\nODWOŁANIE WARSZTATÓW:\n\nW wyjątkowych sytuacjach losowych uniemożliwiających przeprowadzenie warsztatów (choroba organizatora, awaria techniczna, inne temu podobne) organizator ma prawo do przełożenia lub odwołania warsztatów. Uczestnicy otrzymają propozycję nowego terminu lub zwrot całej kwoty wpłaconej wcześniej przez uczestników.\n\nUDOSTĘPNIANIE WIZERUNKU:\n\nW trakcie trwania warsztatów mogą zostać wykonane zdjęcia, dokumentujące efekty prac oraz przebieg zajęć. Fotografie mogą zostać opublikowane na stronie internetowej pracowni. Na niektórych ujęciach mogą pojawić się również Uczestnicy warsztatów. Organizator ma obowiązek upewnić się przed wykonaniem zdjęć czy uczestnicy potwierdzają zgodę na użyczenie wizerunku.\n\nJeżeli Uczestnik nie wyraża zgody na udostępnianie wizerunku, ma obowiązek poinformowania o tym organizatora przed wykonaniem zdjęć.\n\nREKLAMACJE:\n\nUczestnik może złożyć reklamację z powodu niewykonania lub nienależytego wykonania Umowy przez organizatora.\n\nReklamację należy złożyć mailowo na adres: nerogosia@gmail.com lub telefonicznie 600158318\n\nReklamacja powinna zawierać: dane uczestnika, nazwę Wydarzenia, którego reklamacja dotyczy, określenie przedmiotu reklamacji, przedstawienie okoliczności uzasadniających reklamację.\n\nReklamacja może być złożona w terminie miesiąca od ostatniego dnia zaistnienia zdarzenia stanowiącego przedmiot reklamacji. Reklamację złożoną po upływie tego terminu pozostawia się bez rozpoznania, o czym organizator niezwłocznie powiadomi uczestnika.\n\nOrganizator potwierdza przyjęcie reklamacji drogą elektroniczną, przesyłając potwierdzenie mailowe. Reklamacja zostanie rozpatrzona w terminie do 14 dni od dnia jej przyjęcia. O sposobie załatwienia reklamacji organizator zawiadamia uczestnika drogą mailową, przesyłając informację zwrotną wraz z uzasadnieniem.\n\nZłożenie reklamacji nie zwalnia z obowiązku uiszczenia opłaty za warsztaty.",
+      "buttons": [
+        {
+          "text": "www.ceramikanero",
+          "href": "http://www.trosca.pl/"
+        },
+        {
+          "text": "nerogosia@gmail.com lub telefonicznie 600158318",
+          "href": "mailto:kontakt@trosca.pl"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 1956,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 1956,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 2053,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 2053,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 541052,
+    "warmupDataChars": 4896
+  },
+  "newSiteComponent": null,
+  "missingInNewSite": "No corresponding new-site route mapped",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 2536,
+    "captureTimestamp": "2026-07-24T10:36:54.666Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

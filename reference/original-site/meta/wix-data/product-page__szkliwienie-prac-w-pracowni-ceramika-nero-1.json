@@ -1,0 +1,454 @@
+{
+  "platform": {
+    "ssrPropsUpdates": [
+      {
+        "comp-jyfgqx86": {
+          "items": [
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Profile",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/profile",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Orders",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-orders",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Addresses",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-addresses",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wallet",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wallet",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wishlist",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wishlist",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Subscriptions",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-subscriptions",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje rezerwacje",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-bookings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Comments",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-comments",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Posts",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-posts",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Events",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/events",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje nagrody",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-rewards",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Account",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-account",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Notifications",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/notifications",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Settings",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/settings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            }
+          ]
+        },
+        "comp-jt8im1nk": { "hidden": true },
+        "comp-jt8im1ng": { "isValid": false, "maxLength": 250 },
+        "comp-lb21z5yf": {
+          "isValid": true,
+          "required": false,
+          "shouldShowValidityIndication": false
+        }
+      }
+    ],
+    "ssrStyleUpdates": [
+      { "comp-jt8im1nk": { "visibility": "hidden !important" } }
+    ],
+    "ssrStructureUpdates": []
+  },
+  "pages": {
+    "compIdToTypeMap": {
+      "CONTROLLER_COMP_CUSTOM_ID": "AppController",
+      "comp-iy33sahv": "LinkBar",
+      "comp-iy4cwgmq": "DropDownMenu",
+      "comp-ly46xv24": "StylableButton",
+      "comp-ly478zni": "StylableButton",
+      "comp-m84o2sdv": "LanguageSelector",
+      "comp-krsxu47n": "AppController",
+      "comp-jyfgqx86": "VerticalMenu",
+      "comp-iy48z4c2": "WRichText",
+      "comp-iy46b54d": "WRichText",
+      "comp-iy4ay8dd": "WRichText",
+      "comp-jt8ip4mr": "WRichText",
+      "comp-jt8im1ni": "SiteButton",
+      "comp-jt8im1ng": "TextInput",
+      "comp-lb21z5yf": "Checkbox",
+      "comp-lbs8sxl5": "WRichText",
+      "comp-jt8im1nk": "WRichText",
+      "comp-lctn5dcp": "WRichText",
+      "masterPage": "MasterPage",
+      "SITE_HEADER": "HeaderContainer",
+      "SITE_FOOTER": "FooterContainer",
+      "PAGES_CONTAINER": "PagesContainer",
+      "SOSP_CONTAINER_CUSTOM_ID": "Container",
+      "comp-m8656k3r": "tpaWidgetNative",
+      "comp-iy45mz7m": "StripColumnsContainer",
+      "SITE_PAGES": "PageGroup",
+      "comp-jyfgqx79": "tpaWidgetNative",
+      "comp-iy45mzdy": "Column",
+      "comp-jt8im1h4": "AppWidget",
+      "comp-jt8im1i7": "FormContainer",
+      "BACKGROUND_GROUP": "BackgroundGroup",
+      "SCROLL_TO_TOP": "Anchor",
+      "SCROLL_TO_BOTTOM": "Anchor",
+      "comp-iy4cwgmq-pinned-layer": "PinnedLayer",
+      "pinnedTopCenter": "DivWithChildren",
+      "comp-iy33sahv-pinned-layer": "PinnedLayer",
+      "comp-ly46xv24-pinned-layer": "PinnedLayer",
+      "comp-ly478zni-pinned-layer": "PinnedLayer",
+      "pinnedTopRight": "DivWithChildren",
+      "soapAfterPagesContainer": "MeshGroup",
+      "SKIP_TO_CONTENT_BTN": "SkipToContentButton",
+      "pageBackground_is6ln": "PageBackground",
+      "is6ln": "Page",
+      "comp-l8shgon3": "ClassicSection",
+      "TPAMultiSection_j4ci4xqb": "tpaWidgetNative",
+      "Containeris6ln": "Group",
+      "DYNAMIC_STRUCTURE_CONTAINER": "DynamicStructureContainer",
+      "site-root": "DivWithChildren",
+      "main_MF": "DivWithChildren",
+      "is6ln_wrapper": "PageMountUnmount",
+      "is6ln_wrapper_background": "PageMountUnmount"
+    }
+  },
+  "appsWarmupData": {
+    "14cc59bc-f0b7-15b8-e1c7-89ce41d0e0c9": {
+      "initialData": { "counters": {}, "roles": {} }
+    },
+    "215238eb-22a5-4c36-9e7b-e7c08025e04e": {
+      "onlineStoresClientConfig": {
+        "clientConfig": {
+          "language": "pl",
+          "layoutDirection": "ltr",
+          "storeCurrency": "PLN"
+        },
+        "priceSettings": {
+          "showPriceRange": false,
+          "taxOnProduct": false,
+          "showTaxDisclaimer": false,
+          "shippingDisclaimer": {
+            "show": false,
+            "displayText": "",
+            "additionalInfo": { "show": false, "title": "", "description": "" }
+          }
+        },
+        "localeData": { "countries": [{ "properties": { "taxName": "PTU" } }] }
+      }
+    },
+    "1380b703-ce81-ff05-f115-39571d94dfcd": {
+      "productPage_PLN_szkliwienie-prac-w-pracowni-ceramika-nero-1": {
+        "catalog": {
+          "product": {
+            "id": "95d52c3d-7d9e-0aca-8131-8a684faaf68d",
+            "description": "{\"nodes\":[{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"Ulepiłaś \/ ulepiłeś swój przedmiot z gliny i chcesz, aby stał się trwałą, użytkową ceramiką?\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"Wyślij go do nas — \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"my zajmiemy się całym procesem wypału i szkliwienia\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\" ✨\",\"decorations\":[]}}],\"paragraphData\":{}},{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"Jak to działa?\",\"decorations\":[]}}],\"paragraphData\":{}},{\"type\":\"BULLETED_LIST\",\"id\":\"\",\"nodes\":[{\"type\":\"LIST_ITEM\",\"id\":\"\",\"nodes\":[{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"Przygotuj pracę\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tPraca powinna być \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"całkowicie wyschnięta, ale niewypalona\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\".\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tZapakuj ją bardzo starannie do pudełka tak, aby \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"nie mogła się przemieszczać\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\" — najlepiej zabezpieczyć ją siankiem (tym co było w boxie), a całość dodatkowo owinąć papierem lub gazetą.\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tPudełko dokładnie \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"zaklej taśmą\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\".\",\"decorations\":[]}}],\"paragraphData\":{}}]},{\"type\":\"LIST_ITEM\",\"id\":\"\",\"nodes\":[{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"Dostarcz pracę do pracowni\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tPracę możesz \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"wysłać kurierem\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\" lub \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"przywieźć osobiście\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\" do naszej pracowni.\",\"decorations\":[]}}],\"paragraphData\":{}}]},{\"type\":\"LIST_ITEM\",\"id\":\"\",\"nodes\":[{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"Wybierz kolory szkliwa\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tNapisz do nas maila na adres: \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"nerogosia@gmail.com\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\",\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tpodając \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"kolory szkliwa\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\", w jakich mamy poszkliwić Twoją pracę.\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tJesteś \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"projektantem swojego dzieła\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\" — możesz wybrać \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"dowolny układ z 4 dostępnych kolorów\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\" z naszych próbników.\",\"decorations\":[]}}],\"paragraphData\":{}}]},{\"type\":\"LIST_ITEM\",\"id\":\"\",\"nodes\":[{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"My zajmiemy się resztą\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tTwoją pracę wypalimy \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"dwukrotnie\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\":\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\t– pierwszy wypał na \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"biskwit\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\",\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\t– drugi wypał ze szkliwem w temperaturze \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"1050°C\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\",\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tdzięki czemu stanie się trwałą ceramiką gotową do użytkowania.\",\"decorations\":[]}}],\"paragraphData\":{}}]},{\"type\":\"LIST_ITEM\",\"id\":\"\",\"nodes\":[{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"Odesłanie gotowej pracy\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\n\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"\\tPo zakończeniu procesu \",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"bezpiecznie zapakujemy i odeślemy gotowy produkt z powrotem do Ciebie\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\".\",\"decorations\":[]}}],\"paragraphData\":{}}]},{\"type\":\"LIST_ITEM\",\"id\":\"\",\"nodes\":[{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"⏳ Czas realizacji\",\"decorations\":[]}}],\"paragraphData\":{}},{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"Cały proces realizujemy w ciągu\",\"decorations\":[]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\" 3  tygodni\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}},{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\" od momentu otrzymania pracy.\",\"decorations\":[]}}],\"paragraphData\":{}},{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"💰 Cena usługi\",\"decorations\":[]}}],\"paragraphData\":{}},{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\"69 zł\",\"decorations\":[{\"type\":\"BOLD\",\"fontWeightValue\":700}]}}],\"paragraphData\":{}},{\"type\":\"PARAGRAPH\",\"id\":\"\",\"nodes\":[{\"type\":\"TEXT\",\"id\":\"\",\"nodes\":[],\"textData\":{\"text\":\" \",\"decorations\":[]}}],\"paragraphData\":{}}]}]}],\"metadata\":{\"version\":1}}",
+            "isVisible": true,
+            "sku": "",
+            "ribbon": "Nowość",
+            "additionalRibbons": [],
+            "brand": "CERAMIKA NERO",
+            "price": 69,
+            "comparePrice": 0,
+            "discountedPrice": 69,
+            "formattedPrice": "69,00zł",
+            "formattedComparePrice": "",
+            "formattedDiscountedPrice": "69,00zł",
+            "pricePerUnit": null,
+            "formattedPricePerUnit": null,
+            "pricePerUnitData": null,
+            "breadcrumbs": [
+              {
+                "id": "d9dc8723-4b0b-453f-9c4b-56da40bd430d",
+                "name": "All Products",
+                "slug": "all-products"
+              }
+            ],
+            "categories": [
+              {
+                "id": "d9dc8723-4b0b-453f-9c4b-56da40bd430d",
+                "name": "All Products"
+              }
+            ],
+            "mainCategoryId": "d9dc8723-4b0b-453f-9c4b-56da40bd430d",
+            "categoryIds": ["d9dc8723-4b0b-453f-9c4b-56da40bd430d"],
+            "seoTitle": null,
+            "seoDescription": null,
+            "createVersion": 0,
+            "digitalProductFileItems": [],
+            "itemDiscount": null,
+            "productItems": [
+              {
+                "id": "ed9f2498-9586-49f5-a057-859e8065351a",
+                "price": 69,
+                "comparePrice": 0,
+                "formattedPrice": "69,00zł",
+                "formattedComparePrice": "",
+                "hasDiscount": false,
+                "automaticDiscount": null,
+                "pricePerUnit": null,
+                "formattedPricePerUnit": null,
+                "optionsSelections": [],
+                "isVisible": true,
+                "availableForPreOrder": false,
+                "isTrackingInventory": false,
+                "inventory": { "status": "in_stock", "quantity": 0 },
+                "preOrderInfo": { "limit": null, "message": null },
+                "sku": null,
+                "weight": null,
+                "surcharge": 0,
+                "subscriptionPlans": { "list": [] }
+              }
+            ],
+            "name": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+            "isTrackingInventory": false,
+            "inventory": {
+              "status": "in_stock",
+              "quantity": 0,
+              "availableForPreOrder": false,
+              "preOrderInfoView": {
+                "message": null,
+                "preOrder": false,
+                "limit": null
+              }
+            },
+            "isManageProductItems": false,
+            "productItemsPreOrderAvailability": "no_variants",
+            "isInStock": true,
+            "media": [
+              {
+                "id": "747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg",
+                "url": "747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                "altText": null,
+                "thumbnailFullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_50,h_50,q_90\/file.jpg",
+                "mediaType": "PHOTO",
+                "videoType": null,
+                "videoFiles": [],
+                "width": 1152,
+                "height": 2048,
+                "index": 0,
+                "title": "PHOTO-2026-03-16-11-51-54.jpg"
+              },
+              {
+                "id": "747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2.jpg",
+                "url": "747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                "altText": null,
+                "thumbnailFullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_50,h_50,q_90\/file.jpg",
+                "mediaType": "PHOTO",
+                "videoType": null,
+                "videoFiles": [],
+                "width": 1152,
+                "height": 2048,
+                "index": 1,
+                "title": "PHOTO-2026-03-16-11-51-54_4.jpg"
+              },
+              {
+                "id": "747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2.jpg",
+                "url": "747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                "altText": null,
+                "thumbnailFullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_50,h_50,q_90\/file.jpg",
+                "mediaType": "PHOTO",
+                "videoType": null,
+                "videoFiles": [],
+                "width": 1152,
+                "height": 2048,
+                "index": 2,
+                "title": "PHOTO-2026-03-16-11-51-54_2.jpg"
+              },
+              {
+                "id": "747d6f_65957c575a244565926c21e9f48a20fd~mv2.jpg",
+                "url": "747d6f_65957c575a244565926c21e9f48a20fd~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_65957c575a244565926c21e9f48a20fd~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                "altText": null,
+                "thumbnailFullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_65957c575a244565926c21e9f48a20fd~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_50,h_50,q_90\/file.jpg",
+                "mediaType": "PHOTO",
+                "videoType": null,
+                "videoFiles": [],
+                "width": 1152,
+                "height": 2048,
+                "index": 3,
+                "title": "PHOTO-2026-03-16-11-51-54_5.jpg"
+              },
+              {
+                "id": "747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2.jpg",
+                "url": "747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg",
+                "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                "altText": null,
+                "thumbnailFullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg\/v1\/fit\/w_50,h_50,q_90\/file.jpg",
+                "mediaType": "PHOTO",
+                "videoType": null,
+                "videoFiles": [],
+                "width": 2048,
+                "height": 1152,
+                "index": 4,
+                "title": "PHOTO-2026-03-16-11-51-54_6.jpg"
+              },
+              {
+                "id": "747d6f_d5ab31a744f841fc8269902080e23e8b~mv2.jpg",
+                "url": "747d6f_d5ab31a744f841fc8269902080e23e8b~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_d5ab31a744f841fc8269902080e23e8b~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                "altText": null,
+                "thumbnailFullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_d5ab31a744f841fc8269902080e23e8b~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_50,h_50,q_90\/file.jpg",
+                "mediaType": "PHOTO",
+                "videoType": null,
+                "videoFiles": [],
+                "width": 1152,
+                "height": 2048,
+                "index": 5,
+                "title": "PHOTO-2026-03-16-11-51-54_1.jpg"
+              },
+              {
+                "id": "747d6f_057cc0c66cf348268e9d25499f057beb~mv2.jpg",
+                "url": "747d6f_057cc0c66cf348268e9d25499f057beb~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg",
+                "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_057cc0c66cf348268e9d25499f057beb~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                "altText": null,
+                "thumbnailFullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_057cc0c66cf348268e9d25499f057beb~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg\/v1\/fit\/w_50,h_50,q_90\/file.jpg",
+                "mediaType": "PHOTO",
+                "videoType": null,
+                "videoFiles": [],
+                "width": 2048,
+                "height": 1152,
+                "index": 6,
+                "title": "PHOTO-2026-03-16-11-51-54_3.jpg"
+              }
+            ],
+            "customTextFields": [],
+            "nextOptionsSelectionId": 0,
+            "options": [],
+            "productType": "physical",
+            "urlPart": "szkliwienie-prac-w-pracowni-ceramika-nero-1",
+            "additionalInfo": [],
+            "subscriptionPlans": { "list": [], "oneTimePurchase": null },
+            "discount": { "mode": "PERCENT", "value": 0 },
+            "currency": "PLN",
+            "weight": 0,
+            "seoJson": null,
+            "groupInfo": null
+          }
+        },
+        "appSettings": { "widgetSettings": {} }
+      }
+    }
+  },
+  "ooi": { "failedInSsr": {} },
+  "builderComponentsWarmupData": {}
+}

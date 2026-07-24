@@ -1,0 +1,480 @@
+{
+  "platform": {
+    "ssrPropsUpdates": [
+      {
+        "comp-jyfgqx86": {
+          "items": [
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Profile",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/profile",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Orders",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-orders",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Addresses",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-addresses",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wallet",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wallet",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wishlist",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wishlist",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Subscriptions",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-subscriptions",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje rezerwacje",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-bookings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Comments",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-comments",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Posts",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-posts",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Events",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/events",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje nagrody",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-rewards",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Account",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-account",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Notifications",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/notifications",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Settings",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/settings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            }
+          ]
+        },
+        "comp-jt8im1nk": { "hidden": true },
+        "comp-jt8im1ng": { "isValid": false, "maxLength": 250 },
+        "comp-lb21z5yf": {
+          "isValid": true,
+          "required": false,
+          "shouldShowValidityIndication": false
+        }
+      }
+    ],
+    "ssrStyleUpdates": [
+      { "comp-jt8im1nk": { "visibility": "hidden !important" } }
+    ],
+    "ssrStructureUpdates": []
+  },
+  "pages": {
+    "compIdToTypeMap": {
+      "CONTROLLER_COMP_CUSTOM_ID": "AppController",
+      "comp-iy33sahv": "LinkBar",
+      "comp-iy4cwgmq": "DropDownMenu",
+      "comp-ly46xv24": "StylableButton",
+      "comp-ly478zni": "StylableButton",
+      "comp-m84o2sdv": "LanguageSelector",
+      "comp-krsxu47n": "AppController",
+      "comp-jyfgqx86": "VerticalMenu",
+      "comp-iy48z4c2": "WRichText",
+      "comp-iy46b54d": "WRichText",
+      "comp-iy4ay8dd": "WRichText",
+      "comp-jt8ip4mr": "WRichText",
+      "comp-jt8im1ni": "SiteButton",
+      "comp-jt8im1ng": "TextInput",
+      "comp-lb21z5yf": "Checkbox",
+      "comp-lbs8sxl5": "WRichText",
+      "comp-jt8im1nk": "WRichText",
+      "comp-lctn5dcp": "WRichText",
+      "masterPage": "MasterPage",
+      "SITE_HEADER": "HeaderContainer",
+      "SITE_FOOTER": "FooterContainer",
+      "PAGES_CONTAINER": "PagesContainer",
+      "SOSP_CONTAINER_CUSTOM_ID": "Container",
+      "comp-m8656k3r": "tpaWidgetNative",
+      "comp-iy45mz7m": "StripColumnsContainer",
+      "SITE_PAGES": "PageGroup",
+      "comp-jyfgqx79": "tpaWidgetNative",
+      "comp-iy45mzdy": "Column",
+      "comp-jt8im1h4": "AppWidget",
+      "comp-jt8im1i7": "FormContainer",
+      "BACKGROUND_GROUP": "BackgroundGroup",
+      "SCROLL_TO_TOP": "Anchor",
+      "SCROLL_TO_BOTTOM": "Anchor",
+      "comp-iy4cwgmq-pinned-layer": "PinnedLayer",
+      "pinnedTopCenter": "DivWithChildren",
+      "comp-iy33sahv-pinned-layer": "PinnedLayer",
+      "comp-ly46xv24-pinned-layer": "PinnedLayer",
+      "comp-ly478zni-pinned-layer": "PinnedLayer",
+      "pinnedTopRight": "DivWithChildren",
+      "soapAfterPagesContainer": "MeshGroup",
+      "SKIP_TO_CONTENT_BTN": "SkipToContentButton",
+      "comp-lapetpho": "WRichText",
+      "comp-lapetpi8": "WRichText",
+      "pageBackground_p6k4d": "PageBackground",
+      "p6k4d": "Page",
+      "comp-lapek8rq": "ClassicSection",
+      "comp-lapei0qp": "ClassicSection",
+      "comp-latq0yxj": "tpaWidgetNative",
+      "TPASection_lapehyqo": "tpaWidgetNative",
+      "Containerp6k4d": "Group",
+      "DYNAMIC_STRUCTURE_CONTAINER": "DynamicStructureContainer",
+      "site-root": "DivWithChildren",
+      "main_MF": "DivWithChildren",
+      "p6k4d_wrapper": "PageMountUnmount",
+      "p6k4d_wrapper_background": "PageMountUnmount"
+    }
+  },
+  "appsWarmupData": {
+    "14cc59bc-f0b7-15b8-e1c7-89ce41d0e0c9": {
+      "initialData": { "counters": {}, "roles": {} }
+    },
+    "215238eb-22a5-4c36-9e7b-e7c08025e04e": {
+      "onlineStoresClientConfig": {
+        "clientConfig": {
+          "language": "pl",
+          "layoutDirection": "ltr",
+          "storeCurrency": "PLN"
+        },
+        "priceSettings": {
+          "showPriceRange": false,
+          "taxOnProduct": false,
+          "showTaxDisclaimer": false,
+          "shippingDisclaimer": {
+            "show": false,
+            "displayText": "",
+            "additionalInfo": { "show": false, "title": "", "description": "" }
+          }
+        },
+        "localeData": { "countries": [{ "properties": { "taxName": "PTU" } }] }
+      }
+    },
+    "1380b703-ce81-ff05-f115-39571d94dfcd": {
+      "oldInitialData_default_comp-latq0yxj_default": {
+        "appSettings": { "widgetSettings": {} },
+        "catalog": {
+          "isCatalogV3": true,
+          "category": {
+            "id": "70f3b999-8251-16c6-d02f-7dae59229e1a",
+            "name": "Blue Lagoon Collection",
+            "visible": true,
+            "productsWithMetaData": { "list": [], "totalCount": 0 }
+          },
+          "allProductsCategoryId": "d9dc8723-4b0b-453f-9c4b-56da40bd430d"
+        }
+      },
+      "initialData_default_TPASection_lapehyqo_default": {
+        "appSettings": {
+          "widgetSettings": {
+            "FILTERS": [
+              {
+                "id": "kk49v",
+                "show": true,
+                "selected": [],
+                "filterType": "CATEGORY"
+              },
+              { "id": "rx30d", "show": true, "filterType": "PRICE" },
+              { "id": "r5m3g", "show": true, "filterType": "OPTIONS" }
+            ]
+          }
+        },
+        "catalog": {
+          "isCatalogV3": true,
+          "category": {
+            "id": "d9dc8723-4b0b-453f-9c4b-56da40bd430d",
+            "name": "All Products",
+            "visible": true,
+            "productsWithMetaData": {
+              "list": [
+                {
+                  "id": "95d52c3d-7d9e-0aca-8131-8a684faaf68d",
+                  "options": [],
+                  "productItems": [],
+                  "minPriceVariant": {
+                    "id": "ed9f2498-9586-49f5-a057-859e8065351a"
+                  },
+                  "customTextFields": [],
+                  "productType": "physical",
+                  "ribbon": "Nowość",
+                  "additionalRibbons": [],
+                  "price": 69,
+                  "comparePrice": 0,
+                  "pricePerUnit": null,
+                  "sku": "",
+                  "isInStock": true,
+                  "urlPart": "szkliwienie-prac-w-pracowni-ceramika-nero-1",
+                  "formattedComparePrice": "",
+                  "formattedPrice": "69,00zł",
+                  "formattedPricePerUnit": null,
+                  "pricePerUnitData": null,
+                  "itemDiscount": null,
+                  "digitalProductFileItems": [],
+                  "name": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+                  "currency": "PLN",
+                  "media": [
+                    {
+                      "url": "747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1152,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1152,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1152,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_65957c575a244565926c21e9f48a20fd~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_65957c575a244565926c21e9f48a20fd~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1152,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 2048,
+                      "height": 1152,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_d5ab31a744f841fc8269902080e23e8b~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_d5ab31a744f841fc8269902080e23e8b~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1152,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_057cc0c66cf348268e9d25499f057beb~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_057cc0c66cf348268e9d25499f057beb~mv2.jpg\/v1\/fit\/w_2048,h_1152,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 2048,
+                      "height": 1152,
+                      "altText": null
+                    }
+                  ],
+                  "isManageProductItems": false,
+                  "productItemsPreOrderAvailability": "no_variants",
+                  "isTrackingInventory": false,
+                  "inventory": {
+                    "status": "in_stock",
+                    "quantity": 0,
+                    "availableForPreOrder": false,
+                    "preOrderInfoView": { "limit": null }
+                  },
+                  "subscriptionPlans": { "list": [] },
+                  "discount": { "value": 0 },
+                  "groupInfo": null
+                },
+                {
+                  "id": "fb662cc3-ff6b-14fd-d729-b4ad0b5f4e8c",
+                  "options": [],
+                  "productItems": [],
+                  "minPriceVariant": {
+                    "id": "39d3e11a-27e5-43ee-b78c-0df2371c0b9a"
+                  },
+                  "customTextFields": [],
+                  "productType": "physical",
+                  "ribbon": "Nowość",
+                  "additionalRibbons": [],
+                  "price": 229,
+                  "comparePrice": 137,
+                  "pricePerUnit": null,
+                  "sku": "112",
+                  "isInStock": true,
+                  "urlPart": "glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+                  "formattedComparePrice": "137,00zł",
+                  "formattedPrice": "229,00zł",
+                  "formattedPricePerUnit": null,
+                  "pricePerUnitData": null,
+                  "itemDiscount": null,
+                  "digitalProductFileItems": [],
+                  "name": "GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO",
+                  "currency": "PLN",
+                  "media": [
+                    {
+                      "url": "747d6f_0fe41123a0a34078b88b14d085b6b727~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_0fe41123a0a34078b88b14d085b6b727~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1152,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_3cc1afd6652c406a8a85ad97d73c8c81~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_3cc1afd6652c406a8a85ad97d73c8c81~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1152,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_2a8c8e6e4b03466e945f9536100cdc68~mv2.jpg\/v1\/fit\/w_1536,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_2a8c8e6e4b03466e945f9536100cdc68~mv2.jpg\/v1\/fit\/w_1536,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1536,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_f58dd3eadfef49bdb97c27f37f7405b2~mv2.jpg\/v1\/fit\/w_1536,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_f58dd3eadfef49bdb97c27f37f7405b2~mv2.jpg\/v1\/fit\/w_1536,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1536,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_fac5316d826f417fa309426a15f3f820~mv2.jpg\/v1\/fit\/w_1536,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_fac5316d826f417fa309426a15f3f820~mv2.jpg\/v1\/fit\/w_1536,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1536,
+                      "height": 2048,
+                      "altText": null
+                    },
+                    {
+                      "url": "747d6f_ecba344d6d424bc0acd5444e304c190f~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg",
+                      "fullUrl": "https:\/\/static.wixstatic.com\/media\/747d6f_ecba344d6d424bc0acd5444e304c190f~mv2.jpg\/v1\/fit\/w_1152,h_2048,q_90\/file.jpg\/v1\/fit\/w_500,h_500,q_90\/file.jpg",
+                      "width": 1152,
+                      "height": 2048,
+                      "altText": null
+                    }
+                  ],
+                  "isManageProductItems": false,
+                  "productItemsPreOrderAvailability": "no_variants",
+                  "isTrackingInventory": true,
+                  "inventory": {
+                    "status": "in_stock",
+                    "quantity": 9,
+                    "availableForPreOrder": false,
+                    "preOrderInfoView": { "limit": null }
+                  },
+                  "subscriptionPlans": { "list": [] },
+                  "discount": { "value": 1 },
+                  "groupInfo": null
+                }
+              ],
+              "totalCount": 2
+            },
+            "promotions": []
+          },
+          "allProductsCategoryId": "d9dc8723-4b0b-453f-9c4b-56da40bd430d"
+        }
+      }
+    }
+  },
+  "ooi": { "failedInSsr": {} },
+  "builderComponentsWarmupData": {}
+}

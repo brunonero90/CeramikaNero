@@ -1,0 +1,189 @@
+{
+  "platform": {
+    "ssrPropsUpdates": [
+      {
+        "comp-jyfgqx86": {
+          "items": [
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Profile",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/gosianowicka\/profile",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Comments",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/gosianowicka\/forum-comments",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Posts",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/gosianowicka\/forum-posts",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Events",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/gosianowicka\/events",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            }
+          ]
+        },
+        "comp-jt8im1nk": { "hidden": true },
+        "comp-jt8im1ng": { "isValid": false, "maxLength": 250 },
+        "comp-lb21z5yf": {
+          "isValid": true,
+          "required": false,
+          "shouldShowValidityIndication": false
+        }
+      }
+    ],
+    "ssrStyleUpdates": [
+      { "comp-jt8im1nk": { "visibility": "hidden !important" } }
+    ],
+    "ssrStructureUpdates": []
+  },
+  "pages": {
+    "compIdToTypeMap": {
+      "CONTROLLER_COMP_CUSTOM_ID": "AppController",
+      "comp-iy33sahv": "LinkBar",
+      "comp-iy4cwgmq": "DropDownMenu",
+      "comp-ly46xv24": "StylableButton",
+      "comp-ly478zni": "StylableButton",
+      "comp-m84o2sdv": "LanguageSelector",
+      "comp-krsxu47n": "AppController",
+      "comp-jyfgqx86": "VerticalMenu",
+      "comp-iy48z4c2": "WRichText",
+      "comp-iy46b54d": "WRichText",
+      "comp-iy4ay8dd": "WRichText",
+      "comp-jt8ip4mr": "WRichText",
+      "comp-jt8im1ni": "SiteButton",
+      "comp-jt8im1ng": "TextInput",
+      "comp-lb21z5yf": "Checkbox",
+      "comp-lbs8sxl5": "WRichText",
+      "comp-jt8im1nk": "WRichText",
+      "comp-lctn5dcp": "WRichText",
+      "masterPage": "MasterPage",
+      "SITE_HEADER": "HeaderContainer",
+      "SITE_FOOTER": "FooterContainer",
+      "PAGES_CONTAINER": "PagesContainer",
+      "SOSP_CONTAINER_CUSTOM_ID": "Container",
+      "comp-m8656k3r": "tpaWidgetNative",
+      "comp-iy45mz7m": "StripColumnsContainer",
+      "SITE_PAGES": "PageGroup",
+      "comp-jyfgqx79": "tpaWidgetNative",
+      "comp-iy45mzdy": "Column",
+      "comp-jt8im1h4": "AppWidget",
+      "comp-jt8im1i7": "FormContainer",
+      "BACKGROUND_GROUP": "BackgroundGroup",
+      "SCROLL_TO_TOP": "Anchor",
+      "SCROLL_TO_BOTTOM": "Anchor",
+      "comp-iy4cwgmq-pinned-layer": "PinnedLayer",
+      "pinnedTopCenter": "DivWithChildren",
+      "comp-iy33sahv-pinned-layer": "PinnedLayer",
+      "comp-ly46xv24-pinned-layer": "PinnedLayer",
+      "comp-ly478zni-pinned-layer": "PinnedLayer",
+      "pinnedTopRight": "DivWithChildren",
+      "soapAfterPagesContainer": "MeshGroup",
+      "SKIP_TO_CONTENT_BTN": "SkipToContentButton",
+      "pageBackground_yqshh": "PageBackground",
+      "yqshh": "Page",
+      "comp-ljpp5pzy": "ClassicSection",
+      "TPAMultiSection_ljpoxgag": "tpaWidgetNative",
+      "Containeryqshh": "Group",
+      "DYNAMIC_STRUCTURE_CONTAINER": "DynamicStructureContainer",
+      "site-root": "DivWithChildren",
+      "main_MF": "DivWithChildren",
+      "yqshh_gosianowicka\/forum-posts": "PageMountUnmount",
+      "yqshh_gosianowicka\/forum-posts_background": "PageMountUnmount"
+    }
+  },
+  "appsWarmupData": {
+    "14cc59bc-f0b7-15b8-e1c7-89ce41d0e0c9": {
+      "initialData": { "counters": {}, "roles": {} }
+    },
+    "14ce28f7-7eb0-3745-22f8-074b0e2401fb": {
+      "initialData": {
+        "currentMember": null,
+        "viewedMember": {
+          "uid": "747d6f83-85e9-4dc8-beac-c643783ec405",
+          "slug": "gosianowicka",
+          "name": "Gosia Nero",
+          "picture": "https:\/\/graph.facebook.com\/100000358912016\/picture",
+          "cover": null,
+          "badges": [],
+          "roles": ["admin"],
+          "rolesActions": [
+            {
+              "roleId": "anonymous_report",
+              "action": "MemberRoles.action_set.report",
+              "description": ""
+            }
+          ],
+          "privacyStatus": "UNKNOWN",
+          "followerCount": 0,
+          "followingCount": 0,
+          "isSubscribed": false
+        },
+        "installedApps": { "wixBlog": true, "membersFF": true },
+        "isSocialChat": true,
+        "isSiteSocial": true,
+        "rolesMap": {
+          "admin": { "roleName": "MemberRoles.name.admin" },
+          "report": { "roleName": "MemberRoles.name.report" },
+          "anonymous_report": { "roleName": "MemberRoles.name.report" },
+          "blocked": { "roleName": "MemberRoles.name.blocked" },
+          "member_block_member": {
+            "roleName": "MemberRoles.name.member_block_member"
+          },
+          "join_community": { "roleName": "MemberRoles.name.join_community" },
+          "leave_community": { "roleName": "MemberRoles.name.leave_community" },
+          "edit": { "roleName": "MemberRoles.name.edit" },
+          "deleted": { "roleName": "MemberRoles.name.deleted" },
+          "contact_page": { "roleName": "MemberRoles.name.contact_page" },
+          "forum_moderator": { "roleName": "MemberRoles.name.forum_moderator" },
+          "blog_writer": { "roleName": "MemberRoles.name.blog_writer" },
+          "blog_guest_writer": {
+            "roleName": "MemberRoles.name.blog_guest_writer"
+          },
+          "blog_editor": { "roleName": "MemberRoles.name.blog_editor" },
+          "manage_badges": { "roleName": "MemberRoles.name.manage_badges" }
+        },
+        "badgeList": [],
+        "globalSettings": {
+          "language": "",
+          "showFollowers": true,
+          "fontCssUrls": [],
+          "siteColors": [],
+          "defaultProfileCoverUrl": ""
+        },
+        "isPublicMemberCandidateNoOne": false,
+        "visibleWidgetId": "",
+        "isWidgetPlugin": false
+      }
+    }
+  },
+  "ooi": { "failedInSsr": {} },
+  "builderComponentsWarmupData": {}
+}

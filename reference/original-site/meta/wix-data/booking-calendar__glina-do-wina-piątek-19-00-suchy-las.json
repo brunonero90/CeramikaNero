@@ -1,0 +1,677 @@
+{
+  "platform": {
+    "ssrPropsUpdates": [
+      {
+        "comp-jyfgqx86": {
+          "items": [
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Profile",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/profile",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Orders",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-orders",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Addresses",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-addresses",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wallet",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wallet",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wishlist",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wishlist",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Subscriptions",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-subscriptions",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje rezerwacje",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-bookings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Comments",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-comments",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Posts",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-posts",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Events",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/events",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje nagrody",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-rewards",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Account",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-account",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Notifications",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/notifications",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Settings",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/settings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            }
+          ]
+        },
+        "comp-jt8im1nk": { "hidden": true },
+        "comp-jt8im1ng": { "isValid": false, "maxLength": 250 },
+        "comp-lb21z5yf": {
+          "isValid": true,
+          "required": false,
+          "shouldShowValidityIndication": false
+        }
+      }
+    ],
+    "ssrStyleUpdates": [
+      { "comp-jt8im1nk": { "visibility": "hidden !important" } }
+    ],
+    "ssrStructureUpdates": []
+  },
+  "pages": {
+    "compIdToTypeMap": {
+      "CONTROLLER_COMP_CUSTOM_ID": "AppController",
+      "comp-iy33sahv": "LinkBar",
+      "comp-iy4cwgmq": "DropDownMenu",
+      "comp-ly46xv24": "StylableButton",
+      "comp-ly478zni": "StylableButton",
+      "comp-m84o2sdv": "LanguageSelector",
+      "comp-krsxu47n": "AppController",
+      "comp-jyfgqx86": "VerticalMenu",
+      "comp-iy48z4c2": "WRichText",
+      "comp-iy46b54d": "WRichText",
+      "comp-iy4ay8dd": "WRichText",
+      "comp-jt8ip4mr": "WRichText",
+      "comp-jt8im1ni": "SiteButton",
+      "comp-jt8im1ng": "TextInput",
+      "comp-lb21z5yf": "Checkbox",
+      "comp-lbs8sxl5": "WRichText",
+      "comp-jt8im1nk": "WRichText",
+      "comp-lctn5dcp": "WRichText",
+      "masterPage": "MasterPage",
+      "SITE_HEADER": "HeaderContainer",
+      "SITE_FOOTER": "FooterContainer",
+      "PAGES_CONTAINER": "PagesContainer",
+      "SOSP_CONTAINER_CUSTOM_ID": "Container",
+      "comp-m8656k3r": "tpaWidgetNative",
+      "comp-iy45mz7m": "StripColumnsContainer",
+      "SITE_PAGES": "PageGroup",
+      "comp-jyfgqx79": "tpaWidgetNative",
+      "comp-iy45mzdy": "Column",
+      "comp-jt8im1h4": "AppWidget",
+      "comp-jt8im1i7": "FormContainer",
+      "BACKGROUND_GROUP": "BackgroundGroup",
+      "SCROLL_TO_TOP": "Anchor",
+      "SCROLL_TO_BOTTOM": "Anchor",
+      "comp-iy4cwgmq-pinned-layer": "PinnedLayer",
+      "pinnedTopCenter": "DivWithChildren",
+      "comp-iy33sahv-pinned-layer": "PinnedLayer",
+      "comp-ly46xv24-pinned-layer": "PinnedLayer",
+      "comp-ly478zni-pinned-layer": "PinnedLayer",
+      "pinnedTopRight": "DivWithChildren",
+      "soapAfterPagesContainer": "MeshGroup",
+      "SKIP_TO_CONTENT_BTN": "SkipToContentButton",
+      "pageBackground_fmjgt": "PageBackground",
+      "fmjgt": "Page",
+      "comp-lapxz18c": "ClassicSection",
+      "TPAMultiSection_lapuvdh0": "tpaWidgetNative",
+      "Containerfmjgt": "Group",
+      "DYNAMIC_STRUCTURE_CONTAINER": "DynamicStructureContainer",
+      "site-root": "DivWithChildren",
+      "main_MF": "DivWithChildren",
+      "fmjgt_wrapper": "PageMountUnmount",
+      "fmjgt_wrapper_background": "PageMountUnmount"
+    }
+  },
+  "appsWarmupData": {
+    "14cc59bc-f0b7-15b8-e1c7-89ce41d0e0c9": {
+      "initialData": { "counters": {}, "roles": {} }
+    },
+    "13d21c63-b5ec-5912-8397-c3a5ddb27a97": {
+      "TPAMultiSection_lapuvdh0_queryServices-{\"slug\":\"glina-do-wina-piątek-19-00-suchy-las\",\"isBookOnlineAllowed\":true,\"types\":[\"CLASS\",\"APPOINTMENT\"],\"withStaffLocations\":true}": {
+        "services": [
+          {
+            "id": "cebc8be1-d83c-4c3e-b366-aba697baec2b",
+            "appId": "13d21c63-b5ec-5912-8397-c3a5ddb27a97",
+            "createdByAppId": "13d21c63-b5ec-5912-8397-c3a5ddb27a97",
+            "type": "CLASS",
+            "sortOrder": 2,
+            "name": "GLINA DO WINA PIĄTEK 19.00 SUCHY LAS",
+            "description": "Warsztaty \"Glina do Wina\"\nZapraszamy na niezwykły wieczór pełen kreatywności, relaksu i przyjemności w Pracowni Ceramiki Nero w Suchym Lesie przy ul. Podgórnej 3. Warsztaty \"Glina do Wina\" to idealny sposób na spędzenie czasu w inspirującej atmosferze – doskonały dla każdego, niezależnie od doświadczenia z ceramiką.\n________________________________________________________________________________________\nCo na Ciebie czeka?\n1. Twórcze warsztaty ceramiczne\nPod okiem naszych doświadczonych ceramików poznasz podstawowe techniki pracy z gliną i stworzysz własnoręczne dzieła:\n\ntalerze,\nkubki,\nzestawy do sushi,\ndoniczki i inne unikatowe ozdoby.\n2. Degustacja wina i włoskie przystawki\nPodczas pracy ciesz się kieliszkiem wyselekcjonowanego wina oraz talerzem włoskich przystawek. W tle usłyszysz włoską muzykę, która wprowadzi Cię w wyjątkowy klimat – bliski sercu prowadzącej z włoskimi korzeniami.\n\n3. Profesjonalne prowadzenie i materiały\nZapewniamy wszystkie potrzebne materiały oraz indywidualne wsparcie, abyś stworzył coś pięknego – dla siebie lub jako prezent dla bliskich.\n\nTerminy i Ceny\n📅 Warsztaty odbywają się w co drugi piątek od 19:00 do 21:00.\n💰 Koszt: 189 zł za jedno spotkanie (x2 = 378 zł).\n🔄 Aby stworzyć gotowy produkt, potrzebne są dwa spotkania w odstępie 2 tygodni.\n\n📦 Prace przechowujemy przez 1 miesiąc.\n\nJak się zapisać?\nZapisy odbywają się przez naszą stronę internetową. Liczba miejsc jest ograniczona, dlatego zachęcamy do rezerwacji obu spotkań już teraz.\n➡️ Płacisz voucherem? W polu uwag dopisz: \"Płatność voucherem\".\n\nDodatkowe informacje\nSzkliwienie:\nJeśli nie możesz przyjść na szkliwienie, możemy zrobić to za Ciebie transparentnym szkliwem – cena 85–140 zł (do uzgodnienia).\nPrace możemy również wysłać pocztą – koszt od 35 zł, zależnie od wielkości paczki\n\nCzas realizacji:\nSzkliwione prace będą gotowe do odbioru po ok. 2-3 tygodniach.\n\nEvent na zamówienie:\nZbierz grupę od 5 do 12 osób, a zorganizujemy dla Was prywatne warsztaty, napisz do nas: nerogosia@gmail.com\n\nDlaczego warto?\nWarsztaty \"Glina do Wina\" to nie tylko nauka, ale także świetna zabawa, relaks i możliwość poznania nowych osób. To idealny sposób na spędzenie wieczoru z przyjaciółmi, a także szansa na stworzenie unikatowych dzieł własnymi rękami.\n\nKontakt i lokalizacja\n📞 Telefon: 532 279 101\n📧 E-mail: kontakt.ceramikanero@gmail.com\n📍 Adres: Pracownia Ceramiki Nero, ul. Podgórna 3, Suchy Las (koło Poznania)\n\nDołącz do nas i odkryj magię ceramiki w wyjątkowej atmosferze! 🌟",
+            "tagLine": "warsztaty ceramiczne 18+ wino, deska serów i szynek włoskich, CO DRUGI PIĄTEK O 19.00",
+            "defaultCapacity": 14,
+            "media": {
+              "items": [
+                {
+                  "image": {
+                    "id": "747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg",
+                    "url": "747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg",
+                    "height": 2048,
+                    "width": 1536,
+                    "filename": "747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg",
+                    "url": "747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg",
+                    "height": 2048,
+                    "width": 2048,
+                    "altText": "glina i wino ",
+                    "filename": "747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg",
+                    "url": "747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg",
+                    "height": 1536,
+                    "width": 1536,
+                    "filename": "747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg",
+                    "url": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg",
+                    "height": 828,
+                    "width": 1080,
+                    "altText": "garncarstwo ",
+                    "filename": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_b8b4604091d64cd08fc792d41d76287e~mv2.jpg",
+                    "url": "747d6f_b8b4604091d64cd08fc792d41d76287e~mv2.jpg",
+                    "height": 1080,
+                    "width": 1080,
+                    "altText": "wino i glina ",
+                    "filename": "747d6f_b8b4604091d64cd08fc792d41d76287e~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png",
+                    "url": "747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png",
+                    "height": 3113,
+                    "width": 3582,
+                    "altText": "pracownia ceramiki nero ",
+                    "filename": "747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg",
+                    "url": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg",
+                    "height": 4367,
+                    "width": 6551,
+                    "altText": "kubki ręcznie robione ",
+                    "filename": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_8d41bbe5ded149c2a8cea7d5e662ef08~mv2.jpg",
+                    "url": "747d6f_8d41bbe5ded149c2a8cea7d5e662ef08~mv2.jpg",
+                    "height": 1024,
+                    "width": 1024,
+                    "filename": "747d6f_8d41bbe5ded149c2a8cea7d5e662ef08~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_0f3b800e5b7a407baf665c1170430ecd~mv2.jpg",
+                    "url": "747d6f_0f3b800e5b7a407baf665c1170430ecd~mv2.jpg",
+                    "height": 2048,
+                    "width": 2048,
+                    "altText": "włoskie przystawki ",
+                    "filename": "747d6f_0f3b800e5b7a407baf665c1170430ecd~mv2.jpg"
+                  }
+                },
+                {
+                  "image": {
+                    "id": "747d6f_6d7fede4fb5743579e7005449c2d4d29~mv2.jpg",
+                    "url": "747d6f_6d7fede4fb5743579e7005449c2d4d29~mv2.jpg",
+                    "height": 2048,
+                    "width": 1366,
+                    "filename": "747d6f_6d7fede4fb5743579e7005449c2d4d29~mv2.jpg"
+                  }
+                }
+              ],
+              "mainMedia": {
+                "image": {
+                  "id": "747d6f_045e89a3529f4e2491a7742e1da14497~mv2.jpg",
+                  "url": "747d6f_045e89a3529f4e2491a7742e1da14497~mv2.jpg",
+                  "height": 3744,
+                  "width": 5616,
+                  "altText": "warsztaty glina do wina ",
+                  "filename": "11062b_2d8a920e7da946b89ebbc92c3a25ecc4~mv2.jpg"
+                }
+              },
+              "coverMedia": {
+                "image": {
+                  "id": "747d6f_7440489991eb4b4b82871c79341ad3b9~mv2.jpg",
+                  "url": "747d6f_7440489991eb4b4b82871c79341ad3b9~mv2.jpg",
+                  "height": 1066,
+                  "width": 1599,
+                  "altText": "warsztaty z ceramiki ",
+                  "filename": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg"
+                }
+              }
+            },
+            "hidden": false,
+            "category": {
+              "id": "48552f51-e7c6-4f14-afe8-2e5d16d54bff",
+              "name": "Nasze usługi",
+              "sortOrder": 2000000
+            },
+            "form": {
+              "id": "9a5e133b-15dd-4d97-acd8-8f780ed646a8",
+              "mobileSettings": {}
+            },
+            "payment": {
+              "rateType": "FIXED",
+              "fixed": { "price": { "value": "189", "currency": "PLN" } },
+              "options": {
+                "online": true,
+                "inPerson": false,
+                "deposit": false,
+                "pricingPlan": false
+              },
+              "pricingPlanIds": [],
+              "addOnOption": "UNKNOWN_ADD_ON_PAYMENT_OPTIONS"
+            },
+            "onlineBooking": {
+              "enabled": true,
+              "requireManualApproval": false,
+              "allowMultipleRequests": false
+            },
+            "conferencing": { "enabled": false },
+            "locations": [
+              {
+                "id": "5f6d413b-678b-4e49-b8b5-79e0953747c3",
+                "type": "BUSINESS",
+                "calculatedAddress": {
+                  "country": "PL",
+                  "subdivision": "WP",
+                  "city": "Suchy Las",
+                  "postalCode": "62-002",
+                  "streetAddress": {
+                    "number": "3",
+                    "name": "Podgórna",
+                    "apt": ""
+                  },
+                  "formattedAddress": "Podgórna 3, Suchy Las, Polska",
+                  "geocode": { "latitude": 52.4802658, "longitude": 16.8811844 }
+                },
+                "business": {
+                  "id": "5f6d413b-678b-4e49-b8b5-79e0953747c3",
+                  "name": "CERAMIKA NERO PODGÓRNA 3 SUCHY LAS ",
+                  "default": true,
+                  "address": {
+                    "country": "PL",
+                    "subdivision": "WP",
+                    "city": "Suchy Las",
+                    "postalCode": "62-002",
+                    "streetAddress": {
+                      "number": "3",
+                      "name": "Podgórna",
+                      "apt": ""
+                    },
+                    "formattedAddress": "Podgórna 3, Suchy Las, Polska",
+                    "geocode": {
+                      "latitude": 52.4802658,
+                      "longitude": 16.8811844
+                    }
+                  },
+                  "email": "kontakt.ceramikanero@gmail.com",
+                  "phone": "532279101"
+                }
+              }
+            ],
+            "bookingPolicy": {
+              "id": "176eb3a2-1e51-4048-8153-038aad6826d7",
+              "revision": "2",
+              "createdDate": "2025-06-03T13:55:08.925Z",
+              "updatedDate": "2025-09-12T20:45:12.615Z",
+              "appId": "13d21c63-b5ec-5912-8397-c3a5ddb27a97",
+              "name": "Rezerwacja Glina do wina",
+              "customPolicyDescription": {
+                "enabled": true,
+                "description": "📝 Zasady rezerwacji warsztatów „Glina do Wina”\n1. Rezerwacja miejsca:\nRezerwacji należy dokonać poprzez formularz na stronie:\n👉 www.ceramikanero.com\n\n2. Płatność:\n– Płatności należy dokonać w ciągu 24 godzin w wysokości  189 zł .\n\nDane do wpłaty:\n💳 Numer konta:\n30 1140 2004 0000 3102 8314 9467\n(tytuł przelewu: Imię i nazwisko + Glina do Wina + data warsztatu)\n\n📲 BLIK na numer telefonu:\n600 158 318\n\nPotwierdzenie płatności:\nJeżeli wpłata zostanie zaksięgowana jest to potwierdzenie rezerwacji. \n📌 Imię i nazwisko osoby rezerwującej oraz datę warsztatu\nnp. Anna Kowalska – Glina do Wina 01.01.2000\n\n3. Płatność voucherem:\n– W przypadku posiadania vouchera z Prezentu Marzeń lub wymarzony prezent prosimy wpisać w wiadomości rezerwacyjnej:\n„Voucher Prezent Marzeń\/wymarzony prezent  – Ceramika NERO”\n– W przypadku voucherów zakupionych bezpośrednio u nas, wpisz:\n„Voucher Ceramika NERO”\n\n4. Zmiana terminu:\n– Możliwa najpóźniej na 48 godzin przed warsztatem.\n– Po tym terminie wpłata przepada lub można przekazać miejsce innej osobie.\n\n5. Dwa spotkania = dwie rezerwacje:\n– Kurs „Glina do Wina” składa się z dwóch spotkań:\n1. Lepienie z gliny\n2. Szkliwienie po  2 lub 4 tygodniach w piątki o godz. 19.00 \n– Każde spotkanie wymaga osobnej rezerwacji i płatności.\n\n6. Przechowywanie prac:\n– Prace przechowujemy do 1 miesiąca.\n– Jeśli nie możesz pojawić się na szkliwieniu, odbierz prace wcześniej, aby uniknąć ich zniszczenia.\n– Możesz wrócić na szkliwienie w późniejszym dogodnym terminie.\n- na odbiór prac poszkliwionych masz również 1 miesiąc o informacji, że prace są wypalone. Po tym terminie prace magazynowane mogą być utylizowane. \n\n7. Lokalizacja:\n📍 Pracownia Ceramiki NERO\nul. Podgórna 3, Suchy Las"
+              },
+              "default": false,
+              "limitEarlyBookingPolicy": {
+                "enabled": false,
+                "earliestBookingInMinutes": 10080
+              },
+              "limitLateBookingPolicy": {
+                "enabled": false,
+                "latestBookingInMinutes": 1440
+              },
+              "bookAfterStartPolicy": { "enabled": false },
+              "cancellationPolicy": {
+                "enabled": false,
+                "limitLatestCancellation": false,
+                "latestCancellationInMinutes": 1440,
+                "allowAnonymous": true
+              },
+              "reschedulePolicy": {
+                "enabled": false,
+                "limitLatestReschedule": false,
+                "latestRescheduleInMinutes": 1440,
+                "allowAnonymous": true
+              },
+              "waitlistPolicy": {
+                "enabled": true,
+                "capacity": 6,
+                "reservationTimeInMinutes": 30
+              },
+              "participantsPolicy": {
+                "enabled": true,
+                "maxParticipantsPerBooking": 4
+              },
+              "resourcesPolicy": {
+                "enabled": false,
+                "autoAssignAllowed": false
+              },
+              "cancellationFeePolicy": {
+                "enabled": false,
+                "cancellationWindows": [],
+                "autoCollectFeeEnabled": true
+              },
+              "saveCreditCardPolicy": { "enabled": false },
+              "staffSortingPolicy": { "sortingMethodType": "RANDOM" }
+            },
+            "schedule": {
+              "id": "60ee9a8a-ad77-4d50-bcd1-97b1ba1da13e",
+              "firstSessionStart": "2025-09-12T17:00:00.000Z",
+              "lastSessionEnd": "2026-07-31T19:00:00.000Z",
+              "availabilityConstraints": {
+                "durations": [{ "minutes": 120 }],
+                "sessionDurations": [120],
+                "timeBetweenSessions": 0
+              }
+            },
+            "staffMemberIds": ["cc6a568e-3bbd-46d5-aa3f-da76d8e5f51f"],
+            "staffMembers": [
+              {
+                "staffMemberId": "cc6a568e-3bbd-46d5-aa3f-da76d8e5f51f",
+                "name": "Małgorzata Nero",
+                "workingHoursScheduleIds": [
+                  "480c3c7e-ca3c-4902-8fc7-8c05388ae59f"
+                ],
+                "eventsScheduleId": "997da874-6335-4d54-9060-74bb7b789192",
+                "mainMedia": {
+                  "image": {
+                    "id": "747d6f_d413f1367a35493c9b74abbdf10d06be~mv2.jpg",
+                    "url": "https:\/\/static.wixstatic.com\/media\/747d6f_d413f1367a35493c9b74abbdf10d06be~mv2.jpg",
+                    "height": 4480,
+                    "width": 6720,
+                    "filename": "skotnickanowakpl_ceramikanero_6090.jpg",
+                    "sizeInBytes": "3320569"
+                  }
+                },
+                "workingHoursLocationCoverage": {
+                  "availableAtAllLocations": true,
+                  "locationIds": []
+                }
+              }
+            ],
+            "staffMemberDetails": {
+              "staffMembers": [
+                {
+                  "staffMemberId": "cc6a568e-3bbd-46d5-aa3f-da76d8e5f51f",
+                  "name": "Małgorzata Nero",
+                  "workingHoursScheduleIds": [
+                    "480c3c7e-ca3c-4902-8fc7-8c05388ae59f"
+                  ],
+                  "eventsScheduleId": "997da874-6335-4d54-9060-74bb7b789192",
+                  "mainMedia": {
+                    "image": {
+                      "id": "747d6f_d413f1367a35493c9b74abbdf10d06be~mv2.jpg",
+                      "url": "https:\/\/static.wixstatic.com\/media\/747d6f_d413f1367a35493c9b74abbdf10d06be~mv2.jpg",
+                      "height": 4480,
+                      "width": 6720,
+                      "filename": "skotnickanowakpl_ceramikanero_6090.jpg",
+                      "sizeInBytes": "3320569"
+                    }
+                  },
+                  "workingHoursLocationCoverage": {
+                    "availableAtAllLocations": true,
+                    "locationIds": []
+                  }
+                }
+              ]
+            },
+            "resourceGroups": [],
+            "serviceResources": [],
+            "supportedSlugs": [
+              {
+                "name": "glina-do-wina-piątek-19-00-suchy-las",
+                "custom": false,
+                "createdDate": "2026-04-15T15:09:48.054Z"
+              },
+              {
+                "name": "glina-do-wina-piątek-19-00",
+                "custom": false,
+                "createdDate": "2025-09-12T21:41:15.846Z"
+              },
+              {
+                "name": "glina-do-wina-od-września-2025",
+                "custom": false,
+                "createdDate": "2025-06-03T13:55:25.363Z"
+              },
+              {
+                "name": "kopia-glina-do-wina-co-drugi-piątek-19-30",
+                "custom": false,
+                "createdDate": "2025-06-03T13:36:18.921Z"
+              }
+            ],
+            "mainSlug": {
+              "name": "glina-do-wina-piątek-19-00-suchy-las",
+              "custom": false,
+              "createdDate": "2026-04-15T15:09:48.054Z"
+            },
+            "urls": {
+              "servicePage": {
+                "relativePath": "\/service-page\/glina-do-wina-piątek-19-00-suchy-las",
+                "url": "https:\/\/www.ceramikanero.com\/service-page\/glina-do-wina-piątek-19-00-suchy-las"
+              },
+              "bookingPage": {
+                "relativePath": "\/booking-calendar\/glina-do-wina-piątek-19-00-suchy-las",
+                "url": "https:\/\/www.ceramikanero.com\/booking-calendar\/glina-do-wina-piątek-19-00-suchy-las"
+              },
+              "calendarPage": {
+                "relativePath": "\/booking-calendar\/glina-do-wina-piątek-19-00-suchy-las",
+                "url": "https:\/\/www.ceramikanero.com\/booking-calendar\/glina-do-wina-piątek-19-00-suchy-las"
+              }
+            },
+            "seoData": { "tags": [] },
+            "createdDate": "2025-06-03T13:36:18.921Z",
+            "updatedDate": "2026-07-23T20:51:46.334Z",
+            "revision": "126",
+            "addOnGroups": [],
+            "addOnDetails": [],
+            "tags": [],
+            "primaryResourceType": "1cd44cf8-756f-41c3-bd90-3e2ffcaf1155"
+          }
+        ],
+        "pagingMetadata": { "count": 1, "cursors": {}, "hasNext": false }
+      },
+      "TPAMultiSection_lapuvdh0_getBookingsSettings": {
+        "bookingsSettings": {
+          "id": "3590a982-5c9c-4068-94cc-b5d9c5e7cb2c",
+          "revision": "2",
+          "createdDate": "2025-05-21T06:00:00.814Z",
+          "updatedDate": "2026-01-27T15:21:13.640Z",
+          "cartCheckout": { "enabled": false },
+          "multiServiceAppointments": { "enabled": true },
+          "displayTimeZone": {
+            "customerCanChange": false,
+            "basedOn": "BUSINESS_TIME_ZONE"
+          },
+          "siteProperties": {
+            "locale": { "languageCode": "pl", "country": "PL" },
+            "language": "pl",
+            "paymentCurrency": "PLN",
+            "timeZone": "Europe\/Warsaw",
+            "email": "kontakt.ceramikanero@gmail.com",
+            "phone": "532279101",
+            "address": {
+              "street": "Podgórna",
+              "city": "Suchy Las",
+              "country": "PL",
+              "state": "WP",
+              "zip": "62-002",
+              "physical": true,
+              "googleFormattedAddress": "Podgórna 3, Suchy Las, Polska",
+              "streetNumber": "3",
+              "apartmentNumber": "",
+              "coordinates": { "latitude": 52.4802658, "longitude": 16.8811844 }
+            },
+            "siteDisplayName": "Pracownia Ceramiki N",
+            "businessName": "Pracownia ceramiki Nero "
+          },
+          "features": {
+            "bookingsServiceList": { "enabled": true },
+            "bookingsPayments": { "enabled": true },
+            "bookingsGroups": { "enabled": true },
+            "bookingsReminders": { "enabled": true },
+            "bookingsCourses": { "enabled": true },
+            "bookingsAppointments": { "enabled": true },
+            "bookingsSmsReminders": { "enabled": true },
+            "bookingsExternalCalendars": { "enabled": true },
+            "bookingsStaffLimit": { "enabled": true, "quotaLimit": "250" },
+            "anywhereBookingsServiceLimit": {
+              "enabled": true,
+              "quotaLimit": "1"
+            },
+            "anywhereBookingsStaffLimit": {
+              "enabled": true,
+              "quotaLimit": "1"
+            },
+            "anywhereRemoveBrand": { "enabled": false },
+            "anywhereCustomizationWidget": { "enabled": false },
+            "bookingsVideoConferencing": { "enabled": true },
+            "acceptPayments": { "enabled": true }
+          },
+          "staffSelection": {
+            "timing": "BEFORE_SLOT_SELECTION",
+            "strategy": "CUSTOMER_CANNOT_CHOOSE"
+          },
+          "locationSelection": { "timing": "BEFORE_SLOT_SELECTION" }
+        }
+      }
+    }
+  },
+  "builderComponentsWarmupData": {},
+  "ooi": { "failedInSsr": {} }
+}

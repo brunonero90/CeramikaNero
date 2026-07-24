@@ -1,0 +1,314 @@
+{
+  "route": "/services",
+  "canonicalUrl": "https://www.ceramikanero.com/services",
+  "pageTitle": "Services (All) | Pracownia Ceramiki N",
+  "pageType": "services-index",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "gallery-or-grid",
+      "heading": "Services",
+      "headings": [
+        "Services",
+        "Foundations Workshop",
+        "Facial",
+        "Cosmetic Laser",
+        "Skin Product Consultation",
+        "Manicure",
+        "Glina do wina"
+      ],
+      "text": "Services\nFoundations Workshop\n\n$55.00\n\n30 minutes\n\nRead More\nFacial\n\n$34.90\n\n2 hours\n\nRead More\nCosmetic Laser\n\n$20.50\n\n15 minutes\n\nRead More\nSkin Product Consultation\n\n$60.00\n\n15 minutes\n\nRead More\nManicure\n\n$48.00\n\n45 minutes\n\nRead More\nGlina do wina\n\n149 zł.\n\n2.5 h\n\nRead More",
+      "buttons": [
+        {
+          "text": "Read More",
+          "href": "https://www.ceramikanero.com/services/foundations-workshop"
+        },
+        {
+          "text": "Read More",
+          "href": "https://www.ceramikanero.com/services/facial"
+        },
+        {
+          "text": "Read More",
+          "href": "https://www.ceramikanero.com/services/cosmetic-laser"
+        },
+        {
+          "text": "Read More",
+          "href": "https://www.ceramikanero.com/services/skin-product-consultation"
+        },
+        {
+          "text": "Read More",
+          "href": "https://www.ceramikanero.com/services/manicure"
+        },
+        {
+          "text": "Read More",
+          "href": "https://www.ceramikanero.com/services/glina-do-wina"
+        }
+      ],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/fc7570_8291d98106cf473fb0acfcfdc825f35c~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
+          "mediaId": "fc7570_8291d98106cf473fb0acfcfdc825f35c",
+          "localPath": null,
+          "alt": "Foundations Workshop",
+          "role": "content",
+          "desktop": {
+            "width": 446,
+            "height": 335,
+            "top": 316,
+            "left": 150
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 3,
+          "src": "https://static.wixstatic.com/media/fc7570_f6df90b05cdb4312b9e5a6d93562cc0e~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
+          "mediaId": "fc7570_f6df90b05cdb4312b9e5a6d93562cc0e",
+          "localPath": null,
+          "alt": "Facial",
+          "role": "content",
+          "desktop": {
+            "width": 446,
+            "height": 335,
+            "top": 316,
+            "left": 760
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 5,
+          "src": "https://static.wixstatic.com/media/fc7570_2d0a568918bf40419fc1caa66cff4134~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
+          "mediaId": "fc7570_2d0a568918bf40419fc1caa66cff4134",
+          "localPath": null,
+          "alt": "Cosmetic Laser",
+          "role": "content",
+          "desktop": {
+            "width": 446,
+            "height": 335,
+            "top": 772,
+            "left": 150
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 7,
+          "src": "https://static.wixstatic.com/media/fc7570_ca2006d489d8400bbba1bc97b62072d4~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
+          "mediaId": "fc7570_ca2006d489d8400bbba1bc97b62072d4",
+          "localPath": null,
+          "alt": "Skin Product Consultation",
+          "role": "content",
+          "desktop": {
+            "width": 446,
+            "height": 335,
+            "top": 772,
+            "left": 760
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 9,
+          "src": "https://static.wixstatic.com/media/fc7570_c6280744ca9f4db5830075a85810207e~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
+          "mediaId": "fc7570_c6280744ca9f4db5830075a85810207e",
+          "localPath": null,
+          "alt": "Manicure",
+          "role": "content",
+          "desktop": {
+            "width": 446,
+            "height": 335,
+            "top": 1228,
+            "left": 150
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 11,
+          "src": "https://static.wixstatic.com/media/fc7570_bc49e99650ac4175bb5ea40d340ce055~mv2.jpg/v1/fill/w_446,h_335,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.jpg",
+          "mediaId": "fc7570_bc49e99650ac4175bb5ea40d340ce055",
+          "localPath": null,
+          "alt": "Glina do wina",
+          "role": "content",
+          "desktop": {
+            "width": 446,
+            "height": 335,
+            "top": 1228,
+            "left": 760
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 1579,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 2947,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 1676,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 3044,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 540418,
+    "warmupDataChars": 18571
+  },
+  "newSiteComponent": "app route /warsztaty",
+  "missingInNewSite": "Compare via clone-gap-analysis",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 2159,
+    "captureTimestamp": "2026-07-24T10:44:27.787Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "validatedAt": "2026-07-24T11:21:01.070Z",
+  "includedPages": 85,
+  "failures": [],
+  "warnings": [
+    "26 image placements unresolved locally (see image-placement.json)"
+  ],
+  "ok": true
+}

@@ -1,0 +1,426 @@
+{
+  "route": "/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+  "canonicalUrl": "https://www.ceramikanero.com/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+  "pageTitle": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO | Pracownia Ceramiki N",
+  "pageType": "product",
+  "headerNavigationVariant": "wix-site-header",
+  "footerVariant": "wix-site-footer",
+  "sections": [
+    {
+      "index": 1,
+      "sectionType": "hero",
+      "heading": null,
+      "headings": [],
+      "text": "0",
+      "buttons": [
+        {
+          "text": "0",
+          "href": "https://www.ceramikanero.com/cart"
+        }
+      ],
+      "images": [],
+      "forms": [],
+      "desktopLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 0,
+        "height": 97,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 2,
+      "sectionType": "gallery-or-grid",
+      "heading": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+      "headings": ["SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO"],
+      "text": "Strona główna / SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO\n\nUlepiłaś / ulepiłeś swój przedmiot z gliny i chcesz, aby stał się trwałą, użytkową ceramiką?\nWyślij go do nas — my zajmiemy się całym procesem wypału i szkliwienia ✨\n\nJak to działa?\n\nPrzygotuj pracę\n\tPraca powinna być całkowicie wyschnięta, ale niewypalona.\n\tZapakuj ją bardzo starannie do pudełka tak, aby nie mogła się przemieszczać — najlepiej zabezpieczyć ją siankiem (tym co było w boxie), a całość dodatkowo owinąć papierem lub gazetą.\n\tPudełko dokładnie zaklej taśmą.\n\nDostarcz pracę do pracowni\n\tPracę możesz wysłać kurierem lub przywieźć osobiście do naszej pracowni.\n\nWybierz kolory szkliwa\n\tNapisz do nas maila na adres: nerogosia@gmail.com,\n\tpodając kolory szkliwa, w jakich mamy poszkliwić Twoją pracę.\n\tJesteś projektantem swojego dzieła — możesz wybrać dowolny układ z 4 dostępnych kolorów z naszych próbników.\n\nMy zajmiemy się resztą\n\tTwoją pracę wypalimy dwukrotnie:\n\t– pierwszy wypał na biskwit,\n\t– drugi wypał ze szkliwem w temperaturze 1050°C,\n\tdzięki czemu stanie się trwałą ceramiką gotową do użytkowania.\n\nOdesłanie gotowej pracy\n\tPo zakończeniu procesu bezpiecznie zapakujemy i odeślemy gotowy produkt z powrotem do Ciebie.\n\n⏳ Czas realizacji\n\nCały proces realizujemy w ciągu 3  tygodni od momentu otrzymania pracy.\n\n💰 Cena usługi\n\n69 zł\n\n \n\nSZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO\n69,00 zł\nCena\nSztuk*\nDodaj do koszyka\nKup",
+      "buttons": [
+        {
+          "text": "Strona główna",
+          "href": "https://www.ceramikanero.com/"
+        },
+        {
+          "text": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "href": "https://www.ceramikanero.com/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1"
+        },
+        {
+          "text": "Dodaj do koszyka",
+          "href": null
+        },
+        {
+          "text": "Kup",
+          "href": null
+        }
+      ],
+      "images": [
+        {
+          "order": 1,
+          "src": "https://static.wixstatic.com/media/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_632dd58fd1e5410496220f95241a4bbc",
+          "localPath": "/images/wix-migrated/747d6f_632dd58fd1e5410496220f95241a4bbc.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 498,
+            "height": 887,
+            "top": 242,
+            "left": 276
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 3,
+          "src": "https://static.wixstatic.com/media/747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_77fc63c840ea462ab19c35b60bc959cf",
+          "localPath": "/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 498,
+            "height": 887,
+            "top": 242,
+            "left": 276
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 5,
+          "src": "https://static.wixstatic.com/media/747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_fb9903ba14334071adf53fbe9c7373ba",
+          "localPath": "/images/wix-migrated/747d6f_fb9903ba14334071adf53fbe9c7373ba.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 498,
+            "height": 887,
+            "top": 242,
+            "left": 276
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 7,
+          "src": "https://static.wixstatic.com/media/747d6f_65957c575a244565926c21e9f48a20fd~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_65957c575a244565926c21e9f48a20fd~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_65957c575a244565926c21e9f48a20fd",
+          "localPath": "/images/wix-migrated/747d6f_65957c575a244565926c21e9f48a20fd.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 498,
+            "height": 887,
+            "top": 242,
+            "left": 276
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 9,
+          "src": "https://static.wixstatic.com/media/747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2.jpg/v1/fit/w_2048,h_1152,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2_jpg_v1_fit_w_2048%2Ch_1152%2Cq_90_file.jpg",
+          "mediaId": "747d6f_3a7f8f99735746e78d72aac1681f6b85",
+          "localPath": "/images/wix-migrated/747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 498,
+            "height": 887,
+            "top": 242,
+            "left": 276
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 11,
+          "src": "https://static.wixstatic.com/media/747d6f_d5ab31a744f841fc8269902080e23e8b~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_d5ab31a744f841fc8269902080e23e8b~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_d5ab31a744f841fc8269902080e23e8b",
+          "localPath": "/images/wix-migrated/747d6f_d5ab31a744f841fc8269902080e23e8b.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 498,
+            "height": 887,
+            "top": 242,
+            "left": 276
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 13,
+          "src": "https://static.wixstatic.com/media/747d6f_057cc0c66cf348268e9d25499f057beb~mv2.jpg/v1/fit/w_2048,h_1152,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_057cc0c66cf348268e9d25499f057beb~mv2_jpg_v1_fit_w_2048%2Ch_1152%2Cq_90_file.jpg",
+          "mediaId": "747d6f_057cc0c66cf348268e9d25499f057beb",
+          "localPath": "/images/wix-migrated/747d6f_057cc0c66cf348268e9d25499f057beb.jpg",
+          "alt": "SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 498,
+            "height": 887,
+            "top": 242,
+            "left": 276
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 15,
+          "src": "https://static.wixstatic.com/media/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_43,h_43,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_632dd58fd1e5410496220f95241a4bbc",
+          "localPath": "/images/wix-migrated/747d6f_632dd58fd1e5410496220f95241a4bbc.jpg",
+          "alt": "Miniatura: SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 43,
+            "height": 43,
+            "top": 1145,
+            "left": 276
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 17,
+          "src": "https://static.wixstatic.com/media/747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_43,h_43,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_77fc63c840ea462ab19c35b60bc959cf",
+          "localPath": "/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+          "alt": "Miniatura: SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 43,
+            "height": 43,
+            "top": 1145,
+            "left": 327
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 19,
+          "src": "https://static.wixstatic.com/media/747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_43,h_43,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_fb9903ba14334071adf53fbe9c7373ba",
+          "localPath": "/images/wix-migrated/747d6f_fb9903ba14334071adf53fbe9c7373ba.jpg",
+          "alt": "Miniatura: SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 43,
+            "height": 43,
+            "top": 1145,
+            "left": 378
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 21,
+          "src": "https://static.wixstatic.com/media/747d6f_65957c575a244565926c21e9f48a20fd~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_43,h_43,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_65957c575a244565926c21e9f48a20fd~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_65957c575a244565926c21e9f48a20fd",
+          "localPath": "/images/wix-migrated/747d6f_65957c575a244565926c21e9f48a20fd.jpg",
+          "alt": "Miniatura: SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 43,
+            "height": 43,
+            "top": 1145,
+            "left": 429
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 23,
+          "src": "https://static.wixstatic.com/media/747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2.jpg/v1/fit/w_2048,h_1152,q_90/file.jpg/v1/fill/w_43,h_43,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2_jpg_v1_fit_w_2048%2Ch_1152%2Cq_90_file.jpg",
+          "mediaId": "747d6f_3a7f8f99735746e78d72aac1681f6b85",
+          "localPath": "/images/wix-migrated/747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+          "alt": "Miniatura: SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 43,
+            "height": 43,
+            "top": 1145,
+            "left": 480
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 25,
+          "src": "https://static.wixstatic.com/media/747d6f_d5ab31a744f841fc8269902080e23e8b~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_43,h_43,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_d5ab31a744f841fc8269902080e23e8b~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+          "mediaId": "747d6f_d5ab31a744f841fc8269902080e23e8b",
+          "localPath": "/images/wix-migrated/747d6f_d5ab31a744f841fc8269902080e23e8b.jpg",
+          "alt": "Miniatura: SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 43,
+            "height": 43,
+            "top": 1145,
+            "left": 531
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        },
+        {
+          "order": 27,
+          "src": "https://static.wixstatic.com/media/747d6f_057cc0c66cf348268e9d25499f057beb~mv2.jpg/v1/fit/w_2048,h_1152,q_90/file.jpg/v1/fill/w_43,h_43,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_057cc0c66cf348268e9d25499f057beb~mv2_jpg_v1_fit_w_2048%2Ch_1152%2Cq_90_file.jpg",
+          "mediaId": "747d6f_057cc0c66cf348268e9d25499f057beb",
+          "localPath": "/images/wix-migrated/747d6f_057cc0c66cf348268e9d25499f057beb.jpg",
+          "alt": "Miniatura: SZKLIWIENIE PRAC W PRACOWNI CERAMIKA NERO",
+          "role": "content",
+          "desktop": {
+            "width": 43,
+            "height": 43,
+            "top": 1145,
+            "left": 582
+          },
+          "objectFit": "fill",
+          "objectPosition": "50% 50%"
+        }
+      ],
+      "forms": [],
+      "desktopLayout": {
+        "top": 97,
+        "height": 2103,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 97,
+        "height": 2103,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    },
+    {
+      "index": 3,
+      "sectionType": "form",
+      "heading": "Pracownia ceramiki Nero",
+      "headings": [
+        "Pracownia ceramiki Nero",
+        "Zapisz się do Newslettera",
+        "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności."
+      ],
+      "text": "Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n  ■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.",
+      "buttons": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": null
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        },
+        {
+          "text": "© 2023 by Ceramika Nero.",
+          "href": "https://www.ceramikanero.com/terms-conditions"
+        }
+      ],
+      "images": [],
+      "forms": [
+        {
+          "action": null,
+          "method": null,
+          "fields": [
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Wpisz swój e-mail",
+              "required": true,
+              "label": null
+            },
+            {
+              "name": null,
+              "type": "checkbox",
+              "placeholder": null,
+              "required": false,
+              "label": "Akceptuję regulaminZobacz warunki"
+            }
+          ]
+        }
+      ],
+      "desktopLayout": {
+        "top": 2200,
+        "height": 483,
+        "width": 1440,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      },
+      "mobileLayout": {
+        "top": 2200,
+        "height": 483,
+        "width": 980,
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "textAlign": "start",
+        "padding": "0px",
+        "display": "block",
+        "gap": "normal"
+      }
+    }
+  ],
+  "interactiveBehavior": [
+    "lazy-loaded images on scroll",
+    "possible load-more on blog listings",
+    "Wix booking widgets on service pages"
+  ],
+  "wixDataNotes": {
+    "hasInlineAppData": true,
+    "inlineLength": 541698,
+    "warmupDataChars": 21715
+  },
+  "newSiteComponent": null,
+  "missingInNewSite": "No corresponding new-site route mapped",
+  "captureMeta": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "documentHeight": 2683,
+    "captureTimestamp": "2026-07-24T10:34:04.211Z",
+    "missingResources": [],
+    "browserErrors": [],
+    "gotoError": null
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "platform": {
+    "ssrPropsUpdates": [
+      {
+        "comp-jyfgqx86": {
+          "items": [
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Profile",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/profile",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Orders",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-orders",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Addresses",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-addresses",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wallet",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wallet",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Wishlist",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-wishlist",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Subscriptions",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-subscriptions",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje rezerwacje",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-bookings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Comments",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-comments",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Forum Posts",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/forum-posts",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Events",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/profile\/undefined\/events",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Moje nagrody",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-rewards",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "My Account",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/my-account",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Notifications",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/notifications",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            },
+            {
+              "isVisible": true,
+              "isVisibleMobile": true,
+              "items": [],
+              "label": "Settings",
+              "link": {
+                "href": "https:\/\/www.ceramikanero.com\/account\/settings",
+                "target": "_self",
+                "type": "DynamicPageLink"
+              }
+            }
+          ]
+        },
+        "comp-jt8im1nk": { "hidden": true },
+        "comp-jt8im1ng": { "isValid": false, "maxLength": 250 },
+        "comp-lb21z5yf": {
+          "isValid": true,
+          "required": false,
+          "shouldShowValidityIndication": false
+        }
+      }
+    ],
+    "ssrStyleUpdates": [
+      { "comp-jt8im1nk": { "visibility": "hidden !important" } }
+    ],
+    "ssrStructureUpdates": []
+  },
+  "pages": {
+    "compIdToTypeMap": {
+      "CONTROLLER_COMP_CUSTOM_ID": "AppController",
+      "comp-iy33sahv": "LinkBar",
+      "comp-iy4cwgmq": "DropDownMenu",
+      "comp-ly46xv24": "StylableButton",
+      "comp-ly478zni": "StylableButton",
+      "comp-m84o2sdv": "LanguageSelector",
+      "comp-krsxu47n": "AppController",
+      "comp-jyfgqx86": "VerticalMenu",
+      "comp-iy48z4c2": "WRichText",
+      "comp-iy46b54d": "WRichText",
+      "comp-iy4ay8dd": "WRichText",
+      "comp-jt8ip4mr": "WRichText",
+      "comp-jt8im1ni": "SiteButton",
+      "comp-jt8im1ng": "TextInput",
+      "comp-lb21z5yf": "Checkbox",
+      "comp-lbs8sxl5": "WRichText",
+      "comp-jt8im1nk": "WRichText",
+      "comp-lctn5dcp": "WRichText",
+      "masterPage": "MasterPage",
+      "SITE_HEADER": "HeaderContainer",
+      "SITE_FOOTER": "FooterContainer",
+      "PAGES_CONTAINER": "PagesContainer",
+      "SOSP_CONTAINER_CUSTOM_ID": "Container",
+      "comp-m8656k3r": "tpaWidgetNative",
+      "comp-iy45mz7m": "StripColumnsContainer",
+      "SITE_PAGES": "PageGroup",
+      "comp-jyfgqx79": "tpaWidgetNative",
+      "comp-iy45mzdy": "Column",
+      "comp-jt8im1h4": "AppWidget",
+      "comp-jt8im1i7": "FormContainer",
+      "BACKGROUND_GROUP": "BackgroundGroup",
+      "SCROLL_TO_TOP": "Anchor",
+      "SCROLL_TO_BOTTOM": "Anchor",
+      "comp-iy4cwgmq-pinned-layer": "PinnedLayer",
+      "pinnedTopCenter": "DivWithChildren",
+      "comp-iy33sahv-pinned-layer": "PinnedLayer",
+      "comp-ly46xv24-pinned-layer": "PinnedLayer",
+      "comp-ly478zni-pinned-layer": "PinnedLayer",
+      "pinnedTopRight": "DivWithChildren",
+      "soapAfterPagesContainer": "MeshGroup",
+      "SKIP_TO_CONTENT_BTN": "SkipToContentButton",
+      "pageBackground_wp8cg": "PageBackground",
+      "wp8cg": "Page",
+      "comp-ljpp5pzr": "ClassicSection",
+      "TPASection_ljpoxs2y": "tpaWidgetNative",
+      "Containerwp8cg": "Group",
+      "DYNAMIC_STRUCTURE_CONTAINER": "DynamicStructureContainer",
+      "site-root": "DivWithChildren",
+      "main_MF": "DivWithChildren",
+      "wp8cg_wrapper": "PageMountUnmount",
+      "wp8cg_wrapper_background": "PageMountUnmount"
+    }
+  },
+  "appsWarmupData": {
+    "14cc59bc-f0b7-15b8-e1c7-89ce41d0e0c9": {
+      "initialData": { "counters": {}, "roles": {} }
+    },
+    "14bcded7-0066-7c35-14d7-466cb3f09103": {
+      "feed-page-TPASection_ljpoxs2y-{\"feed\":{\"includeContent\":false,\"includeInitialPageData\":true,\"categoryOptions\":{\"id\":\"o-mnie\"},\"languageCode\":\"pl\",\"locale\":\"pl\",\"page\":1,\"pageSize\":20,\"type\":\"CATEGORY\"},\"metadata\":{\"page\":1,\"pageSize\":20,\"languageCode\":\"pl\",\"locale\":\"pl\",\"categoryOptions\":{\"id\":\"o-mnie\"},\"type\":\"CATEGORY\"}}": "{\"feedResponse\":{\"postFeedPage\":{\"id\":\"\",\"currentUser\":{\"activityStatus\":0,\"privacyStatus\":0,\"status\":0,\"isBlocked\":false,\"isOwner\":false,\"appStore\":{\"14bcded7-0066-7c35-14d7-466cb3f09103\":{\"permissions\":{\"role\":\"undefined\"}}}},\"posts\":{\"posts\":[{\"id\":\"4ba28a48-4766-46c3-af53-24a0719bf13b\",\"title\":\"Mam na imię Małgosia i jestem pasjonatką sztuki ceramicznej \",\"excerpt\":\"Witaj na stronie Pracowni Ceramiki NERO! Nazywam się Małgosia Nero i jestem pasjonatką sztuki ceramicznej. Ta pracownia to moje miejsce...\",\"firstPublishedDate\":\"2023-08-02T20:45:29.038Z\",\"lastPublishedDate\":\"2025-05-18T22:01:04.458Z\",\"url\":{\"base\":\"https:\/\/www.ceramikanero.com\",\"path\":\"\/post\/o-mnie\"},\"slug\":\"o-mnie\",\"featured\":true,\"pinned\":false,\"categoryIds\":[\"6f95cb9a-592f-4827-acee-f1b3d9e5c576\"],\"memberId\":\"747d6f83-85e9-4dc8-beac-c643783ec405\",\"hashtags\":[],\"commentingEnabled\":true,\"minutesToRead\":2,\"tagIds\":[],\"relatedPostIds\":[],\"pricingPlanIds\":[],\"language\":\"pl\",\"seoData\":{\"tags\":[],\"settings\":{\"preventAutoRedirect\":false,\"keywords\":[]}},\"contactId\":\"4e42ffa6-e046-4de8-8df2-88fe49e32637\",\"contentId\":\"682a58a0caec9fd0d94361d6\",\"mostRecentContributorId\":\"747d6f83-85e9-4dc8-beac-c643783ec405\",\"media\":{\"wixMedia\":{\"image\":{\"id\":\"747d6f_448924318b194426b689bf1f332a815e~mv2.webp\",\"url\":\"https:\/\/static.wixstatic.com\/media\/747d6f_448924318b194426b689bf1f332a815e~mv2.webp\",\"height\":1368,\"width\":1368,\"filename\":\"17989687430059420.webp\"}},\"displayed\":true,\"custom\":false},\"translations\":[],\"customExcerpt\":false,\"internalId\":\"64cac055104f206ea6b84d8f\",\"internalCategoryIds\":[\"64cabf09a476c5b5d7dddffb\"],\"internalRelatedPostIds\":[],\"isLiked\":false,\"isSubscribed\":false,\"owner\":{\"activityStatus\":\"UNKNOWN\",\"contactId\":\"4e42ffa6-e046-4de8-8df2-88fe49e32637\",\"id\":\"747d6f83-85e9-4dc8-beac-c643783ec405\",\"image\":{\"id\":\"\",\"url\":\"https:\/\/graph.facebook.com\/100000358912016\/picture\",\"height\":0,\"width\":0},\"name\":\"Gosia Nero\",\"privacyStatus\":\"PUBLIC\",\"siteMemberId\":\"747d6f83-85e9-4dc8-beac-c643783ec405\",\"slug\":\"gosianowicka\",\"status\":\"UNKNOWN\",\"isBlocked\":false,\"isOwner\":false},\"preview\":false,\"link\":\"https:\/\/www.ceramikanero.com\/post\/o-mnie\"}],\"metaData\":{\"count\":1,\"offset\":0,\"total\":1,\"cursor\":\"\"},\"pagingMetaData\":{\"count\":1,\"offset\":0,\"total\":1}},\"categories\":[{\"id\":\"3a2d376d-0f3c-4509-af07-060e0d7f7947\",\"label\":\"Aktualności\",\"postCount\":1,\"url\":{\"base\":\"https:\/\/www.ceramikanero.com\",\"path\":\"\/blog\/categories\/aktualności\"},\"description\":\"Co się u nas dzieje? Zobacz aktualne wydarzenia. Bądź zawsze na bieżąco!\",\"title\":\"\",\"displayPosition\":1,\"language\":\"pl\",\"slug\":\"aktualności\",\"seoData\":{\"tags\":[]},\"coverImage\":{\"id\":\"747d6f_c6ba27e517f64531a718d44d6861d2b0~mv2.jpg\",\"url\":\"https:\/\/static.wixstatic.com\/media\/747d6f_c6ba27e517f64531a718d44d6861d2b0~mv2.jpg\",\"height\":1133,\"width\":1080},\"translations\":[]},{\"id\":\"6f95cb9a-592f-4827-acee-f1b3d9e5c576\",\"label\":\"O mnie\",\"postCount\":1,\"url\":{\"base\":\"https:\/\/www.ceramikanero.com\",\"path\":\"\/blog\/categories\/o-mnie\"},\"title\":\"\",\"displayPosition\":2,\"language\":\"pl\",\"slug\":\"o-mnie\",\"seoData\":{\"tags\":[]},\"coverImage\":{\"id\":\"747d6f_448924318b194426b689bf1f332a815e~mv2.webp\",\"url\":\"https:\/\/static.wixstatic.com\/media\/747d6f_448924318b194426b689bf1f332a815e~mv2.webp\",\"height\":1368,\"width\":1368},\"translations\":[]},{\"id\":\"51ee74f2-47aa-4f64-b413-638b12d54505\",\"label\":\"Ciekawostki\",\"postCount\":2,\"url\":{\"base\":\"https:\/\/www.ceramikanero.com\",\"path\":\"\/blog\/categories\/ciekawostki\"},\"description\":\"Dowiedz się więcej o ceramice.\",\"title\":\"\",\"displayPosition\":3,\"language\":\"pl\",\"slug\":\"ciekawostki\",\"seoData\":{\"tags\":[]},\"coverImage\":{\"id\":\"747d6f_a37f0e14350d44ccaf5bd6702f0b5439~mv2.webp\",\"url\":\"https:\/\/static.wixstatic.com\/media\/747d6f_a37f0e14350d44ccaf5bd6702f0b5439~mv2.webp\",\"height\":1080,\"width\":1080},\"translations\":[]}],\"tags\":[],\"settings\":{\"settings\":{\"ampEnabled\":false,\"originInstanceId\":\"10481737-a787-4bdc-acbd-c9f8eb165de5\",\"originMetaSiteId\":\"58f69ad7-81ee-4c17-af54-7d05cbae1fc0\",\"allPostsFeedLabel\":\"Wszystkie \",\"comments\":{\"enabled\":true,\"anonymousEnabled\":false,\"ratingsEnabled\":false,\"ratingsMandatory\":false},\"revision\":{\"low\":2,\"high\":0,\"unsigned\":false},\"blocksPostPage\":false,\"liveSiteEditingDeprecated\":false,\"useBlogLikeService\":true,\"allPosts\":\"Wszystkie \"},\"translations\":{\"pl\":\"Wszystkie \"}},\"appData\":{\"ampEnabled\":false,\"menuLabel\":\"Wszystkie \",\"language\":\"pl\",\"postPageEnabled\":true},\"blogSettingsV2\":{\"ampEnabled\":false,\"originInstanceId\":\"10481737-a787-4bdc-acbd-c9f8eb165de5\",\"originMetaSiteId\":\"58f69ad7-81ee-4c17-af54-7d05cbae1fc0\",\"allPostsFeedLabel\":\"Wszystkie \",\"comments\":{\"enabled\":true,\"anonymousEnabled\":false,\"ratingsEnabled\":false,\"ratingsMandatory\":false},\"revision\":{\"low\":2,\"high\":0,\"unsigned\":false},\"blocksPostPage\":false,\"liveSiteEditingDeprecated\":false,\"useBlogLikeService\":true}}},\"metadataResponse\":{\"postFeedMetadataPage\":{\"postMetrics\":{},\"postLikes\":{}}}}"
+    }
+  },
+  "ooi": { "failedInSsr": {} },
+  "builderComponentsWarmupData": {}
+}
