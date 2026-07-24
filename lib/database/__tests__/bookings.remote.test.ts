@@ -48,14 +48,31 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
   let workshopId: string;
   let sessionId: string;
   let destinationSessionId: string;
-  let customerId: string;
+  const sessionIds: string[] = [];
   const bookingIds: string[] = [];
   const paymentIds: string[] = [];
+  const stripeEventIds: string[] = [];
+  const customerIds = new Set<string>();
   let cancellationToken: string;
-  const customerEmail = `${testPrefix}@example.com`;
+  const customerEmail = `${testPrefix}@example.com`.toLowerCase();
+  const manualCustomerEmail = `${testPrefix}-manual@example.com`.toLowerCase();
 
   function future(hoursFromNow: number) {
     return new Date(Date.now() + hoursFromNow * 60 * 60 * 1000).toISOString();
+  }
+
+  async function trackCustomerByEmail(email: string) {
+    const normalized = email.toLowerCase();
+    const { data, error } = await admin
+      .from('customer_profiles')
+      .select('id')
+      .eq('email', normalized)
+      .maybeSingle();
+    expect(error).toBeNull();
+    if (data?.id) {
+      customerIds.add(data.id);
+    }
+    return data?.id ?? null;
   }
 
   beforeAll(async () => {
@@ -95,6 +112,7 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
       .single();
     expect(sessionError).toBeNull();
     sessionId = sessionRow!.id;
+    sessionIds.push(sessionId);
 
     const { data: destinationRow, error: destinationError } = await admin
       .from('workshop_sessions')
@@ -103,6 +121,7 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
       .single();
     expect(destinationError).toBeNull();
     destinationSessionId = destinationRow!.id;
+    sessionIds.push(destinationSessionId);
   });
 
   afterAll(async () => {
@@ -123,23 +142,23 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
       await admin.from('booking_emails').delete().eq('booking_id', bookingId);
       await admin.from('bookings').delete().eq('id', bookingId);
     }
-    if (customerId) {
-      await admin.from('customer_profiles').delete().eq('id', customerId);
+    for (const eventId of stripeEventIds) {
+      await admin.from('stripe_events').delete().eq('event_id', eventId);
     }
-    if (destinationSessionId) {
-      await admin
-        .from('workshop_sessions')
-        .delete()
-        .eq('id', destinationSessionId);
-    }
-    if (sessionId) {
-      await admin.from('workshop_sessions').delete().eq('id', sessionId);
+    for (const trackedSessionId of sessionIds) {
+      await admin.from('workshop_sessions').delete().eq('id', trackedSessionId);
     }
     if (workshopId) {
       await admin.from('workshops').delete().eq('id', workshopId);
     }
     if (categoryId) {
       await admin.from('workshop_categories').delete().eq('id', categoryId);
+    }
+    for (const trackedCustomerId of customerIds) {
+      await admin
+        .from('customer_profiles')
+        .delete()
+        .eq('id', trackedCustomerId);
     }
   });
 
@@ -168,7 +187,7 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
       p_terms_accepted_at: new Date().toISOString(),
       p_privacy_policy_version: 'v1',
       p_participants: singleParticipant(),
-      p_source: 'integration-test',
+      p_source: 'website',
       p_payment_provider: 'stripe',
       p_payment_status: 'created',
     });
@@ -185,6 +204,7 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
     };
     bookingIds.push(result.booking_id);
     paymentIds.push(result.payment_id);
+    await trackCustomerByEmail(customerEmail);
     return result;
   }
 
@@ -215,22 +235,23 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
     expect(participants).toHaveLength(1);
     expect(participants?.[0].display_name).toBe('Test Participant');
 
-    const { data: customer } = await admin
-      .from('customer_profiles')
-      .select('id, email')
-      .eq('email', customerEmail)
-      .single();
-    expect(customer?.email).toBe(customerEmail.toLowerCase());
-    customerId = customer!.id;
+    const customerId = await trackCustomerByEmail(customerEmail);
+    expect(customerId).toBeTruthy();
   });
 
   it('prevents concurrent booking attempts from overselling', async () => {
-    // Use a small-capacity session to make the race deterministic.
-    const { data: smallSessionRow } = await admin
+    // Capacity 2 with quantity 2 => exactly one attempt can succeed.
+    const concurrentCapacity = 2;
+    const quantityPerAttempt = 2;
+    const expectedSuccesses = 1;
+    const attemptCount = 3;
+
+    const { data: smallSessionRow, error: smallSessionError } = await admin
       .from('workshop_sessions')
       .insert({
         workshop_id: workshopId,
-        capacity: 2,
+        capacity: concurrentCapacity,
+        reserved_count: 0,
         price_gross_grosz: 10000,
         status: 'scheduled',
         starts_at: future(60),
@@ -240,66 +261,96 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
         timezone: 'Europe/Warsaw',
         currency: 'PLN',
       })
-      .select('id')
+      .select('id, capacity, reserved_count')
       .single();
+    expect(smallSessionError).toBeNull();
+    expect(smallSessionRow?.capacity).toBe(concurrentCapacity);
+    expect(smallSessionRow?.reserved_count).toBe(0);
     const smallSessionId = smallSessionRow!.id;
+    sessionIds.push(smallSessionId);
 
-    const emailBase = `${testPrefix}-concurrent`;
-    const attempts = Array.from({ length: 3 }).map((_, i) =>
-      admin.rpc('begin_booking', {
-        p_session_id: smallSessionId,
-        p_quantity: 2,
-        p_customer_email: `${emailBase}-${i}@example.com`,
-        p_customer_first_name: 'Concurrent',
-        p_customer_last_name: `User ${i}`,
-        p_customer_phone: '123456789',
-        p_customer_notes: '',
-        p_marketing_consent: false,
-        p_terms_accepted_at: new Date().toISOString(),
-        p_privacy_policy_version: 'v1',
-        p_participants: [
-          {
-            display_name: `User ${i} - A`,
-            age: '',
-            participant_type: 'adult',
-            accessibility_notes: '',
-          },
-          {
-            display_name: `User ${i} - B`,
-            age: '',
-            participant_type: 'adult',
-            accessibility_notes: '',
-          },
-        ],
-        p_source: 'integration-test-concurrent',
-        p_payment_provider: 'stripe',
-        p_payment_status: 'created',
-      })
+    const attemptEmails = Array.from({ length: attemptCount }, (_, i) =>
+      `${testPrefix}-concurrent-${i}@example.com`.toLowerCase()
     );
 
-    const results = await Promise.all(attempts);
+    const results = await Promise.all(
+      attemptEmails.map((email, i) =>
+        admin.rpc('begin_booking', {
+          p_session_id: smallSessionId,
+          p_quantity: quantityPerAttempt,
+          p_customer_email: email,
+          p_customer_first_name: 'Concurrent',
+          p_customer_last_name: `User ${i}`,
+          p_customer_phone: '123456789',
+          p_customer_notes: '',
+          p_marketing_consent: false,
+          p_terms_accepted_at: new Date().toISOString(),
+          p_privacy_policy_version: 'v1',
+          p_participants: [
+            {
+              display_name: `User ${i} - A`,
+              age: '',
+              participant_type: 'adult',
+              accessibility_notes: '',
+            },
+            {
+              display_name: `User ${i} - B`,
+              age: '',
+              participant_type: 'adult',
+              accessibility_notes: '',
+            },
+          ],
+          p_source: 'website',
+          p_payment_provider: 'stripe',
+          p_payment_status: 'created',
+        })
+      )
+    );
+
+    // Track profiles for every attempt email (RPC may create a profile even
+    // when a later capacity check fails).
+    for (const email of attemptEmails) {
+      await trackCustomerByEmail(email);
+    }
+
     const successes = results.filter((r) => !r.error);
-    expect(successes.length).toBeLessThanOrEqual(1);
+    const failures = results.filter((r) => r.error);
 
-    const { data: finalSession } = await admin
-      .from('workshop_sessions')
-      .select('reserved_count, capacity')
-      .eq('id', smallSessionId)
-      .single();
-    expect(finalSession?.reserved_count).toBeLessThanOrEqual(
-      finalSession?.capacity ?? 0
-    );
+    // Must not pass merely because every attempt failed for an unrelated reason.
+    expect(successes.length).toBe(expectedSuccesses);
+    expect(failures.length).toBe(attemptCount - expectedSuccesses);
+
+    for (const failure of failures) {
+      const message = failure.error?.message?.toLowerCase() ?? '';
+      expect(
+        /capacit|available|full|oversell|insufficient|remaining/.test(message)
+      ).toBe(true);
+    }
 
     for (const r of successes) {
       const result = r.data as {
         booking_id: string;
         payment_id: string;
       };
+      expect(result.booking_id).toBeTruthy();
+      expect(result.payment_id).toBeTruthy();
       bookingIds.push(result.booking_id);
       paymentIds.push(result.payment_id);
     }
 
-    await admin.from('workshop_sessions').delete().eq('id', smallSessionId);
+    const { data: finalSession, error: finalSessionError } = await admin
+      .from('workshop_sessions')
+      .select('reserved_count, capacity')
+      .eq('id', smallSessionId)
+      .single();
+    expect(finalSessionError).toBeNull();
+    expect(finalSession?.capacity).toBe(concurrentCapacity);
+    expect(finalSession?.reserved_count).toBe(
+      expectedSuccesses * quantityPerAttempt
+    );
+    expect(finalSession!.reserved_count).toBeLessThanOrEqual(
+      finalSession!.capacity
+    );
   });
 
   it('expires pending bookings and releases capacity exactly once', async () => {
@@ -355,6 +406,7 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
   it('confirms a booking from a verified payment only once', async () => {
     const result = await beginFreshBooking();
     const eventId = `${testPrefix}-evt-confirm-${result.booking_id}`;
+    stripeEventIds.push(eventId);
 
     const { error: confirmError } = await admin.rpc(
       'confirm_booking_from_payment',
@@ -412,6 +464,7 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
       .select('reserved_count, capacity')
       .eq('id', sessionId)
       .single();
+    const reservedBeforeFill = beforeSession!.reserved_count;
     // Fill the session so the expired booking cannot reacquire capacity.
     await admin
       .from('workshop_sessions')
@@ -419,6 +472,7 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
       .eq('id', sessionId);
 
     const eventId = `${testPrefix}-evt-late-${result.booking_id}`;
+    stripeEventIds.push(eventId);
     const { data: confirmResult } = await admin.rpc(
       'confirm_booking_from_payment',
       {
@@ -438,16 +492,24 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
       .eq('id', result.booking_id)
       .single();
     expect(booking?.status).toBe('expired');
+
+    // Restore the exact reserved count so later tests on this session remain valid.
+    await admin
+      .from('workshop_sessions')
+      .update({ reserved_count: reservedBeforeFill })
+      .eq('id', sessionId);
   });
 
   it('cancels a booking and records a refund within the refund window', async () => {
     const result = await beginFreshBooking();
 
     // Confirm the booking first.
+    const cancelEventId = `${testPrefix}-evt-cancel-${result.booking_id}`;
+    stripeEventIds.push(cancelEventId);
     await admin.rpc('confirm_booking_from_payment', {
       p_booking_id: result.booking_id,
       p_payment_id: result.payment_id,
-      p_stripe_event_id: `${testPrefix}-evt-cancel-${result.booking_id}`,
+      p_stripe_event_id: cancelEventId,
       p_provider_payment_id: 'pi_test',
       p_amount_gross_grosz: 10000,
     });
@@ -532,7 +594,7 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
     const { data, error } = await admin.rpc('begin_booking', {
       p_session_id: sessionId,
       p_quantity: 1,
-      p_customer_email: `${testPrefix}-manual@example.com`,
+      p_customer_email: manualCustomerEmail,
       p_customer_first_name: 'Manual',
       p_customer_last_name: 'Customer',
       p_customer_phone: '123456789',
@@ -556,6 +618,8 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
     };
     bookingIds.push(result.booking_id);
     paymentIds.push(result.payment_id);
+    const manualCustomerId = await trackCustomerByEmail(manualCustomerEmail);
+    expect(manualCustomerId).toBeTruthy();
     expect(result.confirmed_at).not.toBeNull();
 
     const { data: afterSession } = await admin
@@ -570,10 +634,12 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
 
   it('moves a confirmed booking to a compatible session atomically', async () => {
     const result = await beginFreshBooking();
+    const moveEventId = `${testPrefix}-evt-move-${result.booking_id}`;
+    stripeEventIds.push(moveEventId);
     await admin.rpc('confirm_booking_from_payment', {
       p_booking_id: result.booking_id,
       p_payment_id: result.payment_id,
-      p_stripe_event_id: `${testPrefix}-evt-move-${result.booking_id}`,
+      p_stripe_event_id: moveEventId,
       p_provider_payment_id: 'pi_test',
       p_amount_gross_grosz: 10000,
     });
