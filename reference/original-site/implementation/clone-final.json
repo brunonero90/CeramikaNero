@@ -1,0 +1,3038 @@
+{
+  "phase": "closure",
+  "updatedAt": "2026-07-24T12:33:46.780Z",
+  "overallVerdict": "Clone complete with documented Wix-only differences",
+  "captureStatistics": {
+    "discovered": 99,
+    "included": 85,
+    "excluded": 14
+  },
+  "totals": {
+    "discovered": 99,
+    "implementedDirectly": 77,
+    "permanentRedirects": 6,
+    "formallyExcluded": 15,
+    "retained404": 1,
+    "blocked": 0,
+    "ambiguous": 0
+  },
+  "totalsSumCheck": 99,
+  "phase1Status": "gate-a-passed",
+  "phase2Status": "partial",
+  "closureDecisions": {
+    "/copy-of-panieński-opis": {
+      "classification": "Implemented directly",
+      "reason": "Unique public PAKIET VIP detail page (not a duplicate of /panienskie). Closest webinar-registration match ratio 0.714 with unique VIP/session-photo copy and images.",
+      "canonical": "/copy-of-panieński-opis"
+    },
+    "/kopia-panieński-plus-opis": {
+      "classification": "Implemented directly",
+      "reason": "Misnamed Wix copy URL; content is unique “Urodziny z ceramiką dla dzieci” offer (match vs /urodziny 0.192). Implemented as its own public route.",
+      "canonical": "/kopia-panieński-plus-opis"
+    },
+    "/kopia-urodziny-ceramika": {
+      "classification": "Implemented directly",
+      "reason": "Unique “Urodziny z malowaniem dla dzieci” offer page (match vs /urodziny 0.192). Implemented as its own public route.",
+      "canonical": "/kopia-urodziny-ceramika"
+    },
+    "/profile/gosianowicka/profile": {
+      "classification": "Permanent redirect",
+      "reason": "Wix member chrome + Facebook avatar + public post list that duplicates /blog posts. Author biography lives at /post/o-mnie. Redirect to /blog.",
+      "canonical": "/blog",
+      "redirect": "/blog"
+    },
+    "/profile/gosianowicka/events": {
+      "classification": "Permanent redirect",
+      "reason": "Primarily Wix member event-management UI; only public event link already exists at /szczeg-y-wydarzenia-i-rejestracja/.... Original “Przeglądaj wydarzenia” pointed at /warsztaty (404). Redirect to first-party catalog /.",
+      "canonical": "/",
+      "redirect": "/"
+    },
+    "/profile/gosianowicka/forum-posts": {
+      "classification": "Formally excluded system/template route",
+      "reason": "Wix Forum retired notice (“Wix Forum nie jest już dostępne”) + member chrome. No genuine Ceramika editorial content to clone.",
+      "canonical": null,
+      "notGenuine": true
+    },
+    "/profile/gosianowicka/forum-comments": {
+      "classification": "Formally excluded system/template route",
+      "reason": "Wix Forum/member comments surface with no Ceramika editorial content.",
+      "canonical": null,
+      "notGenuine": true
+    }
+  },
+  "ctaReconciliation": {
+    "generatedAt": "2026-07-24T12:33:46.752Z",
+    "rules": [
+      "Booking calendars and service pages CTA → first-party catalog / when live Wix calendar removed",
+      "Webinar registration CTAs preserved as informational archive pages + /kontakt adaptation where forms existed",
+      "Panieńskie STANDARD → /webinar-registration, PLUS → /webinar-registration-1, VIP → /copy-of-panieński-opis",
+      "Urodziny ceramika detail → /kopia-panieński-plus-opis; malowanie detail → /kopia-urodziny-ceramika",
+      "No invented workshop IDs or deep booking parameters"
+    ],
+    "totals": {
+      "bookingRelatedCtasMappedToCatalog": "service-page + booking-calendar families",
+      "deepLinksAdded": 0,
+      "intentionallyGeneric": "all Wix Bookings widgets"
+    }
+  },
+  "redirectsConfigured": [
+    {
+      "source": "/onas",
+      "destination": "/pracownia"
+    },
+    {
+      "source": "/dladzieci",
+      "destination": "/dla-dzieci"
+    },
+    {
+      "source": "/dladoroslych",
+      "destination": "/dla-doroslych"
+    },
+    {
+      "source": "/dlafirm",
+      "destination": "/grupy-i-firmy"
+    },
+    {
+      "source": "/profile/gosianowicka/profile",
+      "destination": "/blog"
+    },
+    {
+      "source": "/profile/gosianowicka/events",
+      "destination": "/"
+    }
+  ],
+  "knownWixOnlyDifferences": [
+    "Wix cookie consent chrome omitted",
+    "Wix editor/login chrome omitted",
+    "Wix runtime mesh/CSS animation details omitted",
+    "Wix Bookings interactive calendar replaced with static catalog + CTAs",
+    "Wix Forum / member identity surfaces excluded or redirected",
+    "Local non-transactional cart (no Stripe)",
+    "Newsletter UI local-ack only (no Resend)"
+  ],
+  "testEvidence": {
+    "phase1Completeness": "11 tests (see vitest)",
+    "phase2Completeness": "6 tests (see vitest)",
+    "note": "Exact counts recorded in closure validation run"
+  },
+  "routes": [
+    {
+      "originalUrl": "https://www.ceramikanero.com/",
+      "originalRoute": "/",
+      "archiveDirectory": "index",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "home",
+      "canonicalNewRoute": "/",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/page.tsx",
+      "phase": "phase1",
+      "contentParityStatus": "4/4",
+      "imageParityStatus": "11/11",
+      "imageOccurrenceCount": 11,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted",
+        "Interactive Wix Bookings calendar availability replaced with static first-party service catalog"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/index/page-spec.json",
+        "reference/original-site/pages/index/content.md",
+        "reference/original-site/screenshots/desktop/index.png",
+        "reference/original-site/screenshots/mobile/index.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/about-2",
+      "originalRoute": "/about-2",
+      "archiveDirectory": "about-2",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/about-2",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/blog",
+      "originalRoute": "/blog",
+      "archiveDirectory": "blog",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "blog-index",
+      "canonicalNewRoute": "/blog",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/blog/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/blog/page-spec.json",
+        "reference/original-site/pages/blog/content.md",
+        "reference/original-site/screenshots/desktop/blog.png",
+        "reference/original-site/screenshots/mobile/blog.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/blog/categories/aktualno%C5%9Bci",
+      "originalRoute": "/blog/categories/aktualności",
+      "archiveDirectory": "blog/categories/aktualności",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-category",
+      "pageType": "blog-category",
+      "canonicalNewRoute": "/blog/categories/aktualności",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/blog/categories/[category]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/blog/categories/aktualności/page-spec.json",
+        "reference/original-site/pages/blog/categories/aktualności/content.md",
+        "reference/original-site/screenshots/desktop/blog__categories__aktualności.png",
+        "reference/original-site/screenshots/mobile/blog__categories__aktualności.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/blog/categories/ciekawostki",
+      "originalRoute": "/blog/categories/ciekawostki",
+      "archiveDirectory": "blog/categories/ciekawostki",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-category",
+      "pageType": "blog-category",
+      "canonicalNewRoute": "/blog/categories/ciekawostki",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/blog/categories/[category]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/blog/categories/ciekawostki/page-spec.json",
+        "reference/original-site/pages/blog/categories/ciekawostki/content.md",
+        "reference/original-site/screenshots/desktop/blog__categories__ciekawostki.png",
+        "reference/original-site/screenshots/mobile/blog__categories__ciekawostki.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/blog/categories/o-mnie",
+      "originalRoute": "/blog/categories/o-mnie",
+      "archiveDirectory": "blog/categories/o-mnie",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-category",
+      "pageType": "blog-category",
+      "canonicalNewRoute": "/blog/categories/o-mnie",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/blog/categories/[category]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "2/2",
+      "imageOccurrenceCount": 2,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/blog/categories/o-mnie/page-spec.json",
+        "reference/original-site/pages/blog/categories/o-mnie/content.md",
+        "reference/original-site/screenshots/desktop/blog__categories__o-mnie.png",
+        "reference/original-site/screenshots/mobile/blog__categories__o-mnie.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/booking-calendar/ceramika-dla-doros%C5%82ych-pon-czw",
+      "originalRoute": "/booking-calendar/ceramika-dla-dorosłych-pon-czw",
+      "archiveDirectory": "booking-calendar/ceramika-dla-dorosłych-pon-czw",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "booking-calendar",
+      "canonicalNewRoute": "/booking-calendar/ceramika-dla-dorosłych-pon-czw",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/booking-calendar/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/booking-calendar/ceramika-dla-dorosłych-pon-czw/page-spec.json",
+        "reference/original-site/pages/booking-calendar/ceramika-dla-dorosłych-pon-czw/content.md",
+        "reference/original-site/screenshots/desktop/booking-calendar__ceramika-dla-dorosłych-pon-czw.png",
+        "reference/original-site/screenshots/mobile/booking-calendar__ceramika-dla-dorosłych-pon-czw.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/booking-calendar/glina-do-wina-pi%C4%85tek-19-00-suchy-las",
+      "originalRoute": "/booking-calendar/glina-do-wina-piątek-19-00-suchy-las",
+      "archiveDirectory": "booking-calendar/glina-do-wina-piątek-19-00-suchy-las",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "booking-calendar",
+      "canonicalNewRoute": "/booking-calendar/glina-do-wina-piątek-19-00-suchy-las",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/booking-calendar/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/booking-calendar/glina-do-wina-piątek-19-00-suchy-las/page-spec.json",
+        "reference/original-site/pages/booking-calendar/glina-do-wina-piątek-19-00-suchy-las/content.md",
+        "reference/original-site/screenshots/desktop/booking-calendar__glina-do-wina-piątek-19-00-suchy-las.png",
+        "reference/original-site/screenshots/mobile/booking-calendar__glina-do-wina-piątek-19-00-suchy-las.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "originalRoute": "/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "archiveDirectory": "booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "booking-calendar",
+      "canonicalNewRoute": "/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/booking-calendar/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu/page-spec.json",
+        "reference/original-site/pages/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu/content.md",
+        "reference/original-site/screenshots/desktop/booking-calendar__glina-do-wina-w-poznaniu-w-ptasim-radiu.png",
+        "reference/original-site/screenshots/mobile/booking-calendar__glina-do-wina-w-poznaniu-w-ptasim-radiu.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/booking-calendar/glina-i-rodzina-soboty-15-00",
+      "originalRoute": "/booking-calendar/glina-i-rodzina-soboty-15-00",
+      "archiveDirectory": "booking-calendar/glina-i-rodzina-soboty-15-00",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "booking-calendar",
+      "canonicalNewRoute": "/booking-calendar/glina-i-rodzina-soboty-15-00",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/booking-calendar/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/booking-calendar/glina-i-rodzina-soboty-15-00/page-spec.json",
+        "reference/original-site/pages/booking-calendar/glina-i-rodzina-soboty-15-00/content.md",
+        "reference/original-site/screenshots/desktop/booking-calendar__glina-i-rodzina-soboty-15-00.png",
+        "reference/original-site/screenshots/mobile/booking-calendar__glina-i-rodzina-soboty-15-00.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/booking-calendar/letnia-akademia-rysunku-malarstwa",
+      "originalRoute": "/booking-calendar/letnia-akademia-rysunku-malarstwa",
+      "archiveDirectory": "booking-calendar/letnia-akademia-rysunku-malarstwa",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "booking-calendar",
+      "canonicalNewRoute": "/booking-calendar/letnia-akademia-rysunku-malarstwa",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/booking-calendar/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/booking-calendar/letnia-akademia-rysunku-malarstwa/page-spec.json",
+        "reference/original-site/pages/booking-calendar/letnia-akademia-rysunku-malarstwa/content.md",
+        "reference/original-site/screenshots/desktop/booking-calendar__letnia-akademia-rysunku-malarstwa.png",
+        "reference/original-site/screenshots/mobile/booking-calendar__letnia-akademia-rysunku-malarstwa.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/booking-calendar/poranki-z-ceramik%C4%85-dla-doros%C5%82ych",
+      "originalRoute": "/booking-calendar/poranki-z-ceramiką-dla-dorosłych",
+      "archiveDirectory": "booking-calendar/poranki-z-ceramiką-dla-dorosłych",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "booking-calendar",
+      "canonicalNewRoute": "/booking-calendar/poranki-z-ceramiką-dla-dorosłych",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/booking-calendar/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/booking-calendar/poranki-z-ceramiką-dla-dorosłych/page-spec.json",
+        "reference/original-site/pages/booking-calendar/poranki-z-ceramiką-dla-dorosłych/content.md",
+        "reference/original-site/screenshots/desktop/booking-calendar__poranki-z-ceramiką-dla-dorosłych.png",
+        "reference/original-site/screenshots/mobile/booking-calendar__poranki-z-ceramiką-dla-dorosłych.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/booking-calendar/wrzesie%C5%84ceramika-dla-doros%C5%82ych-pon",
+      "originalRoute": "/booking-calendar/wrzesieńceramika-dla-dorosłych-pon",
+      "archiveDirectory": "booking-calendar/wrzesieńceramika-dla-dorosłych-pon",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "booking-calendar",
+      "canonicalNewRoute": "/booking-calendar/wrzesieńceramika-dla-dorosłych-pon",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/booking-calendar/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/booking-calendar/wrzesieńceramika-dla-dorosłych-pon/page-spec.json",
+        "reference/original-site/pages/booking-calendar/wrzesieńceramika-dla-dorosłych-pon/content.md",
+        "reference/original-site/screenshots/desktop/booking-calendar__wrzesieńceramika-dla-dorosłych-pon.png",
+        "reference/original-site/screenshots/mobile/booking-calendar__wrzesieńceramika-dla-dorosłych-pon.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/booking-calendar/wrzesie%C5%84glina-do-wina-pi%C4%85tek-suchy-las",
+      "originalRoute": "/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las",
+      "archiveDirectory": "booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "booking-calendar",
+      "canonicalNewRoute": "/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/booking-calendar/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las/page-spec.json",
+        "reference/original-site/pages/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las/content.md",
+        "reference/original-site/screenshots/desktop/booking-calendar__wrzesieńglina-do-wina-piątek-suchy-las.png",
+        "reference/original-site/screenshots/mobile/booking-calendar__wrzesieńglina-do-wina-piątek-suchy-las.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/cart",
+      "originalRoute": "/cart",
+      "archiveDirectory": "cart",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "cart",
+      "canonicalNewRoute": "/cart",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/cart/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Local non-transactional cart only; no Stripe/payment/email/order writes"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/cart/page-spec.json",
+        "reference/original-site/pages/cart/content.md",
+        "reference/original-site/screenshots/desktop/cart.png",
+        "reference/original-site/screenshots/mobile/cart.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/copy-of-panie%C5%84ski-opis",
+      "originalRoute": "/copy-of-panieński-opis",
+      "archiveDirectory": "copy-of-panieński-opis",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-legacy-copy-page",
+      "pageType": "marketing",
+      "canonicalNewRoute": "/copy-of-panieński-opis",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/copy-of-panieński-opis/page.tsx",
+      "phase": "closure",
+      "contentParityStatus": "archive-fixture",
+      "imageParityStatus": "local-migrated",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "accounted",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Unique public PAKIET VIP detail page (not a duplicate of /panienskie). Closest webinar-registration match ratio 0.714 with unique VIP/session-photo copy and images."
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/copy-of-panieński-opis/page-spec.json",
+        "reference/original-site/pages/copy-of-panieński-opis/content.md",
+        "reference/original-site/screenshots/desktop/copy-of-panieński-opis.png",
+        "reference/original-site/screenshots/mobile/copy-of-panieński-opis.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/courses",
+      "originalRoute": "/courses",
+      "archiveDirectory": "courses",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-course",
+      "pageType": "course",
+      "canonicalNewRoute": "/courses",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/courses/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "5/5",
+      "imageOccurrenceCount": 5,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/courses/page-spec.json",
+        "reference/original-site/pages/courses/content.md",
+        "reference/original-site/screenshots/desktop/courses.png",
+        "reference/original-site/screenshots/mobile/courses.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/courses/glina-do-wina-",
+      "originalRoute": "/courses/glina-do-wina-",
+      "archiveDirectory": "courses/glina-do-wina-",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-course",
+      "pageType": "course",
+      "canonicalNewRoute": "/courses/glina-do-wina-",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/courses/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "2/2",
+      "imageOccurrenceCount": 2,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/courses/glina-do-wina-/page-spec.json",
+        "reference/original-site/pages/courses/glina-do-wina-/content.md",
+        "reference/original-site/screenshots/desktop/courses__glina-do-wina-.png",
+        "reference/original-site/screenshots/mobile/courses__glina-do-wina-.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/courses/glina-i-rodzina-",
+      "originalRoute": "/courses/glina-i-rodzina-",
+      "archiveDirectory": "courses/glina-i-rodzina-",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-course",
+      "pageType": "course",
+      "canonicalNewRoute": "/courses/glina-i-rodzina-",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/courses/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "2/2",
+      "imageOccurrenceCount": 2,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/courses/glina-i-rodzina-/page-spec.json",
+        "reference/original-site/pages/courses/glina-i-rodzina-/content.md",
+        "reference/original-site/screenshots/desktop/courses__glina-i-rodzina-.png",
+        "reference/original-site/screenshots/mobile/courses__glina-i-rodzina-.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/courses/imprezy-zamkni%C4%99te-do-10-os.-",
+      "originalRoute": "/courses/imprezy-zamknięte-do-10-os.-",
+      "archiveDirectory": "courses/imprezy-zamknięte-do-10-os.-",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-course",
+      "pageType": "course",
+      "canonicalNewRoute": "/courses/imprezy-zamknięte-do-10-os.-",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/courses/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "2/2",
+      "imageOccurrenceCount": 2,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/courses/imprezy-zamknięte-do-10-os.-/page-spec.json",
+        "reference/original-site/pages/courses/imprezy-zamknięte-do-10-os.-/content.md",
+        "reference/original-site/screenshots/desktop/courses__imprezy-zamknięte-do-10-os.-.png",
+        "reference/original-site/screenshots/mobile/courses__imprezy-zamknięte-do-10-os.-.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/courses/kr%C4%99cenie-na-kole-",
+      "originalRoute": "/courses/kręcenie-na-kole-",
+      "archiveDirectory": "courses/kręcenie-na-kole-",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-course",
+      "pageType": "course",
+      "canonicalNewRoute": "/courses/kręcenie-na-kole-",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/courses/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "2/2",
+      "imageOccurrenceCount": 2,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/courses/kręcenie-na-kole-/page-spec.json",
+        "reference/original-site/pages/courses/kręcenie-na-kole-/content.md",
+        "reference/original-site/screenshots/desktop/courses__kręcenie-na-kole-.png",
+        "reference/original-site/screenshots/mobile/courses__kręcenie-na-kole-.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/courses/pracowania-otwarta-",
+      "originalRoute": "/courses/pracowania-otwarta-",
+      "archiveDirectory": "courses/pracowania-otwarta-",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-course",
+      "pageType": "course",
+      "canonicalNewRoute": "/courses/pracowania-otwarta-",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/courses/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "2/2",
+      "imageOccurrenceCount": 2,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/courses/pracowania-otwarta-/page-spec.json",
+        "reference/original-site/pages/courses/pracowania-otwarta-/content.md",
+        "reference/original-site/screenshots/desktop/courses__pracowania-otwarta-.png",
+        "reference/original-site/screenshots/mobile/courses__pracowania-otwarta-.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/dladoroslych",
+      "originalRoute": "/dladoroslych",
+      "archiveDirectory": "dladoroslych",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "audience",
+      "canonicalNewRoute": "/dla-doroslych",
+      "finalClassification": "Permanent redirect",
+      "redirectDestination": "/dla-doroslych",
+      "redirectStatus": 301,
+      "implementationFile": null,
+      "phase": "phase1",
+      "contentParityStatus": "3/3",
+      "imageParityStatus": "8/8",
+      "imageOccurrenceCount": 8,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [],
+      "evidenceSource": [
+        "reference/original-site/pages/dladoroslych/page-spec.json",
+        "reference/original-site/pages/dladoroslych/content.md",
+        "reference/original-site/screenshots/desktop/dladoroslych.png",
+        "reference/original-site/screenshots/mobile/dladoroslych.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/dladzieci",
+      "originalRoute": "/dladzieci",
+      "archiveDirectory": "dladzieci",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "audience",
+      "canonicalNewRoute": "/dla-dzieci",
+      "finalClassification": "Permanent redirect",
+      "redirectDestination": "/dla-dzieci",
+      "redirectStatus": 301,
+      "implementationFile": null,
+      "phase": "phase1",
+      "contentParityStatus": "3/3",
+      "imageParityStatus": "11/11",
+      "imageOccurrenceCount": 11,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [],
+      "evidenceSource": [
+        "reference/original-site/pages/dladzieci/page-spec.json",
+        "reference/original-site/pages/dladzieci/content.md",
+        "reference/original-site/screenshots/desktop/dladzieci.png",
+        "reference/original-site/screenshots/mobile/dladzieci.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/dlafirm",
+      "originalRoute": "/dlafirm",
+      "archiveDirectory": "dlafirm",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "audience",
+      "canonicalNewRoute": "/grupy-i-firmy",
+      "finalClassification": "Permanent redirect",
+      "redirectDestination": "/grupy-i-firmy",
+      "redirectStatus": 301,
+      "implementationFile": null,
+      "phase": "phase1",
+      "contentParityStatus": "3/3",
+      "imageParityStatus": "6/6",
+      "imageOccurrenceCount": 6,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [],
+      "evidenceSource": [
+        "reference/original-site/pages/dlafirm/page-spec.json",
+        "reference/original-site/pages/dlafirm/content.md",
+        "reference/original-site/screenshots/desktop/dlafirm.png",
+        "reference/original-site/screenshots/mobile/dlafirm.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/dostawy-i-zwroty",
+      "originalRoute": "/dostawy-i-zwroty",
+      "archiveDirectory": "dostawy-i-zwroty",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "legal",
+      "canonicalNewRoute": "/dostawy-i-zwroty",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/dostawy-i-zwroty/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/dostawy-i-zwroty/page-spec.json",
+        "reference/original-site/pages/dostawy-i-zwroty/content.md",
+        "reference/original-site/screenshots/desktop/dostawy-i-zwroty.png",
+        "reference/original-site/screenshots/mobile/dostawy-i-zwroty.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/faq",
+      "originalRoute": "/faq",
+      "archiveDirectory": "faq",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "faq",
+      "canonicalNewRoute": "/faq",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/faq/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/faq/page-spec.json",
+        "reference/original-site/pages/faq/content.md",
+        "reference/original-site/screenshots/desktop/faq.png",
+        "reference/original-site/screenshots/mobile/faq.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/forum",
+      "originalRoute": "/forum",
+      "archiveDirectory": "forum",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/forum",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/galeria",
+      "originalRoute": "/galeria",
+      "archiveDirectory": "galeria",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "gallery",
+      "canonicalNewRoute": "/galeria",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/galeria/page.tsx",
+      "phase": "phase1",
+      "contentParityStatus": "2/2",
+      "imageParityStatus": "36/36",
+      "imageOccurrenceCount": 36,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/galeria/page-spec.json",
+        "reference/original-site/pages/galeria/content.md",
+        "reference/original-site/screenshots/desktop/galeria.png",
+        "reference/original-site/screenshots/mobile/galeria.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/gift-card",
+      "originalRoute": "/gift-card",
+      "archiveDirectory": "gift-card",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "shop",
+      "canonicalNewRoute": "/gift-card",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/gift-card/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "1/1",
+      "imageOccurrenceCount": 1,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Local non-transactional cart only; no Stripe/payment/email/order writes"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/gift-card/page-spec.json",
+        "reference/original-site/pages/gift-card/content.md",
+        "reference/original-site/screenshots/desktop/gift-card.png",
+        "reference/original-site/screenshots/mobile/gift-card.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/glinadowina",
+      "originalRoute": "/glinadowina",
+      "archiveDirectory": "glinadowina",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "workshop-landing",
+      "canonicalNewRoute": "/glinadowina",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/glinadowina/page.tsx",
+      "phase": "phase1",
+      "contentParityStatus": "3/3",
+      "imageParityStatus": "7/7",
+      "imageOccurrenceCount": 7,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/glinadowina/page-spec.json",
+        "reference/original-site/pages/glinadowina/content.md",
+        "reference/original-site/screenshots/desktop/glinadowina.png",
+        "reference/original-site/screenshots/mobile/glinadowina.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/home",
+      "originalRoute": "/home",
+      "archiveDirectory": "home",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "home-alias",
+      "canonicalNewRoute": "/home",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/home/page.tsx",
+      "phase": "phase1",
+      "contentParityStatus": "10/10",
+      "imageParityStatus": "10/10",
+      "imageOccurrenceCount": 10,
+      "ctaLinkParityStatus": "4/4",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted",
+        "Shop/cart CTAs point at archived product routes; live payment not enabled"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/home/page-spec.json",
+        "reference/original-site/pages/home/content.md",
+        "reference/original-site/screenshots/desktop/home.png",
+        "reference/original-site/screenshots/mobile/home.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/kontakt",
+      "originalRoute": "/kontakt",
+      "archiveDirectory": "kontakt",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "contact",
+      "canonicalNewRoute": "/kontakt",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/kontakt/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "3/3",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/kontakt/page-spec.json",
+        "reference/original-site/pages/kontakt/content.md",
+        "reference/original-site/screenshots/desktop/kontakt.png",
+        "reference/original-site/screenshots/mobile/kontakt.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/kopia-panie%C5%84ski-plus-opis",
+      "originalRoute": "/kopia-panieński-plus-opis",
+      "archiveDirectory": "kopia-panieński-plus-opis",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-legacy-copy-page",
+      "pageType": "marketing",
+      "canonicalNewRoute": "/kopia-panieński-plus-opis",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/kopia-panieński-plus-opis/page.tsx",
+      "phase": "closure",
+      "contentParityStatus": "archive-fixture",
+      "imageParityStatus": "local-migrated",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "accounted",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Misnamed Wix copy URL; content is unique “Urodziny z ceramiką dla dzieci” offer (match vs /urodziny 0.192). Implemented as its own public route."
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/kopia-panieński-plus-opis/page-spec.json",
+        "reference/original-site/pages/kopia-panieński-plus-opis/content.md",
+        "reference/original-site/screenshots/desktop/kopia-panieński-plus-opis.png",
+        "reference/original-site/screenshots/mobile/kopia-panieński-plus-opis.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/kopia-urodziny-ceramika",
+      "originalRoute": "/kopia-urodziny-ceramika",
+      "archiveDirectory": "kopia-urodziny-ceramika",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-legacy-copy-page",
+      "pageType": "marketing",
+      "canonicalNewRoute": "/kopia-urodziny-ceramika",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/kopia-urodziny-ceramika/page.tsx",
+      "phase": "closure",
+      "contentParityStatus": "archive-fixture",
+      "imageParityStatus": "local-migrated",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "accounted",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Unique “Urodziny z malowaniem dla dzieci” offer page (match vs /urodziny 0.192). Implemented as its own public route."
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/kopia-urodziny-ceramika/page-spec.json",
+        "reference/original-site/pages/kopia-urodziny-ceramika/content.md",
+        "reference/original-site/screenshots/desktop/kopia-urodziny-ceramika.png",
+        "reference/original-site/screenshots/mobile/kopia-urodziny-ceramika.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/members",
+      "originalRoute": "/members",
+      "archiveDirectory": "members",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/members",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/onas",
+      "originalRoute": "/onas",
+      "archiveDirectory": "onas",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "about",
+      "canonicalNewRoute": "/pracownia",
+      "finalClassification": "Permanent redirect",
+      "redirectDestination": "/pracownia",
+      "redirectStatus": 301,
+      "implementationFile": null,
+      "phase": "phase1",
+      "contentParityStatus": "4/4",
+      "imageParityStatus": "15/15",
+      "imageOccurrenceCount": 15,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [],
+      "evidenceSource": [
+        "reference/original-site/pages/onas/page-spec.json",
+        "reference/original-site/pages/onas/content.md",
+        "reference/original-site/screenshots/desktop/onas.png",
+        "reference/original-site/screenshots/mobile/onas.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/order-online",
+      "originalRoute": "/order-online",
+      "archiveDirectory": "order-online",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/order-online",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/panienskie",
+      "originalRoute": "/panienskie",
+      "archiveDirectory": "panienskie",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-legacy-copy-page",
+      "pageType": "marketing",
+      "canonicalNewRoute": "/panienskie",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/panienskie/page.tsx",
+      "phase": "phase1",
+      "contentParityStatus": "4/4",
+      "imageParityStatus": "5/5",
+      "imageOccurrenceCount": 5,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/panienskie/page-spec.json",
+        "reference/original-site/pages/panienskie/content.md",
+        "reference/original-site/screenshots/desktop/panienskie.png",
+        "reference/original-site/screenshots/mobile/panienskie.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/bycie-w-procesie-podczas-warsztat%C3%B3w-z-ceramiki",
+      "originalRoute": "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki",
+      "archiveDirectory": "post/bycie-w-procesie-podczas-warsztatów-z-ceramiki",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/5",
+      "imageOccurrenceCount": 5,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki/page-spec.json",
+        "reference/original-site/pages/post/bycie-w-procesie-podczas-warsztatów-z-ceramiki/content.md",
+        "reference/original-site/screenshots/desktop/post__bycie-w-procesie-podczas-warsztatów-z-ceramiki.png",
+        "reference/original-site/screenshots/mobile/post__bycie-w-procesie-podczas-warsztatów-z-ceramiki.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/czy-wiecie-%C5%BCe-prowadzimy-r%C3%B3wnie%C5%BC-warsztaty-rysunku-malarstwa-i-ceramiki",
+      "originalRoute": "/post/czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki",
+      "archiveDirectory": "post/czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki/page-spec.json",
+        "reference/original-site/pages/post/czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki/content.md",
+        "reference/original-site/screenshots/desktop/post__czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki.png",
+        "reference/original-site/screenshots/mobile/post__czy-wiecie-że-prowadzimy-również-warsztaty-rysunku-malarstwa-i-ceramiki.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/czym-zajmuje-si%C4%99-pracownia-ceramiki-nero",
+      "originalRoute": "/post/czym-zajmuje-się-pracownia-ceramiki-nero",
+      "archiveDirectory": "post/czym-zajmuje-się-pracownia-ceramiki-nero",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/czym-zajmuje-się-pracownia-ceramiki-nero",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/10",
+      "imageOccurrenceCount": 10,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/czym-zajmuje-się-pracownia-ceramiki-nero/page-spec.json",
+        "reference/original-site/pages/post/czym-zajmuje-się-pracownia-ceramiki-nero/content.md",
+        "reference/original-site/screenshots/desktop/post__czym-zajmuje-się-pracownia-ceramiki-nero.png",
+        "reference/original-site/screenshots/mobile/post__czym-zajmuje-się-pracownia-ceramiki-nero.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/dlaczego-warto-wybra%C4%87-nasz%C4%85-pracowni%C4%99-ceramiki-dla-twoich-kreatywnych-potrzeb",
+      "originalRoute": "/post/dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb",
+      "archiveDirectory": "post/dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/5",
+      "imageOccurrenceCount": 5,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb/page-spec.json",
+        "reference/original-site/pages/post/dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb/content.md",
+        "reference/original-site/screenshots/desktop/post__dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb.png",
+        "reference/original-site/screenshots/mobile/post__dlaczego-warto-wybrać-naszą-pracownię-ceramiki-dla-twoich-kreatywnych-potrzeb.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/dzi%C4%99kujemy-wszystkim-kt%C3%B3rzy-s%C4%85-z-nami",
+      "originalRoute": "/post/dziękujemy-wszystkim-którzy-są-z-nami",
+      "archiveDirectory": "post/dziękujemy-wszystkim-którzy-są-z-nami",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/dziękujemy-wszystkim-którzy-są-z-nami",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/dziękujemy-wszystkim-którzy-są-z-nami/page-spec.json",
+        "reference/original-site/pages/post/dziękujemy-wszystkim-którzy-są-z-nami/content.md",
+        "reference/original-site/screenshots/desktop/post__dziękujemy-wszystkim-którzy-są-z-nami.png",
+        "reference/original-site/screenshots/mobile/post__dziękujemy-wszystkim-którzy-są-z-nami.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/glina-do-wina",
+      "originalRoute": "/post/glina-do-wina",
+      "archiveDirectory": "post/glina-do-wina",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/glina-do-wina",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/glina-do-wina/page-spec.json",
+        "reference/original-site/pages/post/glina-do-wina/content.md",
+        "reference/original-site/screenshots/desktop/post__glina-do-wina.png",
+        "reference/original-site/screenshots/mobile/post__glina-do-wina.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/jak-zacz%C4%85%C4%87-przygod%C4%99-z-ceramik%C4%85",
+      "originalRoute": "/post/jak-zacząć-przygodę-z-ceramiką",
+      "archiveDirectory": "post/jak-zacząć-przygodę-z-ceramiką",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/jak-zacząć-przygodę-z-ceramiką",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/7",
+      "imageOccurrenceCount": 7,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/jak-zacząć-przygodę-z-ceramiką/page-spec.json",
+        "reference/original-site/pages/post/jak-zacząć-przygodę-z-ceramiką/content.md",
+        "reference/original-site/screenshots/desktop/post__jak-zacząć-przygodę-z-ceramiką.png",
+        "reference/original-site/screenshots/mobile/post__jak-zacząć-przygodę-z-ceramiką.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/letnia-akademia-artystyczna-ca%C5%82e-wakacje",
+      "originalRoute": "/post/letnia-akademia-artystyczna-całe-wakacje",
+      "archiveDirectory": "post/letnia-akademia-artystyczna-całe-wakacje",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/letnia-akademia-artystyczna-całe-wakacje",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/letnia-akademia-artystyczna-całe-wakacje/page-spec.json",
+        "reference/original-site/pages/post/letnia-akademia-artystyczna-całe-wakacje/content.md",
+        "reference/original-site/screenshots/desktop/post__letnia-akademia-artystyczna-całe-wakacje.png",
+        "reference/original-site/screenshots/mobile/post__letnia-akademia-artystyczna-całe-wakacje.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/nowe-warsztaty-ceramika-dla-smyka",
+      "originalRoute": "/post/nowe-warsztaty-ceramika-dla-smyka",
+      "archiveDirectory": "post/nowe-warsztaty-ceramika-dla-smyka",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/nowe-warsztaty-ceramika-dla-smyka",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/nowe-warsztaty-ceramika-dla-smyka/page-spec.json",
+        "reference/original-site/pages/post/nowe-warsztaty-ceramika-dla-smyka/content.md",
+        "reference/original-site/screenshots/desktop/post__nowe-warsztaty-ceramika-dla-smyka.png",
+        "reference/original-site/screenshots/mobile/post__nowe-warsztaty-ceramika-dla-smyka.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025",
+      "originalRoute": "/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025",
+      "archiveDirectory": "post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025/page-spec.json",
+        "reference/original-site/pages/post/nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025/content.md",
+        "reference/original-site/screenshots/desktop/post__nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025.png",
+        "reference/original-site/screenshots/mobile/post__nowe-warsztaty-ceramika-dla-smyka-od-stycznia-2025.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/o-mnie",
+      "originalRoute": "/post/o-mnie",
+      "archiveDirectory": "post/o-mnie",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/o-mnie",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/1",
+      "imageOccurrenceCount": 1,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/o-mnie/page-spec.json",
+        "reference/original-site/pages/post/o-mnie/content.md",
+        "reference/original-site/screenshots/desktop/post__o-mnie.png",
+        "reference/original-site/screenshots/mobile/post__o-mnie.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/o-sklepie-z-ceramik%C4%85",
+      "originalRoute": "/post/o-sklepie-z-ceramiką",
+      "archiveDirectory": "post/o-sklepie-z-ceramiką",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/o-sklepie-z-ceramiką",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/8",
+      "imageOccurrenceCount": 8,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/o-sklepie-z-ceramiką/page-spec.json",
+        "reference/original-site/pages/post/o-sklepie-z-ceramiką/content.md",
+        "reference/original-site/screenshots/desktop/post__o-sklepie-z-ceramiką.png",
+        "reference/original-site/screenshots/mobile/post__o-sklepie-z-ceramiką.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/pikniki-artystyczne-na-polanie-przed-pracowni%C4%85-ceramiki-nero",
+      "originalRoute": "/post/pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero",
+      "archiveDirectory": "post/pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero/page-spec.json",
+        "reference/original-site/pages/post/pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero/content.md",
+        "reference/original-site/screenshots/desktop/post__pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero.png",
+        "reference/original-site/screenshots/mobile/post__pikniki-artystyczne-na-polanie-przed-pracownią-ceramiki-nero.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/slow-design-co-oznacza",
+      "originalRoute": "/post/slow-design-co-oznacza",
+      "archiveDirectory": "post/slow-design-co-oznacza",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/slow-design-co-oznacza",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/5",
+      "imageOccurrenceCount": 5,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/slow-design-co-oznacza/page-spec.json",
+        "reference/original-site/pages/post/slow-design-co-oznacza/content.md",
+        "reference/original-site/screenshots/desktop/post__slow-design-co-oznacza.png",
+        "reference/original-site/screenshots/mobile/post__slow-design-co-oznacza.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/startujemy-z-zapisamy-na-wrzesie%C5%84-bogata-oferta-warsztat%C3%B3w-dla-dzieci-rysunek-malarstwo-ceramika",
+      "originalRoute": "/post/startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika",
+      "archiveDirectory": "post/startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/10",
+      "imageOccurrenceCount": 10,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika/page-spec.json",
+        "reference/original-site/pages/post/startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika/content.md",
+        "reference/original-site/screenshots/desktop/post__startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika.png",
+        "reference/original-site/screenshots/mobile/post__startujemy-z-zapisamy-na-wrzesień-bogata-oferta-warsztatów-dla-dzieci-rysunek-malarstwo-ceramika.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/tw%C3%B3j-tytu%C5%82-jak-nazwa%C5%82by%C5%9B-sw%C3%B3j-przepis",
+      "originalRoute": "/post/twój-tytuł-jak-nazwałbyś-swój-przepis",
+      "archiveDirectory": "post/twój-tytuł-jak-nazwałbyś-swój-przepis",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/twój-tytuł-jak-nazwałbyś-swój-przepis",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/twój-tytuł-jak-nazwałbyś-swój-przepis/page-spec.json",
+        "reference/original-site/pages/post/twój-tytuł-jak-nazwałbyś-swój-przepis/content.md",
+        "reference/original-site/screenshots/desktop/post__twój-tytuł-jak-nazwałbyś-swój-przepis.png",
+        "reference/original-site/screenshots/mobile/post__twój-tytuł-jak-nazwałbyś-swój-przepis.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/warsztatyzgliny",
+      "originalRoute": "/post/warsztatyzgliny",
+      "archiveDirectory": "post/warsztatyzgliny",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/warsztatyzgliny",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/warsztatyzgliny/page-spec.json",
+        "reference/original-site/pages/post/warsztatyzgliny/content.md",
+        "reference/original-site/screenshots/desktop/post__warsztatyzgliny.png",
+        "reference/original-site/screenshots/mobile/post__warsztatyzgliny.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/wp%C5%82yw-pracy-z-glin%C4%85-na-cz%C5%82owieka",
+      "originalRoute": "/post/wpływ-pracy-z-gliną-na-człowieka",
+      "archiveDirectory": "post/wpływ-pracy-z-gliną-na-człowieka",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/wpływ-pracy-z-gliną-na-człowieka",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/3",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/wpływ-pracy-z-gliną-na-człowieka/page-spec.json",
+        "reference/original-site/pages/post/wpływ-pracy-z-gliną-na-człowieka/content.md",
+        "reference/original-site/screenshots/desktop/post__wpływ-pracy-z-gliną-na-człowieka.png",
+        "reference/original-site/screenshots/mobile/post__wpływ-pracy-z-gliną-na-człowieka.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/wspania%C5%82a-historia-pracowni-od-mi%C5%82o%C5%9Bci-do-gotowania-do-tworzenia-inspiruj%C4%85cej-wsp%C3%B3lnoty",
+      "originalRoute": "/post/wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty",
+      "archiveDirectory": "post/wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty/page-spec.json",
+        "reference/original-site/pages/post/wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty/content.md",
+        "reference/original-site/screenshots/desktop/post__wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty.png",
+        "reference/original-site/screenshots/mobile/post__wspaniała-historia-pracowni-od-miłości-do-gotowania-do-tworzenia-inspirującej-wspólnoty.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/post/zaczynamy-nowe-warsztaty-ju%C5%BC-we-wrze%C5%9Bniu",
+      "originalRoute": "/post/zaczynamy-nowe-warsztaty-już-we-wrześniu",
+      "archiveDirectory": "post/zaczynamy-nowe-warsztaty-już-we-wrześniu",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-blog-post",
+      "pageType": "blog-post",
+      "canonicalNewRoute": "/post/zaczynamy-nowe-warsztaty-już-we-wrześniu",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/post/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "0/1",
+      "imageParityStatus": "0/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "0/0",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/post/zaczynamy-nowe-warsztaty-już-we-wrześniu/page-spec.json",
+        "reference/original-site/pages/post/zaczynamy-nowe-warsztaty-już-we-wrześniu/content.md",
+        "reference/original-site/screenshots/desktop/post__zaczynamy-nowe-warsztaty-już-we-wrześniu.png",
+        "reference/original-site/screenshots/mobile/post__zaczynamy-nowe-warsztaty-już-we-wrześniu.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/pricing-plans/list",
+      "originalRoute": "/pricing-plans/list",
+      "archiveDirectory": "pricing-plans/list",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/pricing-plans/list",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+      "originalRoute": "/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+      "archiveDirectory": "product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-product",
+      "pageType": "product",
+      "canonicalNewRoute": "/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/product-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "12/12",
+      "imageOccurrenceCount": 12,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Local non-transactional cart only; no Stripe/payment/email/order writes"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego/page-spec.json",
+        "reference/original-site/pages/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego/content.md",
+        "reference/original-site/screenshots/desktop/product-page__glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego.png",
+        "reference/original-site/screenshots/mobile/product-page__glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+      "originalRoute": "/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+      "archiveDirectory": "product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-product",
+      "pageType": "product",
+      "canonicalNewRoute": "/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/product-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "14/14",
+      "imageOccurrenceCount": 14,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Local non-transactional cart only; no Stripe/payment/email/order writes"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1/page-spec.json",
+        "reference/original-site/pages/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1/content.md",
+        "reference/original-site/screenshots/desktop/product-page__szkliwienie-prac-w-pracowni-ceramika-nero-1.png",
+        "reference/original-site/screenshots/mobile/product-page__szkliwienie-prac-w-pracowni-ceramika-nero-1.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/profile/gosianowicka/events",
+      "originalRoute": "/profile/gosianowicka/events",
+      "archiveDirectory": "profile/gosianowicka/events",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-author-profile-surface",
+      "pageType": "profile",
+      "canonicalNewRoute": "/",
+      "finalClassification": "Permanent redirect",
+      "redirectDestination": "/",
+      "redirectStatus": 301,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Primarily Wix member event-management UI; only public event link already exists at /szczeg-y-wydarzenia-i-rejestracja/.... Original “Przeglądaj wydarzenia” pointed at /warsztaty (404). Redirect to first-party catalog /."
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/profile/gosianowicka/events/page-spec.json",
+        "reference/original-site/pages/profile/gosianowicka/events/content.md",
+        "reference/original-site/screenshots/desktop/profile__gosianowicka__events.png",
+        "reference/original-site/screenshots/mobile/profile__gosianowicka__events.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/profile/gosianowicka/forum-comments",
+      "originalRoute": "/profile/gosianowicka/forum-comments",
+      "archiveDirectory": "profile/gosianowicka/forum-comments",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "included-author-profile-surface",
+      "pageType": "profile",
+      "canonicalNewRoute": "/profile/gosianowicka/forum-comments",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 1,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Forum/member comments surface with no Ceramika editorial content."
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/profile/gosianowicka/forum-comments/page-spec.json",
+        "reference/original-site/pages/profile/gosianowicka/forum-comments/content.md",
+        "reference/original-site/screenshots/desktop/profile__gosianowicka__forum-comments.png",
+        "reference/original-site/screenshots/mobile/profile__gosianowicka__forum-comments.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/profile/gosianowicka/forum-posts",
+      "originalRoute": "/profile/gosianowicka/forum-posts",
+      "archiveDirectory": "profile/gosianowicka/forum-posts",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "included-author-profile-surface",
+      "pageType": "profile",
+      "canonicalNewRoute": "/profile/gosianowicka/forum-posts",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 1,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Forum retired notice (“Wix Forum nie jest już dostępne”) + member chrome. No genuine Ceramika editorial content to clone."
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/profile/gosianowicka/forum-posts/page-spec.json",
+        "reference/original-site/pages/profile/gosianowicka/forum-posts/content.md",
+        "reference/original-site/screenshots/desktop/profile__gosianowicka__forum-posts.png",
+        "reference/original-site/screenshots/mobile/profile__gosianowicka__forum-posts.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/profile/gosianowicka/profile",
+      "originalRoute": "/profile/gosianowicka/profile",
+      "archiveDirectory": "profile/gosianowicka/profile",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-author-profile",
+      "pageType": "profile",
+      "canonicalNewRoute": "/blog",
+      "finalClassification": "Permanent redirect",
+      "redirectDestination": "/blog",
+      "redirectStatus": 301,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 6,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix member chrome + Facebook avatar + public post list that duplicates /blog posts. Author biography lives at /post/o-mnie. Redirect to /blog."
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/profile/gosianowicka/profile/page-spec.json",
+        "reference/original-site/pages/profile/gosianowicka/profile/content.md",
+        "reference/original-site/screenshots/desktop/profile__gosianowicka__profile.png",
+        "reference/original-site/screenshots/mobile/profile__gosianowicka__profile.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/refer-friends",
+      "originalRoute": "/refer-friends",
+      "archiveDirectory": "refer-friends",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/refer-friends",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/referral",
+      "originalRoute": "/referral",
+      "archiveDirectory": "referral",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/referral",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/regulamin",
+      "originalRoute": "/regulamin",
+      "archiveDirectory": "regulamin",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "legal",
+      "canonicalNewRoute": "/regulamin",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/regulamin/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/regulamin/page-spec.json",
+        "reference/original-site/pages/regulamin/content.md",
+        "reference/original-site/screenshots/desktop/regulamin.png",
+        "reference/original-site/screenshots/mobile/regulamin.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/ceramika-dla-doros%C5%82ych-pon-czw",
+      "originalRoute": "/service-page/ceramika-dla-dorosłych-pon-czw",
+      "archiveDirectory": "service-page/ceramika-dla-dorosłych-pon-czw",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/ceramika-dla-dorosłych-pon-czw",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "9/9",
+      "imageOccurrenceCount": 9,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/ceramika-dla-dorosłych-pon-czw/page-spec.json",
+        "reference/original-site/pages/service-page/ceramika-dla-dorosłych-pon-czw/content.md",
+        "reference/original-site/screenshots/desktop/service-page__ceramika-dla-dorosłych-pon-czw.png",
+        "reference/original-site/screenshots/mobile/service-page__ceramika-dla-dorosłych-pon-czw.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/glina-do-wina-pi%C4%85tek-19-00-suchy-las",
+      "originalRoute": "/service-page/glina-do-wina-piątek-19-00-suchy-las",
+      "archiveDirectory": "service-page/glina-do-wina-piątek-19-00-suchy-las",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/glina-do-wina-piątek-19-00-suchy-las",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "11/11",
+      "imageOccurrenceCount": 11,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/glina-do-wina-piątek-19-00-suchy-las/page-spec.json",
+        "reference/original-site/pages/service-page/glina-do-wina-piątek-19-00-suchy-las/content.md",
+        "reference/original-site/screenshots/desktop/service-page__glina-do-wina-piątek-19-00-suchy-las.png",
+        "reference/original-site/screenshots/mobile/service-page__glina-do-wina-piątek-19-00-suchy-las.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "originalRoute": "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "archiveDirectory": "service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "11/11",
+      "imageOccurrenceCount": 11,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu/page-spec.json",
+        "reference/original-site/pages/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu/content.md",
+        "reference/original-site/screenshots/desktop/service-page__glina-do-wina-w-poznaniu-w-ptasim-radiu.png",
+        "reference/original-site/screenshots/mobile/service-page__glina-do-wina-w-poznaniu-w-ptasim-radiu.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/glina-i-rodzina-soboty-15-00",
+      "originalRoute": "/service-page/glina-i-rodzina-soboty-15-00",
+      "archiveDirectory": "service-page/glina-i-rodzina-soboty-15-00",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/glina-i-rodzina-soboty-15-00",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "6/6",
+      "imageOccurrenceCount": 6,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/glina-i-rodzina-soboty-15-00/page-spec.json",
+        "reference/original-site/pages/service-page/glina-i-rodzina-soboty-15-00/content.md",
+        "reference/original-site/screenshots/desktop/service-page__glina-i-rodzina-soboty-15-00.png",
+        "reference/original-site/screenshots/mobile/service-page__glina-i-rodzina-soboty-15-00.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/iv-turnus-p%C3%B3%C5%82kolonie-artystyczne",
+      "originalRoute": "/service-page/iv-turnus-półkolonie-artystyczne",
+      "archiveDirectory": "service-page/iv-turnus-półkolonie-artystyczne",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/iv-turnus-półkolonie-artystyczne",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "10/10",
+      "imageOccurrenceCount": 10,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/iv-turnus-półkolonie-artystyczne/page-spec.json",
+        "reference/original-site/pages/service-page/iv-turnus-półkolonie-artystyczne/content.md",
+        "reference/original-site/screenshots/desktop/service-page__iv-turnus-półkolonie-artystyczne.png",
+        "reference/original-site/screenshots/mobile/service-page__iv-turnus-półkolonie-artystyczne.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/letnia-akademia-rysunku-malarstwa",
+      "originalRoute": "/service-page/letnia-akademia-rysunku-malarstwa",
+      "archiveDirectory": "service-page/letnia-akademia-rysunku-malarstwa",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/letnia-akademia-rysunku-malarstwa",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "11/11",
+      "imageOccurrenceCount": 11,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/letnia-akademia-rysunku-malarstwa/page-spec.json",
+        "reference/original-site/pages/service-page/letnia-akademia-rysunku-malarstwa/content.md",
+        "reference/original-site/screenshots/desktop/service-page__letnia-akademia-rysunku-malarstwa.png",
+        "reference/original-site/screenshots/mobile/service-page__letnia-akademia-rysunku-malarstwa.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/piknik-rodzinny-z-ceramik%C4%85-12-wrze%C5%9Bnia",
+      "originalRoute": "/service-page/piknik-rodzinny-z-ceramiką-12-września",
+      "archiveDirectory": "service-page/piknik-rodzinny-z-ceramiką-12-września",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/piknik-rodzinny-z-ceramiką-12-września",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "4/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/piknik-rodzinny-z-ceramiką-12-września/page-spec.json",
+        "reference/original-site/pages/service-page/piknik-rodzinny-z-ceramiką-12-września/content.md",
+        "reference/original-site/screenshots/desktop/service-page__piknik-rodzinny-z-ceramiką-12-września.png",
+        "reference/original-site/screenshots/mobile/service-page__piknik-rodzinny-z-ceramiką-12-września.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/piknik-rodzinny-z-ceramik%C4%85-29-sierpnia",
+      "originalRoute": "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia",
+      "archiveDirectory": "service-page/piknik-rodzinny-z-ceramiką-29-sierpnia",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "4/4",
+      "imageOccurrenceCount": 4,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia/page-spec.json",
+        "reference/original-site/pages/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia/content.md",
+        "reference/original-site/screenshots/desktop/service-page__piknik-rodzinny-z-ceramiką-29-sierpnia.png",
+        "reference/original-site/screenshots/mobile/service-page__piknik-rodzinny-z-ceramiką-29-sierpnia.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/poranki-z-ceramik%C4%85-dla-doros%C5%82ych",
+      "originalRoute": "/service-page/poranki-z-ceramiką-dla-dorosłych",
+      "archiveDirectory": "service-page/poranki-z-ceramiką-dla-dorosłych",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/poranki-z-ceramiką-dla-dorosłych",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "8/8",
+      "imageOccurrenceCount": 8,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/poranki-z-ceramiką-dla-dorosłych/page-spec.json",
+        "reference/original-site/pages/service-page/poranki-z-ceramiką-dla-dorosłych/content.md",
+        "reference/original-site/screenshots/desktop/service-page__poranki-z-ceramiką-dla-dorosłych.png",
+        "reference/original-site/screenshots/mobile/service-page__poranki-z-ceramiką-dla-dorosłych.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/wrzesie%C5%84ceramika-dla-doros%C5%82ych-pon",
+      "originalRoute": "/service-page/wrzesieńceramika-dla-dorosłych-pon",
+      "archiveDirectory": "service-page/wrzesieńceramika-dla-dorosłych-pon",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/wrzesieńceramika-dla-dorosłych-pon",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "9/9",
+      "imageOccurrenceCount": 9,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/wrzesieńceramika-dla-dorosłych-pon/page-spec.json",
+        "reference/original-site/pages/service-page/wrzesieńceramika-dla-dorosłych-pon/content.md",
+        "reference/original-site/screenshots/desktop/service-page__wrzesieńceramika-dla-dorosłych-pon.png",
+        "reference/original-site/screenshots/mobile/service-page__wrzesieńceramika-dla-dorosłych-pon.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/service-page/wrzesie%C5%84glina-do-wina-pi%C4%85tek-suchy-las",
+      "originalRoute": "/service-page/wrzesieńglina-do-wina-piątek-suchy-las",
+      "archiveDirectory": "service-page/wrzesieńglina-do-wina-piątek-suchy-las",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-booking-service",
+      "pageType": "service-page",
+      "canonicalNewRoute": "/service-page/wrzesieńglina-do-wina-piątek-suchy-las",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/service-page/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "11/11",
+      "imageOccurrenceCount": 11,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/service-page/wrzesieńglina-do-wina-piątek-suchy-las/page-spec.json",
+        "reference/original-site/pages/service-page/wrzesieńglina-do-wina-piątek-suchy-las/content.md",
+        "reference/original-site/screenshots/desktop/service-page__wrzesieńglina-do-wina-piątek-suchy-las.png",
+        "reference/original-site/screenshots/mobile/service-page__wrzesieńglina-do-wina-piątek-suchy-las.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/services",
+      "originalRoute": "/services",
+      "archiveDirectory": "services",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "services-index",
+      "canonicalNewRoute": "/services",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/services/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "6/6",
+      "imageOccurrenceCount": 6,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/services/page-spec.json",
+        "reference/original-site/pages/services/content.md",
+        "reference/original-site/screenshots/desktop/services.png",
+        "reference/original-site/screenshots/mobile/services.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/services-1",
+      "originalRoute": "/services-1",
+      "archiveDirectory": "services-1",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/services-1",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/services/cosmetic-laser",
+      "originalRoute": "/services/cosmetic-laser",
+      "archiveDirectory": "services/cosmetic-laser",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/services/cosmetic-laser",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/services/facial",
+      "originalRoute": "/services/facial",
+      "archiveDirectory": "services/facial",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/services/facial",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/services/foundations-workshop",
+      "originalRoute": "/services/foundations-workshop",
+      "archiveDirectory": "services/foundations-workshop",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/services/foundations-workshop",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/services/glina-do-wina",
+      "originalRoute": "/services/glina-do-wina",
+      "archiveDirectory": "services/glina-do-wina",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "service-alias",
+      "canonicalNewRoute": "/services/glina-do-wina",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/services/glina-do-wina/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "1/1",
+      "imageOccurrenceCount": 1,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/services/glina-do-wina/page-spec.json",
+        "reference/original-site/pages/services/glina-do-wina/content.md",
+        "reference/original-site/screenshots/desktop/services__glina-do-wina.png",
+        "reference/original-site/screenshots/mobile/services__glina-do-wina.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/services/manicure",
+      "originalRoute": "/services/manicure",
+      "archiveDirectory": "services/manicure",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/services/manicure",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/services/skin-product-consultation",
+      "originalRoute": "/services/skin-product-consultation",
+      "archiveDirectory": "services/skin-product-consultation",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-wix-template-or-system",
+      "pageType": "other",
+      "canonicalNewRoute": "/services/skin-product-consultation",
+      "finalClassification": "Formally excluded system/template route",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Wix Beauty Spa template leftover or system/auth route."
+      ],
+      "evidenceSource": []
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/sklep",
+      "originalRoute": "/sklep",
+      "archiveDirectory": "sklep",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "shop",
+      "canonicalNewRoute": "/sklep",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/sklep/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "2/2",
+      "imageOccurrenceCount": 2,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Local non-transactional cart only; no Stripe/payment/email/order writes"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/sklep/page-spec.json",
+        "reference/original-site/pages/sklep/content.md",
+        "reference/original-site/screenshots/desktop/sklep.png",
+        "reference/original-site/screenshots/mobile/sklep.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny",
+      "originalRoute": "/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny",
+      "archiveDirectory": "szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-event",
+      "pageType": "event",
+      "canonicalNewRoute": "/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/szczeg-y-wydarzenia-i-rejestracja/[slug]/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "2/2",
+      "imageOccurrenceCount": 2,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny/page-spec.json",
+        "reference/original-site/pages/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny/content.md",
+        "reference/original-site/screenshots/desktop/szczeg-y-wydarzenia-i-rejestracja__piknik-rodzinny-warsztaty-wstep-wolny.png",
+        "reference/original-site/screenshots/mobile/szczeg-y-wydarzenia-i-rejestracja__piknik-rodzinny-warsztaty-wstep-wolny.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/terms-conditions",
+      "originalRoute": "/terms-conditions",
+      "archiveDirectory": "terms-conditions",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "legal",
+      "canonicalNewRoute": "/terms-conditions",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/terms-conditions/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "0/0",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/terms-conditions/page-spec.json",
+        "reference/original-site/pages/terms-conditions/content.md",
+        "reference/original-site/screenshots/desktop/terms-conditions.png",
+        "reference/original-site/screenshots/mobile/terms-conditions.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/urodziny",
+      "originalRoute": "/urodziny",
+      "archiveDirectory": "urodziny",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "workshop-landing",
+      "canonicalNewRoute": "/urodziny",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/urodziny/page.tsx",
+      "phase": "phase1",
+      "contentParityStatus": "4/4",
+      "imageParityStatus": "6/6",
+      "imageOccurrenceCount": 6,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/urodziny/page-spec.json",
+        "reference/original-site/pages/urodziny/content.md",
+        "reference/original-site/screenshots/desktop/urodziny.png",
+        "reference/original-site/screenshots/mobile/urodziny.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/vouchery",
+      "originalRoute": "/vouchery",
+      "archiveDirectory": "vouchery",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-marketing",
+      "pageType": "shop",
+      "canonicalNewRoute": "/vouchery",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/vouchery/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "2/2",
+      "imageOccurrenceCount": 2,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Local non-transactional cart only; no Stripe/payment/email/order writes"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/vouchery/page-spec.json",
+        "reference/original-site/pages/vouchery/content.md",
+        "reference/original-site/screenshots/desktop/vouchery.png",
+        "reference/original-site/screenshots/mobile/vouchery.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/warsztaty",
+      "originalRoute": "/warsztaty",
+      "archiveDirectory": "warsztaty",
+      "genuineCeramikaNeroContent": false,
+      "inventoryClassification": "excluded-not-on-original-site",
+      "pageType": "workshops-index",
+      "canonicalNewRoute": "/warsztaty",
+      "finalClassification": "Retained 404 evidence",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": null,
+      "phase": null,
+      "contentParityStatus": "n/a",
+      "imageParityStatus": "n/a",
+      "imageOccurrenceCount": 0,
+      "ctaLinkParityStatus": "n/a",
+      "desktopVerificationStatus": "absent",
+      "mobileVerificationStatus": "absent",
+      "knownDifferences": [
+        "Original HTTP 404; Next.js /warsztaty is first-party booking, not a Wix clone"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/warsztaty/page-spec.json",
+        "reference/original-site/pages/warsztaty/content.md",
+        "reference/original-site/screenshots/desktop/warsztaty.png",
+        "reference/original-site/screenshots/mobile/warsztaty.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/webinar-registration",
+      "originalRoute": "/webinar-registration",
+      "archiveDirectory": "webinar-registration",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-webinar",
+      "pageType": "webinar",
+      "canonicalNewRoute": "/webinar-registration",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/webinar-registration/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "3/3",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "captured",
+      "mobileVerificationStatus": "captured",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/webinar-registration/page-spec.json",
+        "reference/original-site/pages/webinar-registration/content.md",
+        "reference/original-site/screenshots/desktop/webinar-registration.png",
+        "reference/original-site/screenshots/mobile/webinar-registration.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/webinar-registration-1",
+      "originalRoute": "/webinar-registration-1",
+      "archiveDirectory": "webinar-registration-1",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-webinar",
+      "pageType": "webinar",
+      "canonicalNewRoute": "/webinar-registration-1",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/webinar-registration-1/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "3/3",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/webinar-registration-1/page-spec.json",
+        "reference/original-site/pages/webinar-registration-1/content.md",
+        "reference/original-site/screenshots/desktop/webinar-registration-1.png",
+        "reference/original-site/screenshots/mobile/webinar-registration-1.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/webinar-registration-2",
+      "originalRoute": "/webinar-registration-2",
+      "archiveDirectory": "webinar-registration-2",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-webinar",
+      "pageType": "webinar",
+      "canonicalNewRoute": "/webinar-registration-2",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/webinar-registration-2/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "3/3",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/webinar-registration-2/page-spec.json",
+        "reference/original-site/pages/webinar-registration-2/content.md",
+        "reference/original-site/screenshots/desktop/webinar-registration-2.png",
+        "reference/original-site/screenshots/mobile/webinar-registration-2.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/webinar-registration-3",
+      "originalRoute": "/webinar-registration-3",
+      "archiveDirectory": "webinar-registration-3",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-webinar",
+      "pageType": "webinar",
+      "canonicalNewRoute": "/webinar-registration-3",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/webinar-registration-3/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "3/3",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/webinar-registration-3/page-spec.json",
+        "reference/original-site/pages/webinar-registration-3/content.md",
+        "reference/original-site/screenshots/desktop/webinar-registration-3.png",
+        "reference/original-site/screenshots/mobile/webinar-registration-3.png"
+      ]
+    },
+    {
+      "originalUrl": "https://www.ceramikanero.com/webinar-registration-4",
+      "originalRoute": "/webinar-registration-4",
+      "archiveDirectory": "webinar-registration-4",
+      "genuineCeramikaNeroContent": true,
+      "inventoryClassification": "included-webinar",
+      "pageType": "webinar",
+      "canonicalNewRoute": "/webinar-registration-4",
+      "finalClassification": "Implemented directly",
+      "redirectDestination": null,
+      "redirectStatus": null,
+      "implementationFile": "app/webinar-registration-4/page.tsx",
+      "phase": "phase2",
+      "contentParityStatus": "1/1",
+      "imageParityStatus": "3/3",
+      "imageOccurrenceCount": 3,
+      "ctaLinkParityStatus": "1/1",
+      "desktopVerificationStatus": "representative",
+      "mobileVerificationStatus": "representative",
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix runtime mesh/animation omitted",
+        "Wix booking/webinar widgets replaced with archived copy + CTA to first-party catalog/kontakt; no live booking invocation in clone tests"
+      ],
+      "evidenceSource": [
+        "reference/original-site/pages/webinar-registration-4/page-spec.json",
+        "reference/original-site/pages/webinar-registration-4/content.md",
+        "reference/original-site/screenshots/desktop/webinar-registration-4.png",
+        "reference/original-site/screenshots/mobile/webinar-registration-4.png"
+      ]
+    }
+  ]
+}

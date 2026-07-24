@@ -1495,6 +1495,252 @@ export const archivePages = {
       },
     ],
   },
+  '/copy-of-panieński-opis': {
+    title: 'Panieński pakiet VIP 2 | Pracownia Ceramiki N',
+    route: '/copy-of-panieński-opis',
+    sections: [
+      {
+        heading: 'Wieczór panieński',
+        text: 'PAKIET VIP\n\nWieczór panieński\nPAKIET VIP\n\nGlina do wina +koło garncarskie + sesja zdjęciowa\n\nZapraszamy do zorganizowania niezapomnianego wieczoru panieńskiego z naszą pomocą!\n■ imprezy od 5 do 15 osób\n\nWspólne lepienie z gliny dla kobiet w klimacie włoskim z włoską muzyką, przystawkami i lampką wina. Tematyczna dekekoracja sali, sesja zdjęciowa, kręcenie na kole\n\nNasza oferta wieczoru panieńskiego obejmuje:\nKażdy ulepi swój przedmiot popi popijając włoskie wino i jedząc włoskie przystawki\n\nZapewniam fachową pomoc w lepieniu z gliny, narzędzia, materiały, wypał w piecu\n\nKręcenie na kole\n\nSpróbuj swoich sił na profesjonalnym kole garncarskim, Poczuj się jak Deni Moore w filmie uwierz w ducha i uwiecznij to na zdjęciach\n\nProfesjonalna sesja zdjęciowa\n\nSesja będzie przeprowadzona przez profesjonalną fotografkę dla wszystkich uczestniczek , pakiet zdjęć do uzgodnienia\n\nZadzwoń do mnie pod numer telefonu 532 279 101 lub napisz na maila kontakt.ceramikanero@gmail.com\na wyślę Ci ofertę.\nPodaj imię i nazwisko organizatorki\nImię i nazwisko przyszłej panny młodej\nIlość uczestników\nKtóry pakiet wybierasz\nPodaj swój numer telefonu',
+        images: [
+          {
+            alt: 'Happy Women',
+            src: '/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg',
+            dims: '1440x663',
+          },
+          {
+            alt: 'Pottery Class',
+            src: '/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg',
+            dims: '590x483',
+          },
+          {
+            alt: 'Love Wedding Decoration',
+            src: '/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg',
+            dims: '634x483',
+          },
+        ],
+        buttons: [
+          {
+            label: 'kontakt.ceramikanero@gmail.com',
+            href: 'mailto:kontakt.ceramikanero@gmail.com',
+          },
+        ],
+      },
+      {
+        heading: 'Pracownia ceramiki Nero',
+        text: 'Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.',
+        images: [],
+        buttons: [
+          {
+            label: 'nerogosia@gmail.com',
+            href: 'mailto:nerogosia@gmail.com',
+          },
+          {
+            label: 'Zapisz się teraz',
+            href: '#',
+          },
+          {
+            label: 'Zobacz warunki',
+            href: '/terms-conditions',
+          },
+          {
+            label:
+              'Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,',
+            href: '/terms-conditions',
+          },
+          {
+            label: 'Polityka prywatności',
+            href: '/terms-conditions',
+          },
+          {
+            label: '© 2023 by Ceramika Nero.',
+            href: '/terms-conditions',
+          },
+        ],
+      },
+    ],
+    images: [
+      {
+        src: '/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg',
+        alt: 'Happy Women',
+        sectionNumber: 2,
+      },
+      {
+        src: '/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg',
+        alt: 'Pottery Class',
+        sectionNumber: 2,
+      },
+      {
+        src: '/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg',
+        alt: 'Love Wedding Decoration',
+        sectionNumber: 2,
+      },
+    ],
+  },
+  '/kopia-panieński-plus-opis': {
+    title: 'Urodziny ceramika 1 | Pracownia Ceramiki N',
+    route: '/kopia-panieński-plus-opis',
+    sections: [
+      {
+        heading: 'Urodziny z ceramiką dla dzieci',
+        text: 'Urodziny z ceramiką dla dzieci\nZapraszamy na wyjątkowe urodziny, podczas których każde dziecko będzie mogło stworzyć własne przedmioty z gliny!\n■ imprezy od 5 do 12 osób\n■ czas trwania: do ustalenia\n*cena nie obejmuje szkliwienia, szkliwienie za dodatkową opłatą\nNasza oferta urodzin dla dzieci z Ceramiką obejmuje:\nKażdy ulepi swój przedmiot\n\nWarsztaty ceramiczne:\n\nKażde dziecko ulepi swoje unikatowe przedmioty z gliny z moją profesjonalną pomocą. Warsztaty mogą być tematyczne, z ulubionym bohaterem dzieci. Dzieci będą miały okazję stworzyć swoje miseczki śniadaniowe lub kubki z motywem jednorożca, konia, postaciami z bajek Disneya i wiele innych.\n\nPoczęstunek i napoje\n\nTort i zdjęcia:\n\nDzieci będą miały czas na zjedzenie tortu. Jedzenie jest przygotowywane przez rodziców. Możemy również polecić zaprzyjaźnioną cukiernię, która specjalizuje się w pieczeniu pysznych słodkości i tortów.\n\nNapoje:\n\nOferujemy szeroki wybór napojów. Cudowny, klimatyczny lokal.\n\nNasze miejsce jest pełne uroku i udekorowane w wybranym klimacie, co zapewni niezapomnianą atmosferę na przyjęcie urodzinowe.\n\nZdjęcia\n\nDzieci będą miały pamiątkowe zdjęcia przed ścianką ozdobioną w wybranym, ulubionym przez Jubilata klimacie.\n\nNasze miejsce jest pełne uroku, co zapewni niezapomnianą atmosferę na każdym przyjęciu urodzinowym.\n\nZadzwoń do mnie pod numer telefonu 6532 279 101 lub napisz na maila kontakt.ceramikanero@gmail.com\na wyślę Ci ofertę.\nPodaj imię i nazwisko organizatorki\nImię i nazwisko dziecka\nIlość uczestników\nPodaj swój numer telefonu',
+        images: [
+          {
+            alt: 'warsztaty rodzinne.jpg',
+            src: '/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg',
+            dims: '1440x663',
+          },
+          {
+            alt: 'urodzinki',
+            src: '/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg',
+            dims: '590x483',
+          },
+          {
+            alt: '298499225_5545570825464826_7735947504334681268_n_edited.jpg',
+            src: '/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg',
+            dims: '634x483',
+          },
+        ],
+        buttons: [
+          {
+            label: 'kontakt.ceramikanero@gmail.com',
+            href: 'mailto:kontakt.ceramikanero@gmail.com',
+          },
+        ],
+      },
+      {
+        heading: 'Pracownia ceramiki Nero',
+        text: 'Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.',
+        images: [],
+        buttons: [
+          {
+            label: 'nerogosia@gmail.com',
+            href: 'mailto:nerogosia@gmail.com',
+          },
+          {
+            label: 'Zapisz się teraz',
+            href: '#',
+          },
+          {
+            label: 'Zobacz warunki',
+            href: '/terms-conditions',
+          },
+          {
+            label:
+              'Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,',
+            href: '/terms-conditions',
+          },
+          {
+            label: 'Polityka prywatności',
+            href: '/terms-conditions',
+          },
+          {
+            label: '© 2023 by Ceramika Nero.',
+            href: '/terms-conditions',
+          },
+        ],
+      },
+    ],
+    images: [
+      {
+        src: '/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg',
+        alt: 'warsztaty rodzinne.jpg',
+        sectionNumber: 2,
+      },
+      {
+        src: '/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg',
+        alt: 'urodzinki',
+        sectionNumber: 2,
+      },
+      {
+        src: '/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg',
+        alt: '298499225_5545570825464826_7735947504334681268_n_edited.jpg',
+        sectionNumber: 2,
+      },
+    ],
+  },
+  '/kopia-urodziny-ceramika': {
+    title: 'Urodziny malowanie 2 | Pracownia Ceramiki N',
+    route: '/kopia-urodziny-ceramika',
+    sections: [
+      {
+        heading: 'Urodziny z malowaniem dla dzieci',
+        text: 'Urodziny z malowaniem dla dzieci\nZapraszamy na wyjątkowe urodziny, podczas których każde dziecko będzie mogło stworzyć własne dzieła sztuki!\n■ imprezy od 5 do 12 osób\n■ czas trwania: do ustalenia\n*cena nie obejmuje szkliwienia, szkliwienie za dodatkową opłatą\nNasza oferta urodzin z malowaniem dla dzieci obejmuje:\nKażdy ulepi swój przedmiot\n\nWarsztaty malarskie:\n\nKażde dziecko namaluje swoje unikatowe prace pod moją profesjonalną opieką. Warsztaty mogą być tematyczne, z ulubionym bohaterem dzieci. Dzieci będą miały okazję stworzyć obrazy z motywem jednorożca, konia, postaciami z bajek Disneya i wiele innych.\n\nPoczęstunek i napoje\n\nTort i zdjęcia:\n\nDzieci będą miały czas na zjedzenie tortu. Jedzenie jest przygotowywane przez rodziców. Możemy również polecić zaprzyjaźnioną cukiernię, która specjalizuje się w pieczeniu pysznych słodkości i tortów.\n\nNapoje:\n\nOferujemy szeroki wybór napojów. Cudowny, klimatyczny lokal.\n\nNasze miejsce jest pełne uroku i udekorowane w wybranym klimacie, co zapewni niezapomnianą atmosferę na przyjęcie urodzinowe.\n\nZdjęcia i wernisaż\n\nDzieci będą miały pamiątkowe zdjęcia przed ścianką ozdobioną w wybranym, ulubionym przez Jubilata klimacie.\n\nNa koniec warsztatów zorganizujemy mały wernisaż, na którym każde dziecko będzie mogło zaprezentować swoje prace. To wspaniała okazja do pochwał!\n\nNasze miejsce jest pełne uroku, co zapewni niezapomnianą atmosferę na każdym przyjęciu urodzinowym.\n\nZadzwoń do mnie pod numer telefonu 532 279 101 lub napisz na maila kontakt.ceramikanero@gmail.com\na wyślę Ci ofertę.\nPodaj imię i nazwisko organizatorki\nImię i nazwisko dziecka\nIlość uczestników\nPodaj swój numer telefonu',
+        images: [
+          {
+            alt: 'warsztaty rodzinne.jpg',
+            src: '/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg',
+            dims: '1440x663',
+          },
+          {
+            alt: 'urodzinki',
+            src: '/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg',
+            dims: '590x483',
+          },
+          {
+            alt: '298499225_5545570825464826_7735947504334681268_n_edited.jpg',
+            src: '/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg',
+            dims: '634x483',
+          },
+        ],
+        buttons: [
+          {
+            label: 'kontakt.ceramikanero@gmail.com',
+            href: 'mailto:kontakt.ceramikanero@gmail.com',
+          },
+        ],
+      },
+      {
+        heading: 'Pracownia ceramiki Nero',
+        text: 'Pracownia ceramiki Nero\n\n■ ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101\n\n■ Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965​\n\nZapisz się do Newslettera\nZapisz się teraz\nAkceptuję regulaminZobacz warunki\nZapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero, prowadząca jednoosobową działalność gospodarczą pod nazwą Pracownia ceramiki Nero Małorzata Nero z siedzibą w Suchym Lesie (62-002), ul. Podgórna 3, posługującą się numerem NIP 9721134965. Szczegóły związane z przetwarzaniem danych znajdziesz w polityce prywatności.\n\nPolityka prywatności\n\n© 2023 by Ceramika Nero.',
+        images: [],
+        buttons: [
+          {
+            label: 'nerogosia@gmail.com',
+            href: 'mailto:nerogosia@gmail.com',
+          },
+          {
+            label: 'Zapisz się teraz',
+            href: '#',
+          },
+          {
+            label: 'Zobacz warunki',
+            href: '/terms-conditions',
+          },
+          {
+            label:
+              'Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,',
+            href: '/terms-conditions',
+          },
+          {
+            label: 'Polityka prywatności',
+            href: '/terms-conditions',
+          },
+          {
+            label: '© 2023 by Ceramika Nero.',
+            href: '/terms-conditions',
+          },
+        ],
+      },
+    ],
+    images: [
+      {
+        src: '/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg',
+        alt: 'warsztaty rodzinne.jpg',
+        sectionNumber: 2,
+      },
+      {
+        src: '/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg',
+        alt: 'urodzinki',
+        sectionNumber: 2,
+      },
+      {
+        src: '/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg',
+        alt: '298499225_5545570825464826_7735947504334681268_n_edited.jpg',
+        sectionNumber: 2,
+      },
+    ],
+  },
   '/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego': {
     title:
       'GLINA BOX -KURS LEPIENIA Z GLINY PODSTAWKA WIOSENNEGO | Pracownia Ceramiki N',

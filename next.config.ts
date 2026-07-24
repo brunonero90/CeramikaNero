@@ -40,6 +40,18 @@ const nextConfig: NextConfig = {
         destination: '/grupy-i-firmy',
         permanent: true,
       },
+      // Public author activity index duplicates /blog posts already cloned.
+      {
+        source: '/profile/gosianowicka/profile',
+        destination: '/blog',
+        permanent: true,
+      },
+      // Member "browse events" originally pointed at /warsztaty (404); first-party catalog is /.
+      {
+        source: '/profile/gosianowicka/events',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
 };

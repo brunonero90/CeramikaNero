@@ -1,0 +1,796 @@
+{
+  "generatedAt": "2026-07-24T12:30:40.723Z",
+  "legacy": [
+    {
+      "originalRoute": "/copy-of-panieński-opis",
+      "archiveDir": "copy-of-panieński-opis",
+      "title": "Panieński pakiet VIP 2 | Pracownia Ceramiki N",
+      "phraseCount": 21,
+      "imageCount": 3,
+      "buttonCount": 6,
+      "best": {
+        "candidate": "/webinar-registration",
+        "dir": "webinar-registration",
+        "textShared": 15,
+        "textOnlySource": 6,
+        "textOnlyTarget": 6,
+        "textMatchRatio": 0.714,
+        "uniqueSourceSample": [
+          "Glina do wina +koło garncarskie + sesja zdjęciowa",
+          "Każdy ulepi swój przedmiot popi popijając włoskie wino i jedząc włoskie przystawki",
+          "Zapewniam fachową pomoc w lepieniu z gliny, narzędzia, materiały, wypał w piecu",
+          "Spróbuj swoich sił na profesjonalnym kole garncarskim, Poczuj się jak Deni Moore w filmie uwierz w ducha i uwiecznij to na zdjęciach",
+          "Profesjonalna sesja zdjęciowa",
+          "Sesja będzie przeprowadzona przez profesjonalną fotografkę dla wszystkich uczestniczek , pakiet zdjęć do uzgodnienia"
+        ],
+        "uniqueTargetSample": [
+          "Każdy ulepi swoje przedmioty z gliny",
+          "Zapewniam fachową pomoc, wszystkie materiały i narzędzia oraz wypał. To trwała pamiątka na całe życie dla każdej z pań.",
+          "Lampka wina włoskiego dla każdego",
+          "Resztę napoi, tort lub inne dodatki można przywieść swoje po uzgodnieniu",
+          "Przystawki włoskie",
+          "Zapewniam deskę włoskich przystawek dopasowaną do wina"
+        ],
+        "imgShared": 1,
+        "imgOnlySource": [
+          "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+          "/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg"
+        ],
+        "imgOnlyTarget": [
+          "/images/wix-migrated/60975bc6b6c14bd88ea5618a85e14da1.jpg",
+          "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg"
+        ],
+        "sectionCountSource": 3,
+        "sectionCountTarget": 3,
+        "exactMdHashEqual": false
+      },
+      "all": [
+        {
+          "candidate": "/webinar-registration",
+          "dir": "webinar-registration",
+          "textShared": 15,
+          "textOnlySource": 6,
+          "textOnlyTarget": 6,
+          "textMatchRatio": 0.714,
+          "uniqueSourceSample": [
+            "Glina do wina +koło garncarskie + sesja zdjęciowa",
+            "Każdy ulepi swój przedmiot popi popijając włoskie wino i jedząc włoskie przystawki",
+            "Zapewniam fachową pomoc w lepieniu z gliny, narzędzia, materiały, wypał w piecu",
+            "Spróbuj swoich sił na profesjonalnym kole garncarskim, Poczuj się jak Deni Moore w filmie uwierz w ducha i uwiecznij to na zdjęciach",
+            "Profesjonalna sesja zdjęciowa",
+            "Sesja będzie przeprowadzona przez profesjonalną fotografkę dla wszystkich uczestniczek , pakiet zdjęć do uzgodnienia"
+          ],
+          "uniqueTargetSample": [
+            "Każdy ulepi swoje przedmioty z gliny",
+            "Zapewniam fachową pomoc, wszystkie materiały i narzędzia oraz wypał. To trwała pamiątka na całe życie dla każdej z pań.",
+            "Lampka wina włoskiego dla każdego",
+            "Resztę napoi, tort lub inne dodatki można przywieść swoje po uzgodnieniu",
+            "Przystawki włoskie",
+            "Zapewniam deskę włoskich przystawek dopasowaną do wina"
+          ],
+          "imgShared": 1,
+          "imgOnlySource": [
+            "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+            "/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg"
+          ],
+          "imgOnlyTarget": [
+            "/images/wix-migrated/60975bc6b6c14bd88ea5618a85e14da1.jpg",
+            "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg"
+          ],
+          "sectionCountSource": 3,
+          "sectionCountTarget": 3,
+          "exactMdHashEqual": false
+        },
+        {
+          "candidate": "/panienskie",
+          "dir": "panienskie",
+          "textShared": 5,
+          "textOnlySource": 16,
+          "textOnlyTarget": 16,
+          "textMatchRatio": 0.238,
+          "uniqueSourceSample": [
+            "Glina do wina +koło garncarskie + sesja zdjęciowa",
+            "Zapraszamy do zorganizowania niezapomnianego wieczoru panieńskiego z naszą pomocą!",
+            "imprezy od 5 do 15 osób",
+            "Wspólne lepienie z gliny dla kobiet w klimacie włoskim z włoską muzyką, przystawkami i lampką wina. Tematyczna dekekoracja sali, sesja zdjęciowa, kręcenie na kole",
+            "Nasza oferta wieczoru panieńskiego obejmuje:",
+            "Każdy ulepi swój przedmiot popi popijając włoskie wino i jedząc włoskie przystawki",
+            "Zapewniam fachową pomoc w lepieniu z gliny, narzędzia, materiały, wypał w piecu",
+            "Spróbuj swoich sił na profesjonalnym kole garncarskim, Poczuj się jak Deni Moore w filmie uwierz w ducha i uwiecznij to na zdjęciach",
+            "Profesjonalna sesja zdjęciowa",
+            "Sesja będzie przeprowadzona przez profesjonalną fotografkę dla wszystkich uczestniczek , pakiet zdjęć do uzgodnienia",
+            "Zadzwoń do mnie pod numer telefonu 532 279 101 lub napisz na maila kontakt.ceramikanero@gmail.com",
+            "a wyślę Ci ofertę."
+          ],
+          "uniqueTargetSample": [
+            "Wieczory panieńskie",
+            "Szukasz pomysłu na wyjątkowy wieczór panieński pod Poznaniem?",
+            "Pracownia Ceramiki NERO w Suchym Lesie zaprasza na kreatywne warsztaty „Glina do Wina” – idealne połączenie zabawy, wina i tworzenia własnych dzieł z gliny.",
+            "To oryginalna atrakcja na wieczór panieński w Suchym Lesie, która gwarantuje świetną atmosferę, śmiech i niezapomniane wspomnienia z przyjaciółkami.",
+            "Zorganizuj swój kreatywny wieczór panieński i wybierz pakiet dopasowany do Waszych potrzeb!",
+            "Zorganizuj idealny wieczór panieński - wybierz swój PAKIET!",
+            "Każdy ulepi swoje przedmioty z gliny z moją pomocą",
+            "Zapewniam włoskie przystawki"
+          ],
+          "imgShared": 1,
+          "imgOnlySource": [
+            "/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg",
+            "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg"
+          ],
+          "imgOnlyTarget": [
+            "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+            "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+            "/images/wix-migrated/747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg",
+            "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg"
+          ],
+          "sectionCountSource": 3,
+          "sectionCountTarget": 3,
+          "exactMdHashEqual": false
+        },
+        {
+          "candidate": "/glinadowina",
+          "dir": "glinadowina",
+          "textShared": 5,
+          "textOnlySource": 16,
+          "textOnlyTarget": 18,
+          "textMatchRatio": 0.238,
+          "uniqueSourceSample": [
+            "Glina do wina +koło garncarskie + sesja zdjęciowa",
+            "Zapraszamy do zorganizowania niezapomnianego wieczoru panieńskiego z naszą pomocą!",
+            "imprezy od 5 do 15 osób",
+            "Wspólne lepienie z gliny dla kobiet w klimacie włoskim z włoską muzyką, przystawkami i lampką wina. Tematyczna dekekoracja sali, sesja zdjęciowa, kręcenie na kole",
+            "Nasza oferta wieczoru panieńskiego obejmuje:",
+            "Każdy ulepi swój przedmiot popi popijając włoskie wino i jedząc włoskie przystawki",
+            "Zapewniam fachową pomoc w lepieniu z gliny, narzędzia, materiały, wypał w piecu",
+            "Spróbuj swoich sił na profesjonalnym kole garncarskim, Poczuj się jak Deni Moore w filmie uwierz w ducha i uwiecznij to na zdjęciach",
+            "Profesjonalna sesja zdjęciowa",
+            "Sesja będzie przeprowadzona przez profesjonalną fotografkę dla wszystkich uczestniczek , pakiet zdjęć do uzgodnienia",
+            "Zadzwoń do mnie pod numer telefonu 532 279 101 lub napisz na maila kontakt.ceramikanero@gmail.com",
+            "a wyślę Ci ofertę."
+          ],
+          "uniqueTargetSample": [
+            "Zapraszamy na wyjątkowe warsztaty \"Glina do Wina\"",
+            "w Pracowni Ceramiki Nero w Suchym Lesie przy ul. Podgórnej 3.",
+            "To wieczór pełen kreatywności, relaksu i przyjemności, idealny na spędzenie czasu w inspirującej atmosferze.",
+            "Twórcze warsztaty ceramiczne",
+            "pierwsze spotkanie- lepienie, drugie spotkanie po dwóch tygodniach - szkliwienie",
+            "Włoskie przystawki",
+            "Profesjonalne prowadzenie",
+            "Zapewnione wszystkie materiały"
+          ],
+          "imgShared": 0,
+          "imgOnlySource": [
+            "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+            "/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg",
+            "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg"
+          ],
+          "imgOnlyTarget": [
+            "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+            "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+            "/images/wix-migrated/747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+            "/images/wix-migrated/747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b.jpg",
+            "/images/wix-migrated/747d6f_bafb828b6a10428e91beb922a773e6a1.jpg"
+          ],
+          "sectionCountSource": 3,
+          "sectionCountTarget": 3,
+          "exactMdHashEqual": false
+        }
+      ]
+    },
+    {
+      "originalRoute": "/kopia-panieński-plus-opis",
+      "archiveDir": "kopia-panieński-plus-opis",
+      "title": "Urodziny ceramika 1 | Pracownia Ceramiki N",
+      "phraseCount": 24,
+      "imageCount": 3,
+      "buttonCount": 6,
+      "best": {
+        "candidate": "/webinar-registration-1",
+        "dir": "webinar-registration-1",
+        "textShared": 9,
+        "textOnlySource": 15,
+        "textOnlyTarget": 12,
+        "textMatchRatio": 0.375,
+        "uniqueSourceSample": [
+          "Urodziny z ceramiką dla dzieci",
+          "Zapraszamy na wyjątkowe urodziny, podczas których każde dziecko będzie mogło stworzyć własne przedmioty z gliny!",
+          "imprezy od 5 do 12 osób",
+          "czas trwania: do ustalenia",
+          "*cena nie obejmuje szkliwienia, szkliwienie za dodatkową opłatą",
+          "Nasza oferta urodzin dla dzieci z Ceramiką obejmuje:",
+          "Warsztaty ceramiczne:",
+          "Poczęstunek i napoje",
+          "Dzieci będą miały czas na zjedzenie tortu. Jedzenie jest przygotowywane przez rodziców. Możemy również polecić zaprzyjaźnioną cukiernię, która specjalizuje się w pieczeniu pysznych słodkości i tortów.",
+          "Oferujemy szeroki wybór napojów. Cudowny, klimatyczny lokal.",
+          "Nasze miejsce jest pełne uroku i udekorowane w wybranym klimacie, co zapewni niezapomnianą atmosferę na przyjęcie urodzinowe.",
+          "Dzieci będą miały pamiątkowe zdjęcia przed ścianką ozdobioną w wybranym, ulubionym przez Jubilata klimacie."
+        ],
+        "uniqueTargetSample": [
+          "Glina do wina + kręcenie na kole",
+          "Zapraszamy do zorganizowania niezapomnianego wieczoru panieńskiego z naszą pomocą!",
+          "imprezy od 5 do 15 osób",
+          "Wspólne lepienie z gliny dla kobiet w klimacie włoskim z włoską muzyką, przystawkami i lampką wina. Tematyczna dekoracja sali. Każda z uczestniczek może spróbować swoich sił na kole garncarskim.",
+          "Nasza oferta wieczoru panieńskiego obejmuje:",
+          "Zapewniam fachową pomoc w lepieniu z gliny, narzędzia, materiały, wypał w piecu",
+          "Lampka wina+Włoskie przystawki",
+          "Resztę napoi, tort lub inne dodatki można przywieść swoje po uzgodnieniu"
+        ],
+        "imgShared": 0,
+        "imgOnlySource": [
+          "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+          "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+          "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg"
+        ],
+        "imgOnlyTarget": [
+          "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+          "/images/wix-migrated/11062b_66bd1d55c36c4eb9b8db106cf691f67e.jpg",
+          "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg"
+        ],
+        "sectionCountSource": 3,
+        "sectionCountTarget": 3,
+        "exactMdHashEqual": false
+      },
+      "all": [
+        {
+          "candidate": "/webinar-registration-1",
+          "dir": "webinar-registration-1",
+          "textShared": 9,
+          "textOnlySource": 15,
+          "textOnlyTarget": 12,
+          "textMatchRatio": 0.375,
+          "uniqueSourceSample": [
+            "Urodziny z ceramiką dla dzieci",
+            "Zapraszamy na wyjątkowe urodziny, podczas których każde dziecko będzie mogło stworzyć własne przedmioty z gliny!",
+            "imprezy od 5 do 12 osób",
+            "czas trwania: do ustalenia",
+            "*cena nie obejmuje szkliwienia, szkliwienie za dodatkową opłatą",
+            "Nasza oferta urodzin dla dzieci z Ceramiką obejmuje:",
+            "Warsztaty ceramiczne:",
+            "Poczęstunek i napoje",
+            "Dzieci będą miały czas na zjedzenie tortu. Jedzenie jest przygotowywane przez rodziców. Możemy również polecić zaprzyjaźnioną cukiernię, która specjalizuje się w pieczeniu pysznych słodkości i tortów.",
+            "Oferujemy szeroki wybór napojów. Cudowny, klimatyczny lokal.",
+            "Nasze miejsce jest pełne uroku i udekorowane w wybranym klimacie, co zapewni niezapomnianą atmosferę na przyjęcie urodzinowe.",
+            "Dzieci będą miały pamiątkowe zdjęcia przed ścianką ozdobioną w wybranym, ulubionym przez Jubilata klimacie."
+          ],
+          "uniqueTargetSample": [
+            "Glina do wina + kręcenie na kole",
+            "Zapraszamy do zorganizowania niezapomnianego wieczoru panieńskiego z naszą pomocą!",
+            "imprezy od 5 do 15 osób",
+            "Wspólne lepienie z gliny dla kobiet w klimacie włoskim z włoską muzyką, przystawkami i lampką wina. Tematyczna dekoracja sali. Każda z uczestniczek może spróbować swoich sił na kole garncarskim.",
+            "Nasza oferta wieczoru panieńskiego obejmuje:",
+            "Zapewniam fachową pomoc w lepieniu z gliny, narzędzia, materiały, wypał w piecu",
+            "Lampka wina+Włoskie przystawki",
+            "Resztę napoi, tort lub inne dodatki można przywieść swoje po uzgodnieniu"
+          ],
+          "imgShared": 0,
+          "imgOnlySource": [
+            "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+            "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+            "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg"
+          ],
+          "imgOnlyTarget": [
+            "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+            "/images/wix-migrated/11062b_66bd1d55c36c4eb9b8db106cf691f67e.jpg",
+            "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg"
+          ],
+          "sectionCountSource": 3,
+          "sectionCountTarget": 3,
+          "exactMdHashEqual": false
+        },
+        {
+          "candidate": "/panienskie",
+          "dir": "panienskie",
+          "textShared": 5,
+          "textOnlySource": 19,
+          "textOnlyTarget": 15,
+          "textMatchRatio": 0.208,
+          "uniqueSourceSample": [
+            "Urodziny z ceramiką dla dzieci",
+            "Zapraszamy na wyjątkowe urodziny, podczas których każde dziecko będzie mogło stworzyć własne przedmioty z gliny!",
+            "imprezy od 5 do 12 osób",
+            "czas trwania: do ustalenia",
+            "*cena nie obejmuje szkliwienia, szkliwienie za dodatkową opłatą",
+            "Nasza oferta urodzin dla dzieci z Ceramiką obejmuje:",
+            "Każdy ulepi swój przedmiot",
+            "Warsztaty ceramiczne:",
+            "Poczęstunek i napoje",
+            "Dzieci będą miały czas na zjedzenie tortu. Jedzenie jest przygotowywane przez rodziców. Możemy również polecić zaprzyjaźnioną cukiernię, która specjalizuje się w pieczeniu pysznych słodkości i tortów.",
+            "Oferujemy szeroki wybór napojów. Cudowny, klimatyczny lokal.",
+            "Nasze miejsce jest pełne uroku i udekorowane w wybranym klimacie, co zapewni niezapomnianą atmosferę na przyjęcie urodzinowe."
+          ],
+          "uniqueTargetSample": [
+            "Wieczory panieńskie",
+            "Szukasz pomysłu na wyjątkowy wieczór panieński pod Poznaniem?",
+            "Pracownia Ceramiki NERO w Suchym Lesie zaprasza na kreatywne warsztaty „Glina do Wina” – idealne połączenie zabawy, wina i tworzenia własnych dzieł z gliny.",
+            "To oryginalna atrakcja na wieczór panieński w Suchym Lesie, która gwarantuje świetną atmosferę, śmiech i niezapomniane wspomnienia z przyjaciółkami.",
+            "Zorganizuj swój kreatywny wieczór panieński i wybierz pakiet dopasowany do Waszych potrzeb!",
+            "Zorganizuj idealny wieczór panieński - wybierz swój PAKIET!",
+            "Każdy ulepi swoje przedmioty z gliny z moją pomocą",
+            "Zapewniam włoskie przystawki"
+          ],
+          "imgShared": 0,
+          "imgOnlySource": [
+            "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+            "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+            "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg"
+          ],
+          "imgOnlyTarget": [
+            "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+            "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+            "/images/wix-migrated/747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg",
+            "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+            "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg"
+          ],
+          "sectionCountSource": 3,
+          "sectionCountTarget": 3,
+          "exactMdHashEqual": false
+        },
+        {
+          "candidate": "/glinadowina",
+          "dir": "glinadowina",
+          "textShared": 5,
+          "textOnlySource": 19,
+          "textOnlyTarget": 18,
+          "textMatchRatio": 0.208,
+          "uniqueSourceSample": [
+            "Urodziny z ceramiką dla dzieci",
+            "Zapraszamy na wyjątkowe urodziny, podczas których każde dziecko będzie mogło stworzyć własne przedmioty z gliny!",
+            "imprezy od 5 do 12 osób",
+            "czas trwania: do ustalenia",
+            "*cena nie obejmuje szkliwienia, szkliwienie za dodatkową opłatą",
+            "Nasza oferta urodzin dla dzieci z Ceramiką obejmuje:",
+            "Każdy ulepi swój przedmiot",
+            "Warsztaty ceramiczne:",
+            "Poczęstunek i napoje",
+            "Dzieci będą miały czas na zjedzenie tortu. Jedzenie jest przygotowywane przez rodziców. Możemy również polecić zaprzyjaźnioną cukiernię, która specjalizuje się w pieczeniu pysznych słodkości i tortów.",
+            "Oferujemy szeroki wybór napojów. Cudowny, klimatyczny lokal.",
+            "Nasze miejsce jest pełne uroku i udekorowane w wybranym klimacie, co zapewni niezapomnianą atmosferę na przyjęcie urodzinowe."
+          ],
+          "uniqueTargetSample": [
+            "Zapraszamy na wyjątkowe warsztaty \"Glina do Wina\"",
+            "w Pracowni Ceramiki Nero w Suchym Lesie przy ul. Podgórnej 3.",
+            "To wieczór pełen kreatywności, relaksu i przyjemności, idealny na spędzenie czasu w inspirującej atmosferze.",
+            "Twórcze warsztaty ceramiczne",
+            "pierwsze spotkanie- lepienie, drugie spotkanie po dwóch tygodniach - szkliwienie",
+            "Włoskie przystawki",
+            "Profesjonalne prowadzenie",
+            "Zapewnione wszystkie materiały"
+          ],
+          "imgShared": 0,
+          "imgOnlySource": [
+            "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+            "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+            "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg"
+          ],
+          "imgOnlyTarget": [
+            "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+            "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+            "/images/wix-migrated/747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+            "/images/wix-migrated/747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b.jpg",
+            "/images/wix-migrated/747d6f_bafb828b6a10428e91beb922a773e6a1.jpg"
+          ],
+          "sectionCountSource": 3,
+          "sectionCountTarget": 3,
+          "exactMdHashEqual": false
+        }
+      ]
+    },
+    {
+      "originalRoute": "/kopia-urodziny-ceramika",
+      "archiveDir": "kopia-urodziny-ceramika",
+      "title": "Urodziny malowanie 2 | Pracownia Ceramiki N",
+      "phraseCount": 26,
+      "imageCount": 3,
+      "buttonCount": 6,
+      "best": {
+        "candidate": "/urodziny",
+        "dir": "urodziny",
+        "textShared": 5,
+        "textOnlySource": 21,
+        "textOnlyTarget": 39,
+        "textMatchRatio": 0.192,
+        "uniqueSourceSample": [
+          "Urodziny z malowaniem dla dzieci",
+          "Zapraszamy na wyjątkowe urodziny, podczas których każde dziecko będzie mogło stworzyć własne dzieła sztuki!",
+          "imprezy od 5 do 12 osób",
+          "czas trwania: do ustalenia",
+          "*cena nie obejmuje szkliwienia, szkliwienie za dodatkową opłatą",
+          "Nasza oferta urodzin z malowaniem dla dzieci obejmuje:",
+          "Każdy ulepi swój przedmiot",
+          "Warsztaty malarskie:",
+          "Poczęstunek i napoje",
+          "Dzieci będą miały czas na zjedzenie tortu. Jedzenie jest przygotowywane przez rodziców. Możemy również polecić zaprzyjaźnioną cukiernię, która specjalizuje się w pieczeniu pysznych słodkości i tortów.",
+          "Oferujemy szeroki wybór napojów. Cudowny, klimatyczny lokal.",
+          "Nasze miejsce jest pełne uroku i udekorowane w wybranym klimacie, co zapewni niezapomnianą atmosferę na przyjęcie urodzinowe."
+        ],
+        "uniqueTargetSample": [
+          "pełne kreatywności i zabawy",
+          "Zorganizuj niezapomniane urodziny w Pracowni Ceramiki Nero i podaruj swojemu dziecku oraz jego przyjaciołom wyjątkowy dzień pełen kreatywności i radości! Czekamy na Was z otwartymi ramionami i mnóstwem inspiracji.",
+          "Czy szukasz wyjątkowego pomysłu na urodziny swojego dziecka?",
+          "Chcesz, aby ten dzień był niezapomniany i pełen radości?",
+          "Pracownia Ceramiki Nero zaprasza na specjalne warsztaty urodzinowe,",
+          "które połączą twórczą zabawę z niezapomnianymi wspomnieniami!",
+          "Napisz na nerogosia@gmail.com i poproś o ofertę.",
+          "Warsztaty Ceramiczne od 5 do 15 dzieci pod okiem naszych doświadczonych instruktorów."
+        ],
+        "imgShared": 0,
+        "imgOnlySource": [
+          "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+          "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+          "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg"
+        ],
+        "imgOnlyTarget": [
+          "/images/wix-migrated/747d6f_5aaae6b332304ef5ba65344c8eb11ce0.jpg",
+          "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+          "/images/wix-migrated/747d6f_e0f7a1b2accc4542a5fec56b5ba4b975.jpg",
+          "/images/wix-migrated/747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg",
+          "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+          "/images/wix-migrated/747d6f_cd2460d4d3c1409b91c31dba9f7db804.png"
+        ],
+        "sectionCountSource": 3,
+        "sectionCountTarget": 3,
+        "exactMdHashEqual": false
+      },
+      "all": [
+        {
+          "candidate": "/urodziny",
+          "dir": "urodziny",
+          "textShared": 5,
+          "textOnlySource": 21,
+          "textOnlyTarget": 39,
+          "textMatchRatio": 0.192,
+          "uniqueSourceSample": [
+            "Urodziny z malowaniem dla dzieci",
+            "Zapraszamy na wyjątkowe urodziny, podczas których każde dziecko będzie mogło stworzyć własne dzieła sztuki!",
+            "imprezy od 5 do 12 osób",
+            "czas trwania: do ustalenia",
+            "*cena nie obejmuje szkliwienia, szkliwienie za dodatkową opłatą",
+            "Nasza oferta urodzin z malowaniem dla dzieci obejmuje:",
+            "Każdy ulepi swój przedmiot",
+            "Warsztaty malarskie:",
+            "Poczęstunek i napoje",
+            "Dzieci będą miały czas na zjedzenie tortu. Jedzenie jest przygotowywane przez rodziców. Możemy również polecić zaprzyjaźnioną cukiernię, która specjalizuje się w pieczeniu pysznych słodkości i tortów.",
+            "Oferujemy szeroki wybór napojów. Cudowny, klimatyczny lokal.",
+            "Nasze miejsce jest pełne uroku i udekorowane w wybranym klimacie, co zapewni niezapomnianą atmosferę na przyjęcie urodzinowe."
+          ],
+          "uniqueTargetSample": [
+            "pełne kreatywności i zabawy",
+            "Zorganizuj niezapomniane urodziny w Pracowni Ceramiki Nero i podaruj swojemu dziecku oraz jego przyjaciołom wyjątkowy dzień pełen kreatywności i radości! Czekamy na Was z otwartymi ramionami i mnóstwem inspiracji.",
+            "Czy szukasz wyjątkowego pomysłu na urodziny swojego dziecka?",
+            "Chcesz, aby ten dzień był niezapomniany i pełen radości?",
+            "Pracownia Ceramiki Nero zaprasza na specjalne warsztaty urodzinowe,",
+            "które połączą twórczą zabawę z niezapomnianymi wspomnieniami!",
+            "Napisz na nerogosia@gmail.com i poproś o ofertę.",
+            "Warsztaty Ceramiczne od 5 do 15 dzieci pod okiem naszych doświadczonych instruktorów."
+          ],
+          "imgShared": 0,
+          "imgOnlySource": [
+            "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+            "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+            "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg"
+          ],
+          "imgOnlyTarget": [
+            "/images/wix-migrated/747d6f_5aaae6b332304ef5ba65344c8eb11ce0.jpg",
+            "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+            "/images/wix-migrated/747d6f_e0f7a1b2accc4542a5fec56b5ba4b975.jpg",
+            "/images/wix-migrated/747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg",
+            "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+            "/images/wix-migrated/747d6f_cd2460d4d3c1409b91c31dba9f7db804.png"
+          ],
+          "sectionCountSource": 3,
+          "sectionCountTarget": 3,
+          "exactMdHashEqual": false
+        },
+        {
+          "candidate": "/glinadowina",
+          "dir": "glinadowina",
+          "textShared": 5,
+          "textOnlySource": 21,
+          "textOnlyTarget": 18,
+          "textMatchRatio": 0.192,
+          "uniqueSourceSample": [
+            "Urodziny z malowaniem dla dzieci",
+            "Zapraszamy na wyjątkowe urodziny, podczas których każde dziecko będzie mogło stworzyć własne dzieła sztuki!",
+            "imprezy od 5 do 12 osób",
+            "czas trwania: do ustalenia",
+            "*cena nie obejmuje szkliwienia, szkliwienie za dodatkową opłatą",
+            "Nasza oferta urodzin z malowaniem dla dzieci obejmuje:",
+            "Każdy ulepi swój przedmiot",
+            "Warsztaty malarskie:",
+            "Poczęstunek i napoje",
+            "Dzieci będą miały czas na zjedzenie tortu. Jedzenie jest przygotowywane przez rodziców. Możemy również polecić zaprzyjaźnioną cukiernię, która specjalizuje się w pieczeniu pysznych słodkości i tortów.",
+            "Oferujemy szeroki wybór napojów. Cudowny, klimatyczny lokal.",
+            "Nasze miejsce jest pełne uroku i udekorowane w wybranym klimacie, co zapewni niezapomnianą atmosferę na przyjęcie urodzinowe."
+          ],
+          "uniqueTargetSample": [
+            "Zapraszamy na wyjątkowe warsztaty \"Glina do Wina\"",
+            "w Pracowni Ceramiki Nero w Suchym Lesie przy ul. Podgórnej 3.",
+            "To wieczór pełen kreatywności, relaksu i przyjemności, idealny na spędzenie czasu w inspirującej atmosferze.",
+            "Twórcze warsztaty ceramiczne",
+            "pierwsze spotkanie- lepienie, drugie spotkanie po dwóch tygodniach - szkliwienie",
+            "Włoskie przystawki",
+            "Profesjonalne prowadzenie",
+            "Zapewnione wszystkie materiały"
+          ],
+          "imgShared": 0,
+          "imgOnlySource": [
+            "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+            "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+            "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg"
+          ],
+          "imgOnlyTarget": [
+            "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+            "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+            "/images/wix-migrated/747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+            "/images/wix-migrated/747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b.jpg",
+            "/images/wix-migrated/747d6f_bafb828b6a10428e91beb922a773e6a1.jpg"
+          ],
+          "sectionCountSource": 3,
+          "sectionCountTarget": 3,
+          "exactMdHashEqual": false
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "route": "/profile/gosianowicka/profile",
+      "title": "Gosia Nero | Profile",
+      "phraseCount": 22,
+      "imageCount": 5,
+      "phrasesSample": [
+        "4: Pracownia ceramiki Nero",
+        "Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Polityka prywatności",
+        "© 2023 by Ceramika Nero.",
+        "Data dołączenia 3 paź 2022",
+        "0 najlepszych odpowiedzi",
+        "10 lip 2026 ∙ 1 min",
+        "Letnia akademia artystyczna całe wakacje",
+        "10 lip 2026 ∙ 2 min",
+        "Dlaczego Warto Wybrać Naszą Pracownię Ceramiki dla Twoich Kreatywnych Potrzeb?",
+        "14 sie 2025 ∙ 2 min",
+        "Startujemy z zapisamy na wrzesień! Bogata oferta warsztatów dla dzieci Rysunek, malarstwo, ceramika, Sensoceramika, Architektura",
+        "Kursy Rysunku, Malarstwa i Ceramiki w Suchym Lesie – Zapisz się na Nowy Rok Szkolny Chcesz rozwijać artystyczne talenty swojego dziecka?...",
+        "8 cze 2025 ∙ 1 min"
+      ],
+      "buttonsSample": [
+        {
+          "label": "Profile",
+          "href": "/profile/gosianowicka/profile"
+        },
+        {
+          "label": "Forum Comments",
+          "href": "/profile/gosianowicka/forum-comments"
+        },
+        {
+          "label": "Forum Posts",
+          "href": "/profile/gosianowicka/forum-posts"
+        },
+        {
+          "label": "Events",
+          "href": "/profile/gosianowicka/events"
+        },
+        {
+          "label": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "label": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "Polityka prywatności",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "© 2023 by Ceramika Nero.",
+          "href": "/terms-conditions"
+        }
+      ],
+      "signals": {
+        "hasLogin": true,
+        "hasForum": true,
+        "hasEvents": true,
+        "hasBio": true,
+        "mentionsFollowers": true,
+        "wixIdentity": true
+      },
+      "rawExists": true
+    },
+    {
+      "route": "/profile/gosianowicka/events",
+      "title": "Gosia Nero | Events",
+      "phraseCount": 10,
+      "imageCount": 1,
+      "phrasesSample": [
+        "4: Pracownia ceramiki Nero",
+        "Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Polityka prywatności",
+        "© 2023 by Ceramika Nero.",
+        "Tutaj możesz śledzić swoje wydarzenia i zarządzać nimi.",
+        "Nie ma żadnych biletów ani potwierdzeń udziału",
+        "Przeglądaj wydarzenia",
+        "Piknik rodzinny + warsztaty wstęp wolny",
+        "24 maj 2025, 10:30"
+      ],
+      "buttonsSample": [
+        {
+          "label": "Profile",
+          "href": "/profile/gosianowicka/profile"
+        },
+        {
+          "label": "Forum Comments",
+          "href": "/profile/gosianowicka/forum-comments"
+        },
+        {
+          "label": "Forum Posts",
+          "href": "/profile/gosianowicka/forum-posts"
+        },
+        {
+          "label": "Events",
+          "href": "/profile/gosianowicka/events"
+        },
+        {
+          "label": "Przeglądaj wydarzenia",
+          "href": "/warsztaty"
+        },
+        {
+          "label": "Piknik rodzinny + warsztaty wstęp wolny",
+          "href": "/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny"
+        },
+        {
+          "label": "Szczegóły",
+          "href": "/szczeg-y-wydarzenia-i-rejestracja/piknik-rodzinny-warsztaty-wstep-wolny"
+        },
+        {
+          "label": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "label": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        }
+      ],
+      "signals": {
+        "hasLogin": true,
+        "hasForum": true,
+        "hasEvents": true,
+        "hasBio": true,
+        "mentionsFollowers": true,
+        "wixIdentity": true
+      },
+      "rawExists": true
+    },
+    {
+      "route": "/profile/gosianowicka/forum-posts",
+      "title": "Gosia Nero | Forum Posts",
+      "phraseCount": 5,
+      "imageCount": 0,
+      "phrasesSample": [
+        "4: Pracownia ceramiki Nero",
+        "Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Polityka prywatności",
+        "© 2023 by Ceramika Nero."
+      ],
+      "buttonsSample": [
+        {
+          "label": "Profile",
+          "href": "/profile/gosianowicka/profile"
+        },
+        {
+          "label": "Forum Comments",
+          "href": "/profile/gosianowicka/forum-comments"
+        },
+        {
+          "label": "Forum Posts",
+          "href": "/profile/gosianowicka/forum-posts"
+        },
+        {
+          "label": "Events",
+          "href": "/profile/gosianowicka/events"
+        },
+        {
+          "label": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "label": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "Polityka prywatności",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "© 2023 by Ceramika Nero.",
+          "href": "/terms-conditions"
+        }
+      ],
+      "signals": {
+        "hasLogin": true,
+        "hasForum": true,
+        "hasEvents": true,
+        "hasBio": true,
+        "mentionsFollowers": true,
+        "wixIdentity": true
+      },
+      "rawExists": true
+    },
+    {
+      "route": "/profile/gosianowicka/forum-comments",
+      "title": "Gosia Nero | Forum Comments",
+      "phraseCount": 5,
+      "imageCount": 0,
+      "phrasesSample": [
+        "4: Pracownia ceramiki Nero",
+        "Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Polityka prywatności",
+        "© 2023 by Ceramika Nero."
+      ],
+      "buttonsSample": [
+        {
+          "label": "Profile",
+          "href": "/profile/gosianowicka/profile"
+        },
+        {
+          "label": "Forum Comments",
+          "href": "/profile/gosianowicka/forum-comments"
+        },
+        {
+          "label": "Forum Posts",
+          "href": "/profile/gosianowicka/forum-posts"
+        },
+        {
+          "label": "Events",
+          "href": "/profile/gosianowicka/events"
+        },
+        {
+          "label": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "label": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "Polityka prywatności",
+          "href": "/terms-conditions"
+        },
+        {
+          "label": "© 2023 by Ceramika Nero.",
+          "href": "/terms-conditions"
+        }
+      ],
+      "signals": {
+        "hasLogin": true,
+        "hasForum": true,
+        "hasEvents": true,
+        "hasBio": true,
+        "mentionsFollowers": true,
+        "wixIdentity": true
+      },
+      "rawExists": true
+    }
+  ]
+}

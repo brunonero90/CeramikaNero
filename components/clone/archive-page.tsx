@@ -32,12 +32,17 @@ export function ArchivePageView({
   page: ArchivePageData;
   bookingAdaptation?: { href: string; label: string };
 }) {
+  const heading =
+    page.title.replace(/\s*\|\s*Pracownia Ceramiki N.*$/i, '').trim() ||
+    page.sections.find((s) => s.heading)?.heading ||
+    page.title ||
+    'Ceramika Nero';
+
   return (
     <div className="bg-surface-bg">
       <header className="mx-auto max-w-3xl px-4 pt-12 pb-6 text-center md:px-6 md:pt-16">
         <h1 className="font-heading text-3xl font-semibold text-text-primary md:text-4xl">
-          {page.title.replace(/\s*\|\s*Pracownia Ceramiki N.*$/i, '').trim() ||
-            page.title}
+          {heading}
         </h1>
       </header>
 

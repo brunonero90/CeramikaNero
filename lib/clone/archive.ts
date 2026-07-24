@@ -5,7 +5,30 @@ export function getArchivePage(route: string): ArchivePageData | null {
   const page = (archivePages as unknown as Record<string, ArchivePageData>)[
     route
   ];
-  return page ?? null;
+  if (!page) return null;
+  // Detach from `as const` fixtures for safe RSC/SSG serialization.
+  const cloned = JSON.parse(JSON.stringify(page)) as ArchivePageData;
+  // Strip zero-width / bidi marks that can break HTML attribute serialization.
+  const scrub = (s: string) =>
+    s.replace(/[\u200b\u200c\u200d\ufeff\u2028\u2029]/g, '');
+  return {
+    ...cloned,
+    title: scrub(cloned.title),
+    sections: cloned.sections.map((section) => ({
+      ...section,
+      heading: section.heading ? scrub(section.heading) : section.heading,
+      text: scrub(section.text),
+      buttons: section.buttons.map((b) => ({
+        label: scrub(b.label),
+        href: scrub(b.href),
+      })),
+      images: section.images.map((img) => ({
+        ...img,
+        alt: scrub(img.alt || ''),
+        src: scrub(img.src),
+      })),
+    })),
+  };
 }
 
 export function listArchiveRoutes(): string[] {

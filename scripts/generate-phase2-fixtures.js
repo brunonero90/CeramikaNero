@@ -266,6 +266,9 @@ const phase2Dirs = [
   'webinar-registration-2',
   'webinar-registration-3',
   'webinar-registration-4',
+  'copy-of-panieński-opis',
+  'kopia-panieński-plus-opis',
+  'kopia-urodziny-ceramika',
 ];
 
 const productDirs = fs.existsSync(path.join(pagesRoot, 'product-page'))

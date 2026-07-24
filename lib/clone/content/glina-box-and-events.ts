@@ -156,7 +156,7 @@ export const urodzinyPage = {
       imageAlt: '439195153_7659636140724940_2885825421017431008_n.jpg',
       imageFirst: true,
       ctaLabel: 'Więcej szczegółów...',
-      ctaHref: '/kontakt',
+      ctaHref: '/kopia-panieński-plus-opis',
       tinted: true,
     },
     {
@@ -216,8 +216,7 @@ export const urodzinyPage = {
       imageAlt: 'URODZINY Z MALOWANIEM',
       imageFirst: false,
       ctaLabel: 'Napisz do nas',
-      ctaHref:
-        'mailto:nerogosia@gmail.com?subject=Urodziny%20z%20malowaniem%20',
+      ctaHref: '/kopia-urodziny-ceramika',
       tinted: false,
     },
   ] satisfies SplitBlock[],
@@ -295,7 +294,7 @@ export const panienskiePage = {
       imageAlt: 'Happy Women',
       imageFirst: true,
       ctaLabel: 'Więcej szczegółów...',
-      ctaHref: '/kontakt',
+      ctaHref: '/copy-of-panieński-opis',
       tinted: true,
     },
   ] satisfies SplitBlock[],

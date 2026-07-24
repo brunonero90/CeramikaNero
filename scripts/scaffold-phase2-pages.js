@@ -12,7 +12,7 @@ const archivePath = path.join(
   'lib/clone/content/phase2/archive-pages.ts'
 );
 const text = fs.readFileSync(archivePath, 'utf8');
-const routes = [...text.matchAll(/"(\/[^"]+)": \{/g)].map((m) => m[1]);
+const routes = [...text.matchAll(/['"](\/[^'"]+)['"]:\s*\{/g)].map((m) => m[1]);
 
 function pageTemplate(route) {
   return `import type { Metadata } from 'next';
@@ -67,6 +67,8 @@ for (const route of routes) {
     'app/pracownia/page.tsx',
     'app/galeria/page.tsx',
     'app/home/page.tsx',
+    'app/cart/page.tsx',
+    'app/kontakt/page.tsx',
   ]);
   if (skip.has(path.relative(root, file).replace(/\\/g, '/'))) continue;
   fs.writeFileSync(file, pageTemplate(route));
