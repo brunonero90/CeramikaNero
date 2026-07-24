@@ -3,7 +3,7 @@ import { mapGalleryItem } from '@/lib/database/mappers';
 import type { GalleryItem } from '@/lib/database/types';
 
 export async function getVisible(): Promise<GalleryItem[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('gallery_items')
     .select('*')
@@ -15,7 +15,7 @@ export async function getVisible(): Promise<GalleryItem[]> {
 }
 
 export async function getAll(): Promise<GalleryItem[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('gallery_items')
     .select('*')
@@ -29,7 +29,7 @@ export async function getBySlug(
   slug: string,
   includeUnpublished = false
 ): Promise<GalleryItem | null> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('gallery_items')
     .select('*')

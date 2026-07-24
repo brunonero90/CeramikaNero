@@ -17,7 +17,7 @@ export type BlogPostActionState =
   | { ok: false; errors: Record<string, string>; formError?: string };
 
 async function validateBlogPostForm(
-  supabase: ReturnType<typeof createClient>,
+  supabase: Awaited<ReturnType<typeof createClient>>,
   formData: FormData,
   excludeId?: string
 ): Promise<
@@ -84,7 +84,7 @@ export async function createBlogPostAction(
   formData: FormData
 ): Promise<BlogPostActionState> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const validated = await validateBlogPostForm(supabase, formData);
   if (!validated.ok) return validated;
@@ -138,7 +138,7 @@ export async function updateBlogPostAction(
   formData: FormData
 ): Promise<BlogPostActionState> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: existing } = await supabase
     .from('blog_posts')
@@ -221,7 +221,7 @@ export async function changeBlogPostStatusAction(
   status: 'draft' | 'published' | 'archived'
 ): Promise<BlogPostActionState> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const update: {
     status: string;

@@ -18,7 +18,7 @@ export async function addAdminUserAction(
   formData: FormData
 ): Promise<AdminUserActionState> {
   const admin = await requireOwner();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const parsed = adminUserInputSchema.safeParse({
     userId: formData.get('userId'),
@@ -72,7 +72,7 @@ export async function updateAdminUserAction(
   formData: FormData
 ): Promise<AdminUserActionState> {
   const admin = await requireOwner();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const parsed = adminUserRoleChangeSchema.safeParse({
     userId,

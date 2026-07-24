@@ -8,7 +8,7 @@ export default async function ReservationPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: workshop } = await supabase
     .from('workshops')

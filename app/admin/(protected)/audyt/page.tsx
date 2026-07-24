@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function AuditPage() {
   await requireOwner();
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: events } = await supabase
     .from('admin_audit_log')
     .select(

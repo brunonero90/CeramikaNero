@@ -18,7 +18,7 @@ export default async function EditInstructorPage({
 }) {
   const { id } = await params;
   await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: instructor } = await supabase
     .from('instructors')

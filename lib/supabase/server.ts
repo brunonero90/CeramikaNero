@@ -3,28 +3,30 @@ import { cookies } from 'next/headers';
 import type { Database } from '@/lib/database/types';
 import { requirePublicEnv } from './environment';
 
-export function createClient() {
+/**
+ * Cookie-backed Supabase client for Server Components, Server Actions and
+ * Route Handlers. Must be awaited so cookie writes succeed during login.
+ */
+export async function createClient() {
   const env = requirePublicEnv();
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
 
   return createServerClient<Database>(
     env.NEXT_PUBLIC_SUPABASE_URL,
     env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
     {
       cookies: {
-        async getAll() {
-          return (await cookieStore).getAll();
+        getAll() {
+          return cookieStore.getAll();
         },
-        async setAll(cookiesToSet) {
+        setAll(cookiesToSet) {
           try {
-            const store = await cookieStore;
             cookiesToSet.forEach(({ name, value, options }) =>
-              store.set(name, value, options)
+              cookieStore.set(name, value, options)
             );
           } catch {
-            // The `setAll` method was called from a Server Component.
-            // This can be ignored when only reading data; sessions are not
-            // refreshed in this phase.
+            // setAll can throw when called from a Server Component that only
+            // reads the session. Session refresh happens in proxy.ts.
           }
         },
       },

@@ -5,7 +5,7 @@ import type { LegacyRedirect } from '@/lib/database/types';
 export async function getBySourcePath(
   sourcePath: string
 ): Promise<LegacyRedirect | null> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('legacy_redirects')
     .select('*')

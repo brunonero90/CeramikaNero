@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { requireAdmin } from '@/lib/admin/auth';
+import { getCurrentAdmin } from '@/lib/admin/auth';
 import { AdminHeader } from './components/admin-header';
 import { Sidebar } from './components/sidebar';
 import { Breadcrumbs } from './components/breadcrumbs';
@@ -11,10 +11,10 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const admin = await requireAdmin();
+  const admin = await getCurrentAdmin();
 
   if (!admin) {
-    redirect('/admin/login');
+    redirect('/admin/login?error=unauthorized');
   }
 
   return (

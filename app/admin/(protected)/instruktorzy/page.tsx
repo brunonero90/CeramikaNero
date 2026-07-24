@@ -18,7 +18,7 @@ export default async function InstructorsAdminPage({
 }) {
   await requireAnyRole(['manager']);
   const params = await searchParams;
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const q = typeof params.q === 'string' ? params.q : '';
   const page = Math.max(1, Number(params.page ?? 1));

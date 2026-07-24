@@ -1,0 +1,51 @@
+{
+  "mode": "dry-run",
+  "blocked": false,
+  "guards": [],
+  "target": {
+    "projectRef": "zorxzyvmcbwucvaywmuu",
+    "host": "zorxzyvmcbwucvaywmuu.supabase.co",
+    "seedEnv": null
+  },
+  "architecture": "content_pages.content stores clone-page-v1 JSON; presentation stays in React",
+  "pagesProposed": [
+    "kontakt",
+    "faq",
+    "regulamin",
+    "terms-conditions",
+    "dostawy-i-zwroty",
+    "sklep",
+    "vouchery",
+    "gift-card",
+    "cart",
+    "services",
+    "glinadowina",
+    "dla-dzieci",
+    "dla-doroslych",
+    "grupy-i-firmy",
+    "pracownia",
+    "galeria",
+    "home"
+  ],
+  "pageCount": 17,
+  "note": "Static fixtures remain the live fallback until Bruno approves apply. No production mutation in this dry-run.",
+  "schemaMigrationRequired": false,
+  "schemaNote": "Reuses content_pages.content text column with documented JSON format clone-page-v1. No migration required for structured documents.",
+  "cannotRepresentSafely": [
+    "pracownia midCopy / partner badge (kept as static structural JSX)",
+    "grupy-i-firmy introBullets / whoBullets (kept as static structural JSX)",
+    "Nested dynamic archive routes (service-page/*, booking-calendar/*) remain archive fixtures",
+    "Blog posts stay on clone archive path until separate blog CMS cutover"
+  ],
+  "workshopCatalogSeparate": true,
+  "workshopCatalogNote": "Operational workshops/sessions use workshops + workshop_sessions tables — not duplicated into page JSON.",
+  "rollback": "Delete or unpublish content_pages rows by slug; public pages fall back to static fixtures automatically.",
+  "visualParity": "resolveClonePage validates JSON; invalid/missing DB content uses static registry unchanged.",
+  "awaitingBrunoApproval": true,
+  "existingContentPages": 0,
+  "expected": {
+    "insert": 17,
+    "update": 0,
+    "skip": 0
+  }
+}

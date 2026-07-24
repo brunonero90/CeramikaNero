@@ -19,7 +19,7 @@ export default async function BlogAdminPage({
 }) {
   await requireAnyRole(['editor', 'manager']);
   const params = await searchParams;
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const q = typeof params.q === 'string' ? params.q : '';
   const status = typeof params.status === 'string' ? params.status : '';

@@ -21,7 +21,7 @@ export default async function WorkshopsAdminPage({
 }) {
   await requireAnyRole(['manager']);
   const params = await searchParams;
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const q = typeof params.q === 'string' ? params.q : '';
   const category = typeof params.category === 'string' ? params.category : '';
@@ -141,7 +141,14 @@ export default async function WorkshopsAdminPage({
             {workshops && workshops.length > 0 ? (
               workshops.map((row) => (
                 <tr key={row.id} className="border-b last:border-b-0">
-                  <td className="px-4 py-2 font-medium">{row.title}</td>
+                  <td className="px-4 py-2 font-medium">
+                    {row.title}
+                    {row.status === 'draft' ? (
+                      <span className="mt-1 block text-xs font-normal text-amber-700">
+                        Wymaga uzupełnienia — niepublikowane
+                      </span>
+                    ) : null}
+                  </td>
                   <td className="px-4 py-2">
                     {categoryNames.get(row.category_id) ?? '—'}
                   </td>

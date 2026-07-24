@@ -5,20 +5,24 @@ import { createClient } from '@/lib/supabase/server';
 import { requireAnyRole } from '@/lib/admin/auth';
 import { recordAuditEvent } from '@/lib/admin/audit';
 import { pageInputSchema } from '@/lib/admin/schemas';
+import { validateClonePageContentForSave } from '@/lib/cms/page-document';
 import { isReservedPageSlug } from '@/lib/utils/reserved-slugs';
 
 export type PageActionState =
   | { ok: true; id?: string; message: string }
   | { ok: false; errors: Record<string, string>; formError?: string };
 
-export async function createPageAction(
-  _prevState: PageActionState | undefined,
-  formData: FormData
-): Promise<PageActionState> {
-  const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+function normalizePublishedAt(value: FormDataEntryValue | null): string | null {
+  if (!value || typeof value !== 'string' || !value.trim()) return null;
+  const raw = value.trim();
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(raw)) {
+    return new Date(`${raw}:00`).toISOString();
+  }
+  return raw;
+}
 
-  const parsed = pageInputSchema.safeParse({
+function parsePageForm(formData: FormData) {
+  return pageInputSchema.safeParse({
     title: formData.get('title'),
     slug: formData.get('slug'),
     excerpt: formData.get('excerpt') || null,
@@ -27,8 +31,18 @@ export async function createPageAction(
     suggestedTheme: formData.get('suggestedTheme') || null,
     seoTitle: formData.get('seoTitle') || null,
     seoDescription: formData.get('seoDescription') || null,
-    publishedAt: formData.get('publishedAt') || null,
+    publishedAt: normalizePublishedAt(formData.get('publishedAt')),
   });
+}
+
+export async function createPageAction(
+  _prevState: PageActionState | undefined,
+  formData: FormData
+): Promise<PageActionState> {
+  const admin = await requireAnyRole(['editor', 'manager']);
+  const supabase = await createClient();
+
+  const parsed = parsePageForm(formData);
 
   if (!parsed.success) {
     const errors: Record<string, string> = {};
@@ -39,7 +53,17 @@ export async function createPageAction(
   }
 
   const data = parsed.data;
-  if (isReservedPageSlug(data.slug)) {
+  const cmsError = validateClonePageContentForSave(data.content);
+  if (cmsError) {
+    return { ok: false, errors: { content: cmsError }, formError: cmsError };
+  }
+
+  // Reserved clone routes may be managed in CMS after import; create is blocked
+  // only for app-owned operational routes that are not content pages.
+  if (
+    isReservedPageSlug(data.slug) &&
+    !data.content?.includes('clone-page-v1')
+  ) {
     return {
       ok: false,
       errors: { slug: 'Ten slug jest zarezerwowany przez aplikację.' },
@@ -91,19 +115,9 @@ export async function updatePageAction(
   formData: FormData
 ): Promise<PageActionState> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
-  const parsed = pageInputSchema.safeParse({
-    title: formData.get('title'),
-    slug: formData.get('slug'),
-    excerpt: formData.get('excerpt') || null,
-    content: formData.get('content') || null,
-    status: formData.get('status'),
-    suggestedTheme: formData.get('suggestedTheme') || null,
-    seoTitle: formData.get('seoTitle') || null,
-    seoDescription: formData.get('seoDescription') || null,
-    publishedAt: formData.get('publishedAt') || null,
-  });
+  const parsed = parsePageForm(formData);
 
   if (!parsed.success) {
     const errors: Record<string, string> = {};
@@ -114,7 +128,15 @@ export async function updatePageAction(
   }
 
   const data = parsed.data;
-  if (isReservedPageSlug(data.slug)) {
+  const cmsError = validateClonePageContentForSave(data.content);
+  if (cmsError) {
+    return { ok: false, errors: { content: cmsError }, formError: cmsError };
+  }
+
+  if (
+    isReservedPageSlug(data.slug) &&
+    !data.content?.includes('clone-page-v1')
+  ) {
     return {
       ok: false,
       errors: { slug: 'Ten slug jest zarezerwowany przez aplikację.' },
@@ -162,7 +184,7 @@ export async function updatePageAction(
 
 export async function archivePageAction(id: string): Promise<void> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   await supabase
     .from('content_pages')

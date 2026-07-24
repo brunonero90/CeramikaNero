@@ -3,7 +3,7 @@ import { mapCategory } from '@/lib/database/mappers';
 import type { WorkshopCategory } from '@/lib/database/types';
 
 export async function getAll(): Promise<WorkshopCategory[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('workshop_categories')
     .select('*')
@@ -17,7 +17,7 @@ export async function getAll(): Promise<WorkshopCategory[]> {
 export async function getBySlug(
   slug: string
 ): Promise<WorkshopCategory | null> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('workshop_categories')
     .select('*')

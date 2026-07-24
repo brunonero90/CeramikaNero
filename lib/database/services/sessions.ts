@@ -5,7 +5,7 @@ import type { WorkshopSession } from '@/lib/database/types';
 export async function getUpcomingByWorkshopId(
   workshopId: string
 ): Promise<WorkshopSession[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('workshop_sessions')
     .select('*')

@@ -26,7 +26,7 @@ export async function updateSettingsAction(
   formData: FormData
 ): Promise<SettingsActionState> {
   const admin = await requireOwner();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const parsed = siteSettingsInputSchema.safeParse({
     studioName: formData.get('studioName'),

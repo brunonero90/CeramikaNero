@@ -17,7 +17,7 @@ export async function createRedirectAction(
   formData: FormData
 ): Promise<RedirectActionState> {
   const admin = await requireOwner();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const parsed = redirectInputSchema.safeParse({
     sourcePath: formData.get('sourcePath'),
@@ -99,7 +99,7 @@ export async function updateRedirectAction(
   formData: FormData
 ): Promise<RedirectActionState> {
   const admin = await requireOwner();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const parsed = redirectInputSchema.safeParse({
     sourcePath: formData.get('sourcePath'),
@@ -173,7 +173,7 @@ export async function updateRedirectAction(
 
 export async function deleteRedirectAction(id: string): Promise<void> {
   const admin = await requireOwner();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   await supabase.from('legacy_redirects').delete().eq('id', id);
 

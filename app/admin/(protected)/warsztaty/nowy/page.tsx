@@ -16,7 +16,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function NewWorkshopPage() {
   await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const [{ data: categories }, { data: instructors }, { data: mediaAssets }] =
     await Promise.all([

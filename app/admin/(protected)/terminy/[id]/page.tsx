@@ -24,7 +24,7 @@ export default async function EditSessionPage({
 }) {
   const { id } = await params;
   await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: session } = await supabase
     .from('workshop_sessions')

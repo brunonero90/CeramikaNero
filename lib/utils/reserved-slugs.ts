@@ -17,6 +17,7 @@ export const RESERVED_PAGE_SLUGS = new Set([
   'urodziny',
   'panienskie',
   'home',
+  'kalendarz',
   'onas',
   'dladzieci',
   'dladoroslych',

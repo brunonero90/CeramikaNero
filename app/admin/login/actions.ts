@@ -7,8 +7,15 @@ import { getCurrentAdmin } from '@/lib/admin/auth';
 import { adminRoleSchema } from '@/lib/database/schema';
 
 export type LoginActionState =
-  { ok: false; error: string } | { ok: true; redirect: string };
+  { ok: false; error: string } | { ok: true; redirectTo: string };
 
+/**
+ * Authenticate and authorize an administrator.
+ *
+ * Returns a redirect target instead of calling redirect() so useActionState
+ * clients can navigate reliably (Next.js redirect-from-action + useActionState
+ * often leaves the browser on the login page with no error).
+ */
 export async function loginAction(
   _prevState: LoginActionState | undefined,
   formData: FormData
@@ -20,7 +27,7 @@ export async function loginAction(
     return { ok: false, error: 'Email i hasło są wymagane.' };
   }
 
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -30,20 +37,22 @@ export async function loginAction(
     return { ok: false, error: 'Nieprawidłowy email lub hasło.' };
   }
 
-  const { data: admin } = await supabase
+  const { data: admin, error: adminError } = await supabase
     .from('admin_users')
     .select('role, is_active')
     .eq('user_id', data.user.id)
-    .single();
+    .maybeSingle();
 
-  if (!admin || !admin.is_active) {
+  if (adminError || !admin || !admin.is_active) {
     await supabase.auth.signOut();
     return {
       ok: false,
-      error: 'To konto nie ma uprawnień administratora lub jest nieaktywne.',
+      error:
+        'Logowanie powiodło się, ale to konto nie ma aktywnych uprawnień administratora.',
     };
   }
 
+  // Best-effort; non-owners may be blocked by RLS from updating last_login_at.
   await supabase
     .from('admin_users')
     .update({ last_login_at: new Date().toISOString() })
@@ -59,11 +68,11 @@ export async function loginAction(
     requestMetadata: { email: email.toLowerCase() },
   });
 
-  redirect('/admin');
+  return { ok: true, redirectTo: '/admin' };
 }
 
 export async function logoutAction(): Promise<void> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const admin = await getCurrentAdmin();
   await supabase.auth.signOut();
 

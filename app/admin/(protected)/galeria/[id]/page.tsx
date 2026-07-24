@@ -18,7 +18,7 @@ export default async function EditGalleryItemPage({
 }) {
   const { id } = await params;
   await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: item } = await supabase
     .from('gallery_items')

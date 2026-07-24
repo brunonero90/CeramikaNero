@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function PagesPage() {
   await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: pages } = await supabase
     .from('content_pages')
     .select('id, title, slug, status, published_at, archived_at')
@@ -60,7 +60,13 @@ export default async function PagesPage() {
             ) : (
               <tr>
                 <td colSpan={4} className="px-4 py-4 text-center text-gray-500">
-                  Brak stron.
+                  Brak stron w bazie. Publiczne trasy clone korzystają z
+                  fallbacków statycznych, dopóki Bruno nie zatwierdzi importu
+                  CMS (dry-run:{' '}
+                  <code className="text-xs">
+                    node scripts/import-clone-cms-content.js
+                  </code>
+                  ).
                 </td>
               </tr>
             )}

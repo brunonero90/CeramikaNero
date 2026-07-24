@@ -5,7 +5,7 @@ import type { BlogPost } from '@/lib/database/types';
 const publishedNowFilter = `published_at.is.null,published_at.lte.${new Date().toISOString()}`;
 
 export async function getRecent(limit: number): Promise<BlogPost[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('blog_posts')
     .select('*')
@@ -20,7 +20,7 @@ export async function getRecent(limit: number): Promise<BlogPost[]> {
 }
 
 export async function getAll(): Promise<BlogPost[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('blog_posts')
     .select('*')
@@ -37,7 +37,7 @@ export async function getBySlug(
   slug: string,
   includeUnpublished = false
 ): Promise<BlogPost | null> {
-  const supabase = createClient();
+  const supabase = await createClient();
   let query = supabase.from('blog_posts').select('*').eq('slug', slug);
 
   if (!includeUnpublished) {

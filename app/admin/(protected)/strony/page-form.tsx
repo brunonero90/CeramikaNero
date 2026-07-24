@@ -1,7 +1,10 @@
 'use client';
 
 import { useActionState } from 'react';
+import Link from 'next/link';
 import type { Theme } from '@/lib/types/theme';
+import { parseClonePageDocument } from '@/lib/cms/page-document';
+import { ClonePageEditor } from '@/components/admin/clone-page-editor';
 import type { PageActionState } from './actions';
 
 type PageFormData = {
@@ -45,6 +48,8 @@ export function PageForm({
     publishedAt: null,
     ...initialData,
   };
+
+  const cloneDocument = parseClonePageDocument(defaultData.content);
 
   return (
     <form action={dispatch} className="max-w-3xl space-y-4">
@@ -95,6 +100,20 @@ export function PageForm({
         {state && !state.ok && state.errors?.slug && (
           <p className="mt-1 text-sm text-red-600">{state.errors.slug}</p>
         )}
+        {defaultData.slug ? (
+          <p className="mt-1 text-xs text-gray-500">
+            Podgląd publiczny:{' '}
+            <Link
+              href={`/${defaultData.slug}`}
+              className="underline"
+              target="_blank"
+              rel="noreferrer"
+            >
+              /{defaultData.slug}
+            </Link>{' '}
+            (wersje robocze widoczne tylko po zalogowaniu do admina)
+          </p>
+        ) : null}
       </div>
       <div>
         <label htmlFor="excerpt" className="block text-sm font-medium">
@@ -108,18 +127,28 @@ export function PageForm({
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
         />
       </div>
-      <div>
-        <label htmlFor="content" className="block text-sm font-medium">
-          Treść (Markdown)
-        </label>
-        <textarea
-          id="content"
-          name="content"
-          rows={12}
-          defaultValue={defaultData.content ?? ''}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 font-mono text-sm"
-        />
-      </div>
+
+      {cloneDocument ? (
+        <ClonePageEditor initialDocument={cloneDocument} name="content" />
+      ) : (
+        <div>
+          <label htmlFor="content" className="block text-sm font-medium">
+            Treść (Markdown — strony poza szablonem clone)
+          </label>
+          <textarea
+            id="content"
+            name="content"
+            rows={12}
+            defaultValue={defaultData.content ?? ''}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 font-mono text-sm"
+          />
+          <p className="mt-1 text-xs text-gray-500">
+            Po imporcie treści clone-page-v1 pojawi się edytor sekcji zamiast
+            surowego Markdown.
+          </p>
+        </div>
+      )}
+
       <div>
         <label htmlFor="status" className="block text-sm font-medium">
           Status

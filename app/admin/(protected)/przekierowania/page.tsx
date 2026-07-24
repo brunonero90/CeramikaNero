@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function RedirectsPage() {
   await requireOwner();
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: redirects } = await supabase
     .from('legacy_redirects')
     .select('id, source_path, destination_path, status_code')

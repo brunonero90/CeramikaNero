@@ -1,0 +1,101 @@
+{
+  "generatedAt": "2026-07-24T13:30:00.000Z",
+  "architecture": {
+    "presentation": "React App Router clone components (layout/CSS stay in code)",
+    "content": "content_pages.content as clone-page-v1 JSON with static fixture fallback",
+    "operations": "workshops + workshop_sessions + categories + instructors",
+    "settings": "site_settings"
+  },
+  "classification": {
+    "databaseManagedBusinessContent": [
+      "Marketing page title, meta, hero intro, split-block copy, archive section text/CTAs/images (via clone-page-v1)",
+      "Workshop definitions (title, descriptions, price, capacity, booking_mode, status)",
+      "Scheduled sessions (starts_at, capacity, price, location, status)",
+      "Blog posts (existing CMS table — cutover deferred)",
+      "Gallery visibility metadata (existing)"
+    ],
+    "databaseManagedReusableConfiguration": [
+      "site_settings (studio name, address, email, phone)",
+      "workshop_categories",
+      "instructors"
+    ],
+    "staticStructuralLayout": [
+      "React page shells and marketing-split/archive-page components",
+      "pracownia midCopy + PartnerBadge",
+      "grupy-i-firmy introBullets / whoBullets section chrome",
+      "Header/footer navigation structure",
+      "MobileContactFab layout (phone number from fixtures/settings)"
+    ],
+    "legalVersionedContent": [
+      "regulamin",
+      "terms-conditions",
+      "dostawy-i-zwroty",
+      "faq"
+    ],
+    "archiveReferenceOnly": [
+      "reference/original-site/**",
+      "Wix booking-calendar / service-page shells as presentation archive",
+      "Historical dated Wix Bookings instances (not imported as live sessions)"
+    ],
+    "operationalWorkshopSessionData": [
+      "workshops",
+      "workshop_sessions",
+      "workshop_instructors",
+      "workshop_media"
+    ]
+  },
+  "pageStatus": {
+    "partiallyDatabaseBackedWithStaticFallback": [
+      "/glinadowina",
+      "/dla-dzieci",
+      "/dla-doroslych",
+      "/grupy-i-firmy",
+      "/pracownia",
+      "/kontakt",
+      "/faq",
+      "/regulamin",
+      "/terms-conditions",
+      "/dostawy-i-zwroty",
+      "/sklep",
+      "/vouchery",
+      "/gift-card",
+      "/cart",
+      "/services"
+    ],
+    "stillStaticFixturePrimary": [
+      "/",
+      "/home",
+      "/urodziny",
+      "/panienskie",
+      "/galeria",
+      "/blog",
+      "/post/*",
+      "archive dynamic routes (service-page/*, booking-calendar/*, webinar-registration*)"
+    ],
+    "databaseOperationalWhenSeeded": [
+      "/warsztaty",
+      "/warsztaty/[slug]",
+      "/warsztaty/[slug]/rezerwacja",
+      "/kalendarz"
+    ],
+    "newPublicRoute": ["/kalendarz"],
+    "fullyDatabaseBacked": [],
+    "siteWideSettingsDatabaseBacked": "site_settings table ready; FAB still uses verified fixture phone until settings cutover",
+    "workshopDefinitionsDatabaseBacked": "schema + admin ready; remote catalog empty pending approved seed",
+    "scheduledSessionsDatabaseBacked": "schema + /kalendarz ready; no invented sessions",
+    "contentAwaitingProductionAuthorization": [
+      "17 clone-page-v1 content_pages import (dry-run preview)",
+      "workshop catalog draft import (no sessions)"
+    ]
+  },
+  "adminCms": {
+    "sectionEditor": "ClonePageEditor — headings, text, lists, images, CTAs; raw JSON advanced-only",
+    "draftPreview": "Authenticated admin can preview unpublished clone pages in place",
+    "ctaValidation": "isSafeInternalHref on save"
+  },
+  "productionMutation": {
+    "cmsImport": "preview only — awaiting Bruno approval",
+    "workshopCatalog": "dry-run only; sessions not invented",
+    "projectRef": "zorxzyvmcbwucvaywmuu"
+  }
+}

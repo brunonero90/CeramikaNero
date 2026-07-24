@@ -6,7 +6,7 @@ export async function getBySlug(
   slug: string,
   includeUnpublished = false
 ): Promise<ContentPage | null> {
-  const supabase = createClient();
+  const supabase = await createClient();
   let query = supabase.from('content_pages').select('*').eq('slug', slug);
 
   if (!includeUnpublished) {
@@ -20,7 +20,7 @@ export async function getBySlug(
 }
 
 export async function getAll(): Promise<ContentPage[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('content_pages')
     .select('*')

@@ -15,7 +15,7 @@ export async function createCategoryAction(
   formData: FormData
 ): Promise<CategoryActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const parsed = categoryInputSchema.safeParse({
     name: formData.get('name'),
@@ -78,7 +78,7 @@ export async function updateCategoryAction(
   formData: FormData
 ): Promise<CategoryActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const parsed = categoryInputSchema.safeParse({
     name: formData.get('name'),
@@ -136,7 +136,7 @@ export async function updateCategoryAction(
 
 export async function archiveCategoryAction(id: string): Promise<void> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: usage } = await supabase
     .from('workshops')

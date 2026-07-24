@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function AdminUsersPage() {
   const currentAdmin = await requireOwner();
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: users } = await supabase
     .from('admin_users')
     .select('user_id, role, display_name, is_active, last_login_at')

@@ -18,7 +18,7 @@ export default async function EditPagePage({
 }) {
   await requireAnyRole(['editor', 'manager']);
   const { id } = await params;
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: page } = await supabase
     .from('content_pages')
     .select(

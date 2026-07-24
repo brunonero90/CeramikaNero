@@ -17,7 +17,7 @@ export type InstructorActionState =
   | { ok: false; errors: Record<string, string>; formError?: string };
 
 async function validateInstructorForm(
-  supabase: ReturnType<typeof createClient>,
+  supabase: Awaited<ReturnType<typeof createClient>>,
   formData: FormData,
   excludeId?: string
 ): Promise<
@@ -79,7 +79,7 @@ export async function createInstructorAction(
   formData: FormData
 ): Promise<InstructorActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const validated = await validateInstructorForm(supabase, formData);
   if (!validated.ok) return validated;
@@ -127,7 +127,7 @@ export async function updateInstructorAction(
   formData: FormData
 ): Promise<InstructorActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: existing } = await supabase
     .from('instructors')

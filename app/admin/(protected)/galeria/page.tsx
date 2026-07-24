@@ -19,7 +19,7 @@ export default async function GalleryAdminPage({
 }) {
   await requireAnyRole(['editor', 'manager']);
   const params = await searchParams;
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const category = typeof params.category === 'string' ? params.category : '';
   const visible = typeof params.visible === 'string' ? params.visible : '';

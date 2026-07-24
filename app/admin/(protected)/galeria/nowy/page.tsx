@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function NewGalleryItemPage() {
   await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: mediaAssets } = await supabase
     .from('media_assets')

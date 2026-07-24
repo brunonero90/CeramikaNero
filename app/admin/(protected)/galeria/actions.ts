@@ -12,7 +12,7 @@ export type GalleryItemActionState =
   | { ok: false; errors: Record<string, string>; formError?: string };
 
 async function validateGalleryItemForm(
-  supabase: ReturnType<typeof createClient>,
+  supabase: Awaited<ReturnType<typeof createClient>>,
   formData: FormData,
   excludeId?: string
 ): Promise<
@@ -82,7 +82,7 @@ export async function createGalleryItemAction(
   formData: FormData
 ): Promise<GalleryItemActionState> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const validated = await validateGalleryItemForm(supabase, formData);
   if (!validated.ok) return validated;
@@ -137,7 +137,7 @@ export async function updateGalleryItemAction(
   formData: FormData
 ): Promise<GalleryItemActionState> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: existing } = await supabase
     .from('gallery_items')
@@ -203,7 +203,7 @@ export async function changeGalleryItemVisibilityAction(
   isVisible: boolean
 ): Promise<GalleryItemActionState> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   if (isVisible) {
     const { data: item } = await supabase

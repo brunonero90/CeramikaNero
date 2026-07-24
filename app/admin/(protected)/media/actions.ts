@@ -21,7 +21,7 @@ export async function uploadMediaAction(
   formData: FormData
 ): Promise<MediaUploadActionState> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const file = formData.get('file') as File | null;
   const altText = formData.get('altText')?.toString() ?? '';
@@ -97,7 +97,7 @@ export async function uploadMediaAction(
 
 export async function archiveMediaAction(id: string): Promise<void> {
   const admin = await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   await supabase
     .from('media_assets')

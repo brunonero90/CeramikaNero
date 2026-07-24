@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function NewSessionPage() {
   await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const [{ data: workshops }, { data: instructors }] = await Promise.all([
     supabase

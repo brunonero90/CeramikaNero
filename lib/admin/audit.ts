@@ -61,6 +61,6 @@ export async function recordAuditEvent(
 export async function recordAuditEventWithCurrentClient(
   input: AuditEventInput
 ): Promise<void> {
-  const supabase = createClient();
+  const supabase = await createClient();
   return recordAuditEvent(supabase, input);
 }

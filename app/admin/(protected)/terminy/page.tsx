@@ -20,7 +20,7 @@ export default async function SessionsAdminPage({
 }) {
   await requireAnyRole(['manager']);
   const params = await searchParams;
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const workshop = typeof params.workshop === 'string' ? params.workshop : '';
   const status = typeof params.status === 'string' ? params.status : '';

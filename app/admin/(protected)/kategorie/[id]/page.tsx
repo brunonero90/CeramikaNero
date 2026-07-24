@@ -18,7 +18,7 @@ export default async function EditCategoryPage({
 }) {
   await requireAnyRole(['manager']);
   const { id } = await params;
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: category } = await supabase
     .from('workshop_categories')
     .select(

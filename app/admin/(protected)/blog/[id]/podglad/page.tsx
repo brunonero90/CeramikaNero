@@ -15,7 +15,7 @@ export default async function BlogPostPreviewPage({
 }) {
   const { id } = await params;
   await requireAnyRole(['editor', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: post } = await supabase
     .from('blog_posts')

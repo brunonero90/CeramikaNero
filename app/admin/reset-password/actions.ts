@@ -23,7 +23,7 @@ export async function resetPasswordAction(
     return { ok: false, error: 'Hasła nie są identyczne.' };
   }
 
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.auth.updateUser({ password });
 
   if (error) {

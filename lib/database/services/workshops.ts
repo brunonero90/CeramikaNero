@@ -17,7 +17,7 @@ function isPublic(workshop: Workshop): boolean {
 }
 
 export async function getAll(): Promise<WorkshopWithCategory[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: workshopRows, error } = await supabase
     .from('workshops')
     .select('*')
@@ -50,7 +50,7 @@ export async function getAll(): Promise<WorkshopWithCategory[]> {
 export async function getByCategorySlug(
   slug: string
 ): Promise<WorkshopWithCategory[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: categoryRow, error: categoryError } = await supabase
     .from('workshop_categories')
     .select('*')
@@ -79,7 +79,7 @@ export async function getBySlug(
   slug: string,
   includeUnpublished = false
 ): Promise<WorkshopWithSessions | null> {
-  const supabase = createClient();
+  const supabase = await createClient();
   let query = supabase.from('workshops').select('*').eq('slug', slug);
 
   if (!includeUnpublished) {
@@ -156,7 +156,7 @@ export async function getBySlug(
 }
 
 export async function getFeatured(): Promise<WorkshopWithCategory[]> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: workshopRows, error } = await supabase
     .from('workshops')
     .select('*')

@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function NewBookingPage() {
   await requireAnyRole(['owner', 'manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: workshops } = await supabase
     .from('workshops')

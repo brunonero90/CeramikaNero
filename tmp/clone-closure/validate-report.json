@@ -1,5 +1,5 @@
 {
-  "validatedAt": "2026-07-24T13:03:52.272Z",
+  "validatedAt": "2026-07-24T13:23:43.317Z",
   "base": "http://127.0.0.1:3010",
   "skipCrawl": false,
   "overallVerdict": "Clone complete with documented Wix-only differences",

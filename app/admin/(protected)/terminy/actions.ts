@@ -72,7 +72,7 @@ function toIsoUtc(
 }
 
 async function validateSessionForm(
-  supabase: ReturnType<typeof createClient>,
+  supabase: Awaited<ReturnType<typeof createClient>>,
   formData: FormData,
   existingId?: string
 ): Promise<
@@ -264,7 +264,7 @@ export async function createSessionAction(
   formData: FormData
 ): Promise<SessionActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const validated = await validateSessionForm(supabase, formData);
   if (!validated.ok) return validated;
@@ -305,7 +305,7 @@ export async function updateSessionAction(
   formData: FormData
 ): Promise<SessionActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: existing } = await supabase
     .from('workshop_sessions')
@@ -352,7 +352,7 @@ export async function duplicateSessionAction(
   id: string
 ): Promise<SessionActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: session } = await supabase
     .from('workshop_sessions')

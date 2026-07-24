@@ -89,12 +89,15 @@ export default function HomePage() {
           Grafik zajęć
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-text-muted">
-          Interaktywny kalendarz Wix Bookings został zastąpiony listą warsztatów
-          powyżej. Wybierz ofertę i przejdź do rezerwacji w naszym systemie —
-          bez osadzania runtime Wix.
+          Interaktywny kalendarz Wix Bookings został zastąpiony naszym
+          kalendarzem terminów. Wybierz ofertę poniżej lub otwórz pełny
+          kalendarz.
         </p>
-        <div className="mt-6">
-          <CloneCta href="/kontakt">Zapytaj o termin</CloneCta>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <CloneCta href="/kalendarz">Kalendarz warsztatów</CloneCta>
+          <CloneCta href="/kontakt" variant="outline">
+            Zapytaj o termin
+          </CloneCta>
         </div>
       </section>
     </div>

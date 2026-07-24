@@ -1,22 +1,19 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { ArchivePageView } from '@/components/clone/archive-page';
-import { CartPageClient } from '@/components/clone/cart-page-client';
-import { getArchivePage } from '@/lib/clone/archive';
+import {
+  ResolvedArchivePage,
+  resolvedArchiveTitle,
+} from '@/components/clone/resolved-archive-page';
 
 const ROUTE = '/cart' as const;
 
-export const metadata: Metadata = {
-  title: getArchivePage(ROUTE)?.title ?? 'Koszyk',
-};
+export const dynamic = 'force-dynamic';
 
-export default function CartPage() {
-  const page = getArchivePage(ROUTE);
-  if (!page) notFound();
-  return (
-    <div className="bg-surface-bg">
-      <ArchivePageView page={page} />
-      <CartPageClient />
-    </div>
-  );
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: await resolvedArchiveTitle(ROUTE, 'Koszyk | Ceramika Nero'),
+  };
+}
+
+export default async function CartPage() {
+  return <ResolvedArchivePage route={ROUTE} />;
 }

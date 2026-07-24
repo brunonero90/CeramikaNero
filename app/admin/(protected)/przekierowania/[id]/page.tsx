@@ -17,7 +17,7 @@ export default async function EditRedirectPage({
 }) {
   await requireOwner();
   const { id } = await params;
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: redirect } = await supabase
     .from('legacy_redirects')
     .select('id, source_path, destination_path, status_code')

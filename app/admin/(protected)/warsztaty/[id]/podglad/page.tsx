@@ -15,7 +15,7 @@ export default async function WorkshopPreviewPage({
 }) {
   const { id } = await params;
   await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: workshop } = await supabase
     .from('workshops')

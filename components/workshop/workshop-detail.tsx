@@ -112,7 +112,10 @@ export function WorkshopDetail({
           Nadchodzące terminy
         </h2>
         <div className="mt-4">
-          <SessionList sessions={workshop.sessions} />
+          <SessionList
+            sessions={workshop.sessions}
+            workshopSlug={workshop.slug}
+          />
         </div>
       </div>
 
@@ -123,7 +126,7 @@ export function WorkshopDetail({
           </Button>
         ) : (
           <Button
-            href={`/warsztaty/${workshop.slug}#terminy`}
+            href={`/warsztaty/${workshop.slug}/rezerwacja`}
             variant="primary"
           >
             {cta}

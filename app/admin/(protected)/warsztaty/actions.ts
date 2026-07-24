@@ -38,7 +38,7 @@ function parseJsonArray(value: FormDataEntryValue | null): unknown[] {
 }
 
 async function validateWorkshopForm(
-  supabase: ReturnType<typeof createClient>,
+  supabase: Awaited<ReturnType<typeof createClient>>,
   formData: FormData,
   excludeId?: string
 ): Promise<
@@ -141,7 +141,7 @@ export async function createWorkshopAction(
   formData: FormData
 ): Promise<WorkshopActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const validated = await validateWorkshopForm(supabase, formData);
   if (!validated.ok) {
@@ -207,7 +207,7 @@ export async function updateWorkshopAction(
   formData: FormData
 ): Promise<WorkshopActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: existing } = await supabase
     .from('workshops')
@@ -285,7 +285,7 @@ export async function changeWorkshopStatusAction(
   status: 'draft' | 'published' | 'archived'
 ): Promise<WorkshopActionState> {
   const admin = await requireAnyRole(['manager']);
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const update: {
     status: string;

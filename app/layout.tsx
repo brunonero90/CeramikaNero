@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/lib/theme/theme-context';
 import { ThemeScript } from '@/lib/theme/theme-script';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
+import { MobileContactFab } from '@/components/layout/mobile-contact-fab';
 import { LocalCartProvider } from '@/components/clone/local-cart';
 import './globals.css';
 
@@ -80,6 +81,7 @@ export default function RootLayout({
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            <MobileContactFab />
           </LocalCartProvider>
         </ThemeProvider>
       </body>

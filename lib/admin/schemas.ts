@@ -133,7 +133,7 @@ export const pageInputSchema = z.object({
   title: z.string().min(1).max(300),
   slug: slugSchema,
   excerpt: z.string().max(2000).optional().nullable(),
-  content: z.string().max(50000).optional().nullable(),
+  content: z.string().max(200000).optional().nullable(),
   status: contentStatusSchema,
   suggestedTheme: themeSchema.optional().nullable(),
   seoTitle: z.string().max(200).optional().nullable(),
