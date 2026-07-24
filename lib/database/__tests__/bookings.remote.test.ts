@@ -625,8 +625,6 @@ describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
 
   it('creates, verifies and consumes a cancellation token', async () => {
     const result = await beginFreshBooking();
-    tokenBookingId = result.booking_id;
-    tokenPaymentId = result.payment_id;
 
     const { data, error } = await admin.rpc('create_cancellation_token', {
       p_booking_id: result.booking_id,
