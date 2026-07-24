@@ -1,0 +1,30 @@
+{
+  "totalUniqueMediaIds": 158,
+  "downloaded": 0,
+  "replaced": 149,
+  "skipped": 5,
+  "errors": 4,
+  "errorDetails": [
+    {
+      "id": "747d6f_beb2180b228e46b99d49a5a2f1eac63b",
+      "url": "https://static.wixstatic.com/media/747d6f_beb2180b228e46b99d49a5a2f1eac63b~mv2.com",
+      "error": "HTTP 403"
+    },
+    {
+      "id": "11062b_142aa905b7024f9c96077a6cc473b6d6",
+      "url": "https://static.wixstatic.com/media/11062b_142aa905b7024f9c96077a6cc473b6d6~mv2.com",
+      "error": "HTTP 403"
+    },
+    {
+      "id": "11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000",
+      "url": "https://static.wixstatic.com/media/11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000~mv2.jpg",
+      "error": "HTTP 403"
+    },
+    {
+      "id": "11062b_eb2cf4d2cd5646fa8cfa980723ac63c7",
+      "url": "https://static.wixstatic.com/media/11062b_eb2cf4d2cd5646fa8cfa980723ac63c7~mv2.com",
+      "error": "HTTP 403"
+    }
+  ],
+  "nonWixFound": 28
+}

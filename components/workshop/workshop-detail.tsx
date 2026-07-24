@@ -1,8 +1,10 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { SessionList } from './session-list';
 import { formatGroszAsPln } from '@/lib/utils/money';
 import type { WorkshopWithSessions } from '@/lib/database/types';
+import { getWorkshopImage } from '@/lib/media/wix-catalog';
 
 export function WorkshopDetail({
   workshop,
@@ -12,6 +14,7 @@ export function WorkshopDetail({
   const isEnquiry = workshop.bookingMode === 'enquiry';
   const cta = isEnquiry ? 'Zapytaj o termin' : 'Zarezerwuj warsztat';
   const enquiryHref = '/kontakt';
+  const image = getWorkshopImage(workshop.slug, workshop.featuredMediaId);
 
   return (
     <div className="mx-auto max-w-4xl">
@@ -34,6 +37,19 @@ export function WorkshopDetail({
           </>
         )}
       </div>
+
+      {image && (
+        <div className="relative mb-8 aspect-[16/9] w-full overflow-hidden">
+          <Image
+            src={image.src}
+            alt={image.alt || workshop.title}
+            fill
+            priority
+            sizes="(min-width: 896px) 896px, 100vw"
+            className="object-cover"
+          />
+        </div>
+      )}
 
       <h1 className="font-heading text-3xl font-semibold text-text-primary md:text-4xl">
         {workshop.title}
@@ -91,7 +107,7 @@ export function WorkshopDetail({
         </div>
       )}
 
-      <div className="mt-10">
+      <div className="mt-10" id="terminy">
         <h2 className="font-heading text-xl font-semibold text-text-primary">
           Nadchodzące terminy
         </h2>

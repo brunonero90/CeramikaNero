@@ -1,21 +1,38 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { featureCards } from '@/lib/fixtures/homepage';
+import {
+  getHomeHeroImage,
+  getHomepageFeatureImages,
+} from '@/lib/media/wix-catalog';
 
 export default function HomePage() {
+  const hero = getHomeHeroImage();
+  const featureImages = getHomepageFeatureImages();
+
   return (
     <div className="flex flex-col">
-      <section className="relative overflow-hidden px-4 py-24 md:py-32 lg:py-40">
-        <div className="absolute inset-0 -z-10 opacity-20">
-          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent-secondary/30 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-accent-primary/20 blur-3xl" />
-        </div>
-
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-heading text-4xl font-semibold leading-tight text-text-primary md:text-5xl lg:text-6xl">
+      <section className="relative min-h-[70vh] overflow-hidden md:min-h-[80vh]">
+        {hero && (
+          <Image
+            src={hero.src}
+            alt={hero.alt || 'Pracownia Ceramika Nero'}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/20" />
+        <div className="relative mx-auto flex min-h-[70vh] max-w-4xl flex-col items-center justify-end px-4 pb-16 pt-28 text-center md:min-h-[80vh] md:pb-24">
+          <p className="font-heading text-sm font-semibold tracking-[0.2em] text-white/90 uppercase">
+            Ceramika Nero
+          </p>
+          <h1 className="mt-4 font-heading text-4xl font-semibold leading-tight text-white md:text-5xl lg:text-6xl">
             Tu glina zmienia się w coś osobistego
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-muted md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/90 md:text-xl">
             Warsztaty ceramiczne dla dzieci, dorosłych, rodzin i grup w naszej
             pracowni w Suchym Lesie.
           </p>
@@ -23,7 +40,11 @@ export default function HomePage() {
             <Button href="/warsztaty" variant="primary">
               Zarezerwuj warsztat
             </Button>
-            <Button href="/pracownia" variant="outline">
+            <Button
+              href="/pracownia"
+              variant="outline"
+              className="border-white/70 bg-transparent text-white hover:bg-white/10"
+            >
               Poznaj pracownię
             </Button>
           </div>
@@ -42,30 +63,41 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featureCards.map((card) => (
-              <article
-                key={card.title}
-                className="group rounded-lg bg-surface-bg p-6 shadow-sm transition-base hover:shadow-md"
-              >
-                <h3 className="font-heading text-xl font-semibold text-text-primary">
-                  {card.title}
-                </h3>
-                <p className="mt-2 text-text-muted">{card.description}</p>
-                <Link
-                  href="/warsztaty"
-                  className="mt-4 inline-flex items-center text-sm font-medium text-accent-primary transition-base hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-                >
-                  Zobacz terminy
-                </Link>
-              </article>
-            ))}
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {featureCards.map((card, index) => {
+              const image = featureImages[index];
+              return (
+                <article key={card.title} className="group flex flex-col">
+                  {image && (
+                    <div className="relative mb-4 aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={image.src}
+                        alt={image.alt || card.title}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  )}
+                  <h3 className="font-heading text-xl font-semibold text-text-primary">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-text-muted">{card.description}</p>
+                  <Link
+                    href="/warsztaty"
+                    className="mt-4 inline-flex items-center text-sm font-medium text-accent-primary transition-base hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                  >
+                    Zobacz terminy
+                  </Link>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
       <section className="px-4 py-16">
-        <div className="mx-auto max-w-4xl rounded-lg bg-surface-raised p-8 text-center shadow-md md:p-12">
+        <div className="mx-auto max-w-4xl text-center">
           <h2 className="font-heading text-2xl font-semibold text-text-primary">
             Zapisz się na warsztat
           </h2>

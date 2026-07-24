@@ -1,0 +1,3154 @@
+{
+  "generatedAt": "2026-07-24T09:11:11.074Z",
+  "files": [
+    {
+      "id": "11062b_142aa905b7024f9c96077a6cc473b6d6",
+      "localPath": "/images/wix-migrated/11062b_142aa905b7024f9c96077a6cc473b6d6.jpg",
+      "localByteSize": 7518574,
+      "localDimensions": {
+        "width": 5222,
+        "height": 3482
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_142aa905b7024f9c96077a6cc473b6d6~mv2_d_5222_3482_s_4_2.jpg/v1/fill/w_488,h_759,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_142aa905b7024f9c96077a6cc473b6d6~mv2_d_5222_3482_s_4_2.jpg",
+      "mappingDimensions": {
+        "height": 3482,
+        "orientation": 1,
+        "width": 5222,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_147dc3a6f24349ff9a4d332be4360d81",
+      "localPath": "/images/wix-migrated/11062b_147dc3a6f24349ff9a4d332be4360d81.jpg",
+      "localByteSize": 9540343,
+      "localDimensions": {
+        "width": 5000,
+        "height": 3359
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_147dc3a6f24349ff9a4d332be4360d81~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_147dc3a6f24349ff9a4d332be4360d81~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3359,
+        "width": 5000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_21dbdd79270a44b8abe0d6177d2ac1f9",
+      "localPath": "/images/wix-migrated/11062b_21dbdd79270a44b8abe0d6177d2ac1f9.jpg",
+      "localByteSize": 7521776,
+      "localDimensions": {
+        "width": 5000,
+        "height": 2811
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_21dbdd79270a44b8abe0d6177d2ac1f9~mv2.jpg/v1/fill/w_280,h_157,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_21dbdd79270a44b8abe0d6177d2ac1f9~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2811,
+        "orientation": 1,
+        "width": 5000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_2381e8a6e7444f4f902e7b649aa3f0ac",
+      "localPath": "/images/wix-migrated/11062b_2381e8a6e7444f4f902e7b649aa3f0ac.png",
+      "localByteSize": 3574,
+      "localDimensions": {
+        "width": 68,
+        "height": 68
+      },
+      "mappingProvenanceUrl": "https://www.ceramikanero.com/booking-calendar/quality_auto/11062b_2381e8a6e7444f4f902e7b649aa3f0ac~mv2.png",
+      "mappingDimensions": {
+        "height": 68,
+        "width": 68,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [
+        "thumbnail-sized",
+        "very-small-file"
+      ],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "11062b_30c5ffa57f61439aa48f705fe3d49dd8",
+      "localPath": "/images/wix-migrated/11062b_30c5ffa57f61439aa48f705fe3d49dd8.jpg",
+      "localByteSize": 2985075,
+      "localDimensions": {
+        "width": 2048,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_30c5ffa57f61439aa48f705fe3d49dd8~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/11062b_30c5ffa57f61439aa48f705fe3d49dd8~mv2.webp",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_43197d81c0d040e4867041831bae8092",
+      "localPath": "/images/wix-migrated/11062b_43197d81c0d040e4867041831bae8092.jpeg",
+      "localByteSize": 3011155,
+      "localDimensions": {
+        "width": 4038,
+        "height": 2687
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_43197d81c0d040e4867041831bae8092~mv2.jpeg/v1/fit/w_4038,h_2687,al_c,q_90/11062b_43197d81c0d040e4867041831bae8092~mv2.jpeg",
+      "mappingDimensions": {
+        "height": 2687,
+        "orientation": 1,
+        "width": 4038,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_541486568d644691a35279862f8fd254",
+      "localPath": "/images/wix-migrated/11062b_541486568d644691a35279862f8fd254.jpg",
+      "localByteSize": 864129,
+      "localDimensions": {
+        "width": 4464,
+        "height": 2976
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_541486568d644691a35279862f8fd254~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_541486568d644691a35279862f8fd254~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2976,
+        "orientation": 1,
+        "width": 4464,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_55e4be1e75564866b6c28290f9a9d271",
+      "localPath": "/images/wix-migrated/11062b_55e4be1e75564866b6c28290f9a9d271.png",
+      "localByteSize": 14375,
+      "localDimensions": {
+        "width": 201,
+        "height": 201
+      },
+      "mappingProvenanceUrl": "https://www.ceramikanero.com/booking-calendar/quality_auto/11062b_55e4be1e75564866b6c28290f9a9d271~mv2.png",
+      "mappingDimensions": {
+        "height": 201,
+        "width": 201,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [
+        "thumbnail-sized"
+      ],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "11062b_6526e8ba379f4d0e9347f54a2dc67b70",
+      "localPath": "/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg",
+      "localByteSize": 13579359,
+      "localDimensions": {
+        "width": 5568,
+        "height": 3712
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_6526e8ba379f4d0e9347f54a2dc67b70~mv2.jpg/v1/fill/w_1280,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_6526e8ba379f4d0e9347f54a2dc67b70~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3712,
+        "orientation": 1,
+        "width": 5568,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_66bd1d55c36c4eb9b8db106cf691f67e",
+      "localPath": "/images/wix-migrated/11062b_66bd1d55c36c4eb9b8db106cf691f67e.jpg",
+      "localByteSize": 509601,
+      "localDimensions": {
+        "width": 1800,
+        "height": 1200
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_66bd1d55c36c4eb9b8db106cf691f67e~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_66bd1d55c36c4eb9b8db106cf691f67e~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1200,
+        "width": 1800,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_7577da3017c54ec18762d3d28e041a1d",
+      "localPath": "/images/wix-migrated/11062b_7577da3017c54ec18762d3d28e041a1d.jpg",
+      "localByteSize": 11199791,
+      "localDimensions": {
+        "width": 5000,
+        "height": 3335
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_7577da3017c54ec18762d3d28e041a1d~mv2.jpg/v1/fill/w_488,h_967,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_7577da3017c54ec18762d3d28e041a1d~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3335,
+        "orientation": 1,
+        "width": 5000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_9fca2391b3524803822fb730e5d8ac1b",
+      "localPath": "/images/wix-migrated/11062b_9fca2391b3524803822fb730e5d8ac1b.jpg",
+      "localByteSize": 5496300,
+      "localDimensions": {
+        "width": 6286,
+        "height": 2784
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_9fca2391b3524803822fb730e5d8ac1b~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/11062b_9fca2391b3524803822fb730e5d8ac1b~mv2.webp",
+      "mappingDimensions": {
+        "height": 2784,
+        "orientation": 1,
+        "width": 6286,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000",
+      "localPath": "/images/wix-migrated/11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+      "localByteSize": 286479,
+      "localDimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg/v1/fill/w_737,h_74,al_c,q_80,usm_0.33_1.00_0.00,enc_avif,quality_auto/11062b_be1dfb50b09647ba9eaf0c6bdd4923dff000.jpg",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1920,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_cf4f37b0cadb4bbdb9e1b61241138aef",
+      "localPath": "/images/wix-migrated/11062b_cf4f37b0cadb4bbdb9e1b61241138aef.jpg",
+      "localByteSize": 706142,
+      "localDimensions": {
+        "width": 5000,
+        "height": 2870
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_cf4f37b0cadb4bbdb9e1b61241138aef~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/11062b_cf4f37b0cadb4bbdb9e1b61241138aef~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2870,
+        "orientation": 1,
+        "width": 5000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_d5722b6f5d7249279adcbb06483186b1",
+      "localPath": "/images/wix-migrated/11062b_d5722b6f5d7249279adcbb06483186b1.jpg",
+      "localByteSize": 4927985,
+      "localDimensions": {
+        "width": 5000,
+        "height": 3333
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_d5722b6f5d7249279adcbb06483186b1~mv2.jpg/v1/fill/w_1280,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_d5722b6f5d7249279adcbb06483186b1~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3333,
+        "orientation": 1,
+        "width": 5000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_d62cc9bc024a4fafb2f3649ba987b2c7",
+      "localPath": "/images/wix-migrated/11062b_d62cc9bc024a4fafb2f3649ba987b2c7.jpg",
+      "localByteSize": 1520559,
+      "localDimensions": {
+        "width": 2036,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_d62cc9bc024a4fafb2f3649ba987b2c7~mv2.jpg/v1/fill/w_980,h_716,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_d62cc9bc024a4fafb2f3649ba987b2c7~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 2036,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_db67741365e74a03ba19d91e2ffc8721",
+      "localPath": "/images/wix-migrated/11062b_db67741365e74a03ba19d91e2ffc8721.jpg",
+      "localByteSize": 6538925,
+      "localDimensions": {
+        "width": 2738,
+        "height": 1825
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg/v1/fill/w_586,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_db67741365e74a03ba19d91e2ffc8721~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1825,
+        "width": 2738,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_e4cd34a55ede422ea0121c65375b84c0",
+      "localPath": "/images/wix-migrated/11062b_e4cd34a55ede422ea0121c65375b84c0.jpg",
+      "localByteSize": 4064438,
+      "localDimensions": {
+        "width": 3969,
+        "height": 5953
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_e4cd34a55ede422ea0121c65375b84c0~mv2.jpg/v1/fill/w_980,h_950,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_e4cd34a55ede422ea0121c65375b84c0~mv2.jpg",
+      "mappingDimensions": {
+        "height": 5953,
+        "width": 3969,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_eb2cf4d2cd5646fa8cfa980723ac63c7",
+      "localPath": "/images/wix-migrated/11062b_eb2cf4d2cd5646fa8cfa980723ac63c7.jpg",
+      "localByteSize": 18393050,
+      "localDimensions": {
+        "width": 6720,
+        "height": 4480
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_eb2cf4d2cd5646fa8cfa980723ac63c7~mv2_d_6720_4480_s_4_2.jpg/v1/fill/w_740,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_eb2cf4d2cd5646fa8cfa980723ac63c7~mv2_d_6720_4480_s_4_2.jpg",
+      "mappingDimensions": {
+        "height": 4480,
+        "orientation": 1,
+        "width": 6720,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_f468647e8e6d4d54ba57a93ea792af1e",
+      "localPath": "/images/wix-migrated/11062b_f468647e8e6d4d54ba57a93ea792af1e.jpg",
+      "localByteSize": 324639,
+      "localDimensions": {
+        "width": 5000,
+        "height": 3333
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_f468647e8e6d4d54ba57a93ea792af1e~mv2.jpg/v1/fill/w_488,h_759,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_f468647e8e6d4d54ba57a93ea792af1e~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3333,
+        "orientation": 1,
+        "width": 5000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "11062b_f5420b566fbe45bf931871861e8cbf46",
+      "localPath": "/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg",
+      "localByteSize": 546275,
+      "localDimensions": {
+        "width": 2773,
+        "height": 1849
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/11062b_f5420b566fbe45bf931871861e8cbf46~mv2.jpeg/v1/fill/w_1280,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_f5420b566fbe45bf931871861e8cbf46~mv2.jpeg",
+      "mappingDimensions": {
+        "height": 1849,
+        "orientation": 1,
+        "width": 2773,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "25189b4996b84d5ba2cd03f12eff06c5",
+      "localPath": "/images/wix-migrated/25189b4996b84d5ba2cd03f12eff06c5.jpg",
+      "localByteSize": 18637916,
+      "localDimensions": {
+        "width": 5472,
+        "height": 3648
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/25189b4996b84d5ba2cd03f12eff06c5.jpg",
+      "mappingDimensions": {
+        "height": 3648,
+        "orientation": 1,
+        "width": 5472,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "4960cfa6cf2a4a44a7ba1695c421cb84",
+      "localPath": "/images/wix-migrated/4960cfa6cf2a4a44a7ba1695c421cb84.jpg",
+      "localByteSize": 13559141,
+      "localDimensions": {
+        "width": 5472,
+        "height": 3648
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/4960cfa6cf2a4a44a7ba1695c421cb84.jpg",
+      "mappingDimensions": {
+        "height": 3648,
+        "orientation": 1,
+        "width": 5472,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "4972bc97a3da4931ba6c18a6cf8df7e1",
+      "localPath": "/images/wix-migrated/4972bc97a3da4931ba6c18a6cf8df7e1.jpg",
+      "localByteSize": 3200879,
+      "localDimensions": {
+        "width": 4642,
+        "height": 3095
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/4972bc97a3da4931ba6c18a6cf8df7e1.jpg",
+      "mappingDimensions": {
+        "height": 3095,
+        "orientation": 1,
+        "width": 4642,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "595cb32628cf4476abc9c0d74e063e07",
+      "localPath": "/images/wix-migrated/595cb32628cf4476abc9c0d74e063e07.jpg",
+      "localByteSize": 8185428,
+      "localDimensions": {
+        "width": 5122,
+        "height": 3467
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/595cb32628cf4476abc9c0d74e063e07.jpg",
+      "mappingDimensions": {
+        "height": 3467,
+        "orientation": 1,
+        "width": 5122,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "60975bc6b6c14bd88ea5618a85e14da1",
+      "localPath": "/images/wix-migrated/60975bc6b6c14bd88ea5618a85e14da1.jpg",
+      "localByteSize": 1182300,
+      "localDimensions": {
+        "width": 5760,
+        "height": 3840
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/60975bc6b6c14bd88ea5618a85e14da1.jpg",
+      "mappingDimensions": {
+        "height": 3840,
+        "width": 5760,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_016e5ab390694b1faf1ed4e14a14c5e7",
+      "localPath": "/images/wix-migrated/747d6f_016e5ab390694b1faf1ed4e14a14c5e7.png",
+      "localByteSize": 880482,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_016e5ab390694b1faf1ed4e14a14c5e7~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_016e5ab390694b1faf1ed4e14a14c5e7~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_0296bb0269754a8295a47f62c62d4822",
+      "localPath": "/images/wix-migrated/747d6f_0296bb0269754a8295a47f62c62d4822.jpg",
+      "localByteSize": 315640,
+      "localDimensions": {
+        "width": 2000,
+        "height": 3000
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_0296bb0269754a8295a47f62c62d4822~mv2.jpg/v1/fill/w_667,h_1000,al_c,q_85,usm_0.66_1.00_0.01/747d6f_0296bb0269754a8295a47f62c62d4822~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3000,
+        "width": 2000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_03425894e06f4fd8af3e15755bafeea7",
+      "localPath": "/images/wix-migrated/747d6f_03425894e06f4fd8af3e15755bafeea7.png",
+      "localByteSize": 1340669,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_03425894e06f4fd8af3e15755bafeea7~mv2.png/v1/fill/w_1080,h_304,fp_0.50_0.50,q_85,enc_auto/747d6f_03425894e06f4fd8af3e15755bafeea7~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_0397de818e314f72ad3b684dc55b9c43",
+      "localPath": "/images/wix-migrated/747d6f_0397de818e314f72ad3b684dc55b9c43.jpg",
+      "localByteSize": 46423,
+      "localDimensions": {
+        "width": 563,
+        "height": 549
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_0397de818e314f72ad3b684dc55b9c43~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_0397de818e314f72ad3b684dc55b9c43~mv2.jpg",
+      "mappingDimensions": {
+        "height": 549,
+        "width": 563,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_045e89a3529f4e2491a7742e1da14497",
+      "localPath": "/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg",
+      "localByteSize": 11347414,
+      "localDimensions": {
+        "width": 5616,
+        "height": 3744
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_045e89a3529f4e2491a7742e1da14497~mv2.jpg/v1/fit/w_5616,h_3744,al_c,q_90/747d6f_045e89a3529f4e2491a7742e1da14497~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3744,
+        "orientation": 1,
+        "width": 5616,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_057cc0c66cf348268e9d25499f057beb",
+      "localPath": "/images/wix-migrated/747d6f_057cc0c66cf348268e9d25499f057beb.jpg",
+      "localByteSize": 268742,
+      "localDimensions": {
+        "width": 2048,
+        "height": 1152
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_057cc0c66cf348268e9d25499f057beb~mv2.jpg/v1/fit/w_2048,h_1152,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_057cc0c66cf348268e9d25499f057beb~mv2_jpg_v1_fit_w_2048%2Ch_1152%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 1152,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_06537da9d32549fa905346fcc8e05f7e",
+      "localPath": "/images/wix-migrated/747d6f_06537da9d32549fa905346fcc8e05f7e.jpg",
+      "localByteSize": 243720,
+      "localDimensions": {
+        "width": 1536,
+        "height": 1536
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_06537da9d32549fa905346fcc8e05f7e~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1536,
+        "width": 1536,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_085171d978274d52ab228ceb93aa9847",
+      "localPath": "/images/wix-migrated/747d6f_085171d978274d52ab228ceb93aa9847.png",
+      "localByteSize": 1372600,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_085171d978274d52ab228ceb93aa9847~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_085171d978274d52ab228ceb93aa9847~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_0a4d8816a90344e9a161a8f1af115f5f",
+      "localPath": "/images/wix-migrated/747d6f_0a4d8816a90344e9a161a8f1af115f5f.png",
+      "localByteSize": 3098406,
+      "localDimensions": {
+        "width": 1344,
+        "height": 768
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png/v1/fill/w_1000,h_571,al_c,q_90,usm_0.66_1.00_0.01/747d6f_0a4d8816a90344e9a161a8f1af115f5f~mv2.png",
+      "mappingDimensions": {
+        "height": 768,
+        "width": 1344,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_0e252de9992048d2a98d1ff8761c8ddf",
+      "localPath": "/images/wix-migrated/747d6f_0e252de9992048d2a98d1ff8761c8ddf.jpeg",
+      "localByteSize": 3989344,
+      "localDimensions": {
+        "width": 5712,
+        "height": 4284
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_0e252de9992048d2a98d1ff8761c8ddf~mv2.jpeg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_0e252de9992048d2a98d1ff8761c8ddf~mv2.jpeg",
+      "mappingDimensions": {
+        "height": 4284,
+        "orientation": 6,
+        "width": 5712,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_0f3b800e5b7a407baf665c1170430ecd",
+      "localPath": "/images/wix-migrated/747d6f_0f3b800e5b7a407baf665c1170430ecd.jpg",
+      "localByteSize": 447373,
+      "localDimensions": {
+        "width": 2048,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_0f3b800e5b7a407baf665c1170430ecd~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_0f3b800e5b7a407baf665c1170430ecd~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_0fe41123a0a34078b88b14d085b6b727",
+      "localPath": "/images/wix-migrated/747d6f_0fe41123a0a34078b88b14d085b6b727.jpg",
+      "localByteSize": 235005,
+      "localDimensions": {
+        "width": 1152,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_0fe41123a0a34078b88b14d085b6b727~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_0fe41123a0a34078b88b14d085b6b727~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1152,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_11d47ff20fcf4afa9085b728719b20f0",
+      "localPath": "/images/wix-migrated/747d6f_11d47ff20fcf4afa9085b728719b20f0.jpg",
+      "localByteSize": 3320569,
+      "localDimensions": {
+        "width": 6720,
+        "height": 4480
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_11d47ff20fcf4afa9085b728719b20f0~mv2.jpg/v1/fill/w_980,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/skotnickanowakpl_ceramikanero_6090.jpg",
+      "mappingDimensions": {
+        "height": 4480,
+        "orientation": 1,
+        "width": 6720,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_15381c8348c54adfb2a83c0670411e4e",
+      "localPath": "/images/wix-migrated/747d6f_15381c8348c54adfb2a83c0670411e4e.jpg",
+      "localByteSize": 92990,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_15381c8348c54adfb2a83c0670411e4e~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_15381c8348c54adfb2a83c0670411e4e~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_197dce9d012c4b93af7df0d001f9fb0d",
+      "localPath": "/images/wix-migrated/747d6f_197dce9d012c4b93af7df0d001f9fb0d.jpg",
+      "localByteSize": 367369,
+      "localDimensions": {
+        "width": 2048,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_197dce9d012c4b93af7df0d001f9fb0d~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_197dce9d012c4b93af7df0d001f9fb0d~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_22273d9e08a3424aa991b87fd9fb803e",
+      "localPath": "/images/wix-migrated/747d6f_22273d9e08a3424aa991b87fd9fb803e.jpg",
+      "localByteSize": 13984976,
+      "localDimensions": {
+        "width": 6048,
+        "height": 4024
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_22273d9e08a3424aa991b87fd9fb803e~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_22273d9e08a3424aa991b87fd9fb803e~mv2.jpg",
+      "mappingDimensions": {
+        "height": 4024,
+        "orientation": 1,
+        "width": 6048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_2234cc741bd5422eb5d92705a021219a",
+      "localPath": "/images/wix-migrated/747d6f_2234cc741bd5422eb5d92705a021219a.jpg",
+      "localByteSize": 25291027,
+      "localDimensions": {
+        "width": 6000,
+        "height": 7805
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_2234cc741bd5422eb5d92705a021219a~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_2234cc741bd5422eb5d92705a021219a~mv2.jpg",
+      "mappingDimensions": {
+        "height": 7805,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_252d121269ee423a9a5d9a5a532922cb",
+      "localPath": "/images/wix-migrated/747d6f_252d121269ee423a9a5d9a5a532922cb.webp",
+      "localByteSize": 70959,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_252d121269ee423a9a5d9a5a532922cb~mv2.webp/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_252d121269ee423a9a5d9a5a532922cb~mv2.webp",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_2572c96aa6c947e0b04e4091f5a44a4b",
+      "localPath": "/images/wix-migrated/747d6f_2572c96aa6c947e0b04e4091f5a44a4b.jpg",
+      "localByteSize": 123687,
+      "localDimensions": {
+        "width": 1080,
+        "height": 828
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_2572c96aa6c947e0b04e4091f5a44a4b~mv2.jpg",
+      "mappingDimensions": {
+        "height": 828,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_25f701d5db584b2cabcec04bba397ec5",
+      "localPath": "/images/wix-migrated/747d6f_25f701d5db584b2cabcec04bba397ec5.jpeg",
+      "localByteSize": 651127,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1620
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_25f701d5db584b2cabcec04bba397ec5~mv2.jpeg/v1/fill/w_667,h_1000,al_c,q_85,usm_0.66_1.00_0.01/747d6f_25f701d5db584b2cabcec04bba397ec5~mv2.jpeg",
+      "mappingDimensions": {
+        "height": 1620,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_27032db4ff7642f185f09f10408c5e0f",
+      "localPath": "/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg",
+      "localByteSize": 2048370,
+      "localDimensions": {
+        "width": 6000,
+        "height": 4000
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_27032db4ff7642f185f09f10408c5e0f~mv2.jpg/v1/fill/w_980,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/2a.jpg",
+      "mappingDimensions": {
+        "height": 4000,
+        "orientation": 1,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_2a8c8e6e4b03466e945f9536100cdc68",
+      "localPath": "/images/wix-migrated/747d6f_2a8c8e6e4b03466e945f9536100cdc68.jpg",
+      "localByteSize": 461783,
+      "localDimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_2a8c8e6e4b03466e945f9536100cdc68~mv2.jpg/v1/fit/w_1536,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_2a8c8e6e4b03466e945f9536100cdc68~mv2_jpg_v1_fit_w_1536%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1536,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b",
+      "localPath": "/images/wix-migrated/747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b.jpg",
+      "localByteSize": 20760027,
+      "localDimensions": {
+        "width": 6000,
+        "height": 8369
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b~mv2.jpg/v1/fill/w_980,h_765,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b~mv2.jpg",
+      "mappingDimensions": {
+        "height": 8369,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_31092dec535d44fda01b193d542727de",
+      "localPath": "/images/wix-migrated/747d6f_31092dec535d44fda01b193d542727de.jpg",
+      "localByteSize": 288349,
+      "localDimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_31092dec535d44fda01b193d542727de~mv2.jpg/v1/fill/w_488,h_795,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_31092dec535d44fda01b193d542727de~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1536,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_31b0976c3c0e4cf3addf864e058110a2",
+      "localPath": "/images/wix-migrated/747d6f_31b0976c3c0e4cf3addf864e058110a2.png",
+      "localByteSize": 1815792,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_31b0976c3c0e4cf3addf864e058110a2~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_31b0976c3c0e4cf3addf864e058110a2~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_355d7132929d437a94a84beaa0a6e9a1",
+      "localPath": "/images/wix-migrated/747d6f_355d7132929d437a94a84beaa0a6e9a1.png",
+      "localByteSize": 1956347,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1041
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_355d7132929d437a94a84beaa0a6e9a1~mv2.png/v1/fit/w_1080,h_1041,al_c/747d6f_355d7132929d437a94a84beaa0a6e9a1~mv2.png",
+      "mappingDimensions": {
+        "height": 1041,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02",
+      "localPath": "/images/wix-migrated/747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02.jpg",
+      "localByteSize": 2515718,
+      "localDimensions": {
+        "width": 4000,
+        "height": 6000
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_37e2a2e8ce1e4ed49ebd58eef82d9e02~mv2.jpg",
+      "mappingDimensions": {
+        "height": 6000,
+        "orientation": 1,
+        "width": 4000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_3856dd866c104349b1cbe529e8a393fd",
+      "localPath": "/images/wix-migrated/747d6f_3856dd866c104349b1cbe529e8a393fd.jpg",
+      "localByteSize": 701659,
+      "localDimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_3856dd866c104349b1cbe529e8a393fd~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1536,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_38c994e6e4e54ed3a99dc62dfa01c7b3",
+      "localPath": "/images/wix-migrated/747d6f_38c994e6e4e54ed3a99dc62dfa01c7b3.jpg",
+      "localByteSize": 48592,
+      "localDimensions": {
+        "width": 1010,
+        "height": 698
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_38c994e6e4e54ed3a99dc62dfa01c7b3~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_38c994e6e4e54ed3a99dc62dfa01c7b3~mv2.jpg",
+      "mappingDimensions": {
+        "height": 698,
+        "width": 1010,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_3a7f8f99735746e78d72aac1681f6b85",
+      "localPath": "/images/wix-migrated/747d6f_3a7f8f99735746e78d72aac1681f6b85.jpg",
+      "localByteSize": 287322,
+      "localDimensions": {
+        "width": 2048,
+        "height": 1152
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2.jpg/v1/fit/w_2048,h_1152,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_3a7f8f99735746e78d72aac1681f6b85~mv2_jpg_v1_fit_w_2048%2Ch_1152%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 1152,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_3cc1afd6652c406a8a85ad97d73c8c81",
+      "localPath": "/images/wix-migrated/747d6f_3cc1afd6652c406a8a85ad97d73c8c81.jpg",
+      "localByteSize": 279065,
+      "localDimensions": {
+        "width": 1152,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_3cc1afd6652c406a8a85ad97d73c8c81~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_3cc1afd6652c406a8a85ad97d73c8c81~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1152,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_3dc57ba794be47e4a38a00f965a6c689",
+      "localPath": "/images/wix-migrated/747d6f_3dc57ba794be47e4a38a00f965a6c689.jpg",
+      "localByteSize": 94530,
+      "localDimensions": {
+        "width": 1101,
+        "height": 1748
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_3dc57ba794be47e4a38a00f965a6c689~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_3dc57ba794be47e4a38a00f965a6c689~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1748,
+        "width": 1101,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_40f47e03350d4ef3b3d3e3c951eff7cb",
+      "localPath": "/images/wix-migrated/747d6f_40f47e03350d4ef3b3d3e3c951eff7cb.jpg",
+      "localByteSize": 35027,
+      "localDimensions": {
+        "width": 1067,
+        "height": 724
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_40f47e03350d4ef3b3d3e3c951eff7cb~mv2.jpg/v1/fill/w_1067,h_724,al_c,q_85,enc_avif,quality_auto/747d6f_40f47e03350d4ef3b3d3e3c951eff7cb~mv2.jpg",
+      "mappingDimensions": {
+        "height": 724,
+        "width": 1067,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_431ea2ab2bee4c94b6e83dc97966c78a",
+      "localPath": "/images/wix-migrated/747d6f_431ea2ab2bee4c94b6e83dc97966c78a.png",
+      "localByteSize": 1724242,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_431ea2ab2bee4c94b6e83dc97966c78a~mv2.png/v1/fill/w_488,h_656,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_431ea2ab2bee4c94b6e83dc97966c78a~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_439e4c293ab04730a3204fb223f7c0c9",
+      "localPath": "/images/wix-migrated/747d6f_439e4c293ab04730a3204fb223f7c0c9.jpg",
+      "localByteSize": 116872,
+      "localDimensions": {
+        "width": 920,
+        "height": 894
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_439e4c293ab04730a3204fb223f7c0c9~mv2.jpg/v1/fill/w_244,h_243,fp_0.50_0.50,q_90/747d6f_439e4c293ab04730a3204fb223f7c0c9~mv2.webp",
+      "mappingDimensions": {
+        "height": 894,
+        "width": 920,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_448924318b194426b689bf1f332a815e",
+      "localPath": "/images/wix-migrated/747d6f_448924318b194426b689bf1f332a815e.webp",
+      "localByteSize": 439338,
+      "localDimensions": {
+        "width": 1368,
+        "height": 1368
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_448924318b194426b689bf1f332a815e~mv2.webp/v1/fill/w_1368,h_1368,al_c/747d6f_448924318b194426b689bf1f332a815e~mv2.webp",
+      "mappingDimensions": {
+        "height": 1368,
+        "width": 1368,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_463afd8aa7234779a218dd50fd7c0fcc",
+      "localPath": "/images/wix-migrated/747d6f_463afd8aa7234779a218dd50fd7c0fcc.jpg",
+      "localByteSize": 15390133,
+      "localDimensions": {
+        "width": 6000,
+        "height": 3973
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_463afd8aa7234779a218dd50fd7c0fcc~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_463afd8aa7234779a218dd50fd7c0fcc~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3973,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_467152182e8a4089a2a18d1d71682254",
+      "localPath": "/images/wix-migrated/747d6f_467152182e8a4089a2a18d1d71682254.png",
+      "localByteSize": 28869,
+      "localDimensions": {
+        "width": 401,
+        "height": 301
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_467152182e8a4089a2a18d1d71682254~mv2.png/v1/fill/w_84,h_62,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Naklejka%20-%20Partner%20(tlo).png",
+      "mappingDimensions": {
+        "height": 301,
+        "width": 401,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_47a6a2b4713241168b37ff242c99303e",
+      "localPath": "/images/wix-migrated/747d6f_47a6a2b4713241168b37ff242c99303e.jpg",
+      "localByteSize": 115685,
+      "localDimensions": {
+        "width": 940,
+        "height": 788
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_47a6a2b4713241168b37ff242c99303e~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_47a6a2b4713241168b37ff242c99303e~mv2.webp",
+      "mappingDimensions": {
+        "height": 788,
+        "orientation": 1,
+        "width": 940,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_483d3d906ea347559b7d174a489cf361",
+      "localPath": "/images/wix-migrated/747d6f_483d3d906ea347559b7d174a489cf361.jpg",
+      "localByteSize": 82080,
+      "localDimensions": {
+        "width": 636,
+        "height": 636
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_483d3d906ea347559b7d174a489cf361~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_483d3d906ea347559b7d174a489cf361~mv2.jpg",
+      "mappingDimensions": {
+        "height": 636,
+        "width": 636,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_4bc1bec239df452d9c4e205c46a8a33e",
+      "localPath": "/images/wix-migrated/747d6f_4bc1bec239df452d9c4e205c46a8a33e.jpg",
+      "localByteSize": 237282,
+      "localDimensions": {
+        "width": 1153,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_4bc1bec239df452d9c4e205c46a8a33e~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_4bc1bec239df452d9c4e205c46a8a33e~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1153,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_4e60c15e658a4b79a0195819e842eb93",
+      "localPath": "/images/wix-migrated/747d6f_4e60c15e658a4b79a0195819e842eb93.jpg",
+      "localByteSize": 3932796,
+      "localDimensions": {
+        "width": 2982,
+        "height": 1746
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_4e60c15e658a4b79a0195819e842eb93~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_4e60c15e658a4b79a0195819e842eb93~mv2.webp",
+      "mappingDimensions": {
+        "height": 1746,
+        "width": 2982,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_4f691e3ded7e4211a2d6f2947a5186ea",
+      "localPath": "/images/wix-migrated/747d6f_4f691e3ded7e4211a2d6f2947a5186ea.jpg",
+      "localByteSize": 52718,
+      "localDimensions": {
+        "width": 563,
+        "height": 667
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_4f691e3ded7e4211a2d6f2947a5186ea~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_4f691e3ded7e4211a2d6f2947a5186ea~mv2.jpg",
+      "mappingDimensions": {
+        "height": 667,
+        "width": 563,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_5189ce27ac69426f8e7ee0f701b25f14",
+      "localPath": "/images/wix-migrated/747d6f_5189ce27ac69426f8e7ee0f701b25f14.webp",
+      "localByteSize": 97875,
+      "localDimensions": {
+        "width": 1200,
+        "height": 1200
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_5189ce27ac69426f8e7ee0f701b25f14~mv2.webp",
+      "mappingDimensions": {
+        "height": 1200,
+        "width": 1200,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_565523d2b38546f582a8ddb7f0a5dd67",
+      "localPath": "/images/wix-migrated/747d6f_565523d2b38546f582a8ddb7f0a5dd67.jpg",
+      "localByteSize": 11685138,
+      "localDimensions": {
+        "width": 6000,
+        "height": 4034
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_565523d2b38546f582a8ddb7f0a5dd67~mv2.jpg",
+      "mappingDimensions": {
+        "height": 4034,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_5946cd9b03e84e5c8439772d49367b12",
+      "localPath": "/images/wix-migrated/747d6f_5946cd9b03e84e5c8439772d49367b12.jpg",
+      "localByteSize": 13756936,
+      "localDimensions": {
+        "width": 5760,
+        "height": 3840
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_5946cd9b03e84e5c8439772d49367b12~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_5946cd9b03e84e5c8439772d49367b12~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3840,
+        "orientation": 1,
+        "width": 5760,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_5aaae6b332304ef5ba65344c8eb11ce0",
+      "localPath": "/images/wix-migrated/747d6f_5aaae6b332304ef5ba65344c8eb11ce0.jpg",
+      "localByteSize": 167316,
+      "localDimensions": {
+        "width": 1200,
+        "height": 1600
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_5aaae6b332304ef5ba65344c8eb11ce0~mv2.jpg/v1/fill/w_980,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_5aaae6b332304ef5ba65344c8eb11ce0~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1600,
+        "width": 1200,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_5c0cd869ade843ccbdca8e70b8463f50",
+      "localPath": "/images/wix-migrated/747d6f_5c0cd869ade843ccbdca8e70b8463f50.jpg",
+      "localByteSize": 232194,
+      "localDimensions": {
+        "width": 1440,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_5c0cd869ade843ccbdca8e70b8463f50~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_5c0cd869ade843ccbdca8e70b8463f50~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1440,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_5cee2d3c27734c998452e5eae7fdfb6e",
+      "localPath": "/images/wix-migrated/747d6f_5cee2d3c27734c998452e5eae7fdfb6e.jpg",
+      "localByteSize": 22392264,
+      "localDimensions": {
+        "width": 6000,
+        "height": 6727
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_5cee2d3c27734c998452e5eae7fdfb6e~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_5cee2d3c27734c998452e5eae7fdfb6e~mv2.webp",
+      "mappingDimensions": {
+        "height": 6727,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_5ef38d83bd5d4a33937c5ac8ae17ca75",
+      "localPath": "/images/wix-migrated/747d6f_5ef38d83bd5d4a33937c5ac8ae17ca75.jpg",
+      "localByteSize": 288349,
+      "localDimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_5ef38d83bd5d4a33937c5ac8ae17ca75~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_5ef38d83bd5d4a33937c5ac8ae17ca75~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1536,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_5fbe376ba5bd4db9a9118927f037d80d",
+      "localPath": "/images/wix-migrated/747d6f_5fbe376ba5bd4db9a9118927f037d80d.jpg",
+      "localByteSize": 20110813,
+      "localDimensions": {
+        "width": 6000,
+        "height": 4004
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_5fbe376ba5bd4db9a9118927f037d80d~mv2.jpg/v1/fill/w_1000,h_667,al_c,q_85,usm_0.66_1.00_0.01/747d6f_5fbe376ba5bd4db9a9118927f037d80d~mv2.jpg",
+      "mappingDimensions": {
+        "height": 4004,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5",
+      "localPath": "/images/wix-migrated/747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5.jpg",
+      "localByteSize": 131063,
+      "localDimensions": {
+        "width": 989,
+        "height": 1354
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_62d2a74159e44dc6b7998b9f1dfaf6f5~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1354,
+        "width": 989,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_632dd58fd1e5410496220f95241a4bbc",
+      "localPath": "/images/wix-migrated/747d6f_632dd58fd1e5410496220f95241a4bbc.jpg",
+      "localByteSize": 179148,
+      "localDimensions": {
+        "width": 1152,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_632dd58fd1e5410496220f95241a4bbc~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1152,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_63a4715edaeb43029411c6b6de222703",
+      "localPath": "/images/wix-migrated/747d6f_63a4715edaeb43029411c6b6de222703.jpg",
+      "localByteSize": 18490828,
+      "localDimensions": {
+        "width": 6000,
+        "height": 7457
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_63a4715edaeb43029411c6b6de222703~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_63a4715edaeb43029411c6b6de222703~mv2.jpg",
+      "mappingDimensions": {
+        "height": 7457,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_64bcccd9911949e7895d7325e88a5a75",
+      "localPath": "/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png",
+      "localByteSize": 278977,
+      "localDimensions": {
+        "width": 3582,
+        "height": 3113
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png/v1/fill/w_232,h_232,al_c,usm_0.66_1.00_0.01/747d6f_64bcccd9911949e7895d7325e88a5a75~mv2.png",
+      "mappingDimensions": {
+        "height": 3113,
+        "width": 3582,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_65957c575a244565926c21e9f48a20fd",
+      "localPath": "/images/wix-migrated/747d6f_65957c575a244565926c21e9f48a20fd.jpg",
+      "localByteSize": 306797,
+      "localDimensions": {
+        "width": 1152,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_65957c575a244565926c21e9f48a20fd~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_65957c575a244565926c21e9f48a20fd~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1152,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_67bfb90dac9d43e1a32e80facafef2e6",
+      "localPath": "/images/wix-migrated/747d6f_67bfb90dac9d43e1a32e80facafef2e6.jpg",
+      "localByteSize": 335573,
+      "localDimensions": {
+        "width": 1440,
+        "height": 1440
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_67bfb90dac9d43e1a32e80facafef2e6~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_67bfb90dac9d43e1a32e80facafef2e6~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1440,
+        "width": 1440,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_6a39bd22cbe142c8a1aada6b04e8a120",
+      "localPath": "/images/wix-migrated/747d6f_6a39bd22cbe142c8a1aada6b04e8a120.jpg",
+      "localByteSize": 144648,
+      "localDimensions": {
+        "width": 1080,
+        "height": 810
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_6a39bd22cbe142c8a1aada6b04e8a120~mv2.jpg/v1/fill/w_1000,h_750,al_c,q_85,usm_0.66_1.00_0.01/747d6f_6a39bd22cbe142c8a1aada6b04e8a120~mv2.jpg",
+      "mappingDimensions": {
+        "height": 810,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_6d1acf554eee4fbc80fbd473359a0c55",
+      "localPath": "/images/wix-migrated/747d6f_6d1acf554eee4fbc80fbd473359a0c55.jpg",
+      "localByteSize": 83537,
+      "localDimensions": {
+        "width": 959,
+        "height": 1920
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_6d1acf554eee4fbc80fbd473359a0c55~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_6d1acf554eee4fbc80fbd473359a0c55~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1920,
+        "width": 959,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_6d7fede4fb5743579e7005449c2d4d29",
+      "localPath": "/images/wix-migrated/747d6f_6d7fede4fb5743579e7005449c2d4d29.jpg",
+      "localByteSize": 273497,
+      "localDimensions": {
+        "width": 1366,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_6d7fede4fb5743579e7005449c2d4d29~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_6d7fede4fb5743579e7005449c2d4d29~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1366,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_6e4389df7e7f4087ae1308a3c44b14f2",
+      "localPath": "/images/wix-migrated/747d6f_6e4389df7e7f4087ae1308a3c44b14f2.webp",
+      "localByteSize": 85981,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_6e4389df7e7f4087ae1308a3c44b14f2~mv2.webp",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_6fba4cab7fda46208092419846e777a4",
+      "localPath": "/images/wix-migrated/747d6f_6fba4cab7fda46208092419846e777a4.png",
+      "localByteSize": 244494,
+      "localDimensions": {
+        "width": 940,
+        "height": 788
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_6fba4cab7fda46208092419846e777a4~mv2.png/v1/fill/w_940,h_788,al_c,q_90/747d6f_6fba4cab7fda46208092419846e777a4~mv2.png",
+      "mappingDimensions": {
+        "height": 788,
+        "orientation": 1,
+        "width": 940,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_6fc6a003b39840b58b4c14fa6e386e28",
+      "localPath": "/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg",
+      "localByteSize": 3053227,
+      "localDimensions": {
+        "width": 3867,
+        "height": 5801
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_6fc6a003b39840b58b4c14fa6e386e28~mv2.jpg/v1/fit/w_3867,h_5801,al_c,q_90/747d6f_6fc6a003b39840b58b4c14fa6e386e28~mv2.jpg",
+      "mappingDimensions": {
+        "height": 5801,
+        "orientation": 1,
+        "width": 3867,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_71c100aa03c04a2393e0deb186d0dfe1",
+      "localPath": "/images/wix-migrated/747d6f_71c100aa03c04a2393e0deb186d0dfe1.jpg",
+      "localByteSize": 3438841,
+      "localDimensions": {
+        "width": 2955,
+        "height": 1486
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_71c100aa03c04a2393e0deb186d0dfe1~mv2.jpg/v1/fill/w_488,h_759,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_71c100aa03c04a2393e0deb186d0dfe1~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1486,
+        "width": 2955,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_742f7fd280b0480085fbdc19faf13923",
+      "localPath": "/images/wix-migrated/747d6f_742f7fd280b0480085fbdc19faf13923.jpg",
+      "localByteSize": 953992,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1886
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_742f7fd280b0480085fbdc19faf13923~mv2.jpg/v1/fill/w_1080,h_304,fp_0.50_0.50,q_80,enc_auto/747d6f_742f7fd280b0480085fbdc19faf13923~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1886,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_7440489991eb4b4b82871c79341ad3b9",
+      "localPath": "/images/wix-migrated/747d6f_7440489991eb4b4b82871c79341ad3b9.jpg",
+      "localByteSize": 182528,
+      "localDimensions": {
+        "width": 1599,
+        "height": 1066
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_7440489991eb4b4b82871c79341ad3b9~mv2.jpg/v1/fill/w_1280,h_360,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_auto/747d6f_7440489991eb4b4b82871c79341ad3b9~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1066,
+        "width": 1599,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_74d5edfd53564d5e874eaa48216c69e1",
+      "localPath": "/images/wix-migrated/747d6f_74d5edfd53564d5e874eaa48216c69e1.webp",
+      "localByteSize": 156637,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_74d5edfd53564d5e874eaa48216c69e1~mv2.webp/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_74d5edfd53564d5e874eaa48216c69e1~mv2.webp",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_75125bb1ebef47b7939d3fbd6ec73f55",
+      "localPath": "/images/wix-migrated/747d6f_75125bb1ebef47b7939d3fbd6ec73f55.png",
+      "localByteSize": 1656494,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_75125bb1ebef47b7939d3fbd6ec73f55~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_75125bb1ebef47b7939d3fbd6ec73f55~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_75f475196e3244da9e18720cc382ba9b",
+      "localPath": "/images/wix-migrated/747d6f_75f475196e3244da9e18720cc382ba9b.jpg",
+      "localByteSize": 23016974,
+      "localDimensions": {
+        "width": 6000,
+        "height": 9000
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_75f475196e3244da9e18720cc382ba9b~mv2.jpg/v1/fill/w_980,h_571,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_75f475196e3244da9e18720cc382ba9b~mv2.jpg",
+      "mappingDimensions": {
+        "height": 9000,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_77fc63c840ea462ab19c35b60bc959cf",
+      "localPath": "/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg",
+      "localByteSize": 210626,
+      "localDimensions": {
+        "width": 1152,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_77fc63c840ea462ab19c35b60bc959cf~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1152,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_79268ec496de49ba985b6980ba3528c4",
+      "localPath": "/images/wix-migrated/747d6f_79268ec496de49ba985b6980ba3528c4.jpeg",
+      "localByteSize": 4883085,
+      "localDimensions": {
+        "width": 5712,
+        "height": 4284
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_79268ec496de49ba985b6980ba3528c4~mv2.jpeg/v1/fill/w_740,h_987,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_79268ec496de49ba985b6980ba3528c4~mv2.jpeg",
+      "mappingDimensions": {
+        "height": 4284,
+        "orientation": 6,
+        "width": 5712,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_7d7f776acb8942f383a1dde065294ead",
+      "localPath": "/images/wix-migrated/747d6f_7d7f776acb8942f383a1dde065294ead.png",
+      "localByteSize": 9357927,
+      "localDimensions": {
+        "width": 2500,
+        "height": 3125
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_7d7f776acb8942f383a1dde065294ead~mv2.png/v1/fill/w_2500,h_3125,al_c/747d6f_7d7f776acb8942f383a1dde065294ead~mv2.png",
+      "mappingDimensions": {
+        "height": 3125,
+        "width": 2500,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_7db2d914cc6745e5bba260e4c16be9c7",
+      "localPath": "/images/wix-migrated/747d6f_7db2d914cc6745e5bba260e4c16be9c7.jpg",
+      "localByteSize": 344413,
+      "localDimensions": {
+        "width": 2048,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_7db2d914cc6745e5bba260e4c16be9c7~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_7db2d914cc6745e5bba260e4c16be9c7~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_834716a3d7184a77b4462bb715a0d9bf",
+      "localPath": "/images/wix-migrated/747d6f_834716a3d7184a77b4462bb715a0d9bf.jpg",
+      "localByteSize": 501727,
+      "localDimensions": {
+        "width": 2258,
+        "height": 3000
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_834716a3d7184a77b4462bb715a0d9bf~mv2.jpg/v1/fill/w_753,h_1000,al_c,q_85,usm_0.66_1.00_0.01/747d6f_834716a3d7184a77b4462bb715a0d9bf~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3000,
+        "width": 2258,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_858ea5b1d9ce415c8d2ce2c3977c5d56",
+      "localPath": "/images/wix-migrated/747d6f_858ea5b1d9ce415c8d2ce2c3977c5d56.jpg",
+      "localByteSize": 8181496,
+      "localDimensions": {
+        "width": 3000,
+        "height": 2161
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_858ea5b1d9ce415c8d2ce2c3977c5d56~mv2.jpg/v1/fill/w_980,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Casual%20Meeting_edited.jpg",
+      "mappingDimensions": {
+        "height": 2161,
+        "width": 3000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_85e6210e2fd54cd6885c6833e198c58d",
+      "localPath": "/images/wix-migrated/747d6f_85e6210e2fd54cd6885c6833e198c58d.jpg",
+      "localByteSize": 4435034,
+      "localDimensions": {
+        "width": 6720,
+        "height": 4480
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_85e6210e2fd54cd6885c6833e198c58d~mv2.jpg/v1/fill/w_980,h_720,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_85e6210e2fd54cd6885c6833e198c58d~mv2.jpg",
+      "mappingDimensions": {
+        "height": 4480,
+        "orientation": 1,
+        "width": 6720,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_88382165162c4d72b411c18f7072fb10",
+      "localPath": "/images/wix-migrated/747d6f_88382165162c4d72b411c18f7072fb10.jpg",
+      "localByteSize": 201424,
+      "localDimensions": {
+        "width": 1153,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_88382165162c4d72b411c18f7072fb10~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_88382165162c4d72b411c18f7072fb10~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1153,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_8af7f884525642d8b67fe0bf709a577b",
+      "localPath": "/images/wix-migrated/747d6f_8af7f884525642d8b67fe0bf709a577b.png",
+      "localByteSize": 1948398,
+      "localDimensions": {
+        "width": 1121,
+        "height": 914
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_8af7f884525642d8b67fe0bf709a577b~mv2.png/v1/fill/w_244,h_243,fp_0.50_0.50,q_90/747d6f_8af7f884525642d8b67fe0bf709a577b~mv2.webp",
+      "mappingDimensions": {
+        "height": 914,
+        "width": 1121,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_8b5a6384178243c5817202f1ad50b5ed",
+      "localPath": "/images/wix-migrated/747d6f_8b5a6384178243c5817202f1ad50b5ed.png",
+      "localByteSize": 1250743,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_8b5a6384178243c5817202f1ad50b5ed~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_8b5a6384178243c5817202f1ad50b5ed~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_8d41bbe5ded149c2a8cea7d5e662ef08",
+      "localPath": "/images/wix-migrated/747d6f_8d41bbe5ded149c2a8cea7d5e662ef08.jpg",
+      "localByteSize": 161174,
+      "localDimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_8d41bbe5ded149c2a8cea7d5e662ef08~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_8d41bbe5ded149c2a8cea7d5e662ef08~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1024,
+        "width": 1024,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_8e0a38114728487bade7b52335892f5a",
+      "localPath": "/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg",
+      "localByteSize": 18209637,
+      "localDimensions": {
+        "width": 6000,
+        "height": 4004
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_8e0a38114728487bade7b52335892f5a~mv2.jpg/v1/fit/w_6000,h_4004,al_c,q_90/747d6f_8e0a38114728487bade7b52335892f5a~mv2.jpg",
+      "mappingDimensions": {
+        "height": 4004,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_8e5661920eb44342af8aea4182068514",
+      "localPath": "/images/wix-migrated/747d6f_8e5661920eb44342af8aea4182068514.jpg",
+      "localByteSize": 5763700,
+      "localDimensions": {
+        "width": 4000,
+        "height": 3539
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_8e5661920eb44342af8aea4182068514~mv2.jpg/v1/fill/w_590,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_8e5661920eb44342af8aea4182068514~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3539,
+        "orientation": 1,
+        "width": 4000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_90e90c61b57d4029a48950eacd31468b",
+      "localPath": "/images/wix-migrated/747d6f_90e90c61b57d4029a48950eacd31468b.jpg",
+      "localByteSize": 486370,
+      "localDimensions": {
+        "width": 2048,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_90e90c61b57d4029a48950eacd31468b~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_939c4a28e30b423aae42088184598b32",
+      "localPath": "/images/wix-migrated/747d6f_939c4a28e30b423aae42088184598b32.png",
+      "localByteSize": 1295433,
+      "localDimensions": {
+        "width": 1080,
+        "height": 777
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_939c4a28e30b423aae42088184598b32~mv2.png/v1/fill/w_1080,h_304,fp_0.50_0.50,q_85,enc_auto/747d6f_939c4a28e30b423aae42088184598b32~mv2.png",
+      "mappingDimensions": {
+        "height": 777,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_9653e644591c401480e2390aadca4cf6",
+      "localPath": "/images/wix-migrated/747d6f_9653e644591c401480e2390aadca4cf6.jpg",
+      "localByteSize": 253765,
+      "localDimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_9653e644591c401480e2390aadca4cf6~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_9653e644591c401480e2390aadca4cf6~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1536,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_9a02c46adb9c4b668b263600c7e8f237",
+      "localPath": "/images/wix-migrated/747d6f_9a02c46adb9c4b668b263600c7e8f237.jpg",
+      "localByteSize": 7175969,
+      "localDimensions": {
+        "width": 4247,
+        "height": 2833
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg/v1/fill/w_1280,h_663,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_9a02c46adb9c4b668b263600c7e8f237~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2833,
+        "orientation": 1,
+        "width": 4247,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_9d3ff910f8f94205a2240105010d6192",
+      "localPath": "/images/wix-migrated/747d6f_9d3ff910f8f94205a2240105010d6192.jpg",
+      "localByteSize": 273497,
+      "localDimensions": {
+        "width": 1366,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_9d3ff910f8f94205a2240105010d6192~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_9d3ff910f8f94205a2240105010d6192~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1366,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_a1a973b49bc74e2b9e097bf7b8091e76",
+      "localPath": "/images/wix-migrated/747d6f_a1a973b49bc74e2b9e097bf7b8091e76.jpeg",
+      "localByteSize": 118728,
+      "localDimensions": {
+        "width": 443,
+        "height": 560
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_a1a973b49bc74e2b9e097bf7b8091e76~mv2.jpeg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_a1a973b49bc74e2b9e097bf7b8091e76~mv2.jpeg",
+      "mappingDimensions": {
+        "height": 560,
+        "orientation": 1,
+        "width": 443,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_a37f0e14350d44ccaf5bd6702f0b5439",
+      "localPath": "/images/wix-migrated/747d6f_a37f0e14350d44ccaf5bd6702f0b5439.webp",
+      "localByteSize": 130597,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_a37f0e14350d44ccaf5bd6702f0b5439~mv2.webp/v1/fill/w_1000,h_1000,al_c,q_85,usm_0.66_1.00_0.01/747d6f_a37f0e14350d44ccaf5bd6702f0b5439~mv2.webp",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_af946e4dbc8d40208b3d1c05be4cebbe",
+      "localPath": "/images/wix-migrated/747d6f_af946e4dbc8d40208b3d1c05be4cebbe.jpg",
+      "localByteSize": 24653178,
+      "localDimensions": {
+        "width": 6000,
+        "height": 7402
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_af946e4dbc8d40208b3d1c05be4cebbe~mv2.jpg/v1/fill/w_488,h_967,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_af946e4dbc8d40208b3d1c05be4cebbe~mv2.jpg",
+      "mappingDimensions": {
+        "height": 7402,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_b23dca3217b744eab898a010fc1654d6",
+      "localPath": "/images/wix-migrated/747d6f_b23dca3217b744eab898a010fc1654d6.webp",
+      "localByteSize": 118465,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_b23dca3217b744eab898a010fc1654d6~mv2.webp",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_b34b940cfd314426aa2fc778c982eb8b",
+      "localPath": "/images/wix-migrated/747d6f_b34b940cfd314426aa2fc778c982eb8b.jpg",
+      "localByteSize": 12101319,
+      "localDimensions": {
+        "width": 4997,
+        "height": 3221
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_b34b940cfd314426aa2fc778c982eb8b~mv2.jpg/v1/fit/w_4997,h_3221,al_c,q_90/747d6f_b34b940cfd314426aa2fc778c982eb8b~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3221,
+        "orientation": 1,
+        "width": 4997,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_b36c26d927764d3f859565bb328d0dae",
+      "localPath": "/images/wix-migrated/747d6f_b36c26d927764d3f859565bb328d0dae.jpg",
+      "localByteSize": 11471517,
+      "localDimensions": {
+        "width": 5219,
+        "height": 3310
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_b36c26d927764d3f859565bb328d0dae~mv2.jpg/v1/fill/w_244,h_243,fp_0.50_0.50,q_90/747d6f_b36c26d927764d3f859565bb328d0dae~mv2.webp",
+      "mappingDimensions": {
+        "height": 3310,
+        "orientation": 1,
+        "width": 5219,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_b5e3aff7de8743c88922dac0ed1c8629",
+      "localPath": "/images/wix-migrated/747d6f_b5e3aff7de8743c88922dac0ed1c8629.png",
+      "localByteSize": 1361218,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_b5e3aff7de8743c88922dac0ed1c8629~mv2.png/v1/fit/w_1080,h_1920,al_c/747d6f_b5e3aff7de8743c88922dac0ed1c8629~mv2.png",
+      "mappingDimensions": {
+        "height": 1920,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_b6b2ebdcb95f424984ee80e8e58a604d",
+      "localPath": "/images/wix-migrated/747d6f_b6b2ebdcb95f424984ee80e8e58a604d.jpg",
+      "localByteSize": 11471517,
+      "localDimensions": {
+        "width": 5219,
+        "height": 3310
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_b6b2ebdcb95f424984ee80e8e58a604d~mv2.jpg/v1/fill/w_980,h_521,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_b6b2ebdcb95f424984ee80e8e58a604d~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3310,
+        "orientation": 1,
+        "width": 5219,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_b8b4604091d64cd08fc792d41d76287e",
+      "localPath": "/images/wix-migrated/747d6f_b8b4604091d64cd08fc792d41d76287e.jpg",
+      "localByteSize": 92990,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1080
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_b8b4604091d64cd08fc792d41d76287e~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_b8b4604091d64cd08fc792d41d76287e~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1080,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_b9beeef9651e413d806d04d3230bcad8",
+      "localPath": "/images/wix-migrated/747d6f_b9beeef9651e413d806d04d3230bcad8.jpeg",
+      "localByteSize": 2529580,
+      "localDimensions": {
+        "width": 4032,
+        "height": 3024
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_b9beeef9651e413d806d04d3230bcad8~mv2.jpeg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_b9beeef9651e413d806d04d3230bcad8~mv2.jpeg",
+      "mappingDimensions": {
+        "height": 3024,
+        "orientation": 6,
+        "width": 4032,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_ba3d46ee996f48adb1457d8386e8dcef",
+      "localPath": "/images/wix-migrated/747d6f_ba3d46ee996f48adb1457d8386e8dcef.jpg",
+      "localByteSize": 10928059,
+      "localDimensions": {
+        "width": 5295,
+        "height": 3706
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_ba3d46ee996f48adb1457d8386e8dcef~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_ba3d46ee996f48adb1457d8386e8dcef~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3706,
+        "orientation": 1,
+        "width": 5295,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_bafb828b6a10428e91beb922a773e6a1",
+      "localPath": "/images/wix-migrated/747d6f_bafb828b6a10428e91beb922a773e6a1.jpg",
+      "localByteSize": 15523492,
+      "localDimensions": {
+        "width": 6000,
+        "height": 6829
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_bafb828b6a10428e91beb922a773e6a1~mv2.jpg/v1/fill/w_488,h_894,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_bafb828b6a10428e91beb922a773e6a1~mv2.jpg",
+      "mappingDimensions": {
+        "height": 6829,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_bd50a8f7389540819fdfd73395d3b559",
+      "localPath": "/images/wix-migrated/747d6f_bd50a8f7389540819fdfd73395d3b559.jpg",
+      "localByteSize": 251741,
+      "localDimensions": {
+        "width": 1502,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_bd50a8f7389540819fdfd73395d3b559~mv2.jpg/v1/fill/w_980,h_1073,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_bd50a8f7389540819fdfd73395d3b559~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1502,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_bdbe8e1736984ddfae1721dbdc8492fb",
+      "localPath": "/images/wix-migrated/747d6f_bdbe8e1736984ddfae1721dbdc8492fb.jpg",
+      "localByteSize": 292264,
+      "localDimensions": {
+        "width": 1200,
+        "height": 1600
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_bdbe8e1736984ddfae1721dbdc8492fb~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_bdbe8e1736984ddfae1721dbdc8492fb~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1600,
+        "width": 1200,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_beb2180b228e46b99d49a5a2f1eac63b",
+      "localPath": "/images/wix-migrated/747d6f_beb2180b228e46b99d49a5a2f1eac63b.png",
+      "localByteSize": 7247905,
+      "localDimensions": {
+        "width": 2000,
+        "height": 2218
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_beb2180b228e46b99d49a5a2f1eac63b~mv2.png/v1/fill/w_1280,h_360,fp_0.50_0.50,q_90,usm_0.66_1.00_0.01,enc_auto/747d6f_beb2180b228e46b99d49a5a2f1eac63b~mv2.png",
+      "mappingDimensions": {
+        "height": 2218,
+        "width": 2000,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_bf6fc0998d4a4467945a89a8340eb7cd",
+      "localPath": "/images/wix-migrated/747d6f_bf6fc0998d4a4467945a89a8340eb7cd.png",
+      "localByteSize": 9560050,
+      "localDimensions": {
+        "width": 3000,
+        "height": 1719
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_bf6fc0998d4a4467945a89a8340eb7cd~mv2.png/v1/fill/w_1000,h_573,al_c,q_90,usm_0.66_1.00_0.01/747d6f_bf6fc0998d4a4467945a89a8340eb7cd~mv2.png",
+      "mappingDimensions": {
+        "height": 1719,
+        "width": 3000,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_bfd4d83b5e324760969c7f4db1b2b41f",
+      "localPath": "/images/wix-migrated/747d6f_bfd4d83b5e324760969c7f4db1b2b41f.png",
+      "localByteSize": 2591328,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_bfd4d83b5e324760969c7f4db1b2b41f~mv2.png/v1/fill/w_488,h_687,al_bl,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_bfd4d83b5e324760969c7f4db1b2b41f~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_c365686f6f144220b9b8da601a70d017",
+      "localPath": "/images/wix-migrated/747d6f_c365686f6f144220b9b8da601a70d017.jpg",
+      "localByteSize": 1556727,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1133
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_c365686f6f144220b9b8da601a70d017~mv2.jpg/v1/fill/w_586,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_c365686f6f144220b9b8da601a70d017~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1133,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_c4f1c7aee49e46c295f3910e257e8f69",
+      "localPath": "/images/wix-migrated/747d6f_c4f1c7aee49e46c295f3910e257e8f69.jpg",
+      "localByteSize": 16466832,
+      "localDimensions": {
+        "width": 6000,
+        "height": 4111
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_c4f1c7aee49e46c295f3910e257e8f69~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_c4f1c7aee49e46c295f3910e257e8f69~mv2.jpg",
+      "mappingDimensions": {
+        "height": 4111,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_c6ba27e517f64531a718d44d6861d2b0",
+      "localPath": "/images/wix-migrated/747d6f_c6ba27e517f64531a718d44d6861d2b0.jpg",
+      "localByteSize": 257525,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1133
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_c6ba27e517f64531a718d44d6861d2b0~mv2.jpg/v1/fill/w_953,h_1000,al_c,q_85,usm_0.66_1.00_0.01/747d6f_c6ba27e517f64531a718d44d6861d2b0~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1133,
+        "width": 1080,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc",
+      "localPath": "/images/wix-migrated/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc.jpg",
+      "localByteSize": 16048399,
+      "localDimensions": {
+        "width": 6551,
+        "height": 4367
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_c6bc037f500c42c986cc8ea2f3f4f0bc~mv2.jpg",
+      "mappingDimensions": {
+        "height": 4367,
+        "orientation": 1,
+        "width": 6551,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_cd2460d4d3c1409b91c31dba9f7db804",
+      "localPath": "/images/wix-migrated/747d6f_cd2460d4d3c1409b91c31dba9f7db804.png",
+      "localByteSize": 2668738,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_cd2460d4d3c1409b91c31dba9f7db804~mv2.png/v1/fill/w_980,h_658,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_cd2460d4d3c1409b91c31dba9f7db804~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_d1a7cda543f04bfa93539ffe6925026b",
+      "localPath": "/images/wix-migrated/747d6f_d1a7cda543f04bfa93539ffe6925026b.jpg",
+      "localByteSize": 622138,
+      "localDimensions": {
+        "width": 2250,
+        "height": 3000
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_d1a7cda543f04bfa93539ffe6925026b~mv2.jpg/v1/fill/w_243,h_243,fp_0.50_0.50,q_90/747d6f_d1a7cda543f04bfa93539ffe6925026b~mv2.webp",
+      "mappingDimensions": {
+        "height": 3000,
+        "width": 2250,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_d5ab31a744f841fc8269902080e23e8b",
+      "localPath": "/images/wix-migrated/747d6f_d5ab31a744f841fc8269902080e23e8b.jpg",
+      "localByteSize": 131058,
+      "localDimensions": {
+        "width": 1152,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_d5ab31a744f841fc8269902080e23e8b~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_d5ab31a744f841fc8269902080e23e8b~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1152,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_d8f9b5306c68445f95b53ab86213c36b",
+      "localPath": "/images/wix-migrated/747d6f_d8f9b5306c68445f95b53ab86213c36b.png",
+      "localByteSize": 1924866,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_d8f9b5306c68445f95b53ab86213c36b~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_d8f9b5306c68445f95b53ab86213c36b~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_da600fb92cac4d629b7833190b681fa2",
+      "localPath": "/images/wix-migrated/747d6f_da600fb92cac4d629b7833190b681fa2.jpg",
+      "localByteSize": 22392264,
+      "localDimensions": {
+        "width": 6000,
+        "height": 6727
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg/v1/fill/w_892,h_1000,al_c,q_85,usm_0.66_1.00_0.01/747d6f_da600fb92cac4d629b7833190b681fa2~mv2.jpg",
+      "mappingDimensions": {
+        "height": 6727,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_db20092f210148bdb5f759fb972dcbe1",
+      "localPath": "/images/wix-migrated/747d6f_db20092f210148bdb5f759fb972dcbe1.jpg",
+      "localByteSize": 15390133,
+      "localDimensions": {
+        "width": 6000,
+        "height": 3973
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg/v1/fill/w_1000,h_662,al_c,q_85,usm_0.66_1.00_0.01/747d6f_db20092f210148bdb5f759fb972dcbe1~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3973,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_db69baa543fb49fb8e204a00dc0016c6",
+      "localPath": "/images/wix-migrated/747d6f_db69baa543fb49fb8e204a00dc0016c6.jpg",
+      "localByteSize": 2672626,
+      "localDimensions": {
+        "width": 5847,
+        "height": 3898
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_db69baa543fb49fb8e204a00dc0016c6~mv2.jpg/v1/fill/w_488,h_741,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_db69baa543fb49fb8e204a00dc0016c6~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3898,
+        "orientation": 1,
+        "width": 5847,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_dc55fa9a88ec400c852bddf31cc0b1c8",
+      "localPath": "/images/wix-migrated/747d6f_dc55fa9a88ec400c852bddf31cc0b1c8.png",
+      "localByteSize": 1437720,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1350
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_dc55fa9a88ec400c852bddf31cc0b1c8~mv2.png/v1/fill/w_312,h_393,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_dc55fa9a88ec400c852bddf31cc0b1c8~mv2.png",
+      "mappingDimensions": {
+        "height": 1350,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_dd9f283803834f07b7a7d280c74af5aa",
+      "localPath": "/images/wix-migrated/747d6f_dd9f283803834f07b7a7d280c74af5aa.png",
+      "localByteSize": 7501183,
+      "localDimensions": {
+        "width": 3000,
+        "height": 1384
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_dd9f283803834f07b7a7d280c74af5aa~mv2.png/v1/fill/w_1280,h_360,fp_0.50_0.50,q_90,usm_0.66_1.00_0.01,enc_auto/747d6f_dd9f283803834f07b7a7d280c74af5aa~mv2.png",
+      "mappingDimensions": {
+        "height": 1384,
+        "width": 3000,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_df6f4a2f5b3a41ad8914b416ef4c7857",
+      "localPath": "/images/wix-migrated/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857.jpg",
+      "localByteSize": 161730,
+      "localDimensions": {
+        "width": 922,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857~mv2.jpg/v1/fill/w_312,h_393,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_df6f4a2f5b3a41ad8914b416ef4c7857~mv2.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 922,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_dfe2828f7bac463c873af8b1df79fe47",
+      "localPath": "/images/wix-migrated/747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg",
+      "localByteSize": 2226211,
+      "localDimensions": {
+        "width": 5958,
+        "height": 3972
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_dfe2828f7bac463c873af8b1df79fe47~mv2.jpg/v1/fill/w_488,h_657,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_dfe2828f7bac463c873af8b1df79fe47~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3972,
+        "orientation": 1,
+        "width": 5958,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_e0f7a1b2accc4542a5fec56b5ba4b975",
+      "localPath": "/images/wix-migrated/747d6f_e0f7a1b2accc4542a5fec56b5ba4b975.jpg",
+      "localByteSize": 198419,
+      "localDimensions": {
+        "width": 1200,
+        "height": 1600
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_e0f7a1b2accc4542a5fec56b5ba4b975~mv2.jpg/v1/fill/w_488,h_759,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_e0f7a1b2accc4542a5fec56b5ba4b975~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1600,
+        "width": 1200,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_e1190fb32156413690b13225eff34e14",
+      "localPath": "/images/wix-migrated/747d6f_e1190fb32156413690b13225eff34e14.jpg",
+      "localByteSize": 22388663,
+      "localDimensions": {
+        "width": 6000,
+        "height": 6531
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_e1190fb32156413690b13225eff34e14~mv2.jpg/v1/fill/w_488,h_691,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_e1190fb32156413690b13225eff34e14~mv2.jpg",
+      "mappingDimensions": {
+        "height": 6531,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_e5ad882b2465483ebd9497dece123b1c",
+      "localPath": "/images/wix-migrated/747d6f_e5ad882b2465483ebd9497dece123b1c.jpeg",
+      "localByteSize": 3018718,
+      "localDimensions": {
+        "width": 5712,
+        "height": 4284
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_e5ad882b2465483ebd9497dece123b1c~mv2.jpeg/v1/fill/w_740,h_987,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_e5ad882b2465483ebd9497dece123b1c~mv2.jpeg",
+      "mappingDimensions": {
+        "height": 4284,
+        "orientation": 6,
+        "width": 5712,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_e90fa0c2226c4d72bb3a814d5b815ab6",
+      "localPath": "/images/wix-migrated/747d6f_e90fa0c2226c4d72bb3a814d5b815ab6.jpg",
+      "localByteSize": 64440,
+      "localDimensions": {
+        "width": 1163,
+        "height": 743
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_e90fa0c2226c4d72bb3a814d5b815ab6~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_e90fa0c2226c4d72bb3a814d5b815ab6~mv2.jpg",
+      "mappingDimensions": {
+        "height": 743,
+        "width": 1163,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_e9ae4fd07ea84670a4619d707e66e83e",
+      "localPath": "/images/wix-migrated/747d6f_e9ae4fd07ea84670a4619d707e66e83e.png",
+      "localByteSize": 3215029,
+      "localDimensions": {
+        "width": 1080,
+        "height": 1920
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_e9ae4fd07ea84670a4619d707e66e83e~mv2.png/v1/fill/w_551,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_e9ae4fd07ea84670a4619d707e66e83e~mv2.png",
+      "mappingDimensions": {
+        "height": 1920,
+        "width": 1080,
+        "type": "png"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "container-supports-transparency"
+    },
+    {
+      "id": "747d6f_ec8876726c8f4acf9f3aef15bc36b8cd",
+      "localPath": "/images/wix-migrated/747d6f_ec8876726c8f4acf9f3aef15bc36b8cd.jpg",
+      "localByteSize": 136741,
+      "localDimensions": {
+        "width": 1154,
+        "height": 1048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_ec8876726c8f4acf9f3aef15bc36b8cd~mv2.jpg/v1/fit/w_1154,h_1048,al_c,q_85/747d6f_ec8876726c8f4acf9f3aef15bc36b8cd~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1048,
+        "width": 1154,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_ecba344d6d424bc0acd5444e304c190f",
+      "localPath": "/images/wix-migrated/747d6f_ecba344d6d424bc0acd5444e304c190f.jpg",
+      "localByteSize": 276152,
+      "localDimensions": {
+        "width": 1152,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_ecba344d6d424bc0acd5444e304c190f~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_ecba344d6d424bc0acd5444e304c190f~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1152,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_ecd02fc102ac4073a257e0118506cadd",
+      "localPath": "/images/wix-migrated/747d6f_ecd02fc102ac4073a257e0118506cadd.jpg",
+      "localByteSize": 89410,
+      "localDimensions": {
+        "width": 1135,
+        "height": 1237
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_ecd02fc102ac4073a257e0118506cadd~mv2.jpg/v1/fill/w_232,h_232,al_c,q_80,usm_0.66_1.00_0.01/747d6f_ecd02fc102ac4073a257e0118506cadd~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1237,
+        "width": 1135,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_efb20b5c2255491d9cd3bfa29c398561",
+      "localPath": "/images/wix-migrated/747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg",
+      "localByteSize": 205797,
+      "localDimensions": {
+        "width": 2048,
+        "height": 1588
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_efb20b5c2255491d9cd3bfa29c398561~mv2.jpg/v1/fill/w_488,h_715,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_efb20b5c2255491d9cd3bfa29c398561~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1588,
+        "width": 2048,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_f560d7a2e95a49aebcda0065309a0783",
+      "localPath": "/images/wix-migrated/747d6f_f560d7a2e95a49aebcda0065309a0783.jpg",
+      "localByteSize": 157593,
+      "localDimensions": {
+        "width": 1117,
+        "height": 1451
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_f560d7a2e95a49aebcda0065309a0783~mv2.jpg/v1/fill/w_488,h_967,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_f560d7a2e95a49aebcda0065309a0783~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1451,
+        "width": 1117,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_f58dd3eadfef49bdb97c27f37f7405b2",
+      "localPath": "/images/wix-migrated/747d6f_f58dd3eadfef49bdb97c27f37f7405b2.jpg",
+      "localByteSize": 539066,
+      "localDimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_f58dd3eadfef49bdb97c27f37f7405b2~mv2.jpg/v1/fit/w_1536,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_f58dd3eadfef49bdb97c27f37f7405b2~mv2_jpg_v1_fit_w_1536%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1536,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_f7dbb82b083943689efa367416eb192a",
+      "localPath": "/images/wix-migrated/747d6f_f7dbb82b083943689efa367416eb192a.jpg",
+      "localByteSize": 2033830,
+      "localDimensions": {
+        "width": 5595,
+        "height": 3729
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_f7dbb82b083943689efa367416eb192a~mv2.jpg/v1/fill/w_980,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1a.jpg",
+      "mappingDimensions": {
+        "height": 3729,
+        "orientation": 1,
+        "width": 5595,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_fac5316d826f417fa309426a15f3f820",
+      "localPath": "/images/wix-migrated/747d6f_fac5316d826f417fa309426a15f3f820.jpg",
+      "localByteSize": 332833,
+      "localDimensions": {
+        "width": 1536,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_fac5316d826f417fa309426a15f3f820~mv2.jpg/v1/fit/w_1536,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_fac5316d826f417fa309426a15f3f820~mv2_jpg_v1_fit_w_1536%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1536,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_fb9903ba14334071adf53fbe9c7373ba",
+      "localPath": "/images/wix-migrated/747d6f_fb9903ba14334071adf53fbe9c7373ba.jpg",
+      "localByteSize": 234349,
+      "localDimensions": {
+        "width": 1152,
+        "height": 2048
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2.jpg/v1/fit/w_1152,h_2048,q_90/file.jpg/v1/fill/w_498,h_887,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_fb9903ba14334071adf53fbe9c7373ba~mv2_jpg_v1_fit_w_1152%2Ch_2048%2Cq_90_file.jpg",
+      "mappingDimensions": {
+        "height": 2048,
+        "width": 1152,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_fca882c3dece4a5fab6a55a0b49998a5",
+      "localPath": "/images/wix-migrated/747d6f_fca882c3dece4a5fab6a55a0b49998a5.jpg",
+      "localByteSize": 16792889,
+      "localDimensions": {
+        "width": 6000,
+        "height": 4030
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_fca882c3dece4a5fab6a55a0b49998a5~mv2.jpg/v1/fill/w_980,h_523,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/dladzieci.jpg",
+      "mappingDimensions": {
+        "height": 4030,
+        "width": 6000,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_ff24ad7d7859452782d34e7ac82d8133",
+      "localPath": "/images/wix-migrated/747d6f_ff24ad7d7859452782d34e7ac82d8133.jpg",
+      "localByteSize": 267063,
+      "localDimensions": {
+        "width": 991,
+        "height": 1238
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_ff24ad7d7859452782d34e7ac82d8133~mv2.jpg/v1/fill/w_784,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/747d6f_ff24ad7d7859452782d34e7ac82d8133~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1238,
+        "width": 991,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "747d6f_ffa722856f6d45fcbf568b5e5bb50fbb",
+      "localPath": "/images/wix-migrated/747d6f_ffa722856f6d45fcbf568b5e5bb50fbb.jpg",
+      "localByteSize": 35770,
+      "localDimensions": {
+        "width": 739,
+        "height": 1167
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/747d6f_ffa722856f6d45fcbf568b5e5bb50fbb~mv2.jpg/v1/fill/w_633,h_1000,al_c,q_85,usm_0.66_1.00_0.01/747d6f_ffa722856f6d45fcbf568b5e5bb50fbb~mv2.jpg",
+      "mappingDimensions": {
+        "height": 1167,
+        "width": 739,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": false,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "7ce4eff7766e4d5f905b18cd5f8c43ce",
+      "localPath": "/images/wix-migrated/7ce4eff7766e4d5f905b18cd5f8c43ce.jpg",
+      "localByteSize": 9882745,
+      "localDimensions": {
+        "width": 5472,
+        "height": 3648
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/7ce4eff7766e4d5f905b18cd5f8c43ce.jpg",
+      "mappingDimensions": {
+        "height": 3648,
+        "orientation": 1,
+        "width": 5472,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "87a0d537f3654d148ba517d045f6d3ff",
+      "localPath": "/images/wix-migrated/87a0d537f3654d148ba517d045f6d3ff.jpg",
+      "localByteSize": 3523905,
+      "localDimensions": {
+        "width": 5851,
+        "height": 3402
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/87a0d537f3654d148ba517d045f6d3ff.jpg",
+      "mappingDimensions": {
+        "height": 3402,
+        "orientation": 1,
+        "width": 5851,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648",
+      "localPath": "/images/wix-migrated/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648.jpg",
+      "localByteSize": 1605001,
+      "localDimensions": {
+        "width": 6162,
+        "height": 3473
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg/v1/fill/w_586,h_483,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/a3c153_90bfbc5450a7480c8d4c4f8bc6bb5648~mv2.jpg",
+      "mappingDimensions": {
+        "height": 3473,
+        "width": 6162,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "b0c1743eec4b7984c4c5d8a5727dc0b4",
+      "localPath": "/images/wix-migrated/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
+      "localByteSize": 301874,
+      "localDimensions": {
+        "width": 1280,
+        "height": 853
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/b0c1743eec4b7984c4c5d8a5727dc0b4.jpg",
+      "mappingDimensions": {
+        "height": 853,
+        "width": 1280,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "cea6ce1029734103b164fb07bb36ed70",
+      "localPath": "/images/wix-migrated/cea6ce1029734103b164fb07bb36ed70.jpg",
+      "localByteSize": 743428,
+      "localDimensions": {
+        "width": 4160,
+        "height": 2736
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/cea6ce1029734103b164fb07bb36ed70.jpg",
+      "mappingDimensions": {
+        "height": 2736,
+        "width": 4160,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "d01231e46af34161be7ad101d281a441",
+      "localPath": "/images/wix-migrated/d01231e46af34161be7ad101d281a441.jpg",
+      "localByteSize": 3755349,
+      "localDimensions": {
+        "width": 2944,
+        "height": 1965
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/d01231e46af34161be7ad101d281a441.jpg",
+      "mappingDimensions": {
+        "height": 1965,
+        "orientation": 1,
+        "width": 2944,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "de27b2e088814fa994ff8a44f2a9a467",
+      "localPath": "/images/wix-migrated/de27b2e088814fa994ff8a44f2a9a467.jpg",
+      "localByteSize": 2325295,
+      "localDimensions": {
+        "width": 1920,
+        "height": 1343
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/de27b2e088814fa994ff8a44f2a9a467.jpg",
+      "mappingDimensions": {
+        "height": 1343,
+        "width": 1920,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "e0b46ce0b8284bdbb676d5b51b90aeb3",
+      "localPath": "/images/wix-migrated/e0b46ce0b8284bdbb676d5b51b90aeb3.jpg",
+      "localByteSize": 18232874,
+      "localDimensions": {
+        "width": 5472,
+        "height": 3648
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/e0b46ce0b8284bdbb676d5b51b90aeb3.jpg",
+      "mappingDimensions": {
+        "height": 3648,
+        "orientation": 1,
+        "width": 5472,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "f829a8f81b1348e8a2a532e9159018b4",
+      "localPath": "/images/wix-migrated/f829a8f81b1348e8a2a532e9159018b4.jpg",
+      "localByteSize": 1777645,
+      "localDimensions": {
+        "width": 1866,
+        "height": 1244
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/f829a8f81b1348e8a2a532e9159018b4.jpg",
+      "mappingDimensions": {
+        "height": 1244,
+        "orientation": 1,
+        "width": 1866,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    },
+    {
+      "id": "nsplsh_bb3bccc5280d4c56a81635bea456738b",
+      "localPath": "/images/wix-migrated/nsplsh_bb3bccc5280d4c56a81635bea456738b.jpg",
+      "localByteSize": 1598351,
+      "localDimensions": {
+        "width": 3744,
+        "height": 5616
+      },
+      "mappingProvenanceUrl": "https://static.wixstatic.com/media/nsplsh_bb3bccc5280d4c56a81635bea456738b~mv2.jpg",
+      "mappingDimensions": {
+        "height": 5616,
+        "width": 3744,
+        "type": "jpg"
+      },
+      "isHighestQualityRecoverable": true,
+      "flags": [],
+      "transparencyPreserved": "n/a"
+    }
+  ],
+  "suspiciousCount": 2,
+  "highQualityCount": 162
+}

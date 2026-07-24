@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { primaryNavigation } from '@/lib/fixtures/navigation';
+import { getSocialIcon } from '@/lib/media/wix-catalog';
 
 const footerLinks = [
   { label: 'Polityka prywatności', href: '/polityka-prywatnosci' },
@@ -8,6 +10,8 @@ const footerLinks = [
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const facebook = getSocialIcon('facebook');
+  const instagram = getSocialIcon('instagram');
 
   return (
     <footer className="mt-auto border-t border-surface-subtle/30 bg-surface-raised">
@@ -22,6 +26,42 @@ export function Footer() {
               <br />
               Warsztaty dla dzieci, dorosłych i grup.
             </p>
+            <div className="mt-4 flex items-center gap-3">
+              {facebook && (
+                <a
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                  aria-label="Facebook Ceramika Nero"
+                >
+                  <Image
+                    src={facebook.src}
+                    alt=""
+                    width={32}
+                    height={32}
+                    className="h-8 w-8 object-contain"
+                  />
+                </a>
+              )}
+              {instagram && (
+                <a
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                  aria-label="Instagram Ceramika Nero"
+                >
+                  <Image
+                    src={instagram.src}
+                    alt=""
+                    width={32}
+                    height={32}
+                    className="h-8 w-8 object-contain"
+                  />
+                </a>
+              )}
+            </div>
           </div>
 
           <nav aria-label="Nawigacja stopki">
