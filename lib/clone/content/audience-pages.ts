@@ -67,10 +67,10 @@ export const dlaDzieciPage = {
       title: 'RYSUNEK ARCHITEKTURA 11+',
       subtitle: 'PONIEDZIAŁEK 17.15',
       bullets: [
-        'Rozwijamy rysunek i wyobraźnię – uczymy się proporcji, perspektywy, światłocienia i pracy różnymi technikami.',
-        'Poznajemy architekturę – od klasyki po nowoczesność, projektujemy wnętrza, budynki i elementy urbanistyki.',
-        'Tworzymy w kameralnej atmosferze – małe grupy, indywidualne podejście, profesjonalne wsparcie architektki.',
-        'Budujemy kreatywny warsztat – szkicownik pełen ćwiczeń, inspiracji i pomysłów, przygotowujący do szkół artystycznych.',
+        '🔹 Rozwijamy rysunek i wyobraźnię – uczymy się proporcji, perspektywy, światłocienia i pracy różnymi technikami.',
+        '🔹 Poznajemy architekturę – od klasyki po nowoczesność, projektujemy wnętrza, budynki i elementy urbanistyki.',
+        '🔹 Tworzymy w kameralnej atmosferze – małe grupy, indywidualne podejście, profesjonalne wsparcie architektki.',
+        '🔹 Budujemy kreatywny warsztat – szkicownik pełen ćwiczeń, inspiracji i pomysłów, przygotowujący do szkół artystycznych.',
       ],
       imageSrc:
         '/images/wix-migrated/11062b_e4cd34a55ede422ea0121c65375b84c0.jpg',
@@ -121,7 +121,7 @@ export const dlaDzieciPage = {
       paragraphs: [
         'masz pomysł na ciekawe zajęcia',
         'chcesz spędzić kreatywne urodzinki',
-        'napisz do nas  i poproś o ofertę na: nerogosia@gmail.com',
+        'napisz do nas i poproś o ofertę na: nerogosia@gmail.com',
         'wejdź na podstronę: urodziny',
       ],
       imageSrc:
@@ -194,7 +194,7 @@ export const dlaDoroslychPage = {
         'Stworzysz unikalne talerze, kubki, zestawy do sushi, doniczki i inne ceramiczne dzieła',
         'Degustacja wina i włoskich przystawek',
         '1 spotkanie = lepienie z gliny',
-        '1      spotkanie = szkliwienie prac',
+        '1 spotkanie = szkliwienie prac',
         'Włoska muzyka',
         'Profesjonalne prowadzenie',
         'Zapewnione wszystkie materiały',
@@ -233,7 +233,7 @@ export const dlaDoroslychPage = {
       title: 'Poranki z ceramiką',
       bullets: [
         'Rozpocznij swój dzień w twórczy i relaksujący sposób',
-        'Odkryj  swoją kreatywność od samego rana, z dala od codziennego zgiełku',
+        'Odkryj swoją kreatywność od samego rana, z dala od codziennego zgiełku',
         'Relaksująca poranna atmosfera',
         'Profesjonalne prowadzenie',
         'Kompleksowe materiały niezbędne do pracy z ceramiką',

@@ -1,0 +1,461 @@
+{
+  "auditedAt": "2026-07-24T11:56:44.952Z",
+  "rows": [
+    {
+      "originalRoute": "/",
+      "canonicalRoute": "/",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 39,
+      "matchedTextBlockCount": 14,
+      "textMatchRatio": 0.359,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 46,
+      "originalCtaLinkCount": 36,
+      "matchedCtaLinkCount": 30,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "Brak dostępnych terminów w lipiec 20th",
+        "Brak dostępnych terminów w lipiec 21th",
+        "Brak dostępnych terminów w lipiec 22th",
+        "Brak dostępnych terminów w lipiec 23th",
+        "Brak dostępnych terminów w lipiec 24th",
+        "Brak dostępnych terminów w lipiec 25th",
+        "Brak dostępnych terminów w lipiec 26th",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki",
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com"
+      ],
+      "missingCtas": [
+        {
+          "text": "Strona główna",
+          "href": "/"
+        },
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Incomplete"
+    },
+    {
+      "originalRoute": "/onas",
+      "canonicalRoute": "/pracownia",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 11,
+      "originalOrderedTextBlockCount": 82,
+      "matchedTextBlockCount": 69,
+      "textMatchRatio": 0.841,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 13,
+      "originalCtaLinkCount": 18,
+      "matchedCtaLinkCount": 14,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "Nie są to zajęcia stałe, można dołączyć w każdym momencie",
+        "imprezy integracyjne, tematyczne",
+        "2 soboty miesiąca o 15.00",
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com",
+        "Napisz do nas → mailto:nerogosia@gmail.com?subject=urodziny%20z%20malowaniem%20",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki"
+      ],
+      "missingCtas": [
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Incomplete"
+    },
+    {
+      "originalRoute": "/dladzieci",
+      "canonicalRoute": "/dla-dzieci",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 17,
+      "originalOrderedTextBlockCount": 60,
+      "matchedTextBlockCount": 46,
+      "textMatchRatio": 0.767,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 20,
+      "originalCtaLinkCount": 16,
+      "matchedCtaLinkCount": 12,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "🔹 Rozwijamy rysunek i wyobraźnię – uczymy się proporcji, perspektywy, światłocienia i pracy różnymi technikami.",
+        "🔹 Poznajemy architekturę – od klasyki po nowoczesność, projektujemy wnętrza, budynki i elementy urbanistyki.",
+        "🔹 Tworzymy w kameralnej atmosferze – małe grupy, indywidualne podejście, profesjonalne wsparcie architektki.",
+        "🔹 Budujemy kreatywny warsztat – szkicownik pełen ćwiczeń, inspiracji i pomysłów, przygotowujący do szkół artystycznych.",
+        "**■ Tematy prac inspirowane naturą, architekturą, kulturą i światem wyobraźni – z naciskiem na rozwijanie indywidualnego stylu i kreatywnego myślenia.",
+        "napisz do nas i poproś o ofertę na: nerogosia@gmail.com",
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki"
+      ],
+      "missingCtas": [
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Incomplete"
+    },
+    {
+      "originalRoute": "/dladoroslych",
+      "canonicalRoute": "/dla-doroslych",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 17,
+      "originalOrderedTextBlockCount": 39,
+      "matchedTextBlockCount": 29,
+      "textMatchRatio": 0.744,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 20,
+      "originalCtaLinkCount": 11,
+      "matchedCtaLinkCount": 7,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "1 spotkanie = szkliwienie prac",
+        "Odkryj swoją kreatywność od samego rana, z dala od codziennego zgiełku",
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki"
+      ],
+      "missingCtas": [
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Incomplete"
+    },
+    {
+      "originalRoute": "/dlafirm",
+      "canonicalRoute": "/grupy-i-firmy",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 17,
+      "originalOrderedTextBlockCount": 39,
+      "matchedTextBlockCount": 31,
+      "textMatchRatio": 0.795,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 20,
+      "originalCtaLinkCount": 10,
+      "matchedCtaLinkCount": 6,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki",
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com"
+      ],
+      "missingCtas": [
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Complete with documented Wix-only visual differences"
+    },
+    {
+      "originalRoute": "/glinadowina",
+      "canonicalRoute": "/glinadowina",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 5,
+      "originalOrderedTextBlockCount": 26,
+      "matchedTextBlockCount": 18,
+      "textMatchRatio": 0.692,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 46,
+      "originalCtaLinkCount": 10,
+      "matchedCtaLinkCount": 5,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki",
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com"
+      ],
+      "missingCtas": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Complete with documented Wix-only visual differences"
+    },
+    {
+      "originalRoute": "/urodziny",
+      "canonicalRoute": "/urodziny",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 10,
+      "originalOrderedTextBlockCount": 52,
+      "matchedTextBlockCount": 43,
+      "textMatchRatio": 0.827,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 17,
+      "originalCtaLinkCount": 11,
+      "matchedCtaLinkCount": 7,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com",
+        "Napisz do nas → mailto:nerogosia@gmail.com?subject=Urodziny%20z%20malowaniem%20",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki"
+      ],
+      "missingCtas": [
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Incomplete"
+    },
+    {
+      "originalRoute": "/panienskie",
+      "canonicalRoute": "/panienskie",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 10,
+      "originalOrderedTextBlockCount": 24,
+      "matchedTextBlockCount": 16,
+      "textMatchRatio": 0.667,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 17,
+      "originalCtaLinkCount": 9,
+      "matchedCtaLinkCount": 5,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki",
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com"
+      ],
+      "missingCtas": [
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Complete with documented Wix-only visual differences"
+    },
+    {
+      "originalRoute": "/home",
+      "canonicalRoute": "/home",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 6,
+      "originalOrderedTextBlockCount": 40,
+      "matchedTextBlockCount": 27,
+      "textMatchRatio": 0.675,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 17,
+      "originalCtaLinkCount": 21,
+      "matchedCtaLinkCount": 16,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "WYJĄTKOWY PREZENT → https://www.ceramikanero.com/sklep",
+        "Nowość → https://www.ceramikanero.com/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+        "69,00 zł → https://www.ceramikanero.com/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+        "Nowość → https://www.ceramikanero.com/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+        "137,00 zł → https://www.ceramikanero.com/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki",
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com"
+      ],
+      "missingCtas": [
+        {
+          "text": "WYJĄTKOWY PREZENT WYJĄTKOWY PREZENT WYJĄTKOWY PREZENT",
+          "href": "/sklep"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Incomplete"
+    },
+    {
+      "originalRoute": "/galeria",
+      "canonicalRoute": "/galeria",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 2,
+      "originalOrderedTextBlockCount": 10,
+      "matchedTextBlockCount": 1,
+      "textMatchRatio": 0.1,
+      "originalContextualImageOccurrences": 0,
+      "matchedContextualImageOccurrences": 47,
+      "originalCtaLinkCount": 6,
+      "matchedCtaLinkCount": 1,
+      "desktopScreenshotStatus": "captured",
+      "mobileScreenshotStatus": "captured",
+      "missingOrAlteredContent": [
+        "Moja pasja ... w obiektywie aparatu.",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "Numer Konta: 30 1140 2004 0000 3102 8314 9467 ■ NIP 9721134965",
+        "Zapisz się do Newslettera",
+        "Akceptuję regulaminZobacz warunki",
+        "nerogosia@gmail.com → mailto:nerogosia@gmail.com"
+      ],
+      "missingCtas": [
+        {
+          "text": "nerogosia@gmail.com",
+          "href": "mailto:nerogosia@gmail.com"
+        },
+        {
+          "text": "Zapisz się teraz",
+          "href": ""
+        },
+        {
+          "text": "Zobacz warunki",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowo",
+          "href": "/terms-conditions"
+        },
+        {
+          "text": "Polityka prywatności",
+          "href": "/terms-conditions"
+        }
+      ],
+      "verdict": "Incomplete"
+    }
+  ]
+}

@@ -108,7 +108,7 @@ export const pracowniaPage = {
         'Każde zajęcia to czas na relaks i twórcze wyzwania.',
         'Warsztaty prowadzone są przez doświadczonych ceramików, którzy z pasją dzielą się swoją wiedzą i umiejętnościami.',
         'Zapewniamy wszelkie niezbędne materiały wysokiej jakości',
-        'Nie są to  zajęcia stałe, można dołączyć w każdym momencie',
+        'Nie są to zajęcia stałe, można dołączyć w każdym momencie',
         'oferujemy zajęcia poranne dla dorosłych: Poranki z ceramiką',
       ],
       imageSrc: IMG.adults,
@@ -163,7 +163,7 @@ export const pracowniaPage = {
       title: 'Imprezy dla firm',
       bullets: [
         'każdy ulepi swoje przedmioty z gliny z moją pomocą lub poszkliwi zakupione w Pracowni oryginalne produkty',
-        'imprezy integracyjne,  tematyczne',
+        'imprezy integracyjne, tematyczne',
         'warsztaty na terenie Naszej Pracowni do 12 osób',
         'warsztaty w firmach i na piknikach w grupach do 20 do 100 osób',
         'Zapewniam wszystkie materiały i narzędzia',
@@ -197,7 +197,7 @@ export const pracowniaPage = {
       id: 'glina-i-rodzina',
       title: 'GLINA I RODZINA',
       bullets: [
-        '2 soboty miesiąca  o 15.00',
+        '2 soboty miesiąca o 15.00',
         'warsztaty rodzinne dla dzieci i rodziców',
         'od 6 roku życia- dzieci mogą przyjść z rodzicami lub same',
         'cudowny, klimatyczny lokal',

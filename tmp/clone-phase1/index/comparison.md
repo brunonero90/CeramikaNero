@@ -1,22 +1,12 @@
 # Phase 1 comparison — /
 
-## Section count
-- Original: booking catalog title/filters + service cards + calendar widget + footer
-- Implementation: title/filters + 11 service cards + schedule note + shared footer
+- Original route artifacts: index.png
+- Implemented route: /
+- Desktop: compare original-desktop.png vs implementation-desktop.png
+- Mobile: compare original-mobile.png vs implementation-mobile.png
 
-## Text completeness
-- Workshop titles, prices, days, CTAs from archived homepage `content.md`
+## Notes
 
-## Image occurrences
-- 11 catalog card images from archive placements → local migrated paths
-
-## Desktop / mobile
-- Captured under `tmp/clone-phase1/index/`
-- Matches original catalog intent (Wybierz warsztat / Zarezerwuj)
-
-## Intentional differences
-- Interactive Wix Bookings calendar replaced with explanatory “Grafik zajęć” + first-party CTAs (no Wix runtime)
-- Cookie banner omitted
-
-## Completion decision
-**Complete with documented minor visual differences**
+- Wix cookie banners / editor chrome are intentionally omitted.
+- Wix Bookings calendar widgets are replaced with first-party CTAs.
+- Newsletter submit is local-only (no external service).

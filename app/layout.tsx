@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/lib/theme/theme-context';
 import { ThemeScript } from '@/lib/theme/theme-script';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
+import { LocalCartProvider } from '@/components/clone/local-cart';
 import './globals.css';
 
 const cormorant = Cormorant_Garamond({
@@ -75,9 +76,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-surface-bg font-body text-text-primary">
         <ThemeScript />
         <ThemeProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <LocalCartProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </LocalCartProvider>
         </ThemeProvider>
       </body>
     </html>

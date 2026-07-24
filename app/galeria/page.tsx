@@ -13,14 +13,12 @@ export default function GaleriaPage() {
   return (
     <div className="bg-surface-bg">
       <MarketingHero
-        title="Galeria"
+        title="Rękodzieło jako joga umysłu"
         imageSrc="/images/wix-migrated/747d6f_b6b2ebdcb95f424984ee80e8e58a604d.jpg"
         imageAlt="iStock-1302287658 kopia.jpg"
         logoSrc="/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png"
         logoAlt="warsztaty ceramiczne, sklep z ceramika"
-        intro={[
-          'Wybrane prace i chwile z warsztatów Pracowni Ceramiki Nero — w oryginalnej kolejności galerii.',
-        ]}
+        intro={['Galeria', 'Moja pasja ... w obiektywie aparatu.']}
       />
       <section
         aria-label="Galeria zdjęć"

@@ -3,7 +3,7 @@ import {
   buildMarketingMetadata,
   MarketingPageView,
 } from '@/components/clone/marketing-page';
-import { panienskiePage } from '@/lib/clone/content/landings';
+import { panienskiePage } from '@/lib/clone/content/glina-box-and-events';
 
 export const metadata: Metadata = buildMarketingMetadata(
   panienskiePage.title,

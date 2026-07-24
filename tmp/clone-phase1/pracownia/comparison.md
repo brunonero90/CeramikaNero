@@ -1,25 +1,12 @@
-# Phase 1 comparison — /pracownia (original /onas)
+# Phase 1 comparison — /pracownia
 
-## Section count
-- Original archive page-spec: 3 coarse Wix containers (content denser inside)
-- Implementation: hero + mid-copy + 10 alternating offer blocks + shared footer
+- Original route artifacts: onas.png
+- Implemented route: /pracownia
+- Desktop: compare original-desktop.png vs implementation-desktop.png
+- Mobile: compare original-mobile.png vs implementation-mobile.png
 
-## Text completeness
-- Verbatim Polish from `reference/original-site/pages/onas/content.md` used in `lib/clone/content/pracownia.ts`
-- Confirmed via live HTML (`O pracowni`, mission copy, bullet offer blocks)
+## Notes
 
-## Image occurrences
-- Archive: 15 placements (including logo/badge/duplicates)
-- Implementation: hero, logo overlay, partner badge, and one image per offer block from local `/images/wix-migrated/*`
-
-## Desktop / mobile
-- Captured under `tmp/clone-phase1/pracownia/`
-- Desktop/mobile show marketing shell, hero photography, terracotta CTAs, newsletter footer
-
-## Intentional differences
-- Wix editor chrome / cookie banner omitted
-- Alternating split uses clean CSS grid (not Wix mesh)
-- Theme switch retained in header (Atelier/Joyful) — not on original Wix chrome
-
-## Completion decision
-**Complete with documented minor visual differences**
+- Wix cookie banners / editor chrome are intentionally omitted.
+- Wix Bookings calendar widgets are replaced with first-party CTAs.
+- Newsletter submit is local-only (no external service).

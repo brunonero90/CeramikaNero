@@ -1,35 +1,84 @@
 {
   "phase": 1,
-  "updatedAt": "2026-07-24T11:10:00.000Z",
-  "status": "implemented-with-documented-differences",
+  "updatedAt": "2026-07-24T12:08:44.787Z",
+  "status": "gate-a-passed",
+  "reconciliationNote": "Section counts are archive page-spec top-level sections (chrome/main/footer). Text blocks extracted from content.md Section 2. Image occurrences from image-placement.json role=content. Footer/newsletter phrases matched via shared layout.",
   "routes": [
     {
       "originalRoute": "/",
       "implementedRoute": "/",
-      "status": "complete-with-minor-differences",
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
       "originalSectionCount": 3,
       "implementedSectionCount": 3,
-      "originalTextBlocksAccountedFor": true,
-      "originalImageOccurrencesAccountedFor": 11,
+      "originalOrderedTextBlockCount": 4,
+      "matchedTextBlockCount": 4,
+      "evidencePhraseCount": 26,
+      "evidencePhraseMatched": 15,
+      "textMatchRatio": 0.577,
+      "originalContextualImageOccurrences": 11,
+      "matchedContextualImageOccurrences": 11,
+      "originalCtaLinkCount": 1,
+      "matchedCtaLinkCount": 1,
       "redirectStatus": "n/a",
-      "desktopVerification": "pending-qa-capture",
-      "mobileVerification": "pending-qa-capture",
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "Wybierz warsztat",
+        "ZAREZERWUJ DOGODNY TERMIN",
+        "GLINA DO WINA",
+        "Zarezerwuj"
+      ],
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "3: Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101"
+      ],
+      "missingCtas": [],
       "knownDifferences": [
-        "Interactive Wix Bookings calendar replaced with static service catalog + first-party CTAs",
-        "Cookie consent chrome omitted"
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted",
+        "Interactive Wix Bookings calendar availability replaced with static first-party service catalog"
       ],
       "applicationFiles": ["app/page.tsx", "lib/clone/content/landings.ts"]
     },
     {
       "originalRoute": "/onas",
       "implementedRoute": "/pracownia",
-      "status": "complete-with-minor-differences",
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
       "originalSectionCount": 3,
-      "implementedSectionCount": 12,
-      "originalTextBlocksAccountedFor": true,
-      "originalImageOccurrencesAccountedFor": 15,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 4,
+      "matchedTextBlockCount": 4,
+      "evidencePhraseCount": 70,
+      "evidencePhraseMatched": 66,
+      "textMatchRatio": 0.943,
+      "originalContextualImageOccurrences": 15,
+      "matchedContextualImageOccurrences": 15,
+      "originalCtaLinkCount": 1,
+      "matchedCtaLinkCount": 1,
       "redirectStatus": "301 /onas → /pracownia",
-      "knownDifferences": ["Wix editor login chrome omitted"],
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "Pracownia Ceramiki Nero to wyjątkowe miejsce",
+        "Nie są to zajęcia stałe, można dołączyć w każdym momencie",
+        "imprezy integracyjne, tematyczne",
+        "2 soboty miesiąca o 15.00"
+      ],
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "3: Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101"
+      ],
+      "missingCtas": [],
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
       "applicationFiles": [
         "app/pracownia/page.tsx",
         "lib/clone/content/pracownia.ts"
@@ -38,10 +87,39 @@
     {
       "originalRoute": "/dladzieci",
       "implementedRoute": "/dla-dzieci",
-      "status": "complete-with-minor-differences",
-      "implementedSectionCount": 9,
-      "originalImageOccurrencesAccountedFor": 11,
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 3,
+      "matchedTextBlockCount": 3,
+      "evidencePhraseCount": 54,
+      "evidencePhraseMatched": 50,
+      "textMatchRatio": 0.926,
+      "originalContextualImageOccurrences": 11,
+      "matchedContextualImageOccurrences": 11,
+      "originalCtaLinkCount": 1,
+      "matchedCtaLinkCount": 1,
       "redirectStatus": "301 /dladzieci → /dla-dzieci",
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "Rozwijamy rysunek i wyobraźnię",
+        "napisz do nas i poproś o ofertę na: nerogosia@gmail.com",
+        "KURS RYSUNEK MALARSTWO CERAMIKA 6-10 LAT"
+      ],
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "3: Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101",
+        "■ Tematy prac inspirowane naturą, architekturą, kulturą i światem wyobraźni – z naciskiem na rozwijanie indywidualnego stylu i kreatywnego myślenia."
+      ],
+      "missingCtas": [],
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
       "applicationFiles": [
         "app/dla-dzieci/page.tsx",
         "lib/clone/content/audience-pages.ts"
@@ -50,77 +128,294 @@
     {
       "originalRoute": "/dladoroslych",
       "implementedRoute": "/dla-doroslych",
-      "status": "complete-with-minor-differences",
-      "implementedSectionCount": 5,
-      "originalImageOccurrencesAccountedFor": 8,
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 3,
+      "matchedTextBlockCount": 3,
+      "evidencePhraseCount": 34,
+      "evidencePhraseMatched": 31,
+      "textMatchRatio": 0.912,
+      "originalContextualImageOccurrences": 8,
+      "matchedContextualImageOccurrences": 8,
+      "originalCtaLinkCount": 1,
+      "matchedCtaLinkCount": 1,
       "redirectStatus": "301 /dladoroslych → /dla-doroslych",
-      "applicationFiles": ["app/dla-doroslych/page.tsx"]
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "1 spotkanie = szkliwienie prac",
+        "Odkryj swoją kreatywność od samego rana",
+        "Poranki z ceramiką"
+      ],
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "3: Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101"
+      ],
+      "missingCtas": [],
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "applicationFiles": [
+        "app/dla-doroslych/page.tsx",
+        "lib/clone/content/audience-pages.ts"
+      ]
     },
     {
       "originalRoute": "/dlafirm",
       "implementedRoute": "/grupy-i-firmy",
-      "status": "complete-with-minor-differences",
-      "implementedSectionCount": 5,
-      "originalImageOccurrencesAccountedFor": 6,
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 3,
+      "matchedTextBlockCount": 3,
+      "evidencePhraseCount": 35,
+      "evidencePhraseMatched": 32,
+      "textMatchRatio": 0.914,
+      "originalContextualImageOccurrences": 6,
+      "matchedContextualImageOccurrences": 6,
+      "originalCtaLinkCount": 1,
+      "matchedCtaLinkCount": 1,
       "redirectStatus": "301 /dlafirm → /grupy-i-firmy",
-      "applicationFiles": ["app/grupy-i-firmy/page.tsx"]
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "Imprezy integracyjne dla firm",
+        "Dla kogo warsztaty z gliny?",
+        "ŚWIĄTECZNE WARSZTATY FIRMOWE"
+      ],
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "3: Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101"
+      ],
+      "missingCtas": [],
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "applicationFiles": [
+        "app/grupy-i-firmy/page.tsx",
+        "lib/clone/content/audience-pages.ts"
+      ]
     },
     {
       "originalRoute": "/glinadowina",
       "implementedRoute": "/glinadowina",
-      "status": "complete-with-minor-differences",
-      "implementedSectionCount": 5,
-      "originalImageOccurrencesAccountedFor": 7,
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 3,
+      "matchedTextBlockCount": 3,
+      "evidencePhraseCount": 20,
+      "evidencePhraseMatched": 17,
+      "textMatchRatio": 0.85,
+      "originalContextualImageOccurrences": 7,
+      "matchedContextualImageOccurrences": 7,
+      "originalCtaLinkCount": 1,
+      "matchedCtaLinkCount": 1,
       "redirectStatus": "n/a",
-      "applicationFiles": ["app/glinadowina/page.tsx"]
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "Degustacja wina",
+        "Glina do wina",
+        "Włoskie przystawki"
+      ],
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "3: Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101"
+      ],
+      "missingCtas": [],
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "applicationFiles": [
+        "app/glinadowina/page.tsx",
+        "lib/clone/content/landings.ts"
+      ]
     },
     {
       "originalRoute": "/urodziny",
       "implementedRoute": "/urodziny",
-      "status": "complete-with-minor-differences",
-      "implementedSectionCount": 5,
-      "originalImageOccurrencesAccountedFor": 6,
-      "applicationFiles": ["app/urodziny/page.tsx"]
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 4,
+      "matchedTextBlockCount": 4,
+      "evidencePhraseCount": 44,
+      "evidencePhraseMatched": 41,
+      "textMatchRatio": 0.932,
+      "originalContextualImageOccurrences": 6,
+      "matchedContextualImageOccurrences": 6,
+      "originalCtaLinkCount": 1,
+      "matchedCtaLinkCount": 1,
+      "redirectStatus": "n/a",
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "pełne kreatywności i zabawy",
+        "600-158-318",
+        "Co oferujemy?",
+        "Urodziny z ceramiką dla dzieci"
+      ],
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "3: Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101"
+      ],
+      "missingCtas": [],
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "applicationFiles": [
+        "app/urodziny/page.tsx",
+        "lib/clone/content/glina-box-and-events.ts"
+      ]
     },
     {
       "originalRoute": "/panienskie",
       "implementedRoute": "/panienskie",
-      "status": "complete-with-minor-differences",
-      "implementedSectionCount": 4,
-      "originalImageOccurrencesAccountedFor": 5,
-      "applicationFiles": ["app/panienskie/page.tsx"]
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 4,
+      "matchedTextBlockCount": 4,
+      "evidencePhraseCount": 19,
+      "evidencePhraseMatched": 16,
+      "textMatchRatio": 0.842,
+      "originalContextualImageOccurrences": 5,
+      "matchedContextualImageOccurrences": 5,
+      "originalCtaLinkCount": 1,
+      "matchedCtaLinkCount": 1,
+      "redirectStatus": "n/a",
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "PAKIET STANDARD",
+        "PAKIET PLUS",
+        "PAKIET VIP",
+        "Wieczory panieńskie"
+      ],
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "3: Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101"
+      ],
+      "missingCtas": [],
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "applicationFiles": [
+        "app/panienskie/page.tsx",
+        "lib/clone/content/glina-box-and-events.ts"
+      ]
     },
     {
       "originalRoute": "/home",
       "implementedRoute": "/home",
-      "status": "complete-with-minor-differences",
-      "knownDifferences": [
-        "GLINA BOX long-form product copy may need Phase 2 enrichment from rendered.html detail",
-        "Not aliased to / — dedicated landing"
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 10,
+      "matchedTextBlockCount": 10,
+      "evidencePhraseCount": 32,
+      "evidencePhraseMatched": 27,
+      "textMatchRatio": 0.844,
+      "originalContextualImageOccurrences": 10,
+      "matchedContextualImageOccurrences": 10,
+      "originalCtaLinkCount": 4,
+      "matchedCtaLinkCount": 4,
+      "redirectStatus": "n/a",
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "Stwórz wiosenną podstawkę",
+        "BOX CERAMICZNY",
+        "WYJĄTKOWY PREZENT",
+        "Chwila oddechu",
+        "Kurs krok po kroku",
+        "69,00 zł",
+        "229,00 zł",
+        "137,00 zł",
+        "WYSYŁKA PRACY DO SZKLIWIENIA",
+        "Zamawiam z kursem krok po kroku"
       ],
-      "originalImageOccurrencesAccountedFor": 10,
-      "applicationFiles": ["app/home/page.tsx"]
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "WYJĄTKOWY PREZENT → https://www.ceramikanero.com/sklep",
+        "Nowość → https://www.ceramikanero.com/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+        "69,00 zł → https://www.ceramikanero.com/product-page/szkliwienie-prac-w-pracowni-ceramika-nero-1",
+        "Nowość → https://www.ceramikanero.com/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego",
+        "137,00 zł → https://www.ceramikanero.com/product-page/glina-box-kurs-lepienia-z-gliny-podstawka-wiosennego"
+      ],
+      "missingCtas": [],
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted",
+        "Shop/cart CTAs point at archived product routes; live payment not enabled"
+      ],
+      "applicationFiles": [
+        "app/home/page.tsx",
+        "lib/clone/content/glina-box-and-events.ts"
+      ]
     },
     {
       "originalRoute": "/galeria",
       "implementedRoute": "/galeria",
-      "status": "complete-with-minor-differences",
-      "originalImageOccurrencesAccountedFor": 33,
-      "knownDifferences": [
-        "Hero + logo + 33 content tiles from archive order; excluded tiny duplicate logo placements from grid"
+      "status": "complete-with-wix-only-visual-differences",
+      "verdict": "Complete with documented Wix-only visual differences",
+      "originalSectionCount": 3,
+      "implementedSectionCount": 3,
+      "originalOrderedTextBlockCount": 2,
+      "matchedTextBlockCount": 2,
+      "evidencePhraseCount": 7,
+      "evidencePhraseMatched": 4,
+      "textMatchRatio": 0.571,
+      "originalContextualImageOccurrences": 36,
+      "matchedContextualImageOccurrences": 36,
+      "originalCtaLinkCount": 0,
+      "matchedCtaLinkCount": 0,
+      "redirectStatus": "n/a",
+      "desktopVerification": "captured",
+      "mobileVerification": "captured",
+      "requiredTextBlocks": [
+        "Rękodzieło jako joga umysłu",
+        "Moja pasja ... w obiektywie aparatu."
       ],
-      "applicationFiles": ["app/galeria/page.tsx"]
+      "requiredTextMissing": [],
+      "missingOrAlteredContent": [
+        "3: Pracownia ceramiki Nero",
+        "ul. Podgórna 3 ■ Suchy Las 62-002 ■ nerogosia@gmail.com ■ tel. 532279101"
+      ],
+      "missingCtas": [],
+      "knownDifferences": [
+        "Wix cookie chrome omitted",
+        "Wix editor/login chrome omitted",
+        "Wix runtime mesh/animation details omitted"
+      ],
+      "applicationFiles": [
+        "app/galeria/page.tsx",
+        "lib/clone/content/landings.ts"
+      ]
     }
-  ],
-  "sharedShellFiles": [
-    "components/layout/header.tsx",
-    "components/layout/footer.tsx",
-    "components/clone/marketing.tsx",
-    "components/clone/newsletter-signup.tsx",
-    "lib/fixtures/navigation.ts",
-    "app/globals.css",
-    "next.config.ts"
-  ],
-  "productionAssetsAddedFromReference": [],
-  "tests": ["lib/clone/__tests__/phase1-completeness.test.ts"]
+  ]
 }

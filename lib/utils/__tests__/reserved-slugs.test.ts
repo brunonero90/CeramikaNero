@@ -15,6 +15,12 @@ describe('reserved page slugs', () => {
 
   it('allows non-reserved slugs', () => {
     expect(isReservedPageSlug('o-nas')).toBe(false);
-    expect(isReservedPageSlug('regulamin')).toBe(false);
+    expect(isReservedPageSlug('moja-wlasna-strona')).toBe(false);
+  });
+
+  it('reserves clone shop and legal routes', () => {
+    expect(isReservedPageSlug('regulamin')).toBe(true);
+    expect(isReservedPageSlug('sklep')).toBe(true);
+    expect(isReservedPageSlug('cart')).toBe(true);
   });
 });
