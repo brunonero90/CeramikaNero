@@ -46,7 +46,7 @@ export default async function BookingDetailPage({
     marketing_consent_at: string | null;
     privacy_policy_version: string;
   };
-  const session = booking.workshop_sessions as {
+  const session = booking.workshop_sessions as unknown as {
     id: string;
     starts_at: string;
     ends_at: string;

@@ -154,9 +154,23 @@ before update on public.booking_emails for each row execute function public.set_
 -- Admin RLS policies for existing booking tables
 -- ---------------------------------------------------------------------------
 
-create policy "No public customer access"
-  on public.customer_profiles for select
-  using (false);
+-- Already created in 00000000000000_initial_schema.sql; create conditionally
+-- so the migration remains idempotent when rerun against a schema that already
+-- includes it.
+do $$
+begin
+  if not exists (
+    select 1 from pg_policies
+    where schemaname = 'public'
+      and tablename = 'customer_profiles'
+      and policyname = 'No public customer access'
+  ) then
+    create policy "No public customer access"
+      on public.customer_profiles for select
+      using (false);
+  end if;
+end
+$$;
 
 create policy "Managers and owners can manage customer profiles"
   on public.customer_profiles for all
@@ -502,10 +516,13 @@ begin
   end if;
 
   select * into v_booking from public.bookings where id = p_booking_id for update;
-  select * into v_payment from public.payments where id = p_payment_id for update;
+  if not found then
+    raise exception 'Booking not found';
+  end if;
 
-  if not found or v_payment is null then
-    raise exception 'Booking or payment not found';
+  select * into v_payment from public.payments where id = p_payment_id for update;
+  if not found then
+    raise exception 'Payment not found';
   end if;
 
   if p_amount_gross_grosz != v_payment.amount_gross_grosz then
@@ -522,6 +539,21 @@ begin
     end if;
     insert into public.stripe_events (event_id, event_type) values (p_stripe_event_id, 'checkout.session.completed');
     return jsonb_build_object('status', 'confirmed', 'recovered', false);
+  end if;
+
+  -- Terminal booking states: payment succeeded but the booking cannot be confirmed
+  if v_booking.status in ('cancelled', 'refunded', 'partially_refunded') then
+    update public.payments
+    set status = 'paid', paid_at = v_now, provider_payment_id = p_provider_payment_id,
+        failure_message = 'Booking is in a terminal state. Requires manual resolution.',
+        updated_at = v_now
+    where id = p_payment_id;
+
+    insert into public.booking_events (booking_id, event_type, actor_type, metadata)
+    values (p_booking_id, 'payment_failed', 'system', jsonb_build_object('reason', 'Booking is in a terminal state', 'stripe_event_id', p_stripe_event_id));
+
+    insert into public.stripe_events (event_id, event_type) values (p_stripe_event_id, 'checkout.session.completed');
+    return jsonb_build_object('status', 'requires_manual_resolution', 'recovered', false);
   end if;
 
   if v_booking.status not in ('pending', 'awaiting_payment', 'expired') then
@@ -882,3 +914,34 @@ $$;
 
 comment on function public.record_booking_email(uuid, text, text, text, text) is
   'Records a transactional email delivery attempt for a booking.';
+
+-- ---------------------------------------------------------------------------
+-- Least-privilege grants: restrict new functions to the service role
+-- ---------------------------------------------------------------------------
+
+do $$
+declare
+  fn record;
+begin
+  for fn in
+    select p.proname, pg_get_function_identity_arguments(p.oid) as args
+    from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'public'
+      and p.proname in (
+        'begin_booking',
+        'expire_pending_bookings',
+        'confirm_booking_from_payment',
+        'cancel_booking',
+        'record_payment_refund',
+        'move_booking',
+        'create_cancellation_token',
+        'verify_cancellation_token',
+        'record_booking_email'
+      )
+  loop
+    execute format('revoke execute on function public.%I(%s) from public', fn.proname, fn.args);
+    execute format('grant execute on function public.%I(%s) to service_role', fn.proname, fn.args);
+  end loop;
+end
+$$;

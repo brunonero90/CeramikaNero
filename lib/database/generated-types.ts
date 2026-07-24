@@ -145,6 +145,126 @@ export type Database = {
           },
         ];
       };
+      booking_cancellation_tokens: {
+        Row: {
+          booking_id: string;
+          created_at: string;
+          expires_at: string;
+          id: string;
+          token_hash: string;
+          used_at: string | null;
+        };
+        Insert: {
+          booking_id: string;
+          created_at?: string;
+          expires_at: string;
+          id?: string;
+          token_hash: string;
+          used_at?: string | null;
+        };
+        Update: {
+          booking_id?: string;
+          created_at?: string;
+          expires_at?: string;
+          id?: string;
+          token_hash?: string;
+          used_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'booking_cancellation_tokens_booking_id_fkey';
+            columns: ['booking_id'];
+            isOneToOne: false;
+            referencedRelation: 'bookings';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
+      booking_emails: {
+        Row: {
+          booking_id: string;
+          created_at: string;
+          email_type: string;
+          error_message: string | null;
+          id: string;
+          provider_message_id: string | null;
+          sent_at: string | null;
+          status: string;
+          updated_at: string;
+        };
+        Insert: {
+          booking_id: string;
+          created_at?: string;
+          email_type: string;
+          error_message?: string | null;
+          id?: string;
+          provider_message_id?: string | null;
+          sent_at?: string | null;
+          status: string;
+          updated_at?: string;
+        };
+        Update: {
+          booking_id?: string;
+          created_at?: string;
+          email_type?: string;
+          error_message?: string | null;
+          id?: string;
+          provider_message_id?: string | null;
+          sent_at?: string | null;
+          status?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'booking_emails_booking_id_fkey';
+            columns: ['booking_id'];
+            isOneToOne: false;
+            referencedRelation: 'bookings';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
+      booking_events: {
+        Row: {
+          actor_id: string | null;
+          actor_role: string | null;
+          actor_type: string;
+          booking_id: string;
+          created_at: string;
+          event_type: string;
+          id: string;
+          metadata: Json | null;
+        };
+        Insert: {
+          actor_id?: string | null;
+          actor_role?: string | null;
+          actor_type: string;
+          booking_id: string;
+          created_at?: string;
+          event_type: string;
+          id?: string;
+          metadata?: Json | null;
+        };
+        Update: {
+          actor_id?: string | null;
+          actor_role?: string | null;
+          actor_type?: string;
+          booking_id?: string;
+          created_at?: string;
+          event_type?: string;
+          id?: string;
+          metadata?: Json | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'booking_events_booking_id_fkey';
+            columns: ['booking_id'];
+            isOneToOne: false;
+            referencedRelation: 'bookings';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       booking_participants: {
         Row: {
           accessibility_notes: string | null;
@@ -189,7 +309,9 @@ export type Database = {
       bookings: {
         Row: {
           booking_reference: string;
+          cancellation_reason: string | null;
           cancelled_at: string | null;
+          cancelled_by: string | null;
           confirmed_at: string | null;
           created_at: string;
           currency: string;
@@ -198,6 +320,8 @@ export type Database = {
           expires_at: string | null;
           id: string;
           internal_notes: string | null;
+          moved_from_session_id: string | null;
+          moved_to_session_id: string | null;
           privacy_policy_version: string;
           quantity: number;
           source: string;
@@ -210,7 +334,9 @@ export type Database = {
         };
         Insert: {
           booking_reference: string;
+          cancellation_reason?: string | null;
           cancelled_at?: string | null;
+          cancelled_by?: string | null;
           confirmed_at?: string | null;
           created_at?: string;
           currency?: string;
@@ -219,6 +345,8 @@ export type Database = {
           expires_at?: string | null;
           id?: string;
           internal_notes?: string | null;
+          moved_from_session_id?: string | null;
+          moved_to_session_id?: string | null;
           privacy_policy_version: string;
           quantity: number;
           source: string;
@@ -231,7 +359,9 @@ export type Database = {
         };
         Update: {
           booking_reference?: string;
+          cancellation_reason?: string | null;
           cancelled_at?: string | null;
+          cancelled_by?: string | null;
           confirmed_at?: string | null;
           created_at?: string;
           currency?: string;
@@ -240,6 +370,8 @@ export type Database = {
           expires_at?: string | null;
           id?: string;
           internal_notes?: string | null;
+          moved_from_session_id?: string | null;
+          moved_to_session_id?: string | null;
           privacy_policy_version?: string;
           quantity?: number;
           source?: string;
@@ -256,6 +388,20 @@ export type Database = {
             columns: ['customer_id'];
             isOneToOne: false;
             referencedRelation: 'customer_profiles';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'bookings_moved_from_session_id_fkey';
+            columns: ['moved_from_session_id'];
+            isOneToOne: false;
+            referencedRelation: 'workshop_sessions';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'bookings_moved_to_session_id_fkey';
+            columns: ['moved_to_session_id'];
+            isOneToOne: false;
+            referencedRelation: 'workshop_sessions';
             referencedColumns: ['id'];
           },
           {
@@ -589,6 +735,7 @@ export type Database = {
           provider_checkout_id: string | null;
           provider_payment_id: string | null;
           raw_provider_reference: string | null;
+          refund_reason: string | null;
           refunded_amount_grosz: number;
           status: string;
           updated_at: string;
@@ -607,6 +754,7 @@ export type Database = {
           provider_checkout_id?: string | null;
           provider_payment_id?: string | null;
           raw_provider_reference?: string | null;
+          refund_reason?: string | null;
           refunded_amount_grosz?: number;
           status: string;
           updated_at?: string;
@@ -625,6 +773,7 @@ export type Database = {
           provider_checkout_id?: string | null;
           provider_payment_id?: string | null;
           raw_provider_reference?: string | null;
+          refund_reason?: string | null;
           refunded_amount_grosz?: number;
           status?: string;
           updated_at?: string;
@@ -657,6 +806,30 @@ export type Database = {
           key?: string;
           updated_at?: string;
           value?: Json;
+        };
+        Relationships: [];
+      };
+      stripe_events: {
+        Row: {
+          created_at: string;
+          event_id: string;
+          event_type: string;
+          id: string;
+          processed_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          event_id: string;
+          event_type: string;
+          id?: string;
+          processed_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          event_id?: string;
+          event_type?: string;
+          id?: string;
+          processed_at?: string;
         };
         Relationships: [];
       };
@@ -944,9 +1117,89 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      begin_booking: {
+        Args: {
+          p_admin_user_id?: string;
+          p_customer_email: string;
+          p_customer_first_name: string;
+          p_customer_last_name: string;
+          p_customer_notes: string;
+          p_customer_phone: string;
+          p_internal_notes?: string;
+          p_marketing_consent: boolean;
+          p_participants: Json;
+          p_payment_provider: string;
+          p_payment_status: string;
+          p_privacy_policy_version: string;
+          p_quantity: number;
+          p_session_id: string;
+          p_source: string;
+          p_status?: string;
+          p_terms_accepted_at: string;
+        };
+        Returns: Json;
+      };
+      cancel_booking: {
+        Args: {
+          p_actor_id?: string;
+          p_actor_role?: string;
+          p_booking_id: string;
+          p_cancelled_by: string;
+          p_reason: string;
+        };
+        Returns: Json;
+      };
+      confirm_booking_from_payment: {
+        Args: {
+          p_amount_gross_grosz: number;
+          p_booking_id: string;
+          p_payment_id: string;
+          p_provider_payment_id: string;
+          p_stripe_event_id: string;
+        };
+        Returns: Json;
+      };
+      create_cancellation_token: {
+        Args: { p_booking_id: string; p_expires_at: string };
+        Returns: string;
+      };
       current_admin_role: { Args: never; Returns: string };
+      expire_pending_bookings: {
+        Args: never;
+        Returns: {
+          booking_id: string;
+          booking_reference: string;
+        }[];
+      };
       is_active_admin: { Args: never; Returns: boolean };
       is_admin_role: { Args: { required_role: string }; Returns: boolean };
+      move_booking: {
+        Args: {
+          p_actor_id: string;
+          p_actor_role: string;
+          p_booking_id: string;
+          p_destination_session_id: string;
+        };
+        Returns: Json;
+      };
+      record_booking_email: {
+        Args: {
+          p_booking_id: string;
+          p_email_type: string;
+          p_error_message?: string;
+          p_provider_message_id?: string;
+          p_status: string;
+        };
+        Returns: string;
+      };
+      record_payment_refund: {
+        Args: {
+          p_payment_id: string;
+          p_reason: string;
+          p_refund_amount_grosz: number;
+        };
+        Returns: Json;
+      };
       upsert_workshop_with_relations: {
         Args: {
           p_booking_mode: string;
@@ -973,6 +1226,10 @@ export type Database = {
           p_workshop_id: string;
         };
         Returns: string;
+      };
+      verify_cancellation_token: {
+        Args: { p_booking_id: string; p_token: string };
+        Returns: boolean;
       };
     };
     Enums: {

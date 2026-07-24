@@ -40,7 +40,7 @@ export default async function SuccessPage({
   const { data: booking } = await supabase
     .from('bookings')
     .select(
-      'booking_reference, status, quantity, total_price_gross_grosz, customer_profiles(email), workshop_sessions(starts_at, workshops(title))'
+      'booking_reference, status, quantity, total_price_gross_grosz, customer_profiles(email), workshop_sessions!workshop_session_id(starts_at, workshops(title))'
     )
     .eq('booking_reference', bookingReference)
     .single();
@@ -50,7 +50,7 @@ export default async function SuccessPage({
   }
 
   const profile = booking.customer_profiles as { email: string };
-  const session = booking.workshop_sessions as {
+  const session = booking.workshop_sessions as unknown as {
     starts_at: string;
     workshops: { title: string };
   };

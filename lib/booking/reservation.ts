@@ -134,7 +134,7 @@ export async function createBookingAndCheckout(
         p_booking_id: reservation.booking_id,
         p_payment_id: reservation.payment_id,
         p_stripe_event_id: 'manual-zero-payment',
-        p_provider_payment_id: null,
+        p_provider_payment_id: '',
         p_amount_gross_grosz: 0,
       }
     );

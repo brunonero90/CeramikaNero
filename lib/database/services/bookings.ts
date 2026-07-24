@@ -23,7 +23,7 @@ const selectBookingDetail = `
   created_at,
   updated_at,
   customer_profiles (first_name, last_name, email, phone, marketing_consent),
-  workshop_sessions (
+  workshop_sessions!bookings_workshop_session_id_fkey(
     id,
     starts_at,
     ends_at,

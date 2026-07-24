@@ -58,7 +58,7 @@ export async function getBookingEmailContext(
     last_name: string;
     email: string;
   };
-  const session = data.workshop_sessions as {
+  const session = data.workshop_sessions as unknown as {
     starts_at: string;
     location_name: string | null;
     location_address: string | null;
@@ -109,8 +109,8 @@ export async function recordBookingEmail(
     p_booking_id: bookingId,
     p_email_type: type,
     p_status: status,
-    p_provider_message_id: providerMessageId ?? null,
-    p_error_message: errorMessage ?? null,
+    p_provider_message_id: providerMessageId ?? undefined,
+    p_error_message: errorMessage ?? undefined,
   });
   if (error || !data) {
     console.error('record_booking_email failed', error);

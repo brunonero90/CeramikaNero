@@ -150,7 +150,7 @@ export default async function BookingsAdminPage({
                   last_name: string;
                   email: string;
                 };
-                const session = row.workshop_sessions as {
+                const session = row.workshop_sessions as unknown as {
                   starts_at: string;
                   workshops: { title: string };
                 };

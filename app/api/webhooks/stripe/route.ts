@@ -80,7 +80,7 @@ export async function POST(request: Request): Promise<NextResponse> {
             p_booking_id: bookingId,
             p_payment_id: paymentId,
             p_stripe_event_id: event.id,
-            p_provider_payment_id: paymentIntentId,
+            p_provider_payment_id: paymentIntentId ?? '',
             p_amount_gross_grosz: amount,
           }
         );
@@ -154,7 +154,7 @@ export async function POST(request: Request): Promise<NextResponse> {
             p_booking_id: payment.booking_id,
             p_payment_id: payment.id,
             p_stripe_event_id: event.id,
-            p_provider_payment_id: paymentIntentId,
+            p_provider_payment_id: paymentIntentId ?? '',
             p_amount_gross_grosz: payment.amount_gross_grosz,
           }
         );

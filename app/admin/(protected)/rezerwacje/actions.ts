@@ -98,7 +98,7 @@ export async function getBookingDetailAction(id: string) {
       `
       *,
       customer_profiles (first_name, last_name, email, phone, marketing_consent, marketing_consent_at, privacy_policy_version),
-      workshop_sessions (id, starts_at, ends_at, timezone, capacity, reserved_count, location_name, location_address, workshops (id, title, slug)),
+      workshop_sessions!workshop_session_id (id, starts_at, ends_at, timezone, capacity, reserved_count, location_name, location_address, workshops (id, title, slug)),
       booking_participants (id, display_name, age, participant_type, accessibility_notes),
       payments (id, provider, status, amount_gross_grosz, provider_checkout_id, provider_payment_id, paid_at, refunded_amount_grosz, refund_reason, failure_message)
     `
