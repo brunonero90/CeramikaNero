@@ -1,28 +1,25 @@
 import 'server-only';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { buildCancellationUrl } from '@/lib/booking/urls';
-import { formatPrice } from '@/lib/utils/price';
 import { addHours } from 'date-fns';
 import { emailStatusSchema, emailTypeSchema } from '@/lib/database/schema';
 import { deliverBookingEmail } from '@/lib/booking/email-transport';
 import { isBookingLocalMode } from '@/lib/booking/local-mode';
+import {
+  buildAdminNotificationEmail,
+  buildCustomerConfirmationEmail,
+  getBookingAdminEmail,
+  getPublicSiteUrl,
+  type BookingEmailTemplateContext,
+} from '@/lib/booking/email-templates';
 
 export type BookingEmailType =
   (typeof emailTypeSchema.enum)[keyof typeof emailTypeSchema.enum];
 export type BookingEmailStatus =
   (typeof emailStatusSchema.enum)[keyof typeof emailStatusSchema.enum];
 
-type BookingEmailContext = {
+type BookingEmailContext = BookingEmailTemplateContext & {
   bookingId: string;
-  reference: string;
-  workshopTitle: string;
-  sessionStartsAt: string;
-  sessionLocation: string;
-  quantity: number;
-  totalGrossGrosz: number;
-  customerEmail: string;
-  customerName: string;
-  participants: { display_name: string | null; age: number | null }[];
 };
 
 export async function getBookingEmailContext(
@@ -36,8 +33,10 @@ export async function getBookingEmailContext(
       id,
       booking_reference,
       quantity,
+      unit_price_gross_grosz,
       total_price_gross_grosz,
-      customer_profiles!inner (first_name, last_name, email),
+      customer_notes,
+      customer_profiles!inner (first_name, last_name, email, phone),
       workshop_sessions!inner (starts_at, location_name, location_address, workshops!inner (title)),
       booking_participants (display_name, age)
     `
@@ -54,6 +53,7 @@ export async function getBookingEmailContext(
     first_name: string;
     last_name: string;
     email: string;
+    phone: string | null;
   };
   const session = data.workshop_sessions as unknown as {
     starts_at: string;
@@ -75,23 +75,15 @@ export async function getBookingEmailContext(
       .filter(Boolean)
       .join(', '),
     quantity: data.quantity as number,
+    unitPriceGrossGrosz: data.unit_price_gross_grosz as number,
     totalGrossGrosz: data.total_price_gross_grosz as number,
     customerEmail: profile.email,
     customerName: `${profile.first_name} ${profile.last_name}`.trim(),
+    customerPhone: profile.phone,
+    customerNotes: (data.customer_notes as string | null) ?? null,
     participants,
+    siteUrl: getPublicSiteUrl(),
   };
-}
-
-function formatWarsawDate(iso: string): string {
-  return new Intl.DateTimeFormat('pl-PL', {
-    timeZone: 'Europe/Warsaw',
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(new Date(iso));
 }
 
 export async function recordBookingEmail(
@@ -107,12 +99,32 @@ export async function recordBookingEmail(
     p_email_type: type,
     p_status: status,
     p_provider_message_id: providerMessageId ?? undefined,
-    p_error_message: errorMessage ?? undefined,
   });
   if (error || !data) {
     console.error('record_booking_email failed', error);
     return null;
   }
+
+  // Best-effort: attach error message / retry metadata when columns exist.
+  if (errorMessage || status === 'pending' || status === 'failed') {
+    const patch = await supabase
+      .from('booking_emails')
+      .update({
+        error_message: errorMessage ?? null,
+        next_attempt_at:
+          status === 'failed' || status === 'pending'
+            ? new Date(Date.now() + 60_000).toISOString()
+            : null,
+      } as never)
+      .eq('id', data as string);
+    if (patch.error && errorMessage) {
+      await supabase
+        .from('booking_emails')
+        .update({ error_message: errorMessage })
+        .eq('id', data as string);
+    }
+  }
+
   return data as string;
 }
 
@@ -130,150 +142,6 @@ async function hasSuccessfulEmail(
     .limit(1)
     .maybeSingle();
   return !!data;
-}
-
-export async function sendBookingConfirmationEmail(
-  ctx: BookingEmailContext
-): Promise<void> {
-  if (!isBookingLocalMode()) {
-    if (await hasSuccessfulEmail(ctx.bookingId, 'confirmation')) {
-      return;
-    }
-  }
-
-  let cancellationUrl: string | undefined;
-  if (!isBookingLocalMode()) {
-    const supabase = createAdminClient();
-    const { data: token } = await supabase.rpc('create_cancellation_token', {
-      p_booking_id: ctx.bookingId,
-      p_expires_at: addHours(new Date(ctx.sessionStartsAt), -24).toISOString(),
-    });
-    cancellationUrl = token
-      ? buildCancellationUrl(token as string, ctx.reference)
-      : undefined;
-  } else {
-    cancellationUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3010'}/kontakt`;
-  }
-
-  const subject = `Potwierdzenie rezerwacji ${ctx.reference}`;
-  const amount = formatPrice(ctx.totalGrossGrosz);
-  const date = formatWarsawDate(ctx.sessionStartsAt);
-  const participantList = ctx.participants
-    .map(
-      (p, i) =>
-        `${i + 1}. ${p.display_name ?? 'Uczestnik'}${p.age ? ` (${p.age} l.)` : ''}`
-    )
-    .join('\n');
-
-  const html = `
-    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h1>Potwierdzenie rezerwacji</h1>
-      <p>Dzień dobry ${ctx.customerName},</p>
-      <p>Twoja rezerwacja <strong>${ctx.reference}</strong> została potwierdzona.</p>
-      <h2>Szczegóły warsztatu</h2>
-      <p><strong>${ctx.workshopTitle}</strong><br>Data: ${date}<br>Liczba miejsc: ${ctx.quantity}<br>Kwota: ${amount}</p>
-      ${ctx.sessionLocation ? `<p>Miejsce: ${ctx.sessionLocation}</p>` : ''}
-      <h2>Uczestnicy</h2>
-      <p>${participantList.replace(/\n/g, '<br>')}</p>
-      ${cancellationUrl ? `<p><a href="${cancellationUrl}">Anuluj rezerwację</a> (możliwe do 24 h przed warsztatem)</p>` : ''}
-      <p>Do zobaczenia!<br>Ceramika Nero</p>
-    </div>
-  `;
-
-  const text = `Potwierdzenie rezerwacji ${ctx.reference}\n\nDzień dobry ${ctx.customerName},\n\nTwoja rezerwacja została potwierdzona.\n\nWarsztat: ${ctx.workshopTitle}\nData: ${date}\nLiczba miejsc: ${ctx.quantity}\nKwota: ${amount}\n${ctx.sessionLocation ? `Miejsce: ${ctx.sessionLocation}\n` : ''}\nUczestnicy:\n${participantList}\n\n${cancellationUrl ? `Anuluj rezerwację: ${cancellationUrl}\n` : ''}\nDo zobaczenia!\nCeramika Nero`;
-
-  await sendEmail(
-    ctx.customerEmail,
-    subject,
-    html,
-    text,
-    ctx.bookingId,
-    'confirmation'
-  );
-}
-
-export async function sendBookingCancellationEmail(
-  ctx: BookingEmailContext,
-  reason?: string
-): Promise<void> {
-  if (await hasSuccessfulEmail(ctx.bookingId, 'cancellation')) {
-    return;
-  }
-  const subject = `Rezerwacja ${ctx.reference} została anulowana`;
-  const amount = formatPrice(ctx.totalGrossGrosz);
-  const date = formatWarsawDate(ctx.sessionStartsAt);
-  const html = `
-    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h1>Rezerwacja anulowana</h1>
-      <p>Dzień dobry ${ctx.customerName},</p>
-      <p>Rezerwacja <strong>${ctx.reference}</strong> na warsztat <strong>${ctx.workshopTitle}</strong> (${date}) została anulowana.</p>
-      <p>Kwota: ${amount}</p>
-      ${reason ? `<p>Powód: ${reason}</p>` : ''}
-      <p>W przypadku zwrotu środki pojawią się na koncie w ciągu kilku dni roboczych.</p>
-      <p>Ceramika Nero</p>
-    </div>
-  `;
-  const text = `Rezerwacja anulowana\n\nRezerwacja ${ctx.reference} na ${ctx.workshopTitle} (${date}) została anulowana.\nKwota: ${amount}\n${reason ? `Powód: ${reason}\n` : ''}W przypadku zwrotu środki pojawią się na koncie w ciągu kilku dni roboczych.\n\nCeramika Nero`;
-  await sendEmail(
-    ctx.customerEmail,
-    subject,
-    html,
-    text,
-    ctx.bookingId,
-    'cancellation'
-  );
-}
-
-export async function sendRefundEmail(
-  ctx: BookingEmailContext,
-  refundAmountGrosz: number
-): Promise<void> {
-  if (await hasSuccessfulEmail(ctx.bookingId, 'refund')) {
-    return;
-  }
-  const subject = `Zwrot środków za rezerwację ${ctx.reference}`;
-  const amount = formatPrice(refundAmountGrosz);
-  const html = `
-    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h1>Zwrot środków</h1>
-      <p>Dzień dobry ${ctx.customerName},</p>
-      <p>Na Twoje konto został zwrócony zwrot w wysokości <strong>${amount}</strong> za rezerwację <strong>${ctx.reference}</strong>.</p>
-      <p>Środki powinny pojawić się w ciągu kilku dni roboczych.</p>
-      <p>Ceramika Nero</p>
-    </div>
-  `;
-  const text = `Zwrot środków\n\nNa Twoje konto został zwrócony zwrot ${amount} za rezerwację ${ctx.reference}.\nŚrodki powinny pojawić się w ciągu kilku dni roboczych.\n\nCeramika Nero`;
-  await sendEmail(
-    ctx.customerEmail,
-    subject,
-    html,
-    text,
-    ctx.bookingId,
-    'refund'
-  );
-}
-
-export async function sendPaymentProblemEmail(
-  ctx: BookingEmailContext
-): Promise<void> {
-  const subject = `Wymagana interwencja – rezerwacja ${ctx.reference}`;
-  const html = `
-    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h1>Płatność wymaga uwagi</h1>
-      <p>Dzień dobry ${ctx.customerName},</p>
-      <p>Twoja płatność za rezerwację <strong>${ctx.reference}</strong> została przyjęta, ale wymagana jest interwencja administracyjna. Skontaktujemy się z Tobą w ciągu 24 godzin.</p>
-      <p>Ceramika Nero</p>
-    </div>
-  `;
-  const text = `Płatność wymaga uwagi\n\nTwoja płatność za rezerwację ${ctx.reference} została przyjęta, ale wymagana jest interwencja administracyjna. Skontaktujemy się z Tobą w ciągu 24 godzin.\n\nCeramika Nero`;
-  await sendEmail(
-    ctx.customerEmail,
-    subject,
-    html,
-    text,
-    ctx.bookingId,
-    'payment_problem'
-  );
 }
 
 async function sendEmail(
@@ -323,6 +191,184 @@ async function sendEmail(
   }
 }
 
+export async function sendBookingConfirmationEmail(
+  ctx: BookingEmailContext
+): Promise<void> {
+  if (!isBookingLocalMode()) {
+    if (await hasSuccessfulEmail(ctx.bookingId, 'confirmation')) {
+      return;
+    }
+  }
+
+  let cancellationUrl: string | undefined;
+  if (!isBookingLocalMode()) {
+    const supabase = createAdminClient();
+    const { data: token } = await supabase.rpc('create_cancellation_token', {
+      p_booking_id: ctx.bookingId,
+      p_expires_at: addHours(new Date(ctx.sessionStartsAt), -24).toISOString(),
+    });
+    cancellationUrl = token
+      ? buildCancellationUrl(token as string, ctx.reference)
+      : undefined;
+  } else {
+    cancellationUrl = `${getPublicSiteUrl()}/kontakt`;
+  }
+
+  const content = buildCustomerConfirmationEmail({
+    ...ctx,
+    cancellationUrl,
+  });
+
+  await sendEmail(
+    ctx.customerEmail,
+    content.subject,
+    content.html,
+    content.text,
+    ctx.bookingId,
+    'confirmation'
+  );
+}
+
+export async function sendAdminBookingNotificationEmail(
+  ctx: BookingEmailContext
+): Promise<void> {
+  const adminTo = getBookingAdminEmail();
+  if (!adminTo) {
+    console.info(
+      '[email] BOOKING_ADMIN_EMAIL not set; skipping admin notification',
+      { bookingId: ctx.bookingId }
+    );
+    return;
+  }
+
+  if (!isBookingLocalMode()) {
+    if (await hasSuccessfulEmail(ctx.bookingId, 'admin_notification')) {
+      return;
+    }
+  }
+
+  const content = buildAdminNotificationEmail(ctx);
+  await sendEmail(
+    adminTo,
+    content.subject,
+    content.html,
+    content.text,
+    ctx.bookingId,
+    'admin_notification'
+  );
+}
+
+/** Queue customer + admin emails after a successful booking write. */
+export async function notifyBookingCreated(
+  bookingId: string
+): Promise<void> {
+  const ctx = await getBookingEmailContext(bookingId);
+  if (!ctx) return;
+  try {
+    await sendBookingConfirmationEmail(ctx);
+  } catch (error) {
+    console.error('customer confirmation email failed', {
+      bookingId,
+      error: error instanceof Error ? error.message : error,
+    });
+  }
+  try {
+    await sendAdminBookingNotificationEmail(ctx);
+  } catch (error) {
+    console.error('admin notification email failed', {
+      bookingId,
+      error: error instanceof Error ? error.message : error,
+    });
+  }
+}
+
+export async function sendBookingCancellationEmail(
+  ctx: BookingEmailContext,
+  reason?: string
+): Promise<void> {
+  if (await hasSuccessfulEmail(ctx.bookingId, 'cancellation')) {
+    return;
+  }
+  const { formatPrice } = await import('@/lib/utils/price');
+  const { formatWarsawDate } = await import('@/lib/booking/email-templates');
+  const subject = `Rezerwacja ${ctx.reference} została anulowana`;
+  const amount = formatPrice(ctx.totalGrossGrosz);
+  const date = formatWarsawDate(ctx.sessionStartsAt);
+  const html = `
+    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h1>Rezerwacja anulowana</h1>
+      <p>Dzień dobry ${ctx.customerName},</p>
+      <p>Rezerwacja <strong>${ctx.reference}</strong> na warsztat <strong>${ctx.workshopTitle}</strong> (${date}) została anulowana.</p>
+      <p>Kwota: ${amount}</p>
+      ${reason ? `<p>Powód: ${reason}</p>` : ''}
+      <p>W przypadku zwrotu środki pojawią się na koncie w ciągu kilku dni roboczych.</p>
+      <p>Ceramika Nero</p>
+    </div>
+  `;
+  const text = `Rezerwacja anulowana\n\nRezerwacja ${ctx.reference} na ${ctx.workshopTitle} (${date}) została anulowana.\nKwota: ${amount}\n${reason ? `Powód: ${reason}\n` : ''}W przypadku zwrotu środki pojawią się na koncie w ciągu kilku dni roboczych.\n\nCeramika Nero`;
+  await sendEmail(
+    ctx.customerEmail,
+    subject,
+    html,
+    text,
+    ctx.bookingId,
+    'cancellation'
+  );
+}
+
+export async function sendRefundEmail(
+  ctx: BookingEmailContext,
+  refundAmountGrosz: number
+): Promise<void> {
+  if (await hasSuccessfulEmail(ctx.bookingId, 'refund')) {
+    return;
+  }
+  const { formatPrice } = await import('@/lib/utils/price');
+  const subject = `Zwrot środków za rezerwację ${ctx.reference}`;
+  const amount = formatPrice(refundAmountGrosz);
+  const html = `
+    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h1>Zwrot środków</h1>
+      <p>Dzień dobry ${ctx.customerName},</p>
+      <p>Na Twoje konto został zwrócony zwrot w wysokości <strong>${amount}</strong> za rezerwację <strong>${ctx.reference}</strong>.</p>
+      <p>Środki powinny pojawić się w ciągu kilku dni roboczych.</p>
+      <p>Ceramika Nero</p>
+    </div>
+  `;
+  const text = `Zwrot środków\n\nNa Twoje konto został zwrócony zwrot ${amount} za rezerwację ${ctx.reference}.\nŚrodki powinny pojawić się w ciągu kilku dni roboczych.\n\nCeramika Nero`;
+  await sendEmail(
+    ctx.customerEmail,
+    subject,
+    html,
+    text,
+    ctx.bookingId,
+    'refund'
+  );
+}
+
+export async function sendPaymentProblemEmail(
+  ctx: BookingEmailContext
+): Promise<void> {
+  const subject = `Wymagana interwencja – rezerwacja ${ctx.reference}`;
+  const html = `
+    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h1>Płatność wymaga uwagi</h1>
+      <p>Dzień dobry ${ctx.customerName},</p>
+      <p>Twoja płatność za rezerwację <strong>${ctx.reference}</strong> została przyjęta, ale wymagana jest interwencja administracyjna. Skontaktujemy się z Tobą w ciągu 24 godzin.</p>
+      <p>Ceramika Nero</p>
+    </div>
+  `;
+  const text = `Płatność wymaga uwagi\n\nTwoja płatność za rezerwację ${ctx.reference} została przyjęta, ale wymagana jest interwencja administracyjna. Skontaktujemy się z Tobą w ciągu 24 godzin.\n\nCeramika Nero`;
+  await sendEmail(
+    ctx.customerEmail,
+    subject,
+    html,
+    text,
+    ctx.bookingId,
+    'payment_problem'
+  );
+}
+
 /** Build confirmation content for local bookings (no Supabase context). */
 export async function sendLocalBookingConfirmationEmail(params: {
   bookingId: string;
@@ -343,9 +389,16 @@ export async function sendLocalBookingConfirmationEmail(params: {
     sessionStartsAt: params.sessionStartsAt,
     sessionLocation: params.sessionLocation,
     quantity: params.quantity,
+    unitPriceGrossGrosz:
+      params.quantity > 0
+        ? Math.round(params.totalGrossGrosz / params.quantity)
+        : params.totalGrossGrosz,
     totalGrossGrosz: params.totalGrossGrosz,
     customerEmail: params.customerEmail,
     customerName: params.customerName,
+    customerPhone: null,
+    customerNotes: null,
     participants: params.participants,
+    siteUrl: getPublicSiteUrl(),
   });
 }

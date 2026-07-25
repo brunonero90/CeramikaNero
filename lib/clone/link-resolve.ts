@@ -103,6 +103,11 @@ export function resolveCtaHref(label: string, href: string): ResolvedHref {
     }
   }
 
+  const isBookingLabel =
+    /^(zarezerwuj|rezerwuj|rezerwuj termin|zarezerwuj warsztat|zapisz się)\b/i.test(
+      cleanLabel
+    );
+
   if (localized === '#' || !localized) {
     const override =
       LABEL_HREF_OVERRIDES[cleanLabel.toLowerCase()] ??
@@ -115,11 +120,35 @@ export function resolveCtaHref(label: string, href: string): ResolvedHref {
     if (override) {
       return { href: override, actionable: true, reason: 'label-override' };
     }
+    if (isBookingLabel) {
+      return {
+        href: '/kalendarz',
+        actionable: true,
+        reason: 'booking-label-empty-anchor',
+      };
+    }
     return { href: '#', actionable: false, reason: 'empty-anchor' };
   }
 
   if (/wix\.com|wixsite\.com/i.test(localized)) {
     return { href: '#', actionable: false, reason: 'wix-host' };
+  }
+
+  // Legacy homepage / dead self-links on booking CTAs → live calendar.
+  if (isBookingLabel && (localized === '/' || localized.startsWith('/#'))) {
+    return {
+      href: '/kalendarz',
+      actionable: true,
+      reason: 'booking-label-home-fallback',
+    };
+  }
+
+  if (/^\/booking-calendar(\/|$)/i.test(localized)) {
+    return {
+      href: '/kalendarz',
+      actionable: true,
+      reason: 'legacy-booking-calendar',
+    };
   }
 
   return { href: localized, actionable: true };

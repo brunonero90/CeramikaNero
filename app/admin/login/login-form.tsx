@@ -28,12 +28,16 @@ export function LoginForm() {
         const { data, error: signInError } =
           await supabase.auth.signInWithPassword({ email, password });
 
-        if (signInError || !data.user) {
+        if (signInError || !data.user || !data.session) {
           setError('Nieprawidłowy email lub hasło.');
           return;
         }
 
-        const finalized = await finalizeAdminLoginAction();
+        const finalized = await finalizeAdminLoginAction({
+          access_token: data.session.access_token,
+          refresh_token: data.session.refresh_token,
+        });
+
         if (!finalized.ok) {
           await supabase.auth.signOut();
           setError(finalized.error);
@@ -41,8 +45,16 @@ export function LoginForm() {
         }
 
         setSuccess(true);
-        window.location.href = finalized.redirectTo;
-      } catch {
+        // Full navigation so middleware/proxy and RSC see fresh cookies.
+        window.location.assign(finalized.redirectTo);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : '';
+        if (/Missing Supabase public environment/i.test(message)) {
+          setError(
+            'Konfiguracja logowania jest niekompletna. Skontaktuj się z administratorem strony.'
+          );
+          return;
+        }
         setError('Nie udało się zalogować. Spróbuj ponownie.');
       }
     });
@@ -89,6 +101,8 @@ export function LoginForm() {
             Zalogowano. Przekierowanie do panelu…
           </p>
           <p className="text-sm">
+            {/* Hard navigation fallback after cookie session write */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/admin" className="font-medium text-gray-900 underline">
               Kliknij tutaj, jeśli panel się nie otwiera
             </a>

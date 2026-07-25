@@ -37,7 +37,7 @@ export const dlaDzieciPage = {
       imageAlt: 'Kurs rysunek malarstwo ceramika 6-10 lat',
       imageFirst: true,
       ctaLabel: 'Rezerwuj termin',
-      ctaHref: '/',
+      ctaHref: '/warsztaty/kurs-rysunku-malarstwa-ceramiki-6-10-lat/rezerwacja',
       tinted: true,
     },
     {
@@ -59,7 +59,7 @@ export const dlaDzieciPage = {
       imageAlt: 'Kurs ceramiki dla młodzieży 11+',
       imageFirst: false,
       ctaLabel: 'Rezerwuj termin',
-      ctaHref: '/',
+      ctaHref: '/warsztaty/kurs-ceramiki-dla-mlodziezy-11/rezerwacja',
       tinted: false,
     },
     {
@@ -77,7 +77,7 @@ export const dlaDzieciPage = {
       imageAlt: 'Architektura',
       imageFirst: true,
       ctaLabel: 'Rezerwuj termin',
-      ctaHref: '/',
+      ctaHref: '/kontakt',
       tinted: true,
     },
     {
@@ -96,7 +96,7 @@ export const dlaDzieciPage = {
       imageAlt: 'DSC_8498.jpg',
       imageFirst: false,
       ctaLabel: 'Rezerwuj termin',
-      ctaHref: '/',
+      ctaHref: '/warsztaty/kurs-ceramiki-dla-mlodziezy-11/rezerwacja',
       tinted: false,
     },
     {
@@ -112,7 +112,7 @@ export const dlaDzieciPage = {
       imageAlt: 'RYSUNEK6_edited_edited.jpg',
       imageFirst: true,
       ctaLabel: 'Rezerwuj termin',
-      ctaHref: '/',
+      ctaHref: '/kontakt',
       tinted: true,
     },
     {
@@ -205,7 +205,7 @@ export const dlaDoroslychPage = {
       imageAlt: 'ceramika glina do wina.jpg',
       imageFirst: true,
       ctaLabel: 'Rezerwuj termin',
-      ctaHref: '/glinadowina',
+      ctaHref: '/warsztaty/glina-do-wina/rezerwacja',
       tinted: true,
     },
     {
@@ -225,7 +225,7 @@ export const dlaDoroslychPage = {
       imageAlt: 'skotnickanowakpl_ceramikanero_6146.jpg',
       imageFirst: false,
       ctaLabel: 'Rezerwuj termin',
-      ctaHref: '/',
+      ctaHref: '/warsztaty/ceramika-dla-doroslych/rezerwacja',
       tinted: false,
     },
     {
@@ -245,7 +245,7 @@ export const dlaDoroslychPage = {
       imageAlt: 'DSC_8724.jpg',
       imageFirst: true,
       ctaLabel: 'Rezerwuj termin',
-      ctaHref: '/',
+      ctaHref: '/warsztaty/ceramika-dla-doroslych/rezerwacja',
       tinted: true,
     },
     {

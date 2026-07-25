@@ -12,10 +12,14 @@ const runId = randomUUID();
 const prefix = `int_test_${runId}`;
 
 describe.skipIf(!hasRemoteEnv)('remote integration tests', () => {
-  const admin = createClient<Database>(url!, secretKey!, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
-  const publicClient = createClient<Database>(url!, key!);
+  const admin = hasRemoteEnv
+    ? createClient<Database>(url!, secretKey!, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      })
+    : (null as unknown as ReturnType<typeof createClient<Database>>);
+  const publicClient = hasRemoteEnv
+    ? createClient<Database>(url!, key!)
+    : (null as unknown as ReturnType<typeof createClient<Database>>);
 
   const ids: {
     category?: string;

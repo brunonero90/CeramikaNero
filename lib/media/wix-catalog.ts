@@ -73,6 +73,15 @@ export function getBrandingImages(): SiteImage[] {
 export function getSocialIcon(
   name: 'facebook' | 'instagram'
 ): SiteImage | null {
+  // Prefer exact alt + small assets so FB/IG share a consistent visual box.
+  const exact = wixMediaAssets.find((asset) => {
+    const alt = (asset.altText || '').trim().toLowerCase();
+    const isExact = alt === name;
+    const isTiny = (asset.width ?? 0) <= 256 && (asset.height ?? 0) <= 256;
+    return isExact && isTiny;
+  });
+  if (exact) return toSiteImage(exact);
+
   const match = wixMediaAssets.find((asset) => {
     const alt = (asset.altText || '').trim().toLowerCase();
     const isExact = alt === name || new RegExp(`^${name}\\s*$`).test(alt);

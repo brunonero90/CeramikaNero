@@ -16,12 +16,16 @@ const hasRemoteEnv = Boolean(url && secretKey && publishableKey);
  * isolated test-owned records and delete only those exact records after the run.
  */
 describe.skipIf(!hasRemoteEnv)('Phase 5 booking integration', () => {
-  const admin = createClient<Database>(url!, secretKey!, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
-  const anon = createClient<Database>(url!, publishableKey!, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
+  const admin = hasRemoteEnv
+    ? createClient<Database>(url!, secretKey!, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      })
+    : (null as unknown as ReturnType<typeof createClient<Database>>);
+  const anon = hasRemoteEnv
+    ? createClient<Database>(url!, publishableKey!, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      })
+    : (null as unknown as ReturnType<typeof createClient<Database>>);
 
   const runId = `ph5-${Date.now()}`;
   const testPrefix = `PH5-${runId}`;

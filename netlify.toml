@@ -16,3 +16,6 @@
 
 [functions."booking-expiry"]
   schedule = "*/10 * * * *"
+
+[functions."booking-email-dispatch"]
+  schedule = "*/5 * * * *"

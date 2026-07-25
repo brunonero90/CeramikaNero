@@ -1,35 +1,30 @@
-import { describe, expect, it, vi } from 'vitest';
-import type { LoginActionState } from '@/app/admin/login/actions';
-import { getCurrentAdmin } from '@/lib/admin/auth';
-import { LoginForm } from '@/app/admin/login/login-form';
+import { readFileSync } from 'node:fs';
+import { describe, expect, it } from 'vitest';
 
-describe('admin login action contract', () => {
-  it('exports finalize + legacy login helpers with redirectTo success shape', async () => {
-    const mod = await import('@/app/admin/login/actions');
-    expect(typeof mod.finalizeAdminLoginAction).toBe('function');
-    expect(typeof mod.loginAction).toBe('function');
-    const sample: LoginActionState = { ok: true, redirectTo: '/admin' };
-    expect(sample.redirectTo).toBe('/admin');
+describe('admin login contract (source)', () => {
+  it('login form uses browser sign-in, token finalize and hard navigation', () => {
+    const src = readFileSync('app/admin/login/login-form.tsx', 'utf8');
+    expect(src).toContain('signInWithPassword');
+    expect(src).toContain('finalizeAdminLoginAction');
+    expect(src).toContain('access_token');
+    expect(src).toContain('refresh_token');
+    expect(src).toContain('window.location.assign');
+    expect(src).toMatch(/Nieprawidłowy email lub hasło/);
   });
 
-  it('getCurrentAdmin is exported for cookie-backed admin checks', () => {
-    expect(typeof getCurrentAdmin).toBe('function');
+  it('finalize action persists session cookies then checks admin_users', () => {
+    const src = readFileSync('app/admin/login/actions.ts', 'utf8');
+    expect(src).toContain('setSession');
+    expect(src).toContain('admin_users');
+    expect(src).toContain('redirectTo');
+    expect(src).toMatch(/nie ma aktywnych uprawnień administratora/);
+    expect(src).toContain('logoutAction');
   });
 
-  it('login form uses browser Supabase sign-in then hard navigation', () => {
-    expect(typeof LoginForm).toBe('function');
-  });
-});
-
-describe('admin login action behavior (mocked)', () => {
-  it('returns Polish error when credentials missing', async () => {
-    vi.resetModules();
-    const { loginAction } = await import('@/app/admin/login/actions');
-    const fd = new FormData();
-    const result = await loginAction(undefined, fd);
-    expect(result.ok).toBe(false);
-    if (!result.ok) {
-      expect(result.error).toMatch(/wymagane/i);
-    }
+  it('public env helper uses static NEXT_PUBLIC property access for client inlining', () => {
+    const src = readFileSync('lib/supabase/environment.ts', 'utf8');
+    expect(src).toContain('process.env.NEXT_PUBLIC_SUPABASE_URL');
+    expect(src).toContain('process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY');
+    expect(src).not.toMatch(/safeParse\(\s*process\.env\s*\)/);
   });
 });

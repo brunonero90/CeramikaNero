@@ -2,9 +2,7 @@ import type { Metadata } from 'next';
 import { Cormorant_Garamond, Inter, Nunito, Quicksand } from 'next/font/google';
 import { ThemeProvider } from '@/lib/theme/theme-context';
 import { ThemeScript } from '@/lib/theme/theme-script';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
-import { MobileContactFab } from '@/components/layout/mobile-contact-fab';
+import { SiteChrome } from '@/components/layout/site-chrome';
 import { LocalCartProvider } from '@/components/clone/local-cart';
 import './globals.css';
 
@@ -78,10 +76,7 @@ export default function RootLayout({
         <ThemeScript />
         <ThemeProvider>
           <LocalCartProvider>
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <MobileContactFab />
+            <SiteChrome>{children}</SiteChrome>
           </LocalCartProvider>
         </ThemeProvider>
       </body>

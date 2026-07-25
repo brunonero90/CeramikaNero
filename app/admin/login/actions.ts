@@ -2,7 +2,10 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { createServerClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
 import { createClient } from '@/lib/supabase/server';
+import { requirePublicEnv } from '@/lib/supabase/environment';
 import { recordAuditEvent } from '@/lib/admin/audit';
 import { getCurrentAdmin } from '@/lib/admin/auth';
 import { adminRoleSchema } from '@/lib/database/schema';
@@ -11,13 +14,58 @@ export type LoginActionState =
   | { ok: false; error: string }
   | { ok: true; redirectTo: string };
 
+type SessionTokens = {
+  access_token: string;
+  refresh_token: string;
+};
+
+async function createWritableServerClient() {
+  const env = requirePublicEnv();
+  const cookieStore = await cookies();
+
+  return createServerClient(
+    env.NEXT_PUBLIC_SUPABASE_URL,
+    env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            cookieStore.set(name, value, options);
+          });
+        },
+      },
+    }
+  );
+}
+
 /**
- * After the browser client establishes the Supabase session cookies, verify
- * admin membership and record login. Returns a redirect target for a full
- * page navigation (soft App Router redirects were unreliable here).
+ * After the browser authenticates with Supabase, persist the session into
+ * server cookies (chunked by @supabase/ssr), verify admin membership and
+ * return a hard-navigation target.
  */
-export async function finalizeAdminLoginAction(): Promise<LoginActionState> {
-  const supabase = await createClient();
+export async function finalizeAdminLoginAction(
+  tokens?: SessionTokens
+): Promise<LoginActionState> {
+  const supabase = tokens
+    ? await createWritableServerClient()
+    : await createClient();
+
+  if (tokens?.access_token && tokens?.refresh_token) {
+    const { error: sessionError } = await supabase.auth.setSession({
+      access_token: tokens.access_token,
+      refresh_token: tokens.refresh_token,
+    });
+    if (sessionError) {
+      return {
+        ok: false,
+        error: 'Sesja nie została utworzona. Spróbuj ponownie.',
+      };
+    }
+  }
+
   const {
     data: { user },
     error,
@@ -76,17 +124,20 @@ export async function loginAction(
     return { ok: false, error: 'Email i hasło są wymagane.' };
   }
 
-  const supabase = await createClient();
+  const supabase = await createWritableServerClient();
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
-  if (error || !data.user) {
+  if (error || !data.user || !data.session) {
     return { ok: false, error: 'Nieprawidłowy email lub hasło.' };
   }
 
-  return finalizeAdminLoginAction();
+  return finalizeAdminLoginAction({
+    access_token: data.session.access_token,
+    refresh_token: data.session.refresh_token,
+  });
 }
 
 export async function logoutAction(): Promise<void> {

@@ -90,9 +90,25 @@ export function ArchivePageView({
       {contentSections.map((section, index) => {
         const ctas = section.buttons
           .map((b) => {
+            const label = b.label.split('\n')[0]!.slice(0, 60);
+            const isBookingLabel =
+              /^(zarezerwuj|rezerwuj|rezerwuj termin|zapisz się)\b/i.test(
+                label
+              );
+            if (
+              bookingAdaptation &&
+              isBookingLabel &&
+              (!b.href || b.href === '#' || b.href === '/')
+            ) {
+              return {
+                label,
+                href: bookingAdaptation.href,
+                actionable: true,
+              };
+            }
             const resolved = resolveCtaHref(b.label, b.href);
             return {
-              label: b.label.split('\n')[0]!.slice(0, 60),
+              label,
               href: resolved.href,
               actionable: resolved.actionable,
             };

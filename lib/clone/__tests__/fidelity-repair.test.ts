@@ -86,6 +86,14 @@ describe('link resolve', () => {
     expect(isActionableCta('Something', '#')).toBe(false);
   });
 
+  it('maps booking labels with dead anchors to /kalendarz', () => {
+    expect(resolveCtaHref('Zarezerwuj', '#').href).toBe('/kalendarz');
+    expect(resolveCtaHref('Rezerwuj termin', '/').href).toBe('/kalendarz');
+    expect(resolveCtaHref('Zarezerwuj', '/booking-calendar/foo').href).toBe(
+      '/kalendarz'
+    );
+  });
+
   it('rejects Wix accordion "Więcej szczegółów" when href is # or /', () => {
     expect(resolveCtaHref('Więcej szczegółów...', '/').actionable).toBe(false);
     expect(resolveCtaHref('Więcej szczegółów...', '#').actionable).toBe(false);

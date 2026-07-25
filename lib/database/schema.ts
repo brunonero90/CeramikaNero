@@ -70,6 +70,7 @@ export const emailTypeSchema = z.enum([
   'refund',
   'manual_confirmation',
   'payment_problem',
+  'admin_notification',
 ]);
 
 export const emailStatusSchema = z.enum(['pending', 'sent', 'failed']);

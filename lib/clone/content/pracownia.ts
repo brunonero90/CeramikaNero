@@ -205,8 +205,8 @@ export const pracowniaPage = {
       imageSrc: IMG.family,
       imageAlt: 'GLINA I RODZINA WARSZTATY RODZINNE',
       imageFirst: true,
-      ctaLabel: 'Więcej szczegółów...',
-      ctaHref: '/',
+      ctaLabel: 'Rezerwuj termin',
+      ctaHref: '/warsztaty/glina-i-rodzina/rezerwacja',
       tinted: false,
     },
     {

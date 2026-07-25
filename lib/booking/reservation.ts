@@ -11,8 +11,7 @@ import {
 import { createStripeCheckoutSession } from '@/lib/booking/payment';
 import { buildCheckoutUrls } from '@/lib/booking/urls';
 import {
-  sendBookingConfirmationEmail,
-  getBookingEmailContext,
+  notifyBookingCreated,
   sendLocalBookingConfirmationEmail,
 } from '@/lib/booking/email';
 import type { Json } from '@/lib/database/types';
@@ -235,10 +234,7 @@ export async function createBookingAndCheckout(
   // Bank-transfer / offline path when Stripe is not configured.
   if (!useStripe) {
     if (!reservation.reused) {
-      const ctx = await getBookingEmailContext(reservation.booking_id);
-      if (ctx) {
-        await sendBookingConfirmationEmail(ctx);
-      }
+      await notifyBookingCreated(reservation.booking_id);
     }
     return {
       ok: true,
@@ -263,10 +259,7 @@ export async function createBookingAndCheckout(
       }
     );
     if (!confirmError) {
-      const ctx = await getBookingEmailContext(reservation.booking_id);
-      if (ctx) {
-        await sendBookingConfirmationEmail(ctx);
-      }
+      await notifyBookingCreated(reservation.booking_id);
       return {
         ok: true,
         checkoutUrl:

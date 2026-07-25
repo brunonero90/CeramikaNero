@@ -78,28 +78,28 @@ export function Header() {
             <PhoneIcon />
           </a>
           <Link
-            href="/"
+            href="/kalendarz"
             className="inline-flex min-h-10 flex-col items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-3 py-1 text-[11px] font-medium text-[#5c4038] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
           >
             <span>Zapisz się</span>
             <SignupIcon />
           </Link>
         </div>
-        <div className="pointer-events-auto flex items-center gap-3 pr-1">
+        <div className="pointer-events-auto flex items-center gap-3">
           {facebook ? (
             <a
               href={siteContact.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook Ceramika Nero"
-              className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
             >
               <Image
                 src={facebook.src}
                 alt=""
-                width={40}
-                height={40}
-                className="h-10 w-10 object-contain"
+                width={28}
+                height={28}
+                className="block h-7 w-7 object-contain"
               />
             </a>
           ) : null}
@@ -109,14 +109,14 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram Ceramika Nero"
-              className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
             >
               <Image
                 src={instagram.src}
                 alt=""
-                width={40}
-                height={40}
-                className="h-10 w-10 object-contain"
+                width={28}
+                height={28}
+                className="block h-7 w-7 object-contain"
               />
             </a>
           ) : null}
@@ -237,7 +237,7 @@ function MobileNav() {
               Zadzwoń
             </a>
             <Link
-              href="/"
+              href="/kalendarz"
               className="inline-flex min-h-11 items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-4 text-sm font-medium text-[#5c4038]"
               onClick={() => setOpen(false)}
             >
@@ -250,15 +250,15 @@ function MobileNav() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook Ceramika Nero"
-                  className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                  className="inline-flex h-11 w-11 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
                   onClick={() => setOpen(false)}
                 >
                   <Image
                     src={facebook.src}
                     alt=""
-                    width={32}
-                    height={32}
-                    className="h-8 w-8"
+                    width={28}
+                    height={28}
+                    className="block h-7 w-7 object-contain"
                   />
                 </a>
               ) : null}
@@ -268,15 +268,15 @@ function MobileNav() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram Ceramika Nero"
-                  className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                  className="inline-flex h-11 w-11 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
                   onClick={() => setOpen(false)}
                 >
                   <Image
                     src={instagram.src}
                     alt=""
-                    width={32}
-                    height={32}
-                    className="h-8 w-8"
+                    width={28}
+                    height={28}
+                    className="block h-7 w-7 object-contain"
                   />
                 </a>
               ) : null}
