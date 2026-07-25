@@ -1,22 +1,22 @@
 'use client';
 
-import { useActionState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useActionState, useEffect, useRef } from 'react';
 import { loginAction, type LoginActionState } from './actions';
 
 export function LoginForm() {
-  const router = useRouter();
+  const navigated = useRef(false);
   const [state, dispatch, isPending] = useActionState<
     LoginActionState | undefined,
     FormData
   >(loginAction, undefined);
 
   useEffect(() => {
-    if (state?.ok && state.redirectTo) {
-      router.replace(state.redirectTo);
-      router.refresh();
-    }
-  }, [state, router]);
+    if (!state?.ok || !state.redirectTo || navigated.current) return;
+    navigated.current = true;
+    // Hard navigation: soft router.replace after a Server Action often stalls
+    // (or bounces) before the new auth cookies are visible to /admin.
+    window.location.assign(state.redirectTo);
+  }, [state]);
 
   return (
     <form action={dispatch} className="space-y-4" noValidate>

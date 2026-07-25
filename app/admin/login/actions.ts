@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { recordAuditEvent } from '@/lib/admin/audit';
@@ -68,6 +69,7 @@ export async function loginAction(
     requestMetadata: { email: email.toLowerCase() },
   });
 
+  revalidatePath('/admin', 'layout');
   return { ok: true, redirectTo: '/admin' };
 }
 

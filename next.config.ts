@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   // Standalone is for Docker/self-host. On Netlify it inflates the server
   // handler beyond upload limits — the Next runtime plugin packages instead.
   ...(isNetlify ? {} : { output: 'standalone' as const }),
-  serverExternalPackages: ['isomorphic-dompurify', 'jsdom', 'file-type'],
+  serverExternalPackages: ['isomorphic-dompurify', 'jsdom'],
   outputFileTracingExcludes: {
     '*': [
       './reference/**/*',

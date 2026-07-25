@@ -10,7 +10,6 @@ export default async function SuccessPage({
   searchParams: Promise<{
     session_id?: string;
     reference?: string;
-    local?: string;
     payment?: string;
   }>;
 }) {
