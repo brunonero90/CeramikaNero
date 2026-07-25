@@ -2,9 +2,28 @@ import type { NextConfig } from 'next';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const storageHostname = supabaseUrl ? new URL(supabaseUrl).hostname : undefined;
+const isNetlify = process.env.NETLIFY === 'true';
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  // Standalone is for Docker/self-host. On Netlify it inflates the server
+  // handler beyond upload limits — the Next runtime plugin packages instead.
+  ...(isNetlify ? {} : { output: 'standalone' as const }),
+  serverExternalPackages: ['isomorphic-dompurify', 'jsdom', 'file-type'],
+  outputFileTracingExcludes: {
+    '*': [
+      './reference/**/*',
+      './tmp/**/*',
+      './scripts/**/*',
+      './docs/**/*',
+      './supabase/**/*',
+      './.git/**/*',
+      './lib/clone/page-spec-headings.node.ts',
+      'node_modules/playwright/**/*',
+      'node_modules/@playwright/**/*',
+      'node_modules/cheerio/**/*',
+      'node_modules/jsdom/**/*',
+    ],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: storageHostname
@@ -40,19 +59,16 @@ const nextConfig: NextConfig = {
         destination: '/grupy-i-firmy',
         permanent: true,
       },
-      // Public author activity index duplicates /blog posts already cloned.
       {
         source: '/profile/gosianowicka/profile',
         destination: '/blog',
         permanent: true,
       },
-      // Member "browse events" originally pointed at /warsztaty (404); first-party catalog is /.
       {
         source: '/profile/gosianowicka/events',
         destination: '/',
         permanent: true,
       },
-      // ASCII filesystem aliases for original unicode Wix paths (ń).
       {
         source: '/copy-of-panie%C5%84ski-opis',
         destination: '/copy-of-panienski-opis',

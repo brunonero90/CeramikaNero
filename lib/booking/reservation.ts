@@ -20,8 +20,6 @@ import {
   isBookingLocalMode,
   isStripeConfigured,
 } from '@/lib/booking/local-mode';
-import { beginLocalBooking } from '@/lib/booking/local-store';
-import { ensureLocalBookingSeed } from '@/lib/booking/local-seed';
 
 export type CreateBookingResult =
   | {
@@ -73,6 +71,10 @@ function bookingIdempotencyKey(input: {
 async function createLocalBookingAndConfirm(
   input: ReturnType<typeof publicBookingInputSchema.parse>
 ): Promise<CreateBookingResult> {
+  const [{ ensureLocalBookingSeed }, { beginLocalBooking }] = await Promise.all([
+    import('@/lib/booking/local-seed'),
+    import('@/lib/booking/local-store'),
+  ]);
   await ensureLocalBookingSeed();
 
   const result = await beginLocalBooking({

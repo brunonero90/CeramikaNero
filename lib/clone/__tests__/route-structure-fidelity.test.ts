@@ -3,7 +3,7 @@ import {
   urodzinyPage,
   panienskiePage,
 } from '@/lib/clone/content/glina-box-and-events';
-import { knownHeadingsForSection } from '@/lib/clone/page-spec-headings';
+import { knownHeadingsForSection } from '@/lib/clone/page-spec-headings.node';
 
 /**
  * Route-specific expected structures from archived page-spec evidence.

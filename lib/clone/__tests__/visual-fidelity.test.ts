@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { parseArchiveText } from '@/lib/clone/parse-archive-text';
-import { knownHeadingsForSection } from '@/lib/clone/page-spec-headings';
+import { knownHeadingsForSection } from '@/lib/clone/page-spec-headings.node';
 import {
   urodzinyPage,
   panienskiePage,

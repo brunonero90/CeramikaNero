@@ -95,7 +95,11 @@ type LocalStore = {
   outbox: LocalOutboxEmail[];
 };
 
-const STORE_DIR = path.join(process.cwd(), 'tmp', 'local-booking');
+const STORE_DIR = path.join(
+  /* turbopackIgnore: true */ process.cwd(),
+  'tmp',
+  'local-booking'
+);
 const STORE_PATH = path.join(STORE_DIR, 'store.json');
 const LOCK_PATH = path.join(STORE_DIR, 'store.lock');
 

@@ -5,9 +5,6 @@ import {
   isBookingLocalMode,
   LOCAL_BOOKING_BANNER,
 } from '@/lib/booking/local-mode';
-import { ensureLocalBookingSeed } from '@/lib/booking/local-seed';
-import { listLocalSessions } from '@/lib/booking/local-store';
-import { getBySlug as getFixtureWorkshop } from '@/lib/database/fixtures/workshops';
 
 export default async function ReservationPage({
   params,
@@ -20,6 +17,15 @@ export default async function ReservationPage({
   const { session: preferredSessionId } = await searchParams;
 
   if (isBookingLocalMode()) {
+    const [
+      { ensureLocalBookingSeed },
+      { listLocalSessions },
+      { getBySlug: getFixtureWorkshop },
+    ] = await Promise.all([
+      import('@/lib/booking/local-seed'),
+      import('@/lib/booking/local-store'),
+      import('@/lib/database/fixtures/workshops'),
+    ]);
     await ensureLocalBookingSeed();
     const workshop = await getFixtureWorkshop(slug);
     if (!workshop || workshop.bookingMode !== 'scheduled') {

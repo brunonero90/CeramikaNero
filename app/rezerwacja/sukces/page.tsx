@@ -3,10 +3,6 @@ import { notFound } from 'next/navigation';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { formatPrice } from '@/lib/utils/price';
 import { isBookingLocalMode } from '@/lib/booking/local-mode';
-import {
-  getLocalBookingByReference,
-  getLocalSession,
-} from '@/lib/booking/local-store';
 
 export default async function SuccessPage({
   searchParams,
@@ -18,14 +14,17 @@ export default async function SuccessPage({
     payment?: string;
   }>;
 }) {
-  const { session_id, reference, local, payment } = await searchParams;
+  const { session_id, reference, payment } = await searchParams;
 
   if (!session_id && !reference) {
     notFound();
   }
 
-  if (isBookingLocalMode() || local === '1') {
+  if (isBookingLocalMode()) {
     if (!reference) notFound();
+    const { getLocalBookingByReference, getLocalSession } = await import(
+      '@/lib/booking/local-store'
+    );
     const booking = await getLocalBookingByReference(reference);
     if (!booking) notFound();
     const session = await getLocalSession(booking.sessionId);

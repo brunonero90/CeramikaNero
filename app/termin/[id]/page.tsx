@@ -5,8 +5,6 @@ import {
   isBookingLocalMode,
   LOCAL_BOOKING_BANNER,
 } from '@/lib/booking/local-mode';
-import { ensureLocalBookingSeed } from '@/lib/booking/local-seed';
-import { getLocalSession } from '@/lib/booking/local-store';
 import { createClient } from '@/lib/supabase/server';
 
 function formatWarsaw(iso: string): string {
@@ -29,6 +27,10 @@ export default async function SessionDetailPage({
   const { id } = await params;
 
   if (isBookingLocalMode()) {
+    const [{ ensureLocalBookingSeed }, { getLocalSession }] = await Promise.all([
+      import('@/lib/booking/local-seed'),
+      import('@/lib/booking/local-store'),
+    ]);
     await ensureLocalBookingSeed();
     const session = await getLocalSession(id);
     if (!session || !session.published || session.status === 'cancelled') {

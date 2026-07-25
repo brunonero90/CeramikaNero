@@ -1,6 +1,5 @@
 import 'server-only';
 import { isBookingLocalMode, isResendConfigured } from './local-mode';
-import { appendLocalOutbox } from './local-store';
 import {
   getResendClient,
   getResendFromEmail,
@@ -71,6 +70,7 @@ export async function deliverBookingEmail(
 
   if (isBookingLocalMode() || process.env.NODE_ENV !== 'production') {
     try {
+      const { appendLocalOutbox } = await import('./local-store');
       const record = await appendLocalOutbox({
         bookingId: email.bookingId,
         type: email.type,

@@ -2,8 +2,6 @@ import { createClient } from '@/lib/supabase/server';
 import { mapWorkshopSession } from '@/lib/database/mappers';
 import type { WorkshopSession } from '@/lib/database/types';
 import { isBookingLocalMode } from '@/lib/booking/local-mode';
-import { ensureLocalBookingSeed } from '@/lib/booking/local-seed';
-import { listLocalSessions } from '@/lib/booking/local-store';
 
 export type CalendarSession = WorkshopSession & {
   workshopTitle: string;
@@ -19,6 +17,11 @@ export type CalendarSession = WorkshopSession & {
  */
 export async function getPublicCalendarSessions(): Promise<CalendarSession[]> {
   if (isBookingLocalMode()) {
+    const [{ ensureLocalBookingSeed }, { listLocalSessions }] =
+      await Promise.all([
+        import('@/lib/booking/local-seed'),
+        import('@/lib/booking/local-store'),
+      ]);
     await ensureLocalBookingSeed();
     const local = await listLocalSessions();
     return local.map((s) => ({
