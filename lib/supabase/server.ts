@@ -24,9 +24,14 @@ export async function createClient() {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
             );
-          } catch {
-            // setAll can throw when called from a Server Component that only
-            // reads the session. Session refresh happens in proxy.ts.
+          } catch (error) {
+            // Server Components cannot always write cookies; proxy.ts refreshes
+            // the session on /admin requests. Log so Server Action failures are
+            // visible in production logs instead of failing silently.
+            console.warn(
+              '[supabase] cookie setAll skipped:',
+              error instanceof Error ? error.message : error
+            );
           }
         },
       },

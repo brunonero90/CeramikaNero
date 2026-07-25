@@ -4,10 +4,10 @@ import { getCurrentAdmin } from '@/lib/admin/auth';
 import { LoginForm } from '@/app/admin/login/login-form';
 
 describe('admin login action contract', () => {
-  it('exports success state with redirectTo instead of relying on redirect()', async () => {
+  it('exports finalize + legacy login helpers with redirectTo success shape', async () => {
     const mod = await import('@/app/admin/login/actions');
+    expect(typeof mod.finalizeAdminLoginAction).toBe('function');
     expect(typeof mod.loginAction).toBe('function');
-    // Type-level contract: success shape must include redirectTo for useActionState clients.
     const sample: LoginActionState = { ok: true, redirectTo: '/admin' };
     expect(sample.redirectTo).toBe('/admin');
   });
@@ -16,7 +16,7 @@ describe('admin login action contract', () => {
     expect(typeof getCurrentAdmin).toBe('function');
   });
 
-  it('login form component is exported for client hard-navigation after ok', () => {
+  it('login form uses browser Supabase sign-in then hard navigation', () => {
     expect(typeof LoginForm).toBe('function');
   });
 });

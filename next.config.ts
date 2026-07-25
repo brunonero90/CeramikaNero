@@ -89,6 +89,12 @@ const nextConfig: NextConfig = {
         destination: '/kopia-panienski-plus-opis',
         permanent: true,
       },
+      // Legacy Wix booking shells → live calendar / bookable workshops
+      {
+        source: '/booking-calendar/:path*',
+        destination: '/kalendarz',
+        permanent: false,
+      },
     ];
   },
 };

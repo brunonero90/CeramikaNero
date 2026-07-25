@@ -65,15 +65,63 @@ export function bookingAdaptationFor(route: string): {
   href: string;
   label: string;
 } | null {
+  const slug = decodeURIComponent(route.split('/').pop() ?? '').toLowerCase();
+
+  if (
+    slug.includes('glina-do-wina') ||
+    slug.includes('glina do wina') ||
+    slug.includes('ptasim')
+  ) {
+    return {
+      href: '/warsztaty/glina-do-wina/rezerwacja',
+      label: 'Zarezerwuj Glina do wina',
+    };
+  }
+  if (
+    slug.includes('ceramika-dla-doros') ||
+    slug.includes('poranki-z-ceramik')
+  ) {
+    return {
+      href: '/warsztaty/ceramika-dla-doroslych/rezerwacja',
+      label: 'Zarezerwuj ceramikę dla dorosłych',
+    };
+  }
+  if (slug.includes('glina-i-rodzina')) {
+    return {
+      href: '/warsztaty/glina-i-rodzina/rezerwacja',
+      label: 'Zarezerwuj Glina i rodzina',
+    };
+  }
+  if (
+    slug.includes('letnia-akademia') ||
+    slug.includes('rysunku-malarstwa')
+  ) {
+    return {
+      href: '/warsztaty/kurs-rysunku-malarstwa-ceramiki-6-10-lat/rezerwacja',
+      label: 'Zarezerwuj warsztat dla dzieci',
+    };
+  }
+  if (
+    slug.includes('paniensk') ||
+    slug.includes('urodzin') ||
+    slug.includes('półkolonie') ||
+    slug.includes('polkolonie') ||
+    slug.includes('piknik')
+  ) {
+    return {
+      href: '/kontakt',
+      label: 'Napisz w sprawie terminu',
+    };
+  }
+
   if (
     route.startsWith('/booking-calendar/') ||
     route.startsWith('/service-page/') ||
     route.startsWith('/courses/')
   ) {
     return {
-      // Homepage is the first-party workshop picker (original /warsztaty was 404).
-      href: '/',
-      label: 'Wybierz warsztat i zarezerwuj',
+      href: '/kalendarz',
+      label: 'Zobacz kalendarz i zarezerwuj',
     };
   }
   if (route.startsWith('/webinar-registration')) {

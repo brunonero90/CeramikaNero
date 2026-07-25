@@ -77,7 +77,7 @@ describe('Clone Phase 1 completeness', () => {
     expect(hrefs).toEqual(
       expect.arrayContaining([
         '/pracownia',
-        '/',
+        '/kalendarz',
         '/dla-dzieci',
         '/dla-doroslych',
         '/home',

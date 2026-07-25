@@ -10,3 +10,9 @@
   # Never enable local booking fixtures in Netlify production builds.
   BOOKING_LOCAL_MODE = ""
   FIDELITY_FIXTURES = ""
+
+[functions]
+  directory = "netlify/functions"
+
+[functions."booking-expiry"]
+  schedule = "*/10 * * * *"

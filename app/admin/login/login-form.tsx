@@ -1,25 +1,55 @@
 'use client';
 
-import { useActionState, useEffect, useRef } from 'react';
-import { loginAction, type LoginActionState } from './actions';
+import { useState, useTransition } from 'react';
+import { createClient } from '@/lib/supabase/client';
+import { finalizeAdminLoginAction } from './actions';
 
 export function LoginForm() {
-  const navigated = useRef(false);
-  const [state, dispatch, isPending] = useActionState<
-    LoginActionState | undefined,
-    FormData
-  >(loginAction, undefined);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  useEffect(() => {
-    if (!state?.ok || !state.redirectTo || navigated.current) return;
-    navigated.current = true;
-    // Hard navigation: soft router.replace after a Server Action often stalls
-    // (or bounces) before the new auth cookies are visible to /admin.
-    window.location.assign(state.redirectTo);
-  }, [state]);
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError(null);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const email = String(formData.get('email') ?? '').trim();
+    const password = String(formData.get('password') ?? '');
+
+    if (!email || !password) {
+      setError('Email i hasło są wymagane.');
+      return;
+    }
+
+    startTransition(async () => {
+      try {
+        const supabase = createClient();
+        const { data, error: signInError } =
+          await supabase.auth.signInWithPassword({ email, password });
+
+        if (signInError || !data.user) {
+          setError('Nieprawidłowy email lub hasło.');
+          return;
+        }
+
+        const finalized = await finalizeAdminLoginAction();
+        if (!finalized.ok) {
+          await supabase.auth.signOut();
+          setError(finalized.error);
+          return;
+        }
+
+        setSuccess(true);
+        window.location.href = finalized.redirectTo;
+      } catch {
+        setError('Nie udało się zalogować. Spróbuj ponownie.');
+      }
+    });
+  }
 
   return (
-    <form action={dispatch} className="space-y-4" noValidate>
+    <form onSubmit={onSubmit} className="space-y-4" noValidate>
       <div>
         <label htmlFor="email" className="block text-sm font-medium">
           Email
@@ -30,7 +60,7 @@ export function LoginForm() {
           type="email"
           autoComplete="email"
           required
-          disabled={isPending || state?.ok === true}
+          disabled={isPending || success}
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 disabled:opacity-60"
         />
       </div>
@@ -44,30 +74,33 @@ export function LoginForm() {
           type="password"
           autoComplete="current-password"
           required
-          disabled={isPending || state?.ok === true}
+          disabled={isPending || success}
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 disabled:opacity-60"
         />
       </div>
-      {state && !state.ok ? (
+      {error ? (
         <p className="text-sm text-red-600" role="alert">
-          {state.error}
+          {error}
         </p>
       ) : null}
-      {state?.ok ? (
-        <p className="text-sm text-emerald-700" role="status">
-          Zalogowano. Przekierowanie do panelu…
-        </p>
+      {success ? (
+        <div className="space-y-2" role="status">
+          <p className="text-sm text-emerald-700">
+            Zalogowano. Przekierowanie do panelu…
+          </p>
+          <p className="text-sm">
+            <a href="/admin" className="font-medium text-gray-900 underline">
+              Kliknij tutaj, jeśli panel się nie otwiera
+            </a>
+          </p>
+        </div>
       ) : null}
       <button
         type="submit"
-        disabled={isPending || state?.ok === true}
+        disabled={isPending || success}
         className="w-full rounded-md bg-gray-900 px-4 py-2 text-white disabled:opacity-50"
       >
-        {isPending
-          ? 'Logowanie…'
-          : state?.ok
-            ? 'Przekierowanie…'
-            : 'Zaloguj się'}
+        {isPending ? 'Logowanie…' : success ? 'Przekierowanie…' : 'Zaloguj się'}
       </button>
     </form>
   );

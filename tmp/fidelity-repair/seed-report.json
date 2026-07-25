@@ -1,17 +1,17 @@
 {
-  "mode": "dry-run",
+  "mode": "apply",
   "includeProvisional": false,
   "target": {
     "projectRef": "zorxzyvmcbwucvaywmuu",
     "host": "zorxzyvmcbwucvaywmuu.supabase.co",
-    "seedEnv": null
+    "seedEnv": "production"
   },
   "guards": [],
   "blocked": false,
   "categories": {
-    "inserted": 8,
+    "inserted": 0,
     "updated": 0,
-    "skipped": 0
+    "skipped": 8
   },
   "site_settings": {
     "inserted": 5,
@@ -37,20 +37,20 @@
     }
   ],
   "integrityBefore": {
-    "workshop_categories": 0,
-    "workshops": 0,
-    "workshop_sessions": 0
+    "workshop_categories": 9,
+    "workshops": 9,
+    "workshop_sessions": 37
   },
   "integrityAfter": {
-    "workshop_categories": 0,
-    "workshops": 0,
-    "workshop_sessions": 0
+    "workshop_categories": 9,
+    "workshops": 9,
+    "workshop_sessions": 37
   },
   "counts": {
     "categories": {
-      "inserted": 8,
+      "inserted": 0,
       "updated": 0,
-      "skipped": 0
+      "skipped": 8
     },
     "site_settings": {
       "inserted": 5,

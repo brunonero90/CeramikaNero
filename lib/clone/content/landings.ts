@@ -234,8 +234,9 @@ export const galeriaImages = [
 ] as const;
 
 /**
- * Homepage service cards. moreHref / bookHref match archived index destinations
- * (service-page / booking-calendar), not marketing landings alone.
+ * Homepage service cards.
+ * moreHref keeps archive service-page detail URLs.
+ * href (book CTA) points at first-party bookable workshop routes.
  */
 export const homepageServices = [
   {
@@ -245,7 +246,7 @@ export const homepageServices = [
     image: '/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg',
     imageAlt: 'warsztaty glina do wina',
     moreHref: '/service-page/wrzesieńglina-do-wina-piątek-suchy-las',
-    href: '/booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las',
+    href: '/warsztaty/glina-do-wina/rezerwacja',
     cta: 'Zarezerwuj',
   },
   {
@@ -255,7 +256,7 @@ export const homepageServices = [
     image: '/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg',
     imageAlt: 'Ceramika dla dorosłych',
     moreHref: '/service-page/wrzesieńceramika-dla-dorosłych-pon',
-    href: '/booking-calendar/wrzesieńceramika-dla-dorosłych-pon',
+    href: '/warsztaty/ceramika-dla-doroslych/rezerwacja',
     cta: 'Zarezerwuj',
   },
   {
@@ -265,7 +266,7 @@ export const homepageServices = [
     image: '/images/wix-migrated/747d6f_045e89a3529f4e2491a7742e1da14497.jpg',
     imageAlt: 'warsztaty glina do wina',
     moreHref: '/service-page/glina-do-wina-piątek-19-00-suchy-las',
-    href: '/booking-calendar/glina-do-wina-piątek-19-00-suchy-las',
+    href: '/warsztaty/glina-do-wina/rezerwacja',
     cta: 'Zarezerwuj',
   },
   {
@@ -275,7 +276,7 @@ export const homepageServices = [
     image: '/images/wix-migrated/747d6f_6fc6a003b39840b58b4c14fa6e386e28.jpg',
     imageAlt: 'Ceramika dla dorosłych',
     moreHref: '/service-page/ceramika-dla-dorosłych-pon-czw',
-    href: '/booking-calendar/ceramika-dla-dorosłych-pon-czw',
+    href: '/warsztaty/ceramika-dla-doroslych/rezerwacja',
     cta: 'Zarezerwuj',
   },
   {
@@ -285,7 +286,7 @@ export const homepageServices = [
     image: '/images/wix-migrated/747d6f_b5e3aff7de8743c88922dac0ed1c8629.png',
     imageAlt: 'warsztaty glina do wina',
     moreHref: '/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu',
-    href: '/booking-calendar/glina-do-wina-w-poznaniu-w-ptasim-radiu',
+    href: '/warsztaty/glina-do-wina/rezerwacja',
     cta: 'Zarezerwuj',
   },
   {
@@ -295,7 +296,7 @@ export const homepageServices = [
     image: '/images/wix-migrated/747d6f_ec8876726c8f4acf9f3aef15bc36b8cd.jpg',
     imageAlt: 'warsztaty ceramiczne',
     moreHref: '/service-page/letnia-akademia-rysunku-malarstwa',
-    href: '/booking-calendar/letnia-akademia-rysunku-malarstwa',
+    href: '/warsztaty/kurs-rysunku-malarstwa-ceramiki-6-10-lat/rezerwacja',
     cta: 'Zarezerwuj',
   },
   {
@@ -305,7 +306,7 @@ export const homepageServices = [
     image: '/images/wix-migrated/11062b_43197d81c0d040e4867041831bae8092.jpeg',
     imageAlt: 'Kurs rysunku i malarstwa',
     moreHref: '/service-page/iv-turnus-półkolonie-artystyczne',
-    href: '/service-page/iv-turnus-półkolonie-artystyczne',
+    href: '/kontakt',
     cta: 'Zobacz kurs',
     soldOut: true,
   },
@@ -316,7 +317,7 @@ export const homepageServices = [
     image: '/images/wix-migrated/747d6f_355d7132929d437a94a84beaa0a6e9a1.png',
     imageAlt: 'warsztaty ceramiczne',
     moreHref: '/service-page/glina-i-rodzina-soboty-15-00',
-    href: '/booking-calendar/glina-i-rodzina-soboty-15-00',
+    href: '/warsztaty/glina-i-rodzina/rezerwacja',
     cta: 'Zarezerwuj',
   },
   {
@@ -326,7 +327,7 @@ export const homepageServices = [
     image: '/images/wix-migrated/747d6f_8e0a38114728487bade7b52335892f5a.jpg',
     imageAlt: 'Poranki z ceramiką',
     moreHref: '/service-page/poranki-z-ceramiką-dla-dorosłych',
-    href: '/booking-calendar/poranki-z-ceramiką-dla-dorosłych',
+    href: '/warsztaty/ceramika-dla-doroslych/rezerwacja',
     cta: 'Zarezerwuj',
   },
   {

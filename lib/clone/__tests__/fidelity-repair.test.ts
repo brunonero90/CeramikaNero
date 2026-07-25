@@ -133,10 +133,15 @@ describe('archive fixture integrity', () => {
     expect(checked).toBeGreaterThan(10);
   });
 
-  it('homepage services point at existing archive service/booking routes', () => {
+  it('homepage services keep archive moreHref and first-party book CTAs', () => {
     for (const service of homepageServices) {
       expect(archivePages).toHaveProperty(service.moreHref);
-      expect(archivePages).toHaveProperty(service.href);
+      expect(
+        service.href.startsWith('/warsztaty/') ||
+          service.href.startsWith('/kontakt') ||
+          service.href.startsWith('/kalendarz') ||
+          service.href.startsWith('/service-page/')
+      ).toBe(true);
     }
   });
 

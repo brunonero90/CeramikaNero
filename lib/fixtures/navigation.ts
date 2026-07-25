@@ -7,7 +7,7 @@ import { NavItem } from '@/lib/types/navigation';
  */
 export const primaryNavigation: NavItem[] = [
   { label: 'O nas', href: '/pracownia' },
-  { label: 'Zapisy', href: '/' },
+  { label: 'Zapisy', href: '/kalendarz' },
   { label: 'Dla dzieci', href: '/dla-dzieci' },
   { label: 'Dla dorosłych', href: '/dla-doroslych' },
   { label: 'GLINA BOX', href: '/home' },
