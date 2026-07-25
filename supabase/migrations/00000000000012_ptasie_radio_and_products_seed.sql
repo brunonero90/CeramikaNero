@@ -109,8 +109,8 @@ begin
 
   select id into v_instructor_id
   from public.instructors
-  where archived_at is null
-  order by created_at
+  where is_active = true
+  order by display_order, created_at
   limit 1;
 
   insert into public.workshops (
