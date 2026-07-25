@@ -50,7 +50,7 @@ function assertPhrasesPresent(blob: string, phrases: string[]) {
 }
 
 function flattenPageText(value: unknown): string {
-  return JSON.stringify(value);
+  return JSON.stringify(value).replace(/\\n/g, ' ');
 }
 
 type ManifestRoute = {

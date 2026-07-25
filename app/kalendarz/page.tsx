@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { PublicEventCalendar } from '@/components/calendar/public-event-calendar';
 import { getPublicCalendarSessions } from '@/lib/database/services/calendar';
+import {
+  isBookingLocalMode,
+  LOCAL_BOOKING_BANNER,
+} from '@/lib/booking/local-mode';
 
 export const dynamic = 'force-dynamic';
 
@@ -25,6 +29,7 @@ export default async function KalendarzPage() {
     status: s.status,
     locationName: s.locationName,
   }));
+  const local = isBookingLocalMode();
 
   return (
     <div className="bg-surface-bg">
@@ -35,8 +40,20 @@ export default async function KalendarzPage() {
         <p className="mt-3 text-sm font-semibold tracking-[0.18em] text-text-muted uppercase">
           Terminy w strefie Europe/Warsaw
         </p>
+        {local ? (
+          <p className="mx-auto mt-3 max-w-2xl text-[11px] font-semibold tracking-wide text-accent-primary uppercase">
+            {LOCAL_BOOKING_BANNER}
+          </p>
+        ) : null}
       </header>
-      <PublicEventCalendar sessions={cards} />
+      {cards.length === 0 ? (
+        <p className="mx-auto mt-10 max-w-xl px-4 text-center text-sm text-text-muted">
+          Brak opublikowanych terminów. Sprawdź ofertę warsztatów lub skontaktuj
+          się z pracownią.
+        </p>
+      ) : (
+        <PublicEventCalendar sessions={cards} />
+      )}
     </div>
   );
 }

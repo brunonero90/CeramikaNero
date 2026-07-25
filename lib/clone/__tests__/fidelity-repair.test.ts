@@ -39,9 +39,31 @@ describe('parseArchiveText', () => {
     }
   });
 
-  it('detects package-style headings', () => {
+  it('does not invent headings without knownHeadings evidence', () => {
     const blocks = parseArchiveText('PAKIET STANDARD\n\nOpis pakietu.');
-    expect(blocks.some((b) => b.type === 'heading')).toBe(true);
+    expect(blocks.some((b) => b.type === 'heading')).toBe(false);
+    expect(blocks.filter((b) => b.type === 'paragraph')).toHaveLength(2);
+  });
+
+  it('promotes only evidence-backed known headings', () => {
+    const blocks = parseArchiveText('PAKIET STANDARD\n\nOpis pakietu.', {
+      knownHeadings: ['PAKIET STANDARD'],
+    });
+    expect(blocks[0]).toMatchObject({
+      type: 'heading',
+      text: 'PAKIET STANDARD',
+    });
+  });
+
+  it('matches multi-line known headings from page-spec', () => {
+    const blocks = parseArchiveText(
+      'Urodziny\npełne kreatywności i zabawy\n\nTekst body.',
+      { knownHeadings: ['Urodziny\npełne kreatywności i zabawy'] }
+    );
+    expect(blocks[0]).toMatchObject({
+      type: 'heading',
+      text: 'Urodziny\npełne kreatywności i zabawy',
+    });
   });
 
   it('fails collapsed multi-paragraph detection for structured text', () => {
@@ -64,15 +86,25 @@ describe('link resolve', () => {
     expect(isActionableCta('Something', '#')).toBe(false);
   });
 
-  it('rejects Wix accordion "Więcej szczegółów" even when href is /', () => {
+  it('rejects Wix accordion "Więcej szczegółów" when href is # or /', () => {
     expect(resolveCtaHref('Więcej szczegółów...', '/').actionable).toBe(false);
+    expect(resolveCtaHref('Więcej szczegółów...', '#').actionable).toBe(false);
   });
 
-  it('maps privacy blob buttons to terms', () => {
+  it('keeps "Więcej szczegółów" when href is a real package destination', () => {
+    expect(
+      resolveCtaHref('Więcej szczegółów...', '/webinar-registration').actionable
+    ).toBe(true);
+    expect(resolveCtaHref('Więcej szczegółów...', '/glinadowina').href).toBe(
+      '/glinadowina'
+    );
+  });
+
+  it('maps privacy blob buttons to privacy policy', () => {
     const long =
       'Zapisując się do newslettera, wyrażasz zgodę na przesyłanie Ci informacji o nowościach, promocjach i produktach w sklepie Ceramika Nero. Administratorem Twoich danych osobowych będzie Małgorzata Nero,';
     expect(resolveCtaHref(long, '/terms-conditions').href).toBe(
-      '/terms-conditions'
+      '/polityka-prywatnosci'
     );
   });
 

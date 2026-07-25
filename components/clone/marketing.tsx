@@ -23,7 +23,7 @@ export function CloneCta({
   );
   const target = resolved.actionable ? resolved.href : href;
   const classes = cn(
-    'inline-flex items-center justify-center px-6 py-3 text-sm font-semibold tracking-wide uppercase transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2',
+    'inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide transition-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2',
     variant === 'primary' && 'bg-accent-primary text-white hover:brightness-95',
     variant === 'outline' &&
       'border border-accent-primary text-accent-primary hover:bg-accent-primary/10',
@@ -76,40 +76,55 @@ export function MarketingHero({
   intro,
 }: MarketingHeroProps) {
   return (
-    <section className="bg-surface-bg">
-      <div className="relative mx-auto max-w-5xl px-4 pt-6 md:px-6">
+    <section className="bg-[#fbe5d6]/35">
+      <div className="relative mx-auto w-full max-w-[980px] px-0 pt-0 md:px-0">
         <div className="relative overflow-hidden">
           <Image
             src={imageSrc}
             alt={imageAlt}
             width={980}
             height={523}
-            className="h-auto w-full object-cover"
+            className="aspect-[980/523] h-auto w-full object-cover"
             priority
             sizes="(max-width: 1024px) 100vw, 980px"
           />
           {logoSrc && (
-            <div className="absolute top-4 left-4 bg-accent-primary/90 p-2 text-white shadow-md md:top-6 md:left-6">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <Image
                 src={logoSrc}
                 alt={logoAlt || 'Ceramika Nero'}
-                width={120}
-                height={100}
-                className="h-16 w-auto object-contain md:h-20"
+                width={153}
+                height={133}
+                className="h-[88px] w-auto object-contain md:h-[133px]"
               />
             </div>
           )}
         </div>
-        <div className="mx-auto max-w-prose px-2 py-10 text-center md:py-14">
-          <h1 className="font-heading text-3xl font-semibold text-text-primary md:text-4xl lg:text-5xl">
-            {title}
+        <div className="mx-auto max-w-[720px] px-4 py-6 text-center md:px-6 md:py-8">
+          <h1 className="font-heading text-[1.85rem] font-semibold leading-tight text-[#a85a48] md:text-[2.35rem]">
+            {title.split('\n').map((line, i, arr) => (
+              <span
+                key={i}
+                className={
+                  i > 0 ? 'mt-1 block text-[0.88em] font-medium' : undefined
+                }
+              >
+                {line}
+                {i < arr.length - 1 ? <br /> : null}
+              </span>
+            ))}
           </h1>
           {intro?.map((paragraph) => (
             <p
               key={paragraph.slice(0, 40)}
-              className="mt-4 text-base leading-relaxed text-text-muted md:text-lg"
+              className="mt-2.5 text-[14px] leading-[1.65] text-[#5c4038] md:text-[15px]"
             >
-              {paragraph}
+              {paragraph.split('\n').map((line, i, arr) => (
+                <span key={i}>
+                  {line}
+                  {i < arr.length - 1 ? <br /> : null}
+                </span>
+              ))}
             </p>
           ))}
         </div>
@@ -127,56 +142,111 @@ export type SplitBlock = {
   imageSrc: string;
   imageAlt: string;
   imageFirst?: boolean;
+  /** Archive display crop (Wix fill w/h). Prevents intrinsic-height explosions. */
+  imageWidth?: number;
+  imageHeight?: number;
   ctaLabel?: string;
   ctaHref?: string;
   tinted?: boolean;
+  /** Center title/body like original package cards. */
+  textAlign?: 'left' | 'center';
+  /** Draw a thin border around the text panel (panieńskie packages). */
+  framed?: boolean;
+  /** Tighter vertical rhythm for event package pages. */
+  compact?: boolean;
 };
 
 export function ImageTextSplit({ block }: { block: SplitBlock }) {
   const imageFirst = block.imageFirst ?? true;
+  const align = block.textAlign ?? 'left';
+  const imgW = block.imageWidth ?? 488;
+  const imgH = block.imageHeight ?? 720;
   return (
-    <section
-      className={cn(
-        'border-t border-surface-subtle/40',
-        block.tinted ? 'bg-[#f8ebe3]' : 'bg-surface-bg'
-      )}
-    >
-      <div className="mx-auto grid max-w-5xl items-center gap-8 px-4 py-10 md:grid-cols-2 md:gap-12 md:px-6 md:py-14">
-        <div className={cn('relative', !imageFirst && 'md:order-2')}>
+    <section className={cn(block.tinted ? 'bg-[#f8ebe3]' : 'bg-[#fdf8f4]')}>
+      <div
+        className={cn(
+          'mx-auto grid max-w-[980px] items-start gap-5 px-4 md:grid-cols-2 md:gap-6 md:px-0',
+          block.compact ? 'py-2 md:py-2.5' : 'py-8 md:py-10'
+        )}
+      >
+        <div className={cn('relative w-full', !imageFirst && 'md:order-2')}>
           <Image
             src={block.imageSrc}
             alt={block.imageAlt}
-            width={488}
-            height={720}
+            width={imgW}
+            height={imgH}
             className="h-auto w-full object-cover"
+            style={{ aspectRatio: `${imgW} / ${imgH}` }}
             sizes="(max-width: 768px) 100vw, 488px"
           />
         </div>
-        <div className={cn(!imageFirst && 'md:order-1')}>
-          <h2 className="font-heading text-2xl font-semibold tracking-wide text-text-primary uppercase md:text-3xl">
-            {block.title}
+        <div
+          className={cn(
+            !imageFirst && 'md:order-1',
+            block.framed &&
+              'border border-[#5c4038]/25 px-5 py-5 md:px-7 md:py-7',
+            align === 'center' && 'text-center'
+          )}
+        >
+          <h2
+            className={cn(
+              'font-heading text-[1.55rem] font-semibold leading-snug tracking-wide text-[#a85a48] md:text-[1.85rem]',
+              align === 'center' && 'text-center'
+            )}
+          >
+            {block.title.split('\n').map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 ? <br /> : null}
+              </span>
+            ))}
           </h2>
           {block.subtitle && (
-            <p className="mt-2 text-sm font-medium tracking-wide text-accent-primary uppercase">
-              {block.subtitle}
+            <p className="mt-2 text-sm font-medium tracking-wide text-[#a85a48] uppercase">
+              {block.subtitle.split('\n').map((line, i, arr) => (
+                <span key={i}>
+                  {line}
+                  {i < arr.length - 1 ? <br /> : null}
+                </span>
+              ))}
             </p>
           )}
           {block.paragraphs?.map((p) => (
             <p
               key={p.slice(0, 48)}
-              className="mt-4 text-base leading-relaxed text-text-muted"
+              className="mt-3 text-[14px] leading-[1.65] text-[#5c4038] md:text-[15px]"
             >
-              {p}
+              {p.split('\n').map((line, i, arr) => (
+                <span key={i}>
+                  {line}
+                  {i < arr.length - 1 ? <br /> : null}
+                </span>
+              ))}
             </p>
           ))}
           {block.bullets && block.bullets.length > 0 && (
-            <ul className="mt-5 space-y-2 text-base text-text-primary">
+            <ul
+              className={cn(
+                'mt-4 space-y-1.5 text-[14px] text-[#3d2a24] md:text-[15px]',
+                align === 'center' && 'inline-block text-left'
+              )}
+            >
               {block.bullets.map((item) => (
                 <li key={item.slice(0, 60)} className="flex gap-2">
-                  <span className="mt-1 text-accent-primary" aria-hidden>
+                  <span className="mt-1 text-[#a85a48]" aria-hidden>
                     ■
                   </span>
-                  <span>{item.replace(/^■\s*/, '')}</span>
+                  <span>
+                    {item
+                      .replace(/^■\s*/, '')
+                      .split('\n')
+                      .map((line, i, arr) => (
+                        <span key={i}>
+                          {line}
+                          {i < arr.length - 1 ? <br /> : null}
+                        </span>
+                      ))}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -187,7 +257,12 @@ export function ImageTextSplit({ block }: { block: SplitBlock }) {
               const resolved = resolveCtaHref(block.ctaLabel, block.ctaHref);
               if (!resolved.actionable) return null;
               return (
-                <div className="mt-8">
+                <div
+                  className={cn(
+                    'mt-5',
+                    align === 'center' && 'flex justify-center'
+                  )}
+                >
                   <CloneCta href={resolved.href}>{block.ctaLabel}</CloneCta>
                 </div>
               );

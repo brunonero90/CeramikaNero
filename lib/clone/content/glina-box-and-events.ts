@@ -113,18 +113,18 @@ export const urodzinyPage = {
   metaDescription:
     'Urodziny pełne kreatywności i zabawy w Pracowni Ceramiki Nero.',
   hero: {
-    title: 'Urodziny',
+    // page-spec / screenshot: two-line terracotta heading under hero image
+    title: 'Urodziny\npełne kreatywności i zabawy',
     imageSrc:
       '/images/wix-migrated/747d6f_5aaae6b332304ef5ba65344c8eb11ce0.jpg',
     imageAlt:
       'urodziny z ceramiką, kreatywne urodzinki z gliną, świetna zabawa, dla dzieci, Poznań i okolice, Suchy Las, 7 urodziny',
     logoSrc: '/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png',
     intro: [
-      'pełne kreatywności i zabawy',
       'Zorganizuj niezapomniane urodziny w Pracowni Ceramiki Nero i podaruj swojemu dziecku oraz jego przyjaciołom wyjątkowy dzień pełen kreatywności i radości! Czekamy na Was z otwartymi ramionami i mnóstwem inspiracji.',
       'Czy szukasz wyjątkowego pomysłu na urodziny swojego dziecka?',
       'Chcesz, aby ten dzień był niezapomniany i pełen radości?',
-      'Pracownia Ceramiki Nero zaprasza na specjalne warsztaty urodzinowe, które połączą twórczą zabawę z niezapomnianymi wspomnieniami!',
+      'Pracownia Ceramiki Nero zaprasza na specjalne warsztaty urodzinowe,\nktóre połączą twórczą zabawę z niezapomnianymi wspomnieniami!',
       'Napisz na nerogosia@gmail.com i poproś o ofertę.',
     ],
   },
@@ -140,7 +140,7 @@ export const urodzinyPage = {
   blocks: [
     {
       id: 'dzieci',
-      title: 'Urodziny z ceramiką dla dzieci',
+      title: 'Urodziny z ceramiką\ndla dzieci',
       bullets: [
         'Każde dziecko ulepi swoje unikatowe przedmioty z gliny z moją pomocą',
         'Warsztaty mogą być tematyczne, z ulubionym bohaterem dzieci.',
@@ -149,15 +149,18 @@ export const urodzinyPage = {
         'Tort i zdjęcia na ściance ozdobionej w wybranym klimacie',
         'Ulepione przedmioty zostają wypalone w profesjonalnym piecu ceramicznym',
         'Możemy je poszkliwić lub dzieci mogą spotkać się ponownie na szkliwienie',
-        'Zadzwoń i dowiedz się szczegółów, tel. 600-158-318 Małgosia',
+        'Zadzwoń i dowiedz się szczegółów,\ntel. 600-158-318 Małgosia',
       ],
       imageSrc:
         '/images/wix-migrated/747d6f_e0f7a1b2accc4542a5fec56b5ba4b975.jpg',
       imageAlt: '439195153_7659636140724940_2885825421017431008_n.jpg',
       imageFirst: true,
+      imageWidth: 488,
+      imageHeight: 759,
       ctaLabel: 'Więcej szczegółów...',
       ctaHref: '/kopia-panienski-plus-opis',
       tinted: true,
+      compact: true,
     },
     {
       id: 'kubek',
@@ -168,15 +171,18 @@ export const urodzinyPage = {
         'Na kubku mogą być napisy, rysunki w jednym z parudziesięciu kolorów, które posiadamy',
         'Kubki są zdatne do picia i do mycia w zmywarce',
         'Produkty muszą być wypalone w piecu ceramicznym i są do odbioru po około 2-3 tygodniach',
-        'Zadzwoń i dowiedz się szczegółów, tel. 600-158-318 Małgosia',
+        'Zadzwoń i dowiedz się szczegółów,\ntel. 600-158-318 Małgosia',
       ],
       imageSrc:
         '/images/wix-migrated/747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg',
       imageAlt: '462563743_28177457148520016_1905632657844038078_n.jpg',
       imageFirst: false,
+      imageWidth: 488,
+      imageHeight: 715,
       ctaLabel: 'Więcej szczegółów...',
-      ctaHref: '/kontakt',
+      ctaHref: '/kopia-urodziny-ceramika',
       tinted: false,
+      compact: true,
     },
     {
       id: 'dorosli',
@@ -195,9 +201,12 @@ export const urodzinyPage = {
         '/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg',
       imageAlt: '2a.jpg',
       imageFirst: true,
+      imageWidth: 488,
+      imageHeight: 613,
       ctaLabel: 'Więcej szczegółów...',
       ctaHref: '/glinadowina',
       tinted: true,
+      compact: true,
     },
     {
       id: 'malowanie',
@@ -213,11 +222,16 @@ export const urodzinyPage = {
       ],
       imageSrc:
         '/images/wix-migrated/747d6f_cd2460d4d3c1409b91c31dba9f7db804.png',
-      imageAlt: 'URODZINY Z MALOWANIEM',
+      imageAlt:
+        'grafiki Ceramika nero – kopia (Post na Instagram (45)) (15).png',
       imageFirst: false,
+      imageWidth: 488,
+      imageHeight: 757,
       ctaLabel: 'Napisz do nas',
-      ctaHref: '/kopia-urodziny-ceramika',
+      ctaHref:
+        'mailto:nerogosia@gmail.com?subject=Urodziny%20z%20malowaniem%20',
       tinted: false,
+      compact: true,
     },
   ] satisfies SplitBlock[],
 };
@@ -233,17 +247,14 @@ export const panienskiePage = {
     imageAlt: 'wieczor paniesnki poznan',
     logoSrc: '/images/wix-migrated/747d6f_64bcccd9911949e7895d7325e88a5a75.png',
     intro: [
-      'Szukasz pomysłu na wyjątkowy wieczór panieński pod Poznaniem?',
-      'Pracownia Ceramiki NERO w Suchym Lesie zaprasza na kreatywne warsztaty „Glina do Wina” – idealne połączenie zabawy, wina i tworzenia własnych dzieł z gliny.',
-      'To oryginalna atrakcja na wieczór panieński w Suchym Lesie, która gwarantuje świetną atmosferę, śmiech i niezapomniane wspomnienia z przyjaciółkami.',
-      'Zorganizuj swój kreatywny wieczór panieński i wybierz pakiet dopasowany do Waszych potrzeb!',
+      'Szukasz pomysłu na wyjątkowy wieczór panieński pod Poznaniem?\nPracownia Ceramiki NERO w Suchym Lesie zaprasza na kreatywne warsztaty „Glina do Wina” – idealne połączenie zabawy, wina i tworzenia własnych dzieł z gliny.\nTo oryginalna atrakcja na wieczór panieński w Suchym Lesie, która gwarantuje świetną atmosferę, śmiech i niezapomniane wspomnienia z przyjaciółkami.\nZorganizuj swój kreatywny wieczór panieński i wybierz pakiet dopasowany do Waszych potrzeb!',
       'Zorganizuj idealny wieczór panieński - wybierz swój PAKIET!',
     ],
   },
   blocks: [
     {
       id: 'standard',
-      title: 'Panieński PAKIET STANDARD — Glina do wina',
+      title: 'Panieński\nPAKIET STANDARD\nGlina do wina',
       bullets: [
         'Każdy ulepi swoje przedmioty z gliny z moją pomocą',
         'Zapewniam włoskie przystawki',
@@ -255,47 +266,61 @@ export const panienskiePage = {
         '/images/wix-migrated/747d6f_dfe2828f7bac463c873af8b1df79fe47.jpg',
       imageAlt: '3a.jpg',
       imageFirst: true,
+      imageWidth: 488,
+      imageHeight: 570,
       ctaLabel: 'Więcej szczegółów...',
       ctaHref: '/webinar-registration',
       tinted: true,
+      textAlign: 'center',
+      framed: true,
+      compact: true,
     },
     {
       id: 'plus',
-      title: 'Panieński PAKIET PLUS — Glina do wina',
-      subtitle: 'kręcenie na kole',
+      title: 'Panieński\nPAKIET PLUS\nGlina do wina\n+ kręcenie na kole',
       bullets: [
         'Każdy ulepi swoje przedmioty',
         'Zapewniam włoskie przystawki',
         'Lampka wina',
         'Włoska muzyka',
         'Cudowny, klimatyczny lokal',
-        'Kręcenie na kole garncarskim jak Demi Moore w "Uwierz w ducha"',
+        'Kręcenie na kole garncarskim\njak Demi Moore w "Uwierz w ducha"',
       ],
       imageSrc:
         '/images/wix-migrated/11062b_f5420b566fbe45bf931871861e8cbf46.jpeg',
       imageAlt: 'Pottery and Clay',
       imageFirst: false,
+      imageWidth: 489,
+      imageHeight: 642,
       ctaLabel: 'Więcej szczegółów...',
       ctaHref: '/webinar-registration-1',
       tinted: false,
+      textAlign: 'center',
+      framed: true,
+      compact: true,
     },
     {
       id: 'vip',
-      title: 'Panieński PAKIET VIP — Glina do wina',
-      subtitle: 'koło garncarskie · sesja fotograficzna',
+      title:
+        'Panieński\nPAKIET VIP\nGlina do wina\n+ koło garncarskie\n+ sesja fotograficzna',
       bullets: [
         'Każdy ulepi swoje przedmioty',
         'Zapewniam lampkę wina i włoskie przystawki',
-        'Kręcenie na kole garncarskim jak Demi Moore w "Uwierz w ducha"',
+        'Kręcenie na kole garncarskim\njak Demi Moore w "Uwierz w ducha"',
         'Sesja fotograficzna zrobiona przez profesjonalną fotografkę dla wszystkich dziewczyn, pakiet zdjęć do wyboru',
       ],
       imageSrc:
         '/images/wix-migrated/11062b_6526e8ba379f4d0e9347f54a2dc67b70.jpg',
       imageAlt: 'Happy Women',
       imageFirst: true,
+      imageWidth: 491,
+      imageHeight: 658,
       ctaLabel: 'Więcej szczegółów...',
       ctaHref: '/copy-of-panienski-opis',
       tinted: true,
+      textAlign: 'center',
+      framed: true,
+      compact: true,
     },
   ] satisfies SplitBlock[],
 };

@@ -1,13 +1,13 @@
 import { NavItem } from '@/lib/types/navigation';
 
 /**
- * Primary marketing navigation matching the original Ceramika Nero site menu
- * (verbatim labels from archived pages). Destinations use Phase 1 canonical routes.
+ * Primary marketing navigation matching archived Wix menu labels/order
+ * (from raw.html linkElement capture on /, /urodziny, /onas).
+ * Destinations use Phase 1 canonical routes.
  */
 export const primaryNavigation: NavItem[] = [
   { label: 'O nas', href: '/pracownia' },
   { label: 'Zapisy', href: '/' },
-  { label: 'Kalendarz', href: '/kalendarz' },
   { label: 'Dla dzieci', href: '/dla-dzieci' },
   { label: 'Dla dorosłych', href: '/dla-doroslych' },
   { label: 'GLINA BOX', href: '/home' },
@@ -31,5 +31,5 @@ export const siteContact = {
   nip: '9721134965',
   facebookUrl: 'https://www.facebook.com/ceramikanero',
   instagramUrl: 'https://www.instagram.com/ceramika_nero',
-  privacyHref: '/terms-conditions',
+  privacyHref: '/polityka-prywatnosci',
 } as const;

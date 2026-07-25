@@ -37,19 +37,25 @@ function InlineText({ text }: { text: string }) {
 
 function BlockView({ block }: { block: ArchiveTextBlock }) {
   switch (block.type) {
-    case 'heading':
-      if (block.level === 3) {
-        return (
-          <h3 className="font-heading text-xl font-semibold tracking-wide text-text-primary uppercase">
-            {block.text}
-          </h3>
-        );
-      }
+    case 'heading': {
+      const className =
+        block.level === 2
+          ? 'font-heading text-2xl font-semibold text-text-primary'
+          : block.level === 3
+            ? 'font-heading text-xl font-semibold tracking-wide text-text-primary'
+            : 'font-heading text-lg font-semibold text-text-primary';
+      const Tag = block.level === 2 ? 'h2' : block.level === 3 ? 'h3' : 'h4';
       return (
-        <h4 className="font-heading text-lg font-semibold text-text-primary">
-          {block.text}
-        </h4>
+        <Tag className={className}>
+          {block.text.split('\n').map((line, i, arr) => (
+            <span key={i}>
+              {line}
+              {i < arr.length - 1 ? <br /> : null}
+            </span>
+          ))}
+        </Tag>
       );
+    }
     case 'paragraph':
       return (
         <p className="text-base leading-relaxed text-text-muted">
@@ -100,16 +106,26 @@ function BlockView({ block }: { block: ArchiveTextBlock }) {
 }
 
 /**
- * Render archived section body with paragraphs, lists, headings and meta lines.
+ * Render archived section body with paragraphs, lists, and evidence-backed
+ * headings only (via knownHeadings from page-spec / DOM).
  */
 export function ArchiveRichText({
   text,
+  knownHeadings,
+  blocks: providedBlocks,
   className = 'mt-4 space-y-4',
 }: {
-  text: string;
+  text?: string;
+  knownHeadings?: readonly string[];
+  blocks?: readonly ArchiveTextBlock[];
   className?: string;
 }) {
-  const blocks = parseArchiveText(text);
+  const blocks =
+    providedBlocks ??
+    parseArchiveText(text ?? '', {
+      knownHeadings,
+      defaultHeadingLevel: 3,
+    });
   if (blocks.length === 0) return null;
 
   return (

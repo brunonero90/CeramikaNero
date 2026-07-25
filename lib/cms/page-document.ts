@@ -37,9 +37,14 @@ const splitBlockSchema = z.object({
   imageSrc: z.string(),
   imageAlt: z.string(),
   imageFirst: z.boolean().optional(),
+  imageWidth: z.number().optional(),
+  imageHeight: z.number().optional(),
   ctaLabel: z.string().optional(),
   ctaHref: z.string().optional(),
   tinted: z.boolean().optional(),
+  textAlign: z.enum(['left', 'center']).optional(),
+  framed: z.boolean().optional(),
+  compact: z.boolean().optional(),
 });
 
 const heroSchema = z.object({

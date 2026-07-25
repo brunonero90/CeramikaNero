@@ -1,6 +1,7 @@
 'use server';
 
 import 'server-only';
+import { createHash } from 'node:crypto';
 import { publicBookingInputSchema } from '@/lib/database/schema';
 import { createAdminClient } from '@/lib/supabase/admin';
 import {
@@ -12,8 +13,15 @@ import { buildCheckoutUrls } from '@/lib/booking/urls';
 import {
   sendBookingConfirmationEmail,
   getBookingEmailContext,
+  sendLocalBookingConfirmationEmail,
 } from '@/lib/booking/email';
 import type { Json } from '@/lib/database/types';
+import {
+  isBookingLocalMode,
+  isStripeConfigured,
+} from '@/lib/booking/local-mode';
+import { beginLocalBooking } from '@/lib/booking/local-store';
+import { ensureLocalBookingSeed } from '@/lib/booking/local-seed';
 
 export type CreateBookingResult =
   | {
@@ -29,8 +37,8 @@ function parseFormData(formData: FormData): unknown {
   const obj: Record<string, unknown> = {};
   for (const [key, value] of entries) {
     if (key === 'participants') {
-      if (!obj[key]) obj[key] = [];
-      (obj[key] as unknown[]).push(JSON.parse(value as string));
+      const parsed = JSON.parse(value as string) as unknown;
+      obj[key] = Array.isArray(parsed) ? parsed : [parsed];
       continue;
     }
     if (key === 'marketingConsent' || key === 'termsAccepted') {
@@ -40,6 +48,90 @@ function parseFormData(formData: FormData): unknown {
     obj[key] = value;
   }
   return obj;
+}
+
+function bookingIdempotencyKey(input: {
+  sessionId: string;
+  email: string;
+  quantity: number;
+  firstName: string;
+  lastName: string;
+}): string {
+  return createHash('sha256')
+    .update(
+      [
+        input.sessionId,
+        input.email.trim().toLowerCase(),
+        String(input.quantity),
+        input.firstName.trim().toLowerCase(),
+        input.lastName.trim().toLowerCase(),
+      ].join('|')
+    )
+    .digest('hex');
+}
+
+async function createLocalBookingAndConfirm(
+  input: ReturnType<typeof publicBookingInputSchema.parse>
+): Promise<CreateBookingResult> {
+  await ensureLocalBookingSeed();
+
+  const result = await beginLocalBooking({
+    sessionId: input.sessionId,
+    quantity: input.quantity,
+    purchaserEmail: input.purchaserEmail,
+    purchaserFirstName: input.purchaserFirstName,
+    purchaserLastName: input.purchaserLastName,
+    purchaserPhone: input.purchaserPhone,
+    customerNotes: input.customerNotes,
+    marketingConsent: input.marketingConsent,
+    privacyPolicyVersion: input.privacyPolicyVersion,
+    participants: input.participants.map((p) => ({
+      displayName: p.displayName,
+      age: p.age ?? null,
+      participantType: p.participantType,
+      accessibilityNotes: p.accessibilityNotes ?? null,
+    })),
+  });
+
+  if (!result.ok) {
+    return { ok: false, error: result.error };
+  }
+
+  if (!result.reused) {
+    const location = [
+      result.session.locationName,
+      result.session.locationAddress,
+    ]
+      .filter(Boolean)
+      .join(', ');
+
+    await sendLocalBookingConfirmationEmail({
+      bookingId: result.booking.id,
+      reference: result.booking.bookingReference,
+      workshopTitle: result.session.workshopTitle,
+      sessionStartsAt: result.session.startsAt,
+      sessionLocation: location,
+      quantity: result.booking.quantity,
+      totalGrossGrosz: result.booking.totalPriceGrossGrosz,
+      customerEmail: result.booking.purchaserEmail,
+      customerName:
+        `${result.booking.purchaserFirstName} ${result.booking.purchaserLastName}`.trim(),
+      participants: result.booking.participants.map((p) => ({
+        display_name: p.displayName,
+        age: p.age,
+      })),
+    });
+  }
+
+  return {
+    ok: true,
+    checkoutUrl:
+      '/rezerwacja/sukces?reference=' +
+      encodeURIComponent(result.booking.bookingReference) +
+      '&local=1',
+    bookingReference: result.booking.bookingReference,
+    expiresAt: result.booking.createdAt,
+  };
 }
 
 export async function createBookingAndCheckout(
@@ -57,13 +149,11 @@ export async function createBookingAndCheckout(
 
   const input = parsed.data;
 
-  // Honeypot / anti-bot check
   const honeypot = formData.get('website');
   if (honeypot && String(honeypot).trim() !== '') {
     return { ok: false, error: 'Spam detected.' };
   }
 
-  // Rate limit
   const { ipKey, secondaryKey } = await getRateLimitKeys({
     sessionId: input.sessionId,
     email: input.purchaserEmail,
@@ -76,7 +166,19 @@ export async function createBookingAndCheckout(
     };
   }
 
+  if (isBookingLocalMode()) {
+    return createLocalBookingAndConfirm(input);
+  }
+
   const supabase = createAdminClient();
+  const useStripe = isStripeConfigured();
+  const idempotencyKey = bookingIdempotencyKey({
+    sessionId: input.sessionId,
+    email: input.purchaserEmail,
+    quantity: input.quantity,
+    firstName: input.purchaserFirstName,
+    lastName: input.purchaserLastName,
+  });
 
   const participants = input.participants.map((p) => ({
     display_name: p.displayName,
@@ -100,13 +202,14 @@ export async function createBookingAndCheckout(
       p_privacy_policy_version: input.privacyPolicyVersion,
       p_participants: participants as unknown as Json,
       p_source: 'website',
-      p_payment_provider: 'stripe',
-      p_payment_status: 'created',
+      p_payment_provider: useStripe ? 'stripe' : 'bank_transfer',
+      p_payment_status: useStripe ? 'created' : 'pending',
+      p_status: useStripe ? 'pending' : 'awaiting_payment',
+      p_idempotency_key: idempotencyKey,
     }
   );
 
   if (beginError || !result) {
-    // Do not expose raw database errors to the browser
     console.error('begin_booking failed', beginError);
     return {
       ok: false,
@@ -122,12 +225,31 @@ export async function createBookingAndCheckout(
     total_price_gross_grosz: number;
     amount_to_pay_gross_grosz: number;
     currency: string;
-    expires_at: string;
+    expires_at: string | null;
     confirmed_at: string | null;
+    reused?: boolean;
   };
 
+  // Bank-transfer / offline path when Stripe is not configured.
+  if (!useStripe) {
+    if (!reservation.reused) {
+      const ctx = await getBookingEmailContext(reservation.booking_id);
+      if (ctx) {
+        await sendBookingConfirmationEmail(ctx);
+      }
+    }
+    return {
+      ok: true,
+      checkoutUrl:
+        '/rezerwacja/sukces?reference=' +
+        encodeURIComponent(reservation.booking_reference) +
+        '&payment=bank_transfer',
+      bookingReference: reservation.booking_reference,
+      expiresAt: reservation.expires_at ?? new Date().toISOString(),
+    };
+  }
+
   if (reservation.amount_to_pay_gross_grosz === 0) {
-    // Free workshop (e.g. complimentary). Mark as confirmed directly.
     const { error: confirmError } = await supabase.rpc(
       'confirm_booking_from_payment',
       {
@@ -148,12 +270,11 @@ export async function createBookingAndCheckout(
         checkoutUrl:
           '/rezerwacja/sukces?reference=' + reservation.booking_reference,
         bookingReference: reservation.booking_reference,
-        expiresAt: reservation.expires_at,
+        expiresAt: reservation.expires_at ?? new Date().toISOString(),
       };
     }
   }
 
-  // Fetch session/workshop details for the line item
   const { data: sessionData } = await supabase
     .from('workshop_sessions')
     .select('starts_at, workshops(title, slug)')
@@ -198,12 +319,11 @@ export async function createBookingAndCheckout(
         stripeSession.url ??
         '/rezerwacja/anulowana?reference=' + reservation.booking_reference,
       bookingReference: reservation.booking_reference,
-      expiresAt: reservation.expires_at,
+      expiresAt: reservation.expires_at ?? new Date().toISOString(),
     };
   } catch (stripeError) {
     console.error('Stripe checkout creation failed', stripeError);
 
-    // Release the reserved capacity so the customer is not stuck
     await supabase.rpc('cancel_booking', {
       p_booking_id: reservation.booking_id,
       p_cancelled_by: 'system',

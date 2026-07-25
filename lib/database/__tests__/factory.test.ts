@@ -23,6 +23,7 @@ vi.mock('next/headers', () => ({
 describe('adapter selection', () => {
   beforeEach(() => {
     resetEnv();
+    vi.resetModules();
   });
 
   afterEach(() => {
@@ -31,6 +32,7 @@ describe('adapter selection', () => {
 
   it('selects fixtures in development without Supabase env', async () => {
     setNodeEnv('development');
+    delete process.env.BOOKING_LOCAL_MODE;
     const { getAdapterName } = await import('../factory');
     expect(getAdapterName()).toBe('fixtures');
   });

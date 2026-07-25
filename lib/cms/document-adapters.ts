@@ -72,9 +72,14 @@ export function documentToMarketingParts(doc: ClonePageDocument): {
         imageSrc: s.imageSrc,
         imageAlt: s.imageAlt,
         imageFirst: s.imageFirst,
+        imageWidth: s.imageWidth,
+        imageHeight: s.imageHeight,
         ctaLabel: s.ctaLabel,
         ctaHref: s.ctaHref,
         tinted: s.tinted,
+        textAlign: s.textAlign,
+        framed: s.framed,
+        compact: s.compact,
       };
     });
   const mid = doc.sections.find((s) => s.type === 'mid-copy');

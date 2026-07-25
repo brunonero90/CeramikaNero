@@ -1,6 +1,9 @@
 import { createClient } from '@/lib/supabase/server';
 import { mapWorkshopSession } from '@/lib/database/mappers';
 import type { WorkshopSession } from '@/lib/database/types';
+import { isBookingLocalMode } from '@/lib/booking/local-mode';
+import { ensureLocalBookingSeed } from '@/lib/booking/local-seed';
+import { listLocalSessions } from '@/lib/booking/local-store';
 
 export type CalendarSession = WorkshopSession & {
   workshopTitle: string;
@@ -10,8 +13,36 @@ export type CalendarSession = WorkshopSession & {
 /**
  * Published, bookable future sessions for the public calendar.
  * Excludes draft/cancelled/completed and past starts (Europe/Warsaw via UTC compare).
+ *
+ * When BOOKING_LOCAL_MODE=1, reads from the file-backed local store and never
+ * queries production Supabase.
  */
 export async function getPublicCalendarSessions(): Promise<CalendarSession[]> {
+  if (isBookingLocalMode()) {
+    await ensureLocalBookingSeed();
+    const local = await listLocalSessions();
+    return local.map((s) => ({
+      id: s.id,
+      workshopId: s.workshopId,
+      instructorId: null,
+      startsAt: s.startsAt,
+      endsAt: s.endsAt,
+      timezone: s.timezone,
+      capacity: s.capacity,
+      reservedCount: s.reservedCount,
+      priceGrossGrosz: s.priceGrossGrosz,
+      currency: s.currency,
+      status: s.status,
+      locationName: s.locationName,
+      locationAddress: s.locationAddress,
+      bookingOpensAt: null,
+      bookingClosesAt: null,
+      externalBookingUrl: null,
+      workshopTitle: s.workshopTitle,
+      workshopSlug: s.workshopSlug,
+    }));
+  }
+
   const supabase = await createClient();
   const now = new Date().toISOString();
 

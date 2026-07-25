@@ -66,8 +66,11 @@ function monthMatrix(year: number, monthIndex: number): (string | null)[][] {
 
 export function PublicEventCalendar({
   sessions,
+  compact = false,
 }: {
   sessions: CalendarSessionCard[];
+  /** Homepage / fidelity: month grid only, no dual-column agenda explosion. */
+  compact?: boolean;
 }) {
   const timeZone = sessions[0]?.timezone || 'Europe/Warsaw';
   const todayKey = dayKey(new Date().toISOString(), timeZone);
@@ -107,10 +110,17 @@ export function PublicEventCalendar({
   }
 
   return (
-    <div className="mx-auto grid max-w-5xl gap-10 px-4 py-12 md:px-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+    <div
+      className={cn(
+        'mx-auto gap-10 px-4 py-8 md:px-6',
+        compact
+          ? 'max-w-3xl'
+          : 'grid max-w-5xl py-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]'
+      )}
+    >
       <section aria-label="Kalendarz warsztatów">
         <div className="flex items-center justify-between gap-3">
-          <h2 className="font-heading text-2xl font-semibold capitalize text-text-primary">
+          <h2 className="font-heading text-2xl font-semibold text-text-primary capitalize">
             {monthLabel}
           </h2>
           <div className="flex gap-2">
@@ -133,7 +143,7 @@ export function PublicEventCalendar({
           </div>
         </div>
 
-        <div className="mt-4 hidden md:block">
+        <div className={cn('mt-4', compact ? 'block' : 'hidden md:block')}>
           <div className="grid grid-cols-7 gap-1 text-center text-xs font-semibold tracking-wide text-text-muted uppercase">
             {['pn', 'wt', 'śr', 'cz', 'pt', 'so', 'nd'].map((d) => (
               <div key={d} className="py-2">
@@ -143,7 +153,13 @@ export function PublicEventCalendar({
           </div>
           <div className="grid grid-cols-7 gap-1">
             {rows.flat().map((day, idx) => {
-              if (!day) return <div key={`e-${idx}`} className="min-h-14" />;
+              if (!day)
+                return (
+                  <div
+                    key={`e-${idx}`}
+                    className={compact ? 'min-h-10' : 'min-h-14'}
+                  />
+                );
               const has = (byDay.get(day)?.length ?? 0) > 0;
               const isSelected = day === selectedDay;
               const isToday = day === todayKey;
@@ -153,7 +169,8 @@ export function PublicEventCalendar({
                   type="button"
                   onClick={() => setSelectedDay(day)}
                   className={cn(
-                    'relative min-h-14 border border-transparent p-2 text-sm transition-base',
+                    'relative border border-transparent p-1.5 text-sm transition-base',
+                    compact ? 'min-h-10' : 'min-h-14 p-2',
                     isSelected && 'border-accent-primary bg-[#f8ebe3]',
                     !isSelected && has && 'bg-surface-raised',
                     isToday && 'font-bold text-accent-primary'
@@ -174,26 +191,29 @@ export function PublicEventCalendar({
           </div>
         </div>
 
-        {/* Mobile: compact month selector + agenda */}
-        <div className="mt-4 md:hidden">
-          <label className="block text-sm font-medium text-text-muted">
-            Wybierz dzień
-            <input
-              type="date"
-              className="mt-1 w-full border border-surface-subtle bg-surface-bg px-3 py-2"
-              value={selectedDay}
-              onChange={(e) => setSelectedDay(e.target.value)}
-            />
-          </label>
-        </div>
+        {!compact ? (
+          <div className="mt-4 md:hidden">
+            <label className="block text-sm font-medium text-text-muted">
+              Wybierz dzień
+              <input
+                type="date"
+                className="mt-1 w-full border border-surface-subtle bg-surface-bg px-3 py-2"
+                value={selectedDay}
+                onChange={(e) => setSelectedDay(e.target.value)}
+              />
+            </label>
+          </div>
+        ) : null}
 
-        <div className="mt-8">
-          <h3 className="font-heading text-xl font-semibold text-text-primary">
+        <div className={cn('mt-6', compact && 'mt-4')}>
+          <h3 className="font-heading text-lg font-semibold text-text-primary md:text-xl">
             {formatDayHeading(selectedDay)}
           </h3>
           {selected.length === 0 ? (
             <p className="mt-3 text-sm text-text-muted">
-              Brak zaplanowanych warsztatów w tym dniu.
+              {compact
+                ? 'Brak dostępnych terminów w tym dniu'
+                : 'Brak zaplanowanych warsztatów w tym dniu.'}
             </p>
           ) : (
             <ul className="mt-4 space-y-3">
@@ -205,37 +225,39 @@ export function PublicEventCalendar({
         </div>
       </section>
 
-      <section aria-label="Nadchodzące warsztaty">
-        <h2 className="font-heading text-2xl font-semibold text-text-primary">
-          Nadchodzące
-        </h2>
-        {upcoming.length === 0 ? (
-          <p className="mt-4 text-sm text-text-muted">
-            Nie ma jeszcze opublikowanych terminów. Zobacz ofertę warsztatów lub
-            napisz do nas.
-          </p>
-        ) : (
-          <ul className="mt-4 space-y-3">
-            {upcoming.map((session) => (
-              <SessionCard key={`up-${session.id}`} session={session} />
-            ))}
-          </ul>
-        )}
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link
-            href="/warsztaty"
-            className="inline-flex bg-accent-primary px-5 py-3 text-sm font-semibold tracking-wide text-white uppercase"
-          >
-            Wszystkie warsztaty
-          </Link>
-          <Link
-            href="/kontakt"
-            className="inline-flex border border-accent-primary px-5 py-3 text-sm font-semibold tracking-wide text-accent-primary uppercase"
-          >
-            Zapytaj o termin
-          </Link>
-        </div>
-      </section>
+      {!compact ? (
+        <section aria-label="Nadchodzące warsztaty">
+          <h2 className="font-heading text-2xl font-semibold text-text-primary">
+            Nadchodzące
+          </h2>
+          {upcoming.length === 0 ? (
+            <p className="mt-4 text-sm text-text-muted">
+              Nie ma jeszcze opublikowanych terminów. Zobacz ofertę warsztatów
+              lub napisz do nas.
+            </p>
+          ) : (
+            <ul className="mt-4 space-y-3">
+              {upcoming.map((session) => (
+                <SessionCard key={`up-${session.id}`} session={session} />
+              ))}
+            </ul>
+          )}
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/warsztaty"
+              className="inline-flex bg-accent-primary px-5 py-3 text-sm font-semibold tracking-wide text-white uppercase"
+            >
+              Wszystkie warsztaty
+            </Link>
+            <Link
+              href="/kontakt"
+              className="inline-flex border border-accent-primary px-5 py-3 text-sm font-semibold tracking-wide text-accent-primary uppercase"
+            >
+              Zapytaj o termin
+            </Link>
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
@@ -243,8 +265,8 @@ export function PublicEventCalendar({
 function SessionCard({ session }: { session: CalendarSessionCard }) {
   const free = session.capacity - session.reservedCount;
   const soldOut = session.status === 'sold_out' || free <= 0;
-  const bookHref = `/warsztaty/${session.workshopSlug}/rezerwacja`;
-  const detailHref = `/warsztaty/${session.workshopSlug}`;
+  const bookHref = `/warsztaty/${session.workshopSlug}/rezerwacja?session=${session.id}`;
+  const detailHref = `/termin/${session.id}`;
 
   return (
     <li className="border border-surface-subtle/50 bg-surface-raised p-4">

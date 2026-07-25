@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useTransition } from 'react';
+import Link from 'next/link';
 import { createBookingAndCheckout } from '@/lib/booking/reservation';
 import { formatPrice } from '@/lib/utils/price';
 import { MAX_PARTICIPANTS_PER_BOOKING } from '@/lib/booking/constants';
@@ -44,19 +45,25 @@ type Workshop = {
   default_price_gross_grosz: number;
 };
 
+type Step = 'details' | 'review';
+
 type Props = {
   workshop: Workshop;
   sessions: Session[];
   privacyPolicyVersion: string;
+  localMode?: boolean;
 };
 
 export function BookingForm({
   workshop,
   sessions,
   privacyPolicyVersion,
+  localMode = false,
 }: Props) {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
+  const [step, setStep] = useState<Step>('details');
   const [sessionId, setSessionId] = useState(sessions[0].id);
   const [quantity, setQuantity] = useState(1);
   const [participants, setParticipants] = useState<Participant[]>([
@@ -67,6 +74,11 @@ export function BookingForm({
       accessibilityNotes: '',
     },
   ]);
+  const [purchaserFirstName, setPurchaserFirstName] = useState('');
+  const [purchaserLastName, setPurchaserLastName] = useState('');
+  const [purchaserEmail, setPurchaserEmail] = useState('');
+  const [purchaserPhone, setPurchaserPhone] = useState('');
+  const [customerNotes, setCustomerNotes] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
 
@@ -107,14 +119,62 @@ export function BookingForm({
     });
   }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function validateDetails(): string | null {
+    if (!termsAccepted) {
+      return 'Akceptacja regulaminu i polityki prywatności jest wymagana.';
+    }
+    if (!purchaserFirstName.trim() || !purchaserLastName.trim()) {
+      return 'Podaj imię i nazwisko kupującego.';
+    }
+    if (!purchaserEmail.trim() || !purchaserEmail.includes('@')) {
+      return 'Podaj prawidłowy adres e-mail.';
+    }
+    if (!purchaserPhone.trim()) {
+      return 'Podaj numer telefonu.';
+    }
+    for (let i = 0; i < participants.length; i++) {
+      if (!participants[i]?.displayName.trim()) {
+        return `Podaj imię uczestnika ${i + 1}.`;
+      }
+    }
+    return null;
+  }
+
+  function goToReview(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+    setFieldErrors({});
+    const validationError = validateDetails();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    setStep('review');
+  }
+
+  function handleSubmit() {
+    setError(null);
+    setFieldErrors({});
+    const formData = new FormData();
+    formData.set('website', '');
     formData.set('sessionId', sessionId);
     formData.set('quantity', String(quantity));
-    formData.set('participants', JSON.stringify(participants));
+    formData.set(
+      'participants',
+      JSON.stringify(
+        participants.map((p) => ({
+          displayName: p.displayName,
+          age: p.age ? Number(p.age) : undefined,
+          participantType: p.participantType,
+          accessibilityNotes: p.accessibilityNotes || undefined,
+        }))
+      )
+    );
+    formData.set('purchaserFirstName', purchaserFirstName);
+    formData.set('purchaserLastName', purchaserLastName);
+    formData.set('purchaserEmail', purchaserEmail);
+    formData.set('purchaserPhone', purchaserPhone);
+    formData.set('customerNotes', customerNotes);
     formData.set('marketingConsent', marketingConsent ? 'true' : 'false');
     formData.set('termsAccepted', termsAccepted ? 'true' : 'false');
     formData.set('privacyPolicyVersion', privacyPolicyVersion);
@@ -124,16 +184,102 @@ export function BookingForm({
       if (result.ok) {
         window.location.href = result.checkoutUrl;
       } else {
+        setFieldErrors(result.fieldErrors ?? {});
         setError(
           result.error ?? 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie.'
         );
+        setStep('details');
       }
     });
   }
 
+  if (step === 'review') {
+    return (
+      <div className="max-w-2xl space-y-6">
+        <h2 className="text-xl font-semibold">Podsumowanie rezerwacji</h2>
+        <dl className="space-y-3 rounded border p-4 text-sm">
+          <div>
+            <dt className="font-medium text-text-muted">Warsztat</dt>
+            <dd>{workshop.title}</dd>
+          </div>
+          <div>
+            <dt className="font-medium text-text-muted">Termin</dt>
+            <dd>{formatWarsawDateTime(selectedSession.starts_at)}</dd>
+          </div>
+          <div>
+            <dt className="font-medium text-text-muted">Miejsce</dt>
+            <dd>
+              {[selectedSession.location_name, selectedSession.location_address]
+                .filter(Boolean)
+                .join(', ') || 'Pracownia'}
+            </dd>
+          </div>
+          <div>
+            <dt className="font-medium text-text-muted">Uczestnicy</dt>
+            <dd>
+              <ul className="list-disc pl-5">
+                {participants.map((p, i) => (
+                  <li key={i}>
+                    {p.displayName}
+                    {p.age ? ` (${p.age} l.)` : ''}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+          <div>
+            <dt className="font-medium text-text-muted">Kupujący</dt>
+            <dd>
+              {purchaserFirstName} {purchaserLastName}
+              <br />
+              {purchaserEmail}
+              <br />
+              {purchaserPhone}
+            </dd>
+          </div>
+          <div>
+            <dt className="font-medium text-text-muted">Do zapłaty</dt>
+            <dd className="text-lg font-semibold">
+              {formatPrice(totalPrice)}
+              {localMode ? ' (tryb lokalny — bez Stripe)' : ''}
+            </dd>
+          </div>
+        </dl>
+
+        {error && (
+          <div className="rounded bg-red-50 p-3 text-red-700" role="alert">
+            {error}
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={() => setStep('details')}
+            className="rounded border px-5 py-3 text-sm font-medium"
+            disabled={isPending}
+          >
+            Wróć do edycji
+          </button>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            disabled={isPending}
+            className="inline-flex items-center justify-center rounded bg-primary px-6 py-3 font-medium text-primary-foreground disabled:opacity-50"
+          >
+            {isPending
+              ? 'Przetwarzanie...'
+              : localMode
+                ? `Potwierdź rezerwację – ${formatPrice(totalPrice)}`
+                : `Potwierdź rezerwację – ${formatPrice(totalPrice)}`}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl space-y-6" noValidate>
-      {/* Honeypot */}
+    <form onSubmit={goToReview} className="max-w-2xl space-y-6" noValidate>
       <div className="hidden" aria-hidden="true">
         <label htmlFor="website">Nie wypełniaj tego pola</label>
         <input
@@ -146,7 +292,7 @@ export function BookingForm({
       </div>
 
       <section>
-        <label htmlFor="sessionId" className="block font-medium mb-2">
+        <label htmlFor="sessionId" className="mb-2 block font-medium">
           Wybierz termin
         </label>
         <select
@@ -168,7 +314,7 @@ export function BookingForm({
       </section>
 
       <section>
-        <label htmlFor="quantity" className="block font-medium mb-2">
+        <label htmlFor="quantity" className="mb-2 block font-medium">
           Liczba miejsc
         </label>
         <input
@@ -178,11 +324,11 @@ export function BookingForm({
           min={1}
           max={available}
           value={quantity}
-          onChange={(e) => updateQuantity(parseInt(e.target.value, 10))}
-          className="rounded border p-2 w-24"
+          onChange={(e) => updateQuantity(parseInt(e.target.value, 10) || 1)}
+          className="w-24 rounded border p-2"
           required
         />
-        <p className="text-sm text-muted-foreground mt-1">
+        <p className="text-muted-foreground mt-1 text-sm">
           Dostępnych {available} z {selectedSession.capacity}. Wybrane:{' '}
           {quantity}. Razem: {formatPrice(totalPrice)}.
         </p>
@@ -191,10 +337,9 @@ export function BookingForm({
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">Dane uczestników</h2>
         {participants.map((p, i) => (
-          <div key={i} className="border rounded p-4 space-y-3">
+          <div key={i} className="space-y-3 rounded border p-4">
             <p className="font-medium">Uczestnik {i + 1}</p>
             <input
-              name={`participant-${i}-displayName`}
               type="text"
               placeholder="Imię / nazwisko uczestnika"
               value={p.displayName}
@@ -209,7 +354,6 @@ export function BookingForm({
             {(workshop.minimum_age !== null ||
               workshop.maximum_age !== null) && (
               <input
-                name={`participant-${i}-age`}
                 type="number"
                 placeholder="Wiek"
                 value={p.age}
@@ -221,7 +365,6 @@ export function BookingForm({
               />
             )}
             <input
-              name={`participant-${i}-accessibilityNotes`}
               type="text"
               placeholder="Uwagi dostępności (opcjonalnie)"
               value={p.accessibilityNotes}
@@ -237,43 +380,52 @@ export function BookingForm({
 
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">Dane kupującego</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <input
-            name="purchaserFirstName"
             type="text"
             placeholder="Imię"
+            value={purchaserFirstName}
+            onChange={(e) => setPurchaserFirstName(e.target.value)}
             className="rounded border p-2"
             required
             maxLength={200}
+            autoComplete="given-name"
           />
           <input
-            name="purchaserLastName"
             type="text"
             placeholder="Nazwisko"
+            value={purchaserLastName}
+            onChange={(e) => setPurchaserLastName(e.target.value)}
             className="rounded border p-2"
             required
             maxLength={200}
+            autoComplete="family-name"
           />
         </div>
         <input
-          name="purchaserEmail"
           type="email"
           placeholder="Adres e-mail"
+          value={purchaserEmail}
+          onChange={(e) => setPurchaserEmail(e.target.value)}
           className="w-full rounded border p-2"
           required
           maxLength={255}
+          autoComplete="email"
         />
         <input
-          name="purchaserPhone"
           type="tel"
           placeholder="Telefon"
+          value={purchaserPhone}
+          onChange={(e) => setPurchaserPhone(e.target.value)}
           className="w-full rounded border p-2"
           required
           maxLength={50}
+          autoComplete="tel"
         />
         <textarea
-          name="customerNotes"
           placeholder="Uwagi do rezerwacji (opcjonalnie)"
+          value={customerNotes}
+          onChange={(e) => setCustomerNotes(e.target.value)}
           className="w-full rounded border p-2"
           maxLength={2000}
           rows={3}
@@ -283,7 +435,6 @@ export function BookingForm({
       <section className="space-y-3">
         <label className="flex items-start gap-3">
           <input
-            name="termsAccepted"
             type="checkbox"
             checked={termsAccepted}
             onChange={(e) => setTermsAccepted(e.target.checked)}
@@ -291,14 +442,24 @@ export function BookingForm({
             required
           />
           <span className="text-sm">
-            Akceptuję regulamin rezerwacji i politykę prywatności (wersja{' '}
-            {privacyPolicyVersion}). Rezerwacja jest wymagana do uczestnictwa w
-            warsztacie.
+            Akceptuję{' '}
+            <Link href="/regulamin" className="underline" target="_blank">
+              regulamin
+            </Link>{' '}
+            oraz{' '}
+            <Link
+              href="/polityka-prywatnosci"
+              className="underline"
+              target="_blank"
+            >
+              politykę prywatności
+            </Link>{' '}
+            (wersja {privacyPolicyVersion}). Rezerwacja jest wymagana do
+            uczestnictwa w warsztacie.
           </span>
         </label>
         <label className="flex items-start gap-3">
           <input
-            name="marketingConsent"
             type="checkbox"
             checked={marketingConsent}
             onChange={(e) => setMarketingConsent(e.target.checked)}
@@ -306,25 +467,38 @@ export function BookingForm({
           />
           <span className="text-sm">
             Chcę otrzymywać informacje o przyszłych warsztatach (opcjonalne,
-            wymagana zgoda może być wycofana w każdej chwili).
+            zgodę można wycofać w każdej chwili).
           </span>
         </label>
       </section>
 
       {error && (
-        <div className="rounded bg-red-50 text-red-700 p-3" role="alert">
+        <div className="rounded bg-red-50 p-3 text-red-700" role="alert">
           {error}
+        </div>
+      )}
+      {Object.keys(fieldErrors).length > 0 && (
+        <div
+          className="rounded bg-red-50 p-3 text-sm text-red-700"
+          role="alert"
+        >
+          <ul className="list-disc pl-5">
+            {Object.entries(fieldErrors).map(([field, errors]) =>
+              errors.map((msg) => (
+                <li key={`${field}-${msg}`}>
+                  {field}: {msg}
+                </li>
+              ))
+            )}
+          </ul>
         </div>
       )}
 
       <button
         type="submit"
-        disabled={isPending}
-        className="inline-flex items-center justify-center rounded bg-primary px-6 py-3 text-primary-foreground font-medium disabled:opacity-50"
+        className="inline-flex items-center justify-center rounded bg-primary px-6 py-3 font-medium text-primary-foreground"
       >
-        {isPending
-          ? 'Przetwarzanie...'
-          : `Rezerwuj i płać – ${formatPrice(totalPrice)}`}
+        Przejdź do podsumowania
       </button>
     </form>
   );

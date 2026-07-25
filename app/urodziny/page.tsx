@@ -22,6 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
   );
 }
 
+/**
+ * Page-specific /urodziny template — archive crops + compact package rhythm.
+ * Does not use the shared max-w-prose archive shell.
+ */
 export default async function UrodzinyPage() {
   const resolved = await resolveClonePage(cmsSlugFromRoute('/urodziny'), {
     allowDraftPreview: true,
@@ -29,6 +33,20 @@ export default async function UrodzinyPage() {
   const parts =
     (resolved && documentToMarketingParts(resolved.document)) || null;
   const offer = parts?.offerIntro ?? urodzinyPage.offerIntro;
+  const fixtureBlocks = [...urodzinyPage.blocks];
+  const blocks = (parts?.blocks ?? fixtureBlocks).map((b) => {
+    const fixture = fixtureBlocks.find((f) => f.id === b.id);
+    return {
+      ...b,
+      compact: true,
+      imageWidth: b.imageWidth ?? fixture?.imageWidth,
+      imageHeight: b.imageHeight ?? fixture?.imageHeight,
+      imageSrc: fixture?.imageSrc ?? b.imageSrc,
+      imageAlt: fixture?.imageAlt ?? b.imageAlt,
+      imageFirst: fixture?.imageFirst ?? b.imageFirst,
+      tinted: fixture?.tinted ?? b.tinted,
+    };
+  });
 
   return (
     <>
@@ -41,21 +59,37 @@ export default async function UrodzinyPage() {
           }
         }
         beforeBlocks={
-          <section className="mx-auto max-w-3xl px-4 pb-8 md:px-6">
-            <h2 className="font-heading text-2xl font-semibold text-text-primary">
+          <section className="mx-auto max-w-[720px] px-4 pb-5 text-center md:px-6">
+            <h2 className="font-heading text-[1.65rem] font-semibold text-[#a85a48] md:text-[1.9rem]">
               {offer.heading}
             </h2>
-            {offer.paragraphs.map((p) => (
-              <p
-                key={p.slice(0, 48)}
-                className="mt-4 text-base leading-relaxed text-text-muted"
-              >
-                {p}
-              </p>
-            ))}
+            {offer.paragraphs.map((p, idx) => {
+              const m = p.match(/^([^:]{3,40}):\s*(.*)$/);
+              return (
+                <p
+                  key={p.slice(0, 48)}
+                  className={
+                    idx === 0
+                      ? 'mt-3 text-[14px] leading-[1.65] text-[#5c4038] italic md:text-[15px]'
+                      : 'mt-3 text-[14px] leading-[1.65] text-[#5c4038] md:text-[15px]'
+                  }
+                >
+                  {m ? (
+                    <>
+                      <strong className="font-semibold text-[#3d2a24] not-italic">
+                        {m[1]}:
+                      </strong>{' '}
+                      {m[2]}
+                    </>
+                  ) : (
+                    p
+                  )}
+                </p>
+              );
+            })}
           </section>
         }
-        blocks={parts?.blocks ?? [...urodzinyPage.blocks]}
+        blocks={blocks}
       />
     </>
   );

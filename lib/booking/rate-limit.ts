@@ -49,8 +49,8 @@ function getLimiter(
   const redis = getRedis();
   if (!redis) {
     if (process.env.NODE_ENV === 'production') {
-      throw new Error(
-        'UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN are required for rate limiting in production.'
+      console.warn(
+        '[rate-limit] Upstash Redis is not configured; booking rate limits are disabled until UPSTASH_REDIS_REST_URL/TOKEN are set.'
       );
     }
     limiters[name] = null;

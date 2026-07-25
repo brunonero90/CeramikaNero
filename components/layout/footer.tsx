@@ -1,60 +1,80 @@
 import Link from 'next/link';
 import { NewsletterSignup } from '@/components/clone/newsletter-signup';
-import { primaryNavigation, siteContact } from '@/lib/fixtures/navigation';
+import { siteContact } from '@/lib/fixtures/navigation';
 
+/**
+ * Shared Wix footer — archive geometry ~483px @1440 (page-spec footer section).
+ * Peach band #fbe5d6 → terracotta panel #7e402e (~980px) → © 2023.
+ */
 export function Footer() {
   return (
-    <footer className="mt-auto">
-      <div className="bg-surface-bg px-4 py-12 text-center md:px-6">
-        <p className="font-heading text-2xl font-semibold text-accent-primary md:text-3xl">
+    <footer
+      className="mt-auto bg-[#fbe5d6] text-[#5c4038]"
+      data-chrome="site-footer"
+    >
+      <div className="px-4 pt-8 pb-5 text-center md:px-6 md:pt-9 md:pb-6">
+        <p className="font-heading text-[26px] font-normal tracking-wide text-[#a85a48] md:text-[30px]">
           {siteContact.brand}
         </p>
-        <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-text-muted md:text-base">
-          ■ {siteContact.addressLine} ■ {siteContact.cityLine} ■{' '}
+        <p className="mx-auto mt-4 max-w-[780px] text-[13px] leading-[1.65] md:text-[14px]">
+          <span className="inline-block px-0.5 text-[#a85a48]" aria-hidden>
+            ■
+          </span>{' '}
+          {siteContact.addressLine}{' '}
+          <span className="inline-block px-0.5 text-[#a85a48]" aria-hidden>
+            ■
+          </span>{' '}
+          {siteContact.cityLine}{' '}
+          <span className="inline-block px-0.5 text-[#a85a48]" aria-hidden>
+            ■
+          </span>{' '}
           <a
             href={`mailto:${siteContact.email}`}
             className="underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
           >
             {siteContact.email}
           </a>{' '}
-          ■ tel.{' '}
+          <span className="inline-block px-0.5 text-[#a85a48]" aria-hidden>
+            ■
+          </span>{' '}
+          tel.{' '}
           <a
             href={siteContact.phoneHref}
             className="underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
           >
-            {siteContact.phoneDisplay}
+            {siteContact.phoneDisplay.replace(/\s/g, '')}
           </a>
         </p>
-        <p className="mt-2 text-sm text-text-muted">
-          ■ Numer Konta: {siteContact.bankAccount} ■ NIP {siteContact.nip}
+        <p className="mx-auto mt-1 max-w-[780px] text-[13px] leading-[1.65] md:text-[14px]">
+          <span className="inline-block px-0.5 text-[#a85a48]" aria-hidden>
+            ■
+          </span>{' '}
+          Numer Konta: {siteContact.bankAccount}{' '}
+          <span className="inline-block px-0.5 text-[#a85a48]" aria-hidden>
+            ■
+          </span>{' '}
+          NIP {siteContact.nip}
         </p>
-        <nav
-          aria-label="Nawigacja stopki"
-          className="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-x-4 gap-y-2"
-        >
-          {primaryNavigation.map((item) => (
-            <Link
-              key={`f-${item.href}-${item.label}`}
-              href={item.href}
-              className="text-xs font-semibold tracking-wide text-text-muted uppercase transition-base hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
       </div>
 
-      <div className="bg-accent-primary px-4 py-12 text-white md:px-6">
-        <NewsletterSignup />
-        <div className="mx-auto mt-8 flex max-w-xl flex-col items-center justify-between gap-3 border-t border-white/20 pt-6 text-xs text-white/80 sm:flex-row">
-          <p>© {new Date().getFullYear()} by Ceramika Nero.</p>
-          <Link
-            href={siteContact.privacyHref}
-            className="underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            Polityka prywatności
-          </Link>
+      <div className="px-4 pb-5 md:px-6 md:pb-6">
+        <div className="mx-auto w-full max-w-[980px] bg-[#7e402e] px-5 py-6 text-[#fdf2ed] md:px-10 md:py-7">
+          <NewsletterSignup variant="wix-panel" />
+          <div className="mt-5 text-right">
+            <Link
+              href={siteContact.privacyHref}
+              className="text-sm text-[#fdf2ed] underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              Polityka prywatności
+            </Link>
+          </div>
         </div>
+      </div>
+
+      <div className="px-4 pb-6 text-center md:px-6 md:pb-7">
+        <p className="text-sm text-[#5c4038] underline underline-offset-2">
+          © 2023 by Ceramika Nero.
+        </p>
       </div>
     </footer>
   );

@@ -22,12 +22,31 @@ export async function generateMetadata(): Promise<Metadata> {
   );
 }
 
+/**
+ * Page-specific /panienskie template — framed centered packages, archive crops.
+ */
 export default async function PanienskiePage() {
   const resolved = await resolveClonePage(cmsSlugFromRoute('/panienskie'), {
     allowDraftPreview: true,
   });
   const parts =
     (resolved && documentToMarketingParts(resolved.document)) || null;
+  const fixtureBlocks = [...panienskiePage.blocks];
+  const blocks = (parts?.blocks ?? fixtureBlocks).map((b) => {
+    const fixture = fixtureBlocks.find((f) => f.id === b.id);
+    return {
+      ...b,
+      compact: true,
+      framed: b.framed ?? fixture?.framed ?? true,
+      textAlign: b.textAlign ?? fixture?.textAlign ?? ('center' as const),
+      imageWidth: b.imageWidth ?? fixture?.imageWidth,
+      imageHeight: b.imageHeight ?? fixture?.imageHeight,
+      imageSrc: fixture?.imageSrc ?? b.imageSrc,
+      imageAlt: fixture?.imageAlt ?? b.imageAlt,
+      imageFirst: fixture?.imageFirst ?? b.imageFirst,
+      tinted: fixture?.tinted ?? b.tinted,
+    };
+  });
 
   return (
     <>
@@ -39,7 +58,7 @@ export default async function PanienskiePage() {
             intro: [...panienskiePage.hero.intro],
           }
         }
-        blocks={parts?.blocks ?? [...panienskiePage.blocks]}
+        blocks={blocks}
       />
     </>
   );

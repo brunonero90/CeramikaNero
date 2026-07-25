@@ -15,7 +15,8 @@
     "db:types": "node scripts/generate-db-types.js",
     "audit:links": "node scripts/audit-site-links.js",
     "seed:operational": "node scripts/seed-operational-data.js",
-    "seed:operational:apply": "node scripts/seed-operational-data.js --apply"
+    "seed:operational:apply": "node scripts/seed-operational-data.js --apply",
+    "test:e2e:local-booking": "node scripts/e2e-local-booking.js"
   },
   "dependencies": {
     "@supabase/ssr": "0.6.0",
@@ -36,6 +37,7 @@
     "zod": "3.25.1"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.15.12",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

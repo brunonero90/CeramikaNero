@@ -85,9 +85,14 @@ function fromMarketingSplit(
       imageSrc: string;
       imageAlt: string;
       imageFirst?: boolean;
+      imageWidth?: number;
+      imageHeight?: number;
       ctaLabel?: string;
       ctaHref?: string;
       tinted?: boolean;
+      textAlign?: 'left' | 'center';
+      framed?: boolean;
+      compact?: boolean;
     }[];
   },
   sources: string[],
@@ -121,9 +126,14 @@ function fromMarketingSplit(
         imageSrc: block.imageSrc,
         imageAlt: block.imageAlt,
         imageFirst: block.imageFirst,
+        imageWidth: block.imageWidth,
+        imageHeight: block.imageHeight,
         ctaLabel: block.ctaLabel,
         ctaHref: block.ctaHref,
         tinted: block.tinted,
+        textAlign: block.textAlign,
+        framed: block.framed,
+        compact: block.compact,
       })),
     ],
   });

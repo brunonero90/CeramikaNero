@@ -14,8 +14,8 @@ const FOOTER_LABEL_NOISE =
 
 /** Map known original booking labels that only pointed at `#` or dead anchors. */
 const LABEL_HREF_OVERRIDES: Record<string, string> = {
-  'zobacz warunki': '/terms-conditions',
-  'polityka prywatności': '/terms-conditions',
+  'zobacz warunki': '/polityka-prywatnosci',
+  'polityka prywatności': '/polityka-prywatnosci',
   regulamin: '/regulamin',
   kontakt: '/kontakt',
   blog: '/blog',
@@ -80,7 +80,7 @@ export function resolveCtaHref(label: string, href: string): ResolvedHref {
   // Long privacy blob used as button label on Wix
   if (cleanLabel.length > 120) {
     return {
-      href: '/terms-conditions',
+      href: '/polityka-prywatnosci',
       actionable: true,
       reason: 'privacy-blob-to-terms',
     };
@@ -91,8 +91,16 @@ export function resolveCtaHref(label: string, href: string): ResolvedHref {
   }
 
   // Wix accordion / expand controls incorrectly extracted as navigational links
+  // when href is empty, hash, or bare "/". Real destinations keep the label.
   if (/^więcej szczegółów/i.test(cleanLabel)) {
-    return { href: '#', actionable: false, reason: 'accordion-not-link' };
+    if (
+      !localized ||
+      localized === '#' ||
+      localized === '/' ||
+      localized.startsWith('/#')
+    ) {
+      return { href: '#', actionable: false, reason: 'accordion-not-link' };
+    }
   }
 
   if (localized === '#' || !localized) {

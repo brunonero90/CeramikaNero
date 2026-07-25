@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import { CloneCta, MarketingHero } from '@/components/clone/marketing';
 import { buildMarketingMetadata } from '@/components/clone/marketing-page';
@@ -28,6 +27,8 @@ function FeatureSplit({
   bullets = [],
   imageSrc,
   imageAlt,
+  imageWidth,
+  imageHeight,
   ctaLabel,
   ctaHref,
   imageFirst,
@@ -37,42 +38,43 @@ function FeatureSplit({
   bullets?: readonly string[];
   imageSrc: string;
   imageAlt: string;
+  imageWidth: number;
+  imageHeight: number;
   ctaLabel: string;
   ctaHref: string;
   imageFirst: boolean;
 }) {
   return (
-    <section className="border-t border-surface-subtle/40 bg-surface-bg">
-      <div className="mx-auto grid max-w-5xl items-center gap-8 px-4 py-12 md:grid-cols-2 md:gap-12 md:px-6">
+    <section className="bg-[#fdf8f4]">
+      <div className="mx-auto grid max-w-[980px] items-start gap-5 px-4 py-6 md:grid-cols-2 md:gap-6 md:px-0 md:py-7">
         <div className={imageFirst ? undefined : 'md:order-2'}>
           <Image
             src={imageSrc}
             alt={imageAlt}
-            width={488}
-            height={609}
+            width={imageWidth}
+            height={imageHeight}
             className="h-auto w-full object-cover"
+            style={{ aspectRatio: `${imageWidth} / ${imageHeight}` }}
             sizes="(max-width: 768px) 100vw, 488px"
           />
         </div>
-        <div
-          className={`bg-surface-raised p-6 shadow-sm md:p-8 ${imageFirst ? '' : 'md:order-1'}`}
-        >
-          <h2 className="font-heading text-2xl font-semibold text-text-primary md:text-3xl">
+        <div className={imageFirst ? undefined : 'md:order-1'}>
+          <h2 className="font-heading text-[1.55rem] font-semibold text-[#a85a48] md:text-[1.85rem]">
             {title}
           </h2>
           {paragraphs.map((p) => (
             <p
               key={p.slice(0, 40)}
-              className="mt-4 text-base leading-relaxed text-text-muted"
+              className="mt-3 text-[14px] leading-[1.65] text-[#5c4038] md:text-[15px]"
             >
               {p}
             </p>
           ))}
           {bullets.length > 0 ? (
-            <ul className="mt-5 space-y-2 text-base text-text-primary">
+            <ul className="mt-4 space-y-1.5 text-[14px] text-[#3d2a24] md:text-[15px]">
               {bullets.map((item) => (
                 <li key={item.slice(0, 48)} className="flex gap-2">
-                  <span className="text-accent-primary" aria-hidden>
+                  <span className="text-[#a85a48]" aria-hidden>
                     ■
                   </span>
                   <span>{item}</span>
@@ -80,7 +82,7 @@ function FeatureSplit({
               ))}
             </ul>
           ) : null}
-          <div className="mt-8">
+          <div className="mt-5">
             <CloneCta href={ctaHref}>{ctaLabel}</CloneCta>
           </div>
         </div>
@@ -143,16 +145,16 @@ export default async function GlinaBoxHomePage() {
         intro={[...(hero.intro ?? [])]}
       />
 
-      <section className="mx-auto max-w-3xl px-4 pb-10 text-center md:px-6">
+      <section className="mx-auto max-w-[720px] px-4 pb-6 text-center md:px-6">
         {introBlocks.map((p) => (
           <p
             key={p.slice(0, 48)}
-            className="mt-4 text-base leading-relaxed text-text-muted first:mt-0 md:text-lg"
+            className="mt-3 text-[14px] leading-[1.65] text-[#5c4038] first:mt-0 md:text-[15px]"
           >
             {p}
           </p>
         ))}
-        <div className="mx-auto mt-8 max-w-xl">
+        <div className="mx-auto mt-6 w-full max-w-[476px]">
           <Image
             src={
               gift && gift.type === 'labeled-image'
@@ -166,11 +168,11 @@ export default async function GlinaBoxHomePage() {
             }
             width={476}
             height={317}
-            className="mx-auto h-auto w-full object-contain"
+            className="mx-auto h-[317px] w-full max-w-[476px] object-cover"
           />
           <p className="sr-only">WYJĄTKOWY PREZENT</p>
         </div>
-        <div className="mt-8">
+        <div className="mt-6">
           <CloneCta
             href={
               primaryCta && primaryCta.type === 'cta-block'
@@ -183,7 +185,7 @@ export default async function GlinaBoxHomePage() {
               : glinaBoxPage.primaryCta.label}
           </CloneCta>
         </div>
-        <div className="mt-8">
+        <div className="mt-6">
           <Image
             src={
               strip && strip.type === 'labeled-image'
@@ -193,7 +195,7 @@ export default async function GlinaBoxHomePage() {
             alt=""
             width={737}
             height={73}
-            className="mx-auto h-auto w-full max-w-3xl object-contain"
+            className="mx-auto h-[73px] w-full max-w-[737px] object-cover"
           />
         </div>
       </section>
@@ -224,6 +226,8 @@ export default async function GlinaBoxHomePage() {
             ? breath.imageAlt
             : glinaBoxPage.breath.imageAlt
         }
+        imageWidth={488}
+        imageHeight={609}
         ctaLabel={
           breath && breath.type === 'split-block'
             ? (breath.ctaLabel ?? '')
@@ -262,6 +266,8 @@ export default async function GlinaBoxHomePage() {
             ? course.imageAlt
             : glinaBoxPage.course.imageAlt
         }
+        imageWidth={488}
+        imageHeight={512}
         ctaLabel={
           course && course.type === 'split-block'
             ? (course.ctaLabel ?? '')
@@ -277,61 +283,47 @@ export default async function GlinaBoxHomePage() {
 
       <section
         aria-label="Produkty GLINA BOX"
-        className="border-t border-surface-subtle/40 bg-[#f8ebe3] px-4 py-14 md:px-6"
+        className="bg-[#f8ebe3] px-4 py-6 md:px-6 md:py-7"
       >
-        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+        <div className="mx-auto grid max-w-[980px] gap-5 md:grid-cols-2 md:gap-6">
           {products.map((product) => {
             if (product.type !== 'product-card') return null;
             return (
-              <article
-                key={product.id}
-                className="flex flex-col border border-surface-subtle/40 bg-surface-raised"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
+              <article key={product.id} className="flex flex-col">
+                <div className="relative h-[317px] w-full overflow-hidden">
                   <Image
                     src={product.imageSrc}
                     alt={product.imageAlt}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, 490px"
                   />
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <p className="text-xs font-semibold tracking-wide text-accent-primary uppercase">
-                    Podgląd · {product.badge}
+                <div className="flex flex-1 flex-col pt-3">
+                  <p className="text-xs font-semibold tracking-wide text-[#a85a48] uppercase">
+                    {product.badge}
                   </p>
-                  <h2 className="mt-2 font-heading text-xl font-semibold text-text-primary">
+                  <h2 className="mt-1 font-heading text-lg font-semibold text-[#3d2a24]">
                     {product.title}
                   </h2>
-                  <p className="mt-4 text-sm text-text-muted">
+                  <p className="mt-2 text-sm text-[#5c4038]">
                     {product.priceLabel}
                   </p>
-                  <p className="text-lg font-semibold text-text-primary">
+                  <p className="text-base font-semibold text-[#3d2a24]">
                     {product.price}
                   </p>
                   {product.salePrice ? (
                     <>
-                      <p className="mt-2 text-sm text-text-muted">
+                      <p className="mt-1 text-sm text-[#5c4038]">
                         {product.saleLabel}
                       </p>
-                      <p className="text-lg font-semibold text-accent-primary">
+                      <p className="text-base font-semibold text-[#a85a48]">
                         {product.salePrice}
                       </p>
                     </>
                   ) : null}
-                  <div className="mt-auto pt-6">
-                    <CloneCta href={product.href} className="w-full">
-                      {product.ctaLabel}
-                    </CloneCta>
-                    <p className="mt-2 text-center text-xs text-text-muted">
-                      Koszyk lokalny — bez płatności online w tej fazie.
-                    </p>
-                    <Link
-                      href={product.href}
-                      className="mt-2 block text-center text-sm text-accent-primary underline-offset-2 hover:underline"
-                    >
-                      Podgląd
-                    </Link>
+                  <div className="mt-4">
+                    <CloneCta href={product.href}>{product.ctaLabel}</CloneCta>
                   </div>
                 </div>
               </article>
@@ -366,6 +358,8 @@ export default async function GlinaBoxHomePage() {
             ? shipping.imageAlt
             : glinaBoxPage.shipping.imageAlt
         }
+        imageWidth={488}
+        imageHeight={541}
         ctaLabel={
           shipping && shipping.type === 'split-block'
             ? (shipping.ctaLabel ?? '')

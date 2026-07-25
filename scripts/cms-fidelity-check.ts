@@ -44,8 +44,7 @@ function contentOutline(doc: ReturnType<typeof parseClonePageDocument>) {
       if (s.type === 'hero' || s.type === 'split-block') return [s.title];
       if (s.type === 'offer-intro') return [s.heading];
       if (s.type === 'homepage-header') return [s.title];
-      if (s.type === 'mid-copy')
-        return [s.workshopsHeading, s.contactHeading];
+      if (s.type === 'mid-copy') return [s.workshopsHeading, s.contactHeading];
       if (s.type === 'bullet-list') return [s.heading];
       return [];
     }),

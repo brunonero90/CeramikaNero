@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BlogCategoryNav } from '@/components/clone/archive-page';
 import { ArchiveRichText } from '@/components/clone/archive-rich-text';
 import { archiveBlogPosts } from '@/lib/clone/content/phase2/blog-posts';
+import { knownHeadingsForSection } from '@/lib/clone/page-spec-headings';
 
 const NOISE =
   /^(Udostępnij post|Wszystkie|Aktualności|O mnie|Ciekawostki|\d+ wyświetleń|0 komentarzy|Post nie został|Ostatnie posty|Zobacz wszystkie|Komentarze|Napisz komentarz)/i;
@@ -135,7 +136,11 @@ export function BlogPostView({
         </div>
       ) : null}
       <div className="mx-auto max-w-prose px-4 py-10 md:px-6">
-        <ArchiveRichText text={body.join('\n\n')} className="space-y-5" />
+        <ArchiveRichText
+          text={body.join('\n\n')}
+          knownHeadings={knownHeadingsForSection(post.route, 0)}
+          className="space-y-5"
+        />
       </div>
       <div className="mx-auto max-w-3xl px-4 pb-16 md:px-6">
         <Link

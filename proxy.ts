@@ -22,9 +22,16 @@ export async function proxy(request: NextRequest) {
   const isPublicAdminRoute =
     pathname.startsWith('/admin/login') ||
     pathname.startsWith('/admin/forgot-password') ||
-    pathname.startsWith('/admin/reset-password');
+    pathname.startsWith('/admin/reset-password') ||
+    // Local booking admin is gated by LOCAL_ADMIN_SECRET inside the page —
+    // never enabled when NODE_ENV=production (see lib/booking/local-mode).
+    pathname.startsWith('/admin/local');
 
   if (!isAdminRoute) {
+    return response;
+  }
+
+  if (pathname.startsWith('/admin/local')) {
     return response;
   }
 

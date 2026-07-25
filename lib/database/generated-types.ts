@@ -1125,6 +1125,7 @@ export type Database = {
           p_customer_last_name: string;
           p_customer_notes: string;
           p_customer_phone: string;
+          p_idempotency_key?: string;
           p_internal_notes?: string;
           p_marketing_consent: boolean;
           p_participants: Json;

@@ -20,7 +20,7 @@ export const glinaDoWinaPage = {
   blocks: [
     {
       id: 'oferta',
-      title: 'Warsztaty glina do wina',
+      title: 'Warsztaty\nglina do wina',
       bullets: [
         'Twórcze warsztaty ceramiczne',
         'pierwsze spotkanie- lepienie, drugie spotkanie po dwóch tygodniach - szkliwienie',
@@ -57,7 +57,7 @@ export const glinaDoWinaPage = {
     },
     {
       id: 'co-lepic',
-      title: 'co można lepić?',
+      title: 'Warsztaty\nglina do wina\nco można lepić?',
       subtitle:
         'Twórz swoje ceramiczne dzieła – warsztaty ceramiczne i lepienie z gliny',
       paragraphs: [

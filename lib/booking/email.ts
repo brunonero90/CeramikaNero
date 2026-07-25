@@ -1,14 +1,11 @@
 import 'server-only';
-import {
-  getResendClient,
-  getResendFromEmail,
-  getResendReplyToEmail,
-} from '@/lib/resend/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { buildCancellationUrl } from '@/lib/booking/urls';
 import { formatPrice } from '@/lib/utils/price';
 import { addHours } from 'date-fns';
 import { emailStatusSchema, emailTypeSchema } from '@/lib/database/schema';
+import { deliverBookingEmail } from '@/lib/booking/email-transport';
+import { isBookingLocalMode } from '@/lib/booking/local-mode';
 
 export type BookingEmailType =
   (typeof emailTypeSchema.enum)[keyof typeof emailTypeSchema.enum];
@@ -138,19 +135,25 @@ async function hasSuccessfulEmail(
 export async function sendBookingConfirmationEmail(
   ctx: BookingEmailContext
 ): Promise<void> {
-  if (await hasSuccessfulEmail(ctx.bookingId, 'confirmation')) {
-    return;
+  if (!isBookingLocalMode()) {
+    if (await hasSuccessfulEmail(ctx.bookingId, 'confirmation')) {
+      return;
+    }
   }
 
-  const supabase = createAdminClient();
-  const { data: token } = await supabase.rpc('create_cancellation_token', {
-    p_booking_id: ctx.bookingId,
-    p_expires_at: addHours(new Date(ctx.sessionStartsAt), -24).toISOString(),
-  });
-
-  const cancellationUrl = token
-    ? buildCancellationUrl(token as string, ctx.reference)
-    : undefined;
+  let cancellationUrl: string | undefined;
+  if (!isBookingLocalMode()) {
+    const supabase = createAdminClient();
+    const { data: token } = await supabase.rpc('create_cancellation_token', {
+      p_booking_id: ctx.bookingId,
+      p_expires_at: addHours(new Date(ctx.sessionStartsAt), -24).toISOString(),
+    });
+    cancellationUrl = token
+      ? buildCancellationUrl(token as string, ctx.reference)
+      : undefined;
+  } else {
+    cancellationUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3010'}/kontakt`;
+  }
 
   const subject = `Potwierdzenie rezerwacji ${ctx.reference}`;
   const amount = formatPrice(ctx.totalGrossGrosz);
@@ -281,34 +284,68 @@ async function sendEmail(
   bookingId: string,
   type: BookingEmailType
 ): Promise<void> {
-  const resend = getResendClient();
-  const from = getResendFromEmail();
-  const replyTo = getResendReplyToEmail();
-
-  const recordId = await recordBookingEmail(bookingId, type, 'pending');
-
-  try {
-    const { data, error } = await resend.emails.send({
-      from,
-      to,
-      replyTo,
-      subject,
-      html,
-      text,
-    });
-
-    if (error) {
-      await recordBookingEmail(bookingId, type, 'failed', null, error.message);
-      throw error;
-    }
-
-    await recordBookingEmail(bookingId, type, 'sent', data?.id ?? null, null);
-  } catch (err) {
-    const message = err instanceof Error ? err.message : 'Unknown email error';
-    if (recordId) {
-      await recordBookingEmail(bookingId, type, 'failed', null, message);
-    }
-    // Email failure must not roll back a successful payment. Just log and surface.
-    console.error('Email send failed', { bookingId, type, error: message });
+  if (!isBookingLocalMode()) {
+    await recordBookingEmail(bookingId, type, 'pending');
   }
+
+  const result = await deliverBookingEmail({
+    bookingId,
+    type,
+    to,
+    subject,
+    html,
+    text,
+  });
+
+  if (!isBookingLocalMode()) {
+    if (result.ok) {
+      await recordBookingEmail(
+        bookingId,
+        type,
+        'sent',
+        result.providerMessageId,
+        null
+      );
+    } else {
+      await recordBookingEmail(
+        bookingId,
+        type,
+        'failed',
+        null,
+        result.errorMessage
+      );
+      console.error('Email send failed', {
+        bookingId,
+        type,
+        error: result.errorMessage,
+      });
+    }
+  }
+}
+
+/** Build confirmation content for local bookings (no Supabase context). */
+export async function sendLocalBookingConfirmationEmail(params: {
+  bookingId: string;
+  reference: string;
+  workshopTitle: string;
+  sessionStartsAt: string;
+  sessionLocation: string;
+  quantity: number;
+  totalGrossGrosz: number;
+  customerEmail: string;
+  customerName: string;
+  participants: { display_name: string | null; age: number | null }[];
+}): Promise<void> {
+  await sendBookingConfirmationEmail({
+    bookingId: params.bookingId,
+    reference: params.reference,
+    workshopTitle: params.workshopTitle,
+    sessionStartsAt: params.sessionStartsAt,
+    sessionLocation: params.sessionLocation,
+    quantity: params.quantity,
+    totalGrossGrosz: params.totalGrossGrosz,
+    customerEmail: params.customerEmail,
+    customerName: params.customerName,
+    participants: params.participants,
+  });
 }

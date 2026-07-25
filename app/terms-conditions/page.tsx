@@ -1,22 +1,24 @@
 import type { Metadata } from 'next';
-import {
-  ResolvedArchivePage,
-  resolvedArchiveTitle,
-} from '@/components/clone/resolved-archive-page';
+import { LegalDocumentView } from '@/components/clone/legal-document-view';
+import { politykaPrywatnosciDocument } from '@/lib/clone/content/legal-documents';
 
-const ROUTE = '/terms-conditions' as const;
+/**
+ * Legacy Wix URL. Same professional privacy document as /polityka-prywatnosci.
+ * Workshop rules live on /regulamin (archive mixed both on this URL).
+ */
+export const metadata: Metadata = {
+  title: politykaPrywatnosciDocument.title,
+  description: politykaPrywatnosciDocument.metaDescription,
+  alternates: {
+    canonical: '/polityka-prywatnosci',
+  },
+};
 
-export const dynamic = 'force-dynamic';
-
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: await resolvedArchiveTitle(
-      ROUTE,
-      'Terms & Conditions | Ceramika Nero'
-    ),
-  };
-}
-
-export default async function TermsConditionsPage() {
-  return <ResolvedArchivePage route={ROUTE} />;
+export default function TermsConditionsPage() {
+  return (
+    <LegalDocumentView
+      blocks={politykaPrywatnosciDocument.blocks}
+      note={`${politykaPrywatnosciDocument.note} Canonical Polish URL: /polityka-prywatnosci.`}
+    />
+  );
 }

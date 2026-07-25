@@ -1,19 +1,14 @@
 import type { Metadata } from 'next';
-import {
-  ResolvedArchivePage,
-  resolvedArchiveTitle,
-} from '@/components/clone/resolved-archive-page';
-
-const ROUTE = '/regulamin' as const;
+import { LegalDocumentView } from '@/components/clone/legal-document-view';
+import { regulaminDocument } from '@/lib/clone/content/legal-documents';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: await resolvedArchiveTitle(ROUTE, 'Regulamin | Ceramika Nero'),
-  };
-}
+export const metadata: Metadata = {
+  title: regulaminDocument.title,
+  description: regulaminDocument.metaDescription,
+};
 
-export default async function RegulaminPage() {
-  return <ResolvedArchivePage route={ROUTE} />;
+export default function RegulaminPage() {
+  return <LegalDocumentView blocks={regulaminDocument.blocks} />;
 }

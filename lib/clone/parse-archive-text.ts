@@ -1,15 +1,28 @@
 /**
  * Parse archived Wix section body text into structured blocks.
- * Source text comes from content.md section extraction (newline-preserving).
- * Does not invent wording — only classifies existing lines.
+ *
+ * IMPORTANT: Do not invent headings from length/case heuristics when original
+ * evidence exists. Pass `knownHeadings` from page-spec.json (or DOM) so only
+ * verified heading strings become heading blocks.
  */
 
 export type ArchiveTextBlock =
-  | { type: 'heading'; level: 3 | 4; text: string }
+  | { type: 'heading'; level: 2 | 3 | 4; text: string }
   | { type: 'paragraph'; text: string }
   | { type: 'list'; ordered: boolean; items: string[] }
   | { type: 'quote'; text: string }
   | { type: 'meta'; text: string };
+
+export type ParseArchiveTextOptions = {
+  /**
+   * Exact heading strings from archived page-spec / DOM (may include
+   * embedded newlines). Only these lines are promoted to headings.
+   * When omitted, NO line is promoted to a heading from heuristics.
+   */
+  knownHeadings?: readonly string[];
+  /** Default heading level for known headings (section H2 is usually separate). */
+  defaultHeadingLevel?: 2 | 3 | 4;
+};
 
 const BULLET = /^[■•●▪◦\-–—]\s*(.+)$/;
 const NUMBERED = /^(\d+)[.)]\s+(.+)$/;
@@ -19,25 +32,33 @@ const META_LINE =
 const FOOTER_NOISE =
   /^(zapisz się do newslettera|akceptuję regulamin|zapisując się do newslettera|©\s*\d{4}|polityka prywatności\s*$)/i;
 
-function isShortHeading(line: string): boolean {
-  const t = line.trim();
-  if (t.length < 3 || t.length > 80) return false;
-  if (/[.!?]$/.test(t) && t.length > 40) return false;
-  if (BULLET.test(t) || NUMBERED.test(t)) return false;
-  if (PRICE_LINE.test(t) || META_LINE.test(t)) return false;
-  // ALL CAPS / Title-like package names
-  const letters = t.replace(/[^a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, '');
-  if (letters.length < 3) return false;
-  const upper = letters.replace(/[^A-ZĄĆĘŁŃÓŚŹŻ]/g, '').length;
-  if (upper / letters.length >= 0.72) return true;
-  // Short standalone title without terminal punctuation
-  if (t.length <= 48 && !/[.!?…]$/.test(t) && !t.includes('  ')) {
-    const words = t.split(/\s+/);
-    if (words.length <= 8 && words.every((w) => w[0] === w[0]?.toUpperCase())) {
-      return true;
+function normalizeHeadingKey(value: string): string {
+  return value
+    .replace(/\r\n/g, '\n')
+    .replace(/\u00a0/g, ' ')
+    .replace(/[\u200b\u200c\u200d\ufeff]/g, '')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .join('\n')
+    .trim();
+}
+
+function buildKnownHeadingSet(
+  knownHeadings: readonly string[] | undefined
+): Set<string> {
+  const set = new Set<string>();
+  if (!knownHeadings) return set;
+  for (const h of knownHeadings) {
+    const key = normalizeHeadingKey(h);
+    if (!key) continue;
+    set.add(key);
+    // Also accept single-line variants of multi-line headings
+    for (const line of key.split('\n')) {
+      if (line.length >= 3) set.add(line);
     }
   }
-  return false;
+  return set;
 }
 
 function flushParagraph(lines: string[], blocks: ArchiveTextBlock[]): void {
@@ -56,9 +77,16 @@ function flushParagraph(lines: string[], blocks: ArchiveTextBlock[]): void {
 
 /**
  * Convert a raw archive section body into typed blocks.
+ * Heading promotion is evidence-driven via `knownHeadings` only.
  */
-export function parseArchiveText(raw: string): ArchiveTextBlock[] {
+export function parseArchiveText(
+  raw: string,
+  options: ParseArchiveTextOptions = {}
+): ArchiveTextBlock[] {
   if (!raw || !raw.trim()) return [];
+
+  const known = buildKnownHeadingSet(options.knownHeadings);
+  const headingLevel = options.defaultHeadingLevel ?? 3;
 
   const normalized = raw
     .replace(/\r\n/g, '\n')
@@ -88,8 +116,11 @@ export function parseArchiveText(raw: string): ArchiveTextBlock[] {
     para = [];
   };
 
-  for (const rawLine of lines) {
-    const line = rawLine.trimEnd();
+  // Multi-line known headings: try to match consecutive lines
+  const knownMulti = [...known].filter((k) => k.includes('\n'));
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]!.trimEnd();
     const trimmed = line.trim();
 
     if (!trimmed) {
@@ -101,6 +132,35 @@ export function parseArchiveText(raw: string): ArchiveTextBlock[] {
     if (FOOTER_NOISE.test(trimmed) && trimmed.length < 80) {
       flushList();
       flushPara();
+      continue;
+    }
+
+    // Try multi-line known heading match starting at i
+    let matchedMulti: string | null = null;
+    let matchedSpan = 0;
+    if (para.length === 0 && listItems.length === 0) {
+      for (const multi of knownMulti) {
+        const parts = multi.split('\n');
+        const slice = lines
+          .slice(i, i + parts.length)
+          .map((l) => l.trim())
+          .join('\n');
+        if (normalizeHeadingKey(slice) === multi) {
+          matchedMulti = multi;
+          matchedSpan = parts.length;
+          break;
+        }
+      }
+    }
+    if (matchedMulti) {
+      flushList();
+      flushPara();
+      blocks.push({
+        type: 'heading',
+        level: headingLevel,
+        text: matchedMulti,
+      });
+      i += matchedSpan - 1;
       continue;
     }
 
@@ -123,7 +183,7 @@ export function parseArchiveText(raw: string): ArchiveTextBlock[] {
     }
 
     if (
-      isShortHeading(trimmed) &&
+      known.has(normalizeHeadingKey(trimmed)) &&
       para.length === 0 &&
       listItems.length === 0
     ) {
@@ -131,26 +191,20 @@ export function parseArchiveText(raw: string): ArchiveTextBlock[] {
       flushPara();
       blocks.push({
         type: 'heading',
-        level: trimmed.length <= 40 ? 3 : 4,
+        level: headingLevel,
         text: trimmed,
       });
       continue;
     }
 
     flushList();
+    // Preserve original indentation-trimmed visual line; keep soft breaks
     para.push(trimmed);
   }
 
   flushList();
   flushPara();
 
-  return mergeAdjacentParagraphs(blocks);
-}
-
-/** Keep intentional single newlines inside a paragraph as soft breaks via \n. */
-function mergeAdjacentParagraphs(
-  blocks: ArchiveTextBlock[]
-): ArchiveTextBlock[] {
   return blocks.filter((b) => {
     if (b.type === 'paragraph' || b.type === 'meta' || b.type === 'quote') {
       return b.text.trim().length > 0;
