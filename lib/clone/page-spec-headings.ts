@@ -33,7 +33,13 @@ function routeCandidates(route: string): string[] {
 }
 
 function pageSpecPathForRoute(route: string): string | null {
-  const root = path.join(process.cwd(), 'reference', 'original-site', 'pages');
+  // Keep cwd join statically scoped so Turbopack NFT does not trace the whole repo.
+  const root = path.join(
+    /* turbopackIgnore: true */ process.cwd(),
+    'reference',
+    'original-site',
+    'pages'
+  );
   for (const r of routeCandidates(route)) {
     const rel = r === '/' ? 'index' : r.replace(/^\//, '');
     const candidates = [

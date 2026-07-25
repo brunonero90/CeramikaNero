@@ -9,6 +9,8 @@ import {
 } from '@/lib/booking/local-admin-auth';
 import { localAdminLoginAction } from './actions';
 
+export const dynamic = 'force-dynamic';
+
 export default async function LocalAdminLoginPage({
   searchParams,
 }: {

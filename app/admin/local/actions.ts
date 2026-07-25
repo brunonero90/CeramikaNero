@@ -24,7 +24,7 @@ import { workshops } from '@/lib/database/fixtures/data';
 
 async function requireLocalAdmin() {
   if (!isBookingLocalMode()) {
-    throw new Error('BOOKING_LOCAL_MODE is off');
+    redirect('/admin/local?error=disabled');
   }
   if (!(await isLocalAdminAuthenticated())) {
     redirect('/admin/local');

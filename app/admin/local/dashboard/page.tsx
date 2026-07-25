@@ -1,5 +1,9 @@
+import { redirect } from 'next/navigation';
 import { formatPrice } from '@/lib/utils/price';
-import { LOCAL_BOOKING_BANNER } from '@/lib/booking/local-mode';
+import {
+  isBookingLocalMode,
+  LOCAL_BOOKING_BANNER,
+} from '@/lib/booking/local-mode';
 import {
   cancelLocalSessionAction,
   createLocalSessionAction,
@@ -7,6 +11,8 @@ import {
   localAdminLogoutAction,
   updateLocalBookingStatusAction,
 } from '../actions';
+
+export const dynamic = 'force-dynamic';
 
 function formatWarsaw(iso: string): string {
   return new Intl.DateTimeFormat('pl-PL', {
@@ -17,6 +23,11 @@ function formatWarsaw(iso: string): string {
 }
 
 export default async function LocalAdminDashboardPage() {
+  // Production builds keep BOOKING_LOCAL_MODE off — never throw during prerender.
+  if (!isBookingLocalMode()) {
+    redirect('/admin/local?error=disabled');
+  }
+
   const { sessions, bookings, outbox, workshops } = await loadLocalAdminData();
 
   return (
