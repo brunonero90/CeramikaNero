@@ -1,11 +1,27 @@
 {
-  "validatedAt": "2026-07-24T13:23:43.317Z",
+  "validatedAt": "2026-07-24T21:31:05.858Z",
   "base": "http://127.0.0.1:3010",
   "skipCrawl": false,
   "overallVerdict": "Clone complete with documented Wix-only differences",
   "routeCount": 99,
   "crawlChecked": 83,
   "failures": [],
-  "warnings": [],
+  "warnings": [
+    "No H1 on /booking-calendar/ceramika-dla-dorosłych-pon-czw",
+    "No H1 on /booking-calendar/glina-do-wina-piątek-19-00-suchy-las",
+    "No H1 on /booking-calendar/poranki-z-ceramiką-dla-dorosłych",
+    "No H1 on /booking-calendar/wrzesieńceramika-dla-dorosłych-pon",
+    "No H1 on /booking-calendar/wrzesieńglina-do-wina-piątek-suchy-las",
+    "No H1 on /courses/imprezy-zamknięte-do-10-os.-",
+    "No H1 on /courses/kręcenie-na-kole-",
+    "No H1 on /service-page/ceramika-dla-dorosłych-pon-czw",
+    "No H1 on /service-page/glina-do-wina-piątek-19-00-suchy-las",
+    "No H1 on /service-page/iv-turnus-półkolonie-artystyczne",
+    "No H1 on /service-page/piknik-rodzinny-z-ceramiką-12-września",
+    "No H1 on /service-page/piknik-rodzinny-z-ceramiką-29-sierpnia",
+    "No H1 on /service-page/poranki-z-ceramiką-dla-dorosłych",
+    "No H1 on /service-page/wrzesieńceramika-dla-dorosłych-pon",
+    "No H1 on /service-page/wrzesieńglina-do-wina-piątek-suchy-las"
+  ],
   "ok": true
 }
