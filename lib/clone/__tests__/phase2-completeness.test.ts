@@ -101,18 +101,22 @@ describe('Clone Phase 2 completeness', () => {
     }
   });
 
-  it('cart and product pages document non-live commerce', () => {
+  it('cart supports unified checkout without activating Stripe', () => {
     const cart = readFileSync(
       path.join(root, 'components/clone/cart-page-client.tsx'),
       'utf8'
     );
-    expect(cart).toMatch(/bez płatności/i);
+    expect(cart).toMatch(/sprawdzamy ponownie/i);
+    expect(cart).toMatch(/Przejdź do zamówienia/);
     const add = readFileSync(
       path.join(root, 'components/clone/add-to-cart-button.tsx'),
       'utf8'
     );
-    expect(add).toMatch(/lokalne/i);
+    expect(add).toMatch(/Dodaj do koszyka/);
     expect(add).not.toMatch(/stripe|checkout\.session/i);
+    const cartPage = readFileSync(path.join(root, 'app/cart/page.tsx'), 'utf8');
+    expect(cartPage).toMatch(/CartPageClient/);
+    expect(cartPage).not.toMatch(/ResolvedArchivePage/);
   });
 
   it('phase2.json exists and does not mark incomplete routes as faithful', () => {

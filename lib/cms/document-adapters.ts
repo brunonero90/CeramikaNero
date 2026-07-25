@@ -1,6 +1,7 @@
 import type { ArchivePageData } from '@/components/clone/archive-page';
 import type { SplitBlock } from '@/components/clone/marketing';
 import type { ClonePageDocument } from '@/lib/cms/page-document';
+import { inferHomepageVenueKey } from '@/lib/clone/venue';
 
 /** Map CMS document back to ArchivePageData for existing ArchivePageView. */
 export function documentToArchivePage(
@@ -137,6 +138,7 @@ export function documentToHomepageServices(doc: ClonePageDocument): {
     href: string;
     cta: string;
     soldOut?: boolean;
+    venueKey: 'suchy-las' | 'ptasie-radio' | 'enquiry';
   }[];
 } | null {
   if (doc.template !== 'homepage-services') return null;
@@ -163,6 +165,11 @@ export function documentToHomepageServices(doc: ClonePageDocument): {
           href: s.href,
           cta: s.cta,
           soldOut: s.soldOut,
+          venueKey: inferHomepageVenueKey({
+            venueKey: s.venueKey,
+            href: s.href,
+            moreHref: s.moreHref,
+          }),
         };
       }),
   };

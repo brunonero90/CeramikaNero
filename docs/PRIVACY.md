@@ -89,3 +89,7 @@ This document describes how personal data is handled by the booking and payment 
 ## Contact
 
 For questions, corrections or deletion requests, contact the studio at the address configured in site settings.
+
+## Delivery addresses
+
+Delivery addresses are collected only at cart checkout when at least one physical line requires shipping. Stored in `order_addresses`, readable by owner/manager admins and service role only. Workshop-only and pickup carts do not collect an address.

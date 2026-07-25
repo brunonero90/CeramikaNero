@@ -55,6 +55,10 @@ Protected:
 - `/admin/kategorie` — workshop categories
 - `/admin/warsztaty` — workshops
 - `/admin/terminy` — workshop sessions
+- `/admin/rezerwacje` — workshop bookings (list/detail; empty state safe)
+- `/admin/rezerwacje/nowa` — manual booking
+- `/admin/zamowienia` — mixed cart orders (workshops + products)
+- `/admin/produkty` — Glina Box and studio service products
 - `/admin/instruktorzy` — instructors
 - `/admin/strony` — content pages
 - `/admin/blog` — blog posts

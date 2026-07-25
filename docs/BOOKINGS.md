@@ -201,3 +201,7 @@ If a `checkout.session.completed` webhook arrives after the booking expired:
 - Deposits, instalments, discount codes and gift cards are not implemented.
 - Moving a booking between sessions with different prices is blocked.
 - The success page is presentation-only; the webhook is authoritative.
+
+## Unified cart path (2026)
+
+Scheduled fixed-price workshops can be added to the cart from `/warsztaty/{slug}/rezerwacja` (session + quantity). Purchaser/participant details are collected at `/cart/checkout`. Submission calls `submit_cart_order`, which creates one `orders` row and one `bookings` row per workshop line (capacity reserved only then). Enquiry-only offers must not use this path.

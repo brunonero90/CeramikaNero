@@ -237,8 +237,24 @@ export const galeriaImages = [
  * Homepage service cards.
  * moreHref keeps archive service-page detail URLs.
  * href (book CTA) points at first-party bookable workshop routes.
+ * venueKey drives location filters (never title substring matching).
  */
-export const homepageServices = [
+export type HomepageVenueKey = 'suchy-las' | 'ptasie-radio' | 'enquiry';
+
+export type HomepageServiceCard = {
+  title: string;
+  day: string;
+  price: string;
+  image: string;
+  imageAlt: string;
+  moreHref: string;
+  href: string;
+  cta: string;
+  venueKey: HomepageVenueKey;
+  soldOut?: boolean;
+};
+
+export const homepageServices: HomepageServiceCard[] = [
   {
     title: 'wrzesieńGLINA DO WINA PIĄTEK SUCHY LAS',
     day: 'pt.',
@@ -248,6 +264,7 @@ export const homepageServices = [
     moreHref: '/service-page/wrzesieńglina-do-wina-piątek-suchy-las',
     href: '/warsztaty/glina-do-wina/rezerwacja',
     cta: 'Zarezerwuj',
+    venueKey: 'suchy-las',
   },
   {
     title: 'wrzesieńCERAMIKA DLA DOROSŁYCH PON',
@@ -258,6 +275,7 @@ export const homepageServices = [
     moreHref: '/service-page/wrzesieńceramika-dla-dorosłych-pon',
     href: '/warsztaty/ceramika-dla-doroslych/rezerwacja',
     cta: 'Zarezerwuj',
+    venueKey: 'suchy-las',
   },
   {
     title: 'GLINA DO WINA PIĄTEK 19.00 SUCHY LAS',
@@ -268,6 +286,7 @@ export const homepageServices = [
     moreHref: '/service-page/glina-do-wina-piątek-19-00-suchy-las',
     href: '/warsztaty/glina-do-wina/rezerwacja',
     cta: 'Zarezerwuj',
+    venueKey: 'suchy-las',
   },
   {
     title: 'CERAMIKA DLA DOROSŁYCH PON.CZW.',
@@ -278,6 +297,7 @@ export const homepageServices = [
     moreHref: '/service-page/ceramika-dla-dorosłych-pon-czw',
     href: '/warsztaty/ceramika-dla-doroslych/rezerwacja',
     cta: 'Zarezerwuj',
+    venueKey: 'suchy-las',
   },
   {
     title: 'GLINA DO WINA W POZNANIU W PTASIM RADIU',
@@ -286,8 +306,9 @@ export const homepageServices = [
     image: '/images/wix-migrated/747d6f_b5e3aff7de8743c88922dac0ed1c8629.png',
     imageAlt: 'warsztaty glina do wina',
     moreHref: '/service-page/glina-do-wina-w-poznaniu-w-ptasim-radiu',
-    href: '/warsztaty/glina-do-wina/rezerwacja',
+    href: '/warsztaty/glina-do-wina-w-poznaniu-w-ptasim-radiu/rezerwacja',
     cta: 'Zarezerwuj',
+    venueKey: 'ptasie-radio',
   },
   {
     title: '🌞🎨LETNIA AKADEMIA RYSUNKU, MALARSTWA',
@@ -298,6 +319,7 @@ export const homepageServices = [
     moreHref: '/service-page/letnia-akademia-rysunku-malarstwa',
     href: '/warsztaty/kurs-rysunku-malarstwa-ceramiki-6-10-lat/rezerwacja',
     cta: 'Zarezerwuj',
+    venueKey: 'suchy-las',
   },
   {
     title: 'IV TURNUS PÓŁKOLONIE ARTYSTYCZNE',
@@ -306,8 +328,9 @@ export const homepageServices = [
     image: '/images/wix-migrated/11062b_43197d81c0d040e4867041831bae8092.jpeg',
     imageAlt: 'Kurs rysunku i malarstwa',
     moreHref: '/service-page/iv-turnus-półkolonie-artystyczne',
-    href: '/kontakt',
-    cta: 'Zobacz kurs',
+    href: '/kontakt?oferta=polkolonie-artystyczne',
+    cta: 'Zapytaj o termin',
+    venueKey: 'enquiry',
     soldOut: true,
   },
   {
@@ -319,6 +342,7 @@ export const homepageServices = [
     moreHref: '/service-page/glina-i-rodzina-soboty-15-00',
     href: '/warsztaty/glina-i-rodzina/rezerwacja',
     cta: 'Zarezerwuj',
+    venueKey: 'suchy-las',
   },
   {
     title: 'PORANKI Z CERAMIKĄ DLA DOROSŁYCH',
@@ -329,6 +353,7 @@ export const homepageServices = [
     moreHref: '/service-page/poranki-z-ceramiką-dla-dorosłych',
     href: '/warsztaty/ceramika-dla-doroslych/rezerwacja',
     cta: 'Zarezerwuj',
+    venueKey: 'suchy-las',
   },
   {
     title: 'PIKNIK RODZINNY Z CERAMIKĄ 29 sierpnia',
@@ -339,6 +364,7 @@ export const homepageServices = [
     moreHref: '/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia',
     href: '/service-page/piknik-rodzinny-z-ceramiką-29-sierpnia',
     cta: 'Więcej info',
+    venueKey: 'suchy-las',
   },
   {
     title: 'PIKNIK RODZINNY Z CERAMIKĄ 12 września',
@@ -349,5 +375,6 @@ export const homepageServices = [
     moreHref: '/service-page/piknik-rodzinny-z-ceramiką-12-września',
     href: '/service-page/piknik-rodzinny-z-ceramiką-12-września',
     cta: 'Więcej info',
+    venueKey: 'suchy-las',
   },
-] as const;
+];

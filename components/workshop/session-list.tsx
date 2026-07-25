@@ -63,7 +63,7 @@ export function SessionList({
               )}
               {workshopSlug && !soldOut ? (
                 <Link
-                  href={`/warsztaty/${workshopSlug}/rezerwacja`}
+                  href={`/warsztaty/${workshopSlug}/rezerwacja?session=${encodeURIComponent(session.id)}`}
                   className="inline-flex bg-accent-primary px-4 py-2 text-xs font-semibold tracking-wide text-white uppercase"
                 >
                   Zarezerwuj

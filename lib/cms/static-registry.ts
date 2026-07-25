@@ -303,6 +303,7 @@ export function registerAllStaticClonePages(): void {
           href: service.href,
           cta: service.cta,
           soldOut: 'soldOut' in service ? service.soldOut : undefined,
+          venueKey: service.venueKey,
         })),
       ],
     })

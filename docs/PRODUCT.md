@@ -55,9 +55,18 @@ modes display the same content and functionality.
 3. Company representative requests a quote for a group event.
 4. Returning visitor logs in to view past bookings.
 
-## Non-goals (this phase)
+## Commerce scope (current)
 
-- Supabase integration, authentication and database.
+- Unified cart for fixed-price workshop sessions and Glina Box physical products
+  (plus optional studio firing/glazing add-on).
+- Mixed checkout creates an `orders` aggregate with linked `bookings` rows.
+- Card payment (Stripe) is **not** activated yet — bank-transfer / studio
+  confirmation wording only.
+- Enquiry-only offers stay on contact/enquiry flows and must not enter the cart.
+
+## Non-goals (historical — superseded where noted)
+
+- ~~Supabase integration, authentication and database.~~ (done)
 - Stripe checkout and payments.
 - Resend email integration.
 - Wix content migration.

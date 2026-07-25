@@ -45,6 +45,7 @@ export async function getBookingsAction(params: AdminListParams) {
   const parsed = adminListParamsSchema.parse(params);
   const supabase = createAdminClient();
 
+  // Disambiguate workshop_sessions: bookings also FK moved_from/to session.
   let query = supabase.from('bookings').select(
     `
       id,
@@ -56,8 +57,8 @@ export async function getBookingsAction(params: AdminListParams) {
       created_at,
       expires_at,
       confirmed_at,
-      customer_profiles!inner (first_name, last_name, email),
-      workshop_sessions!inner (starts_at, workshops!inner (title))
+      customer_profiles (first_name, last_name, email),
+      workshop_sessions!workshop_session_id (starts_at, workshops (title))
     `,
     { count: 'exact' }
   );
@@ -68,11 +69,13 @@ export async function getBookingsAction(params: AdminListParams) {
     query = query.eq('workshop_session_id', parsed.sessionId);
   if (parsed.from) query = query.gte('created_at', parsed.from);
   if (parsed.to) query = query.lte('created_at', parsed.to);
+
+  // Search only on bookings columns — nested or() across embeds is unsupported.
   if (parsed.search) {
-    const term = parsed.search.trim().toLowerCase();
-    query = query.or(
-      `booking_reference.ilike.%${term}%,customer_profiles.email.ilike.%${term}%,customer_profiles.first_name.ilike.%${term}%,customer_profiles.last_name.ilike.%${term}%`
-    );
+    const term = parsed.search.trim();
+    if (term) {
+      query = query.ilike('booking_reference', `%${term}%`);
+    }
   }
 
   query = query.order(parsed.sortBy, { ascending: parsed.sortOrder === 'asc' });
@@ -83,7 +86,11 @@ export async function getBookingsAction(params: AdminListParams) {
 
   const { data, error, count } = await query;
   if (error) {
-    console.error('getBookingsAction failed', error);
+    console.error('getBookingsAction failed', {
+      message: error.message,
+      code: error.code,
+      details: error.details,
+    });
     throw new Error('Nie udało się pobrać rezerwacji.');
   }
   return { bookings: data ?? [], count: count ?? 0 };

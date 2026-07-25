@@ -548,3 +548,21 @@ continue to enforce admin roles.
 - TBD: Cancellation policy, refund rules, payment deadlines and expiry logic.
 - TBD: Whether to add a separate newsletter-consent history table.
 - TBD: Responsive image variant generation pipeline and CDN integration.
+
+## Cart / orders (migrations 11�12)
+
+Additive tables:
+
+- `products` � Glina Box and studio services (price, shipping flags, inventory optional)
+- `orders` � checkout aggregate with non-sequential `order_reference` and idempotency key
+- `order_items` � workshop_session / physical_product / studio_service lines with price snapshots
+- `order_addresses` � delivery address only when shipping is required
+- `order_events`, `order_emails` � audit + email ledger
+- `workshop_sessions.venue_key` � `suchy-las` | `ptasie-radio` | `other`
+- `bookings.order_id` � link workshop bookings created from a cart
+- `payments.order_id` � order-level payment (`booking_id` nullable)
+
+RPC: `submit_cart_order` (service_role) � atomic all-or-nothing mixed checkout.
+Bank-transfer orders do **not** get a 15-minute Stripe hold expiry.
+
+Seed migration `00000000000012_ptasie_radio_and_products_seed.sql` upserts Ptasie Radio workshop/sessions and catalog products.

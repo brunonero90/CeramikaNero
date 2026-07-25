@@ -16,8 +16,7 @@ import { cn } from '@/lib/utils/cn';
  */
 export function Header() {
   const pathname = usePathname();
-  const { items } = useLocalCart();
-  const cartCount = items.length;
+  const { itemCount: cartCount } = useLocalCart();
   const facebook = getSocialIcon('facebook');
   const instagram = getSocialIcon('instagram');
 

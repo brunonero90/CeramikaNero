@@ -5,9 +5,9 @@
 **Audience:** Bruno + Cursor agents  
 **Primary language of the product:** Polish  
 **Studio:** Ceramika Nero, Suchy Las  
-**Replacement target:** Wix site → Next.js + Supabase + Netlify  
+**Replacement target:** Wix site → Next.js + Supabase + Netlify
 
-**Last updated:** 2026-07-25  
+**Last updated:** 2026-07-25
 
 ---
 
@@ -25,16 +25,16 @@
 
 ### Suggested all-day Cursor agenda (repeatable)
 
-| Block | Focus | Exit criteria |
-|---|---|---|
-| A | Unblock production deploy + admin login | Site builds on Netlify; `/admin` reachable after login |
-| B | Import workshops + publish real terminy | Every public “Rezerwacja” CTA lands on a bookable form with ≥1 slot |
-| C | End-to-end booking (guest) | Bank-transfer booking creates capacity hold; success page; admin sees it |
-| D | Wire cron, email, payments | Expiry runs; Resend sends; Stripe test path optional |
-| E | Redirect archive shells → first-party booking | No dead `/booking-calendar/*` CTAs for live offers |
-| F | Content fidelity + CMS | Priority routes look like the brand; FAQ/legal clean |
-| G | Hardening + analytics + SEO cutover | Search Console, redirects, monitoring, DNS plan |
-| H | Excellence layer | Best-in-class UX that Wix never had |
+| Block | Focus                                         | Exit criteria                                                            |
+| ----- | --------------------------------------------- | ------------------------------------------------------------------------ |
+| A     | Unblock production deploy + admin login       | Site builds on Netlify; `/admin` reachable after login                   |
+| B     | Import workshops + publish real terminy       | Every public “Rezerwacja” CTA lands on a bookable form with ≥1 slot      |
+| C     | End-to-end booking (guest)                    | Bank-transfer booking creates capacity hold; success page; admin sees it |
+| D     | Wire cron, email, payments                    | Expiry runs; Resend sends; Stripe test path optional                     |
+| E     | Redirect archive shells → first-party booking | No dead `/booking-calendar/*` CTAs for live offers                       |
+| F     | Content fidelity + CMS                        | Priority routes look like the brand; FAQ/legal clean                     |
+| G     | Hardening + analytics + SEO cutover           | Search Console, redirects, monitoring, DNS plan                          |
+| H     | Excellence layer                              | Best-in-class UX that Wix never had                                      |
 
 ### Prompt starter (paste into a new Cursor chat)
 
@@ -61,20 +61,20 @@ Report blockers with exact URLs and reproduction steps.
 
 ### What is broken or incomplete right now (reported + known)
 
-| Symptom | Likely cause | Priority |
-|---|---|---|
-| **Rezerwacja → 404** | Almost no published workshops/sessions in production DB (only smoke-test historically). CTAs point at slugs/sessions that do not exist. Archive shells (`/booking-calendar/*`) are not live booking. | **P0** |
-| **Admin login: credentials accepted, then nothing** | Soft client navigation after Server Action was hanging; hard `window.location.assign` fix may still be **undeployed**. Cookie / proxy / Netlify session issues possible if deploy is stale. | **P0** |
-| **Netlify deploy: `___netlify-server-handler` too large** | File tracing pulled huge `reference/` (and/or standalone output). Bundle-size fixes may still be **uncommitted / undeployed**. | **P0** |
-| Empty `/kalendarz` | No published future `workshop_sessions` | **P0** |
-| No real customer emails | Resend not configured | **P1** |
-| No card payments | Stripe not configured (bank transfer works) | **P1** |
-| Pending holds may never expire | `/api/cron/expiry` exists but **no schedule wired** | **P1** |
-| Homepage “rezerwacja” cards → archive shells | Landings still link `/booking-calendar/...` instead of `/warsztaty/{slug}/rezerwacja` | **P1** |
-| Visual fidelity incomplete | Clone QA not fully passed on priority routes | **P2** |
-| FAQ polluted / archive | Do not invent FAQ; need clean CMS content | **P2** |
-| Shop / cart / vouchers | Archive-only local cart — not real ecommerce | **P2** (decide: ship, hide, or rebuild) |
-| PRODUCT.md non-goals stale | Historical; ignore for planning | — |
+| Symptom                                                   | Likely cause                                                                                                                                                                                         | Priority              |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| **Rezerwacja → 404**                                      | Almost no published workshops/sessions in production DB (only smoke-test historically). CTAs point at slugs/sessions that do not exist. Archive shells (`/booking-calendar/*`) are not live booking. | **P0**                |
+| **Admin login: credentials accepted, then nothing**       | Soft client navigation after Server Action was hanging; hard `window.location.assign` fix may still be **undeployed**. Cookie / proxy / Netlify session issues possible if deploy is stale.          | **P0**                |
+| **Netlify deploy: `___netlify-server-handler` too large** | File tracing pulled huge `reference/` (and/or standalone output). Bundle-size fixes may still be **uncommitted / undeployed**.                                                                       | **P0**                |
+| Empty `/kalendarz`                                        | No published future `workshop_sessions`                                                                                                                                                              | **P0**                |
+| No real customer emails                                   | Resend not configured                                                                                                                                                                                | **P1**                |
+| No card payments                                          | Stripe not configured (bank transfer works)                                                                                                                                                          | **P1**                |
+| Pending holds may never expire                            | `/api/cron/expiry` exists but **no schedule wired**                                                                                                                                                  | **P1**                |
+| Homepage “rezerwacja” cards → archive shells              | Landings still link `/booking-calendar/...` instead of `/warsztaty/{slug}/rezerwacja`                                                                                                                | **P1**                |
+| Visual fidelity incomplete                                | Clone QA not fully passed on priority routes                                                                                                                                                         | **P2**                |
+| FAQ polluted / archive                                    | Do not invent FAQ; need clean CMS content                                                                                                                                                            | **P2**                |
+| Shop / cart / vouchers                                    | **Decision made:** limited unified cart for workshop sessions + Glina Box (payment later). No general marketplace/vouchers.                                                                          | **P0** (implementing) |
+| PRODUCT.md non-goals stale                                | Historical; ignore for planning                                                                                                                                                                      | —                     |
 
 ### Critical product truth
 
@@ -168,16 +168,16 @@ Source of candidates (already in repo, not auto-applied):
 
 **Known catalog candidates (verify before publish):**
 
-| Slug | Title | Suggested mode | Notes |
-|---|---|---|---|
-| `ceramika-dla-doroslych` | Ceramika dla dorosłych | scheduled | Needs terminy |
-| `glina-do-wina` | Glina do wina | scheduled | Needs terminy |
-| `kurs-rysunku-malarstwa-ceramiki-6-10-lat` | Kurs 6–10 lat | scheduled / confirm | Ages |
-| `kurs-ceramiki-dla-mlodziezy-11` | Kurs młodzież 11+ | scheduled / confirm | Ages |
-| `glina-i-rodzina` | Glina i rodzina | scheduled | Family |
-| `urodziny-ceramiczne` | Urodziny ceramiczne | enquiry *or* scheduled packages | Often quote-based — decide |
-| `warsztaty-dla-firm` | Warsztaty dla firm | enquiry | Corporate quote |
-| `wieczory-panienskie` | Wieczory panieńskie | enquiry *or* scheduled | Decide |
+| Slug                                       | Title                  | Suggested mode                  | Notes                      |
+| ------------------------------------------ | ---------------------- | ------------------------------- | -------------------------- |
+| `ceramika-dla-doroslych`                   | Ceramika dla dorosłych | scheduled                       | Needs terminy              |
+| `glina-do-wina`                            | Glina do wina          | scheduled                       | Needs terminy              |
+| `kurs-rysunku-malarstwa-ceramiki-6-10-lat` | Kurs 6–10 lat          | scheduled / confirm             | Ages                       |
+| `kurs-ceramiki-dla-mlodziezy-11`           | Kurs młodzież 11+      | scheduled / confirm             | Ages                       |
+| `glina-i-rodzina`                          | Glina i rodzina        | scheduled                       | Family                     |
+| `urodziny-ceramiczne`                      | Urodziny ceramiczne    | enquiry _or_ scheduled packages | Often quote-based — decide |
+| `warsztaty-dla-firm`                       | Warsztaty dla firm     | enquiry                         | Corporate quote            |
+| `wieczory-panienskie`                      | Wieczory panieńskie    | enquiry _or_ scheduled          | Decide                     |
 
 Import workflow (recommended):
 
@@ -215,105 +215,105 @@ Mark each: ❌ broken · 🟡 partial · ✅ verified on production
 
 ### 4.1 Discovery & marketing
 
-| Flow | Routes | Done? |
-|---|---|---|
-| Homepage loads, brand-first, both themes | `/` | |
-| Theme toggle persists | header | |
-| Warsztaty listing from DB | `/warsztaty` | |
-| Category landings | `/dla-dzieci`, `/dla-doroslych`, `/grupy-i-firmy` | |
-| Offer landings | `/glinadowina`, `/panienskie`, `/urodziny`, … | |
-| Workshop detail | `/warsztaty/[slug]` | |
-| Gallery | `/galeria` | |
-| Blog index + post + category | `/blog`, `/blog/[slug]`, `/blog/categories/...` | |
-| Kontakt | `/kontakt` | |
-| Legal | `/regulamin`, `/polityka-prywatnosci` | |
-| FAQ (clean content) | `/faq` | |
-| Mobile nav “Zarezerwuj” | → useful destination | |
+| Flow                                     | Routes                                            | Done? |
+| ---------------------------------------- | ------------------------------------------------- | ----- |
+| Homepage loads, brand-first, both themes | `/`                                               |       |
+| Theme toggle persists                    | header                                            |       |
+| Warsztaty listing from DB                | `/warsztaty`                                      |       |
+| Category landings                        | `/dla-dzieci`, `/dla-doroslych`, `/grupy-i-firmy` |       |
+| Offer landings                           | `/glinadowina`, `/panienskie`, `/urodziny`, …     |       |
+| Workshop detail                          | `/warsztaty/[slug]`                               |       |
+| Gallery                                  | `/galeria`                                        |       |
+| Blog index + post + category             | `/blog`, `/blog/[slug]`, `/blog/categories/...`   |       |
+| Kontakt                                  | `/kontakt`                                        |       |
+| Legal                                    | `/regulamin`, `/polityka-prywatnosci`             |       |
+| FAQ (clean content)                      | `/faq`                                            |       |
+| Mobile nav “Zarezerwuj”                  | → useful destination                              |       |
 
 ### 4.2 Booking & payments
 
-| Flow | Routes / systems | Done? |
-|---|---|---|
-| Public calendar | `/kalendarz` | |
-| Session detail | `/termin/[id]` | |
-| Multi-step reservation form | `/warsztaty/[slug]/rezerwacja` | |
-| Bank-transfer confirmation instructions | `/rezerwacja/sukces?payment=bank_transfer` | |
-| Stripe Checkout (when keys present) | checkout → webhook → confirm | |
-| Payment return success | `/rezerwacja/sukces` | |
-| Payment abandoned | `/rezerwacja/anulowana` | |
-| Resume payment link | `/rezerwacja/[reference]/platnosc` | |
-| Customer cancel via email token | `/rezerwacja/anulowanie` | |
-| Pending hold expiry cron | `/api/cron/expiry` + schedule | |
-| Sold-out session UX | clear, no 500 | |
-| Enquiry workshops | CTA → `/kontakt` with context | |
-| External booking URL workshops | open external, no fake form | |
-| Double-submit / refresh safety | idempotency key | |
+| Flow                                    | Routes / systems                           | Done? |
+| --------------------------------------- | ------------------------------------------ | ----- |
+| Public calendar                         | `/kalendarz`                               |       |
+| Session detail                          | `/termin/[id]`                             |       |
+| Multi-step reservation form             | `/warsztaty/[slug]/rezerwacja`             |       |
+| Bank-transfer confirmation instructions | `/rezerwacja/sukces?payment=bank_transfer` |       |
+| Stripe Checkout (when keys present)     | checkout → webhook → confirm               |       |
+| Payment return success                  | `/rezerwacja/sukces`                       |       |
+| Payment abandoned                       | `/rezerwacja/anulowana`                    |       |
+| Resume payment link                     | `/rezerwacja/[reference]/platnosc`         |       |
+| Customer cancel via email token         | `/rezerwacja/anulowanie`                   |       |
+| Pending hold expiry cron                | `/api/cron/expiry` + schedule              |       |
+| Sold-out session UX                     | clear, no 500                              |       |
+| Enquiry workshops                       | CTA → `/kontakt` with context              |       |
+| External booking URL workshops          | open external, no fake form                |       |
+| Double-submit / refresh safety          | idempotency key                            |       |
 
 ### 4.3 Email & notifications
 
-| Flow | Done? |
-|---|---|
-| Booking confirmation (customer) | |
-| Payment awaiting / bank instructions | |
-| Payment received | |
-| Cancellation confirmation | |
-| Session reminder (nice-to-have → excellence) | |
-| Admin notification on new booking (excellence) | |
-| `booking_emails` ledger always written | |
-| Resend domain authenticated (SPF/DKIM) | |
+| Flow                                           | Done? |
+| ---------------------------------------------- | ----- |
+| Booking confirmation (customer)                |       |
+| Payment awaiting / bank instructions           |       |
+| Payment received                               |       |
+| Cancellation confirmation                      |       |
+| Session reminder (nice-to-have → excellence)   |       |
+| Admin notification on new booking (excellence) |       |
+| `booking_emails` ledger always written         |       |
+| Resend domain authenticated (SPF/DKIM)         |       |
 
 ### 4.4 Admin operations
 
-| Flow | Done? |
-|---|---|
-| Login / logout / session refresh | |
-| Pulpit counts sensible | |
-| CRUD warsztaty + publish/archive | |
-| CRUD terminy (Warsaw time, DST-safe) | |
-| CRUD rezerwacje + detail actions | |
-| Manual / offline booking | |
-| Mark bank transfer paid / confirm | |
-| Cancel + refund (Stripe) / cancel offline | |
-| Move booking to another session | |
-| Instructors CRUD | |
-| Categories CRUD | |
-| Blog lifecycle (draft/schedule/publish) | |
-| Gallery visibility | |
-| Media upload + picker | |
-| CMS pages | |
-| Redirects | |
-| Site settings | |
-| Admin users + roles | |
-| Audit log readable | |
-| Preview unpublished content (noindex) | |
+| Flow                                      | Done? |
+| ----------------------------------------- | ----- |
+| Login / logout / session refresh          |       |
+| Pulpit counts sensible                    |       |
+| CRUD warsztaty + publish/archive          |       |
+| CRUD terminy (Warsaw time, DST-safe)      |       |
+| CRUD rezerwacje + detail actions          |       |
+| Manual / offline booking                  |       |
+| Mark bank transfer paid / confirm         |       |
+| Cancel + refund (Stripe) / cancel offline |       |
+| Move booking to another session           |       |
+| Instructors CRUD                          |       |
+| Categories CRUD                           |       |
+| Blog lifecycle (draft/schedule/publish)   |       |
+| Gallery visibility                        |       |
+| Media upload + picker                     |       |
+| CMS pages                                 |       |
+| Redirects                                 |       |
+| Site settings                             |       |
+| Admin users + roles                       |       |
+| Audit log readable                        |       |
+| Preview unpublished content (noindex)     |       |
 
 ### 4.5 Platform / security / ops
 
-| Flow | Done? |
-|---|---|
-| Netlify production deploy green | |
-| Supabase backups / point-in-time understanding | |
-| RLS verified for bookings, admin, media | |
-| Webhook signature verification | |
-| Cron secret required | |
-| Rate limiting (Upstash) in production | |
-| Error monitoring (Sentry or similar) | |
-| Uptime check on `/` and `/kalendarz` | |
-| Secrets not in git; rotated after leaks | |
+| Flow                                           | Done? |
+| ---------------------------------------------- | ----- |
+| Netlify production deploy green                |       |
+| Supabase backups / point-in-time understanding |       |
+| RLS verified for bookings, admin, media        |       |
+| Webhook signature verification                 |       |
+| Cron secret required                           |       |
+| Rate limiting (Upstash) in production          |       |
+| Error monitoring (Sentry or similar)           |       |
+| Uptime check on `/` and `/kalendarz`           |       |
+| Secrets not in git; rotated after leaks        |       |
 
 ### 4.6 Migration & SEO cutover
 
-| Flow | Done? |
-|---|---|
-| Inventory of old Wix URLs | |
-| `legacy_redirects` for changed slugs | |
-| Priority 301s for top traffic pages | |
-| Canonical + sitemap + robots | |
-| Open Graph / social previews | |
-| DNS cutover plan (`ceramikanero.com` → Netlify) | |
-| Post-cutover 404 crawl | |
-| Google Business Profile link update | |
-| Facebook / Instagram link update | |
+| Flow                                            | Done? |
+| ----------------------------------------------- | ----- |
+| Inventory of old Wix URLs                       |       |
+| `legacy_redirects` for changed slugs            |       |
+| Priority 301s for top traffic pages             |       |
+| Canonical + sitemap + robots                    |       |
+| Open Graph / social previews                    |       |
+| DNS cutover plan (`ceramikanero.com` → Netlify) |       |
+| Post-cutover 404 crawl                          |       |
+| Google Business Profile link update             |       |
+| Facebook / Instagram link update                |       |
 
 ---
 
@@ -375,21 +375,21 @@ Audit surfaces:
 
 ### Must-have for “real studio operations”
 
-| Integration | Why | Status target |
-|---|---|---|
-| Supabase | Source of truth | Production linked |
-| Resend | Confirmations customers trust | Configure + verify domain |
-| Scheduled cron | Release unpaid holds | Netlify scheduled function / QStash / pg_cron |
-| Upstash Redis | Abuse protection on booking | Configure |
+| Integration    | Why                           | Status target                                 |
+| -------------- | ----------------------------- | --------------------------------------------- |
+| Supabase       | Source of truth               | Production linked                             |
+| Resend         | Confirmations customers trust | Configure + verify domain                     |
+| Scheduled cron | Release unpaid holds          | Netlify scheduled function / QStash / pg_cron |
+| Upstash Redis  | Abuse protection on booking   | Configure                                     |
 
 ### Should-have soon
 
-| Integration | Why |
-|---|---|
-| Stripe (test → live) | Card checkout for impulse bookings |
-| Error monitoring | Know when booking breaks at 22:00 |
-| Analytics (Plausible/GA4 — privacy-aware) | See which workshops convert |
-| Meta pixel optional | Only if Bruno wants ads |
+| Integration                               | Why                                |
+| ----------------------------------------- | ---------------------------------- |
+| Stripe (test → live)                      | Card checkout for impulse bookings |
+| Error monitoring                          | Know when booking breaks at 22:00  |
+| Analytics (Plausible/GA4 — privacy-aware) | See which workshops convert        |
+| Meta pixel optional                       | Only if Bruno wants ads            |
 
 ### Explicit non-goals unless decided
 
@@ -433,7 +433,7 @@ Audit surfaces:
 - [ ] Gallery curated (visible items, good alts)
 - [ ] CMS pages for kontakt / oferta static copy where needed
 - [ ] Legal pages professional; remove stale “sklep Wix” claims if shop is not live
-- [ ] Decide fate of cart/sklep/vouchery/gift-card pages: hide, redirect, or rebuild
+- [x] Cart decision: limited unified cart for workshops + Glina Box; Stripe later; no vouchers marketplace
 
 ### 8.4 Differentiation vs typical studio sites
 
@@ -461,24 +461,24 @@ Audit surfaces:
 
 ### 9.2 Manual production smoke (every deploy)
 
-1. `/` loads, theme toggle works  
-2. `/admin/login` → pulpit  
-3. `/warsztaty` shows real workshops  
-4. `/kalendarz` shows real future sessions  
-5. Book 1 seat bank-transfer → reference shown  
-6. Admin opens that booking  
-7. Cancel path or mark paid (as designed)  
-8. Mobile (real phone): full booking  
-9. Logout / login again  
+1. `/` loads, theme toggle works
+2. `/admin/login` → pulpit
+3. `/warsztaty` shows real workshops
+4. `/kalendarz` shows real future sessions
+5. Book 1 seat bank-transfer → reference shown
+6. Admin opens that booking
+7. Cancel path or mark paid (as designed)
+8. Mobile (real phone): full booking
+9. Logout / login again
 
 ### 9.3 Regression watchlist
 
-- Double booking under concurrency  
-- Expired holds releasing capacity  
-- Webhook retries idempotent  
-- Draft workshops never public  
-- Preview routes noindex  
-- Local mode impossible in production  
+- Double booking under concurrency
+- Expired holds releasing capacity
+- Webhook retries idempotent
+- Draft workshops never public
+- Preview routes noindex
+- Local mode impossible in production
 
 ---
 
@@ -487,27 +487,35 @@ Audit surfaces:
 Use these as chat titles / loop missions.
 
 ### WP-0 — Stabilize deploy & auth
+
 Netlify handler size, env, admin login hard redirect, proxy cookies, prove `/admin` works on production.
 
 ### WP-1 — Catalog & sessions import
+
 Turn `workshop-catalog-import` + Bruno-approved schedule into published DB rows; delete smoke leftovers when safe.
 
 ### WP-2 — CTA rewiring
+
 Every rezerwacja control → first-party bookable route; redirect legacy booking-calendar URLs.
 
 ### WP-3 — Booking E2E hardening
+
 Form UX, bank-transfer copy, success/cancel, capacity, idempotency, RLS re-check.
 
 ### WP-4 — Ops plumbing
+
 Cron expiry, Resend, Upstash, optional Stripe test, admin bank-transfer confirm habit documented.
 
 ### WP-5 — Content & fidelity
+
 Priority page polish, FAQ, legal cleanup, gallery/blog minimum content.
 
 ### WP-6 — SEO & cutover
+
 Redirects, sitemap, DNS plan, Search Console, social link updates.
 
 ### WP-7 — Excellence
+
 Reminders, ICS, analytics, enquiry forms, waitlist, admin day-view, performance pass.
 
 ---
@@ -627,24 +635,24 @@ Track answers here or in `tmp/overnight-completion/DECISIONS.md`.
 
 ### Launch ready (minimum)
 
-- Admin login works on production  
-- All public rezerwacja CTAs for active offers book against Supabase  
-- Calendar shows real terminy  
-- Guest can complete bank-transfer booking on mobile  
-- Owner can find and manage that booking in admin  
-- Legal pages present; smoke data gone  
-- Cron expiry scheduled  
-- Confirmation email **or** explicit “sprawdź skrzynkę / przelew” UX that is honest  
+- Admin login works on production
+- All public rezerwacja CTAs for active offers book against Supabase
+- Calendar shows real terminy
+- Guest can complete bank-transfer booking on mobile
+- Owner can find and manage that booking in admin
+- Legal pages present; smoke data gone
+- Cron expiry scheduled
+- Confirmation email **or** explicit “sprawdź skrzynkę / przelew” UX that is honest
 
 ### Best in class (pursue next)
 
-- Stripe live + beautiful emails + reminders  
-- Archive shells eliminated  
-- Visual fidelity on top routes  
-- Analytics + SEO cutover done  
-- Enquiry flows for firmy/urodziny/panieńskie that feel premium  
-- Admin day-of-class tools  
-- Performance and a11y scores competitive  
+- Stripe live + beautiful emails + reminders
+- Archive shells eliminated
+- Visual fidelity on top routes
+- Analytics + SEO cutover done
+- Enquiry flows for firmy/urodziny/panieńskie that feel premium
+- Admin day-of-class tools
+- Performance and a11y scores competitive
 
 ---
 
@@ -652,13 +660,13 @@ Track answers here or in `tmp/overnight-completion/DECISIONS.md`.
 
 Progress as of 2026-07-25 all-day session:
 
-1. [x] **Reproduce** production rezerwacja / admin — rezerwacja was empty-DB (not code 404); admin soft-nav hang; browser login rewrite ready locally.  
-2. [~] **Deploy blockers** — bundle tracing already on `main`; admin login + CTAs + cron still need **Bruno push/deploy**.  
-3. [x] **Import + publish** catalog via `scripts/import-workshop-catalog.js --apply` (archive prices/cadences).  
-4. [x] **Create terminy** — ~6 weeks of recurring sessions for scheduled workshops.  
-5. [x] **Rewire CTAs** in code (homepage + archive adaptation + `/booking-calendar/*` → `/kalendarz`); deploy required for homepage.  
-6. [x] **RPC smoke ladder** passed (`CN-20260725-525B`); public calendar/form already live from DB. Next: deploy admin login, then Resend/Stripe/fidelity.  
+1. [x] **Reproduce** production rezerwacja / admin — rezerwacja was empty-DB (not code 404); admin soft-nav hang; browser login rewrite ready locally.
+2. [~] **Deploy blockers** — bundle tracing already on `main`; admin login + CTAs + cron still need **Bruno push/deploy**.
+3. [x] **Import + publish** catalog via `scripts/import-workshop-catalog.js --apply` (archive prices/cadences).
+4. [x] **Create terminy** — ~6 weeks of recurring sessions for scheduled workshops.
+5. [x] **Rewire CTAs** in code (homepage + archive adaptation + `/booking-calendar/*` → `/kalendarz`); deploy required for homepage.
+6. [x] **RPC smoke ladder** passed (`CN-20260725-525B`); public calendar/form already live from DB. Next: deploy admin login, then Resend/Stripe/fidelity.
 
 ---
 
-*This document is living. Update checkboxes and the decision log as reality changes. The north star stays the same: a parent or adult in Poznań/Suchy Las should trust this site enough to book clay with one hand on a phone — and Gosia should trust admin enough to run the studio from it every day.*
+_This document is living. Update checkboxes and the decision log as reality changes. The north star stays the same: a parent or adult in Poznań/Suchy Las should trust this site enough to book clay with one hand on a phone — and Gosia should trust admin enough to run the studio from it every day._

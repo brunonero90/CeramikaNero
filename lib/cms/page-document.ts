@@ -139,6 +139,7 @@ const serviceCardSchema = z.object({
   href: z.string(),
   cta: z.string(),
   soldOut: z.boolean().optional(),
+  venueKey: z.enum(['suchy-las', 'ptasie-radio', 'enquiry']).optional(),
 });
 
 const galleryGridSchema = z.object({

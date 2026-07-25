@@ -221,9 +221,8 @@ export const pracowniaPage = {
       imageSrc: IMG.paintBday,
       imageAlt: 'URODZINY Z MALOWANIEM',
       imageFirst: false,
-      ctaLabel: 'Napisz do nas',
-      ctaHref:
-        'mailto:nerogosia@gmail.com?subject=urodziny%20z%20malowaniem%20',
+      ctaLabel: 'Zapytaj o termin',
+      ctaHref: '/kontakt?oferta=urodziny-z-malowaniem',
       tinted: true,
     },
     {
@@ -237,8 +236,8 @@ export const pracowniaPage = {
       imageSrc: IMG.schools,
       imageAlt: 'Warsztaty ceramiczne dla szkół',
       imageFirst: true,
-      ctaLabel: 'Więcej szczegółów...',
-      ctaHref: 'mailto:nerogosia@gmail.com',
+      ctaLabel: 'Poproś o ofertę',
+      ctaHref: '/kontakt?oferta=warsztaty-dla-szkol',
       tinted: false,
     },
   ] satisfies SplitBlock[],

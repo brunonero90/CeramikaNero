@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { CloneCta } from '@/components/clone/marketing';
+import { Suspense } from 'react';
+import { HomepageServicesSection } from '@/components/clone/homepage-services-section';
 import { PublicEventCalendar } from '@/components/calendar/public-event-calendar';
 import { PreviewBanner } from '@/app/admin/(protected)/components/preview-banner';
 import { homepageServices } from '@/lib/clone/content/landings';
@@ -19,6 +19,7 @@ import {
   isBookingLocalMode,
   LOCAL_BOOKING_BANNER,
 } from '@/lib/booking/local-mode';
+import { inferHomepageVenueKey } from '@/lib/clone/venue';
 
 export const dynamic = 'force-dynamic';
 
@@ -61,8 +62,19 @@ export default async function HomePage() {
       moreHref: service.moreHref,
       href: service.href,
       cta: service.cta,
-      soldOut: 'soldOut' in service ? service.soldOut : undefined,
+      soldOut: service.soldOut,
+      venueKey: service.venueKey,
     }));
+
+  const servicesWithVenue = services.map((service) => ({
+    ...service,
+    venueKey:
+      service.venueKey ??
+      inferHomepageVenueKey({
+        href: service.href,
+        moreHref: service.moreHref,
+      }),
+  }));
 
   const useFidelityFixtures = shouldUseHomepageCalendarFixtures();
   const useLocalBooking = isBookingLocalMode();
@@ -98,71 +110,12 @@ export default async function HomePage() {
         <p className="mt-3 text-sm font-semibold tracking-[0.18em] text-text-muted uppercase">
           {header.subtitle}
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          {header.chips.map((chip, index) => (
-            <span
-              key={chip}
-              className={
-                index === 0
-                  ? 'bg-text-primary px-4 py-2 text-xs font-semibold tracking-wide text-white uppercase'
-                  : 'border border-surface-subtle px-4 py-2 text-xs font-semibold tracking-wide text-text-muted uppercase'
-              }
-            >
-              {chip}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      <section
-        aria-label="Lista warsztatów"
-        className="mx-auto grid max-w-5xl gap-6 px-4 pb-10 sm:grid-cols-2 md:px-6 lg:grid-cols-3"
-      >
-        {services.map((service) => (
-          <article
-            key={service.id}
-            className="flex flex-col border border-surface-subtle/50 bg-surface-raised"
-          >
-            <div className="relative aspect-[3/2] overflow-hidden">
-              <Image
-                src={service.image}
-                alt={service.imageAlt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 303px"
-              />
-            </div>
-            <div className="flex flex-1 flex-col p-4">
-              <h2 className="font-heading text-base font-semibold tracking-wide text-text-primary uppercase">
-                {service.title}
-              </h2>
-              <p className="mt-2">
-                <Link
-                  href={service.moreHref}
-                  className="text-sm text-accent-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-                >
-                  Więcej
-                </Link>
-              </p>
-              <div className="mt-4 flex items-end justify-between gap-3 text-sm text-text-muted">
-                <span>{service.day}</span>
-                <span className="font-semibold text-text-primary">
-                  {service.price}
-                </span>
-              </div>
-              <div className="mt-5">
-                {service.soldOut ? (
-                  <p className="text-sm font-semibold text-text-muted">
-                    Brak wolnych miejsc
-                  </p>
-                ) : null}
-                <CloneCta href={service.href} className="mt-2 w-full">
-                  {service.cta}
-                </CloneCta>
-              </div>
-            </div>
-          </article>
-        ))}
+        <Suspense fallback={<div className="mt-8 h-10" aria-hidden="true" />}>
+          <HomepageServicesSection
+            chips={header.chips}
+            services={servicesWithVenue}
+          />
+        </Suspense>
       </section>
 
       <section

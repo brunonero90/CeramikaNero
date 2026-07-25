@@ -67,8 +67,7 @@ export default async function ReservationPage({
           Rezerwacja: {workshop.title}
         </h1>
         <p className="text-muted-foreground mb-8">
-          Tryb lokalny: rezerwacja jest potwierdzana bez Stripe. Potwierdzenie
-          trafia do lokalnego outboxa e-mail ({`tmp/local-booking`}).
+          Wybierz termin i liczbę osób, a następnie dodaj pozycję do koszyka.
         </p>
         <BookingForm
           workshop={{
@@ -78,6 +77,7 @@ export default async function ReservationPage({
             maximum_age: workshop.maximumAge,
             default_price_gross_grosz: workshop.defaultPriceGrossGrosz,
           }}
+          workshopSlug={slug}
           sessions={ordered.map((s) => ({
             id: s.id,
             starts_at: s.startsAt,
@@ -153,11 +153,12 @@ export default async function ReservationPage({
     <main className="container mx-auto px-4 py-16">
       <h1 className="mb-2 text-3xl font-bold">Rezerwacja: {workshop.title}</h1>
       <p className="text-muted-foreground mb-8">
-        Wybierz termin i podaj dane uczestników. Po potwierdzeniu otrzymasz
-        numer rezerwacji oraz instrukcję płatności.
+        Wybierz termin i liczbę uczestników, dodaj do koszyka, a dane kupującego
+        uzupełnisz przy składaniu zamówienia.
       </p>
       <BookingForm
         workshop={workshop}
+        workshopSlug={slug}
         sessions={ordered}
         privacyPolicyVersion="1.0"
       />

@@ -1,19 +1,14 @@
 import type { Metadata } from 'next';
-import {
-  ResolvedArchivePage,
-  resolvedArchiveTitle,
-} from '@/components/clone/resolved-archive-page';
-
-const ROUTE = '/cart' as const;
+import { CartPageClient } from '@/components/clone/cart-page-client';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: await resolvedArchiveTitle(ROUTE, 'Koszyk | Ceramika Nero'),
-  };
-}
+export const metadata: Metadata = {
+  title: 'Koszyk | Ceramika Nero',
+  description: 'Koszyk warsztatów i produktów Ceramika Nero.',
+  robots: { index: false, follow: false },
+};
 
-export default async function CartPage() {
-  return <ResolvedArchivePage route={ROUTE} />;
+export default function CartPage() {
+  return <CartPageClient />;
 }

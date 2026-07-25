@@ -147,6 +147,31 @@ const WORKSHOPS = [
     cadence: { weekdays: [5], hour: 19, minute: 0, label: 'pt 19:00' },
   },
   {
+    slug: 'glina-do-wina-w-poznaniu-w-ptasim-radiu',
+    title: 'Glina do wina w Poznaniu w Ptasim Radiu',
+    categorySlug: 'glina-do-wina',
+    shortDescription:
+      'Warsztaty ceramiczne w kawiarni Ptasie Radio w Poznaniu.',
+    description:
+      'Oferta archiwalna „GLINA DO WINA W POZNANIU W PTASIM RADIU”. Osobna lokalizacja od wariantu Suchy Las.',
+    practicalInformation:
+      'Ptasie Radio, ul. Kościuszki 74/3, 60-142 Poznań. 90 min. Sesje z archiwum — nie generować automatycznej rekurencji poza zweryfikowanymi datami.',
+    bookingMode: 'scheduled',
+    status: 'published',
+    isFeatured: true,
+    price: 18900,
+    capacity: 12,
+    duration: 90,
+    minAge: 18,
+    maxAge: null,
+    theme: 'atelier',
+    // Sessions are seeded by migration 12 from archive evidence only.
+    cadence: null,
+    venueKey: 'ptasie-radio',
+    locationName: 'Ptasie Radio',
+    locationAddress: 'ul. Kościuszki 74/3, 60-142 Poznań',
+  },
+  {
     slug: 'glina-i-rodzina',
     title: 'Glina i rodzina',
     categorySlug: 'rodzinne',
@@ -211,7 +236,8 @@ const WORKSHOPS = [
     shortDescription: 'Urodziny z ceramiką — oferta pakietowa.',
     description:
       'Pakiety urodzinowe z archiwum /urodziny. Rezerwacja przez kontakt.',
-    practicalInformation: 'Wycena indywidualna — napisz przez formularz kontaktowy.',
+    practicalInformation:
+      'Wycena indywidualna — napisz przez formularz kontaktowy.',
     bookingMode: 'enquiry',
     status: 'published',
     isFeatured: true,
@@ -281,9 +307,7 @@ function projectRefFromUrl(url) {
 /** Build Europe/Warsaw local wall times as UTC ISO via format trick. */
 function warsawLocalToUtcIso(year, monthIndex, day, hour, minute) {
   const pad = (n) => String(n).padStart(2, '0');
-  const asUtcGuess = new Date(
-    Date.UTC(year, monthIndex, day, hour, minute, 0)
-  );
+  const asUtcGuess = new Date(Date.UTC(year, monthIndex, day, hour, minute, 0));
   const fmt = new Intl.DateTimeFormat('en-US', {
     timeZone: 'Europe/Warsaw',
     year: 'numeric',
@@ -472,7 +496,13 @@ async function upsertWorkshop(client, dryRun, workshop, categoryId) {
   return data.id;
 }
 
-async function ensureSessions(client, dryRun, workshop, workshopId, instructorId) {
+async function ensureSessions(
+  client,
+  dryRun,
+  workshop,
+  workshopId,
+  instructorId
+) {
   if (!workshop.cadence || workshop.bookingMode !== 'scheduled') {
     return { created: 0, skipped: 0, planned: 0 };
   }
@@ -602,7 +632,8 @@ async function main() {
 
   for (const workshop of WORKSHOPS) {
     const categoryId = categories[workshop.categorySlug];
-    if (!categoryId) throw new Error(`Missing category ${workshop.categorySlug}`);
+    if (!categoryId)
+      throw new Error(`Missing category ${workshop.categorySlug}`);
     const workshopId = await upsertWorkshop(
       client,
       dryRun,

@@ -93,6 +93,7 @@ export default async function BookingsAdminPage({
             >
               <option value="">Wszystkie</option>
               <option value="pending">Oczekująca</option>
+              <option value="awaiting_payment">Oczekuje na płatność</option>
               <option value="confirmed">Potwierdzona</option>
               <option value="cancelled">Anulowana</option>
               <option value="expired">Wygasła</option>
@@ -145,31 +146,37 @@ export default async function BookingsAdminPage({
           <tbody>
             {bookings.length > 0 ? (
               bookings.map((row) => {
-                const profile = row.customer_profiles as {
-                  first_name: string;
-                  last_name: string;
-                  email: string;
-                };
-                const session = row.workshop_sessions as unknown as {
-                  starts_at: string;
-                  workshops: { title: string };
-                };
-                const date = new Date(session.starts_at).toLocaleString(
-                  'pl-PL'
-                );
+                const profile = (row.customer_profiles ?? null) as {
+                  first_name: string | null;
+                  last_name: string | null;
+                  email: string | null;
+                } | null;
+                const session = (row.workshop_sessions ?? null) as unknown as {
+                  starts_at: string | null;
+                  workshops: { title: string } | { title: string }[] | null;
+                } | null;
+                const workshopTitle = Array.isArray(session?.workshops)
+                  ? (session?.workshops[0]?.title ?? '—')
+                  : (session?.workshops?.title ?? '—');
+                const date = session?.starts_at
+                  ? new Date(session.starts_at).toLocaleString('pl-PL')
+                  : '—';
                 return (
                   <tr key={row.id} className="border-b last:border-b-0">
                     <td className="px-4 py-2 font-medium">
                       {row.booking_reference}
                     </td>
                     <td className="px-4 py-2">
-                      {profile.first_name} {profile.last_name}
+                      {profile
+                        ? `${profile.first_name ?? ''} ${profile.last_name ?? ''}`.trim() ||
+                          '—'
+                        : '—'}
                       <br />
                       <span className="text-xs text-gray-500">
-                        {profile.email}
+                        {profile?.email ?? '—'}
                       </span>
                     </td>
-                    <td className="px-4 py-2">{session.workshops.title}</td>
+                    <td className="px-4 py-2">{workshopTitle}</td>
                     <td className="px-4 py-2">{date}</td>
                     <td className="px-4 py-2">
                       <BookingStatusBadge status={row.status} />
@@ -194,7 +201,9 @@ export default async function BookingsAdminPage({
             ) : (
               <tr>
                 <td colSpan={8} className="px-4 py-4 text-center text-gray-500">
-                  Brak rezerwacji pasujących do filtrów.
+                  {q || status || source
+                    ? 'Brak rezerwacji pasujących do filtrów.'
+                    : 'Brak rezerwacji.'}
                 </td>
               </tr>
             )}

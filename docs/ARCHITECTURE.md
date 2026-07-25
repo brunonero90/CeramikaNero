@@ -198,3 +198,7 @@ See `.env.example` for placeholders.
   server components and Server Actions.
 - TBD: Booking submission flow and customer account creation.
 - TBD: Whether to add a consent-history table for newsletter subscribers.
+
+## Unified cart
+
+Client cart state lives in versioned `localStorage` (`ceramika-nero-cart-v1`) with no PII. Server revalidation and `submit_cart_order` are authoritative for price, capacity and inventory. Routes: `/cart`, `/cart/checkout`, `/cart/sukces` (`noindex`). Stripe remains off; wording is order/reservation confirmation, not card payment.

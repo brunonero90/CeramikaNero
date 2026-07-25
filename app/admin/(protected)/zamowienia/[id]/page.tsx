@@ -1,0 +1,163 @@
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { createClient } from '@/lib/supabase/server';
+import { formatPrice } from '@/lib/utils/price';
+
+export const dynamic = 'force-dynamic';
+
+export default async function AdminOrderDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = (await createClient()) as any;
+  const { data: order } = await supabase
+    .from('orders')
+    .select(
+      `
+      *,
+      customer_profiles (first_name, last_name, email, phone),
+      order_items (
+        id, item_type, title_snapshot, quantity, unit_price_gross_grosz,
+        line_total_gross_grosz, fulfillment_method, booking_id, product_id, metadata
+      ),
+      order_addresses (
+        recipient_name, street_line1, street_line2, postal_code, city, country, phone
+      )
+    `
+    )
+    .eq('id', id)
+    .maybeSingle();
+
+  if (!order) notFound();
+
+  const profile = order.customer_profiles as {
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone: string | null;
+  } | null;
+
+  const address = Array.isArray(order.order_addresses)
+    ? order.order_addresses[0]
+    : order.order_addresses;
+
+  const items = (order.order_items ?? []) as Array<{
+    id: string;
+    item_type: string;
+    title_snapshot: string;
+    quantity: number;
+    line_total_gross_grosz: number;
+    fulfillment_method: string | null;
+    booking_id: string | null;
+  }>;
+
+  const { data: bookings } = await supabase
+    .from('bookings')
+    .select('id, booking_reference, status')
+    .eq('order_id', id);
+
+  return (
+    <div className="mx-auto max-w-3xl space-y-6">
+      <div>
+        <h1 className="text-2xl font-semibold">{order.order_reference}</h1>
+        <p className="text-sm text-gray-600">
+          {order.status} · płatność: {order.payment_status} · realizacja:{' '}
+          {order.fulfillment_status} ({order.fulfillment_method})
+        </p>
+      </div>
+
+      <section className="rounded border bg-white p-4 text-sm">
+        <h2 className="mb-2 font-semibold">Klient</h2>
+        {profile ? (
+          <p>
+            {profile.first_name} {profile.last_name}
+            <br />
+            {profile.email}
+            {profile.phone ? (
+              <>
+                <br />
+                {profile.phone}
+              </>
+            ) : null}
+          </p>
+        ) : (
+          <p>—</p>
+        )}
+      </section>
+
+      <section className="rounded border bg-white p-4 text-sm">
+        <h2 className="mb-2 font-semibold">Pozycje</h2>
+        <ul className="space-y-2">
+          {items.map((item) => (
+            <li key={item.id}>
+              {item.title_snapshot} × {item.quantity} —{' '}
+              {formatPrice(item.line_total_gross_grosz)}
+              {item.fulfillment_method && item.fulfillment_method !== 'none'
+                ? ` (${item.fulfillment_method})`
+                : ''}
+              {item.booking_id ? (
+                <>
+                  {' '}
+                  ·{' '}
+                  <Link
+                    href={`/admin/rezerwacje/${item.booking_id}`}
+                    className="underline"
+                  >
+                    rezerwacja
+                  </Link>
+                </>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 font-semibold">
+          Razem: {formatPrice(order.total_gross_grosz)}
+          {order.shipping_quote_required ? ' (+ wycena wysyłki osobno)' : ''}
+        </p>
+      </section>
+
+      {address ? (
+        <section className="rounded border bg-white p-4 text-sm">
+          <h2 className="mb-2 font-semibold">Adres dostawy</h2>
+          <p>
+            {address.recipient_name}
+            <br />
+            {address.street_line1}
+            {address.street_line2 ? (
+              <>
+                <br />
+                {address.street_line2}
+              </>
+            ) : null}
+            <br />
+            {address.postal_code} {address.city}
+            <br />
+            {address.country}
+          </p>
+        </section>
+      ) : null}
+
+      <section className="rounded border bg-white p-4 text-sm">
+        <h2 className="mb-2 font-semibold">Powiązane rezerwacje</h2>
+        {(bookings ?? []).length === 0 ? (
+          <p className="text-gray-500">Brak powiązanych rezerwacji.</p>
+        ) : (
+          <ul className="space-y-1">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {(bookings ?? []).map((b: any) => (
+              <li key={b.id}>
+                <Link href={`/admin/rezerwacje/${b.id}`} className="underline">
+                  {b.booking_reference}
+                </Link>{' '}
+                ({b.status})
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    </div>
+  );
+}
