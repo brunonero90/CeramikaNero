@@ -32,6 +32,10 @@ metadata.
 | Manage workshop categories | yes   | yes     | no     |
 | Manage workshops           | yes   | yes     | no     |
 | Manage workshop sessions   | yes   | yes     | no     |
+| Manage bookings            | yes   | yes     | no     |
+| Manage orders / shipping quotes | yes | yes   | no     |
+| Manage products            | yes   | yes     | no     |
+| Manage enquiries           | yes   | yes     | no     |
 | Manage instructors         | yes   | yes     | no     |
 | Manage pages               | yes   | yes     | yes    |
 | Manage blog posts          | yes   | yes     | yes    |
@@ -57,8 +61,9 @@ Protected:
 - `/admin/terminy` — workshop sessions
 - `/admin/rezerwacje` — workshop bookings (list/detail; empty state safe)
 - `/admin/rezerwacje/nowa` — manual booking
-- `/admin/zamowienia` — mixed cart orders (workshops + products)
-- `/admin/produkty` — Glina Box and studio service products
+- `/admin/zamowienia` — mixed cart orders (workshops + products), shipping quotes, status ops
+- `/admin/produkty` — Glina Box and studio service products (edit price/status/fulfilment)
+- `/admin/zapytania` — structured enquiries from `/kontakt`
 - `/admin/instruktorzy` — instructors
 - `/admin/strony` — content pages
 - `/admin/blog` — blog posts

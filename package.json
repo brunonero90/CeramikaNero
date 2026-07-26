@@ -12,14 +12,15 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:local-booking": "node scripts/e2e-local-booking.js",
     "db:types": "node scripts/generate-db-types.js",
     "audit:links": "node scripts/audit-site-links.js",
     "seed:operational": "node scripts/seed-operational-data.js",
     "seed:operational:apply": "node scripts/seed-operational-data.js --apply",
     "seed:catalog": "node scripts/import-workshop-catalog.js",
     "seed:catalog:apply": "node scripts/import-workshop-catalog.js --apply",
-    "smoke:live-booking": "node scripts/smoke-live-booking.js",
-    "test:e2e:local-booking": "node scripts/e2e-local-booking.js"
+    "smoke:live-booking": "node scripts/smoke-live-booking.js"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.15.12",
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

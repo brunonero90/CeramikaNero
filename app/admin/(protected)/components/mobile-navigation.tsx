@@ -44,6 +44,11 @@ const navItems: NavItem[] = [
     allowedRoles: ['owner', 'manager'],
   },
   {
+    href: '/admin/zapytania',
+    label: 'Zapytania',
+    allowedRoles: ['owner', 'manager'],
+  },
+  {
     href: '/admin/instruktorzy',
     label: 'Instruktorzy',
     allowedRoles: ['owner', 'manager'],

@@ -2,7 +2,10 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { formatPrice } from '@/lib/utils/price';
-import { setOrderShippingQuoteAction } from '../actions';
+import {
+  setOrderShippingQuoteAction,
+  updateOrderOperationalStateAction,
+} from '../actions';
 
 export const dynamic = 'force-dynamic';
 
@@ -183,6 +186,87 @@ export default async function AdminOrderDetailPage({
           </p>
         </section>
       ) : null}
+
+      <form
+        action={updateOrderOperationalStateAction}
+        className="space-y-3 rounded border bg-white p-4 text-sm"
+      >
+        <h2 className="font-semibold">Operacje</h2>
+        <input type="hidden" name="orderId" value={order.id} />
+        <div className="grid gap-3 sm:grid-cols-3">
+          <label>
+            Status zamówienia
+            <select
+              name="orderStatus"
+              defaultValue={order.status}
+              className="mt-1 block w-full border px-2 py-1"
+            >
+              {[
+                'awaiting_payment',
+                'confirmed',
+                'cancelled',
+                'expired',
+                'refunded',
+                'partially_refunded',
+              ].map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Płatność
+            <select
+              name="paymentStatus"
+              defaultValue={order.payment_status}
+              className="mt-1 block w-full border px-2 py-1"
+            >
+              {[
+                'pending',
+                'paid',
+                'failed',
+                'cancelled',
+                'refunded',
+                'partially_refunded',
+              ].map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Realizacja
+            <select
+              name="fulfillmentStatus"
+              defaultValue={order.fulfillment_status}
+              className="mt-1 block w-full border px-2 py-1"
+            >
+              {['unfulfilled', 'partial', 'fulfilled', 'cancelled'].map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <label className="block">
+          Notatki wewnętrzne
+          <textarea
+            name="internalNotes"
+            defaultValue={order.internal_notes ?? ''}
+            rows={3}
+            className="mt-1 w-full border px-2 py-1"
+          />
+        </label>
+        <button
+          type="submit"
+          className="rounded bg-gray-900 px-4 py-2 text-white"
+        >
+          Zapisz statusy
+        </button>
+      </form>
 
       <section className="rounded border bg-white p-4 text-sm">
         <h2 className="mb-2 font-semibold">Powiązane rezerwacje</h2>

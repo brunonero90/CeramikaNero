@@ -126,6 +126,10 @@ export function CheckoutPageClient() {
       }
 
       clear();
+      if (result.publicLookupToken) {
+        router.push(`/zamowienie/${result.publicLookupToken}`);
+        return;
+      }
       const params = new URLSearchParams({
         reference: result.orderReference,
         total: String(result.totalGrossGrosz),

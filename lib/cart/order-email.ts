@@ -20,6 +20,78 @@ async function markOrderEmail(
     .eq('id', id);
 }
 
+async function queueAndSendOrderEmail(input: {
+  orderId: string;
+  emailType: string;
+  recipient: string;
+  subject: string;
+  body: string;
+  dedupeKey?: string;
+}): Promise<void> {
+  const supabase = createCartAdminClient();
+
+  // Exact-once queue: skip if an identical pending/sent row already exists.
+  const { data: existing } = await supabase
+    .from('order_emails')
+    .select('id, status')
+    .eq('order_id', input.orderId)
+    .eq('email_type', input.emailType)
+    .eq('recipient', input.recipient)
+    .in('status', ['pending', 'sent'])
+    .maybeSingle();
+
+  if (existing?.status === 'sent') return;
+
+  let emailId = existing?.id ?? null;
+  if (!emailId) {
+    const { data: inserted, error } = await supabase
+      .from('order_emails')
+      .insert({
+        order_id: input.orderId,
+        email_type: input.emailType,
+        recipient: input.recipient,
+        status: 'pending',
+      })
+      .select('id')
+      .maybeSingle();
+    if (error || !inserted?.id) {
+      console.error('order email queue failed', error?.message);
+      return;
+    }
+    emailId = inserted.id as string;
+  }
+
+  const html = `<pre style="font-family:sans-serif;white-space:pre-wrap">${input.body
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')}</pre>`;
+
+  try {
+    const delivered = await deliverBookingEmail({
+      bookingId: input.orderId,
+      type: input.emailType,
+      to: input.recipient,
+      subject: input.subject,
+      html,
+      text: input.body,
+    });
+    if (delivered.ok) {
+      await markOrderEmail(emailId, 'sent');
+    } else {
+      await markOrderEmail(
+        emailId,
+        'failed',
+        delivered.errorMessage ?? 'delivery failed'
+      );
+    }
+  } catch (err) {
+    await markOrderEmail(
+      emailId,
+      'failed',
+      err instanceof Error ? err.message : 'unknown'
+    );
+  }
+}
+
 export async function notifyOrderCreated(orderId: string): Promise<void> {
   const supabase = createCartAdminClient();
   const { data: order } = await supabase
@@ -91,8 +163,12 @@ export async function notifyOrderCreated(orderId: string): Promise<void> {
       : '';
 
   const shippingNote = order.shipping_quote_required
-    ? '\n\nKoszt wysyłki zostanie potwierdzony osobno przed płatnością końcową.'
+    ? '\n\nKoszt wysyłki zostanie potwierdzony osobno przed płatnością końcową. Nie przelewaj środków, dopóki nie otrzymasz finalnej kwoty.'
     : '';
+
+  const paymentNote = order.shipping_quote_required
+    ? '\nPłatność: po potwierdzeniu kosztu wysyłki.'
+    : '\nPłatność: przelew bankowy — szczegóły potwierdzimy po weryfikacji zamówienia. Stripe nie jest aktywowany.';
 
   const body = [
     `Dziękujemy za zamówienie ${order.order_reference}.`,
@@ -103,11 +179,10 @@ export async function notifyOrderCreated(orderId: string): Promise<void> {
     'Pozycje:',
     linesText,
     '',
-    `Suma (produkty/warsztaty): ${formatPrice(order.total_gross_grosz)}.`,
+    `Suma pozycji: ${formatPrice(order.total_gross_grosz)}.`,
     shippingNote.trim() || null,
     addressText.trim() || null,
-    '',
-    'Płatność: przelew bankowy — szczegóły prześlemy / potwierdzimy po weryfikacji zamówienia. Stripe nie jest aktywowany.',
+    paymentNote,
     '',
     'Kontakt: https://ceramikanero.netlify.app/kontakt',
     'Regulamin: https://ceramikanero.netlify.app/regulamin',
@@ -162,4 +237,88 @@ export async function notifyOrderCreated(orderId: string): Promise<void> {
       );
     }
   }
+}
+
+export async function notifyShippingQuoteConfirmed(
+  orderId: string
+): Promise<void> {
+  const supabase = createCartAdminClient();
+  const { data: order } = await supabase
+    .from('orders')
+    .select(
+      `
+      id,
+      order_reference,
+      subtotal_gross_grosz,
+      shipping_gross_grosz,
+      total_gross_grosz,
+      shipping_quote_required,
+      customer_profiles (email, first_name)
+    `
+    )
+    .eq('id', orderId)
+    .maybeSingle();
+
+  if (!order || order.shipping_quote_required) return;
+
+  const profile = order.customer_profiles as {
+    email: string;
+    first_name: string;
+  } | null;
+  if (!profile?.email) return;
+
+  const body = [
+    `Dzień dobry${profile.first_name ? ` ${profile.first_name}` : ''},`,
+    '',
+    `Potwierdzamy koszt wysyłki dla zamówienia ${order.order_reference}.`,
+    `Suma pozycji: ${formatPrice(order.subtotal_gross_grosz)}`,
+    `Wysyłka: ${formatPrice(order.shipping_gross_grosz)}`,
+    `Kwota do zapłaty: ${formatPrice(order.total_gross_grosz)}`,
+    '',
+    'Prosimy o przelew dopiero tej finalnej kwoty. Dane do przelewu przekażemy / znajdziesz w wiadomości od pracowni.',
+    '',
+    'Kontakt: https://ceramikanero.netlify.app/kontakt',
+  ].join('\n');
+
+  await queueAndSendOrderEmail({
+    orderId,
+    emailType: 'shipping_quote_confirmed',
+    recipient: profile.email,
+    subject: `Koszt wysyłki potwierdzony — ${order.order_reference}`,
+    body,
+  });
+}
+
+export async function notifyOrderPaymentReceived(
+  orderId: string
+): Promise<void> {
+  const supabase = createCartAdminClient();
+  const { data: order } = await supabase
+    .from('orders')
+    .select(
+      'id, order_reference, total_gross_grosz, customer_profiles (email, first_name)'
+    )
+    .eq('id', orderId)
+    .maybeSingle();
+  if (!order) return;
+  const profile = order.customer_profiles as {
+    email: string;
+    first_name: string;
+  } | null;
+  if (!profile?.email) return;
+
+  const body = [
+    `Dziękujemy — otrzymaliśmy płatność za zamówienie ${order.order_reference}.`,
+    `Kwota: ${formatPrice(order.total_gross_grosz)}.`,
+    '',
+    'Kontakt: https://ceramikanero.netlify.app/kontakt',
+  ].join('\n');
+
+  await queueAndSendOrderEmail({
+    orderId,
+    emailType: 'payment_received',
+    recipient: profile.email,
+    subject: `Płatność otrzymana — ${order.order_reference}`,
+    body,
+  });
 }
