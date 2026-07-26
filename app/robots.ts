@@ -10,7 +10,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin', '/api/', '/rezerwacja/'],
+        disallow: [
+          '/admin',
+          '/api/',
+          '/rezerwacja/',
+          '/cart',
+          '/cart/',
+          '/checkout',
+        ],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,

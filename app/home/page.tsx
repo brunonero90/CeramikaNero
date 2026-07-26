@@ -199,6 +199,18 @@ export default async function GlinaBoxHomePage() {
             </article>
           ) : null}
 
+          <section className="space-y-4">
+            <h2 className="font-heading text-2xl font-semibold">Pytania</h2>
+            <dl className="space-y-4">
+              {glinaBoxCommerce.faq.map((item) => (
+                <div key={item.q}>
+                  <dt className="font-semibold text-text-primary">{item.q}</dt>
+                  <dd className="mt-1 text-sm text-text-muted">{item.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
           <p className="text-sm text-text-muted">
             Pytania?{' '}
             <Link href={glinaBoxCommerce.contactHref} className="underline">
@@ -207,6 +219,10 @@ export default async function GlinaBoxHomePage() {
             . Zobacz też{' '}
             <Link href={glinaBoxCommerce.legalHref} className="underline">
               regulamin
+            </Link>
+            {' · '}
+            <Link href="/warsztaty" className="underline">
+              warsztaty stacjonarne
             </Link>
             .
           </p>

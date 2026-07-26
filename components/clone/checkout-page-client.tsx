@@ -347,10 +347,32 @@ export function CheckoutPageClient() {
           <span>Chcę otrzymywać informacje o warsztatach (opcjonalnie).</span>
         </label>
 
-        <p className="text-lg font-semibold">
-          Do zapłaty (bez ewentualnej wysyłki):{' '}
-          {formatPrice(validated?.subtotalGrosz ?? 0)}
-        </p>
+        <div className="space-y-2 rounded border border-surface-subtle bg-surface-raised p-4 text-sm">
+          <p className="flex justify-between gap-3">
+            <span>Suma pozycji</span>
+            <span className="font-semibold">
+              {formatPrice(validated?.subtotalGrosz ?? 0)}
+            </span>
+          </p>
+          {needsShipping ? (
+            <>
+              <p className="flex justify-between gap-3 text-amber-900">
+                <span>Wysyłka</span>
+                <span>do potwierdzenia</span>
+              </p>
+              <p className="text-amber-900">
+                Koszt wysyłki zostanie potwierdzony przed płatnością. Kwota do
+                zapłaty zostanie potwierdzona po ustaleniu kosztu wysyłki — nie
+                przelewaj środków, dopóki nie otrzymasz finalnej kwoty.
+              </p>
+            </>
+          ) : (
+            <p className="flex justify-between gap-3 text-base font-semibold">
+              <span>Do zapłaty</span>
+              <span>{formatPrice(validated?.subtotalGrosz ?? 0)}</span>
+            </p>
+          )}
+        </div>
 
         {error ? (
           <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-800">

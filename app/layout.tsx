@@ -73,6 +73,12 @@ export default function RootLayout({
       className={`${cormorant.variable} ${inter.variable} ${quicksand.variable} ${nunito.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-surface-bg font-body text-text-primary">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-text-primary focus:px-4 focus:py-2 focus:text-white"
+        >
+          Przejdź do treści
+        </a>
         <ThemeScript />
         <ThemeProvider>
           <LocalCartProvider>

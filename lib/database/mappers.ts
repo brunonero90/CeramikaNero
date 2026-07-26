@@ -129,6 +129,10 @@ export function mapWorkshopSession(row: DbWorkshopSession): WorkshopSession {
     currency: row.currency,
     locationName: row.location_name,
     locationAddress: row.location_address,
+    venueKey:
+      'venue_key' in row
+        ? ((row as { venue_key?: string | null }).venue_key ?? null)
+        : null,
     status: sessionStatusSchema.parse(row.status),
     bookingOpensAt: row.booking_opens_at,
     bookingClosesAt: row.booking_closes_at,

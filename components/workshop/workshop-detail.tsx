@@ -13,7 +13,8 @@ export function WorkshopDetail({
 }) {
   const isEnquiry = workshop.bookingMode === 'enquiry';
   const cta = isEnquiry ? 'Zapytaj o termin' : 'Zarezerwuj warsztat';
-  const enquiryHref = '/kontakt';
+  const enquiryHref = `/kontakt?oferta=${encodeURIComponent(workshop.slug)}`;
+  const bookHref = `/warsztaty/${workshop.slug}/rezerwacja`;
   const image = getWorkshopImage(workshop.slug, workshop.featuredMediaId);
 
   return (
@@ -119,20 +120,28 @@ export function WorkshopDetail({
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-10 hidden md:block">
         {isEnquiry ? (
           <Button href={enquiryHref} variant="outline">
             {cta}
           </Button>
         ) : (
-          <Button
-            href={`/warsztaty/${workshop.slug}/rezerwacja`}
-            variant="primary"
-          >
+          <Button href={bookHref} variant="primary">
             {cta}
           </Button>
         )}
       </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-surface-subtle/60 bg-surface-bg/95 p-3 backdrop-blur md:hidden">
+        <Button
+          href={isEnquiry ? enquiryHref : bookHref}
+          variant={isEnquiry ? 'outline' : 'primary'}
+          className="w-full"
+        >
+          {cta}
+        </Button>
+      </div>
+      <div className="h-20 md:hidden" aria-hidden />
     </div>
   );
 }

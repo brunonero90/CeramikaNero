@@ -36,4 +36,18 @@ export const glinaBoxCommerce = {
     'Aktualna cena sprzedaży pochodzi z katalogu produktów. Historyczna promocja sezonowa z archiwum (21–28 marca) nie jest już reklamowana jako aktualna.',
   contactHref: '/kontakt',
   legalHref: '/regulamin',
+  faq: [
+    {
+      q: 'Czy szkliwienie jest w cenie Glina Box?',
+      a: 'Nie. Profesjonalne szkliwienie i wypał w pracowni to osobna usługa za 69 zł.',
+    },
+    {
+      q: 'Czy mogę zamówić wysyłkę do domu?',
+      a: 'Tak. Możesz wybrać odbiór w pracowni albo wysyłkę. Koszt wysyłki potwierdzimy przed płatnością.',
+    },
+    {
+      q: 'Co z wyschniętą pracą?',
+      a: 'Po wyschnięciu możesz przywieźć lub wysłać pracę do pracowni na wypał i szkliwienie. To osobny etap od dostawy samego zestawu.',
+    },
+  ],
 } as const;

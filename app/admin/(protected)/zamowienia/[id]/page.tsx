@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { formatPrice } from '@/lib/utils/price';
+import { setOrderShippingQuoteAction } from '../actions';
 
 export const dynamic = 'force-dynamic';
 
@@ -114,10 +115,53 @@ export default async function AdminOrderDetailPage({
           ))}
         </ul>
         <p className="mt-3 font-semibold">
-          Razem: {formatPrice(order.total_gross_grosz)}
-          {order.shipping_quote_required ? ' (+ wycena wysyłki osobno)' : ''}
+          Suma pozycji: {formatPrice(order.subtotal_gross_grosz)}
+        </p>
+        <p className="text-sm text-gray-600">
+          Wysyłka:{' '}
+          {order.shipping_quote_required
+            ? 'do potwierdzenia'
+            : formatPrice(order.shipping_gross_grosz)}
+        </p>
+        <p className="mt-1 font-semibold">
+          {order.shipping_quote_required
+            ? 'Kwota do zapłaty: po potwierdzeniu wysyłki'
+            : `Do zapłaty: ${formatPrice(order.total_gross_grosz)}`}
         </p>
       </section>
+
+      {order.shipping_quote_required ? (
+        <section className="rounded border border-amber-200 bg-amber-50 p-4 text-sm">
+          <h2 className="mb-2 font-semibold">Potwierdź koszt wysyłki</h2>
+          <p className="mb-3 text-amber-950">
+            Klient nie powinien przelewać środków, dopóki nie ustalisz finalnej
+            kwoty z wysyłką.
+          </p>
+          <form
+            action={setOrderShippingQuoteAction}
+            className="flex flex-wrap items-end gap-3"
+          >
+            <input type="hidden" name="orderId" value={order.id} />
+            <label className="text-sm">
+              Koszt wysyłki (PLN)
+              <input
+                name="shippingFeePln"
+                type="number"
+                min="0"
+                step="0.01"
+                required
+                className="mt-1 block w-40 border px-2 py-1"
+              />
+            </label>
+            <button
+              type="submit"
+              className="rounded bg-gray-900 px-4 py-2 text-white"
+            >
+              Zapisz wycenę
+            </button>
+          </form>
+        </section>
+      ) : null}
 
       {address ? (
         <section className="rounded border bg-white p-4 text-sm">

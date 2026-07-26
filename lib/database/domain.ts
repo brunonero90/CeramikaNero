@@ -124,6 +124,8 @@ export type WorkshopSession = {
   currency: string;
   locationName: string | null;
   locationAddress: string | null;
+  /** Normalized venue: suchy-las | ptasie-radio | other | null */
+  venueKey: string | null;
   status: SessionStatus;
   bookingOpensAt: string | null;
   bookingClosesAt: string | null;

@@ -28,6 +28,7 @@ export default async function KalendarzPage() {
     priceGrossGrosz: s.priceGrossGrosz,
     status: s.status,
     locationName: s.locationName,
+    venueKey: s.venueKey,
   }));
   const local = isBookingLocalMode();
 

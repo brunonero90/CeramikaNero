@@ -38,6 +38,7 @@ export async function getPublicCalendarSessions(): Promise<CalendarSession[]> {
       status: s.status,
       locationName: s.locationName,
       locationAddress: s.locationAddress,
+      venueKey: null,
       bookingOpensAt: null,
       bookingClosesAt: null,
       externalBookingUrl: null,

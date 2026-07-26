@@ -160,44 +160,50 @@ export function CartPageClient() {
           </ul>
 
           <div className="flex flex-col gap-3 border-t border-surface-subtle pt-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-lg font-semibold text-text-primary">
-              Razem:{' '}
-              {formatPrice(
-                validated?.subtotalGrosz ??
-                  lines.reduce(
-                    (s, l) => s + l.unitPriceHintGrosz * l.quantity,
-                    0
-                  )
-              )}
-            </p>
+            <div className="space-y-1">
+              <p className="text-lg font-semibold text-text-primary">
+                Suma pozycji:{' '}
+                {formatPrice(
+                  validated?.subtotalGrosz ??
+                    lines.reduce(
+                      (s, l) => s + l.unitPriceHintGrosz * l.quantity,
+                      0
+                    )
+                )}
+              </p>
+              {validated?.shippingQuoteRequired ? (
+                <p className="text-sm text-amber-900">
+                  Wysyłka: do potwierdzenia. Kwota do zapłaty zostanie
+                  potwierdzona po ustaleniu kosztu wysyłki.
+                </p>
+              ) : validated ? (
+                <p className="text-sm text-text-muted">
+                  Do zapłaty: {formatPrice(validated.subtotalGrosz)}
+                </p>
+              ) : null}
+            </div>
             <div className="flex flex-wrap gap-3">
               <button
                 type="button"
                 onClick={() => clear()}
-                className="border border-surface-subtle px-4 py-2 text-sm"
+                className="min-h-11 border border-surface-subtle px-4 py-2 text-sm"
               >
                 Wyczyść koszyk
               </button>
               {validated && !validated.canCheckout ? (
-                <span className="inline-flex bg-gray-400 px-4 py-2 text-sm font-semibold text-white">
+                <span className="inline-flex min-h-11 items-center bg-gray-400 px-4 py-2 text-sm font-semibold text-white">
                   Popraw niedostępne pozycje
                 </span>
               ) : (
                 <Link
                   href="/cart/checkout"
-                  className="inline-flex bg-accent-primary px-4 py-2 text-sm font-semibold text-white"
+                  className="inline-flex min-h-11 items-center bg-accent-primary px-4 py-2 text-sm font-semibold text-white"
                 >
                   Przejdź do zamówienia
                 </Link>
               )}
             </div>
           </div>
-          {validated?.shippingQuoteRequired ? (
-            <p className="text-sm text-amber-900">
-              Koszyk zawiera wysyłkę — koszt dostawy zostanie potwierdzony przed
-              płatnością (nie doliczamy sztucznej kwoty).
-            </p>
-          ) : null}
         </div>
       )}
     </main>

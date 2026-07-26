@@ -130,6 +130,8 @@ export function getPracowniaImages(): SiteImage[] {
 const workshopImageMap: Record<string, string> = {
   'ceramika-dla-doroslych': 'wix-747d6f_85e6210e2fd54cd6885c6833e198c58d',
   'glina-do-wina': 'wix-747d6f_2edf75f3f9fd45b4bc7f120d2f64b85b',
+  'glina-do-wina-w-poznaniu-w-ptasim-radiu':
+    'wix-747d6f_b5e3aff7de8743c88922dac0ed1c8629',
   'ceramika-dla-dzieci': 'wix-747d6f_af946e4dbc8d40208b3d1c05be4cebbe',
   'kurs-rysunku-dla-mlodziezy': 'wix-747d6f_2234cc741bd5422eb5d92705a021219a',
   'kurs-rysunku-i-architektury': 'wix-747d6f_da600fb92cac4d629b7833190b681fa2',
