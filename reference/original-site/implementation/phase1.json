@@ -24,10 +24,10 @@
       "desktopVerification": "captured",
       "mobileVerification": "captured",
       "requiredTextBlocks": [
-        "Wybierz warsztat",
-        "ZAREZERWUJ DOGODNY TERMIN",
-        "GLINA DO WINA",
-        "Zarezerwuj"
+        "Zobacz terminy",
+        "Warsztaty dla dzieci",
+        "Glina Box",
+        "229"
       ],
       "requiredTextMissing": [],
       "missingOrAlteredContent": [
@@ -39,7 +39,8 @@
         "Wix cookie chrome omitted",
         "Wix editor/login chrome omitted",
         "Wix runtime mesh/animation details omitted",
-        "Interactive Wix Bookings calendar availability replaced with static first-party service catalog"
+        "Interactive Wix Bookings calendar availability replaced with first-party calendar and cart booking",
+        "Homepage CTA copy modernized from all-caps archive phrase to Zobacz terminy"
       ],
       "applicationFiles": ["app/page.tsx", "lib/clone/content/landings.ts"]
     },

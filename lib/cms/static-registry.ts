@@ -284,7 +284,7 @@ export function registerAllStaticClonePages(): void {
         {
           type: 'homepage-header',
           title: 'Wybierz warsztat',
-          subtitle: 'ZAREZERWUJ DOGODNY TERMIN',
+          subtitle: 'Zobacz terminy',
           chips: [
             'Wszystkie usługi',
             'CERAMIKA NERO PODGÓRNA 3 SUCHY LAS',
