@@ -117,6 +117,20 @@ export function BookingDetailActions({
       >
         Wyślij potwierdzenie
       </button>
+      <button
+        onClick={() => handleRetryEmail('cancellation')}
+        disabled={isPending}
+        className={btn}
+      >
+        Wyślij anulację
+      </button>
+      <button
+        onClick={() => handleRetryEmail('refund')}
+        disabled={isPending}
+        className={btn}
+      >
+        Wyślij zwrot
+      </button>
     </div>
   );
 }

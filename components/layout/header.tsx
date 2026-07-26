@@ -13,7 +13,13 @@ import { cn } from '@/lib/utils/cn';
  * Site header: peach bar, title-case nav, peach active chip, socials in the
  * same desktop row as menu items (after Blog), then cart / mobile controls.
  */
-export function Header() {
+export function Header({
+  facebookUrl = siteContact.facebookUrl,
+  instagramUrl = siteContact.instagramUrl,
+}: {
+  facebookUrl?: string;
+  instagramUrl?: string;
+} = {}) {
   const pathname = usePathname();
   const { itemCount: cartCount } = useLocalCart();
   const facebook = getSocialIcon('facebook');
@@ -49,7 +55,7 @@ export function Header() {
             {facebook ? (
               <li className="ml-1 flex items-center xl:ml-2">
                 <a
-                  href={siteContact.facebookUrl}
+                  href={facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook Ceramika Nero"
@@ -68,7 +74,7 @@ export function Header() {
             {instagram ? (
               <li className="flex items-center">
                 <a
-                  href={siteContact.instagramUrl}
+                  href={instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram Ceramika Nero"
@@ -113,7 +119,11 @@ export function Header() {
             </span>
           </Link>
 
-          <MobileNav key={pathname} />
+          <MobileNav
+            key={pathname}
+            facebookUrl={facebookUrl}
+            instagramUrl={instagramUrl}
+          />
         </div>
       </div>
     </header>
@@ -173,7 +183,13 @@ function SignupIcon() {
   );
 }
 
-function MobileNav() {
+function MobileNav({
+  facebookUrl,
+  instagramUrl,
+}: {
+  facebookUrl: string;
+  instagramUrl: string;
+}) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const facebook = getSocialIcon('facebook');
@@ -240,7 +256,7 @@ function MobileNav() {
             <div className="mt-2 flex items-center justify-center gap-4">
               {facebook ? (
                 <a
-                  href={siteContact.facebookUrl}
+                  href={facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook Ceramika Nero"
@@ -258,7 +274,7 @@ function MobileNav() {
               ) : null}
               {instagram ? (
                 <a
-                  href={siteContact.instagramUrl}
+                  href={instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram Ceramika Nero"

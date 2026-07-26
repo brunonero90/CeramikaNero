@@ -65,6 +65,7 @@ export default async function EditSessionPage({
     endTime: end.time,
     capacity: mapped.capacity,
     priceGrossPln: Number(groszToZloty(mapped.priceGrossGrosz)),
+    venueKey: mapped.venueKey ?? 'suchy-las',
     locationName: mapped.locationName ?? '',
     locationAddress: mapped.locationAddress ?? '',
     bookingOpensDate: bookingOpens?.date ?? '',

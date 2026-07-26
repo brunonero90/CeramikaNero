@@ -9,6 +9,8 @@ export type PublicContactDisplay = {
   phoneHref: string;
   whatsappUrl: string;
   whatsappWithMessage: string;
+  facebookUrl: string;
+  instagramUrl: string;
   deliveryQuoteWording: string;
   bankTransferInstructions: string;
   publicNotice: string;
@@ -64,6 +66,8 @@ export function contactDisplayFromSettings(
     phoneHref,
     whatsappUrl,
     whatsappWithMessage,
+    facebookUrl: settings?.facebookUrl?.trim() || siteContact.facebookUrl,
+    instagramUrl: settings?.instagramUrl?.trim() || siteContact.instagramUrl,
     deliveryQuoteWording:
       settings?.deliveryQuoteWording ||
       'Koszt wysyłki zostanie potwierdzony przed płatnością.',

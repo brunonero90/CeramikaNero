@@ -223,6 +223,14 @@ export function mapPublicSiteSettings(
     studioEmail: get('studio_email', 'kontakt@ceramikanero.com'),
     studioPhone: get('studio_phone', '532 279 101'),
     whatsappUrl: get('whatsapp_url', 'https://wa.me/48532279101'),
+    facebookUrl: get(
+      'facebook_url',
+      'https://www.facebook.com/ceramikanero'
+    ),
+    instagramUrl: get(
+      'instagram_url',
+      'https://www.instagram.com/ceramika_nero'
+    ),
     bankTransferInstructions: get(
       'bank_transfer_instructions',
       'Przelew bankowy — dane konta potwierdzimy po ustaleniu finalnej kwoty.'

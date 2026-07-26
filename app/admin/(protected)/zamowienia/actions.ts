@@ -109,6 +109,9 @@ export async function updateOrderOperationalStateAction(
   const fulfillmentStatus = String(formData.get('fulfillmentStatus') ?? '');
   const orderStatus = String(formData.get('orderStatus') ?? '');
   const internalNotes = String(formData.get('internalNotes') ?? '');
+  const trackingReference = String(formData.get('trackingReference') ?? '')
+    .trim()
+    .slice(0, 200);
 
   if (
     !orderId ||
@@ -137,6 +140,7 @@ export async function updateOrderOperationalStateAction(
     fulfillment_status: fulfillmentStatus,
     status: orderStatus,
     internal_notes: internalNotes || null,
+    tracking_reference: trackingReference || null,
     updated_at: new Date().toISOString(),
   };
   if (orderStatus === 'confirmed') {
@@ -146,10 +150,13 @@ export async function updateOrderOperationalStateAction(
     patch.cancelled_at = new Date().toISOString();
   }
 
-  const { error } = await supabase
-    .from('orders')
-    .update(patch)
-    .eq('id', orderId);
+  let { error } = await supabase.from('orders').update(patch).eq('id', orderId);
+
+  // Migration 14 may not be applied yet — retry without tracking column.
+  if (error?.message?.includes('tracking_reference')) {
+    delete patch.tracking_reference;
+    ({ error } = await supabase.from('orders').update(patch).eq('id', orderId));
+  }
 
   if (error) {
     console.error('order state update failed', error.message);
@@ -165,6 +172,7 @@ export async function updateOrderOperationalStateAction(
       payment_status: paymentStatus,
       fulfillment_status: fulfillmentStatus,
       status: orderStatus,
+      tracking_reference: trackingReference || null,
       by: admin.displayName,
     },
   });

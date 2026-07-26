@@ -228,6 +228,8 @@ export type PublicSiteSettings = {
   studioEmail: string;
   studioPhone: string;
   whatsappUrl: string;
+  facebookUrl: string;
+  instagramUrl: string;
   bankTransferInstructions: string;
   deliveryQuoteWording: string;
   publicNotice: string;

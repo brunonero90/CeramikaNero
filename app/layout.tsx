@@ -77,6 +77,8 @@ export default async function RootLayout({
       phoneHref: display.phoneHref,
       phoneDisplay: display.phoneDisplay,
       whatsappHref: display.whatsappWithMessage,
+      facebookUrl: display.facebookUrl,
+      instagramUrl: display.instagramUrl,
       publicNotice: display.publicNotice || undefined,
     };
   } catch {

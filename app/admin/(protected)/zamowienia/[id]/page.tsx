@@ -58,10 +58,18 @@ export default async function AdminOrderDetailPage({
     booking_id: string | null;
   }>;
 
-  const { data: bookings } = await supabase
-    .from('bookings')
-    .select('id, booking_reference, status')
-    .eq('order_id', id);
+  const [{ data: bookings }, { data: events }] = await Promise.all([
+    supabase
+      .from('bookings')
+      .select('id, booking_reference, status')
+      .eq('order_id', id),
+    supabase
+      .from('order_events')
+      .select('id, event_type, actor_type, metadata, created_at')
+      .eq('order_id', id)
+      .order('created_at', { ascending: false })
+      .limit(40),
+  ]);
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -252,6 +260,15 @@ export default async function AdminOrderDetailPage({
           </label>
         </div>
         <label className="block">
+          Numer przesyłki (opcjonalnie)
+          <input
+            name="trackingReference"
+            defaultValue={order.tracking_reference ?? ''}
+            className="mt-1 w-full border px-2 py-1"
+            placeholder="np. numer listu przewozowego"
+          />
+        </label>
+        <label className="block">
           Notatki wewnętrzne
           <textarea
             name="internalNotes"
@@ -267,6 +284,32 @@ export default async function AdminOrderDetailPage({
           Zapisz statusy
         </button>
       </form>
+
+      <section className="rounded border bg-white p-4 text-sm">
+        <h2 className="mb-2 font-semibold">Historia zdarzeń</h2>
+        {(events ?? []).length === 0 ? (
+          <p className="text-gray-500">Brak zdarzeń.</p>
+        ) : (
+          <ul className="space-y-2">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {(events ?? []).map((ev: any) => (
+              <li key={ev.id} className="border-b pb-2 last:border-0">
+                <span className="font-medium">{ev.event_type}</span>
+                <span className="text-gray-500">
+                  {' '}
+                  · {ev.actor_type} ·{' '}
+                  {new Date(ev.created_at).toLocaleString('pl-PL')}
+                </span>
+                {ev.metadata?.by ? (
+                  <span className="block text-xs text-gray-600">
+                    przez {String(ev.metadata.by)}
+                  </span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
 
       <section className="rounded border bg-white p-4 text-sm">
         <h2 className="mb-2 font-semibold">Powiązane rezerwacje</h2>

@@ -19,6 +19,7 @@ function lifecycleCopy(order: {
   fulfillmentStatus: string;
   fulfillmentMethod: string;
   shippingQuoteRequired: boolean;
+  trackingReference?: string | null;
 }): { title: string; body: string } {
   if (order.status === 'cancelled') {
     return {
@@ -55,7 +56,9 @@ function lifecycleCopy(order: {
           : 'Gotowe / zrealizowane',
       body:
         order.fulfillmentMethod === 'shipping'
-          ? 'Zamówienie zostało wysłane.'
+          ? order.trackingReference
+            ? `Zamówienie zostało wysłane. Numer przesyłki: ${order.trackingReference}.`
+            : 'Zamówienie zostało wysłane.'
           : 'Zamówienie jest gotowe lub zostało odebrane.',
     };
   }

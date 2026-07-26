@@ -71,8 +71,10 @@ Protected:
 - `/admin/blog` — blog posts
 - `/admin/galeria` — gallery items
 - `/admin/media` — media library and upload
-- `/admin/ustawienia` — public contact, WhatsApp, delivery wording, bank-transfer text, notice (owner only)
-- `/admin/terminy/[id]` — session ops: duplicate (+7 days, draft), roster CSV export
+- `/admin/ustawienia` — public contact, WhatsApp, Facebook/Instagram URLs, delivery wording, bank-transfer text, notice (owner only)
+- `/admin/terminy/[id]` — session ops: venue_key, duplicate (+7 days, draft), roster CSV export; cancel blocked when reservations exist
+- `/admin/zapytania/export.csv` — deliberate enquiry CSV export
+- `/admin/zamowienia/[id]` — shipping quote, tracking reference, order_events timeline
 - `/admin/przekierowania` — legacy redirects (owner only)
 - `/admin/uzytkownicy` — admin users (owner only)
 - `/admin/audyt` — audit log (owner only)

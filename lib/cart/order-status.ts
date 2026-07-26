@@ -22,6 +22,7 @@ export type CustomerOrderStatus = {
   }>;
   hasDeliveryAddress: boolean;
   city?: string | null;
+  trackingReference?: string | null;
 };
 
 function hashLookupToken(token: string): string {
@@ -41,7 +42,7 @@ export async function getOrderStatusByPublicToken(
   const hash = hashLookupToken(trimmed);
   const supabase = createCartAdminClient();
 
-  const { data: order, error } = await supabase
+  let { data: order, error } = await supabase
     .from('orders')
     .select(
       `
@@ -55,6 +56,7 @@ export async function getOrderStatusByPublicToken(
       shipping_gross_grosz,
       total_gross_grosz,
       shipping_quote_required,
+      tracking_reference,
       order_items (
         title_snapshot, quantity, line_total_gross_grosz, item_type, fulfillment_method
       ),
@@ -63,6 +65,32 @@ export async function getOrderStatusByPublicToken(
     )
     .eq('public_lookup_token_hash', hash)
     .maybeSingle();
+
+  // Pre-migration-14 databases omit tracking_reference.
+  if (error?.message?.includes('tracking_reference')) {
+    ({ data: order, error } = await supabase
+      .from('orders')
+      .select(
+        `
+        id,
+        order_reference,
+        status,
+        payment_status,
+        fulfillment_status,
+        fulfillment_method,
+        subtotal_gross_grosz,
+        shipping_gross_grosz,
+        total_gross_grosz,
+        shipping_quote_required,
+        order_items (
+          title_snapshot, quantity, line_total_gross_grosz, item_type, fulfillment_method
+        ),
+        order_addresses (city)
+      `
+      )
+      .eq('public_lookup_token_hash', hash)
+      .maybeSingle());
+  }
 
   if (error || !order) {
     if (error) {
@@ -110,5 +138,8 @@ export async function getOrderStatusByPublicToken(
     })),
     hasDeliveryAddress: Boolean(address),
     city: address?.city ?? null,
+    trackingReference:
+      (order as { tracking_reference?: string | null }).tracking_reference ??
+      null,
   };
 }

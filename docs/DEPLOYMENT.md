@@ -114,6 +114,15 @@ node scripts/check-migration-13.js
 npm run audit:content
 ```
 
+Migration `00000000000014_order_tracking_reference.sql` adds optional
+`orders.tracking_reference`. Apply in the Supabase SQL Editor when ready:
+
+```powershell
+node scripts/apply-migration-14.js
+```
+
+Code tolerates a missing column until migration 14 is applied.
+
 After applying migrations, regenerate types when credentials allow:
 
 ```powershell

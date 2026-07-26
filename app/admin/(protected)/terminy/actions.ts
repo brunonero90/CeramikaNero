@@ -27,6 +27,10 @@ const sessionFormInputSchema = z.object({
   timezone: z.string().min(1).max(100),
   capacity: z.number().int().min(1),
   priceGrossPln: z.number().nonnegative(),
+  venueKey: z
+    .enum(['suchy-las', 'ptasie-radio', 'other'])
+    .optional()
+    .nullable(),
   locationName: z.string().max(300).optional().nullable(),
   locationAddress: z.string().max(500).optional().nullable(),
   status: z.enum(['draft', 'scheduled', 'sold_out', 'cancelled', 'completed']),
@@ -88,6 +92,7 @@ async function validateSessionForm(
     timezone: formData.get('timezone') || DEFAULT_ADMIN_TIMEZONE,
     capacity: Number(formData.get('capacity') || 0),
     priceGrossPln: Number(formData.get('priceGrossPln') || 0),
+    venueKey: formData.get('venueKey') || null,
     locationName: formData.get('locationName') || null,
     locationAddress: formData.get('locationAddress') || null,
     status: formData.get('status'),
@@ -147,6 +152,7 @@ async function validateSessionForm(
     timezone: f.timezone,
     capacity: f.capacity,
     priceGrossPln: f.priceGrossPln,
+    venueKey: f.venueKey,
     locationName: f.locationName,
     locationAddress: f.locationAddress,
     status: f.status,
@@ -223,6 +229,19 @@ async function validateSessionForm(
         };
       }
       if (
+        data.status === 'cancelled' &&
+        existing.status !== 'cancelled' &&
+        (existing.reserved_count ?? 0) > 0
+      ) {
+        return {
+          ok: false,
+          errors: {
+            status:
+              'Nie można odwołać terminu z aktywnymi rezerwacjami. Najpierw anuluj lub przenieś rezerwacje.',
+          },
+        };
+      }
+      if (
         (existing.status === 'cancelled' || existing.status === 'completed') &&
         (data.status === 'scheduled' || data.status === 'sold_out') &&
         new Date(data.startsAt) < new Date()
@@ -250,6 +269,7 @@ function buildSessionInsert(data: SessionInput) {
     timezone: data.timezone,
     capacity: data.capacity,
     price_gross_grosz: data.priceGrossPln,
+    venue_key: data.venueKey ?? null,
     location_name: data.locationName,
     location_address: data.locationAddress,
     status: data.status,
@@ -272,7 +292,7 @@ export async function createSessionAction(
 
   const { data: inserted, error } = await supabase
     .from('workshop_sessions')
-    .insert(buildSessionInsert(data))
+    .insert(buildSessionInsert(data) as never)
     .select('id')
     .single();
 
@@ -322,7 +342,7 @@ export async function updateSessionAction(
 
   const { error } = await supabase
     .from('workshop_sessions')
-    .update(buildSessionInsert(data))
+    .update(buildSessionInsert(data) as never)
     .eq('id', id);
 
   if (error) {

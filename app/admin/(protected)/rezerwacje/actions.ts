@@ -425,6 +425,37 @@ export async function moveBookingAction(
   return { ok: true };
 }
 
+export async function updateBookingNotesAction(
+  formData: FormData
+): Promise<void> {
+  const admin = await requireAnyRole(['owner', 'manager']);
+  const bookingId = String(formData.get('bookingId') ?? '');
+  const notes = String(formData.get('internalNotes') ?? '').slice(0, 4000);
+  if (!bookingId) throw new Error('Brak identyfikatora rezerwacji.');
+
+  const supabase = createAdminClient();
+  const { error } = await supabase
+    .from('bookings')
+    .update({ internal_notes: notes || null })
+    .eq('id', bookingId);
+  if (error) {
+    console.error('booking notes update failed', error.message);
+    throw new Error('Nie udało się zapisać notatek.');
+  }
+
+  await recordAuditEvent(supabase, {
+    actorUserId: admin.userId,
+    actorRole: admin.role,
+    action: 'booking.notes_updated',
+    entityType: 'booking',
+    entityId: bookingId,
+    summary: 'Updated booking internal notes',
+  });
+
+  revalidatePath('/admin/rezerwacje');
+  revalidatePath(`/admin/rezerwacje/${bookingId}`);
+}
+
 export async function retryEmailAction(
   bookingId: string,
   emailType: 'confirmation' | 'cancellation' | 'refund' | 'manual_confirmation'

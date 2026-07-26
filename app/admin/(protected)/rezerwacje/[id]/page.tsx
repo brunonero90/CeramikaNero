@@ -5,6 +5,7 @@ import {
   getBookingDetailAction,
   getBookingEventsAction,
   getBookingEmailsAction,
+  updateBookingNotesAction,
 } from '../actions';
 import { BookingDetailActions } from './BookingDetailActions';
 import { formatPrice } from '@/lib/utils/price';
@@ -239,6 +240,26 @@ export default async function BookingDetailPage({
           </dl>
         </section>
       </div>
+
+      <section className="rounded-lg border bg-white p-4">
+        <h2 className="mb-3 font-semibold">Notatki wewnętrzne</h2>
+        <form action={updateBookingNotesAction} className="space-y-3">
+          <input type="hidden" name="bookingId" value={id} />
+          <textarea
+            name="internalNotes"
+            rows={3}
+            defaultValue={booking.internal_notes ?? ''}
+            className="w-full rounded-md border px-3 py-2 text-sm"
+            placeholder="Notatki widoczne tylko w panelu admina"
+          />
+          <button
+            type="submit"
+            className="rounded-md bg-gray-900 px-3 py-2 text-sm text-white"
+          >
+            Zapisz notatki
+          </button>
+        </form>
+      </section>
 
       <section className="rounded-lg border bg-white p-4">
         <h2 className="mb-3 font-semibold">Uczestnicy</h2>

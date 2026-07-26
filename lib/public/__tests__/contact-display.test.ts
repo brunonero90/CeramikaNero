@@ -8,6 +8,8 @@ const base: PublicSiteSettings = {
   studioEmail: 'nerogosia@gmail.com',
   studioPhone: '532 279 101',
   whatsappUrl: 'https://wa.me/48532279101',
+  facebookUrl: 'https://www.facebook.com/ceramikanero',
+  instagramUrl: 'https://www.instagram.com/ceramika_nero',
   bankTransferInstructions: 'Konto po wycenie.',
   deliveryQuoteWording: 'Wysyłka do potwierdzenia.',
   publicNotice: 'Urlop 1–7 sierpnia',

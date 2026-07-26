@@ -360,7 +360,7 @@ export async function notifyOrderFulfilmentUpdate(
   const { data: order } = await supabase
     .from('orders')
     .select(
-      'id, order_reference, customer_profiles (email, first_name)'
+      'id, order_reference, tracking_reference, customer_profiles (email, first_name)'
     )
     .eq('id', orderId)
     .maybeSingle();
@@ -371,6 +371,10 @@ export async function notifyOrderFulfilmentUpdate(
   } | null;
   if (!profile?.email) return;
 
+  const tracking =
+    (order as { tracking_reference?: string | null }).tracking_reference?.trim() ||
+    '';
+
   const body =
     kind === 'ready_for_pickup'
       ? [
@@ -380,9 +384,12 @@ export async function notifyOrderFulfilmentUpdate(
         ].join('\n')
       : [
           `Zamówienie ${order.order_reference} zostało wysłane.`,
+          tracking ? `Numer przesyłki: ${tracking}` : '',
           '',
           'Kontakt: https://ceramikanero.netlify.app/kontakt',
-        ].join('\n');
+        ]
+          .filter(Boolean)
+          .join('\n');
 
   await queueAndSendOrderEmail({
     orderId,

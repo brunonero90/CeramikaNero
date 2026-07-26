@@ -9,6 +9,8 @@ type SettingsFormData = {
   studioEmail: string;
   studioPhone: string;
   whatsappUrl: string;
+  facebookUrl: string;
+  instagramUrl: string;
   bankTransferInstructions: string;
   deliveryQuoteWording: string;
   publicNotice: string;
@@ -89,6 +91,18 @@ export function SettingsForm({
         label="WhatsApp URL (publiczne)"
         defaultValue={initialData.whatsappUrl}
         error={errorFor('whatsappUrl')}
+      />
+      <Field
+        id="facebookUrl"
+        label="Facebook URL (publiczne)"
+        defaultValue={initialData.facebookUrl}
+        error={errorFor('facebookUrl')}
+      />
+      <Field
+        id="instagramUrl"
+        label="Instagram URL (publiczne)"
+        defaultValue={initialData.instagramUrl}
+        error={errorFor('instagramUrl')}
       />
       <div>
         <label

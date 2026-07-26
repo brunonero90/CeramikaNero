@@ -96,6 +96,10 @@ export const sessionInputSchema = z
     timezone: z.string().min(1).max(100),
     capacity: z.number().int().min(1),
     priceGrossPln: z.number().nonnegative().transform(zlotyToGrosz),
+    venueKey: z
+      .enum(['suchy-las', 'ptasie-radio', 'other'])
+      .optional()
+      .nullable(),
     locationName: z.string().max(300).optional().nullable(),
     locationAddress: z.string().max(500).optional().nullable(),
     status: sessionStatusSchema,
@@ -175,6 +179,20 @@ export const siteSettingsInputSchema = z.object({
     .refine(
       (v) => v === '' || /^https?:\/\//i.test(v),
       'Podaj pełny URL WhatsApp (https://…) albo zostaw puste.'
+    ),
+  facebookUrl: z
+    .string()
+    .max(500)
+    .refine(
+      (v) => v === '' || /^https?:\/\//i.test(v),
+      'Podaj pełny URL Facebook (https://…) albo zostaw puste.'
+    ),
+  instagramUrl: z
+    .string()
+    .max(500)
+    .refine(
+      (v) => v === '' || /^https?:\/\//i.test(v),
+      'Podaj pełny URL Instagram (https://…) albo zostaw puste.'
     ),
   bankTransferInstructions: z.string().max(2000),
   deliveryQuoteWording: z.string().max(500),

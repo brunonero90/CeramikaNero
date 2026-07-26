@@ -36,6 +36,15 @@ export default async function AdminEnquiriesPage({
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-semibold">Zapytania</h1>
+        <a
+          href={`/admin/zapytania/export.csv?${new URLSearchParams({
+            ...(q ? { q } : {}),
+            ...(status ? { status } : {}),
+          }).toString()}`}
+          className="rounded border px-3 py-2 text-sm font-medium hover:bg-gray-50"
+        >
+          Eksport CSV
+        </a>
       </div>
 
       <form className="flex flex-wrap gap-2" method="get">

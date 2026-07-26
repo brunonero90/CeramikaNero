@@ -13,6 +13,7 @@ type SessionFormData = {
   timezone: string;
   capacity: number;
   priceGrossPln: number;
+  venueKey: string;
   locationName: string;
   locationAddress: string;
   status: SessionStatus;
@@ -50,6 +51,7 @@ export function SessionForm({
     timezone: 'Europe/Warsaw',
     capacity: 10,
     priceGrossPln: 0,
+    venueKey: 'suchy-las',
     locationName: '',
     locationAddress: '',
     status: 'draft',
@@ -235,10 +237,33 @@ export function SessionForm({
         </div>
       </div>
 
+      <div>
+        <label htmlFor="venueKey" className="block text-sm font-medium">
+          Lokalizacja (venue)
+        </label>
+        <select
+          id="venueKey"
+          name="venueKey"
+          defaultValue={defaultData.venueKey || 'suchy-las'}
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+        >
+          <option value="suchy-las">Suchy Las (pracownia)</option>
+          <option value="ptasie-radio">Ptasie Radio (Poznań)</option>
+          <option value="other">Inne</option>
+        </select>
+        <p className="mt-1 text-xs text-gray-500">
+          Ptasie Radio to osobna lokalizacja — nie używaj jej zamiennie z Suchym
+          Lasem.
+        </p>
+        {errorFor('venueKey') && (
+          <p className="mt-1 text-sm text-red-600">{errorFor('venueKey')}</p>
+        )}
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="locationName" className="block text-sm font-medium">
-            Nazwa miejsca
+            Nazwa miejsca (opcjonalnie)
           </label>
           <input
             id="locationName"
@@ -253,7 +278,7 @@ export function SessionForm({
             htmlFor="locationAddress"
             className="block text-sm font-medium"
           >
-            Adres
+            Adres (opcjonalnie)
           </label>
           <input
             id="locationAddress"
