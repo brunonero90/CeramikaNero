@@ -36,6 +36,7 @@ metadata.
 | Manage orders / shipping quotes | yes | yes   | no     |
 | Manage products            | yes   | yes     | no     |
 | Manage enquiries           | yes   | yes     | no     |
+| View / retry email outbox  | yes   | yes     | no     |
 | Manage instructors         | yes   | yes     | no     |
 | Manage pages               | yes   | yes     | yes    |
 | Manage blog posts          | yes   | yes     | yes    |
@@ -64,12 +65,14 @@ Protected:
 - `/admin/zamowienia` — mixed cart orders (workshops + products), shipping quotes, status ops
 - `/admin/produkty` — Glina Box and studio service products (edit price/status/fulfilment)
 - `/admin/zapytania` — structured enquiries from `/kontakt`
+- `/admin/emaile` — booking + order email outbox (pending/failed, manual retry)
 - `/admin/instruktorzy` — instructors
 - `/admin/strony` — content pages
 - `/admin/blog` — blog posts
 - `/admin/galeria` — gallery items
 - `/admin/media` — media library and upload
-- `/admin/ustawienia` — site settings (owner only)
+- `/admin/ustawienia` — public contact, WhatsApp, delivery wording, bank-transfer text, notice (owner only)
+- `/admin/terminy/[id]` — session ops: duplicate (+7 days, draft), roster CSV export
 - `/admin/przekierowania` — legacy redirects (owner only)
 - `/admin/uzytkownicy` — admin users (owner only)
 - `/admin/audyt` — audit log (owner only)

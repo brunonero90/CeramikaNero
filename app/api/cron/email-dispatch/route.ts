@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { dispatchPendingBookingEmails } from '@/lib/booking/email-dispatch';
+import { dispatchPendingOrderEmails } from '@/lib/cart/order-email-dispatch';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -13,10 +14,14 @@ function requireCronSecret(request: Request): boolean {
 
 async function runDispatch(): Promise<NextResponse> {
   try {
-    const summary = await dispatchPendingBookingEmails(20);
+    const [bookings, orders] = await Promise.all([
+      dispatchPendingBookingEmails(20),
+      dispatchPendingOrderEmails(20),
+    ]);
     return NextResponse.json({
       ok: true,
-      ...summary,
+      bookings,
+      orders,
       processed_at: new Date().toISOString(),
     });
   } catch (error) {

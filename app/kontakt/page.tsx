@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { EnquiryForm } from '@/components/enquiry/enquiry-form';
 import { PageShell, Section, SectionHeading } from '@/components/public/ui';
-import { siteContact } from '@/lib/fixtures/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { getPublicSettings } from '@/lib/database/services/site-settings';
+import { contactDisplayFromSettings } from '@/lib/public/contact-display';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,6 +33,13 @@ export default async function KontaktPage({
     offerTitle = data?.title ?? offerKey;
   }
 
+  let contact;
+  try {
+    contact = contactDisplayFromSettings(await getPublicSettings());
+  } catch {
+    contact = contactDisplayFromSettings(null);
+  }
+
   return (
     <PageShell>
       <Section>
@@ -47,22 +55,20 @@ export default async function KontaktPage({
               Dane pracowni
             </h2>
             <p>
-              {siteContact.brand}
+              {contact.brand}
               <br />
-              {siteContact.addressLine}
-              <br />
-              {siteContact.cityLine}
+              {contact.addressLine}
             </p>
             <p>
               E-mail:{' '}
-              <a href={`mailto:${siteContact.email}`} className="underline">
-                {siteContact.email}
+              <a href={`mailto:${contact.email}`} className="underline">
+                {contact.email}
               </a>
             </p>
             <p>
               Telefon:{' '}
-              <a href={siteContact.phoneHref} className="underline">
-                {siteContact.phoneDisplay}
+              <a href={contact.phoneHref} className="underline">
+                {contact.phoneDisplay}
               </a>
             </p>
           </aside>

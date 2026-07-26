@@ -126,7 +126,9 @@ export async function updateOrderOperationalStateAction(
   const supabase = createCartAdminClient();
   const { data: previous } = await supabase
     .from('orders')
-    .select('payment_status')
+    .select(
+      'payment_status, fulfillment_status, fulfillment_method, status'
+    )
     .eq('id', orderId)
     .maybeSingle();
 
@@ -174,6 +176,34 @@ export async function updateOrderOperationalStateAction(
       await notifyOrderPaymentReceived(orderId);
     } catch (err) {
       console.error('payment received email failed', err);
+    }
+  }
+
+  if (
+    previous?.fulfillment_status !== 'fulfilled' &&
+    fulfillmentStatus === 'fulfilled'
+  ) {
+    try {
+      const { notifyOrderFulfilmentUpdate } =
+        await import('@/lib/cart/order-email');
+      await notifyOrderFulfilmentUpdate(
+        orderId,
+        previous?.fulfillment_method === 'shipping'
+          ? 'order_shipped'
+          : 'ready_for_pickup'
+      );
+    } catch (err) {
+      console.error('fulfilment email failed', err);
+    }
+  }
+
+  if (previous?.status !== 'cancelled' && orderStatus === 'cancelled') {
+    try {
+      const { notifyOrderCancellation } =
+        await import('@/lib/cart/order-email');
+      await notifyOrderCancellation(orderId);
+    } catch (err) {
+      console.error('cancellation email failed', err);
     }
   }
 

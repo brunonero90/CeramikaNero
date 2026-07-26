@@ -49,6 +49,11 @@ const navItems: NavItem[] = [
     allowedRoles: ['owner', 'manager'],
   },
   {
+    href: '/admin/emaile',
+    label: 'E-maile',
+    allowedRoles: ['owner', 'manager'],
+  },
+  {
     href: '/admin/instruktorzy',
     label: 'Instruktorzy',
     allowedRoles: ['owner', 'manager'],

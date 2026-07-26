@@ -16,6 +16,10 @@ const SETTING_KEYS = [
   'studio_address',
   'studio_email',
   'studio_phone',
+  'whatsapp_url',
+  'bank_transfer_instructions',
+  'delivery_quote_wording',
+  'public_notice',
   'booking_cta_label',
   'default_seo_title',
   'default_seo_description',
@@ -33,6 +37,10 @@ export async function updateSettingsAction(
     studioAddress: formData.get('studioAddress'),
     studioEmail: formData.get('studioEmail'),
     studioPhone: formData.get('studioPhone'),
+    whatsappUrl: formData.get('whatsappUrl') || '',
+    bankTransferInstructions: formData.get('bankTransferInstructions') || '',
+    deliveryQuoteWording: formData.get('deliveryQuoteWording') || '',
+    publicNotice: formData.get('publicNotice') || '',
     bookingCtaLabel: formData.get('bookingCtaLabel'),
     defaultSeoTitle: formData.get('defaultSeoTitle'),
     defaultSeoDescription: formData.get('defaultSeoDescription'),
@@ -52,6 +60,10 @@ export async function updateSettingsAction(
     studio_address: values.studioAddress,
     studio_email: values.studioEmail,
     studio_phone: values.studioPhone,
+    whatsapp_url: values.whatsappUrl,
+    bank_transfer_instructions: values.bankTransferInstructions,
+    delivery_quote_wording: values.deliveryQuoteWording,
+    public_notice: values.publicNotice,
     booking_cta_label: values.bookingCtaLabel,
     default_seo_title: values.defaultSeoTitle,
     default_seo_description: values.defaultSeoDescription,
@@ -89,5 +101,6 @@ export async function updateSettingsAction(
 
   revalidatePath('/admin/ustawienia');
   revalidatePath('/');
+  revalidatePath('/kontakt');
   return { ok: true, message: 'Ustawienia zostały zapisane.' };
 }

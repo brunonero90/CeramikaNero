@@ -65,6 +65,16 @@ Copy `.env.example` to `.env` and fill in the values. Never commit `.env` files.
 5. Set `RESEND_REPLY_TO_EMAIL` to the studio contact address.
 6. Test transactional emails using the admin retry button or by creating a test booking in Stripe test mode.
 
+## Email dispatch scheduler
+
+The shared email retry endpoint is
+`https://<NEXT_PUBLIC_SITE_URL>/api/cron/email-dispatch` and requires
+`Authorization: Bearer <BOOKING_CRON_SECRET>`. It processes pending/failed
+`booking_emails` and `order_emails`.
+
+Also schedule expiry separately when used:
+`https://<NEXT_PUBLIC_SITE_URL>/api/cron/expiry` with the same bearer secret.
+
 ## Expiry scheduler
 
 The expiry endpoint is `https://<NEXT_PUBLIC_SITE_URL>/api/cron/expiry` and requires a `Authorization: Bearer <BOOKING_CRON_SECRET>` header.
@@ -95,13 +105,20 @@ npx supabase db query "SELECT ..." # verify
 npm run db:types
 ```
 
-After applying the Phase 5 migration, regenerate the generated types:
+Migration `00000000000013_enquiries_and_order_email_types.sql` adds `enquiries`
+/ `enquiry_events` and expands `order_emails.email_type`. Confirm remotely before
+redeploying code that depends on those tables:
+
+```powershell
+node scripts/check-migration-13.js
+npm run audit:content
+```
+
+After applying migrations, regenerate types when credentials allow:
 
 ```powershell
 npm run db:types
 ```
-
-Then remove the manual Phase 5 augmentation from `lib/database/types.ts` if the generated types match.
 
 ## First owner setup
 

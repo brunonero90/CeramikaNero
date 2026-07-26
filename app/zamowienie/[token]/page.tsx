@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getOrderStatusByPublicToken } from '@/lib/cart/order-status';
 import { formatPrice } from '@/lib/utils/price';
-import { siteContact } from '@/lib/fixtures/navigation';
+import { getPublicSettings } from '@/lib/database/services/site-settings';
+import { contactDisplayFromSettings } from '@/lib/public/contact-display';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,6 +12,58 @@ export const metadata: Metadata = {
   title: 'Status zamówienia | Ceramika Nero',
   robots: { index: false, follow: false },
 };
+
+function lifecycleCopy(order: {
+  status: string;
+  paymentStatus: string;
+  fulfillmentStatus: string;
+  fulfillmentMethod: string;
+  shippingQuoteRequired: boolean;
+}): { title: string; body: string } {
+  if (order.status === 'cancelled') {
+    return {
+      title: 'Zamówienie anulowane',
+      body: 'To zamówienie zostało anulowane. Jeśli potrzebujesz pomocy, napisz do pracowni.',
+    };
+  }
+  if (order.shippingQuoteRequired) {
+    return {
+      title: 'Oczekujemy na wycenę wysyłki',
+      body: 'Przyjęliśmy zamówienie. Koszt wysyłki potwierdzimy przed płatnością — nie przelewaj środków, dopóki nie otrzymasz finalnej kwoty.',
+    };
+  }
+  if (order.paymentStatus === 'pending') {
+    return {
+      title: 'Oczekujemy na płatność',
+      body: 'Kwota jest ustalona. Instrukcje przelewu prześlemy e-mailem lub skontaktujemy się bezpośrednio.',
+    };
+  }
+  if (order.paymentStatus === 'paid' && order.fulfillmentStatus !== 'fulfilled') {
+    return {
+      title: 'Płatność otrzymana',
+      body:
+        order.fulfillmentMethod === 'shipping'
+          ? 'Przygotowujemy paczkę do wysyłki.'
+          : 'Przygotowujemy zamówienie do odbioru w pracowni.',
+    };
+  }
+  if (order.fulfillmentStatus === 'fulfilled') {
+    return {
+      title:
+        order.fulfillmentMethod === 'shipping'
+          ? 'Wysłane'
+          : 'Gotowe / zrealizowane',
+      body:
+        order.fulfillmentMethod === 'shipping'
+          ? 'Zamówienie zostało wysłane.'
+          : 'Zamówienie jest gotowe lub zostało odebrane.',
+    };
+  }
+  return {
+    title: 'Status zamówienia',
+    body: 'Aktualny stan zamówienia widzisz poniżej. W razie pytań skontaktuj się z pracownią.',
+  };
+}
 
 export default async function OrderStatusPage({
   params,
@@ -21,17 +74,26 @@ export default async function OrderStatusPage({
   const order = await getOrderStatusByPublicToken(token);
   if (!order) notFound();
 
+  let contact;
+  try {
+    contact = contactDisplayFromSettings(await getPublicSettings());
+  } catch {
+    contact = contactDisplayFromSettings(null);
+  }
+
   const showFinalTotal = !order.shippingQuoteRequired;
+  const copy = lifecycleCopy(order);
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-12 md:px-6">
       <h1 className="font-heading text-3xl font-semibold text-text-primary">
-        Status zamówienia
+        {copy.title}
       </h1>
       <p className="mt-3 text-text-muted">
         Numer:{' '}
         <strong className="text-text-primary">{order.orderReference}</strong>
       </p>
+      <p className="mt-2 text-sm text-text-muted">{copy.body}</p>
 
       <dl className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
         <div>
@@ -96,11 +158,10 @@ export default async function OrderStatusPage({
         </p>
         {order.shippingQuoteRequired ? (
           <div className="mt-3 rounded bg-amber-50 px-3 py-2 text-sm text-amber-950">
-            <p>Zamówienie zostało przyjęte.</p>
+            <p>{contact.deliveryQuoteWording}</p>
             <p className="mt-1">
-              Koszt wysyłki zostanie potwierdzony przed płatnością. Kwota do
-              zapłaty nie jest jeszcze ostateczna — nie przelewaj środków,
-              dopóki nie otrzymasz potwierdzenia z finalną kwotą.
+              Kwota do zapłaty nie jest jeszcze ostateczna — nie przelewaj
+              środków, dopóki nie otrzymasz potwierdzenia z finalną kwotą.
             </p>
           </div>
         ) : (
@@ -117,11 +178,15 @@ export default async function OrderStatusPage({
                 <span>{formatPrice(order.totalGrossGrosz)}</span>
               </p>
             ) : null}
-            {order.paymentStatus === 'pending' ? (
+            {order.paymentStatus === 'pending' &&
+            contact.bankTransferInstructions ? (
+              <p className="mt-3 whitespace-pre-line text-sm text-text-muted">
+                {contact.bankTransferInstructions}
+              </p>
+            ) : order.paymentStatus === 'pending' ? (
               <p className="mt-3 text-sm text-text-muted">
-                Płatność: przelew bankowy po potwierdzeniu kwoty przez
-                pracownię. Instrukcje prześlemy e-mailem lub skontaktujemy się
-                bezpośrednio.
+                Płatność: przelew bankowy. Instrukcje prześlemy e-mailem lub
+                skontaktujemy się bezpośrednio.
               </p>
             ) : null}
           </>
@@ -130,12 +195,12 @@ export default async function OrderStatusPage({
 
       <p className="mt-8 text-sm text-text-muted">
         Pytania? Napisz na{' '}
-        <a href={`mailto:${siteContact.email}`} className="underline">
-          {siteContact.email}
+        <a href={`mailto:${contact.email}`} className="underline">
+          {contact.email}
         </a>{' '}
         lub zadzwoń:{' '}
-        <a href={siteContact.phoneHref} className="underline">
-          {siteContact.phoneDisplay}
+        <a href={contact.phoneHref} className="underline">
+          {contact.phoneDisplay}
         </a>
         .
       </p>

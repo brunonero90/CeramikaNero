@@ -221,7 +221,17 @@ export function mapPublicSiteSettings(
     studioName: get('studio_name', 'Ceramika Nero'),
     studioAddress: get('studio_address', 'Suchy Las, Polska'),
     studioEmail: get('studio_email', 'kontakt@ceramikanero.com'),
-    studioPhone: get('studio_phone', '+48 TBD'),
+    studioPhone: get('studio_phone', '532 279 101'),
+    whatsappUrl: get('whatsapp_url', 'https://wa.me/48532279101'),
+    bankTransferInstructions: get(
+      'bank_transfer_instructions',
+      'Przelew bankowy — dane konta potwierdzimy po ustaleniu finalnej kwoty.'
+    ),
+    deliveryQuoteWording: get(
+      'delivery_quote_wording',
+      'Koszt wysyłki zostanie potwierdzony przed płatnością.'
+    ),
+    publicNotice: get('public_notice', ''),
     bookingCtaLabel: get('booking_cta_label', 'Zarezerwuj warsztat'),
     defaultSeoTitle: get(
       'default_seo_title',

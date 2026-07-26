@@ -8,6 +8,10 @@ type SettingsFormData = {
   studioAddress: string;
   studioEmail: string;
   studioPhone: string;
+  whatsappUrl: string;
+  bankTransferInstructions: string;
+  deliveryQuoteWording: string;
+  publicNotice: string;
   bookingCtaLabel: string;
   defaultSeoTitle: string;
   defaultSeoDescription: string;
@@ -35,6 +39,10 @@ export function SettingsForm({
 
   return (
     <form action={dispatch} className="max-w-3xl space-y-4">
+      <p className="text-sm text-gray-600">
+        Pola oznaczone jako publiczne mogą pojawić się na stronie i w e-mailach.
+        Nie przechowuj tu kluczy API ani sekretów.
+      </p>
       {state?.ok && (
         <p
           className="rounded-md bg-green-50 p-3 text-sm text-green-700"
@@ -53,29 +61,73 @@ export function SettingsForm({
       )}
       <Field
         id="studioName"
-        label="Nazwa pracowni"
+        label="Nazwa pracowni (publiczne)"
         defaultValue={initialData.studioName}
         error={errorFor('studioName')}
       />
       <Field
         id="studioAddress"
-        label="Adres"
+        label="Adres (publiczne)"
         defaultValue={initialData.studioAddress}
         error={errorFor('studioAddress')}
       />
       <Field
         id="studioEmail"
-        label="Email"
+        label="Email (publiczne)"
         type="email"
         defaultValue={initialData.studioEmail}
         error={errorFor('studioEmail')}
       />
       <Field
         id="studioPhone"
-        label="Telefon"
+        label="Telefon (publiczne)"
         defaultValue={initialData.studioPhone}
         error={errorFor('studioPhone')}
       />
+      <Field
+        id="whatsappUrl"
+        label="WhatsApp URL (publiczne)"
+        defaultValue={initialData.whatsappUrl}
+        error={errorFor('whatsappUrl')}
+      />
+      <div>
+        <label
+          htmlFor="bankTransferInstructions"
+          className="block text-sm font-medium"
+        >
+          Instrukcje przelewu (używane po potwierdzeniu kwoty)
+        </label>
+        <textarea
+          id="bankTransferInstructions"
+          name="bankTransferInstructions"
+          rows={3}
+          defaultValue={initialData.bankTransferInstructions}
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+        />
+        {errorFor('bankTransferInstructions') && (
+          <p className="mt-1 text-sm text-red-600">
+            {errorFor('bankTransferInstructions')}
+          </p>
+        )}
+      </div>
+      <Field
+        id="deliveryQuoteWording"
+        label="Komunikat o wycenie wysyłki (publiczne)"
+        defaultValue={initialData.deliveryQuoteWording}
+        error={errorFor('deliveryQuoteWording')}
+      />
+      <div>
+        <label htmlFor="publicNotice" className="block text-sm font-medium">
+          Komunikat operacyjny (publiczne, opcjonalnie)
+        </label>
+        <textarea
+          id="publicNotice"
+          name="publicNotice"
+          rows={2}
+          defaultValue={initialData.publicNotice}
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+        />
+      </div>
       <Field
         id="bookingCtaLabel"
         label="Etykieta CTA rezerwacji"

@@ -363,23 +363,55 @@ export async function duplicateSessionAction(
     return { ok: false, formError: 'Termin nie istnieje.', errors: {} };
   }
 
+  const weekMs = 7 * 24 * 60 * 60 * 1000;
+  const starts = new Date(new Date(session.starts_at).getTime() + weekMs);
+  const ends = new Date(new Date(session.ends_at).getTime() + weekMs);
+  const opens = session.booking_opens_at
+    ? new Date(new Date(session.booking_opens_at).getTime() + weekMs)
+    : null;
+  const closes = session.booking_closes_at
+    ? new Date(new Date(session.booking_closes_at).getTime() + weekMs)
+    : null;
+
+  // Detect accidental same-slot duplicates before insert.
+  const { count: clashCount } = await supabase
+    .from('workshop_sessions')
+    .select('*', { count: 'exact', head: true })
+    .eq('workshop_id', session.workshop_id)
+    .eq('starts_at', starts.toISOString())
+    .neq('status', 'cancelled');
+  if ((clashCount ?? 0) > 0) {
+    return {
+      ok: false,
+      formError:
+        'Istnieje już termin tego warsztatu w tym samym czasie (+7 dni). Zmień datę ręcznie.',
+      errors: {},
+    };
+  }
+
+  const insertPayload: Record<string, unknown> = {
+    workshop_id: session.workshop_id,
+    instructor_id: session.instructor_id,
+    starts_at: starts.toISOString(),
+    ends_at: ends.toISOString(),
+    timezone: session.timezone,
+    capacity: session.capacity,
+    reserved_count: 0,
+    price_gross_grosz: session.price_gross_grosz,
+    location_name: session.location_name,
+    location_address: session.location_address,
+    status: 'draft' as SessionStatus,
+    booking_opens_at: opens?.toISOString() ?? null,
+    booking_closes_at: closes?.toISOString() ?? null,
+    external_booking_url: session.external_booking_url,
+  };
+  if ('venue_key' in session) {
+    insertPayload.venue_key = session.venue_key;
+  }
+
   const { data: inserted, error } = await supabase
     .from('workshop_sessions')
-    .insert({
-      workshop_id: session.workshop_id,
-      instructor_id: session.instructor_id,
-      starts_at: session.starts_at,
-      ends_at: session.ends_at,
-      timezone: session.timezone,
-      capacity: session.capacity,
-      price_gross_grosz: session.price_gross_grosz,
-      location_name: session.location_name,
-      location_address: session.location_address,
-      status: 'draft' as SessionStatus,
-      booking_opens_at: session.booking_opens_at,
-      booking_closes_at: session.booking_closes_at,
-      external_booking_url: session.external_booking_url,
-    })
+    .insert(insertPayload as never)
     .select('id')
     .single();
 
@@ -397,9 +429,14 @@ export async function duplicateSessionAction(
     action: 'duplicate_session',
     entityType: 'session',
     entityId: inserted.id,
-    summary: `Duplicated session from ${id}`,
+    summary: `Duplicated session from ${id} (+7 days, draft)`,
   });
 
   revalidatePath('/admin/terminy');
-  return { ok: true, id: inserted.id, message: 'Termin został zduplikowany.' };
+  revalidatePath(`/admin/terminy/${inserted.id}`);
+  return {
+    ok: true,
+    id: inserted.id,
+    message: 'Utworzono szkic terminu na +7 dni. Sprawdź datę przed publikacją.',
+  };
 }

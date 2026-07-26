@@ -4,6 +4,8 @@ import { ThemeProvider } from '@/lib/theme/theme-context';
 import { ThemeScript } from '@/lib/theme/theme-script';
 import { SiteChrome } from '@/components/layout/site-chrome';
 import { LocalCartProvider } from '@/components/clone/local-cart';
+import { getPublicSettings } from '@/lib/database/services/site-settings';
+import { contactDisplayFromSettings } from '@/lib/public/contact-display';
 import './globals.css';
 
 const cormorant = Cormorant_Garamond({
@@ -62,11 +64,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let contact;
+  try {
+    const settings = await getPublicSettings();
+    const display = contactDisplayFromSettings(settings);
+    contact = {
+      phoneHref: display.phoneHref,
+      phoneDisplay: display.phoneDisplay,
+      whatsappHref: display.whatsappWithMessage,
+      publicNotice: display.publicNotice || undefined,
+    };
+  } catch {
+    contact = undefined;
+  }
+
   return (
     <html
       lang="pl"
@@ -82,7 +98,7 @@ export default function RootLayout({
         <ThemeScript />
         <ThemeProvider>
           <LocalCartProvider>
-            <SiteChrome>{children}</SiteChrome>
+            <SiteChrome contact={contact}>{children}</SiteChrome>
           </LocalCartProvider>
         </ThemeProvider>
       </body>

@@ -41,8 +41,13 @@ Customers submit an unpaid order/reservation. The studio confirms the amount
 | ------------------------- | ------------------------------------------------ |
 | Checkout submitted        | `awaiting_payment` / payment `pending`           |
 | Shipping quote confirmed  | `shipping_quote_required = false`, total updated |
-| Mark paid                 | payment `paid`, optional `payment_received` mail |
-| Cancel order              | status `cancelled`                               |
+| Mark paid                 | payment `paid`, queues `payment_received`        |
+| Mark fulfilled (pickup)   | queues `ready_for_pickup`                        |
+| Mark fulfilled (shipping) | queues `order_shipped`                           |
+| Cancel order              | status `cancelled`, queues `cancellation`        |
+
+Cron `/api/cron/email-dispatch` (Bearer `BOOKING_CRON_SECRET`) retries both
+`booking_emails` and `order_emails` with bounded backoff.
 
 ## Security
 

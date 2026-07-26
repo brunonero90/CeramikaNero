@@ -322,3 +322,76 @@ export async function notifyOrderPaymentReceived(
     body,
   });
 }
+
+export async function notifyOrderCancellation(orderId: string): Promise<void> {
+  const supabase = createCartAdminClient();
+  const { data: order } = await supabase
+    .from('orders')
+    .select('id, order_reference, customer_profiles (email, first_name)')
+    .eq('id', orderId)
+    .maybeSingle();
+  if (!order) return;
+  const profile = order.customer_profiles as {
+    email: string;
+    first_name: string;
+  } | null;
+  if (!profile?.email) return;
+
+  const body = [
+    `Zamówienie ${order.order_reference} zostało anulowane.`,
+    '',
+    'Jeśli to pomyłka lub potrzebujesz pomocy, napisz: https://ceramikanero.netlify.app/kontakt',
+  ].join('\n');
+
+  await queueAndSendOrderEmail({
+    orderId,
+    emailType: 'cancellation',
+    recipient: profile.email,
+    subject: `Anulowano — ${order.order_reference}`,
+    body,
+  });
+}
+
+export async function notifyOrderFulfilmentUpdate(
+  orderId: string,
+  kind: 'ready_for_pickup' | 'order_shipped'
+): Promise<void> {
+  const supabase = createCartAdminClient();
+  const { data: order } = await supabase
+    .from('orders')
+    .select(
+      'id, order_reference, customer_profiles (email, first_name)'
+    )
+    .eq('id', orderId)
+    .maybeSingle();
+  if (!order) return;
+  const profile = order.customer_profiles as {
+    email: string;
+    first_name: string;
+  } | null;
+  if (!profile?.email) return;
+
+  const body =
+    kind === 'ready_for_pickup'
+      ? [
+          `Zamówienie ${order.order_reference} jest gotowe do odbioru w pracowni.`,
+          '',
+          'Kontakt: https://ceramikanero.netlify.app/kontakt',
+        ].join('\n')
+      : [
+          `Zamówienie ${order.order_reference} zostało wysłane.`,
+          '',
+          'Kontakt: https://ceramikanero.netlify.app/kontakt',
+        ].join('\n');
+
+  await queueAndSendOrderEmail({
+    orderId,
+    emailType: kind,
+    recipient: profile.email,
+    subject:
+      kind === 'ready_for_pickup'
+        ? `Gotowe do odbioru — ${order.order_reference}`
+        : `Wysłano — ${order.order_reference}`,
+    body,
+  });
+}

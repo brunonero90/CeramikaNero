@@ -169,6 +169,16 @@ export const siteSettingsInputSchema = z.object({
   studioAddress: z.string().max(500),
   studioEmail: z.string().email().max(200),
   studioPhone: z.string().max(100),
+  whatsappUrl: z
+    .string()
+    .max(500)
+    .refine(
+      (v) => v === '' || /^https?:\/\//i.test(v),
+      'Podaj pełny URL WhatsApp (https://…) albo zostaw puste.'
+    ),
+  bankTransferInstructions: z.string().max(2000),
+  deliveryQuoteWording: z.string().max(500),
+  publicNotice: z.string().max(1000),
   bookingCtaLabel: z.string().max(200),
   defaultSeoTitle: z.string().max(200),
   defaultSeoDescription: z.string().max(500),

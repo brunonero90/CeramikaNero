@@ -10,6 +10,7 @@ import { groszToZloty } from '@/lib/utils/money';
 import { utcToLocalDateTime } from '@/lib/admin/timezones';
 import { SessionForm } from '../session-form';
 import { updateSessionAction } from '../actions';
+import { SessionOps } from './session-ops';
 
 export const metadata = {
   title: 'Edytuj termin | Ceramika Nero Admin',
@@ -76,6 +77,7 @@ export default async function EditSessionPage({
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-semibold">Edytuj termin</h1>
+      <SessionOps sessionId={id} />
       <SessionForm
         action={updateSessionAction.bind(null, id)}
         initialData={initialData}

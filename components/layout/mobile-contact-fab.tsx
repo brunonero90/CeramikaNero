@@ -10,21 +10,28 @@ const WHATSAPP_MESSAGE = encodeURIComponent(
   'Dzień dobry, chciałabym/chciałbym zapytać o warsztaty Ceramika Nero.'
 );
 
+export type MobileContactFabProps = {
+  phoneHref?: string;
+  phoneDisplay?: string;
+  whatsappHref?: string;
+};
+
 /**
  * Fixed mobile call / WhatsApp actions. Hidden on lg+ where header already
- * exposes telephone CTA. Number provenance: lib/fixtures/navigation siteContact
- * (archive-verified 532 279 101).
+ * exposes telephone CTA. Defaults match archive-verified fixtures; layout may
+ * override from site_settings.
  */
-export function MobileContactFab() {
+export function MobileContactFab({
+  phoneHref = siteContact.phoneHref,
+  phoneDisplay = siteContact.phoneDisplay,
+  whatsappHref = `https://wa.me/${WHATSAPP_DIGITS}?text=${WHATSAPP_MESSAGE}`,
+}: MobileContactFabProps = {}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   if (pathname?.startsWith('/admin')) {
     return null;
   }
-
-  const telHref = siteContact.phoneHref;
-  const waHref = `https://wa.me/${WHATSAPP_DIGITS}?text=${WHATSAPP_MESSAGE}`;
 
   return (
     <div
@@ -41,14 +48,14 @@ export function MobileContactFab() {
         aria-hidden={!open}
       >
         <a
-          href={telHref}
+          href={phoneHref}
           className="inline-flex min-h-12 min-w-12 items-center gap-2 rounded-md bg-accent-primary px-4 py-3 text-sm font-semibold tracking-wide text-white uppercase shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2"
-          aria-label={`Zadzwoń: ${siteContact.phoneDisplay}`}
+          aria-label={`Zadzwoń: ${phoneDisplay}`}
         >
           Zadzwoń
         </a>
         <a
-          href={waHref}
+          href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex min-h-12 min-w-12 items-center gap-2 rounded-md border border-accent-primary bg-surface-bg px-4 py-3 text-sm font-semibold tracking-wide text-accent-primary uppercase shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2"
@@ -68,7 +75,7 @@ export function MobileContactFab() {
         {open ? '×' : 'Kontakt'}
       </button>
       <div id="mobile-contact-actions" className="sr-only">
-        Telefon {siteContact.phoneDisplay}, WhatsApp
+        Telefon {phoneDisplay}, WhatsApp
       </div>
     </div>
   );

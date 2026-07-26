@@ -227,6 +227,10 @@ export type PublicSiteSettings = {
   studioAddress: string;
   studioEmail: string;
   studioPhone: string;
+  whatsappUrl: string;
+  bankTransferInstructions: string;
+  deliveryQuoteWording: string;
+  publicNotice: string;
   bookingCtaLabel: string;
   defaultSeoTitle: string;
   defaultSeoDescription: string;
