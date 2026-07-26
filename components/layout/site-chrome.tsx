@@ -6,8 +6,8 @@ import { Footer } from '@/components/layout/footer';
 import { MobileContactFab } from '@/components/layout/mobile-contact-fab';
 
 /**
- * Public marketing chrome. Hidden on /admin so admin controls are not
- * covered by the floating desktop social cluster (z-50/z-60).
+ * Public marketing chrome. Hidden on /admin so admin pages keep their own
+ * operational shell without the public header/footer.
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || '';

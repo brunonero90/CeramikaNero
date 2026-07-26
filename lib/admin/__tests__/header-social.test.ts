@@ -30,4 +30,25 @@ describe('header social icons', () => {
     expect(src).toContain('aria-label="Instagram Ceramika Nero"');
     expect(src).toContain('href="/kalendarz"');
   });
+
+  it('places desktop social icons in the main nav row, not an absolute cluster', () => {
+    const src = readFileSync(
+      join(process.cwd(), 'components/layout/header.tsx'),
+      'utf8'
+    );
+    expect(src).not.toContain('pointer-events-none absolute');
+    expect(src).not.toContain('lg:pr-44');
+    const navStart = src.indexOf('aria-label="Nawigacja główna"');
+    const navEnd = src.indexOf('ml-auto flex items-center');
+    expect(navStart).toBeGreaterThan(-1);
+    expect(navEnd).toBeGreaterThan(navStart);
+    const navBlock = src.slice(navStart, navEnd);
+    expect(navBlock).toContain('aria-label="Facebook Ceramika Nero"');
+    expect(navBlock).toContain('aria-label="Instagram Ceramika Nero"');
+    expect(navBlock.indexOf('Facebook')).toBeLessThan(
+      navBlock.indexOf('Instagram')
+    );
+    // Mobile menu keeps its own socials; desktop nav must not use absolute cluster.
+    expect(src).toContain('aria-label="Menu mobilne"');
+  });
 });

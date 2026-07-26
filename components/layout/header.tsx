@@ -10,9 +10,8 @@ import { getSocialIcon } from '@/lib/media/wix-catalog';
 import { cn } from '@/lib/utils/cn';
 
 /**
- * Site header matched to archived Wix chrome:
- * peach bar (~97px), single-row title-case nav, peach active chip, cart.
- * Desktop CTAs + FB/IG sit as a top-right cluster (archive y≈28–160).
+ * Site header: peach bar, title-case nav, peach active chip, socials in the
+ * same desktop row as menu items (after Blog), then cart / mobile controls.
  */
 export function Header() {
   const pathname = usePathname();
@@ -22,12 +21,12 @@ export function Header() {
 
   return (
     <header className="relative z-50 bg-[#fbe5d6]" data-chrome="site-header">
-      <div className="mx-auto flex min-h-[64px] max-w-[1440px] items-center gap-2 px-3 py-2 md:min-h-[72px] md:px-6 md:py-2.5 lg:pr-44">
+      <div className="mx-auto flex min-h-[64px] max-w-[1440px] items-center gap-2 px-3 py-2 md:min-h-[72px] md:gap-3 md:px-6 md:py-2.5">
         <nav
           className="hidden min-w-0 flex-1 items-center justify-center lg:flex"
           aria-label="Nawigacja główna"
         >
-          <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1">
+          <ul className="flex flex-nowrap items-center justify-center gap-x-0.5 xl:gap-x-1">
             {primaryNavigation.map((item) => {
               const active =
                 pathname === item.href ||
@@ -37,7 +36,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     className={cn(
-                      'inline-block px-2 py-1.5 text-[13px] font-medium text-[#5c4038] transition-base hover:text-accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary',
+                      'inline-block whitespace-nowrap px-1.5 py-1.5 text-[12px] font-medium text-[#5c4038] transition-base hover:text-accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary xl:px-2 xl:text-[13px]',
                       active && 'bg-[#f0c4b4] text-[#4a2f28]'
                     )}
                     aria-current={active ? 'page' : undefined}
@@ -47,10 +46,62 @@ export function Header() {
                 </li>
               );
             })}
+            {facebook ? (
+              <li className="ml-1 flex items-center xl:ml-2">
+                <a
+                  href={siteContact.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook Ceramika Nero"
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                >
+                  <Image
+                    src={facebook.src}
+                    alt=""
+                    width={28}
+                    height={28}
+                    className="block h-7 w-7 object-contain"
+                  />
+                </a>
+              </li>
+            ) : null}
+            {instagram ? (
+              <li className="flex items-center">
+                <a
+                  href={siteContact.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Ceramika Nero"
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                >
+                  <Image
+                    src={instagram.src}
+                    alt=""
+                    width={28}
+                    height={28}
+                    className="block h-7 w-7 object-contain"
+                  />
+                </a>
+              </li>
+            ) : null}
           </ul>
         </nav>
 
         <div className="ml-auto flex items-center gap-2 md:gap-3">
+          <a
+            href={siteContact.phoneHref}
+            className="hidden min-h-10 flex-col items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-3 py-1 text-[11px] font-medium text-[#5c4038] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary lg:inline-flex"
+          >
+            <span>Zadzwoń</span>
+            <PhoneIcon />
+          </a>
+          <Link
+            href="/kalendarz"
+            className="hidden min-h-10 flex-col items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-3 py-1 text-[11px] font-medium text-[#5c4038] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary lg:inline-flex"
+          >
+            <span>Zapisz się</span>
+            <SignupIcon />
+          </Link>
           <Link
             href="/cart"
             className="relative inline-flex h-9 w-9 items-center justify-center text-[#5c4038] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
@@ -63,62 +114,6 @@ export function Header() {
           </Link>
 
           <MobileNav key={pathname} />
-        </div>
-      </div>
-
-      {/* Desktop floating CTAs + socials — archive top-right cluster */}
-      <div className="pointer-events-none absolute top-2 right-3 z-[60] hidden flex-col items-end gap-2 lg:flex xl:right-5">
-        <div className="pointer-events-auto flex items-start gap-2">
-          <a
-            href={siteContact.phoneHref}
-            className="inline-flex min-h-10 flex-col items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-3 py-1 text-[11px] font-medium text-[#5c4038] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-          >
-            <span>Zadzwoń</span>
-            <PhoneIcon />
-          </a>
-          <Link
-            href="/kalendarz"
-            className="inline-flex min-h-10 flex-col items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-3 py-1 text-[11px] font-medium text-[#5c4038] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-          >
-            <span>Zapisz się</span>
-            <SignupIcon />
-          </Link>
-        </div>
-        <div className="pointer-events-auto flex items-center gap-3">
-          {facebook ? (
-            <a
-              href={siteContact.facebookUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook Ceramika Nero"
-              className="inline-flex h-11 w-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-            >
-              <Image
-                src={facebook.src}
-                alt=""
-                width={28}
-                height={28}
-                className="block h-7 w-7 object-contain"
-              />
-            </a>
-          ) : null}
-          {instagram ? (
-            <a
-              href={siteContact.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram Ceramika Nero"
-              className="inline-flex h-11 w-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-            >
-              <Image
-                src={instagram.src}
-                alt=""
-                width={28}
-                height={28}
-                className="block h-7 w-7 object-contain"
-              />
-            </a>
-          ) : null}
         </div>
       </div>
     </header>

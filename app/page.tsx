@@ -52,7 +52,8 @@ const CHOICES = [
   },
   {
     title: 'Glina Box',
-    description: 'Zestaw do lepienia w domu — 229 zł, opcjonalne szkliwienie 69 zł.',
+    description:
+      'Zestaw do lepienia w domu — 229 zł, opcjonalne szkliwienie 69 zł.',
     href: '/home',
     image: '/images/wix-migrated/747d6f_77fc63c840ea462ab19c35b60bc959cf.jpg',
   },
@@ -109,28 +110,34 @@ export default async function HomePage() {
 
   return (
     <PageShell>
-      <section className="relative min-h-[72vh] w-full overflow-hidden md:min-h-[78vh]">
-        <Image
-          src={hero.src}
-          alt={hero.alt || 'Pracownia ceramiki Nero'}
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2a1812]/80 via-[#2a1812]/35 to-[#2a1812]/20" />
-        <div className="relative mx-auto flex min-h-[72vh] max-w-5xl flex-col justify-end px-4 pb-12 text-white md:min-h-[78vh] md:px-6 md:pb-16">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase opacity-90">
-            Pracownia ceramiki · Suchy Las / Poznań
-          </p>
-          <h1 className="mt-3 max-w-2xl font-heading text-4xl font-semibold leading-tight md:text-6xl">
-            Ceramika Nero
-          </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-white/90 md:text-lg">
-            Warsztaty z gliny, kameralne kursy i Glina Box — tworzenie własnymi
-            rękami w ciepłej, spokojnej atmosferze.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+      <section
+        aria-label="Baner główny"
+        className="flex w-full flex-col bg-[#9e6d5b]"
+      >
+        {/*
+          Brand artwork has baked-in typography (near-square). Use contain +
+          matching clay fill so cover never crops PRACOWNIA / CERAMIKI / NERO.
+        */}
+        <div className="relative mx-auto h-[clamp(280px,48svh,420px)] w-full max-w-5xl overflow-hidden sm:h-[clamp(380px,55svh,520px)] lg:h-[clamp(500px,68svh,640px)]">
+          <Image
+            src={hero.src}
+            alt={hero.alt || 'Pracownia ceramiki Nero'}
+            fill
+            priority
+            loading="eager"
+            className="object-contain object-center"
+            sizes="(min-width: 1024px) 1024px, 100vw"
+          />
+        </div>
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-start gap-4 px-4 py-5 text-white sm:px-6 sm:py-6 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-xl">
+            <h1 className="sr-only">Ceramika Nero</h1>
+            <p className="text-sm leading-relaxed text-white/95 md:text-base">
+              Warsztaty z gliny, kameralne kursy i Glina Box — Suchy Las /
+              Poznań.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
             <PrimaryButton href="/kalendarz">Zobacz terminy</PrimaryButton>
             <SecondaryButton
               href="/warsztaty"
@@ -237,7 +244,9 @@ export default async function HomePage() {
               description="Tworzymy i uczymy w Suchym Lesie przy ul. Podgórnej 3. Część spotkań prowadzimy też w Ptasim Radiu w Poznaniu."
             />
             <div className="mt-6">
-              <SecondaryButton href="/pracownia">Poznaj pracownię</SecondaryButton>
+              <SecondaryButton href="/pracownia">
+                Poznaj pracownię
+              </SecondaryButton>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -270,7 +279,10 @@ export default async function HomePage() {
           />
           <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
             {gallery.map((img) => (
-              <div key={img.id} className="relative aspect-square overflow-hidden">
+              <div
+                key={img.id}
+                className="relative aspect-square overflow-hidden"
+              >
                 <Image
                   src={img.src}
                   alt={img.alt || 'Praca ceramiczna'}
