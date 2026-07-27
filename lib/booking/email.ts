@@ -259,9 +259,7 @@ export async function sendAdminBookingNotificationEmail(
 }
 
 /** Queue customer + admin emails after a successful booking write. */
-export async function notifyBookingCreated(
-  bookingId: string
-): Promise<void> {
+export async function notifyBookingCreated(bookingId: string): Promise<void> {
   const ctx = await getBookingEmailContext(bookingId);
   if (!ctx) return;
   try {
@@ -289,28 +287,14 @@ export async function sendBookingCancellationEmail(
   if (await hasSuccessfulEmail(ctx.bookingId, 'cancellation')) {
     return;
   }
-  const { formatPrice } = await import('@/lib/utils/price');
-  const { formatWarsawDate } = await import('@/lib/booking/email-templates');
-  const subject = `Rezerwacja ${ctx.reference} została anulowana`;
-  const amount = formatPrice(ctx.totalGrossGrosz);
-  const date = formatWarsawDate(ctx.sessionStartsAt);
-  const html = `
-    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h1>Rezerwacja anulowana</h1>
-      <p>Dzień dobry ${ctx.customerName},</p>
-      <p>Rezerwacja <strong>${ctx.reference}</strong> na warsztat <strong>${ctx.workshopTitle}</strong> (${date}) została anulowana.</p>
-      <p>Kwota: ${amount}</p>
-      ${reason ? `<p>Powód: ${reason}</p>` : ''}
-      <p>W przypadku zwrotu środki pojawią się na koncie w ciągu kilku dni roboczych.</p>
-      <p>Ceramika Nero</p>
-    </div>
-  `;
-  const text = `Rezerwacja anulowana\n\nRezerwacja ${ctx.reference} na ${ctx.workshopTitle} (${date}) została anulowana.\nKwota: ${amount}\n${reason ? `Powód: ${reason}\n` : ''}W przypadku zwrotu środki pojawią się na koncie w ciągu kilku dni roboczych.\n\nCeramika Nero`;
+  const { buildCancellationEmail } =
+    await import('@/lib/booking/email-templates');
+  const content = buildCancellationEmail(ctx, reason);
   await sendEmail(
     ctx.customerEmail,
-    subject,
-    html,
-    text,
+    content.subject,
+    content.html,
+    content.text,
     ctx.bookingId,
     'cancellation'
   );

@@ -17,8 +17,12 @@ export function getResendFromEmail(): string {
   return email;
 }
 
-export function getResendReplyToEmail(): string | undefined {
-  return process.env.RESEND_REPLY_TO_EMAIL;
+export function getResendReplyToEmail(): string {
+  const email = process.env.RESEND_REPLY_TO_EMAIL?.trim();
+  if (!email) {
+    throw new Error('RESEND_REPLY_TO_EMAIL is not configured');
+  }
+  return email;
 }
 
 export function getResendClient(): Resend {

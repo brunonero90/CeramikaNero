@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '@/lib/database/types';
+import { shouldDisallowPublicIndexing } from '@/lib/seo/indexing';
 
 const STATIC_ROUTES = [
   '/',
@@ -31,9 +32,14 @@ function publicClient() {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Avoid publishing a competing sitemap while ceramikanero.pl is for testing.
+  if (shouldDisallowPublicIndexing()) {
+    return [];
+  }
+
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
-    'https://ceramikanero.netlify.app';
+    'https://ceramikanero.pl';
   const now = new Date();
 
   const entries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
@@ -56,9 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const workshop of workshops ?? []) {
       entries.push({
         url: `${siteUrl}/warsztaty/${workshop.slug}`,
-        lastModified: workshop.updated_at
-          ? new Date(workshop.updated_at)
-          : now,
+        lastModified: workshop.updated_at ? new Date(workshop.updated_at) : now,
         changeFrequency: 'weekly',
         priority: 0.8,
       });

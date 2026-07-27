@@ -33,7 +33,11 @@ export function isStripeConfigured(): boolean {
 }
 
 export function isResendConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL);
+  return Boolean(
+    process.env.RESEND_API_KEY &&
+    process.env.RESEND_FROM_EMAIL &&
+    process.env.RESEND_REPLY_TO_EMAIL
+  );
 }
 
 /** Banner shown on public calendar when local fixtures are active. */

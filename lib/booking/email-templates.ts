@@ -44,7 +44,9 @@ function legalLinks(siteUrl: string): string {
   return `${base}/regulamin · ${base}/polityka-prywatnosci`;
 }
 
-export function buildCustomerConfirmationEmail(ctx: BookingEmailTemplateContext) {
+export function buildCustomerConfirmationEmail(
+  ctx: BookingEmailTemplateContext
+) {
   const date = formatWarsawDate(ctx.sessionStartsAt);
   const unit = formatPrice(ctx.unitPriceGrossGrosz);
   const total = formatPrice(ctx.totalGrossGrosz);
@@ -165,6 +167,50 @@ export function buildAdminNotificationEmail(ctx: BookingEmailTemplateContext) {
   return { subject, html, text };
 }
 
+export function buildCancellationEmail(
+  ctx: BookingEmailTemplateContext,
+  reason?: string
+) {
+  const date = formatWarsawDate(ctx.sessionStartsAt);
+  const amount = formatPrice(ctx.totalGrossGrosz);
+  const base = ctx.siteUrl.replace(/\/$/, '');
+  const contactUrl = `${base}/kontakt`;
+  const subject = `Rezerwacja ${ctx.reference} została anulowana`;
+
+  const html = `
+    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; color: #222;">
+      <h1 style="font-size: 22px;">Rezerwacja anulowana</h1>
+      <p>Dzień dobry ${ctx.customerName},</p>
+      <p>Rezerwacja <strong>${ctx.reference}</strong> na warsztat <strong>${ctx.workshopTitle}</strong> (${date}) została anulowana.</p>
+      <p>Kwota: ${amount}</p>
+      ${reason ? `<p>Powód: ${reason}</p>` : ''}
+      <p>W przypadku zwrotu środki pojawią się na koncie w ciągu kilku dni roboczych.</p>
+      <p>Pytania: <a href="${contactUrl}">${contactUrl}</a></p>
+      <p style="font-size: 12px; color: #666;">Informacje prawne: ${legalLinks(ctx.siteUrl)}</p>
+      <p>${siteContact.brand}</p>
+    </div>
+  `;
+
+  const text = [
+    `Rezerwacja anulowana`,
+    '',
+    `Dzień dobry ${ctx.customerName},`,
+    '',
+    `Rezerwacja ${ctx.reference} na ${ctx.workshopTitle} (${date}) została anulowana.`,
+    `Kwota: ${amount}`,
+    reason ? `Powód: ${reason}` : '',
+    'W przypadku zwrotu środki pojawią się na koncie w ciągu kilku dni roboczych.',
+    `Kontakt: ${contactUrl}`,
+    `Prawne: ${legalLinks(ctx.siteUrl)}`,
+    '',
+    siteContact.brand,
+  ]
+    .filter((line) => line !== '')
+    .join('\n');
+
+  return { subject, html, text };
+}
+
 export function getBookingAdminEmail(): string | null {
   const value = process.env.BOOKING_ADMIN_EMAIL?.trim();
   return value || null;
@@ -173,6 +219,6 @@ export function getBookingAdminEmail(): string | null {
 export function getPublicSiteUrl(): string {
   return (
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
-    'https://ceramikanero.netlify.app'
+    'https://ceramikanero.pl'
   );
 }

@@ -6,6 +6,7 @@ import { SiteChrome } from '@/components/layout/site-chrome';
 import { LocalCartProvider } from '@/components/clone/local-cart';
 import { getPublicSettings } from '@/lib/database/services/site-settings';
 import { contactDisplayFromSettings } from '@/lib/public/contact-display';
+import { shouldDisallowPublicIndexing } from '@/lib/seo/indexing';
 import './globals.css';
 
 const cormorant = Cormorant_Garamond({
@@ -54,6 +55,9 @@ export const metadata: Metadata = {
     'rękodzieło',
     'pracownia ceramiczna',
   ],
+  robots: shouldDisallowPublicIndexing()
+    ? { index: false, follow: false }
+    : undefined,
   openGraph: {
     title: 'Ceramika Nero',
     description:

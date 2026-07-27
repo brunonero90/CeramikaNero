@@ -52,6 +52,12 @@ export async function deliverBookingEmail(
           errorMessage: error.message,
         };
       }
+      // Log provider id only — never recipient address or message body.
+      console.info('[email] resend accepted', {
+        type: email.type,
+        bookingId: email.bookingId,
+        providerMessageId: data?.id ?? null,
+      });
       return {
         ok: true,
         provider: 'resend',
@@ -63,7 +69,8 @@ export async function deliverBookingEmail(
         ok: false,
         provider: 'resend',
         providerMessageId: null,
-        errorMessage: err instanceof Error ? err.message : 'Unknown email error',
+        errorMessage:
+          err instanceof Error ? err.message : 'Unknown email error',
       };
     }
   }
@@ -100,7 +107,8 @@ export async function deliverBookingEmail(
         ok: false,
         provider: 'local_outbox',
         providerMessageId: null,
-        errorMessage: err instanceof Error ? err.message : 'Outbox write failed',
+        errorMessage:
+          err instanceof Error ? err.message : 'Outbox write failed',
       };
     }
   }
@@ -113,6 +121,7 @@ export async function deliverBookingEmail(
     ok: false,
     provider: 'ledger',
     providerMessageId: null,
-    errorMessage: 'RESEND_API_KEY / RESEND_FROM_EMAIL not configured',
+    errorMessage:
+      'RESEND_API_KEY / RESEND_FROM_EMAIL / RESEND_REPLY_TO_EMAIL not configured',
   };
 }
