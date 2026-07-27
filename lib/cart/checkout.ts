@@ -57,6 +57,35 @@ export type SubmitCartResult =
     }
   | { ok: false; error: string; fieldErrors?: Record<string, string[]> };
 
+function normalizeParticipantAge(
+  age: number | string | null | undefined
+): number | null {
+  if (age == null || age === '') return null;
+  const n = typeof age === 'number' ? age : Number.parseInt(String(age), 10);
+  if (!Number.isFinite(n) || n < 0 || n > 120) return null;
+  return n;
+}
+
+function mapSubmitCartOrderError(message: string | undefined): string {
+  const msg = (message ?? '').toLowerCase();
+  if (msg.includes('participant age is required')) {
+    return 'Podaj wiek każdego uczestnika — ten warsztat ma limit wieku.';
+  }
+  if (msg.includes('participant age is outside')) {
+    return 'Wiek uczestnika jest poza limitem warsztatu.';
+  }
+  if (msg.includes('insufficient capacity')) {
+    return 'Brak wolnych miejsc. Odśwież koszyk i spróbuj ponownie.';
+  }
+  if (msg.includes('inventory')) {
+    return 'Niewystarczający stan magazynowy. Odśwież koszyk.';
+  }
+  if (msg.includes('session is not open') || msg.includes('booking')) {
+    return 'Termin nie jest już dostępny do rezerwacji. Odśwież koszyk.';
+  }
+  return 'Nie udało się złożyć zamówienia. Dostępność mogła się zmienić — odśwież koszyk.';
+}
+
 function orderIdempotencyKey(input: {
   email: string;
   lines: CartLine[];
@@ -131,6 +160,32 @@ export async function submitCartOrder(
         error: 'Uzupełnij dane uczestników dla każdego warsztatu.',
       };
     }
+    if (line.ageRequired) {
+      for (const [index, part] of parts.entries()) {
+        const age = normalizeParticipantAge(part.age);
+        if (age == null) {
+          return {
+            ok: false,
+            error: `Podaj wiek uczestnika ${index + 1} dla warsztatu „${line.workshopTitle}”.`,
+          };
+        }
+        if (
+          (line.minimumAge != null && age < line.minimumAge) ||
+          (line.maximumAge != null && age > line.maximumAge)
+        ) {
+          const range =
+            line.minimumAge != null && line.maximumAge != null
+              ? `${line.minimumAge}–${line.maximumAge}`
+              : line.minimumAge != null
+                ? `${line.minimumAge}+`
+                : `do ${line.maximumAge}`;
+          return {
+            ok: false,
+            error: `Wiek uczestnika ${index + 1} jest poza limitem warsztatu (${range}).`,
+          };
+        }
+      }
+    }
   }
 
   const { ipKey, secondaryKey } = await getRateLimitKeys({
@@ -154,7 +209,7 @@ export async function submitCartOrder(
         participants: (data.participantsBySession[line.sessionId] ?? []).map(
           (p) => ({
             display_name: p.display_name ?? '',
-            age: p.age ?? null,
+            age: normalizeParticipantAge(p.age),
             participant_type: p.participant_type,
             accessibility_notes: p.accessibility_notes ?? null,
           })
@@ -201,8 +256,7 @@ export async function submitCartOrder(
     });
     return {
       ok: false,
-      error:
-        'Nie udało się złożyć zamówienia. Dostępność mogła się zmienić — odśwież koszyk.',
+      error: mapSubmitCartOrderError(error?.message),
     };
   }
 

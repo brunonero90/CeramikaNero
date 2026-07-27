@@ -10,6 +10,10 @@ export type RevalidatedCartLine = CartLine & {
   unitPriceGrosz: number;
   lineTotalGrosz: number;
   remainingCapacity?: number;
+  /** When set, checkout must collect a participant age for each seat. */
+  minimumAge?: number | null;
+  maximumAge?: number | null;
+  ageRequired?: boolean;
 };
 
 export type RevalidatedCart = {
@@ -41,7 +45,7 @@ export async function revalidateCartLines(
       const { data: session } = await supabase
         .from('workshop_sessions')
         .select(
-          'id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, booking_mode, default_price_gross_grosz)'
+          'id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, booking_mode, default_price_gross_grosz, minimum_age, maximum_age)'
         )
         .eq('id', line.sessionId)
         .maybeSingle();
@@ -54,6 +58,8 @@ export async function revalidateCartLines(
         archived_at: string | null;
         booking_mode: string;
         default_price_gross_grosz: number;
+        minimum_age: number | null;
+        maximum_age: number | null;
       } | null;
 
       const issues: string[] = [];
@@ -104,6 +110,10 @@ export async function revalidateCartLines(
         (i) => i === 'Cena uległa zmianie — pokazujemy aktualną cenę.'
       );
 
+      const minimumAge = workshop?.minimum_age ?? null;
+      const maximumAge = workshop?.maximum_age ?? null;
+      const ageRequired = minimumAge != null || maximumAge != null;
+
       result.push({
         ...line,
         workshopId: workshop?.id ?? line.workshopId,
@@ -122,6 +132,9 @@ export async function revalidateCartLines(
         remainingCapacity: session
           ? session.capacity - session.reserved_count
           : 0,
+        minimumAge,
+        maximumAge,
+        ageRequired,
       });
       continue;
     }

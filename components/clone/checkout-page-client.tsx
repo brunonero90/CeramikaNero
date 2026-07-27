@@ -213,6 +213,19 @@ export function CheckoutPageClient() {
                 <h2 className="text-lg font-semibold">
                   Uczestnicy — {line.workshopTitle}
                 </h2>
+                {line.ageRequired ? (
+                  <p className="text-sm text-text-muted">
+                    Wiek jest wymagany
+                    {line.minimumAge != null && line.maximumAge != null
+                      ? ` (limit ${line.minimumAge}–${line.maximumAge} lat)`
+                      : line.minimumAge != null
+                        ? ` (od ${line.minimumAge} lat)`
+                        : line.maximumAge != null
+                          ? ` (do ${line.maximumAge} lat)`
+                          : ''}
+                    .
+                  </p>
+                ) : null}
                 {(participantsBySession[line.sessionId] ?? []).map((p, idx) => (
                   <div
                     key={`${line.sessionId}-${idx}`}
@@ -234,8 +247,14 @@ export function CheckoutPageClient() {
                       />
                     </label>
                     <label className="text-sm">
-                      Wiek (jeśli wymagany)
+                      {line.ageRequired
+                        ? 'Wiek (wymagany)'
+                        : 'Wiek (opcjonalnie)'}
                       <input
+                        type="number"
+                        min={line.minimumAge ?? 0}
+                        max={line.maximumAge ?? 120}
+                        required={Boolean(line.ageRequired)}
                         className="mt-1 w-full border px-3 py-2"
                         value={p.age}
                         onChange={(e) =>
