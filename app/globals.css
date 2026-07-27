@@ -107,6 +107,28 @@ body {
   font-family: var(--font-body);
 }
 
+.atelier-paper {
+  background-color: #fbf7ef;
+  background-image:
+    radial-gradient(
+      circle at 18% 12%,
+      rgba(145, 101, 70, 0.045),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 82% 34%,
+      rgba(185, 94, 63, 0.035),
+      transparent 24%
+    ),
+    repeating-linear-gradient(
+      115deg,
+      rgba(91, 67, 51, 0.018) 0,
+      rgba(91, 67, 51, 0.018) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -9,10 +9,16 @@ import { primaryNavigation, siteContact } from '@/lib/fixtures/navigation';
 import { getSocialIcon } from '@/lib/media/wix-catalog';
 import { cn } from '@/lib/utils/cn';
 
-/**
- * Site header: peach bar, title-case nav, peach active chip, socials in the
- * same desktop row as menu items (after Blog), then cart / mobile controls.
- */
+const desktopNavigation = [
+  { label: 'Warsztaty', href: '/warsztaty' },
+  { label: 'Dla dzieci', href: '/dla-dzieci' },
+  { label: 'Dla dorosłych', href: '/dla-doroslych' },
+  { label: 'Grupy i firmy', href: '/grupy-i-firmy' },
+  { label: 'Galeria', href: '/galeria' },
+  { label: 'Blog', href: '/blog' },
+] as const;
+
+/** Warm editorial Atelier header used across the public site. */
 export function Header({
   facebookUrl = siteContact.facebookUrl,
   instagramUrl = siteContact.instagramUrl,
@@ -26,24 +32,45 @@ export function Header({
   const instagram = getSocialIcon('instagram');
 
   return (
-    <header className="relative z-50 bg-[#fbe5d6]" data-chrome="site-header">
-      <div className="mx-auto flex min-h-[64px] max-w-[1440px] items-center gap-2 px-3 py-2 md:min-h-[72px] md:gap-3 md:px-6 md:py-2.5">
+    <header
+      className="relative z-50 border-b border-[#ddcbbb]/80 bg-[#fbf7ef]"
+      data-chrome="site-header"
+    >
+      <div className="bg-[#b75d3e] px-4 py-2 text-center text-[10px] font-medium tracking-[0.11em] text-[#fffaf3] sm:text-xs">
+        <span aria-hidden className="mr-2">
+          ◇
+        </span>
+        Pracownia w Suchym Lesie. Autorskie warsztaty ceramiczne dla dzieci,
+        dorosłych i grup.
+      </div>
+      <div className="mx-auto flex min-h-[70px] max-w-[1440px] items-center gap-3 px-4 py-2.5 md:px-6 lg:min-h-[82px]">
+        <Link
+          href="/"
+          className="group inline-flex shrink-0 items-center gap-2.5 text-[#30231e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+          aria-label="Ceramika Nero — strona główna"
+        >
+          <StudioMark />
+          <span className="font-heading text-[1.65rem] font-medium leading-none tracking-[-0.02em] sm:text-[1.9rem]">
+            Ceramika Nero
+          </span>
+        </Link>
+
         <nav
-          className="hidden min-w-0 flex-1 items-center justify-center lg:flex"
+          className="hidden min-w-0 flex-1 items-center justify-end gap-1 lg:flex xl:gap-2"
           aria-label="Nawigacja główna"
         >
-          <ul className="flex flex-nowrap items-center justify-center gap-x-0.5 xl:gap-x-1">
-            {primaryNavigation.map((item) => {
+          <ul className="flex flex-nowrap items-center justify-end">
+            {desktopNavigation.map((item) => {
               const active =
-                pathname === item.href ||
-                (item.href !== '/' && pathname.startsWith(item.href));
+                pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
                 <li key={`${item.href}-${item.label}`}>
                   <Link
                     href={item.href}
                     className={cn(
-                      'inline-block whitespace-nowrap px-1.5 py-1.5 text-[12px] font-medium text-[#5c4038] transition-base hover:text-accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary xl:px-2 xl:text-[13px]',
-                      active && 'bg-[#f0c4b4] text-[#4a2f28]'
+                      'inline-block whitespace-nowrap px-2 py-2 text-[12px] font-medium text-[#453730] transition-base hover:text-[#b75d3e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary xl:px-2.5 xl:text-[13px]',
+                      active &&
+                        'text-[#b75d3e] underline decoration-1 underline-offset-8'
                     )}
                     aria-current={active ? 'page' : undefined}
                   >
@@ -52,65 +79,53 @@ export function Header({
                 </li>
               );
             })}
-            {facebook ? (
-              <li className="ml-1 flex items-center xl:ml-2">
-                <a
-                  href={facebookUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook Ceramika Nero"
-                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-                >
-                  <Image
-                    src={facebook.src}
-                    alt=""
-                    width={28}
-                    height={28}
-                    className="block h-7 w-7 object-contain"
-                  />
-                </a>
-              </li>
-            ) : null}
-            {instagram ? (
-              <li className="flex items-center">
-                <a
-                  href={instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram Ceramika Nero"
-                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
-                >
-                  <Image
-                    src={instagram.src}
-                    alt=""
-                    width={28}
-                    height={28}
-                    className="block h-7 w-7 object-contain"
-                  />
-                </a>
-              </li>
-            ) : null}
           </ul>
+          {facebook ? (
+            <a
+              href={facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook Ceramika Nero"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+            >
+              <Image
+                src={facebook.src}
+                alt=""
+                width={22}
+                height={22}
+                className="block h-[22px] w-[22px] object-contain opacity-75 transition-opacity hover:opacity-100"
+              />
+            </a>
+          ) : null}
+          {instagram ? (
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram Ceramika Nero"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+            >
+              <Image
+                src={instagram.src}
+                alt=""
+                width={22}
+                height={22}
+                className="block h-[22px] w-[22px] object-contain opacity-75 transition-opacity hover:opacity-100"
+              />
+            </a>
+          ) : null}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 md:gap-3">
-          <a
-            href={siteContact.phoneHref}
-            className="hidden min-h-10 flex-col items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-3 py-1 text-[11px] font-medium text-[#5c4038] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary lg:inline-flex"
-          >
-            <span>Zadzwoń</span>
-            <PhoneIcon />
-          </a>
+        <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
           <Link
             href="/kalendarz"
-            className="hidden min-h-10 flex-col items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-3 py-1 text-[11px] font-medium text-[#5c4038] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary lg:inline-flex"
+            className="hidden min-h-11 items-center justify-center rounded-md bg-[#b75d3e] px-4 text-[12px] font-semibold text-white transition-base hover:bg-[#a64e33] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 xl:inline-flex xl:px-5 xl:text-[13px]"
           >
-            <span>Zapisz się</span>
-            <SignupIcon />
+            Zarezerwuj warsztat
           </Link>
           <Link
             href="/cart"
-            className="relative inline-flex h-9 w-9 items-center justify-center text-[#5c4038] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+            className="relative inline-flex h-10 w-10 items-center justify-center text-[#453730] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
             aria-label={`Koszyk${cartCount ? `, ${cartCount} pozycji` : ''}`}
           >
             <CartIcon />
@@ -130,6 +145,32 @@ export function Header({
   );
 }
 
+function StudioMark() {
+  return (
+    <svg
+      width="36"
+      height="36"
+      viewBox="0 0 40 40"
+      fill="none"
+      aria-hidden
+      className="text-[#b75d3e]"
+    >
+      <path
+        d="M8 13.5c3.8-5.9 13.6-7.4 20.3-2.5 3 2.2 4.5 5.4 3.7 8.5-.8 3.3-4.1 5.5-8 5.5-4.9 0-7.4-2.9-6.7-6 .5-2.4 2.9-3.7 5.2-3.2 2.1.5 3 2.6 2.3 4.2"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M9 14c-2.8 2.6-3.3 6.4-1.5 9.4 2.8 4.8 9.2 7.4 15.4 6.1 3.1-.7 5.6-2.2 7.1-4.4M10.5 30.5c4.5 2.4 11.4 2.6 16 0"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 function CartIcon() {
   return (
     <svg
@@ -143,42 +184,6 @@ function CartIcon() {
     >
       <path d="M6 8h12l-1 12H7L6 8Z" />
       <path d="M9 8a3 3 0 0 1 6 0" />
-    </svg>
-  );
-}
-
-function PhoneIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      aria-hidden
-      className="mt-0.5"
-    >
-      <path d="M6.5 4.5h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4.5 6.7 2 2 0 0 1 6.5 4.5Z" />
-    </svg>
-  );
-}
-
-function SignupIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      aria-hidden
-      className="mt-0.5"
-    >
-      <path d="M4 20v-2.5A3.5 3.5 0 0 1 7.5 14h3" />
-      <circle cx="10" cy="8" r="3" />
-      <path d="M16 11v6M13 14h6" />
     </svg>
   );
 }
@@ -208,7 +213,7 @@ function MobileNav({
     <div className="lg:hidden">
       <button
         type="button"
-        className="inline-flex min-h-10 min-w-10 items-center justify-center border border-[#8a5a4a] text-[#5c4038] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+        className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-md border border-[#8a6f62] text-[#453730] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
@@ -221,7 +226,7 @@ function MobileNav({
       {open && (
         <div
           id={panelId}
-          className="absolute inset-x-0 top-full border-b border-surface-subtle bg-[#fbe5d6] px-4 py-4 shadow-md"
+          className="atelier-paper absolute inset-x-0 top-full border-b border-surface-subtle bg-[#fbf7ef] px-4 py-4 shadow-md"
         >
           <nav aria-label="Menu mobilne">
             <ul className="flex flex-col gap-1">
@@ -229,7 +234,7 @@ function MobileNav({
                 <li key={`m-${item.href}-${item.label}`}>
                   <Link
                     href={item.href}
-                    className="block px-2 py-3 text-sm font-medium text-[#5c4038] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                    className="block border-b border-[#ddcbbb]/50 px-2 py-3 text-sm font-medium text-[#453730] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
@@ -241,14 +246,14 @@ function MobileNav({
           <div className="mt-4 flex flex-col gap-2">
             <a
               href={siteContact.phoneHref}
-              className="inline-flex min-h-11 items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-4 text-sm font-medium text-[#5c4038]"
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#8a6f62] bg-white/50 px-4 text-sm font-medium text-[#453730]"
               onClick={() => setOpen(false)}
             >
               Zadzwoń
             </a>
             <Link
               href="/kalendarz"
-              className="inline-flex min-h-11 items-center justify-center border border-[#8a5a4a] bg-[#f6d5c8] px-4 text-sm font-medium text-[#5c4038]"
+              className="inline-flex min-h-11 items-center justify-center rounded-md bg-[#b75d3e] px-4 text-sm font-semibold text-white"
               onClick={() => setOpen(false)}
             >
               Zapisz się
