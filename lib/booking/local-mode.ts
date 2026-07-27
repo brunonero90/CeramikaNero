@@ -25,11 +25,12 @@ export function assertBookingLocalModeAllowed(): void {
   }
 }
 
+/**
+ * Hosted Stripe Checkout only needs the server secret. The publishable key is
+ * optional (Elements / client SDKs) and must never gate server Checkout.
+ */
 export function isStripeConfigured(): boolean {
-  return Boolean(
-    process.env.STRIPE_SECRET_KEY &&
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-  );
+  return Boolean(process.env.STRIPE_SECRET_KEY);
 }
 
 export function isResendConfigured(): boolean {

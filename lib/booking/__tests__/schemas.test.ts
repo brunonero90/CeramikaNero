@@ -68,6 +68,22 @@ describe('public booking schema', () => {
     expect(zero.success).toBe(false);
   });
 
+  it('ignores browser-supplied price/amount fields (server resolves PLN from Supabase)', () => {
+    const result = publicBookingInputSchema.safeParse({
+      ...basePublicBooking,
+      totalGrosz: 1,
+      amount_to_pay_gross_grosz: 1,
+      unit_price_gross_grosz: 1,
+      currency: 'USD',
+    });
+    expect(result.success).toBe(true);
+    if (!result.success) return;
+    expect(result.data).not.toHaveProperty('totalGrosz');
+    expect(result.data).not.toHaveProperty('amount_to_pay_gross_grosz');
+    expect(result.data).not.toHaveProperty('unit_price_gross_grosz');
+    expect(result.data).not.toHaveProperty('currency');
+  });
+
   it('rejects a participant array with the wrong length', () => {
     const result = publicBookingInputSchema.safeParse({
       ...basePublicBooking,

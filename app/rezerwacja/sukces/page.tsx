@@ -21,9 +21,8 @@ export default async function SuccessPage({
 
   if (isBookingLocalMode()) {
     if (!reference) notFound();
-    const { getLocalBookingByReference, getLocalSession } = await import(
-      '@/lib/booking/local-store'
-    );
+    const { getLocalBookingByReference, getLocalSession } =
+      await import('@/lib/booking/local-store');
     const booking = await getLocalBookingByReference(reference);
     if (!booking) notFound();
     const session = await getLocalSession(booking.sessionId);
@@ -167,10 +166,16 @@ export default async function SuccessPage({
             udział.
           </p>
         </div>
-      ) : (
+      ) : confirmed ? (
         <p className="text-muted-foreground text-sm">
           Potwierdzenie zostało wysłane na adres e-mail podany w formularzu (gdy
           dostawca e-mail jest skonfigurowany).
+        </p>
+      ) : (
+        <p className="text-muted-foreground text-sm">
+          Płatność jest weryfikowana. Ta strona nie potwierdza rezerwacji —
+          potwierdzenie miejsca następuje dopiero po pozytywnej weryfikacji
+          płatności. Odśwież za chwilę lub sprawdź skrzynkę e-mail.
         </p>
       )}
       <Link

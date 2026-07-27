@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     'next-env.d.ts',
     'scripts/**',
     'tmp/**',
+    // Netlify local/build artifacts (must not be linted)
+    '.netlify/**',
   ]),
 ]);
 

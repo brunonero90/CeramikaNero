@@ -8,6 +8,30 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic';
 
+type WorkshopTitleRel = { title: string } | { title: string }[] | null;
+
+type UpcomingSessionRow = {
+  id: string;
+  starts_at: string;
+  timezone: string | null;
+  capacity: number;
+  reserved_count: number;
+  workshops: WorkshopTitleRel;
+};
+
+type RecentBookingRow = {
+  id: string;
+  booking_reference: string;
+  status: string;
+  total_price_gross_grosz: number;
+};
+
+type QuoteOrderRow = {
+  id: string;
+  order_reference: string;
+  created_at: string;
+};
+
 export default async function AdminDashboardPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const supabase = (await createClient()) as any;
@@ -65,6 +89,10 @@ export default async function AdminDashboardPage() {
       .limit(5),
   ]);
 
+  const sessions = (upcomingSessionsList ?? []) as UpcomingSessionRow[];
+  const bookings = (recentBookings ?? []) as RecentBookingRow[];
+  const quotes = (quoteOrdersList ?? []) as QuoteOrderRow[];
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -92,7 +120,10 @@ export default async function AdminDashboardPage() {
       </div>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <SummaryCard label="Nadchodzące terminy" value={upcomingSessions ?? 0} />
+        <SummaryCard
+          label="Nadchodzące terminy"
+          value={upcomingSessions ?? 0}
+        />
         <SummaryCard
           label="Rezerwacje oczekujące na płatność"
           value={awaitingBookings ?? 0}
@@ -101,18 +132,15 @@ export default async function AdminDashboardPage() {
           label="Zamówienia do wyceny wysyłki"
           value={quoteOrders ?? 0}
         />
-        <SummaryCard
-          label="Zamówienia oczekujące"
-          value={newOrders ?? 0}
-        />
+        <SummaryCard label="Zamówienia oczekujące" value={newOrders ?? 0} />
       </section>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="rounded-lg border bg-white p-4">
           <h2 className="mb-3 text-lg font-medium">Nadchodzące terminy</h2>
-          {upcomingSessionsList?.length ? (
+          {sessions.length ? (
             <ul className="divide-y text-sm">
-              {upcomingSessionsList.map((session: any) => {
+              {sessions.map((session) => {
                 const title = Array.isArray(session.workshops)
                   ? session.workshops[0]?.title
                   : session.workshops?.title;
@@ -138,15 +166,17 @@ export default async function AdminDashboardPage() {
               })}
             </ul>
           ) : (
-            <p className="text-sm text-gray-500">Brak nadchodzących terminów.</p>
+            <p className="text-sm text-gray-500">
+              Brak nadchodzących terminów.
+            </p>
           )}
         </section>
 
         <section className="rounded-lg border bg-white p-4">
           <h2 className="mb-3 text-lg font-medium">Ostatnie rezerwacje</h2>
-          {recentBookings?.length ? (
+          {bookings.length ? (
             <ul className="divide-y text-sm">
-              {recentBookings.map((b: any) => (
+              {bookings.map((b) => (
                 <li key={b.id} className="py-2">
                   <Link
                     href={`/admin/rezerwacje/${b.id}`}
@@ -167,10 +197,13 @@ export default async function AdminDashboardPage() {
           <h2 className="mb-3 text-lg font-medium">
             Zamówienia wymagające wyceny wysyłki
           </h2>
-          {quoteOrdersList?.length ? (
+          {quotes.length ? (
             <ul className="divide-y text-sm">
-              {quoteOrdersList.map((o: any) => (
-                <li key={o.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
+              {quotes.map((o) => (
+                <li
+                  key={o.id}
+                  className="flex flex-wrap items-center justify-between gap-2 py-2"
+                >
                   <Link
                     href={`/admin/zamowienia/${o.id}`}
                     className="font-medium underline"

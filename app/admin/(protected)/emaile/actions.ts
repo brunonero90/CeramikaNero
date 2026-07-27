@@ -33,10 +33,8 @@ export async function retryBookingEmailAction(
   const id = String(formData.get('emailId') ?? '');
   if (!id) throw new Error('Brak identyfikatora e-maila.');
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const supabase = (await import('@/lib/supabase/server').then((m) =>
-    m.createClient()
-  )) as any;
+  const { createAdminClient } = await import('@/lib/supabase/admin');
+  const supabase = createAdminClient();
 
   await supabase
     .from('booking_emails')

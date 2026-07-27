@@ -185,7 +185,7 @@ If a `checkout.session.completed` webhook arrives after the booking expired:
 
 - Migration: `supabase/migrations/00000000000005_booking_system.sql`
 - Public booking page: `/warsztaty/[slug]/rezerwacja`
-- Stripe webhook: `/api/webhooks/stripe`
+- Stripe webhook: `/api/webhooks/stripe` (raw-body signature verification; handles immediate and async Checkout outcomes)
 - Expiry cron: `/api/cron/expiry`
 - Customer cancellation: `/rezerwacja/anulowanie`
 - Success/cancel pages: `/rezerwacja/sukces`, `/rezerwacja/anulowana`

@@ -16,12 +16,21 @@ export async function createStripeCheckoutSession(params: {
 }): Promise<Stripe.Checkout.Session> {
   const stripe = getStripeServerClient();
   const idempotencyKey = `checkout-${params.paymentId}`;
+  // Stripe Checkout sessions require expires_at ≥ 30 minutes from creation.
+  // Booking holds remain 15 minutes; late payments use manual-resolution paths.
   const expiresAt = Math.floor(Date.now() / 1000) + 30 * 60;
+
+  const metadata = {
+    booking_id: params.bookingId,
+    booking_reference: params.reference,
+    payment_id: params.paymentId,
+  };
 
   return stripe.checkout.sessions.create(
     {
       mode: 'payment',
-      payment_method_types: ['card', 'blik', 'p24'],
+      // Omit payment_method_types so Stripe Dashboard dynamic methods control
+      // card / BLIK / Przelewy24 (and other eligible methods) without code changes.
       line_items: [
         {
           price_data: {
@@ -35,11 +44,9 @@ export async function createStripeCheckoutSession(params: {
           quantity: 1,
         },
       ],
-      metadata: {
-        booking_id: params.bookingId,
-        booking_reference: params.reference,
-        payment_id: params.paymentId,
-        environment: process.env.NODE_ENV ?? 'development',
+      metadata,
+      payment_intent_data: {
+        metadata,
       },
       success_url: params.successUrl,
       cancel_url: params.cancelUrl,

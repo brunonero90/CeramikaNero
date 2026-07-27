@@ -45,16 +45,24 @@ Copy `.env.example` to `.env` and fill in the values. Never commit `.env` files.
 2. **Develop against test mode only.** Do not switch to live keys or live webhooks without explicit approval.
 3. Generate a `STRIPE_SECRET_KEY` (test) from the Stripe Dashboard.
 4. Create a webhook endpoint:
-   - URL: `https://<NEXT_PUBLIC_SITE_URL>/api/webhooks/stripe`
+   - URL: `https://ceramikanero.pl/api/webhooks/stripe` (production test host)
    - Events to listen to:
      - `checkout.session.completed`
+     - `checkout.session.async_payment_succeeded`
+     - `checkout.session.async_payment_failed`
      - `checkout.session.expired`
      - `payment_intent.succeeded`
      - `payment_intent.payment_failed`
      - `charge.refunded`
    - Copy the webhook signing secret to `STRIPE_WEBHOOK_SECRET`.
-5. Test the webhook using Stripe CLI or the Stripe Dashboard test events.
-6. Do not configure live payments or live webhooks without explicit approval.
+5. In Stripe Dashboard → Settings → Payment methods, enable Card, BLIK and
+   Przelewy24 (and any other methods you want). Checkout omits
+   `payment_method_types` so Dashboard dynamic methods control eligibility.
+6. Test the webhook using Stripe CLI or the Stripe Dashboard test events.
+7. Do not enable Netlify password / visitor protection on the production site
+   without excluding `/api/webhooks/*` (and cron routes). Site-wide Basic Auth
+   blocks Stripe webhooks.
+8. Do not configure live payments or live webhooks without explicit approval.
 
 ## Resend setup
 

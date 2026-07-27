@@ -4,13 +4,16 @@
  * handler. Local fidelity tests import `./page-spec-headings.node` instead.
  */
 
-export function loadPageSpec(_route: string): null {
+export function loadPageSpec(route: string): null {
+  void route;
   return null;
 }
 
 export function knownHeadingsForSection(
-  _route: string,
-  _sectionIndex: number
+  route: string,
+  sectionIndex: number
 ): string[] {
+  void route;
+  void sectionIndex;
   return [];
 }
