@@ -182,33 +182,42 @@ export type Database = {
       };
       booking_emails: {
         Row: {
+          attempt_count: number;
           booking_id: string;
+          claimed_at: string | null;
           created_at: string;
           email_type: string;
           error_message: string | null;
           id: string;
+          next_attempt_at: string | null;
           provider_message_id: string | null;
           sent_at: string | null;
           status: string;
           updated_at: string;
         };
         Insert: {
+          attempt_count?: number;
           booking_id: string;
+          claimed_at?: string | null;
           created_at?: string;
           email_type: string;
           error_message?: string | null;
           id?: string;
+          next_attempt_at?: string | null;
           provider_message_id?: string | null;
           sent_at?: string | null;
           status: string;
           updated_at?: string;
         };
         Update: {
+          attempt_count?: number;
           booking_id?: string;
+          claimed_at?: string | null;
           created_at?: string;
           email_type?: string;
           error_message?: string | null;
           id?: string;
+          next_attempt_at?: string | null;
           provider_message_id?: string | null;
           sent_at?: string | null;
           status?: string;

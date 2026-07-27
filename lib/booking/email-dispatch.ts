@@ -12,6 +12,7 @@ import {
   getBookingAdminEmail,
 } from '@/lib/booking/email-templates';
 import { emailTypeSchema } from '@/lib/database/schema';
+import type { Database } from '@/lib/database/types';
 
 const MAX_ATTEMPTS = 8;
 
@@ -43,9 +44,11 @@ type ClaimedEmail = {
   status: string;
 };
 
-/** Cast helper until generated DB types include retry columns. */
-function emailRowUpdate(values: Record<string, unknown>) {
-  return values as never;
+/** Typed update payload for booking_emails retry metadata. */
+function emailRowUpdate(
+  values: Database['public']['Tables']['booking_emails']['Update']
+) {
+  return values;
 }
 
 async function buildPayload(row: ClaimedEmail): Promise<{

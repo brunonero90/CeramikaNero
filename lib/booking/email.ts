@@ -115,7 +115,7 @@ export async function recordBookingEmail(
           status === 'failed' || status === 'pending'
             ? new Date(Date.now() + 60_000).toISOString()
             : null,
-      } as never)
+      })
       .eq('id', data as string);
     if (patch.error && errorMessage) {
       await supabase
