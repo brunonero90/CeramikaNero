@@ -12,6 +12,7 @@ export type CustomerOrderStatus = {
   shippingGrossGrosz: number;
   totalGrossGrosz: number;
   shippingQuoteRequired: boolean;
+  selectedPaymentMethod?: string | null;
   bookingReferences: string[];
   items: Array<{
     title: string;
@@ -56,6 +57,7 @@ export async function getOrderStatusByPublicToken(
       shipping_gross_grosz,
       total_gross_grosz,
       shipping_quote_required,
+      selected_payment_method,
       tracking_reference,
       order_items (
         title_snapshot, quantity, line_total_gross_grosz, item_type, fulfillment_method
@@ -65,6 +67,33 @@ export async function getOrderStatusByPublicToken(
     )
     .eq('public_lookup_token_hash', hash)
     .maybeSingle();
+
+  // Pre-migration-15 databases omit selected_payment_method.
+  if (error?.message?.includes('selected_payment_method')) {
+    ({ data: order, error } = await supabase
+      .from('orders')
+      .select(
+        `
+        id,
+        order_reference,
+        status,
+        payment_status,
+        fulfillment_status,
+        fulfillment_method,
+        subtotal_gross_grosz,
+        shipping_gross_grosz,
+        total_gross_grosz,
+        shipping_quote_required,
+        tracking_reference,
+        order_items (
+          title_snapshot, quantity, line_total_gross_grosz, item_type, fulfillment_method
+        ),
+        order_addresses (city)
+      `
+      )
+      .eq('public_lookup_token_hash', hash)
+      .maybeSingle());
+  }
 
   // Pre-migration-14 databases omit tracking_reference.
   if (error?.message?.includes('tracking_reference')) {
@@ -126,6 +155,9 @@ export async function getOrderStatusByPublicToken(
     shippingGrossGrosz: order.shipping_gross_grosz,
     totalGrossGrosz: order.total_gross_grosz,
     shippingQuoteRequired: order.shipping_quote_required,
+    selectedPaymentMethod:
+      (order as { selected_payment_method?: string | null })
+        .selected_payment_method ?? null,
     bookingReferences: (
       (bookings ?? []) as Array<{ booking_reference: string }>
     ).map((b) => b.booking_reference),

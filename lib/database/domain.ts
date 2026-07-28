@@ -231,6 +231,12 @@ export type PublicSiteSettings = {
   facebookUrl: string;
   instagramUrl: string;
   bankTransferInstructions: string;
+  bankTransferEnabled: boolean;
+  bankTransferRecipient: string;
+  bankTransferAccount: string;
+  bankTransferBankName: string;
+  bankTransferTitleTemplate: string;
+  bankTransferDeadlineNote: string;
   deliveryQuoteWording: string;
   publicNotice: string;
   bookingCtaLabel: string;

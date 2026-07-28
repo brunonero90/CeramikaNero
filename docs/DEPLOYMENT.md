@@ -16,6 +16,7 @@ Copy `.env.example` to `.env` and fill in the values. Never commit `.env` files.
 | `SUPABASE_SECRET_KEY`                  | Supabase service role key                         | Server-only                           |
 | `STRIPE_SECRET_KEY`                    | Stripe API key                                    | Server-only, test mode by default     |
 | `STRIPE_WEBHOOK_SECRET`                | Stripe webhook endpoint secret                    | Server-only                           |
+| `PAYMENTS_PROVIDER`                    | `manual` \| `stripe` \| `both`                    | Default `manual`; cart/order checkout |
 | `RESEND_API_KEY`                       | Resend API key                                    | Server-only                           |
 | `RESEND_FROM_EMAIL`                    | Verified sender address                           | e.g. `rezerwacje@ceramikanero.pl`     |
 | `RESEND_REPLY_TO_EMAIL`                | Reply-to address                                  | e.g. `kontakt@ceramikanero.pl`        |

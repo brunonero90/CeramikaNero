@@ -130,10 +130,30 @@ export async function updateOrderOperationalStateAction(
   const { data: previous } = await supabase
     .from('orders')
     .select(
-      'payment_status, fulfillment_status, fulfillment_method, status'
+      'payment_status, fulfillment_status, fulfillment_method, status, selected_payment_method'
     )
     .eq('id', orderId)
     .maybeSingle();
+
+  // Manual "Mark paid" is for bank transfers only — never silently confirm Stripe.
+  if (
+    previous?.payment_status !== 'paid' &&
+    paymentStatus === 'paid' &&
+    (previous as { selected_payment_method?: string | null } | null)
+      ?.selected_payment_method === 'stripe'
+  ) {
+    const { data: stripePayment } = await supabase
+      .from('payments')
+      .select('id, provider, status')
+      .eq('order_id', orderId)
+      .eq('provider', 'stripe')
+      .maybeSingle();
+    if (stripePayment && stripePayment.status !== 'paid') {
+      throw new Error(
+        'To zamówienie używa Stripe. Oznaczanie jako opłacone ręcznie jest zablokowane — poczekaj na webhook albo rozwiąż ręcznie po weryfikacji w Stripe.'
+      );
+    }
+  }
 
   const patch: Record<string, unknown> = {
     payment_status: paymentStatus,

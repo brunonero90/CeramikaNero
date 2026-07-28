@@ -26,6 +26,21 @@ export default defineConfig({
           '@supabase/storage-js',
           '@supabase/ssr',
           'tslib',
+          '@react-email/render',
+          '@react-email/body',
+          '@react-email/button',
+          '@react-email/container',
+          '@react-email/head',
+          '@react-email/heading',
+          '@react-email/hr',
+          '@react-email/html',
+          '@react-email/img',
+          '@react-email/link',
+          '@react-email/preview',
+          '@react-email/section',
+          '@react-email/text',
+          '@react-email/row',
+          '@react-email/column',
         ],
       },
     },
@@ -36,6 +51,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, '.'),
       'server-only': path.resolve(__dirname, 'lib/test-stubs/server-only.ts'),
       tslib: path.resolve(__dirname, 'node_modules/tslib/tslib.js'),
+      'prettier/standalone': path.resolve(
+        __dirname,
+        'lib/test-stubs/prettier-standalone.ts'
+      ),
+      'prettier/plugins/html': path.resolve(
+        __dirname,
+        'lib/test-stubs/prettier-html.ts'
+      ),
     },
   },
 });

@@ -2,9 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getOrderStatusByPublicToken } from '@/lib/cart/order-status';
-import { formatPrice } from '@/lib/utils/price';
+import { formatGroszAsPln } from '@/lib/utils/money';
 import { getPublicSettings } from '@/lib/database/services/site-settings';
 import { contactDisplayFromSettings } from '@/lib/public/contact-display';
+import { OrderPayButton } from '@/components/clone/order-pay-button';
+import {
+  formatBankAccountForDisplay,
+  loadBankTransferConfig,
+  buildTransferTitle,
+} from '@/lib/payments/bank-transfer';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,14 +19,60 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+function humanPaymentStatus(status: string): string {
+  switch (status) {
+    case 'paid':
+      return 'Opłacone';
+    case 'pending':
+      return 'Oczekuje na płatność';
+    case 'failed':
+      return 'Płatność nieudana';
+    case 'cancelled':
+      return 'Anulowane';
+    case 'refunded':
+      return 'Zwrócone';
+    case 'partially_refunded':
+      return 'Częściowo zwrócone';
+    default:
+      return 'W trakcie';
+  }
+}
+
+function humanOrderStatus(status: string): string {
+  switch (status) {
+    case 'awaiting_payment':
+      return 'Oczekuje na płatność';
+    case 'confirmed':
+      return 'Potwierdzone';
+    case 'cancelled':
+      return 'Anulowane';
+    case 'expired':
+      return 'Wygasłe';
+    case 'refunded':
+      return 'Zwrócone';
+    case 'partially_refunded':
+      return 'Częściowo zwrócone';
+    default:
+      return 'W trakcie';
+  }
+}
+
 function lifecycleCopy(order: {
   status: string;
   paymentStatus: string;
   fulfillmentStatus: string;
   fulfillmentMethod: string;
   shippingQuoteRequired: boolean;
+  selectedPaymentMethod?: string | null;
   trackingReference?: string | null;
+  checkoutFlag?: string | null;
 }): { title: string; body: string } {
+  if (order.checkoutFlag === 'success' && order.paymentStatus !== 'paid') {
+    return {
+      title: 'Dziękujemy — sprawdzamy płatność',
+      body: 'Jeśli wybrałeś BLIK lub Przelewy24, potwierdzenie może pojawić się za chwilę. Status odświeżymy automatycznie po stronie serwera.',
+    };
+  }
   if (order.status === 'cancelled') {
     return {
       title: 'Zamówienie anulowane',
@@ -34,12 +86,27 @@ function lifecycleCopy(order: {
     };
   }
   if (order.paymentStatus === 'pending') {
+    if (order.selectedPaymentMethod === 'stripe') {
+      return {
+        title: 'Oczekujemy na płatność online',
+        body: 'Możesz dokończyć bezpieczną płatność poniżej. Potwierdzenie pojawi się dopiero po weryfikacji przez operatora płatności.',
+      };
+    }
     return {
       title: 'Oczekujemy na płatność',
-      body: 'Kwota jest ustalona. Instrukcje przelewu prześlemy e-mailem lub skontaktujemy się bezpośrednio.',
+      body: 'Kwota jest ustalona. Wykonaj przelew według danych poniżej — rezerwacja pozostaje nieopłacona do momentu zaksięgowania.',
     };
   }
-  if (order.paymentStatus === 'paid' && order.fulfillmentStatus !== 'fulfilled') {
+  if (order.paymentStatus === 'failed') {
+    return {
+      title: 'Płatność nieudana lub wygasła',
+      body: 'Możesz spróbować ponownie zapłacić online albo skontaktować się z pracownią.',
+    };
+  }
+  if (
+    order.paymentStatus === 'paid' &&
+    order.fulfillmentStatus !== 'fulfilled'
+  ) {
     return {
       title: 'Płatność otrzymana',
       body:
@@ -70,10 +137,13 @@ function lifecycleCopy(order: {
 
 export default async function OrderStatusPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ token: string }>;
+  searchParams: Promise<{ checkout?: string; session_id?: string }>;
 }) {
   const { token } = await params;
+  const query = await searchParams;
   const order = await getOrderStatusByPublicToken(token);
   if (!order) notFound();
 
@@ -85,7 +155,48 @@ export default async function OrderStatusPage({
   }
 
   const showFinalTotal = !order.shippingQuoteRequired;
-  const copy = lifecycleCopy(order);
+  const copy = lifecycleCopy({
+    ...order,
+    checkoutFlag: query.checkout ?? null,
+  });
+
+  const canPayOnline =
+    !order.shippingQuoteRequired &&
+    order.paymentStatus !== 'paid' &&
+    order.status !== 'cancelled' &&
+    order.status !== 'expired' &&
+    order.status !== 'refunded' &&
+    (order.selectedPaymentMethod === 'stripe' ||
+      order.paymentStatus === 'failed');
+
+  const showBankTransfer =
+    !order.shippingQuoteRequired &&
+    order.paymentStatus === 'pending' &&
+    order.selectedPaymentMethod !== 'stripe';
+
+  let bankBlock: {
+    recipient: string;
+    account: string;
+    title: string;
+    bankName: string | null;
+    deadlineNote: string | null;
+  } | null = null;
+
+  if (showBankTransfer) {
+    const bank = await loadBankTransferConfig();
+    if (bank.ok) {
+      bankBlock = {
+        recipient: bank.config.recipient,
+        account: formatBankAccountForDisplay(bank.config.accountNumber),
+        title: buildTransferTitle(
+          bank.config.titleTemplate,
+          order.orderReference
+        ),
+        bankName: bank.config.bankName,
+        deadlineNote: bank.config.deadlineNote,
+      };
+    }
+  }
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-12 md:px-6">
@@ -101,16 +212,26 @@ export default async function OrderStatusPage({
       <dl className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
         <div>
           <dt className="text-text-muted">Status zamówienia</dt>
-          <dd className="font-medium">{order.status}</dd>
+          <dd className="font-medium">{humanOrderStatus(order.status)}</dd>
         </div>
         <div>
           <dt className="text-text-muted">Płatność</dt>
-          <dd className="font-medium">{order.paymentStatus}</dd>
+          <dd className="font-medium">
+            {humanPaymentStatus(order.paymentStatus)}
+          </dd>
         </div>
         <div>
           <dt className="text-text-muted">Realizacja</dt>
           <dd className="font-medium">
-            {order.fulfillmentStatus} ({order.fulfillmentMethod})
+            {order.fulfillmentStatus === 'fulfilled'
+              ? order.fulfillmentMethod === 'shipping'
+                ? 'Wysłano'
+                : 'Gotowe / odebrane'
+              : order.fulfillmentMethod === 'shipping'
+                ? 'Wysyłka'
+                : order.fulfillmentMethod === 'pickup'
+                  ? 'Odbiór osobisty'
+                  : 'W przygotowaniu'}
           </dd>
         </div>
         {order.hasDeliveryAddress ? (
@@ -148,7 +269,7 @@ export default async function OrderStatusPage({
                   : ''}
               </span>
               <span className="font-medium">
-                {formatPrice(item.lineTotalGrossGrosz)}
+                {formatGroszAsPln(item.lineTotalGrossGrosz)}
               </span>
             </li>
           ))}
@@ -156,7 +277,7 @@ export default async function OrderStatusPage({
         <p className="mt-4 flex justify-between text-sm">
           <span>Suma pozycji</span>
           <span className="font-semibold">
-            {formatPrice(order.subtotalGrossGrosz)}
+            {formatGroszAsPln(order.subtotalGrossGrosz)}
           </span>
         </p>
         {order.shippingQuoteRequired ? (
@@ -172,29 +293,56 @@ export default async function OrderStatusPage({
             {order.shippingGrossGrosz > 0 ? (
               <p className="mt-2 flex justify-between text-sm">
                 <span>Wysyłka</span>
-                <span>{formatPrice(order.shippingGrossGrosz)}</span>
+                <span>{formatGroszAsPln(order.shippingGrossGrosz)}</span>
               </p>
             ) : null}
             {showFinalTotal ? (
               <p className="mt-3 flex justify-between text-base font-semibold">
                 <span>Do zapłaty</span>
-                <span>{formatPrice(order.totalGrossGrosz)}</span>
-              </p>
-            ) : null}
-            {order.paymentStatus === 'pending' &&
-            contact.bankTransferInstructions ? (
-              <p className="mt-3 whitespace-pre-line text-sm text-text-muted">
-                {contact.bankTransferInstructions}
-              </p>
-            ) : order.paymentStatus === 'pending' ? (
-              <p className="mt-3 text-sm text-text-muted">
-                Płatność: przelew bankowy. Instrukcje prześlemy e-mailem lub
-                skontaktujemy się bezpośrednio.
+                <span>{formatGroszAsPln(order.totalGrossGrosz)}</span>
               </p>
             ) : null}
           </>
         )}
       </section>
+
+      {canPayOnline ? <OrderPayButton publicLookupToken={token} /> : null}
+
+      {bankBlock ? (
+        <section className="mt-6 space-y-2 rounded border border-surface-subtle bg-white/70 p-4 text-sm">
+          <h2 className="font-heading text-lg font-semibold">
+            Przelew bankowy
+          </h2>
+          <p>
+            <span className="text-text-muted">Do zapłaty: </span>
+            <strong>{formatGroszAsPln(order.totalGrossGrosz)}</strong>
+          </p>
+          <p>
+            <span className="text-text-muted">Odbiorca: </span>
+            <strong>{bankBlock.recipient}</strong>
+          </p>
+          <p>
+            <span className="text-text-muted">Numer konta: </span>
+            <strong className="tracking-wide">{bankBlock.account}</strong>
+          </p>
+          {bankBlock.bankName ? (
+            <p>
+              <span className="text-text-muted">Bank: </span>
+              {bankBlock.bankName}
+            </p>
+          ) : null}
+          <p>
+            <span className="text-text-muted">Tytuł przelewu: </span>
+            <strong>{bankBlock.title}</strong>
+          </p>
+          <p className="text-text-muted">
+            Rezerwacja pozostaje nieopłacona do momentu zaksięgowania przelewu.
+          </p>
+          {bankBlock.deadlineNote ? (
+            <p className="text-text-muted">{bankBlock.deadlineNote}</p>
+          ) : null}
+        </section>
+      ) : null}
 
       <p className="mt-8 text-sm text-text-muted">
         Pytania? Napisz na{' '}

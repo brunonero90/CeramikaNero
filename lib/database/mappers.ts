@@ -223,10 +223,7 @@ export function mapPublicSiteSettings(
     studioEmail: get('studio_email', 'kontakt@ceramikanero.com'),
     studioPhone: get('studio_phone', '532 279 101'),
     whatsappUrl: get('whatsapp_url', 'https://wa.me/48532279101'),
-    facebookUrl: get(
-      'facebook_url',
-      'https://www.facebook.com/ceramikanero'
-    ),
+    facebookUrl: get('facebook_url', 'https://www.facebook.com/ceramikanero'),
     instagramUrl: get(
       'instagram_url',
       'https://www.instagram.com/ceramika_nero'
@@ -235,6 +232,18 @@ export function mapPublicSiteSettings(
       'bank_transfer_instructions',
       'Przelew bankowy — dane konta potwierdzimy po ustaleniu finalnej kwoty.'
     ),
+    bankTransferEnabled: (() => {
+      const raw = get('bank_transfer_enabled', 'true').toLowerCase();
+      return raw === 'true' || raw === '1' || raw === 'yes' || raw === '';
+    })(),
+    bankTransferRecipient: get('bank_transfer_recipient', ''),
+    bankTransferAccount: get('bank_transfer_account', ''),
+    bankTransferBankName: get('bank_transfer_bank_name', ''),
+    bankTransferTitleTemplate: get(
+      'bank_transfer_title_template',
+      '{{order_reference}}'
+    ),
+    bankTransferDeadlineNote: get('bank_transfer_deadline_note', ''),
     deliveryQuoteWording: get(
       'delivery_quote_wording',
       'Koszt wysyłki zostanie potwierdzony przed płatnością.'

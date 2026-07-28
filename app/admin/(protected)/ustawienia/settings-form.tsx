@@ -12,6 +12,12 @@ type SettingsFormData = {
   facebookUrl: string;
   instagramUrl: string;
   bankTransferInstructions: string;
+  bankTransferEnabled: boolean;
+  bankTransferRecipient: string;
+  bankTransferAccount: string;
+  bankTransferBankName: string;
+  bankTransferTitleTemplate: string;
+  bankTransferDeadlineNote: string;
   deliveryQuoteWording: string;
   publicNotice: string;
   bookingCtaLabel: string;
@@ -104,25 +110,74 @@ export function SettingsForm({
         defaultValue={initialData.instagramUrl}
         error={errorFor('instagramUrl')}
       />
-      <div>
-        <label
-          htmlFor="bankTransferInstructions"
-          className="block text-sm font-medium"
-        >
-          Instrukcje przelewu (używane po potwierdzeniu kwoty)
+      <div className="rounded-md border border-gray-200 p-4 space-y-3">
+        <h2 className="text-base font-semibold">Przelew bankowy</h2>
+        <p className="text-sm text-gray-600">
+          Wymagane: odbiorca i numer konta. Bez nich przelew nie będzie
+          oferowany klientom.
+        </p>
+        <label className="flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            name="bankTransferEnabled"
+            value="true"
+            defaultChecked={initialData.bankTransferEnabled}
+          />
+          Przelew bankowy włączony
         </label>
-        <textarea
-          id="bankTransferInstructions"
-          name="bankTransferInstructions"
-          rows={3}
-          defaultValue={initialData.bankTransferInstructions}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+        <Field
+          id="bankTransferRecipient"
+          label="Odbiorca przelewu"
+          defaultValue={initialData.bankTransferRecipient}
+          error={errorFor('bankTransferRecipient')}
         />
-        {errorFor('bankTransferInstructions') && (
-          <p className="mt-1 text-sm text-red-600">
-            {errorFor('bankTransferInstructions')}
-          </p>
-        )}
+        <Field
+          id="bankTransferAccount"
+          label="Numer konta (26 cyfr lub PL + 26)"
+          defaultValue={initialData.bankTransferAccount}
+          error={errorFor('bankTransferAccount')}
+        />
+        <Field
+          id="bankTransferBankName"
+          label="Nazwa banku (opcjonalnie)"
+          defaultValue={initialData.bankTransferBankName}
+          error={errorFor('bankTransferBankName')}
+        />
+        <Field
+          id="bankTransferTitleTemplate"
+          label="Szablon tytułu przelewu"
+          defaultValue={initialData.bankTransferTitleTemplate}
+          error={errorFor('bankTransferTitleTemplate')}
+        />
+        <p className="text-xs text-gray-500">
+          Użyj {'{{order_reference}}'} — domyślnie numer zamówienia CN-O-…
+        </p>
+        <Field
+          id="bankTransferDeadlineNote"
+          label="Notatka o terminie (opcjonalnie)"
+          defaultValue={initialData.bankTransferDeadlineNote}
+          error={errorFor('bankTransferDeadlineNote')}
+        />
+        <div>
+          <label
+            htmlFor="bankTransferInstructions"
+            className="block text-sm font-medium"
+          >
+            Dodatkowe instrukcje (opcjonalnie)
+          </label>
+          <textarea
+            id="bankTransferInstructions"
+            name="bankTransferInstructions"
+            rows={3}
+            defaultValue={initialData.bankTransferInstructions}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+          />
+          {errorFor('bankTransferInstructions') && (
+            <p className="mt-1 text-sm text-red-600">
+              {errorFor('bankTransferInstructions')}
+            </p>
+          )}
+        </div>
       </div>
       <Field
         id="deliveryQuoteWording"

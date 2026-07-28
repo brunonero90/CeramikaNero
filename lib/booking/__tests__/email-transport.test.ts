@@ -8,27 +8,31 @@ afterEach(() => {
 });
 
 describe('email transport', () => {
-  it('returns soft ledger failure when Resend is not configured in production', async () => {
-    vi.stubEnv('NODE_ENV', 'production');
-    vi.doMock('../local-mode', () => ({
-      isBookingLocalMode: () => false,
-      isResendConfigured: () => false,
-    }));
+  it(
+    'returns soft ledger failure when Resend is not configured in production',
+    async () => {
+      vi.stubEnv('NODE_ENV', 'production');
+      vi.doMock('../local-mode', () => ({
+        isBookingLocalMode: () => false,
+        isResendConfigured: () => false,
+      }));
 
-    const { deliverBookingEmail } = await import('../email-transport');
-    const result = await deliverBookingEmail({
-      bookingId: 'b1',
-      type: 'confirmation',
-      to: 'a@example.com',
-      subject: 't',
-      html: '<p>t</p>',
-      text: 't',
-    });
+      const { deliverBookingEmail } = await import('../email-transport');
+      const result = await deliverBookingEmail({
+        bookingId: 'b1',
+        type: 'confirmation',
+        to: 'a@example.com',
+        subject: 't',
+        html: '<p>t</p>',
+        text: 't',
+      });
 
-    expect(result.ok).toBe(false);
-    expect(result.provider).toBe('ledger');
-    expect(result.errorMessage).toMatch(/RESEND/i);
-  });
+      expect(result.ok).toBe(false);
+      expect(result.provider).toBe('ledger');
+      expect(result.errorMessage).toMatch(/RESEND/i);
+    },
+    15_000
+  );
 
   it('requires Reply-To and passes it to Resend on success', async () => {
     vi.stubEnv('NODE_ENV', 'production');

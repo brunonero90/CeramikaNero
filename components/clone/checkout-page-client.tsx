@@ -16,12 +16,29 @@ type Participant = {
   participant_type: 'adult' | 'child' | 'unspecified';
 };
 
-export function CheckoutPageClient() {
+type PaymentOptions = {
+  mode: 'manual' | 'stripe' | 'both';
+  stripeAvailable: boolean;
+  showMethodSelector: boolean;
+};
+
+export function CheckoutPageClient({
+  paymentOptions,
+}: {
+  paymentOptions: PaymentOptions;
+}) {
   const { lines, clear, ready } = useLocalCart();
   const [validated, setValidated] = useState<RevalidatedCart | null>(null);
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [redirecting, setRedirecting] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<
+    'stripe' | 'bank_transfer'
+  >(
+    paymentOptions.mode === 'manual' || !paymentOptions.stripeAvailable
+      ? 'bank_transfer'
+      : 'stripe'
+  );
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -105,6 +122,12 @@ export function CheckoutPageClient() {
         termsAccepted: true as const,
         privacyPolicyVersion: '1.0',
         participantsBySession,
+        paymentMethod:
+          paymentOptions.mode === 'both'
+            ? paymentMethod
+            : paymentOptions.mode === 'stripe'
+              ? 'stripe'
+              : 'bank_transfer',
         shipping: needsShipping
           ? {
               recipient_name: recipientName,
@@ -127,19 +150,22 @@ export function CheckoutPageClient() {
       // Mark redirecting before clearing the cart so the empty-cart screen
       // cannot flash and swallow the success navigation.
       setRedirecting(true);
-      const destination = result.publicLookupToken
-        ? `/zamowienie/${encodeURIComponent(result.publicLookupToken)}`
-        : (() => {
-            const params = new URLSearchParams({
-              reference: result.orderReference,
-              total: String(result.totalGrossGrosz),
-            });
-            if (result.bookingReferences.length) {
-              params.set('bookings', result.bookingReferences.join(','));
-            }
-            if (result.shippingQuoteRequired) params.set('shipping_quote', '1');
-            return `/cart/sukces?${params.toString()}`;
-          })();
+      const destination = result.checkoutUrl
+        ? result.checkoutUrl
+        : result.publicLookupToken
+          ? `/zamowienie/${encodeURIComponent(result.publicLookupToken)}`
+          : (() => {
+              const params = new URLSearchParams({
+                reference: result.orderReference,
+                total: String(result.totalGrossGrosz),
+              });
+              if (result.bookingReferences.length) {
+                params.set('bookings', result.bookingReferences.join(','));
+              }
+              if (result.shippingQuoteRequired)
+                params.set('shipping_quote', '1');
+              return `/cart/sukces?${params.toString()}`;
+            })();
 
       clear();
       // Hard navigation avoids deferred router.push inside startTransition.
@@ -174,11 +200,50 @@ export function CheckoutPageClient() {
     <main className="mx-auto max-w-2xl px-4 py-12 md:px-6">
       <h1 className="font-heading text-3xl font-semibold">Zamówienie</h1>
       <p className="mt-2 text-sm text-text-muted">
-        Płatność kartą nie jest jeszcze aktywna. Składasz zamówienie z
-        oczekiwaniem na przelew / potwierdzenie studia.
+        {paymentOptions.mode === 'stripe' && paymentOptions.stripeAvailable
+          ? 'Po złożeniu zamówienia przejdziesz do bezpiecznej płatności online (karta, BLIK, Przelewy24).'
+          : paymentOptions.showMethodSelector
+            ? 'Wybierz metodę płatności poniżej. Kwoty i dostępność weryfikujemy po stronie serwera.'
+            : 'Składasz zamówienie z płatnością przelewem bankowym. Dokładne dane do przelewu znajdziesz w e-mailu potwierdzającym.'}
       </p>
 
       <form onSubmit={onSubmit} className="mt-8 space-y-6">
+        {paymentOptions.showMethodSelector ? (
+          <section className="space-y-3">
+            <h2 className="text-lg font-semibold">Metoda płatności</h2>
+            <label className="flex items-start gap-3 text-sm">
+              <input
+                type="radio"
+                name="paymentMethod"
+                className="mt-1"
+                checked={paymentMethod === 'stripe'}
+                onChange={() => setPaymentMethod('stripe')}
+              />
+              <span>
+                <strong>Płatność online</strong>
+                <span className="block text-text-muted">
+                  Karta, BLIK lub Przelewy24 przez Stripe.
+                </span>
+              </span>
+            </label>
+            <label className="flex items-start gap-3 text-sm">
+              <input
+                type="radio"
+                name="paymentMethod"
+                className="mt-1"
+                checked={paymentMethod === 'bank_transfer'}
+                onChange={() => setPaymentMethod('bank_transfer')}
+              />
+              <span>
+                <strong>Przelew bankowy</strong>
+                <span className="block text-text-muted">
+                  Otrzymasz dane do przelewu w e-mailu.
+                </span>
+              </span>
+            </label>
+          </section>
+        ) : null}
+
         <section className="space-y-3">
           <h2 className="text-lg font-semibold">Dane kupującego</h2>
           <div className="grid gap-3 sm:grid-cols-2">

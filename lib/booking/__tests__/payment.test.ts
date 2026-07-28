@@ -53,12 +53,14 @@ describe('createStripeCheckoutSession', () => {
     expect(params.mode).toBe('payment');
     expect(params.client_reference_id).toBe('CN-ABC123');
     expect(params.metadata).toEqual({
+      entity_type: 'booking',
       booking_id: 'book_1',
       booking_reference: 'CN-ABC123',
       payment_id: 'pay_1',
     });
     expect(params.payment_intent_data).toEqual({
       metadata: {
+        entity_type: 'booking',
         booking_id: 'book_1',
         booking_reference: 'CN-ABC123',
         payment_id: 'pay_1',

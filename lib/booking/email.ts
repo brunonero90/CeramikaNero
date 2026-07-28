@@ -6,12 +6,18 @@ import { emailStatusSchema, emailTypeSchema } from '@/lib/database/schema';
 import { deliverBookingEmail } from '@/lib/booking/email-transport';
 import { isBookingLocalMode } from '@/lib/booking/local-mode';
 import {
-  buildAdminNotificationEmail,
-  buildCustomerConfirmationEmail,
   getBookingAdminEmail,
   getPublicSiteUrl,
   type BookingEmailTemplateContext,
 } from '@/lib/booking/email-templates';
+import { buildBookingEmail } from '@/lib/email/catalog';
+import { renderEmail } from '@/lib/email/render';
+import type { BookingEmailContext as CatalogBookingContext } from '@/lib/email/types';
+import {
+  loadBankTransferConfig,
+  buildTransferTitle,
+  formatBankAccountForDisplay,
+} from '@/lib/payments/bank-transfer';
 
 export type BookingEmailType =
   (typeof emailTypeSchema.enum)[keyof typeof emailTypeSchema.enum];
@@ -21,6 +27,52 @@ export type BookingEmailStatus =
 type BookingEmailContext = BookingEmailTemplateContext & {
   bookingId: string;
 };
+
+function toCatalogContext(
+  ctx: BookingEmailContext,
+  extras?: Partial<CatalogBookingContext>
+): CatalogBookingContext {
+  return {
+    reference: ctx.reference,
+    workshopTitle: ctx.workshopTitle,
+    sessionStartsAt: ctx.sessionStartsAt,
+    sessionLocation: ctx.sessionLocation,
+    quantity: ctx.quantity,
+    unitPriceGrosz: ctx.unitPriceGrossGrosz,
+    totalGrosz: ctx.totalGrossGrosz,
+    customerName: ctx.customerName,
+    customerEmail: ctx.customerEmail,
+    customerPhone: ctx.customerPhone,
+    customerNotes: ctx.customerNotes,
+    participants: ctx.participants.map((p) => ({
+      displayName: p.display_name,
+      age: p.age,
+    })),
+    cancellationUrl: ctx.cancellationUrl,
+    siteUrl: ctx.siteUrl,
+    ...extras,
+  };
+}
+
+async function bankPaymentForBooking(
+  reference: string,
+  amountGrosz: number
+): Promise<CatalogBookingContext['payment']> {
+  const bank = await loadBankTransferConfig();
+  if (!bank.ok) return { mode: 'none' };
+  return {
+    mode: 'bank_transfer',
+    details: {
+      recipient: bank.config.recipient,
+      accountNumber: formatBankAccountForDisplay(bank.config.accountNumber),
+      title: buildTransferTitle(bank.config.titleTemplate, reference),
+      amountGrosz,
+      bankName: bank.config.bankName,
+      deadlineNote: bank.config.deadlineNote,
+      extraInstructions: bank.config.extraInstructions,
+    },
+  };
+}
 
 export async function getBookingEmailContext(
   bookingId: string
@@ -214,16 +266,20 @@ export async function sendBookingConfirmationEmail(
     cancellationUrl = `${getPublicSiteUrl()}/kontakt`;
   }
 
-  const content = buildCustomerConfirmationEmail({
-    ...ctx,
-    cancellationUrl,
-  });
+  const payment = await bankPaymentForBooking(
+    ctx.reference,
+    ctx.totalGrossGrosz
+  );
+  const catalogCtx = toCatalogContext({ ...ctx, cancellationUrl }, { payment });
+  const rendered = await renderEmail(
+    buildBookingEmail('confirmation', catalogCtx)
+  );
 
   await sendEmail(
     ctx.customerEmail,
-    content.subject,
-    content.html,
-    content.text,
+    rendered.subject,
+    rendered.html,
+    rendered.text,
     ctx.bookingId,
     'confirmation'
   );
@@ -247,12 +303,15 @@ export async function sendAdminBookingNotificationEmail(
     }
   }
 
-  const content = buildAdminNotificationEmail(ctx);
+  const catalogCtx = toCatalogContext(ctx);
+  const rendered = await renderEmail(
+    buildBookingEmail('admin_notification', catalogCtx)
+  );
   await sendEmail(
     adminTo,
-    content.subject,
-    content.html,
-    content.text,
+    rendered.subject,
+    rendered.html,
+    rendered.text,
     ctx.bookingId,
     'admin_notification'
   );
@@ -287,14 +346,15 @@ export async function sendBookingCancellationEmail(
   if (await hasSuccessfulEmail(ctx.bookingId, 'cancellation')) {
     return;
   }
-  const { buildCancellationEmail } =
-    await import('@/lib/booking/email-templates');
-  const content = buildCancellationEmail(ctx, reason);
+  const catalogCtx = toCatalogContext(ctx, { reason: reason ?? null });
+  const rendered = await renderEmail(
+    buildBookingEmail('cancellation', catalogCtx)
+  );
   await sendEmail(
     ctx.customerEmail,
-    content.subject,
-    content.html,
-    content.text,
+    rendered.subject,
+    rendered.html,
+    rendered.text,
     ctx.bookingId,
     'cancellation'
   );
@@ -307,24 +367,15 @@ export async function sendRefundEmail(
   if (await hasSuccessfulEmail(ctx.bookingId, 'refund')) {
     return;
   }
-  const { formatPrice } = await import('@/lib/utils/price');
-  const subject = `Zwrot środków za rezerwację ${ctx.reference}`;
-  const amount = formatPrice(refundAmountGrosz);
-  const html = `
-    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h1>Zwrot środków</h1>
-      <p>Dzień dobry ${ctx.customerName},</p>
-      <p>Na Twoje konto został zwrócony zwrot w wysokości <strong>${amount}</strong> za rezerwację <strong>${ctx.reference}</strong>.</p>
-      <p>Środki powinny pojawić się w ciągu kilku dni roboczych.</p>
-      <p>Ceramika Nero</p>
-    </div>
-  `;
-  const text = `Zwrot środków\n\nNa Twoje konto został zwrócony zwrot ${amount} za rezerwację ${ctx.reference}.\nŚrodki powinny pojawić się w ciągu kilku dni roboczych.\n\nCeramika Nero`;
+  const catalogCtx = toCatalogContext(ctx, {
+    refundAmountGrosz,
+  });
+  const rendered = await renderEmail(buildBookingEmail('refund', catalogCtx));
   await sendEmail(
     ctx.customerEmail,
-    subject,
-    html,
-    text,
+    rendered.subject,
+    rendered.html,
+    rendered.text,
     ctx.bookingId,
     'refund'
   );
@@ -333,21 +384,15 @@ export async function sendRefundEmail(
 export async function sendPaymentProblemEmail(
   ctx: BookingEmailContext
 ): Promise<void> {
-  const subject = `Wymagana interwencja – rezerwacja ${ctx.reference}`;
-  const html = `
-    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h1>Płatność wymaga uwagi</h1>
-      <p>Dzień dobry ${ctx.customerName},</p>
-      <p>Twoja płatność za rezerwację <strong>${ctx.reference}</strong> została przyjęta, ale wymagana jest interwencja administracyjna. Skontaktujemy się z Tobą w ciągu 24 godzin.</p>
-      <p>Ceramika Nero</p>
-    </div>
-  `;
-  const text = `Płatność wymaga uwagi\n\nTwoja płatność za rezerwację ${ctx.reference} została przyjęta, ale wymagana jest interwencja administracyjna. Skontaktujemy się z Tobą w ciągu 24 godzin.\n\nCeramika Nero`;
+  const catalogCtx = toCatalogContext(ctx);
+  const rendered = await renderEmail(
+    buildBookingEmail('payment_problem', catalogCtx)
+  );
   await sendEmail(
     ctx.customerEmail,
-    subject,
-    html,
-    text,
+    rendered.subject,
+    rendered.html,
+    rendered.text,
     ctx.bookingId,
     'payment_problem'
   );

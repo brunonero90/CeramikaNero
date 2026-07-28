@@ -195,6 +195,12 @@ export const siteSettingsInputSchema = z.object({
       'Podaj pełny URL Instagram (https://…) albo zostaw puste.'
     ),
   bankTransferInstructions: z.string().max(2000),
+  bankTransferEnabled: z.boolean().default(true),
+  bankTransferRecipient: z.string().max(200),
+  bankTransferAccount: z.string().max(40),
+  bankTransferBankName: z.string().max(120),
+  bankTransferTitleTemplate: z.string().max(200),
+  bankTransferDeadlineNote: z.string().max(500),
   deliveryQuoteWording: z.string().max(500),
   publicNotice: z.string().max(1000),
   bookingCtaLabel: z.string().max(200),

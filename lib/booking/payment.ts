@@ -21,6 +21,7 @@ export async function createStripeCheckoutSession(params: {
   const expiresAt = Math.floor(Date.now() / 1000) + 30 * 60;
 
   const metadata = {
+    entity_type: 'booking',
     booking_id: params.bookingId,
     booking_reference: params.reference,
     payment_id: params.paymentId,

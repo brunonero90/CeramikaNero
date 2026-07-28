@@ -21,9 +21,12 @@
     "seed:operational:apply": "node scripts/seed-operational-data.js --apply",
     "seed:catalog": "node scripts/import-workshop-catalog.js",
     "seed:catalog:apply": "node scripts/import-workshop-catalog.js --apply",
-    "smoke:live-booking": "node scripts/smoke-live-booking.js"
+    "smoke:live-booking": "node scripts/smoke-live-booking.js",
+    "email:previews": "npx tsx scripts/generate-email-previews.ts"
   },
   "dependencies": {
+    "@react-email/components": "^1.0.12",
+    "@react-email/render": "^2.1.0",
     "@supabase/ssr": "^0.12.3",
     "@supabase/supabase-js": "^2.110.5",
     "@upstash/ratelimit": "^2.0.8",

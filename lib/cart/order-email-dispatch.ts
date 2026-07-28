@@ -1,6 +1,5 @@
 import 'server-only';
 import { createCartAdminClient } from '@/lib/supabase/cart-admin';
-import { deliverBookingEmail } from '@/lib/booking/email-transport';
 import { isResendConfigured } from '@/lib/booking/local-mode';
 import { notifyOrderCreated } from '@/lib/cart/order-email';
 
@@ -70,7 +69,9 @@ export async function dispatchPendingOrderEmails(
     try {
       if (
         row.email_type === 'customer_confirmation' ||
-        row.email_type === 'admin_notification'
+        row.email_type === 'admin_notification' ||
+        row.email_type === 'awaiting_stripe_payment' ||
+        row.email_type === 'manual_transfer_requested'
       ) {
         await notifyOrderCreated(row.order_id);
       } else if (row.email_type === 'shipping_quote_confirmed') {
@@ -92,30 +93,39 @@ export async function dispatchPendingOrderEmails(
         const { notifyOrderCancellation } =
           await import('@/lib/cart/order-email');
         await notifyOrderCancellation(row.order_id);
+      } else if (row.email_type === 'stripe_payment_processing') {
+        const { notifyOrderStripeProcessing } =
+          await import('@/lib/cart/order-email');
+        await notifyOrderStripeProcessing(row.order_id);
+      } else if (
+        row.email_type === 'payment_failed' ||
+        row.email_type === 'checkout_expired'
+      ) {
+        const { notifyOrderPaymentFailed } =
+          await import('@/lib/cart/order-email');
+        await notifyOrderPaymentFailed(
+          row.order_id,
+          row.email_type as 'payment_failed' | 'checkout_expired'
+        );
+      } else if (row.email_type === 'admin_payment_problem') {
+        const { notifyAdminOrderPaymentProblem } =
+          await import('@/lib/cart/order-email');
+        await notifyAdminOrderPaymentProblem(row.order_id);
+      } else if (
+        row.email_type === 'refund_initiated' ||
+        row.email_type === 'refund_completed' ||
+        row.email_type === 'refund_failed'
+      ) {
+        const { notifyOrderRefundEvent } =
+          await import('@/lib/cart/order-email');
+        await notifyOrderRefundEvent(
+          row.order_id,
+          row.email_type as
+            'refund_initiated' | 'refund_completed' | 'refund_failed'
+        );
       } else {
-        // Generic body for remaining operational types.
-        const text = `Aktualizacja zamówienia (${row.email_type}).`;
-        const delivered = await deliverBookingEmail({
-          bookingId: row.order_id,
-          type: row.email_type,
-          to: row.recipient,
-          subject: `Ceramika Nero — ${row.email_type}`,
-          text,
-          html: `<p>${text}</p>`,
-        });
-        if (!delivered.ok) {
-          throw new Error(delivered.errorMessage ?? 'delivery failed');
-        }
-        await supabase
-          .from('order_emails')
-          .update({
-            status: 'sent',
-            attempt_count: attempts + 1,
-            error_message: null,
-            updated_at: new Date().toISOString(),
-          })
-          .eq('id', row.id);
-        summary.sent += 1;
+        // Unknown type — leave for manual review.
+        summary.skipped += 1;
         continue;
       }
 

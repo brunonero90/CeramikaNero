@@ -43,6 +43,8 @@ const checkoutSchema = z.object({
   participantsBySession: z.record(z.array(participantSchema)),
   shipping: shippingSchema.optional().nullable(),
   lines: z.array(z.any()).min(1).max(20),
+  /** Explicit when PAYMENTS_PROVIDER=both; ignored for manual/stripe-only modes. */
+  paymentMethod: z.enum(['stripe', 'bank_transfer']).optional().nullable(),
 });
 
 export type SubmitCartResult =
@@ -54,6 +56,8 @@ export type SubmitCartResult =
       shippingQuoteRequired: boolean;
       publicLookupToken?: string;
       reused?: boolean;
+      paymentMethod: 'stripe' | 'bank_transfer';
+      checkoutUrl?: string;
     }
   | { ok: false; error: string; fieldErrors?: Record<string, string[]> };
 
@@ -200,6 +204,42 @@ export async function submitCartOrder(
     };
   }
 
+  const shippingQuoteRequiredPreview = revalidated.lines.some(
+    (l) =>
+      (l.type === 'physical_product' || l.type === 'studio_service') &&
+      l.fulfillment === 'shipping' &&
+      l.requiresShipping
+  );
+
+  const { resolveCheckoutPaymentMethod, shouldCreateStripeCheckoutNow } =
+    await import('@/lib/payments/provider');
+  const paymentResolved = resolveCheckoutPaymentMethod({
+    requested: data.paymentMethod,
+    shippingQuoteRequired: shippingQuoteRequiredPreview,
+  });
+  if (!paymentResolved.ok) {
+    return { ok: false, error: paymentResolved.error };
+  }
+
+  if (paymentResolved.method === 'bank_transfer') {
+    const { loadBankTransferConfig } =
+      await import('@/lib/payments/bank-transfer');
+    // Known-total manual orders require complete bank details up front.
+    if (!shippingQuoteRequiredPreview) {
+      const bank = await loadBankTransferConfig();
+      if (!bank.ok) {
+        console.error('checkout blocked: incomplete bank transfer config', {
+          error: bank.error,
+        });
+        return {
+          ok: false,
+          error:
+            'Płatność przelewem jest tymczasowo niedostępna. Skontaktuj się z pracownią.',
+        };
+      }
+    }
+  }
+
   const rpcLines = revalidated.lines.map((line) => {
     if (line.type === 'workshop_session') {
       return {
@@ -263,12 +303,88 @@ export async function submitCartOrder(
   const payload = result as {
     order_id: string;
     order_reference: string;
+    payment_id?: string;
     booking_references: string[];
     total_gross_grosz: number;
     shipping_quote_required: boolean;
     public_lookup_token?: string;
     reused?: boolean;
   };
+
+  // Persist explicit payment method (migration 15). Tolerate missing column.
+  {
+    const methodPatch: Record<string, unknown> = {
+      updated_at: new Date().toISOString(),
+    };
+    methodPatch.selected_payment_method = paymentResolved.method;
+    const { error: methodError } = await supabase
+      .from('orders')
+      .update(methodPatch)
+      .eq('id', payload.order_id);
+    if (methodError?.message?.includes('selected_payment_method')) {
+      console.warn(
+        'selected_payment_method column missing — apply migration 15'
+      );
+    }
+
+    if (payload.payment_id) {
+      await supabase
+        .from('payments')
+        .update({
+          provider:
+            paymentResolved.method === 'stripe' ? 'stripe' : 'bank_transfer',
+          status: paymentResolved.method === 'stripe' ? 'created' : 'pending',
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', payload.payment_id);
+    }
+
+    if (payload.public_lookup_token) {
+      await supabase.from('order_events').insert({
+        order_id: payload.order_id,
+        event_type: 'portal_token_issued',
+        actor_type: 'system',
+        metadata: {
+          // Opaque portal token — equivalent security to the URL itself.
+          public_lookup_token: payload.public_lookup_token,
+        },
+      });
+    }
+  }
+
+  let checkoutUrl: string | undefined;
+
+  if (
+    !payload.reused &&
+    shouldCreateStripeCheckoutNow({
+      method: paymentResolved.method,
+      shippingQuoteRequired: payload.shipping_quote_required,
+      totalGrossGrosz: payload.total_gross_grosz,
+    })
+  ) {
+    try {
+      const { createOrReuseOrderCheckoutSession } =
+        await import('@/lib/cart/order-checkout');
+      const session = await createOrReuseOrderCheckoutSession({
+        orderId: payload.order_id,
+        publicLookupToken: payload.public_lookup_token,
+      });
+      if (session.ok) {
+        checkoutUrl = session.checkoutUrl;
+      } else {
+        // Order already reserved — send customer to status page to retry pay.
+        console.error(
+          'stripe checkout after cart submit failed; order kept for retry',
+          session.error
+        );
+      }
+    } catch (err) {
+      console.error(
+        'stripe checkout after cart submit threw; order kept for retry',
+        err
+      );
+    }
+  }
 
   // Ensure admin notification ledger row exists (recipient from env).
   if (!payload.reused) {
@@ -283,7 +399,9 @@ export async function submitCartOrder(
     }
     try {
       const { notifyOrderCreated } = await import('@/lib/cart/order-email');
-      await notifyOrderCreated(payload.order_id);
+      await notifyOrderCreated(payload.order_id, {
+        publicLookupToken: payload.public_lookup_token,
+      });
     } catch (err) {
       console.error('order email notify failed', err);
     }
@@ -297,5 +415,7 @@ export async function submitCartOrder(
     shippingQuoteRequired: payload.shipping_quote_required,
     publicLookupToken: payload.public_lookup_token,
     reused: payload.reused,
+    paymentMethod: paymentResolved.method,
+    checkoutUrl,
   };
 }

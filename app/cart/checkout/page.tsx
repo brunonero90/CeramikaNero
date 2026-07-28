@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { CheckoutPageClient } from '@/components/clone/checkout-page-client';
+import { getPublicPaymentOptions } from '@/lib/payments/provider';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,5 +10,6 @@ export const metadata: Metadata = {
 };
 
 export default function CartCheckoutPage() {
-  return <CheckoutPageClient />;
+  const paymentOptions = getPublicPaymentOptions();
+  return <CheckoutPageClient paymentOptions={paymentOptions} />;
 }

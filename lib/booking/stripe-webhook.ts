@@ -33,7 +33,35 @@ async function recordStripeEvent(
   );
 }
 
-async function confirmFromPayment(
+function paymentIntentIdFromSession(
+  session: Stripe.Checkout.Session
+): string | null {
+  return typeof session.payment_intent === 'string'
+    ? session.payment_intent
+    : (session.payment_intent?.id ?? null);
+}
+
+function resolveEntity(session: Stripe.Checkout.Session): {
+  entityType: 'order' | 'booking' | null;
+  orderId: string | null;
+  bookingId: string | null;
+  paymentId: string | null;
+} {
+  const paymentId = session.metadata?.payment_id ?? null;
+  const entityType = session.metadata?.entity_type;
+  const orderId = session.metadata?.order_id ?? null;
+  const bookingId = session.metadata?.booking_id ?? null;
+
+  if (entityType === 'order' || orderId) {
+    return { entityType: 'order', orderId, bookingId: null, paymentId };
+  }
+  if (entityType === 'booking' || bookingId) {
+    return { entityType: 'booking', orderId: null, bookingId, paymentId };
+  }
+  return { entityType: null, orderId: null, bookingId: null, paymentId };
+}
+
+async function confirmFromBookingPayment(
   supabase: AdminClient,
   params: {
     bookingId: string;
@@ -64,7 +92,43 @@ async function confirmFromPayment(
   return { ok: true, result: (confirmResult ?? {}) as ConfirmRpcResult };
 }
 
-async function notifyConfirmOutcome(
+async function confirmFromOrderPayment(
+  supabase: AdminClient,
+  params: {
+    orderId: string;
+    paymentId: string;
+    eventId: string;
+    providerPaymentId: string;
+    amountGrossGrosz: number;
+  }
+): Promise<
+  { ok: true; result: ConfirmRpcResult } | { ok: false; error: string }
+> {
+  // RPC added in migration 15 — call via loosely typed client when types lag.
+  const { data: confirmResult, error: confirmError } = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
+    }
+  ).rpc('confirm_order_from_payment', {
+    p_order_id: params.orderId,
+    p_payment_id: params.paymentId,
+    p_stripe_event_id: params.eventId,
+    p_provider_payment_id: params.providerPaymentId,
+    p_amount_gross_grosz: params.amountGrossGrosz,
+  });
+
+  if (confirmError) {
+    console.error('confirm_order_from_payment failed', confirmError);
+    return { ok: false, error: 'Order confirmation failed' };
+  }
+
+  return { ok: true, result: (confirmResult ?? {}) as ConfirmRpcResult };
+}
+
+async function notifyBookingConfirmOutcome(
   bookingId: string,
   result: ConfirmRpcResult
 ): Promise<void> {
@@ -78,12 +142,24 @@ async function notifyConfirmOutcome(
   }
 }
 
-function paymentIntentIdFromSession(
-  session: Stripe.Checkout.Session
-): string | null {
-  return typeof session.payment_intent === 'string'
-    ? session.payment_intent
-    : (session.payment_intent?.id ?? null);
+async function notifyOrderConfirmOutcome(
+  orderId: string,
+  result: ConfirmRpcResult
+): Promise<void> {
+  if (result.already_processed) return;
+  try {
+    if (result.status === 'confirmed') {
+      const { notifyOrderPaymentReceived } =
+        await import('@/lib/cart/order-email');
+      await notifyOrderPaymentReceived(orderId);
+    } else if (result.status === 'requires_manual_resolution') {
+      const { notifyAdminOrderPaymentProblem } =
+        await import('@/lib/cart/order-email');
+      await notifyAdminOrderPaymentProblem(orderId);
+    }
+  } catch (err) {
+    console.error('order payment email notify failed', err);
+  }
 }
 
 async function handlePaidCheckoutSession(
@@ -91,29 +167,46 @@ async function handlePaidCheckoutSession(
   event: Stripe.Event,
   session: Stripe.Checkout.Session
 ): Promise<StripeWebhookResult> {
-  const bookingId = session.metadata?.booking_id;
-  const paymentId = session.metadata?.payment_id;
-  if (!bookingId || !paymentId) {
+  const entity = resolveEntity(session);
+  const paymentId = entity.paymentId;
+  if (!paymentId) {
     return { ok: false, status: 400, error: 'Missing metadata' };
   }
 
   const amount = session.amount_total ?? 0;
   const paymentIntentId = paymentIntentIdFromSession(session);
 
-  const confirmed = await confirmFromPayment(supabase, {
-    bookingId,
-    paymentId,
-    eventId: event.id,
-    providerPaymentId: paymentIntentId ?? '',
-    amountGrossGrosz: amount,
-  });
-
-  if (!confirmed.ok) {
-    return { ok: false, status: 500, error: confirmed.error };
+  if (entity.entityType === 'order' && entity.orderId) {
+    const confirmed = await confirmFromOrderPayment(supabase, {
+      orderId: entity.orderId,
+      paymentId,
+      eventId: event.id,
+      providerPaymentId: paymentIntentId ?? '',
+      amountGrossGrosz: amount,
+    });
+    if (!confirmed.ok) {
+      return { ok: false, status: 500, error: confirmed.error };
+    }
+    await notifyOrderConfirmOutcome(entity.orderId, confirmed.result);
+    return { ok: true };
   }
 
-  await notifyConfirmOutcome(bookingId, confirmed.result);
-  return { ok: true };
+  if (entity.entityType === 'booking' && entity.bookingId) {
+    const confirmed = await confirmFromBookingPayment(supabase, {
+      bookingId: entity.bookingId,
+      paymentId,
+      eventId: event.id,
+      providerPaymentId: paymentIntentId ?? '',
+      amountGrossGrosz: amount,
+    });
+    if (!confirmed.ok) {
+      return { ok: false, status: 500, error: confirmed.error };
+    }
+    await notifyBookingConfirmOutcome(entity.bookingId, confirmed.result);
+    return { ok: true };
+  }
+
+  return { ok: false, status: 400, error: 'Missing metadata' };
 }
 
 async function handleUnpaidCheckoutSession(
@@ -127,6 +220,7 @@ async function handleUnpaidCheckoutSession(
   const patch: {
     provider_checkout_id: string;
     provider_payment_id?: string;
+    status?: string;
   } = {
     provider_checkout_id: session.id,
   };
@@ -135,6 +229,17 @@ async function handleUnpaidCheckoutSession(
   }
 
   await supabase.from('payments').update(patch).eq('id', paymentId);
+
+  const entity = resolveEntity(session);
+  if (entity.entityType === 'order' && entity.orderId) {
+    try {
+      const { notifyOrderStripeProcessing } =
+        await import('@/lib/cart/order-email');
+      await notifyOrderStripeProcessing(entity.orderId);
+    } catch (err) {
+      console.error('stripe processing email failed', err);
+    }
+  }
 }
 
 async function handleCheckoutSessionCompleted(
@@ -156,22 +261,7 @@ async function handleCheckoutSessionExpired(
   supabase: AdminClient,
   session: Stripe.Checkout.Session
 ): Promise<void> {
-  const bookingId = session.metadata?.booking_id;
-  if (bookingId) {
-    const { data: booking } = await supabase
-      .from('bookings')
-      .select('id, status')
-      .eq('id', bookingId)
-      .single();
-
-    if (booking?.status === 'pending') {
-      await supabase.rpc('cancel_booking', {
-        p_booking_id: bookingId,
-        p_cancelled_by: 'system',
-        p_reason: 'Stripe Checkout session expired',
-      });
-    }
-  }
+  const entity = resolveEntity(session);
 
   await supabase
     .from('payments')
@@ -180,13 +270,40 @@ async function handleCheckoutSessionExpired(
       failure_message: 'Checkout session expired',
     })
     .eq('provider_checkout_id', session.id);
+
+  if (entity.entityType === 'booking' && entity.bookingId) {
+    const { data: booking } = await supabase
+      .from('bookings')
+      .select('id, status')
+      .eq('id', entity.bookingId)
+      .single();
+
+    if (booking?.status === 'pending') {
+      await supabase.rpc('cancel_booking', {
+        p_booking_id: entity.bookingId,
+        p_cancelled_by: 'system',
+        p_reason: 'Stripe Checkout session expired',
+      });
+    }
+  }
+
+  if (entity.entityType === 'order' && entity.orderId) {
+    // Expiration affects only the unpaid attempt — keep order awaiting_payment.
+    try {
+      const { notifyOrderPaymentFailed } =
+        await import('@/lib/cart/order-email');
+      await notifyOrderPaymentFailed(entity.orderId, 'checkout_expired');
+    } catch (err) {
+      console.error('checkout expired email failed', err);
+    }
+  }
 }
 
 async function handleAsyncPaymentFailed(
   supabase: AdminClient,
   session: Stripe.Checkout.Session
 ): Promise<void> {
-  const bookingId = session.metadata?.booking_id;
+  const entity = resolveEntity(session);
 
   await supabase
     .from('payments')
@@ -196,20 +313,30 @@ async function handleAsyncPaymentFailed(
     })
     .eq('provider_checkout_id', session.id);
 
-  if (!bookingId) return;
+  if (entity.entityType === 'booking' && entity.bookingId) {
+    const { data: booking } = await supabase
+      .from('bookings')
+      .select('id, status')
+      .eq('id', entity.bookingId)
+      .single();
 
-  const { data: booking } = await supabase
-    .from('bookings')
-    .select('id, status')
-    .eq('id', bookingId)
-    .single();
+    if (booking?.status === 'pending') {
+      await supabase.rpc('cancel_booking', {
+        p_booking_id: entity.bookingId,
+        p_cancelled_by: 'system',
+        p_reason: 'Stripe async Checkout payment failed',
+      });
+    }
+  }
 
-  if (booking?.status === 'pending') {
-    await supabase.rpc('cancel_booking', {
-      p_booking_id: bookingId,
-      p_cancelled_by: 'system',
-      p_reason: 'Stripe async Checkout payment failed',
-    });
+  if (entity.entityType === 'order' && entity.orderId) {
+    try {
+      const { notifyOrderPaymentFailed } =
+        await import('@/lib/cart/order-email');
+      await notifyOrderPaymentFailed(entity.orderId, 'payment_failed');
+    } catch (err) {
+      console.error('payment failed email failed', err);
+    }
   }
 }
 
@@ -218,17 +345,49 @@ async function findPaymentForIntent(
   paymentIntent: Stripe.PaymentIntent
 ): Promise<{
   id: string;
-  booking_id: string;
+  booking_id: string | null;
+  order_id?: string | null;
   amount_gross_grosz: number;
   status: string;
 } | null> {
-  const { data: byIntent } = await supabase
+  const { data: byIntent, error } = await supabase
     .from('payments')
-    .select('id, booking_id, amount_gross_grosz, status')
+    .select('id, booking_id, amount_gross_grosz, status, provider_checkout_id')
     .eq('provider_payment_id', paymentIntent.id)
     .maybeSingle();
 
-  if (byIntent) return byIntent;
+  if (!error && byIntent) {
+    const orderIdFromMeta = paymentIntent.metadata?.order_id ?? null;
+    return {
+      ...(byIntent as {
+        id: string;
+        booking_id: string | null;
+        amount_gross_grosz: number;
+        status: string;
+      }),
+      order_id: orderIdFromMeta,
+    };
+  }
+
+  // Legacy path without relying on generated order_id column typing.
+  if (error) {
+    const { data: legacy } = await supabase
+      .from('payments')
+      .select('id, booking_id, amount_gross_grosz, status')
+      .eq('provider_payment_id', paymentIntent.id)
+      .maybeSingle();
+    if (legacy) {
+      return {
+        ...(legacy as {
+          id: string;
+          booking_id: string | null;
+          amount_gross_grosz: number;
+          status: string;
+        }),
+        order_id: paymentIntent.metadata?.order_id ?? null,
+      };
+    }
+  }
 
   const paymentId = paymentIntent.metadata?.payment_id;
   if (!paymentId) return null;
@@ -239,7 +398,19 @@ async function findPaymentForIntent(
     .eq('id', paymentId)
     .maybeSingle();
 
-  return byMeta;
+  if (byMeta) {
+    return {
+      ...(byMeta as {
+        id: string;
+        booking_id: string | null;
+        amount_gross_grosz: number;
+        status: string;
+      }),
+      order_id: paymentIntent.metadata?.order_id ?? null,
+    };
+  }
+
+  return null;
 }
 
 async function handlePaymentIntentSucceeded(
@@ -252,8 +423,31 @@ async function handlePaymentIntentSucceeded(
     return { ok: true };
   }
 
-  const confirmed = await confirmFromPayment(supabase, {
-    bookingId: payment.booking_id,
+  const orderId = payment.order_id ?? paymentIntent.metadata?.order_id ?? null;
+  const bookingId =
+    payment.booking_id ?? paymentIntent.metadata?.booking_id ?? null;
+
+  if (orderId) {
+    const confirmed = await confirmFromOrderPayment(supabase, {
+      orderId,
+      paymentId: payment.id,
+      eventId: event.id,
+      providerPaymentId: paymentIntent.id,
+      amountGrossGrosz: payment.amount_gross_grosz,
+    });
+    if (!confirmed.ok) {
+      return { ok: false, status: 500, error: confirmed.error };
+    }
+    await notifyOrderConfirmOutcome(orderId, confirmed.result);
+    return { ok: true };
+  }
+
+  if (!bookingId) {
+    return { ok: true };
+  }
+
+  const confirmed = await confirmFromBookingPayment(supabase, {
+    bookingId,
     paymentId: payment.id,
     eventId: event.id,
     providerPaymentId: paymentIntent.id,
@@ -264,7 +458,7 @@ async function handlePaymentIntentSucceeded(
     return { ok: false, status: 500, error: confirmed.error };
   }
 
-  await notifyConfirmOutcome(payment.booking_id, confirmed.result);
+  await notifyBookingConfirmOutcome(bookingId, confirmed.result);
   return { ok: true };
 }
 
@@ -295,6 +489,17 @@ async function handlePaymentIntentFailed(
       .from('payments')
       .update(update)
       .eq('provider_checkout_id', checkoutSessionId);
+  }
+
+  const orderId = paymentIntent.metadata?.order_id;
+  if (orderId) {
+    try {
+      const { notifyOrderPaymentFailed } =
+        await import('@/lib/cart/order-email');
+      await notifyOrderPaymentFailed(orderId, 'payment_failed');
+    } catch (err) {
+      console.error('payment intent failed email failed', err);
+    }
   }
 }
 
@@ -366,7 +571,7 @@ export async function processStripeEvent(
       break;
   }
 
-  // confirm_booking_from_payment may already have inserted this event_id.
+  // confirm_*_from_payment may already have inserted this event_id.
   // Upsert ignoreDuplicates keeps webhook acknowledgements idempotent.
   await recordStripeEvent(supabase, event);
   return { ok: true };
