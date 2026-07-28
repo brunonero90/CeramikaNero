@@ -838,6 +838,19 @@ export async function notifyOrderPaymentReceived(
     ctx,
   });
 
+  // Cancel delayed "pay again" reminders once payment is confirmed.
+  const supabase = createCartAdminClient();
+  await supabase
+    .from('order_emails')
+    .update({
+      status: 'sent',
+      error_message: 'skipped_paid',
+      updated_at: new Date().toISOString(),
+    })
+    .eq('order_id', orderId)
+    .in('email_type', ['awaiting_stripe_payment', 'customer_confirmation'])
+    .in('status', ['pending', 'failed']);
+
   const adminEmail = process.env.BOOKING_ADMIN_EMAIL?.trim();
   if (adminEmail) {
     const adminCtx: OrderEmailContext = {

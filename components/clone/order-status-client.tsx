@@ -100,10 +100,12 @@ export function OrderStatusClient({
   initialOrder,
   publicLookupToken,
   checkoutFlag,
+  checkoutSessionId = null,
 }: {
   initialOrder: CustomerOrderStatus;
   publicLookupToken: string;
   checkoutFlag: string | null;
+  checkoutSessionId?: string | null;
 }) {
   const router = useRouter();
   const [polledOrder, setPolledOrder] = useState<CustomerOrderStatus | null>(
@@ -124,7 +126,10 @@ export function OrderStatusClient({
       if (Date.now() - started > POLL_MAX_MS) return;
 
       try {
-        const next = await refreshOrderStatusByToken(publicLookupToken);
+        const next = await refreshOrderStatusByToken(
+          publicLookupToken,
+          checkoutSessionId
+        );
         if (cancelled || !next) return;
         setPolledOrder(next);
         router.refresh();
@@ -138,12 +143,19 @@ export function OrderStatusClient({
       }
     };
 
-    timer = setTimeout(tick, POLL_INTERVAL_MS);
+    // Immediate first attempt — webhook may lag; Stripe API reconcile uses session_id.
+    timer = setTimeout(tick, 0);
     return () => {
       cancelled = true;
       if (timer) clearTimeout(timer);
     };
-  }, [checkoutFlag, initialOrder.paymentStatus, publicLookupToken, router]);
+  }, [
+    checkoutFlag,
+    checkoutSessionId,
+    initialOrder.paymentStatus,
+    publicLookupToken,
+    router,
+  ]);
 
   const copy = orderLifecycleCopy({
     ...order,

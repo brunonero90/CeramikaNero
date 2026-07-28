@@ -33,9 +33,17 @@ Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`
    transfer instructions (recipient, account, title, amount).
 9. **Shipping quote required:** do not create Checkout or request payment yet;
    email explains the studio is calculating shipping.
-10. Payment is confirmed **only** by a verified Stripe webhook
-    (`confirm_order_from_payment`) or authorised admin “Mark paid” for
-    **bank_transfer** orders (blocked for unpaid Stripe attempts).
+
+## Confirmation paths
+
+1. **Primary:** verified Stripe webhook → `confirm_order_from_payment`
+2. **Return-path backup:** success URL includes `session_id`; the order page
+   retrieves the Checkout Session with the Stripe secret key and confirms when
+   `payment_status=paid`. Browser flags alone never mark an order paid.
+3. **Admin:** “Mark paid” only for **bank_transfer** orders (blocked for unpaid
+   Stripe attempts).
+
+Webhook endpoint: `https://ceramikanero.pl/api/webhooks/stripe`
 
 ## Shipping quotes
 

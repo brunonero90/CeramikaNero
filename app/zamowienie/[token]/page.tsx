@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getOrderStatusByPublicToken } from '@/lib/cart/order-status';
+import { reconcileOrderCheckoutFromSession } from '@/lib/cart/reconcile-order-checkout';
 import { formatGroszAsPln } from '@/lib/utils/money';
 import { getPublicSettings } from '@/lib/database/services/site-settings';
 import { contactDisplayFromSettings } from '@/lib/public/contact-display';
@@ -67,6 +68,20 @@ export default async function OrderStatusPage({
 }) {
   const { token } = await params;
   const query = await searchParams;
+  const checkoutSessionId = query.session_id?.trim() || null;
+
+  // Stripe return: verify Checkout Session with Stripe API (not browser-trusted).
+  if (checkoutSessionId && query.checkout === 'success') {
+    try {
+      await reconcileOrderCheckoutFromSession({
+        publicLookupToken: token,
+        checkoutSessionId,
+      });
+    } catch (err) {
+      console.error('order page return reconcile failed', err);
+    }
+  }
+
   const order = await getOrderStatusByPublicToken(token);
   if (!order) notFound();
 
@@ -116,6 +131,7 @@ export default async function OrderStatusPage({
         initialOrder={order}
         publicLookupToken={token}
         checkoutFlag={checkoutFlag}
+        checkoutSessionId={checkoutSessionId}
       />
 
       <dl className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
