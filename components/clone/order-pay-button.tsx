@@ -8,7 +8,10 @@ export function OrderPayButton({
 }: {
   publicLookupToken: string;
 }) {
-  const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<{
+    text: string;
+    tone: 'error' | 'info';
+  } | null>(null);
   const [pending, startTransition] = useTransition();
 
   return (
@@ -18,11 +21,20 @@ export function OrderPayButton({
         disabled={pending}
         className="inline-flex min-h-11 items-center bg-accent-primary px-5 py-2 text-sm font-semibold text-white disabled:opacity-60"
         onClick={() => {
-          setError(null);
+          setMessage(null);
           startTransition(async () => {
             const result = await startOrderStripePayment(publicLookupToken);
             if (!result.ok) {
-              setError(result.error);
+              const isReconciling = /potwierdzenie/i.test(result.error);
+              setMessage({
+                text: result.error,
+                tone: isReconciling ? 'info' : 'error',
+              });
+              if (isReconciling) {
+                window.setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+              }
               return;
             }
             window.location.assign(result.checkoutUrl);
@@ -31,9 +43,16 @@ export function OrderPayButton({
       >
         {pending ? 'Przygotowujemy płatność…' : 'Zapłać online'}
       </button>
-      {error ? (
-        <p className="mt-2 text-sm text-red-700" role="alert">
-          {error}
+      {message ? (
+        <p
+          className={
+            message.tone === 'info'
+              ? 'mt-2 text-sm text-sky-800'
+              : 'mt-2 text-sm text-red-700'
+          }
+          role={message.tone === 'info' ? 'status' : 'alert'}
+        >
+          {message.text}
         </p>
       ) : null}
     </div>

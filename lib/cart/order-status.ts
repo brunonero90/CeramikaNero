@@ -1,33 +1,57 @@
 import 'server-only';
 import { createHash } from 'node:crypto';
 import { createCartAdminClient } from '@/lib/supabase/cart-admin';
+import type { CustomerOrderStatus } from '@/lib/cart/customer-order-status';
 
-export type CustomerOrderStatus = {
-  orderReference: string;
-  status: string;
-  paymentStatus: string;
-  fulfillmentStatus: string;
-  fulfillmentMethod: string;
-  subtotalGrossGrosz: number;
-  shippingGrossGrosz: number;
-  totalGrossGrosz: number;
-  shippingQuoteRequired: boolean;
-  selectedPaymentMethod?: string | null;
-  bookingReferences: string[];
-  items: Array<{
-    title: string;
-    quantity: number;
-    lineTotalGrossGrosz: number;
-    itemType: string;
-    fulfillmentMethod: string | null;
-  }>;
-  hasDeliveryAddress: boolean;
-  city?: string | null;
-  trackingReference?: string | null;
-};
+export type { CustomerOrderStatus } from '@/lib/cart/customer-order-status';
 
 function hashLookupToken(token: string): string {
   return createHash('sha256').update(token).digest('hex');
+}
+
+type LatestPayment = {
+  status: string;
+  provider: string | null;
+  failure_message: string | null;
+  provider_checkout_id: string | null;
+};
+
+function derivePaymentFlags(input: {
+  shippingQuoteRequired: boolean;
+  paymentStatus: string;
+  status: string;
+  selectedPaymentMethod: string | null;
+  payment: LatestPayment | null;
+}): {
+  paymentReconciling: boolean;
+  canStartStripePayment: boolean;
+  paymentProviderHint: string | null;
+} {
+  const failureMessage = input.payment?.failure_message ?? null;
+  // Only "Stripe already took money / session complete" — not a mere open Checkout.
+  const paymentReconciling =
+    failureMessage === 'stripe_checkout_reconciling' ||
+    input.payment?.status === 'processing';
+
+  const terminalOrder =
+    input.status === 'cancelled' ||
+    input.status === 'expired' ||
+    input.status === 'refunded';
+
+  const canStartStripePayment =
+    !input.shippingQuoteRequired &&
+    input.paymentStatus !== 'paid' &&
+    !terminalOrder &&
+    !paymentReconciling &&
+    input.payment?.status !== 'paid' &&
+    (input.selectedPaymentMethod === 'stripe' ||
+      input.paymentStatus === 'failed');
+
+  return {
+    paymentReconciling,
+    canStartStripePayment,
+    paymentProviderHint: null,
+  };
 }
 
 /**
@@ -133,6 +157,16 @@ export async function getOrderStatusByPublicToken(
     .select('booking_reference')
     .eq('order_id', order.id);
 
+  const { data: latestPayments } = await supabase
+    .from('payments')
+    .select('status, provider, failure_message, provider_checkout_id')
+    .eq('order_id', order.id)
+    .order('created_at', { ascending: false })
+    .limit(1);
+
+  const payment =
+    ((latestPayments ?? [])[0] as LatestPayment | undefined) ?? null;
+
   const address = Array.isArray(order.order_addresses)
     ? order.order_addresses[0]
     : order.order_addresses;
@@ -145,6 +179,18 @@ export async function getOrderStatusByPublicToken(
     fulfillment_method: string | null;
   }>;
 
+  const selectedPaymentMethod =
+    (order as { selected_payment_method?: string | null })
+      .selected_payment_method ?? null;
+
+  const flags = derivePaymentFlags({
+    shippingQuoteRequired: order.shipping_quote_required,
+    paymentStatus: order.payment_status,
+    status: order.status,
+    selectedPaymentMethod,
+    payment,
+  });
+
   return {
     orderReference: order.order_reference,
     status: order.status,
@@ -155,9 +201,10 @@ export async function getOrderStatusByPublicToken(
     shippingGrossGrosz: order.shipping_gross_grosz,
     totalGrossGrosz: order.total_gross_grosz,
     shippingQuoteRequired: order.shipping_quote_required,
-    selectedPaymentMethod:
-      (order as { selected_payment_method?: string | null })
-        .selected_payment_method ?? null,
+    selectedPaymentMethod,
+    paymentReconciling: flags.paymentReconciling,
+    canStartStripePayment: flags.canStartStripePayment,
+    paymentProviderHint: flags.paymentProviderHint,
     bookingReferences: (
       (bookings ?? []) as Array<{ booking_reference: string }>
     ).map((b) => b.booking_reference),

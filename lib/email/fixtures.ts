@@ -70,6 +70,14 @@ export const fixturePaymentConfirmed: OrderEmailContext = {
   orderReference: 'CN-ORD-2402',
   bookingReferences: ['CN-BK-8802'],
   payment: { mode: 'none' },
+  manageOrderUrl: `${SITE}/zamowienie/demo-token`,
+  audience: 'customer',
+};
+
+/** Studio copy of payment_received (same type, admin recipient). */
+export const fixturePaymentConfirmedAdmin: OrderEmailContext = {
+  ...fixturePaymentConfirmed,
+  audience: 'admin',
 };
 
 /** Stripe payment processing. */
@@ -215,6 +223,7 @@ export const fixtureBookingConfirmation: BookingEmailContext = {
 export const orderFixtures = {
   workshopManualTransfer: fixtureWorkshopManualTransfer,
   paymentConfirmed: fixturePaymentConfirmed,
+  paymentConfirmedAdmin: fixturePaymentConfirmedAdmin,
   stripeProcessing: fixtureStripeProcessing,
   paymentFailed: fixturePaymentFailed,
   checkoutExpired: fixtureCheckoutExpired,

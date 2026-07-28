@@ -20,7 +20,43 @@ export type BankTransferConfigResult =
 const DEFAULT_TITLE_TEMPLATE = '{{order_reference}}';
 
 function asString(value: unknown): string {
-  return typeof value === 'string' ? value.trim() : '';
+  if (typeof value === 'string') return value.trim();
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return String(value);
+  }
+  // Some jsonb rows were historically stored as { "text": "..." } wrappers.
+  if (value && typeof value === 'object' && 'text' in value) {
+    return asString((value as { text: unknown }).text);
+  }
+  return '';
+}
+
+function envString(name: string): string {
+  return (process.env[name] ?? '').trim();
+}
+
+/**
+ * Optional Netlify / server env fallbacks when admin site_settings are empty.
+ * Prefer Admin → Ustawienia; env is for activation before the form is filled.
+ */
+export function applyEnvFallbacks(config: BankTransferConfig): BankTransferConfig {
+  const enabledEnv = envString('BANK_TRANSFER_ENABLED').toLowerCase();
+  return {
+    enabled:
+      enabledEnv === ''
+        ? config.enabled
+        : enabledEnv === 'true' || enabledEnv === '1' || enabledEnv === 'yes',
+    recipient: config.recipient || envString('BANK_TRANSFER_RECIPIENT'),
+    accountNumber: config.accountNumber || envString('BANK_TRANSFER_ACCOUNT'),
+    bankName: config.bankName || envString('BANK_TRANSFER_BANK_NAME') || null,
+    titleTemplate:
+      config.titleTemplate !== DEFAULT_TITLE_TEMPLATE
+        ? config.titleTemplate
+        : envString('BANK_TRANSFER_TITLE_TEMPLATE') || DEFAULT_TITLE_TEMPLATE,
+    deadlineNote:
+      config.deadlineNote || envString('BANK_TRANSFER_DEADLINE_NOTE') || null,
+    extraInstructions: config.extraInstructions,
+  };
 }
 
 function normalizeAccountNumber(raw: string): string {
@@ -170,29 +206,31 @@ export async function loadBankTransferConfig(): Promise<BankTransferConfigResult
     rows.find((r) => r.key === 'bank_transfer_instructions')?.value
   );
 
-  const config = parseBankTransferConfig(
-    {
-      studioName: studioName || 'Ceramika Nero',
-      studioAddress: '',
-      studioEmail: '',
-      studioPhone: '',
-      whatsappUrl: '',
-      facebookUrl: '',
-      instagramUrl: '',
-      bankTransferInstructions: legacyInstructions,
-      bankTransferEnabled: true,
-      bankTransferRecipient: '',
-      bankTransferAccount: '',
-      bankTransferBankName: '',
-      bankTransferTitleTemplate: DEFAULT_TITLE_TEMPLATE,
-      bankTransferDeadlineNote: '',
-      deliveryQuoteWording: '',
-      publicNotice: '',
-      bookingCtaLabel: '',
-      defaultSeoTitle: '',
-      defaultSeoDescription: '',
-    },
-    rows
+  const config = applyEnvFallbacks(
+    parseBankTransferConfig(
+      {
+        studioName: studioName || 'Ceramika Nero',
+        studioAddress: '',
+        studioEmail: '',
+        studioPhone: '',
+        whatsappUrl: '',
+        facebookUrl: '',
+        instagramUrl: '',
+        bankTransferInstructions: legacyInstructions,
+        bankTransferEnabled: true,
+        bankTransferRecipient: '',
+        bankTransferAccount: '',
+        bankTransferBankName: '',
+        bankTransferTitleTemplate: DEFAULT_TITLE_TEMPLATE,
+        bankTransferDeadlineNote: '',
+        deliveryQuoteWording: '',
+        publicNotice: '',
+        bookingCtaLabel: '',
+        defaultSeoTitle: '',
+        defaultSeoDescription: '',
+      },
+      rows
+    )
   );
 
   return validateBankTransferConfig(config);

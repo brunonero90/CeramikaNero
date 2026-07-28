@@ -19,13 +19,19 @@ export type OrderCheckoutSessionResult =
       sessionId: string;
       reused: boolean;
     }
-  | { ok: false; error: string };
+  | {
+      ok: false;
+      error: string;
+      /** Order is paid or Stripe payment is complete and being reconciled. */
+      code?: 'already_paid' | 'reconciling' | 'terminal' | 'not_eligible';
+    };
 
-const ACTIVE_PAYMENT_STATUSES = new Set(['created', 'pending']);
+const RETRYABLE_PAYMENT_STATUSES = new Set(['created', 'pending', 'failed']);
 
 /**
  * Create or reuse a Stripe Checkout session for a server-authoritative order.
- * Re-reads amounts from Supabase. Never trusts browser totals.
+ * Never creates a competing session when payment already succeeded at Stripe
+ * or the local order is paid / reconciling.
  */
 export async function createOrReuseOrderCheckoutSession(input: {
   orderId: string;
@@ -35,10 +41,67 @@ export async function createOrReuseOrderCheckoutSession(input: {
     return {
       ok: false,
       error: 'Płatność online jest tymczasowo niedostępna.',
+      code: 'not_eligible',
     };
   }
 
   const supabase = createCartAdminClient();
+
+  // Atomic eligibility claim (migration 16). Fall back to plain lock reads.
+  type ClaimResult = {
+    status?: string;
+    payment_id?: string | null;
+    provider_checkout_id?: string | null;
+    amount_gross_grosz?: number;
+  };
+  let claim: ClaimResult | null = null;
+  try {
+    const { data: claimData, error: claimError } = await (
+      supabase as unknown as {
+        rpc: (
+          name: string,
+          args: Record<string, unknown>
+        ) => Promise<{ data: unknown; error: { message: string } | null }>;
+      }
+    ).rpc('claim_order_checkout_attempt', { p_order_id: input.orderId });
+    if (!claimError && claimData && typeof claimData === 'object') {
+      claim = claimData as ClaimResult;
+    }
+  } catch {
+    claim = null;
+  }
+
+  if (claim?.status === 'already_paid') {
+    return {
+      ok: false,
+      error: 'Zamówienie jest już opłacone.',
+      code: 'already_paid',
+    };
+  }
+  if (claim?.status === 'reconciling') {
+    return {
+      ok: false,
+      error:
+        'Płatność jest już w trakcie potwierdzania. Odśwież stronę za chwilę.',
+      code: 'reconciling',
+    };
+  }
+  if (claim?.status === 'terminal') {
+    return {
+      ok: false,
+      error: 'Zamówienie nie przyjmuje już płatności.',
+      code: 'terminal',
+    };
+  }
+  if (claim?.status === 'shipping_quote_required') {
+    return {
+      ok: false,
+      error:
+        'Koszt wysyłki nie jest jeszcze potwierdzony — płatność online będzie dostępna po wycenie.',
+      code: 'not_eligible',
+    };
+  }
+
   const { data: order, error } = await supabase
     .from('orders')
     .select(
@@ -58,7 +121,11 @@ export async function createOrReuseOrderCheckoutSession(input: {
     .maybeSingle();
 
   if (error || !order) {
-    return { ok: false, error: 'Nie znaleziono zamówienia.' };
+    return {
+      ok: false,
+      error: 'Nie znaleziono zamówienia.',
+      code: 'not_eligible',
+    };
   }
 
   if (order.shipping_quote_required) {
@@ -66,11 +133,16 @@ export async function createOrReuseOrderCheckoutSession(input: {
       ok: false,
       error:
         'Koszt wysyłki nie jest jeszcze potwierdzony — płatność online będzie dostępna po wycenie.',
+      code: 'not_eligible',
     };
   }
 
   if (order.payment_status === 'paid') {
-    return { ok: false, error: 'Zamówienie jest już opłacone.' };
+    return {
+      ok: false,
+      error: 'Zamówienie jest już opłacone.',
+      code: 'already_paid',
+    };
   }
 
   if (
@@ -78,71 +150,176 @@ export async function createOrReuseOrderCheckoutSession(input: {
     order.status === 'expired' ||
     order.status === 'refunded'
   ) {
-    return { ok: false, error: 'Zamówienie nie przyjmuje już płatności.' };
+    return {
+      ok: false,
+      error: 'Zamówienie nie przyjmuje już płatności.',
+      code: 'terminal',
+    };
   }
 
   const total = Number(order.total_gross_grosz);
   if (!Number.isFinite(total) || total <= 0) {
-    return { ok: false, error: 'Kwota zamówienia jest nieprawidłowa.' };
+    return {
+      ok: false,
+      error: 'Kwota zamówienia jest nieprawidłowa.',
+      code: 'not_eligible',
+    };
   }
 
   const profile = order.customer_profiles as { email: string } | null;
   if (!profile?.email) {
-    return { ok: false, error: 'Brak adresu e-mail zamówienia.' };
+    return {
+      ok: false,
+      error: 'Brak adresu e-mail zamówienia.',
+      code: 'not_eligible',
+    };
   }
+
+  const { getStripeServerClient } = await import('@/lib/stripe/server');
+  const stripe = getStripeServerClient();
 
   const { data: payments } = await supabase
     .from('payments')
     .select(
-      'id, status, provider, provider_checkout_id, amount_gross_grosz, idempotency_key'
+      'id, status, provider, provider_checkout_id, provider_payment_id, amount_gross_grosz, failure_message'
     )
     .eq('order_id', order.id)
     .order('created_at', { ascending: false });
 
-  const existingStripe = (payments ?? []).find(
-    (p: {
-      provider: string;
-      status: string;
-      provider_checkout_id: string | null;
-      id: string;
-    }) =>
-      p.provider === 'stripe' &&
-      ACTIVE_PAYMENT_STATUSES.has(String(p.status)) &&
-      p.provider_checkout_id
-  );
+  type PayRow = {
+    id: string;
+    status: string;
+    provider: string;
+    provider_checkout_id: string | null;
+    provider_payment_id: string | null;
+    amount_gross_grosz: number;
+    failure_message: string | null;
+  };
 
-  if (existingStripe?.provider_checkout_id) {
+  const rows = (payments ?? []) as PayRow[];
+
+  // Any paid attempt → stop.
+  if (rows.some((p) => p.status === 'paid')) {
+    return {
+      ok: false,
+      error: 'Zamówienie jest już opłacone.',
+      code: 'already_paid',
+    };
+  }
+
+  // Inspect latest stripe checkout session at Stripe (authoritative).
+  for (const p of rows) {
+    if (p.provider !== 'stripe' || !p.provider_checkout_id) continue;
     try {
-      const { getStripeServerClient } = await import('@/lib/stripe/server');
-      const stripe = getStripeServerClient();
       const session = await stripe.checkout.sessions.retrieve(
-        existingStripe.provider_checkout_id
+        p.provider_checkout_id,
+        { expand: ['payment_intent'] }
       );
-      if (
-        session.status === 'open' &&
-        session.url &&
-        Number(session.amount_total) === total
-      ) {
+
+      if (session.status === 'open' && session.url) {
+        if (Number(session.amount_total) === total) {
+          return {
+            ok: true,
+            checkoutUrl: session.url,
+            paymentId: p.id,
+            sessionId: session.id,
+            reused: true,
+          };
+        }
+      }
+
+      const pi =
+        typeof session.payment_intent === 'object' && session.payment_intent
+          ? session.payment_intent
+          : null;
+      const stripePaid =
+        session.payment_status === 'paid' ||
+        session.status === 'complete' ||
+        pi?.status === 'succeeded' ||
+        pi?.status === 'processing';
+
+      if (stripePaid) {
+        // Do NOT create a second session — webhook must reconcile.
+        await supabase
+          .from('payments')
+          .update({
+            failure_message: 'stripe_checkout_reconciling',
+            provider_payment_id:
+              (typeof session.payment_intent === 'string'
+                ? session.payment_intent
+                : session.payment_intent?.id) ?? p.provider_payment_id,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', p.id);
+
         return {
-          ok: true,
-          checkoutUrl: session.url,
-          paymentId: existingStripe.id,
-          sessionId: session.id,
-          reused: true,
+          ok: false,
+          error:
+            'Stripe przyjął płatność. Czekamy na końcowe potwierdzenie — odśwież stronę za chwilę.',
+          code: 'reconciling',
         };
       }
+
+      // Expired / unpaid terminal session → allow new attempt below.
+      if (
+        session.status === 'expired' ||
+        (session.status === 'complete' && session.payment_status !== 'paid')
+      ) {
+        if (RETRYABLE_PAYMENT_STATUSES.has(p.status)) {
+          await supabase
+            .from('payments')
+            .update({
+              status: 'failed',
+              failure_message:
+                session.status === 'expired'
+                  ? 'Checkout session expired'
+                  : 'Checkout completed unpaid',
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', p.id);
+        }
+      }
     } catch (err) {
-      console.error('reuse checkout session failed', err);
+      console.error('stripe session inspect failed', err);
     }
   }
 
-  let paymentId = (payments ?? []).find(
-    (p: { status: string; amount_gross_grosz: number; id: string }) =>
-      ACTIVE_PAYMENT_STATUSES.has(String(p.status)) &&
-      Number(p.amount_gross_grosz) === total
-  )?.id;
+  // Also block if PaymentIntent already succeeded on a row.
+  for (const p of rows) {
+    if (!p.provider_payment_id) continue;
+    try {
+      const pi = await stripe.paymentIntents.retrieve(p.provider_payment_id);
+      if (pi.status === 'succeeded' || pi.status === 'processing') {
+        await supabase
+          .from('payments')
+          .update({
+            failure_message: 'stripe_checkout_reconciling',
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', p.id);
+        return {
+          ok: false,
+          error:
+            'Stripe przyjął płatność. Czekamy na końcowe potwierdzenie — odśwież stronę za chwilę.',
+          code: 'reconciling',
+        };
+      }
+    } catch {
+      // Intent may not exist yet.
+    }
+  }
+
+  // Reuse an eligible payment row or insert a new attempt.
+  let paymentId =
+    rows.find(
+      (p) =>
+        RETRYABLE_PAYMENT_STATUSES.has(p.status) &&
+        Number(p.amount_gross_grosz) === total &&
+        p.failure_message !== 'stripe_checkout_reconciling'
+    )?.id ?? null;
 
   if (!paymentId) {
+    const attemptKey = `order-pay-${order.id}-${total}-${Date.now()}`;
     const { data: inserted, error: insertError } = await supabase
       .from('payments')
       .insert({
@@ -152,13 +329,17 @@ export async function createOrReuseOrderCheckoutSession(input: {
         status: 'created',
         amount_gross_grosz: total,
         currency: 'PLN',
-        idempotency_key: `order-pay-${order.id}-${total}-${Date.now()}`,
+        idempotency_key: attemptKey,
       })
       .select('id')
       .maybeSingle();
     if (insertError || !inserted?.id) {
       console.error('order payment insert failed', insertError?.message);
-      return { ok: false, error: 'Nie udało się przygotować płatności.' };
+      return {
+        ok: false,
+        error: 'Nie udało się przygotować płatności.',
+        code: 'not_eligible',
+      };
     }
     paymentId = inserted.id as string;
   } else {
@@ -168,8 +349,11 @@ export async function createOrReuseOrderCheckoutSession(input: {
         provider: 'stripe',
         status: 'created',
         amount_gross_grosz: total,
+        provider_checkout_id: null,
         failure_code: null,
         failure_message: null,
+        // New Stripe idempotency namespace for a fresh attempt after failure/expiry.
+        idempotency_key: `checkout-${paymentId}-${Date.now()}`,
         updated_at: new Date().toISOString(),
       })
       .eq('id', paymentId);
@@ -197,6 +381,9 @@ export async function createOrReuseOrderCheckoutSession(input: {
     ? `${siteUrl}/zamowienie/${encodeURIComponent(token)}?checkout=cancelled`
     : `${siteUrl}/cart?checkout=cancelled`;
 
+  // Fresh idempotency key per attempt (never reuse key of a completed session).
+  const stripeIdempotencyKey = `checkout-order-${paymentId}-${total}`;
+
   let session;
   try {
     session = await createEntityStripeCheckoutSession({
@@ -210,6 +397,7 @@ export async function createOrReuseOrderCheckoutSession(input: {
       customerEmail: profile.email,
       successUrl,
       cancelUrl,
+      idempotencyKey: stripeIdempotencyKey,
     });
   } catch (err) {
     console.error('order stripe checkout create failed', err);
@@ -224,11 +412,33 @@ export async function createOrReuseOrderCheckoutSession(input: {
     return {
       ok: false,
       error: 'Nie udało się otworzyć płatności online. Spróbuj ponownie.',
+      code: 'not_eligible',
     };
   }
 
   if (!session.url) {
-    return { ok: false, error: 'Stripe nie zwrócił adresu płatności.' };
+    // Completed sessions often have null url — treat as reconciling if paid.
+    if (session.payment_status === 'paid' || session.status === 'complete') {
+      await supabase
+        .from('payments')
+        .update({
+          provider_checkout_id: session.id,
+          failure_message: 'stripe_checkout_reconciling',
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', paymentId);
+      return {
+        ok: false,
+        error:
+          'Stripe przyjął płatność. Czekamy na końcowe potwierdzenie — odśwież stronę za chwilę.',
+        code: 'reconciling',
+      };
+    }
+    return {
+      ok: false,
+      error: 'Stripe nie zwrócił adresu płatności.',
+      code: 'not_eligible',
+    };
   }
 
   const expiresAtIso = session.expires_at
@@ -241,8 +451,9 @@ export async function createOrReuseOrderCheckoutSession(input: {
       provider: 'stripe',
       status: 'pending',
       provider_checkout_id: session.id,
-      idempotency_key: `checkout-${paymentId}`,
       amount_gross_grosz: total,
+      failure_code: null,
+      failure_message: null,
       updated_at: new Date().toISOString(),
     })
     .eq('id', paymentId);
@@ -256,7 +467,6 @@ export async function createOrReuseOrderCheckoutSession(input: {
     })
     .eq('id', order.id);
 
-  // Keep workshop holds valid for the Checkout window (Stripe min 30 min).
   await supabase
     .from('bookings')
     .update({

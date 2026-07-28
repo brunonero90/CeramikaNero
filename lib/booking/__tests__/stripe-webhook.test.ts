@@ -130,7 +130,26 @@ function createSupabaseMock(state: {
     from,
     rpc: async (name: string, args: Record<string, unknown>) => {
       rpcCalls.push({ name, args });
+      if (name === 'claim_stripe_event') {
+        if (existing.has(String(args.p_event_id))) {
+          return { data: { status: 'already_processed' }, error: null };
+        }
+        existing.add(String(args.p_event_id));
+        return { data: { status: 'claimed' }, error: null };
+      }
+      if (name === 'complete_stripe_event' || name === 'fail_stripe_event') {
+        return { data: null, error: null };
+      }
       if (name === 'confirm_booking_from_payment') {
+        if (state.confirmError) {
+          return { data: null, error: state.confirmError };
+        }
+        return {
+          data: state.confirmResult ?? { status: 'confirmed' },
+          error: null,
+        };
+      }
+      if (name === 'confirm_order_from_payment') {
         if (state.confirmError) {
           return { data: null, error: state.confirmError };
         }
@@ -199,6 +218,15 @@ function intentEvent(
   } as Stripe.Event;
 }
 
+function rpcNamed(
+  supabase: {
+    __rpcCalls: Array<{ name: string; args: Record<string, unknown> }>;
+  },
+  name: string
+) {
+  return supabase.__rpcCalls.find((c) => c.name === name);
+}
+
 describe('processStripeEvent', () => {
   beforeEach(() => {
     sendConfirmation.mockReset();
@@ -226,10 +254,15 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(supabase.__rpcCalls[0]?.name).toBe('confirm_booking_from_payment');
-    expect(supabase.__rpcCalls[0]?.args.p_amount_gross_grosz).toBe(10000);
+    expect(rpcNamed(supabase, 'claim_stripe_event')?.args.p_event_id).toBe(
+      'evt_session_1'
+    );
+    expect(
+      rpcNamed(supabase, 'confirm_booking_from_payment')?.args
+        .p_amount_gross_grosz
+    ).toBe(10000);
+    expect(rpcNamed(supabase, 'complete_stripe_event')).toBeTruthy();
     expect(sendConfirmation).toHaveBeenCalled();
-    expect(supabase.__insertedEvents[0]?.event_id).toBe('evt_session_1');
   });
 
   it('ignores duplicate Stripe event ids', async () => {
@@ -244,7 +277,8 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true, duplicate: true });
-    expect(supabase.__rpcCalls).toHaveLength(0);
+    expect(rpcNamed(supabase, 'claim_stripe_event')).toBeTruthy();
+    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeUndefined();
     expect(sendConfirmation).not.toHaveBeenCalled();
   });
 
@@ -261,7 +295,8 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(supabase.__rpcCalls).toHaveLength(0);
+    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeUndefined();
+    expect(rpcNamed(supabase, 'complete_stripe_event')).toBeTruthy();
     expect(supabase.__updates).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -289,7 +324,7 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(supabase.__rpcCalls[0]?.name).toBe('confirm_booking_from_payment');
+    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeTruthy();
     expect(sendConfirmation).toHaveBeenCalled();
   });
 
@@ -310,7 +345,7 @@ describe('processStripeEvent', () => {
     expect(supabase.__updates[0]?.patch).toEqual(
       expect.objectContaining({ status: 'failed' })
     );
-    expect(supabase.__rpcCalls[0]).toEqual(
+    expect(rpcNamed(supabase, 'cancel_booking')).toEqual(
       expect.objectContaining({
         name: 'cancel_booking',
         args: expect.objectContaining({ p_booking_id: 'book_1' }),
@@ -330,7 +365,7 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(supabase.__rpcCalls[0]?.name).toBe('cancel_booking');
+    expect(rpcNamed(supabase, 'cancel_booking')?.name).toBe('cancel_booking');
     expect(supabase.__updates.some((u) => u.patch.status === 'failed')).toBe(
       true
     );
@@ -359,7 +394,9 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(supabase.__rpcCalls[0]?.args.p_payment_id).toBe('pay_1');
+    expect(
+      rpcNamed(supabase, 'confirm_booking_from_payment')?.args.p_payment_id
+    ).toBe('pay_1');
     expect(sendConfirmation).toHaveBeenCalled();
   });
 
@@ -378,7 +415,8 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(supabase.__rpcCalls).toHaveLength(0);
+    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeUndefined();
+    expect(rpcNamed(supabase, 'complete_stripe_event')).toBeTruthy();
     expect(supabase.__updates[0]?.patch).toEqual(
       expect.objectContaining({
         status: 'failed',
@@ -457,8 +495,11 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(supabase.__rpcCalls).toHaveLength(0);
-    expect(supabase.__insertedEvents[0]?.event_id).toBe('evt_refund');
+    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeUndefined();
+    expect(rpcNamed(supabase, 'claim_stripe_event')?.args.p_event_id).toBe(
+      'evt_refund'
+    );
+    expect(rpcNamed(supabase, 'complete_stripe_event')).toBeTruthy();
   });
 });
 

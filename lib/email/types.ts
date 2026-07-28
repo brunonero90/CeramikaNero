@@ -108,6 +108,8 @@ export type OrderEmailContext = {
   siteUrl?: string | null;
   /** Opaque /zamowienie/[token] URL when known (e.g. right after checkout). */
   manageOrderUrl?: string | null;
+  /** Distinguishes customer vs studio copy for shared email types (e.g. payment_received). */
+  audience?: 'customer' | 'admin';
 };
 
 export type BookingEmailContext = {

@@ -158,6 +158,7 @@ async function notifyOrderConfirmOutcome(
       await notifyAdminOrderPaymentProblem(orderId);
     }
   } catch (err) {
+    // Payment state already committed — email retries via outbox/cron.
     console.error('order payment email notify failed', err);
   }
 }
@@ -167,8 +168,43 @@ async function handlePaidCheckoutSession(
   event: Stripe.Event,
   session: Stripe.Checkout.Session
 ): Promise<StripeWebhookResult> {
-  const entity = resolveEntity(session);
-  const paymentId = entity.paymentId;
+  let entity = resolveEntity(session);
+  let paymentId = entity.paymentId;
+
+  // Recover identifiers from the payments row when metadata is incomplete.
+  if ((!entity.orderId && !entity.bookingId) || !paymentId) {
+    try {
+      const { createCartAdminClient } =
+        await import('@/lib/supabase/cart-admin');
+      const cart = createCartAdminClient();
+      const { data: pay } = await cart
+        .from('payments')
+        .select('id, order_id, booking_id')
+        .eq('provider_checkout_id', session.id)
+        .maybeSingle();
+      if (pay) {
+        paymentId = paymentId ?? (pay.id as string);
+        if (pay.order_id) {
+          entity = {
+            entityType: 'order',
+            orderId: pay.order_id as string,
+            bookingId: null,
+            paymentId,
+          };
+        } else if (pay.booking_id) {
+          entity = {
+            entityType: 'booking',
+            orderId: null,
+            bookingId: pay.booking_id as string,
+            paymentId,
+          };
+        }
+      }
+    } catch (err) {
+      console.error('payment lookup by checkout id failed', err);
+    }
+  }
+
   if (!paymentId) {
     return { ok: false, status: 400, error: 'Missing metadata' };
   }
@@ -350,67 +386,68 @@ async function findPaymentForIntent(
   amount_gross_grosz: number;
   status: string;
 } | null> {
-  const { data: byIntent, error } = await supabase
-    .from('payments')
-    .select('id, booking_id, amount_gross_grosz, status, provider_checkout_id')
-    .eq('provider_payment_id', paymentIntent.id)
-    .maybeSingle();
+  const paymentIdMeta = paymentIntent.metadata?.payment_id ?? null;
+  const orderIdMeta = paymentIntent.metadata?.order_id ?? null;
 
-  if (!error && byIntent) {
-    const orderIdFromMeta = paymentIntent.metadata?.order_id ?? null;
-    return {
-      ...(byIntent as {
-        id: string;
-        booking_id: string | null;
-        amount_gross_grosz: number;
-        status: string;
-      }),
-      order_id: orderIdFromMeta,
-    };
-  }
+  try {
+    const { createCartAdminClient } = await import('@/lib/supabase/cart-admin');
+    const cart = createCartAdminClient();
 
-  // Legacy path without relying on generated order_id column typing.
-  if (error) {
-    const { data: legacy } = await supabase
+    const { data: byIntent } = await cart
       .from('payments')
-      .select('id, booking_id, amount_gross_grosz, status')
+      .select('id, booking_id, order_id, amount_gross_grosz, status')
       .eq('provider_payment_id', paymentIntent.id)
       .maybeSingle();
-    if (legacy) {
+
+    if (byIntent) {
       return {
-        ...(legacy as {
-          id: string;
-          booking_id: string | null;
-          amount_gross_grosz: number;
-          status: string;
-        }),
-        order_id: paymentIntent.metadata?.order_id ?? null,
+        id: byIntent.id as string,
+        booking_id: (byIntent.booking_id as string | null) ?? null,
+        order_id: (byIntent.order_id as string | null) ?? orderIdMeta ?? null,
+        amount_gross_grosz: byIntent.amount_gross_grosz as number,
+        status: byIntent.status as string,
       };
     }
+
+    if (!paymentIdMeta) return null;
+
+    const { data: byMeta } = await cart
+      .from('payments')
+      .select('id, booking_id, order_id, amount_gross_grosz, status')
+      .eq('id', paymentIdMeta)
+      .maybeSingle();
+
+    if (!byMeta) return null;
+
+    return {
+      id: byMeta.id as string,
+      booking_id: (byMeta.booking_id as string | null) ?? null,
+      order_id: (byMeta.order_id as string | null) ?? orderIdMeta ?? null,
+      amount_gross_grosz: byMeta.amount_gross_grosz as number,
+      status: byMeta.status as string,
+    };
+  } catch (err) {
+    console.error('findPaymentForIntent cart lookup failed', err);
+    // Fall back to metadata-only path via typed admin client.
   }
 
-  const paymentId = paymentIntent.metadata?.payment_id;
-  if (!paymentId) return null;
+  if (!paymentIdMeta) return null;
 
-  const { data: byMeta } = await supabase
+  const { data: byMetaAdmin } = await supabase
     .from('payments')
     .select('id, booking_id, amount_gross_grosz, status')
-    .eq('id', paymentId)
+    .eq('id', paymentIdMeta)
     .maybeSingle();
 
-  if (byMeta) {
-    return {
-      ...(byMeta as {
-        id: string;
-        booking_id: string | null;
-        amount_gross_grosz: number;
-        status: string;
-      }),
-      order_id: paymentIntent.metadata?.order_id ?? null,
-    };
-  }
+  if (!byMetaAdmin) return null;
 
-  return null;
+  return {
+    id: byMetaAdmin.id,
+    booking_id: byMetaAdmin.booking_id,
+    order_id: orderIdMeta,
+    amount_gross_grosz: byMetaAdmin.amount_gross_grosz,
+    status: byMetaAdmin.status,
+  };
 }
 
 async function handlePaymentIntentSucceeded(
@@ -503,76 +540,149 @@ async function handlePaymentIntentFailed(
   }
 }
 
-/**
- * Processes a verified Stripe event. Callers must verify the signature on the
- * raw request body before invoking this function.
- */
-export async function processStripeEvent(
+async function rpcLoose(
+  supabase: AdminClient,
+  name: string,
+  args: Record<string, unknown>
+): Promise<{ data: unknown; error: { message: string } | null }> {
+  return (
+    supabase as unknown as {
+      rpc: (
+        n: string,
+        a: Record<string, unknown>
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
+    }
+  ).rpc(name, args);
+}
+
+async function claimStripeEvent(
   supabase: AdminClient,
   event: Stripe.Event
-): Promise<StripeWebhookResult> {
+): Promise<'claimed' | 'already_processed' | 'legacy_skip'> {
+  const { data, error } = await rpcLoose(supabase, 'claim_stripe_event', {
+    p_event_id: event.id,
+    p_event_type: event.type,
+  });
+  if (!error && data && typeof data === 'object') {
+    const status = (data as { status?: string }).status;
+    if (status === 'already_processed') return 'already_processed';
+    if (status === 'claimed') return 'claimed';
+  }
+
+  // Pre-migration-16 fallback: existence check (cannot retry failed inserts).
   const alreadyProcessed = await supabase
     .from('stripe_events')
     .select('id')
     .eq('event_id', event.id)
     .maybeSingle();
-  if (alreadyProcessed.data) {
+  if (alreadyProcessed.data) return 'already_processed';
+  return 'legacy_skip';
+}
+
+async function completeStripeEvent(
+  supabase: AdminClient,
+  eventId: string,
+  eventType: string
+): Promise<void> {
+  const { error } = await rpcLoose(supabase, 'complete_stripe_event', {
+    p_event_id: eventId,
+  });
+  if (error) {
+    await recordStripeEvent(supabase, {
+      id: eventId,
+      type: eventType,
+    } as Stripe.Event);
+  }
+}
+
+async function failStripeEvent(
+  supabase: AdminClient,
+  eventId: string,
+  message: string
+): Promise<void> {
+  await rpcLoose(supabase, 'fail_stripe_event', {
+    p_event_id: eventId,
+    p_error: message,
+  });
+}
+
+/**
+ * Processes a verified Stripe event. Callers must verify the signature on the
+ * raw request body before invoking this function.
+ *
+ * Events are claimed before processing. Failures return 5xx so Stripe retries.
+ * Only successfully processed events are ignored on subsequent deliveries.
+ */
+export async function processStripeEvent(
+  supabase: AdminClient,
+  event: Stripe.Event
+): Promise<StripeWebhookResult> {
+  const claim = await claimStripeEvent(supabase, event);
+  if (claim === 'already_processed') {
     return { ok: true, duplicate: true };
   }
 
-  switch (event.type) {
-    case 'checkout.session.completed': {
-      const session = event.data.object as Stripe.Checkout.Session;
-      const result = await handleCheckoutSessionCompleted(
-        supabase,
-        event,
-        session
-      );
-      if (!result.ok) return result;
-      break;
-    }
-    case 'checkout.session.async_payment_succeeded': {
-      const session = event.data.object as Stripe.Checkout.Session;
-      const result = await handlePaidCheckoutSession(supabase, event, session);
-      if (!result.ok) return result;
-      break;
-    }
-    case 'checkout.session.async_payment_failed': {
-      const session = event.data.object as Stripe.Checkout.Session;
-      await handleAsyncPaymentFailed(supabase, session);
-      break;
-    }
-    case 'checkout.session.expired': {
-      const session = event.data.object as Stripe.Checkout.Session;
-      await handleCheckoutSessionExpired(supabase, session);
-      break;
-    }
-    case 'payment_intent.succeeded': {
-      const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      const result = await handlePaymentIntentSucceeded(
-        supabase,
-        event,
-        paymentIntent
-      );
-      if (!result.ok) return result;
-      break;
-    }
-    case 'payment_intent.payment_failed': {
-      const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      await handlePaymentIntentFailed(supabase, paymentIntent);
-      break;
-    }
-    case 'charge.refunded': {
-      // Refunds are recorded by admin/customer flows after Stripe.refunds.create
-      // succeeds. Acknowledge the event for idempotency only.
-      break;
-    }
-    default:
-      break;
-  }
+  try {
+    let result: StripeWebhookResult = { ok: true };
 
-  // confirm_*_from_payment may already have inserted this event_id.
-  // Upsert ignoreDuplicates keeps webhook acknowledgements idempotent.
-  await recordStripeEvent(supabase, event);
-  return { ok: true };
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data.object as Stripe.Checkout.Session;
+        result = await handleCheckoutSessionCompleted(supabase, event, session);
+        break;
+      }
+      case 'checkout.session.async_payment_succeeded': {
+        const session = event.data.object as Stripe.Checkout.Session;
+        result = await handlePaidCheckoutSession(supabase, event, session);
+        break;
+      }
+      case 'checkout.session.async_payment_failed': {
+        const session = event.data.object as Stripe.Checkout.Session;
+        await handleAsyncPaymentFailed(supabase, session);
+        break;
+      }
+      case 'checkout.session.expired': {
+        const session = event.data.object as Stripe.Checkout.Session;
+        await handleCheckoutSessionExpired(supabase, session);
+        break;
+      }
+      case 'payment_intent.succeeded': {
+        const paymentIntent = event.data.object as Stripe.PaymentIntent;
+        result = await handlePaymentIntentSucceeded(
+          supabase,
+          event,
+          paymentIntent
+        );
+        break;
+      }
+      case 'payment_intent.payment_failed': {
+        const paymentIntent = event.data.object as Stripe.PaymentIntent;
+        await handlePaymentIntentFailed(supabase, paymentIntent);
+        break;
+      }
+      case 'charge.refunded': {
+        break;
+      }
+      default:
+        break;
+    }
+
+    if (!result.ok) {
+      await failStripeEvent(supabase, event.id, result.error);
+      return result;
+    }
+
+    await completeStripeEvent(supabase, event.id, event.type);
+    // Legacy path when claim RPC missing: still record success.
+    if (claim === 'legacy_skip') {
+      await recordStripeEvent(supabase, event);
+    }
+    return { ok: true };
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : 'Webhook processing error';
+    console.error('Stripe webhook processing threw', err);
+    await failStripeEvent(supabase, event.id, message);
+    return { ok: false, status: 500, error: message };
+  }
 }

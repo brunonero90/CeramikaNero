@@ -19,9 +19,12 @@ export async function createEntityStripeCheckoutSession(params: {
   customerEmail: string;
   successUrl: string;
   cancelUrl: string;
+  /** Override when creating a fresh attempt after a failed/expired session. */
+  idempotencyKey?: string;
 }): Promise<Stripe.Checkout.Session> {
   const stripe = getStripeServerClient();
-  const idempotencyKey = `checkout-${params.paymentId}`;
+  const idempotencyKey =
+    params.idempotencyKey ?? `checkout-${params.paymentId}`;
   const expiresAt =
     Math.floor(Date.now() / 1000) + STRIPE_CHECKOUT_EXPIRY_SECONDS;
 

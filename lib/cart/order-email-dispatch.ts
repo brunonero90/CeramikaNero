@@ -67,13 +67,35 @@ export async function dispatchPendingOrderEmails(
 
     // Rebuild/send via notify helpers for known types; otherwise generic retry.
     try {
-      if (
+      if (row.email_type === 'awaiting_stripe_payment') {
+        const { dispatchAwaitingStripeReminder } =
+          await import('@/lib/cart/order-email');
+        await dispatchAwaitingStripeReminder(row.order_id);
+      } else if (
         row.email_type === 'customer_confirmation' ||
         row.email_type === 'admin_notification' ||
-        row.email_type === 'awaiting_stripe_payment' ||
         row.email_type === 'manual_transfer_requested'
       ) {
-        await notifyOrderCreated(row.order_id);
+        // Delayed legacy customer_confirmation for Stripe: re-check paid first.
+        if (row.email_type === 'customer_confirmation') {
+          const { data: orderRow } = await supabase
+            .from('orders')
+            .select('payment_status, selected_payment_method, status')
+            .eq('id', row.order_id)
+            .maybeSingle();
+          const isStripe =
+            (orderRow as { selected_payment_method?: string | null } | null)
+              ?.selected_payment_method === 'stripe';
+          if (isStripe) {
+            const { dispatchAwaitingStripeReminder } =
+              await import('@/lib/cart/order-email');
+            await dispatchAwaitingStripeReminder(row.order_id);
+          } else {
+            await notifyOrderCreated(row.order_id);
+          }
+        } else {
+          await notifyOrderCreated(row.order_id);
+        }
       } else if (row.email_type === 'shipping_quote_confirmed') {
         const { notifyShippingQuoteConfirmed } =
           await import('@/lib/cart/order-email');

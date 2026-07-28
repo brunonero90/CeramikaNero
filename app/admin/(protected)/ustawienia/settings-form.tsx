@@ -113,9 +113,22 @@ export function SettingsForm({
       <div className="rounded-md border border-gray-200 p-4 space-y-3">
         <h2 className="text-base font-semibold">Przelew bankowy</h2>
         <p className="text-sm text-gray-600">
-          Wymagane: odbiorca i numer konta. Bez nich przelew nie będzie
-          oferowany klientom.
+          Wymagane: odbiorca i numer konta (26 cyfr). Bez nich checkout z
+          przelewem jest zablokowany — klienci zobaczą komunikat o niedostępnej
+          płatności.
         </p>
+        {(!initialData.bankTransferRecipient ||
+          !initialData.bankTransferAccount) && (
+          <p
+            className="rounded-md bg-amber-50 p-3 text-sm text-amber-950"
+            role="status"
+          >
+            Brak kompletnych danych do przelewu. Uzupełnij odbiorcę i numer
+            konta poniżej (albo ustaw{' '}
+            <code className="text-xs">BANK_TRANSFER_RECIPIENT</code> /{' '}
+            <code className="text-xs">BANK_TRANSFER_ACCOUNT</code> w Netlify).
+          </p>
+        )}
         <label className="flex items-center gap-2 text-sm">
           <input
             type="checkbox"

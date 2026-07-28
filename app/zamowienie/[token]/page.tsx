@@ -5,7 +5,7 @@ import { getOrderStatusByPublicToken } from '@/lib/cart/order-status';
 import { formatGroszAsPln } from '@/lib/utils/money';
 import { getPublicSettings } from '@/lib/database/services/site-settings';
 import { contactDisplayFromSettings } from '@/lib/public/contact-display';
-import { OrderPayButton } from '@/components/clone/order-pay-button';
+import { OrderStatusClient } from '@/components/clone/order-status-client';
 import {
   formatBankAccountForDisplay,
   loadBankTransferConfig,
@@ -13,6 +13,7 @@ import {
 } from '@/lib/payments/bank-transfer';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: 'Status zamówienia | Ceramika Nero',
@@ -57,84 +58,6 @@ function humanOrderStatus(status: string): string {
   }
 }
 
-function lifecycleCopy(order: {
-  status: string;
-  paymentStatus: string;
-  fulfillmentStatus: string;
-  fulfillmentMethod: string;
-  shippingQuoteRequired: boolean;
-  selectedPaymentMethod?: string | null;
-  trackingReference?: string | null;
-  checkoutFlag?: string | null;
-}): { title: string; body: string } {
-  if (order.checkoutFlag === 'success' && order.paymentStatus !== 'paid') {
-    return {
-      title: 'Dziękujemy — sprawdzamy płatność',
-      body: 'Jeśli wybrałeś BLIK lub Przelewy24, potwierdzenie może pojawić się za chwilę. Status odświeżymy automatycznie po stronie serwera.',
-    };
-  }
-  if (order.status === 'cancelled') {
-    return {
-      title: 'Zamówienie anulowane',
-      body: 'To zamówienie zostało anulowane. Jeśli potrzebujesz pomocy, napisz do pracowni.',
-    };
-  }
-  if (order.shippingQuoteRequired) {
-    return {
-      title: 'Oczekujemy na wycenę wysyłki',
-      body: 'Przyjęliśmy zamówienie. Koszt wysyłki potwierdzimy przed płatnością — nie przelewaj środków, dopóki nie otrzymasz finalnej kwoty.',
-    };
-  }
-  if (order.paymentStatus === 'pending') {
-    if (order.selectedPaymentMethod === 'stripe') {
-      return {
-        title: 'Oczekujemy na płatność online',
-        body: 'Możesz dokończyć bezpieczną płatność poniżej. Potwierdzenie pojawi się dopiero po weryfikacji przez operatora płatności.',
-      };
-    }
-    return {
-      title: 'Oczekujemy na płatność',
-      body: 'Kwota jest ustalona. Wykonaj przelew według danych poniżej — rezerwacja pozostaje nieopłacona do momentu zaksięgowania.',
-    };
-  }
-  if (order.paymentStatus === 'failed') {
-    return {
-      title: 'Płatność nieudana lub wygasła',
-      body: 'Możesz spróbować ponownie zapłacić online albo skontaktować się z pracownią.',
-    };
-  }
-  if (
-    order.paymentStatus === 'paid' &&
-    order.fulfillmentStatus !== 'fulfilled'
-  ) {
-    return {
-      title: 'Płatność otrzymana',
-      body:
-        order.fulfillmentMethod === 'shipping'
-          ? 'Przygotowujemy paczkę do wysyłki.'
-          : 'Przygotowujemy zamówienie do odbioru w pracowni.',
-    };
-  }
-  if (order.fulfillmentStatus === 'fulfilled') {
-    return {
-      title:
-        order.fulfillmentMethod === 'shipping'
-          ? 'Wysłane'
-          : 'Gotowe / zrealizowane',
-      body:
-        order.fulfillmentMethod === 'shipping'
-          ? order.trackingReference
-            ? `Zamówienie zostało wysłane. Numer przesyłki: ${order.trackingReference}.`
-            : 'Zamówienie zostało wysłane.'
-          : 'Zamówienie jest gotowe lub zostało odebrane.',
-    };
-  }
-  return {
-    title: 'Status zamówienia',
-    body: 'Aktualny stan zamówienia widzisz poniżej. W razie pytań skontaktuj się z pracownią.',
-  };
-}
-
 export default async function OrderStatusPage({
   params,
   searchParams,
@@ -155,23 +78,12 @@ export default async function OrderStatusPage({
   }
 
   const showFinalTotal = !order.shippingQuoteRequired;
-  const copy = lifecycleCopy({
-    ...order,
-    checkoutFlag: query.checkout ?? null,
-  });
-
-  const canPayOnline =
-    !order.shippingQuoteRequired &&
-    order.paymentStatus !== 'paid' &&
-    order.status !== 'cancelled' &&
-    order.status !== 'expired' &&
-    order.status !== 'refunded' &&
-    (order.selectedPaymentMethod === 'stripe' ||
-      order.paymentStatus === 'failed');
+  const checkoutFlag = query.checkout ?? null;
 
   const showBankTransfer =
     !order.shippingQuoteRequired &&
     order.paymentStatus === 'pending' &&
+    !order.paymentReconciling &&
     order.selectedPaymentMethod !== 'stripe';
 
   let bankBlock: {
@@ -200,14 +112,11 @@ export default async function OrderStatusPage({
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-12 md:px-6">
-      <h1 className="font-heading text-3xl font-semibold text-text-primary">
-        {copy.title}
-      </h1>
-      <p className="mt-3 text-text-muted">
-        Numer:{' '}
-        <strong className="text-text-primary">{order.orderReference}</strong>
-      </p>
-      <p className="mt-2 text-sm text-text-muted">{copy.body}</p>
+      <OrderStatusClient
+        initialOrder={order}
+        publicLookupToken={token}
+        checkoutFlag={checkoutFlag}
+      />
 
       <dl className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
         <div>
@@ -305,8 +214,6 @@ export default async function OrderStatusPage({
           </>
         )}
       </section>
-
-      {canPayOnline ? <OrderPayButton publicLookupToken={token} /> : null}
 
       {bankBlock ? (
         <section className="mt-6 space-y-2 rounded border border-surface-subtle bg-white/70 p-4 text-sm">

@@ -167,10 +167,48 @@ export function buildShippingQuoteConfirmed(
 export function buildPaymentReceived(
   ctx: OrderEmailContext
 ): EmailTemplateResult {
-  const subject = `Płatność otrzymana — ${ctx.orderReference}`;
-  const preheader = `Dziękujemy — otrzymaliśmy ${formatMoneyPln(ctx.totalGrosz)}.`;
+  if (ctx.audience === 'admin') {
+    const subject = `[Ceramika Nero] Płatność potwierdzona — ${ctx.orderReference}`;
+    const preheader = `${ctx.customerName} · ${formatMoneyPln(ctx.totalGrosz)}`;
+    const adminUrl = absoluteEmailUrl('/admin/zamowienia', ctx.siteUrl);
+    const detail = `Płatność Stripe potwierdzona dla ${ctx.orderReference} (${formatMoneyPln(ctx.totalGrosz)}).`;
+
+    return pack(
+      subject,
+      preheader,
+      <EmailLayout
+        preview={preheader}
+        siteUrl={ctx.siteUrl}
+        bannerTitle="Płatność potwierdzona"
+        bannerTone="success"
+        bannerBody={detail}
+        payment={{ mode: 'none' }}
+        contactIntro="Panel administracyjny:"
+      >
+        <AdminMeta>
+          {`Klient: ${ctx.customerName}\nE-mail: ${ctx.customerEmail}${
+            ctx.customerPhone ? `\nTelefon: ${ctx.customerPhone}` : ''
+          }`}
+        </AdminMeta>
+        <OrderBody ctx={ctx} />
+        <PrimaryButton href={adminUrl}>Otwórz w panelu</PrimaryButton>
+      </EmailLayout>,
+      buildOrderPlainText({
+        greeting: 'Płatność potwierdzona',
+        status: ctx.orderReference,
+        detail: `Klient: ${ctx.customerName} (${ctx.customerEmail}) · ${formatMoneyPln(ctx.totalGrosz)}`,
+        ctx: { ...ctx, payment: { mode: 'none' } },
+      }) + `\n\nPanel: ${adminUrl}`
+    );
+  }
+
+  const subject = 'Płatność potwierdzona — Ceramika Nero';
+  const preheader =
+    'Dziękujemy, wszystko gotowe. Twoje miejsce jest potwierdzone.';
   const detail =
-    'Potwierdzamy otrzymanie płatności. Przygotujemy Twoje zamówienie dalej w pracowni.';
+    'Dziękujemy za płatność. Twoje zamówienie i miejsce na warsztatach są już potwierdzone — teraz możesz się zrelaksować i czekać na ceramiczne spotkanie z nami.';
+  const amountLine = `Kwota opłacona: ${formatMoneyPln(ctx.totalGrosz)}`;
+  const closing = 'Nic więcej nie trzeba płacić.';
 
   return pack(
     subject,
@@ -181,15 +219,31 @@ export function buildPaymentReceived(
       greeting={greet(ctx.customerName)}
       bannerTitle="Płatność potwierdzona"
       bannerTone="success"
-      bannerBody={detail}
+      bannerBody={
+        <>
+          {detail}
+          <br />
+          <br />
+          {amountLine}
+          <br />
+          {closing}
+        </>
+      }
       payment={{ mode: 'none' }}
     >
       <OrderBody ctx={ctx} />
+      {ctx.manageOrderUrl ? (
+        <PrimaryButton href={ctx.manageOrderUrl}>
+          Zobacz status zamówienia
+        </PrimaryButton>
+      ) : null}
     </EmailLayout>,
     buildOrderPlainText({
       greeting: greet(ctx.customerName),
       status: 'Płatność potwierdzona',
-      detail,
+      detail: `${detail}\n\n${amountLine}\n${closing}${
+        ctx.manageOrderUrl ? `\n\nStatus: ${ctx.manageOrderUrl}` : ''
+      }`,
       ctx: { ...ctx, payment: { mode: 'none' } },
     })
   );

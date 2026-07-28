@@ -157,4 +157,14 @@ describe('email catalog render quality', () => {
     expect(rendered.html).toMatch(/30\s*1140\s*2004/);
     expect(rendered.subject).toContain('CN-ORD-2401');
   });
+
+  it('payment_received customer copy matches confirmation wording', async () => {
+    const rendered = await renderEmail(
+      buildOrderEmail('payment_received', fixturePaymentConfirmed)
+    );
+    expect(rendered.subject).toBe('Płatność potwierdzona — Ceramika Nero');
+    expect(rendered.preheader).toContain('Twoje miejsce jest potwierdzone');
+    expect(rendered.html).toContain('Nic więcej nie trzeba płacić');
+    expect(rendered.html).toContain('Kwota opłacona');
+  });
 });

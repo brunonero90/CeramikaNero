@@ -373,6 +373,7 @@ async function queueEmailRow(input: {
   orderId: string;
   emailType: OrderEmailType;
   recipient: string;
+  nextAttemptAt?: string | null;
 }): Promise<string | null> {
   const supabase = createCartAdminClient();
   const { data: existing } = await supabase
@@ -385,7 +386,19 @@ async function queueEmailRow(input: {
     .maybeSingle();
 
   if (existing?.status === 'sent') return null;
-  if (existing?.id) return existing.id as string;
+  if (existing?.id) {
+    if (input.nextAttemptAt) {
+      await supabase
+        .from('order_emails')
+        .update({
+          next_attempt_at: input.nextAttemptAt,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', existing.id)
+        .eq('status', 'pending');
+    }
+    return existing.id as string;
+  }
 
   const { data: inserted, error } = await supabase
     .from('order_emails')
@@ -394,6 +407,7 @@ async function queueEmailRow(input: {
       email_type: input.emailType,
       recipient: input.recipient,
       status: 'pending',
+      ...(input.nextAttemptAt ? { next_attempt_at: input.nextAttemptAt } : {}),
     })
     .select('id')
     .maybeSingle();
@@ -424,6 +438,9 @@ async function queueEmailRow(input: {
         email_type: fallbackType,
         recipient: input.recipient,
         status: 'pending',
+        ...(input.nextAttemptAt
+          ? { next_attempt_at: input.nextAttemptAt }
+          : {}),
       })
       .select('id')
       .maybeSingle();
@@ -432,6 +449,24 @@ async function queueEmailRow(input: {
 
   console.error('order email queue failed', error?.message);
   return null;
+}
+
+/**
+ * Insert (or refresh) a pending order email scheduled for later dispatch.
+ */
+export async function queueDelayedOrderEmail(input: {
+  orderId: string;
+  emailType: OrderEmailType;
+  recipient: string;
+  delayMs: number;
+}): Promise<string | null> {
+  const nextAttemptAt = new Date(Date.now() + input.delayMs).toISOString();
+  return queueEmailRow({
+    orderId: input.orderId,
+    emailType: input.emailType,
+    recipient: input.recipient,
+    nextAttemptAt,
+  });
 }
 
 async function sendRenderedOrderEmail(input: {
@@ -506,6 +541,8 @@ function customerConfirmationType(order: OrderRow): OrderEmailType {
  * Initial customer + admin emails after submit_cart_order.
  * For known-total bank transfer, requires complete bank config or skips
  * payment instructions (and logs) rather than emailing incomplete data.
+ * Known-total Stripe awaiting-payment emails are delayed 5 minutes so a
+ * fast webhook payment confirmation can skip the reminder.
  */
 export async function notifyOrderCreated(
   orderId: string,
@@ -551,57 +588,156 @@ export async function notifyOrderCreated(
   const ctx = await buildOrderEmailContext(order, payment);
   ctx.manageOrderUrl = manageOrderUrl;
   const customerType = customerConfirmationType(order);
+  const delayStripeReminder =
+    method === 'stripe' && !order.shipping_quote_required;
+
+  if (delayStripeReminder) {
+    await queueDelayedOrderEmail({
+      orderId,
+      emailType: 'awaiting_stripe_payment',
+      recipient: profile.email,
+      delayMs: 5 * 60_000,
+    });
+  } else {
+    const supabase = createCartAdminClient();
+    const { data: queued } = await supabase
+      .from('order_emails')
+      .select('id, email_type, recipient, status')
+      .eq('order_id', orderId)
+      .in('status', ['pending', 'failed']);
+
+    const rows = queued ?? [];
+
+    // Prefer typed customer email; migrate legacy customer_confirmation rows.
+    const customerRow =
+      rows.find((r: { email_type: string }) => r.email_type === customerType) ??
+      rows.find(
+        (r: { email_type: string }) => r.email_type === 'customer_confirmation'
+      );
+
+    if (customerRow && customerRow.status !== 'sent') {
+      await sendRenderedOrderEmail({
+        orderId,
+        emailId: customerRow.id,
+        emailType:
+          customerRow.email_type === 'customer_confirmation'
+            ? customerType
+            : (customerRow.email_type as OrderEmailType),
+        recipient: profile.email,
+        ctx,
+      });
+    } else if (!customerRow) {
+      await queueAndSendTypedOrderEmail({
+        orderId,
+        emailType: customerType,
+        recipient: profile.email,
+        ctx,
+      });
+    }
+  }
+
+  {
+    const supabase = createCartAdminClient();
+    const { data: queued } = await supabase
+      .from('order_emails')
+      .select('id, email_type, recipient, status')
+      .eq('order_id', orderId)
+      .in('status', ['pending', 'failed']);
+
+    for (const row of (queued ?? []) as Array<{
+      id: string;
+      email_type: string;
+      recipient: string;
+      status: string;
+    }>) {
+      if (row.email_type !== 'admin_notification') continue;
+      if (row.status === 'sent') continue;
+      await sendRenderedOrderEmail({
+        orderId,
+        emailId: row.id,
+        emailType: 'admin_notification',
+        recipient: row.recipient,
+        ctx,
+      });
+    }
+  }
+}
+
+/**
+ * Send (or skip) a delayed awaiting_stripe_payment reminder after re-checking
+ * whether the order is already paid / terminal.
+ */
+export async function dispatchAwaitingStripeReminder(
+  orderId: string
+): Promise<void> {
+  const order = await loadOrder(orderId);
+  if (!order) return;
+
+  const profile = order.customer_profiles;
+  if (!profile?.email) return;
 
   const supabase = createCartAdminClient();
-  const { data: queued } = await supabase
+  const paymentTerminal =
+    order.payment_status === 'paid' ||
+    order.payment_status === 'cancelled' ||
+    order.payment_status === 'expired' ||
+    order.payment_status === 'refunded' ||
+    order.payment_status === 'failed';
+  const orderTerminal =
+    order.status === 'cancelled' ||
+    order.status === 'expired' ||
+    order.status === 'refunded';
+
+  if (paymentTerminal || orderTerminal) {
+    const skipNote = `skipped_${order.payment_status}`;
+    await supabase
+      .from('order_emails')
+      .update({
+        status: 'sent',
+        error_message: skipNote,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('order_id', orderId)
+      .in('email_type', ['awaiting_stripe_payment', 'customer_confirmation'])
+      .in('status', ['pending', 'failed']);
+    return;
+  }
+
+  const manageOrderUrl = await loadManageOrderUrl(orderId);
+  const payment = manageOrderUrl
+    ? ({
+        mode: 'stripe_pay_cta',
+        payUrl: manageOrderUrl,
+        amountGrosz: order.total_gross_grosz,
+        buttonLabel: 'Zapłać online',
+      } as const)
+    : ({ mode: 'none' } as const);
+  const ctx = await buildOrderEmailContext(order, payment);
+  ctx.manageOrderUrl = manageOrderUrl;
+
+  const { data: rows } = await supabase
     .from('order_emails')
     .select('id, email_type, recipient, status')
     .eq('order_id', orderId)
+    .in('email_type', ['awaiting_stripe_payment', 'customer_confirmation'])
+    .eq('recipient', profile.email)
     .in('status', ['pending', 'failed']);
 
-  const rows = queued ?? [];
-
-  // Prefer typed customer email; migrate legacy customer_confirmation rows.
-  const customerRow =
-    rows.find((r: { email_type: string }) => r.email_type === customerType) ??
-    rows.find(
-      (r: { email_type: string }) => r.email_type === 'customer_confirmation'
-    );
-
-  if (customerRow && customerRow.status !== 'sent') {
-    // If legacy type differs, still render the appropriate template content.
+  for (const row of rows ?? []) {
     await sendRenderedOrderEmail({
       orderId,
-      emailId: customerRow.id,
-      emailType:
-        customerRow.email_type === 'customer_confirmation'
-          ? customerType
-          : (customerRow.email_type as OrderEmailType),
-      recipient: profile.email,
-      ctx,
-    });
-  } else if (!customerRow) {
-    await queueAndSendTypedOrderEmail({
-      orderId,
-      emailType: customerType,
+      emailId: row.id,
+      emailType: 'awaiting_stripe_payment',
       recipient: profile.email,
       ctx,
     });
   }
 
-  for (const row of rows as Array<{
-    id: string;
-    email_type: string;
-    recipient: string;
-    status: string;
-  }>) {
-    if (row.email_type !== 'admin_notification') continue;
-    if (row.status === 'sent') continue;
-    await sendRenderedOrderEmail({
+  if (!(rows ?? []).length) {
+    await queueAndSendTypedOrderEmail({
       orderId,
-      emailId: row.id,
-      emailType: 'admin_notification',
-      recipient: row.recipient,
+      emailType: 'awaiting_stripe_payment',
+      recipient: profile.email,
       ctx,
     });
   }
@@ -691,13 +827,30 @@ export async function notifyOrderPaymentReceived(
   if (!order) return;
   const profile = order.customer_profiles;
   if (!profile?.email) return;
+  const manageOrderUrl = await loadManageOrderUrl(orderId);
   const ctx = await buildOrderEmailContext(order, { mode: 'none' });
+  ctx.manageOrderUrl = manageOrderUrl;
+  ctx.audience = 'customer';
   await queueAndSendTypedOrderEmail({
     orderId,
     emailType: 'payment_received',
     recipient: profile.email,
     ctx,
   });
+
+  const adminEmail = process.env.BOOKING_ADMIN_EMAIL?.trim();
+  if (adminEmail) {
+    const adminCtx: OrderEmailContext = {
+      ...ctx,
+      audience: 'admin',
+    };
+    await queueAndSendTypedOrderEmail({
+      orderId,
+      emailType: 'payment_received',
+      recipient: adminEmail,
+      ctx: adminCtx,
+    });
+  }
 }
 
 export async function notifyOrderCancellation(orderId: string): Promise<void> {
