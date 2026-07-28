@@ -181,7 +181,7 @@ const requiredByRoute = {
   ],
   '/dladzieci': [
     'Rozwijamy rysunek i wyobraźnię',
-    'napisz do nas i poproś o ofertę na: nerogosia@gmail.com',
+    'napisz do nas i poproś o ofertę na: kontakt@ceramikanero.pl',
     'KURS RYSUNEK MALARSTWO CERAMIKA 6-10 LAT',
   ],
   '/dladoroslych': [
@@ -197,7 +197,7 @@ const requiredByRoute = {
   '/glinadowina': ['Degustacja wina', 'Glina do wina', 'Włoskie przystawki'],
   '/urodziny': [
     'pełne kreatywności i zabawy',
-    '600-158-318',
+    '532-279-101',
     'Co oferujemy?',
     'Urodziny z ceramiką dla dzieci',
   ],

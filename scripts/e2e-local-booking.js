@@ -100,7 +100,7 @@ async function main() {
       await page
         .getByPlaceholder('Adres e-mail', { exact: true })
         .fill('jan.testowy@example.com');
-      await page.getByPlaceholder('Telefon', { exact: true }).fill('600158318');
+      await page.getByPlaceholder('Telefon', { exact: true }).fill('532279101');
       await page
         .getByRole('checkbox', { name: /politykę prywatności/i })
         .check();

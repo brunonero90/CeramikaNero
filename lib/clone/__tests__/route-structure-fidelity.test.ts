@@ -30,7 +30,7 @@ describe('urodziny expected structure', () => {
       '/kopia-panienski-plus-opis',
       '/kopia-urodziny-ceramika',
       '/glinadowina',
-      'mailto:nerogosia@gmail.com?subject=Urodziny%20z%20malowaniem%20',
+      'mailto:kontakt@ceramikanero.pl?subject=Urodziny%20z%20malowaniem%20',
     ]);
     expect(urodzinyPage.blocks.map((b) => b.ctaLabel)).toEqual([
       'Więcej szczegółów...',

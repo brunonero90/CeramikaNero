@@ -79,6 +79,27 @@ partial instructions.
 Branded HTML + plain text via `lib/email` (React Email). Outboxes:
 `order_emails`, `booking_emails`. Cron: `/api/cron/email-dispatch`.
 
+## Stripe sandbox test matrix
+
+Run every scenario with Stripe test keys and create a new CN-O order for each
+test. Use any future expiry (for example `12/34`) and any three-digit CVC for
+card tests.
+
+| Scenario                         | Checkout test data                                                                                    | Expected application result                                                                                             |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Successful card                  | Visa `4242 4242 4242 4242`                                                                            | Order/payment and linked booking become paid/confirmed exactly once; payment CTA disappears; confirmation email is sent |
+| Failed card                      | Visa `4000 0000 0000 0002`                                                                            | Stripe reports `card_declined`; order is not confirmed; capacity/inventory is not changed again; retry remains possible |
+| Failed card — insufficient funds | Visa `4000 0000 0000 9995`                                                                            | Stripe reports `insufficient_funds`; the same failure safeguards apply                                                  |
+| Successful BLIK                  | Normal customer email + code `123456`                                                                 | BLIK is approved, webhook/return reconciliation confirms once, and the success email is sent                            |
+| Failed BLIK — customer decline   | Enter `customer_declined@example.com` as the checkout email, choose BLIK, then use any six-digit code | Stripe declines after about eight seconds; order remains unpaid and retryable; failure email is queued once             |
+| Failed BLIK — invalid code       | Enter `invalid_code@example.com` as the checkout email, choose BLIK, then use any six-digit code      | Stripe returns an immediate invalid-code failure; order remains unpaid                                                  |
+| BLIK timeout                     | Enter `customer_timeout@example.com` as the checkout email, choose BLIK, then use any six-digit code  | Stripe times out after about 60 seconds; order remains unpaid and retryable                                             |
+
+For every failed scenario, verify the corresponding Stripe event was delivered
+to `/api/webhooks/stripe` with a `2xx`, no paid transition or success email was
+created, the linked booking was not confirmed, and a later successful retry
+confirms the order only once.
+
 ## Security
 
 - Prices, shipping, inventory, and Stripe line items are never browser-authoritative.

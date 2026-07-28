@@ -121,7 +121,7 @@ export const dlaDzieciPage = {
       paragraphs: [
         'masz pomysł na ciekawe zajęcia',
         'chcesz spędzić kreatywne urodzinki',
-        'napisz do nas i poproś o ofertę na: nerogosia@gmail.com',
+        'napisz do nas i poproś o ofertę na: kontakt@ceramikanero.pl',
         'wejdź na podstronę: urodziny',
       ],
       imageSrc:
@@ -152,7 +152,7 @@ export const dlaDzieciPage = {
       id: 'kreatywne',
       title: 'KREATYWNE WARSZTATY',
       bullets: [
-        'masz pomysł na kreatywne warsztaty, napisz do nas nerogosia@gmail.com',
+        'masz pomysł na kreatywne warsztaty, napisz do nas kontakt@ceramikanero.pl',
         'Kreatywność bez granic! Organizujemy różne warsztaty i kursy od 4 do 106 lat!',
         'co miesiąc inne tematy',
         'na Obserwuj nas na FB i Instagramie- tam publikujemy najnowsze wydarzenia oraz relacje z warsztatów i prace naszych zdolnych uczniów',
@@ -252,7 +252,7 @@ export const dlaDoroslychPage = {
       id: 'kreatywne',
       title: 'Kreatywne warsztaty',
       bullets: [
-        'masz pomysł na kreatywne warsztaty, napisz do nas nerogosia@gmail.com',
+        'masz pomysł na kreatywne warsztaty, napisz do nas kontakt@ceramikanero.pl',
         'Kreatywność bez granic! Organizujemy różne warsztaty i kursy od 6 do 106 lat!',
         'co miesiąc inne tematy',
         'na Obserwuj nas na FB i Instagramie- tam publikujemy najnowsze wydarzenia oraz relacje z warsztatów i prace naszych zdolnych uczniów',

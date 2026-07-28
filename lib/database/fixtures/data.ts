@@ -513,7 +513,7 @@ export const contentPages: ContentPage[] = [
     title: 'Kontakt',
     slug: 'kontakt',
     excerpt: null,
-    content: 'Skontaktuj się z nami: kontakt@ceramikanero.com, Suchy Las.',
+    content: 'Skontaktuj się z nami: kontakt@ceramikanero.pl, Suchy Las.',
     status: 'published',
     suggestedTheme: 'atelier',
     seoTitle: 'Kontakt | Ceramika Nero',
@@ -1929,7 +1929,7 @@ export const siteSettings: SiteSetting[] = [
   },
   {
     key: 'studio_email',
-    value: 'kontakt@ceramikanero.com',
+    value: 'kontakt@ceramikanero.pl',
     description: 'Publiczny adres e-mail studia.',
   },
   {

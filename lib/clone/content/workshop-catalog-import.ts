@@ -33,7 +33,8 @@ export const catalogImportInstructors = [
     displayName: 'Małgorzata Nero',
     biography:
       'Właścicielka Pracowni ceramiki Nero. Kontakt publiczny z archiwum strony.',
-    provenance: 'archive siteContact / content footers (nerogosia@gmail.com)',
+    provenance:
+      'archive siteContact / content footers (kontakt@ceramikanero.pl)',
   },
 ] as const;
 

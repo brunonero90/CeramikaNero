@@ -5,7 +5,7 @@ import type { PublicSiteSettings } from '@/lib/database/domain';
 const base: PublicSiteSettings = {
   studioName: 'Ceramika Nero',
   studioAddress: 'ul. Podgórna 3, Suchy Las',
-  studioEmail: 'nerogosia@gmail.com',
+  studioEmail: 'kontakt@ceramikanero.pl',
   studioPhone: '532 279 101',
   whatsappUrl: 'https://wa.me/48532279101',
   facebookUrl: 'https://www.facebook.com/ceramikanero',

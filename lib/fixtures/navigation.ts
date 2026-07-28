@@ -24,7 +24,7 @@ export const siteContact = {
   brand: 'Pracownia ceramiki Nero',
   addressLine: 'ul. Podgórna 3',
   cityLine: 'Suchy Las 62-002',
-  email: 'nerogosia@gmail.com',
+  email: 'kontakt@ceramikanero.pl',
   phoneDisplay: '532 279 101',
   phoneHref: 'tel:+48532279101',
   bankAccount: '30 1140 2004 0000 3102 8314 9467',

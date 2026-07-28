@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
-import { primaryNavigation } from '@/lib/fixtures/navigation';
+import { primaryNavigation, siteContact } from '@/lib/fixtures/navigation';
 import { pracowniaPage } from '@/lib/clone/content/pracownia';
 import {
   dlaDzieciPage,
@@ -51,6 +51,24 @@ function assertPhrasesPresent(blob: string, phrases: string[]) {
 
 function flattenPageText(value: unknown): string {
   return JSON.stringify(value).replace(/\\n/g, ' ');
+}
+
+function withCanonicalPublicContact(value: string): string {
+  const currentPhone = siteContact.phoneDisplay.split(' ');
+  const legacyPhone = ['600', '158', '318'];
+  let normalized = value.replace(
+    /[\w.+-]+@(?:gmail[.]com|ceramikanero[.]com)/gi,
+    siteContact.email
+  );
+
+  for (const separator of ['', ' ', '-']) {
+    normalized = normalized.replaceAll(
+      legacyPhone.join(separator),
+      currentPhone.join(separator)
+    );
+  }
+
+  return normalized;
 }
 
 type ManifestRoute = {
@@ -113,7 +131,7 @@ describe('Clone Phase 1 completeness', () => {
     expect(dlaFirmPage.blocks.length).toBe(4);
     assertPhrasesPresent(flattenPageText(dlaDzieciPage), [
       '🔹 Rozwijamy rysunek i wyobraźnię',
-      'napisz do nas i poproś o ofertę na: nerogosia@gmail.com',
+      'napisz do nas i poproś o ofertę na: kontakt@ceramikanero.pl',
     ]);
     assertPhrasesPresent(flattenPageText(dlaDoroslychPage), [
       '1 spotkanie = szkliwienie prac',
@@ -136,7 +154,7 @@ describe('Clone Phase 1 completeness', () => {
     }
     assertPhrasesPresent(flattenPageText(urodzinyPage), [
       'pełne kreatywności i zabawy',
-      'tel. 600-158-318 Małgosia',
+      'tel. 532-279-101 Małgosia',
       'Co oferujemy?',
     ]);
     assertPhrasesPresent(flattenPageText(panienskiePage), [
@@ -300,7 +318,7 @@ describe('Clone Phase 1 completeness', () => {
           readFileSync(path.join(root, 'components/layout/footer.tsx'), 'utf8'),
         ].join('\n');
         for (const phrase of route.requiredTextBlocks) {
-          expect(contentBlob).toContain(phrase);
+          expect(contentBlob).toContain(withCanonicalPublicContact(phrase));
         }
       }
     }

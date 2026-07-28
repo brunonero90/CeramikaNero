@@ -130,7 +130,7 @@ export const pracowniaPage = {
         'w różnych pakietach oferujemy zarówno profesjonalną sesję zdjęciową jak i naukę kręcenia kołem garncarskim',
         'dostosujemy pracownię tematycznie do każdej przyszłej Panny Młodej,',
       ],
-      paragraphs: ['Napisz do nas i poproś o ofertę: nerogosia@gmail.com'],
+      paragraphs: ['Napisz do nas i poproś o ofertę: kontakt@ceramikanero.pl'],
       imageSrc: IMG.bridal,
       imageAlt: '3a.jpg',
       imageFirst: true,
@@ -231,7 +231,7 @@ export const pracowniaPage = {
       bullets: [
         'przyjdź do naszej klimatycznej pracowni z klasą lub przyjedziemy do ciebie',
         'poznaj naszą ofertę',
-        'napisz maila do : nerogosia@gmail.com i poproś o ofertę dla swojej szkoły: napisz ilu jest uczniów i ile klas, gdzie jest twoja szkoła, czy wolisz przyjechać do nas czy mamy was odwiedzić z naszą ceramiką.',
+        'napisz maila do : kontakt@ceramikanero.pl i poproś o ofertę dla swojej szkoły: napisz ilu jest uczniów i ile klas, gdzie jest twoja szkoła, czy wolisz przyjechać do nas czy mamy was odwiedzić z naszą ceramiką.',
       ],
       imageSrc: IMG.schools,
       imageAlt: 'Warsztaty ceramiczne dla szkół',

@@ -130,7 +130,7 @@ const SITE_SETTINGS = [
   },
   {
     key: 'studio_email',
-    value: 'nerogosia@gmail.com',
+    value: 'kontakt@ceramikanero.pl',
     provenance: 'archive siteContact.email',
   },
   {

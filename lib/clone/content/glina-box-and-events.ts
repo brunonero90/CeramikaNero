@@ -125,7 +125,7 @@ export const urodzinyPage = {
       'Czy szukasz wyjątkowego pomysłu na urodziny swojego dziecka?',
       'Chcesz, aby ten dzień był niezapomniany i pełen radości?',
       'Pracownia Ceramiki Nero zaprasza na specjalne warsztaty urodzinowe,\nktóre połączą twórczą zabawę z niezapomnianymi wspomnieniami!',
-      'Napisz na nerogosia@gmail.com i poproś o ofertę.',
+      'Napisz na kontakt@ceramikanero.pl i poproś o ofertę.',
     ],
   },
   offerIntro: {
@@ -149,7 +149,7 @@ export const urodzinyPage = {
         'Tort i zdjęcia na ściance ozdobionej w wybranym klimacie',
         'Ulepione przedmioty zostają wypalone w profesjonalnym piecu ceramicznym',
         'Możemy je poszkliwić lub dzieci mogą spotkać się ponownie na szkliwienie',
-        'Zadzwoń i dowiedz się szczegółów,\ntel. 600-158-318 Małgosia',
+        'Zadzwoń i dowiedz się szczegółów,\ntel. 532-279-101 Małgosia',
       ],
       imageSrc:
         '/images/wix-migrated/747d6f_e0f7a1b2accc4542a5fec56b5ba4b975.jpg',
@@ -171,7 +171,7 @@ export const urodzinyPage = {
         'Na kubku mogą być napisy, rysunki w jednym z parudziesięciu kolorów, które posiadamy',
         'Kubki są zdatne do picia i do mycia w zmywarce',
         'Produkty muszą być wypalone w piecu ceramicznym i są do odbioru po około 2-3 tygodniach',
-        'Zadzwoń i dowiedz się szczegółów,\ntel. 600-158-318 Małgosia',
+        'Zadzwoń i dowiedz się szczegółów,\ntel. 532-279-101 Małgosia',
       ],
       imageSrc:
         '/images/wix-migrated/747d6f_efb20b5c2255491d9cd3bfa29c398561.jpg',
@@ -195,7 +195,7 @@ export const urodzinyPage = {
         'Profesjonalne prowadzenie',
         'Zapewnione wszystkie materiały',
         'Pomożemy wam stworzyć piękne ozdoby dla was i na prezenty dla najbliższych',
-        'Zadzwoń i dowiedz się szczegółów, tel. 600-158-318 Małgosia',
+        'Zadzwoń i dowiedz się szczegółów, tel. 532-279-101 Małgosia',
       ],
       imageSrc:
         '/images/wix-migrated/747d6f_27032db4ff7642f185f09f10408c5e0f.jpg',
@@ -218,7 +218,7 @@ export const urodzinyPage = {
         'Profesjonalne prowadzenie krok po kroku — nawet jeśli to Twój pierwszy obraz, pomożemy Ci stworzyć coś wyjątkowego',
         'Zapewniamy wszystkie materiały: kartki, farby, pędzle, fartuszki i niezbędne akcesoria',
         'Każdy uczestnik zabiera swój obraz do domu — jako piękną pamiątkę urodzin',
-        'Zadzwoń i dowiedz się szczegółów: 600-158-318 (Małgosia) lub napisz do nas — stworzymy urodziny idealne dla Ciebie ✨',
+        'Zadzwoń i dowiedz się szczegółów: 532-279-101 (Małgosia) lub napisz do nas — stworzymy urodziny idealne dla Ciebie ✨',
       ],
       imageSrc:
         '/images/wix-migrated/747d6f_cd2460d4d3c1409b91c31dba9f7db804.png',
@@ -229,7 +229,7 @@ export const urodzinyPage = {
       imageHeight: 757,
       ctaLabel: 'Napisz do nas',
       ctaHref:
-        'mailto:nerogosia@gmail.com?subject=Urodziny%20z%20malowaniem%20',
+        'mailto:kontakt@ceramikanero.pl?subject=Urodziny%20z%20malowaniem%20',
       tinted: false,
       compact: true,
     },

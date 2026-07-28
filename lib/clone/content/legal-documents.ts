@@ -55,7 +55,7 @@ export const regulaminDocument = {
     { type: 'h2', text: 'Nieobecność uczestnika' },
     {
       type: 'p',
-      text: 'Najpóźniej 24 godziny przed rozpoczęciem warsztatów należy poinformować organizatora o nieobecności telefonicznie pod numerem telefonu 600 158 318 aby bezkosztowo ustalić nowy termin spotkania. Uczestnik ma 2 miesiące od terminu, na którym się nie pojawił, aby umówić się na kolejny termin.',
+      text: 'Najpóźniej 24 godziny przed rozpoczęciem warsztatów należy poinformować organizatora o nieobecności telefonicznie pod numerem telefonu 532 279 101 aby bezkosztowo ustalić nowy termin spotkania. Uczestnik ma 2 miesiące od terminu, na którym się nie pojawił, aby umówić się na kolejny termin.',
     },
     {
       type: 'p',
@@ -82,7 +82,7 @@ export const regulaminDocument = {
     },
     {
       type: 'p',
-      text: 'Reklamację należy złożyć mailowo na adres: nerogosia@gmail.com lub telefonicznie 600158318',
+      text: 'Reklamację należy złożyć mailowo na adres: kontakt@ceramikanero.pl lub telefonicznie 532279101',
     },
     {
       type: 'p',
@@ -123,7 +123,7 @@ export const politykaPrywatnosciDocument = {
     },
     {
       type: 'p',
-      text: 'Jeśli chcesz skontaktować się z nami w związku z przetwarzaniem przez nas Twoich danych osobowych, napisz do nas na adres e-mail: nerogosia@gmail.com',
+      text: 'Jeśli chcesz skontaktować się z nami w związku z przetwarzaniem przez nas Twoich danych osobowych, napisz do nas na adres e-mail: kontakt@ceramikanero.pl',
     },
     { type: 'h2', text: 'Twoje uprawnienia' },
     {
@@ -185,7 +185,7 @@ export const politykaPrywatnosciDocument = {
     },
     {
       type: 'p',
-      text: 'Kontakt w sprawach danych osobowych: nerogosia@gmail.com, tel. 600 158 318. Regulamin udziału w warsztatach: /regulamin.',
+      text: 'Kontakt w sprawach danych osobowych: kontakt@ceramikanero.pl, tel. 532 279 101. Regulamin udziału w warsztatach: /regulamin.',
     },
   ] satisfies LegalBlock[],
   note: 'Intentional departure from archived /terms-conditions presentation: the Wix page merged workshop rules with a long privacy policy and had broken line wrapping, escaped punctuation, and run-on headings. Wording of clauses is preserved; hierarchy, lists, and paragraph breaks are restored for readability. Remaining long-form archive tables remain in reference/original-site for full CMS migration.',

@@ -372,7 +372,7 @@ where w.slug = 'ceramika-dla-doroslych' and m.storage_path = 'placeholders/ceram
 insert into public.content_pages (title, slug, content, status, suggested_theme, seo_title, seo_description)
 values
   ('Pracownia', 'pracownia', 'Pracownia Ceramika Nero w Suchym Lesie. Tworzymy i uczymy ceramiki w ciepłej, kameralnej atmosferze.', 'published', 'atelier', 'Pracownia Ceramika Nero w Suchym Lesie', 'Odwiedź pracownię ceramiczną Ceramika Nero w Suchym Lesie.'),
-  ('Kontakt', 'kontakt', 'Skontaktuj się z nami: kontakt@ceramikanero.com, Suchy Las.', 'published', 'atelier', 'Kontakt | Ceramika Nero', 'Skontaktuj się z pracownią Ceramika Nero.');
+  ('Kontakt', 'kontakt', 'Skontaktuj się z nami: kontakt@ceramikanero.pl, Suchy Las.', 'published', 'atelier', 'Kontakt | Ceramika Nero', 'Skontaktuj się z pracownią Ceramika Nero.');
 
 -- ---------------------------------------------------------------------------
 -- Blog posts
@@ -416,7 +416,7 @@ insert into public.site_settings (key, value, description)
 values
   ('studio_name', '"Ceramika Nero"'::jsonb, 'Nazwa studia używana w metadanych i stopce.'),
   ('studio_address', '"Suchy Las, Polska"'::jsonb, 'Adres studia wyświetlany publicznie.'),
-  ('studio_email', '"kontakt@ceramikanero.com"'::jsonb, 'Publiczny adres e-mail studia.'),
+  ('studio_email', '"kontakt@ceramikanero.pl"'::jsonb, 'Publiczny adres e-mail studia.'),
   ('studio_phone', '"+48 TBD"'::jsonb, 'Publiczny numer telefonu (TBD).'),
   ('booking_cta_label', '"Zarezerwuj warsztat"'::jsonb, 'Tekst głównego przycisku rezerwacji.'),
   ('default_seo_title', '"Ceramika Nero — Warsztaty ceramiczne w Suchym Lesie"'::jsonb, 'Domyślny tytuł SEO.'),

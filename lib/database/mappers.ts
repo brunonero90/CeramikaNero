@@ -220,7 +220,7 @@ export function mapPublicSiteSettings(
   return {
     studioName: get('studio_name', 'Ceramika Nero'),
     studioAddress: get('studio_address', 'Suchy Las, Polska'),
-    studioEmail: get('studio_email', 'kontakt@ceramikanero.com'),
+    studioEmail: get('studio_email', 'kontakt@ceramikanero.pl'),
     studioPhone: get('studio_phone', '532 279 101'),
     whatsappUrl: get('whatsapp_url', 'https://wa.me/48532279101'),
     facebookUrl: get('facebook_url', 'https://www.facebook.com/ceramikanero'),

@@ -3,6 +3,7 @@ import type Stripe from 'stripe';
 
 const notifyPaymentReceived = vi.fn();
 const notifyAdminProblem = vi.fn();
+const notifyPaymentFailed = vi.fn();
 
 vi.mock('@/lib/booking/email', () => ({
   sendBookingConfirmationEmail: vi.fn(),
@@ -16,7 +17,8 @@ vi.mock('@/lib/cart/order-email', () => ({
   notifyAdminOrderPaymentProblem: (...args: unknown[]) =>
     notifyAdminProblem(...args),
   notifyOrderStripeProcessing: vi.fn(),
-  notifyOrderPaymentFailed: vi.fn(),
+  notifyOrderPaymentFailed: (...args: unknown[]) =>
+    notifyPaymentFailed(...args),
 }));
 
 vi.mock('@/lib/supabase/cart-admin', () => ({
@@ -84,6 +86,11 @@ function createSupabaseMock(state: {
   const processed = state.processedEventIds ?? new Set<string>();
   const claimed = new Set<string>();
   const rpcCalls: Array<{ name: string; args: Record<string, unknown> }> = [];
+  const updates: Array<{
+    table: string;
+    patch: Row;
+    filters: Row;
+  }> = [];
   let confirmAttempts = 0;
 
   const client = {
@@ -91,13 +98,15 @@ function createSupabaseMock(state: {
       const filters: Row = {};
       let mode: 'select' | 'update' | 'upsert' = 'select';
       let upsertRows: Row[] = [];
+      let updatePatch: Row = {};
       const api = {
         select: () => {
           mode = 'select';
           return api;
         },
-        update: () => {
+        update: (patch: Row) => {
           mode = 'update';
+          updatePatch = patch;
           return api;
         },
         upsert: (rows: Row | Row[]) => {
@@ -124,6 +133,13 @@ function createSupabaseMock(state: {
             for (const row of upsertRows) {
               processed.add(String(row.event_id));
             }
+          }
+          if (mode === 'update') {
+            updates.push({
+              table,
+              patch: updatePatch,
+              filters: { ...filters },
+            });
           }
           return Promise.resolve(resolve({ data: null, error: null }));
         },
@@ -164,6 +180,7 @@ function createSupabaseMock(state: {
     },
     __rpcCalls: rpcCalls,
     __processed: processed,
+    __updates: updates,
   };
 
   return client;
@@ -202,6 +219,7 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
     vi.resetModules();
     notifyPaymentReceived.mockReset();
     notifyAdminProblem.mockReset();
+    notifyPaymentFailed.mockReset();
   });
 
   afterEach(() => {
@@ -250,6 +268,84 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
     );
     expect(result.ok).toBe(true);
     expect(notifyPaymentReceived).toHaveBeenCalledWith('ord_1');
+  });
+
+  it('async BLIK decline leaves the order unpaid and queues one failure email', async () => {
+    const supabase = createSupabaseMock({});
+    const { processStripeEvent } = await import('@/lib/booking/stripe-webhook');
+    const event = orderSessionEvent(
+      'checkout.session.async_payment_failed',
+      { payment_status: 'unpaid' },
+      'evt_blik_declined'
+    );
+
+    const first = await processStripeEvent(supabase as never, event);
+    const second = await processStripeEvent(supabase as never, event);
+
+    expect(first).toEqual({ ok: true });
+    expect(second).toEqual({ ok: true, duplicate: true });
+    expect(
+      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_payment')
+    ).toHaveLength(0);
+    expect(supabase.__updates).toContainEqual({
+      table: 'payments',
+      patch: {
+        status: 'failed',
+        failure_message: 'Async Checkout payment failed',
+      },
+      filters: { provider_checkout_id: 'cs_order_1' },
+    });
+    expect(notifyPaymentFailed).toHaveBeenCalledTimes(1);
+    expect(notifyPaymentFailed).toHaveBeenCalledWith('ord_1', 'payment_failed');
+    expect(notifyPaymentReceived).not.toHaveBeenCalled();
+  });
+
+  it('card decline records failure without confirming the CN-O order', async () => {
+    const supabase = createSupabaseMock({});
+    const { processStripeEvent } = await import('@/lib/booking/stripe-webhook');
+    const event = {
+      id: 'evt_card_declined',
+      type: 'payment_intent.payment_failed',
+      data: {
+        object: {
+          id: 'pi_order_1',
+          object: 'payment_intent',
+          amount: 18900,
+          status: 'requires_payment_method',
+          metadata: {
+            entity_type: 'order',
+            order_id: 'ord_1',
+            payment_id: 'pay_order_1',
+          },
+          last_payment_error: {
+            code: 'card_declined',
+            decline_code: 'generic_decline',
+            message: 'Your card was declined.',
+          },
+        },
+      },
+    } as unknown as Stripe.Event;
+
+    const first = await processStripeEvent(supabase as never, event);
+    const second = await processStripeEvent(supabase as never, event);
+
+    expect(first).toEqual({ ok: true });
+    expect(second).toEqual({ ok: true, duplicate: true });
+    expect(
+      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_payment')
+    ).toHaveLength(0);
+    expect(supabase.__updates).toContainEqual({
+      table: 'payments',
+      patch: {
+        status: 'failed',
+        failure_code: 'card_declined',
+        failure_message: 'Your card was declined.',
+      },
+      filters: { provider_payment_id: 'pi_order_1' },
+    });
+    expect(notifyPaymentFailed).toHaveBeenCalledTimes(1);
+    expect(notifyPaymentFailed).toHaveBeenCalledWith('ord_1', 'payment_failed');
+    expect(notifyPaymentReceived).not.toHaveBeenCalled();
   });
 
   it('failed processing returns 5xx and can succeed on retry', async () => {
