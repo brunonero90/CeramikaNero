@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState, useTransition } from 'react';
 import { useLocalCart } from '@/components/clone/local-cart';
 import { submitCartOrder } from '@/lib/cart/checkout';
@@ -18,11 +17,11 @@ type Participant = {
 };
 
 export function CheckoutPageClient() {
-  const router = useRouter();
   const { lines, clear, ready } = useLocalCart();
   const [validated, setValidated] = useState<RevalidatedCart | null>(null);
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+  const [redirecting, setRedirecting] = useState(false);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -53,7 +52,7 @@ export function CheckoutPageClient() {
   );
 
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || redirecting) return;
     startTransition(async () => {
       const result = await revalidateCartLines(lines);
       setValidated(result);
@@ -68,7 +67,7 @@ export function CheckoutPageClient() {
       }
       setParticipantsBySession(next);
     });
-  }, [ready, lines]);
+  }, [ready, lines, redirecting]);
 
   function updateParticipant(
     sessionId: string,
@@ -125,21 +124,38 @@ export function CheckoutPageClient() {
         return;
       }
 
+      // Mark redirecting before clearing the cart so the empty-cart screen
+      // cannot flash and swallow the success navigation.
+      setRedirecting(true);
+      const destination = result.publicLookupToken
+        ? `/zamowienie/${encodeURIComponent(result.publicLookupToken)}`
+        : (() => {
+            const params = new URLSearchParams({
+              reference: result.orderReference,
+              total: String(result.totalGrossGrosz),
+            });
+            if (result.bookingReferences.length) {
+              params.set('bookings', result.bookingReferences.join(','));
+            }
+            if (result.shippingQuoteRequired) params.set('shipping_quote', '1');
+            return `/cart/sukces?${params.toString()}`;
+          })();
+
       clear();
-      if (result.publicLookupToken) {
-        router.push(`/zamowienie/${result.publicLookupToken}`);
-        return;
-      }
-      const params = new URLSearchParams({
-        reference: result.orderReference,
-        total: String(result.totalGrossGrosz),
-      });
-      if (result.bookingReferences.length) {
-        params.set('bookings', result.bookingReferences.join(','));
-      }
-      if (result.shippingQuoteRequired) params.set('shipping_quote', '1');
-      router.push(`/cart/sukces?${params.toString()}`);
+      // Hard navigation avoids deferred router.push inside startTransition.
+      window.location.assign(destination);
     });
+  }
+
+  if (redirecting) {
+    return (
+      <main className="mx-auto max-w-2xl px-4 py-12">
+        <h1 className="text-2xl font-semibold">Zamówienie</h1>
+        <p className="mt-4 text-text-muted">
+          Zamówienie przyjęte — przekierowujemy do potwierdzenia…
+        </p>
+      </main>
+    );
   }
 
   if (ready && lines.length === 0) {
