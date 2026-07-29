@@ -14,6 +14,7 @@ type Participant = {
   display_name: string;
   age: string;
   participant_type: 'adult' | 'child' | 'unspecified';
+  accessibility_notes: string;
 };
 
 type PaymentOptions = {
@@ -79,7 +80,8 @@ export function CheckoutPageClient({
         next[line.sessionId] = Array.from({ length: line.quantity }, () => ({
           display_name: '',
           age: '',
-          participant_type: 'unspecified',
+          participant_type: 'unspecified' as const,
+          accessibility_notes: '',
         }));
       }
       setParticipantsBySession(next);
@@ -279,6 +281,9 @@ export function CheckoutPageClient({
           <label className="block text-sm">
             Telefon
             <input
+              required
+              type="tel"
+              autoComplete="tel"
               className="mt-1 w-full border px-3 py-2"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -315,6 +320,7 @@ export function CheckoutPageClient({
                     <label className="text-sm">
                       Imię / oznaczenie
                       <input
+                        required
                         className="mt-1 w-full border px-3 py-2"
                         value={p.display_name}
                         onChange={(e) =>
@@ -347,6 +353,28 @@ export function CheckoutPageClient({
                           )
                         }
                       />
+                    </label>
+                    <label className="text-sm sm:col-span-2">
+                      Ważne informacje organizacyjne / potrzeby dostępności
+                      <textarea
+                        className="mt-1 w-full border px-3 py-2"
+                        rows={2}
+                        maxLength={500}
+                        value={p.accessibility_notes}
+                        onChange={(e) =>
+                          updateParticipant(
+                            line.sessionId,
+                            idx,
+                            'accessibility_notes',
+                            e.target.value
+                          )
+                        }
+                      />
+                      <span className="mt-1 block text-xs text-text-muted">
+                        Podaj tylko informacje potrzebne do organizacji
+                        warsztatu (np. dostępność przestrzeni). Nie wysyłaj
+                        diagnoz ani numerów dokumentów.
+                      </span>
                     </label>
                   </div>
                 ))}

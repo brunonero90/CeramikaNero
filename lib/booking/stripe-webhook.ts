@@ -257,14 +257,25 @@ async function handleUnpaidCheckoutSession(
     provider_checkout_id: string;
     provider_payment_id?: string;
     status?: string;
+    livemode?: boolean;
   } = {
     provider_checkout_id: session.id,
+    livemode: Boolean(session.livemode),
   };
   if (paymentIntentId) {
     patch.provider_payment_id = paymentIntentId;
   }
 
-  await supabase.from('payments').update(patch).eq('id', paymentId);
+  await (supabase as unknown as {
+    from: (t: string) => {
+      update: (p: Record<string, unknown>) => {
+        eq: (c: string, v: string) => Promise<unknown>;
+      };
+    };
+  })
+    .from('payments')
+    .update(patch)
+    .eq('id', paymentId);
 
   const entity = resolveEntity(session);
   if (entity.entityType === 'order' && entity.orderId) {
@@ -508,21 +519,33 @@ async function handlePaymentIntentFailed(
     failure_code: paymentIntent.last_payment_error?.code ?? null,
     failure_message:
       paymentIntent.last_payment_error?.message ?? 'Payment failed',
+    livemode: Boolean(paymentIntent.livemode),
   };
 
-  await supabase
+  const paymentsLoose = supabase as unknown as {
+    from: (t: string) => {
+      update: (p: Record<string, unknown>) => {
+        eq: (
+          c: string,
+          v: string
+        ) => Promise<unknown>;
+      };
+    };
+  };
+
+  await paymentsLoose
     .from('payments')
     .update(update)
     .eq('provider_payment_id', paymentIntent.id);
 
   const paymentId = paymentIntent.metadata?.payment_id;
   if (paymentId) {
-    await supabase.from('payments').update(update).eq('id', paymentId);
+    await paymentsLoose.from('payments').update(update).eq('id', paymentId);
   }
 
   const checkoutSessionId = paymentIntent.metadata?.checkout_session_id ?? null;
   if (checkoutSessionId) {
-    await supabase
+    await paymentsLoose
       .from('payments')
       .update(update)
       .eq('provider_checkout_id', checkoutSessionId);

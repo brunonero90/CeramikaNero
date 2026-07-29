@@ -11,6 +11,16 @@ type NavItem = {
 const navItems: NavItem[] = [
   { href: '/admin', label: 'Pulpit' },
   {
+    href: '/admin/dzisiaj',
+    label: 'Dzisiaj',
+    allowedRoles: ['owner', 'manager'],
+  },
+  {
+    href: '/admin/analityka',
+    label: 'Analityka',
+    allowedRoles: ['owner', 'manager'],
+  },
+  {
     href: '/admin/kategorie',
     label: 'Kategorie',
     allowedRoles: ['owner', 'manager'],

@@ -22,6 +22,7 @@ export default async function SessionsAdminPage({
   const params = await searchParams;
   const supabase = await createClient();
 
+  const view = typeof params.view === 'string' ? params.view : 'list';
   const workshop = typeof params.workshop === 'string' ? params.workshop : '';
   const status = typeof params.status === 'string' ? params.status : '';
   const instructor =
@@ -70,6 +71,7 @@ export default async function SessionsAdminPage({
     if (instructor) next.set('instructor', instructor);
     if (dateFrom) next.set('dateFrom', dateFrom);
     if (dateTo) next.set('dateTo', dateTo);
+    if (view && view !== 'list') next.set('view', view);
     Object.entries(patch).forEach(([key, value]) => {
       if (value) next.set(key, value);
       else next.delete(key);
@@ -80,14 +82,28 @@ export default async function SessionsAdminPage({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         <h1 className="text-2xl font-semibold">Terminy</h1>
-        <Link
-          href="/admin/terminy/nowy"
-          className="rounded-md bg-gray-900 px-4 py-2 text-sm text-white"
-        >
-          Nowy termin
-        </Link>
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href={buildLink({ view: 'list', page: '1' })}
+            className={`rounded-md border px-3 py-2 text-sm ${view !== 'calendar' ? 'bg-gray-900 text-white' : 'bg-white'}`}
+          >
+            Lista
+          </Link>
+          <Link
+            href={buildLink({ view: 'calendar', page: '1' })}
+            className={`rounded-md border px-3 py-2 text-sm ${view === 'calendar' ? 'bg-gray-900 text-white' : 'bg-white'}`}
+          >
+            Kalendarz
+          </Link>
+          <Link
+            href="/admin/terminy/nowy"
+            className="rounded-md bg-gray-900 px-4 py-2 text-sm text-white"
+          >
+            Nowy termin
+          </Link>
+        </div>
       </div>
 
       <SearchFilters
@@ -100,6 +116,67 @@ export default async function SessionsAdminPage({
         instructors={instructors ?? []}
       />
 
+      {view === 'calendar' ? (
+        <div className="space-y-4">
+          {Object.entries(
+            (sessions ?? []).reduce(
+              (acc: Record<string, typeof sessions>, row) => {
+                if (!row) return acc;
+                const day = new Date(row.starts_at).toLocaleDateString('pl-PL', {
+                  timeZone: 'Europe/Warsaw',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  weekday: 'long',
+                });
+                acc[day] = acc[day] ?? [];
+                acc[day]!.push(row);
+                return acc;
+              },
+              {} as Record<string, NonNullable<typeof sessions>>
+            )
+          ).map(([day, rows]) => (
+            <section key={day} className="rounded-lg border bg-white p-4">
+              <h2 className="text-sm font-semibold capitalize text-gray-800">
+                {day}
+              </h2>
+              <ul className="mt-3 space-y-2">
+                {(rows ?? []).map((row) => (
+                  <li
+                    key={row.id}
+                    className="flex flex-wrap items-center justify-between gap-2 border-b py-2 last:border-0"
+                  >
+                    <div>
+                      <p className="font-medium">
+                        {workshopNames.get(row.workshop_id) ?? '—'}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        {new Date(row.starts_at).toLocaleTimeString('pl-PL', {
+                          timeZone: 'Europe/Warsaw',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        })}{' '}
+                        · {row.reserved_count}/{row.capacity}
+                      </p>
+                    </div>
+                    <Link
+                      href={`/admin/terminy/${row.id}`}
+                      className="rounded border px-3 py-2 text-sm"
+                    >
+                      Lista
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+          {(sessions ?? []).length === 0 ? (
+            <p className="rounded border bg-white p-4 text-sm text-gray-500">
+              Brak terminów pasujących do filtrów.
+            </p>
+          ) : null}
+        </div>
+      ) : (
       <div className="rounded-lg border bg-white">
         <table className="w-full text-left text-sm">
           <thead className="border-b bg-gray-50">
@@ -153,6 +230,7 @@ export default async function SessionsAdminPage({
           </tbody>
         </table>
       </div>
+      )}
 
       {totalPages > 1 && (
         <div className="flex items-center justify-between text-sm">

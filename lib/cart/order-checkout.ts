@@ -445,7 +445,13 @@ export async function createOrReuseOrderCheckoutSession(input: {
     ? new Date(session.expires_at * 1000).toISOString()
     : new Date(Date.now() + 30 * 60 * 1000).toISOString();
 
-  await supabase
+  await (supabase as unknown as {
+    from: (t: string) => {
+      update: (p: Record<string, unknown>) => {
+        eq: (c: string, v: string) => Promise<unknown>;
+      };
+    };
+  })
     .from('payments')
     .update({
       provider: 'stripe',
@@ -454,6 +460,7 @@ export async function createOrReuseOrderCheckoutSession(input: {
       amount_gross_grosz: total,
       failure_code: null,
       failure_message: null,
+      livemode: Boolean(session.livemode),
       updated_at: new Date().toISOString(),
     })
     .eq('id', paymentId);

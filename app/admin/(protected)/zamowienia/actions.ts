@@ -239,3 +239,47 @@ export async function updateOrderOperationalStateAction(
   revalidatePath(`/admin/zamowienia/${orderId}`);
   redirect(`/admin/zamowienia/${orderId}`);
 }
+
+export async function setOrderAnalyticsExcludedAction(
+  formData: FormData
+): Promise<void> {
+  const admin = await requireAnyRole(['owner', 'manager']);
+  const orderId = String(formData.get('orderId') ?? '');
+  const excluded = String(formData.get('excluded') ?? '') === '1';
+  const reason = String(formData.get('reason') ?? '')
+    .trim()
+    .slice(0, 200);
+
+  if (!orderId) throw new Error('Brak zamówienia.');
+
+  const { rpcSetAnalyticsExcluded } =
+    await import('@/lib/admin/session-cockpit');
+  const { recordAuditEventWithCurrentClient } =
+    await import('@/lib/admin/audit');
+
+  const result = await rpcSetAnalyticsExcluded({
+    entityType: 'order',
+    entityId: orderId,
+    excluded,
+    reason: excluded ? reason || 'manual_exclusion' : null,
+    actorUserId: admin.userId,
+  });
+  if (!result.ok) throw new Error(result.error);
+
+  await recordAuditEventWithCurrentClient({
+    actorUserId: admin.userId,
+    actorRole: admin.role,
+    action: excluded ? 'analytics.exclude' : 'analytics.include',
+    entityType: 'order',
+    entityId: orderId,
+    summary: excluded
+      ? 'Order excluded from default analytics'
+      : 'Order included in default analytics',
+    changedFields: { excluded, hasReason: Boolean(reason) },
+  });
+
+  revalidatePath('/admin/zamowienia');
+  revalidatePath(`/admin/zamowienia/${orderId}`);
+  revalidatePath('/admin/analityka');
+  redirect(`/admin/zamowienia/${orderId}`);
+}

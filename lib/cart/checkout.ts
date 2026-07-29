@@ -13,7 +13,7 @@ import {
 import type { Json } from '@/lib/database/types';
 
 const participantSchema = z.object({
-  display_name: z.string().max(120).optional().nullable(),
+  display_name: z.string().trim().min(1, 'Podaj imię uczestnika').max(120),
   age: z.union([z.number().int(), z.string()]).optional().nullable(),
   participant_type: z
     .enum(['adult', 'child', 'unspecified'])
@@ -35,7 +35,11 @@ const checkoutSchema = z.object({
   purchaserFirstName: z.string().min(1).max(80),
   purchaserLastName: z.string().min(1).max(80),
   purchaserEmail: z.string().email().max(200),
-  purchaserPhone: z.string().max(40).optional().default(''),
+  purchaserPhone: z
+    .string()
+    .trim()
+    .min(5, 'Podaj numer telefonu')
+    .max(40),
   customerNotes: z.string().max(1000).optional().default(''),
   marketingConsent: z.boolean(),
   termsAccepted: z.literal(true),

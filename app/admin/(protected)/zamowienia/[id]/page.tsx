@@ -5,6 +5,7 @@ import { formatPrice } from '@/lib/utils/price';
 import {
   setOrderShippingQuoteAction,
   updateOrderOperationalStateAction,
+  setOrderAnalyticsExcludedAction,
 } from '../actions';
 
 export const dynamic = 'force-dynamic';
@@ -78,8 +79,44 @@ export default async function AdminOrderDetailPage({
         <p className="text-sm text-gray-600">
           {order.status} · płatność: {order.payment_status} · realizacja:{' '}
           {order.fulfillment_status} ({order.fulfillment_method})
+          {order.analytics_excluded ? ' · wykluczone z analityki' : ''}
         </p>
       </div>
+
+      <section className="rounded border bg-white p-4 text-sm">
+        <h2 className="mb-2 font-semibold">Analityka</h2>
+        <p className="mb-3 text-gray-600">
+          Wyklucz testowe / treningowe zamówienia z domyślnych KPI (powiązane
+          rezerwacje są synchronizowane).
+        </p>
+        <form action={setOrderAnalyticsExcludedAction} className="space-y-2">
+          <input type="hidden" name="orderId" value={order.id} />
+          <input
+            type="hidden"
+            name="excluded"
+            value={order.analytics_excluded ? '0' : '1'}
+          />
+          {!order.analytics_excluded ? (
+            <label className="block">
+              Powód (opcjonalnie)
+              <input
+                name="reason"
+                className="mt-1 w-full rounded border px-2 py-2"
+                maxLength={200}
+                placeholder="np. test Stripe"
+              />
+            </label>
+          ) : null}
+          <button
+            type="submit"
+            className="min-h-11 rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
+          >
+            {order.analytics_excluded
+              ? 'Przywróć do analityki'
+              : 'Wyklucz z analityki'}
+          </button>
+        </form>
+      </section>
 
       <section className="rounded border bg-white p-4 text-sm">
         <h2 className="mb-2 font-semibold">Klient</h2>

@@ -16,7 +16,9 @@ type AuditEntityType =
   | 'admin_user'
   | 'auth'
   | 'booking'
-  | 'payment';
+  | 'payment'
+  | 'order'
+  | 'participant';
 
 export type AuditEventInput = {
   actorUserId: string;

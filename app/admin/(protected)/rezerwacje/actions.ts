@@ -480,3 +480,42 @@ export async function retryEmailAction(
   revalidatePath('/admin/rezerwacje/' + bookingId);
   return { ok: true };
 }
+
+export async function setBookingAnalyticsExcludedAction(
+  formData: FormData
+): Promise<void> {
+  const admin = await requireAnyRole(['owner', 'manager']);
+  const bookingId = String(formData.get('bookingId') ?? '');
+  const excluded = String(formData.get('excluded') ?? '') === '1';
+  const reason = String(formData.get('reason') ?? '')
+    .trim()
+    .slice(0, 200);
+  if (!bookingId) throw new Error('Brak rezerwacji.');
+
+  const { rpcSetAnalyticsExcluded } =
+    await import('@/lib/admin/session-cockpit');
+  const result = await rpcSetAnalyticsExcluded({
+    entityType: 'booking',
+    entityId: bookingId,
+    excluded,
+    reason: excluded ? reason || 'manual_exclusion' : null,
+    actorUserId: admin.userId,
+  });
+  if (!result.ok) throw new Error(result.error);
+
+  await recordAuditEvent(createAdminClient(), {
+    actorUserId: admin.userId,
+    actorRole: admin.role,
+    action: excluded ? 'analytics.exclude' : 'analytics.include',
+    entityType: 'booking',
+    entityId: bookingId,
+    summary: excluded
+      ? 'Booking excluded from default analytics'
+      : 'Booking included in default analytics',
+    changedFields: { excluded, hasReason: Boolean(reason) },
+  });
+
+  revalidatePath('/admin/rezerwacje');
+  revalidatePath(`/admin/rezerwacje/${bookingId}`);
+  revalidatePath('/admin/analityka');
+}

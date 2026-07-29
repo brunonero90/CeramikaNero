@@ -340,6 +340,7 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
         status: 'failed',
         failure_code: 'card_declined',
         failure_message: 'Your card was declined.',
+        livemode: false,
       },
       filters: { provider_payment_id: 'pi_order_1' },
     });

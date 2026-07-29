@@ -6,6 +6,7 @@ import {
   getBookingEventsAction,
   getBookingEmailsAction,
   updateBookingNotesAction,
+  setBookingAnalyticsExcludedAction,
 } from '../actions';
 import { BookingDetailActions } from './BookingDetailActions';
 import { formatPrice } from '@/lib/utils/price';
@@ -88,6 +89,43 @@ export default async function BookingDetailPage({
           paymentStatus={payment?.status}
         />
       </div>
+
+      <section className="rounded-lg border bg-white p-4 text-sm">
+        <h2 className="mb-2 font-semibold">Analityka</h2>
+        <p className="mb-2 text-gray-600">
+          {(booking as { analytics_excluded?: boolean }).analytics_excluded
+            ? 'Ta rezerwacja jest wykluczona z domyślnych KPI.'
+            : 'Możesz wykluczyć testową rezerwację z domyślnej analityki.'}
+        </p>
+        <form action={setBookingAnalyticsExcludedAction} className="space-y-2">
+          <input type="hidden" name="bookingId" value={id} />
+          <input
+            type="hidden"
+            name="excluded"
+            value={
+              (booking as { analytics_excluded?: boolean }).analytics_excluded
+                ? '0'
+                : '1'
+            }
+          />
+          {!(booking as { analytics_excluded?: boolean }).analytics_excluded ? (
+            <input
+              name="reason"
+              className="w-full rounded border px-2 py-2"
+              maxLength={200}
+              placeholder="Powód (opcjonalnie)"
+            />
+          ) : null}
+          <button
+            type="submit"
+            className="min-h-11 rounded-md border px-3 py-2 hover:bg-gray-50"
+          >
+            {(booking as { analytics_excluded?: boolean }).analytics_excluded
+              ? 'Przywróć do analityki'
+              : 'Wyklucz z analityki'}
+          </button>
+        </form>
+      </section>
 
       <div className="grid gap-4 md:grid-cols-2">
         <section className="rounded-lg border bg-white p-4">
