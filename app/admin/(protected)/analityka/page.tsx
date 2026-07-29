@@ -34,10 +34,7 @@ function BarChart({
   valueKey: string;
   labelKey: string;
 }) {
-  const max = Math.max(
-    1,
-    ...items.map((i) => Number(i[valueKey]) || 0)
-  );
+  const max = Math.max(1, ...items.map((i) => Number(i[valueKey]) || 0));
   if (items.length === 0) {
     return <p className="text-sm text-gray-500">Brak danych w okresie.</p>;
   }
@@ -50,7 +47,11 @@ function BarChart({
           <li key={String(item[labelKey])}>
             <div className="flex justify-between text-xs text-gray-600">
               <span className="truncate pr-2">{String(item[labelKey])}</span>
-              <span>{valueKey.includes('Grosz') || valueKey.includes('revenue') ? formatGroszAsPln(value) : value}</span>
+              <span>
+                {valueKey.includes('Grosz') || valueKey.includes('revenue')
+                  ? formatGroszAsPln(value)
+                  : value}
+              </span>
             </div>
             <div className="mt-1 h-2 rounded bg-gray-100">
               <div
@@ -200,8 +201,8 @@ export default async function AnalyticsPage({
       {kpis.unclassifiedStripePayments > 0 ? (
         <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
           {kpis.unclassifiedStripePayments} płatności Stripe bez ustalonego
-          trybu (live/test) — wykluczone z domyślnych KPI. Uzupełnij livemode
-          z Dashboardu lub oznacz zamówienia jako wykluczone.
+          trybu (live/test) — wykluczone z domyślnych KPI. Uzupełnij livemode z
+          Dashboardu lub oznacz zamówienia jako wykluczone.
         </p>
       ) : null}
 
@@ -219,6 +220,14 @@ export default async function AnalyticsPage({
             label: 'Zwroty',
             value: formatGroszAsPln(kpis.refundsGrosz),
             prev: delta(kpis.refundsGrosz, previousKpis.refundsGrosz),
+          },
+          {
+            label: 'Środki objęte sporem',
+            value: formatGroszAsPln(kpis.disputedRevenueGrosz),
+            prev: delta(
+              kpis.disputedRevenueGrosz,
+              previousKpis.disputedRevenueGrosz
+            ),
           },
           {
             label: 'Opłacone zamówienia',

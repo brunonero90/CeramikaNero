@@ -24,6 +24,7 @@ function createSupabaseMock(state: {
   confirmError?: { message: string } | null;
   failureResult?: Row;
   refundResult?: Row;
+  disputeResult?: Row;
   claimStatus?: string;
   claimError?: boolean;
   completeError?: boolean;
@@ -189,6 +190,15 @@ function createSupabaseMock(state: {
           data: state.refundResult ?? {
             status: 'refunded',
             refunded_amount_grosz: 10000,
+          },
+          error: null,
+        };
+      }
+      if (name === 'sync_stripe_dispute') {
+        return {
+          data: state.disputeResult ?? {
+            status: 'needs_response',
+            disputed_amount_grosz: 10000,
           },
           error: null,
         };
@@ -597,6 +607,42 @@ describe('processStripeEvent', () => {
         p_payment_id: 'pay_1',
         p_provider_payment_id: 'pi_1',
         p_stripe_event_id: 'evt_refund_failed',
+      })
+    );
+  });
+
+  it('tracks a dispute separately from refunds', async () => {
+    const supabase = createSupabaseMock({});
+    const { processStripeEvent } = await import('../stripe-webhook');
+
+    const result = await processStripeEvent(
+      supabase as never,
+      {
+        id: 'evt_dispute',
+        type: 'charge.dispute.created',
+        data: {
+          object: {
+            id: 'dp_1',
+            object: 'dispute',
+            amount: 10000,
+            currency: 'pln',
+            livemode: false,
+            payment_intent: 'pi_1',
+            charge: 'ch_1',
+            status: 'needs_response',
+          },
+        },
+      } as unknown as Stripe.Event
+    );
+
+    expect(result).toEqual({ ok: true });
+    expect(rpcNamed(supabase, 'sync_stripe_dispute')?.args).toEqual(
+      expect.objectContaining({
+        p_provider_payment_id: 'pi_1',
+        p_dispute_id: 'dp_1',
+        p_amount_gross_grosz: 10000,
+        p_status: 'needs_response',
+        p_livemode: false,
       })
     );
   });

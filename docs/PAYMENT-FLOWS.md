@@ -18,7 +18,8 @@ Stripe webhook: `https://ceramikanero.pl/api/webhooks/stripe`
 Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`,
 `checkout.session.async_payment_failed`, `checkout.session.expired`,
 `payment_intent.succeeded`, `payment_intent.payment_failed`, `charge.refunded`,
-`refund.updated`, `refund.failed`.
+`refund.updated`, `refund.failed`, `charge.dispute.created`,
+`charge.dispute.updated`, `charge.dispute.closed`.
 
 ## Checkout flow (unified cart — CN-O)
 
@@ -57,13 +58,18 @@ Webhook endpoint: `https://ceramikanero.pl/api/webhooks/stripe`
 
 ## Holds
 
-- Manual bank-transfer cart orders: no timed hold (`expires_at` null).
-- Stripe cart Checkout: order/booking `expires_at` aligned to Checkout session
-  (~30 minutes, Stripe minimum). Session expiry fails the payment attempt only.
-  Capacity and inventory are released only by the atomic
-  `cancel_unpaid_order` transition. Automated cancellation of abandoned unified
-  orders requires a separately approved retention/hold rule and is not enabled
-  by migration 19.
+- Stripe cart orders have a 15-minute pre-Checkout creation deadline. Once a
+  Checkout Session is bound, the order and linked bookings use Stripe's
+  authoritative Session expiry (minimum 30 minutes).
+- Manual bank-transfer and shipping-quote orders have a 24-hour deadline.
+  Confirming a quote starts a fresh 24-hour bank-transfer window or a
+  15-minute Stripe pre-Checkout window.
+- `/api/cron/expiry` finds past-due unpaid unified orders. It retrieves any
+  bound Stripe Session before releasing the order: an open, processing, paid,
+  or temporarily unavailable Session is never cancelled by the cron.
+- `checkout.session.expired` and the cron use `expire_unpaid_order`, which
+  atomically closes the exact active payment attempt and releases every linked
+  seat and product unit once. Replays are harmless.
 
 ## Bank transfer settings
 
@@ -84,6 +90,27 @@ partial instructions.
 
 Branded HTML + plain text via `lib/email` (React Email). Outboxes:
 `order_emails`, `booking_emails`. Cron: `/api/cron/email-dispatch`.
+
+## Unified-order refunds and disputes
+
+- The admin application offers only a **full remaining refund** for a paid,
+  unfulfilled unified order. This removes ambiguity across mixed workshop and
+  product lines.
+- Stripe refunds are executed by the application. For bank-transfer or other
+  offline payments, staff must first return the money outside the application
+  and explicitly confirm that fact before the application records the refund
+  or sends the completed-refund email.
+- A completed full refund closes the linked bookings and releases all
+  unfulfilled seats/inventory exactly once.
+- A partial refund made directly in Stripe is still synchronized financially,
+  but the application releases no item or seat and creates an admin-review
+  signal. Staff must decide the allocation; the system never guesses.
+- Pending and failed refunds remain pending/failed locally until Stripe sends
+  an authoritative successful refund update.
+- Stripe disputes use a separate ledger. Real open/lost disputes reduce net
+  collected revenue; a won dispute restores it. Warning inquiries are visible
+  for staff action but do not reduce revenue because Stripe has not withdrawn
+  the funds.
 
 ## Stripe sandbox test matrix
 

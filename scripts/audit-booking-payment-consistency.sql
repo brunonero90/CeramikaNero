@@ -202,8 +202,11 @@ join public.bookings b on b.order_id = o.id
 where o.analytics_excluded is distinct from b.analytics_excluded
 order by o.created_at desc, b.booking_reference;
 
--- 13. Past-due unpaid records still holding capacity. The audit does not guess
--- an auto-expiry duration for bank transfers or abandoned cart orders.
+-- 13. Past-due unpaid records still holding capacity. Migration 20 defines
+-- 15-minute Stripe pre-Checkout holds / Checkout expiry and 24-hour
+-- bank-transfer or shipping-quote deadlines. A non-empty result means the
+-- expiry cron is delayed, a Stripe Session was safely deferred, or manual
+-- review is required.
 select
   'past_due_unpaid_capacity_hold' as diagnostic,
   b.booking_reference,
@@ -219,8 +222,9 @@ where b.status in ('pending', 'awaiting_payment')
   and coalesce(b.expires_at, o.expires_at) < timezone('utc'::text, now())
 order by coalesce(b.expires_at, o.expires_at);
 
--- 14. Refunded unified-order payments that still require explicit item,
--- booking, inventory and capacity allocation review.
+-- 14. Partial or fulfilled unified-order refunds that still require explicit
+-- item/booking allocation review. Full unfulfilled refunds are auto-released
+-- exactly once and therefore do not appear.
 select
   'unallocated_unified_order_refund' as diagnostic,
   o.order_reference,
@@ -243,5 +247,29 @@ where p.refunded_amount_grosz > 0
       )
   )
 order by o.created_at desc;
+
+-- 15. Real disputes that still remove funds from net collected revenue or
+-- warning inquiries that require a response. No PII is selected.
+select
+  'payment_dispute_requires_review' as diagnostic,
+  coalesce(o.order_reference, b.booking_reference) as entity_reference,
+  p.id as payment_id,
+  d.dispute_id,
+  d.status as dispute_status,
+  d.amount_gross_grosz,
+  d.currency,
+  d.updated_at
+from public.payment_disputes d
+join public.payments p on p.id = d.payment_id
+left join public.orders o on o.id = p.order_id
+left join public.bookings b on b.id = p.booking_id
+where d.status in (
+  'needs_response',
+  'under_review',
+  'lost',
+  'warning_needs_response',
+  'warning_under_review'
+)
+order by d.updated_at desc;
 
 rollback;

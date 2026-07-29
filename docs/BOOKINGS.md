@@ -82,10 +82,18 @@ Stripe is always the authoritative source of truth. The success page is presenta
 ## Expiry workflow
 
 1. `public.begin_booking` sets `bookings.expires_at` to `now() + 15 minutes` for `pending` bookings.
-2. The protected cron endpoint `/api/cron/expiry` runs `public.expire_pending_bookings()`.
-3. The function marks eligible bookings as `expired` and decrements `reserved_count` exactly once.
-4. The function is safe under concurrent calls and simultaneous webhook processing.
-5. In production, schedule the cron at least every 5 minutes. Actual release can therefore occur shortly after `expires_at`.
+2. Unified Stripe orders start with a 15-minute pre-Checkout hold; a bound
+   Checkout Session replaces it with Stripe's authoritative expiry. Manual
+   transfer and shipping-quote orders use a 24-hour deadline.
+3. The protected cron endpoint `/api/cron/expiry` expires both standalone
+   bookings and eligible unified orders.
+4. Before expiring a bound Stripe order, the server retrieves the Session.
+   Open, processing, paid, or temporarily unverifiable Sessions are deferred.
+5. `public.expire_unpaid_order()` closes only the exact unpaid attempt and
+   releases its capacity and inventory exactly once. Concurrent calls and
+   webhook replays are idempotent.
+6. In production, schedule the cron at least every 5 minutes. Actual release
+   can therefore occur shortly after `expires_at`.
 
 ## Webhook idempotency
 
@@ -128,7 +136,8 @@ If a `checkout.session.completed` webhook arrives after the booking expired:
 
 - Managers and owners can cancel a booking from the admin panel.
 - A reason is required and recorded in the audit log.
-- Staff can issue full or partial refunds through Stripe.
+- Staff can issue full or partial refunds for standalone bookings through
+  Stripe.
 - The cumulative refunded amount cannot exceed the captured amount.
 - A failed Stripe refund does not mark the booking as refunded.
 - `charge.refunded` and successful `refund.updated` webhooks synchronize the
@@ -137,9 +146,15 @@ If a `checkout.session.completed` webhook arrives after the booking expired:
   was returned.
 - A full refund of a standalone booking closes the booking and releases seats
   once. A partial refund leaves the booking active.
-- Unified/mixed-order refunds are recorded financially but remain flagged for
-  staff review because migration 19 does not guess how to allocate them among
-  order lines and linked bookings.
+- The unified-order admin action offers only a full remaining refund for a
+  paid, unfulfilled order. A completed full refund closes linked bookings and
+  releases all unfulfilled seats and inventory exactly once.
+- Partial unified-order refunds made directly in Stripe are recorded
+  financially and flagged for staff review. They release nothing because the
+  application cannot safely infer their line allocation.
+- Disputes are distinct from refunds. Real open/lost disputes reduce net
+  collected revenue; won disputes restore it. Warning inquiries require
+  attention without reducing revenue.
 
 ## Manual bookings
 

@@ -345,7 +345,28 @@ async function handleCheckoutSessionExpired(
   }
 
   if (entity.entityType === 'order' && entity.orderId) {
-    // Expiration affects only the unpaid attempt — keep order awaiting_payment.
+    if (failure.paymentId) {
+      const { data, error } = await rpcLoose(supabase, 'expire_unpaid_order', {
+        p_order_id: entity.orderId,
+        p_expected_payment_id: failure.paymentId,
+        p_expected_checkout_id: session.id,
+        p_reason: 'Stripe Checkout session expired',
+      });
+      if (error) {
+        throw new Error('Failed to expire unpaid order');
+      }
+      const status = (data as { status?: string } | null)?.status;
+      if (
+        status !== 'expired' &&
+        status !== 'already_paid' &&
+        status !== 'stale_attempt' &&
+        status !== 'cancelled'
+      ) {
+        throw new Error(`Unexpected order expiry result: ${status ?? 'none'}`);
+      }
+    }
+
+    // A verified expired Session closes the exact unpaid order attempt.
     try {
       const { notifyOrderPaymentFailed } =
         await import('@/lib/cart/order-email');
@@ -574,7 +595,11 @@ async function markStripeAttemptFailed(
     failureMessage: string;
     livemode: boolean;
   }
-): Promise<{ updated: boolean; orderId: string | null }> {
+): Promise<{
+  updated: boolean;
+  orderId: string | null;
+  paymentId: string | null;
+}> {
   const { data, error } = await rpcLoose(
     supabase,
     'fail_stripe_payment_attempt',
@@ -593,10 +618,12 @@ async function markStripeAttemptFailed(
   const result = (data ?? {}) as {
     updated?: boolean;
     order_id?: string | null;
+    payment_id?: string | null;
   };
   return {
     updated: result.updated === true,
     orderId: result.order_id ?? null,
+    paymentId: result.payment_id ?? params.paymentId ?? null,
   };
 }
 
@@ -627,6 +654,99 @@ async function handleChargeRefunded(
   if ((data as { status?: string } | null)?.status === 'unknown_payment') {
     return { ok: false, status: 500, error: 'Refund payment not found' };
   }
+
+  const refund = data as {
+    order_id?: string | null;
+    status?: string;
+    refunded_amount_grosz?: number;
+    requires_manual_resolution?: boolean;
+  } | null;
+  if (refund?.order_id) {
+    try {
+      if (refund.status === 'refunded') {
+        const { notifyOrderRefundEvent } =
+          await import('@/lib/cart/order-email');
+        await notifyOrderRefundEvent(
+          refund.order_id,
+          'refund_completed',
+          refund.refunded_amount_grosz
+        );
+      }
+      if (refund.requires_manual_resolution) {
+        const { notifyAdminOrderPaymentProblem } =
+          await import('@/lib/cart/order-email');
+        await notifyAdminOrderPaymentProblem(refund.order_id);
+      }
+    } catch (err) {
+      console.error('refund notification failed', err);
+    }
+  }
+  return { ok: true };
+}
+
+async function handleChargeDispute(
+  supabase: AdminClient,
+  event: Stripe.Event,
+  dispute: Stripe.Dispute
+): Promise<StripeWebhookResult> {
+  let providerPaymentId =
+    typeof dispute.payment_intent === 'string'
+      ? dispute.payment_intent
+      : (dispute.payment_intent?.id ?? null);
+
+  if (!providerPaymentId) {
+    const chargeId =
+      typeof dispute.charge === 'string' ? dispute.charge : dispute.charge.id;
+    const { getStripeServerClient } = await import('@/lib/stripe/server');
+    const charge = await getStripeServerClient().charges.retrieve(chargeId);
+    providerPaymentId =
+      typeof charge.payment_intent === 'string'
+        ? charge.payment_intent
+        : (charge.payment_intent?.id ?? null);
+  }
+
+  if (!providerPaymentId) {
+    return {
+      ok: false,
+      status: 500,
+      error: 'Dispute payment not found',
+    };
+  }
+
+  const { data, error } = await rpcLoose(supabase, 'sync_stripe_dispute', {
+    p_provider_payment_id: providerPaymentId,
+    p_dispute_id: dispute.id,
+    p_amount_gross_grosz: dispute.amount,
+    p_currency: dispute.currency,
+    p_status: dispute.status,
+    p_livemode: Boolean(dispute.livemode),
+    p_stripe_event_id: event.id,
+  });
+  if (
+    error ||
+    (data as { status?: string } | null)?.status === 'unknown_payment'
+  ) {
+    return {
+      ok: false,
+      status: 500,
+      error: 'Dispute synchronization failed',
+    };
+  }
+
+  const result = data as {
+    order_id?: string | null;
+    requires_admin_action?: boolean;
+  } | null;
+  if (result?.order_id && result.requires_admin_action) {
+    try {
+      const { notifyAdminOrderPaymentProblem } =
+        await import('@/lib/cart/order-email');
+      await notifyAdminOrderPaymentProblem(result.order_id);
+    } catch (err) {
+      console.error('dispute admin notification failed', err);
+    }
+  }
+
   return { ok: true };
 }
 
@@ -817,6 +937,13 @@ export async function processStripeEvent(
       case 'refund.failed': {
         const refund = event.data.object as Stripe.Refund;
         result = await handleRefundLifecycleEvent(supabase, event, refund);
+        break;
+      }
+      case 'charge.dispute.created':
+      case 'charge.dispute.updated':
+      case 'charge.dispute.closed': {
+        const dispute = event.data.object as Stripe.Dispute;
+        result = await handleChargeDispute(supabase, event, dispute);
         break;
       }
       default:

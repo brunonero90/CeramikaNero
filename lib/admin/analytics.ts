@@ -17,6 +17,7 @@ export type AnalyticsFilters = {
 export type AnalyticsKpis = {
   netCollectedRevenueGrosz: number;
   refundsGrosz: number;
+  disputedRevenueGrosz: number;
   paidOrders: number;
   paidWorkshopParticipants: number;
   operationalOccupancy: number | null;
@@ -33,7 +34,11 @@ export type AnalyticsKpis = {
 export type AnalyticsDashboard = {
   kpis: AnalyticsKpis;
   previousKpis: AnalyticsKpis;
-  series: Array<{ day: string; revenueGrosz: number; paidParticipants: number }>;
+  series: Array<{
+    day: string;
+    revenueGrosz: number;
+    paidParticipants: number;
+  }>;
   byWorkshop: Array<{
     workshopId: string;
     title: string;
@@ -83,7 +88,10 @@ type Loose = {
   from: (t: string) => any;
 };
 
-function bounds(from: string, to: string): { startUtc: string; endUtc: string } {
+function bounds(
+  from: string,
+  to: string
+): { startUtc: string; endUtc: string } {
   const start = fromZonedTime(`${from}T00:00:00`, DEFAULT_ADMIN_TIMEZONE);
   const end = fromZonedTime(`${to}T23:59:59.999`, DEFAULT_ADMIN_TIMEZONE);
   return { startUtc: start.toISOString(), endUtc: end.toISOString() };
@@ -95,8 +103,7 @@ function previousPeriod(
 ): { from: string; to: string } {
   const start = fromZonedTime(`${from}T12:00:00`, DEFAULT_ADMIN_TIMEZONE);
   const end = fromZonedTime(`${to}T12:00:00`, DEFAULT_ADMIN_TIMEZONE);
-  const days =
-    Math.max(1, differenceInCalendarDays(end, start) + 1);
+  const days = Math.max(1, differenceInCalendarDays(end, start) + 1);
   const prevEnd = subDays(start, 1);
   const prevStart = subDays(prevEnd, days - 1);
   return {
@@ -109,6 +116,7 @@ function emptyKpis(): AnalyticsKpis {
   return {
     netCollectedRevenueGrosz: 0,
     refundsGrosz: 0,
+    disputedRevenueGrosz: 0,
     paidOrders: 0,
     paidWorkshopParticipants: 0,
     operationalOccupancy: null,
@@ -154,7 +162,7 @@ export async function loadAnalyticsDashboard(
   const { data: paidRows } = await supabase
     .from('payments')
     .select(
-      'id, amount_gross_grosz, refunded_amount_grosz, paid_at, status, provider, livemode, order_id, booking_id'
+      'id, amount_gross_grosz, refunded_amount_grosz, disputed_amount_grosz, paid_at, status, provider, livemode, order_id, booking_id'
     )
     .in('status', ['paid', 'partially_refunded', 'refunded'])
     .gte('paid_at', startUtc)
@@ -189,16 +197,23 @@ export async function loadAnalyticsDashboard(
   if (bookingIds.length) {
     const { data: bookings } = await supabase
       .from('bookings')
-      .select('id, analytics_excluded, workshop_session_id, quantity, customer_id, created_at, status')
+      .select(
+        'id, analytics_excluded, workshop_session_id, quantity, customer_id, created_at, status'
+      )
       .in('id', bookingIds);
     for (const b of bookings ?? []) {
       if (b.analytics_excluded) excludedBookingIds.add(b.id);
     }
   }
 
-  const dayMap = new Map<string, { revenueGrosz: number; paidParticipants: number }>();
+  const dayMap = new Map<
+    string,
+    { revenueGrosz: number; paidParticipants: number }
+  >();
   for (const p of paidRows ?? []) {
-    if (!paymentEligible(p, includeTest, excludedOrderIds, excludedBookingIds)) {
+    if (
+      !paymentEligible(p, includeTest, excludedOrderIds, excludedBookingIds)
+    ) {
       continue;
     }
     const day = formatInTimeZone(
@@ -207,7 +222,9 @@ export async function loadAnalyticsDashboard(
       'yyyy-MM-dd'
     );
     const net =
-      Number(p.amount_gross_grosz) - Number(p.refunded_amount_grosz ?? 0);
+      Number(p.amount_gross_grosz) -
+      Number(p.refunded_amount_grosz ?? 0) -
+      Number(p.disputed_amount_grosz ?? 0);
     const cur = dayMap.get(day) ?? { revenueGrosz: 0, paidParticipants: 0 };
     cur.revenueGrosz += Math.max(0, net);
     dayMap.set(day, cur);
@@ -287,9 +304,7 @@ export async function loadAnalyticsDashboard(
         if (p.attendance_status === 'no_show') noShows += 1;
       }
       const starts = new Date(s.starts_at);
-      const wd = Number(
-        formatInTimeZone(starts, DEFAULT_ADMIN_TIMEZONE, 'i')
-      ); // 1=Mon
+      const wd = Number(formatInTimeZone(starts, DEFAULT_ADMIN_TIMEZONE, 'i')); // 1=Mon
       const hour = Number(
         formatInTimeZone(starts, DEFAULT_ADMIN_TIMEZONE, 'H')
       );
@@ -382,7 +397,8 @@ function paymentEligible(
   excludedOrders: Set<string>,
   excludedBookings: Set<string>
 ): boolean {
-  if (p.order_id && excludedOrders.has(p.order_id) && !includeTest) return false;
+  if (p.order_id && excludedOrders.has(p.order_id) && !includeTest)
+    return false;
   if (p.booking_id && excludedBookings.has(p.booking_id) && !includeTest)
     return false;
   if (!includeTest && p.provider === 'stripe') {
@@ -406,7 +422,7 @@ async function computeKpis(
   const { data: payments } = await supabase
     .from('payments')
     .select(
-      'id, amount_gross_grosz, refunded_amount_grosz, paid_at, status, provider, livemode, order_id, booking_id'
+      'id, amount_gross_grosz, refunded_amount_grosz, disputed_amount_grosz, paid_at, status, provider, livemode, order_id, booking_id'
     )
     .gte('created_at', args.startUtc)
     .lte('created_at', args.endUtc);
@@ -440,6 +456,7 @@ async function computeKpis(
   const paidOrderIds = new Set<string>();
   let gross = 0;
   let refunds = 0;
+  let disputes = 0;
 
   for (const p of payments ?? []) {
     if (
@@ -451,13 +468,15 @@ async function computeKpis(
       if (p.paid_at && p.paid_at >= args.startUtc && p.paid_at <= args.endUtc) {
         gross += Number(p.amount_gross_grosz) || 0;
         refunds += Number(p.refunded_amount_grosz) || 0;
+        disputes += Number(p.disputed_amount_grosz) || 0;
         if (p.order_id) paidOrderIds.add(p.order_id);
       }
     }
   }
 
-  kpis.netCollectedRevenueGrosz = Math.max(0, gross - refunds);
+  kpis.netCollectedRevenueGrosz = Math.max(0, gross - refunds - disputes);
   kpis.refundsGrosz = refunds;
+  kpis.disputedRevenueGrosz = disputes;
   kpis.paidOrders = paidOrderIds.size;
   kpis.averageBookingValueGrosz =
     paidOrderIds.size > 0
@@ -483,7 +502,9 @@ async function computeKpis(
 
     const { data: parts } = await supabase
       .from('booking_participants')
-      .select('attendance_status, bookings!inner(workshop_session_id, status, analytics_excluded)')
+      .select(
+        'attendance_status, bookings!inner(workshop_session_id, status, analytics_excluded)'
+      )
       .eq('bookings.workshop_session_id', s.id);
 
     // Fallback simpler query if join syntax fails on client

@@ -38,6 +38,9 @@ vi.mock('@/lib/supabase/cart-admin', () => ({
       if (name === 'prepare_order_checkout_attempt') {
         return { data: preparedResult, error: null };
       }
+      if (name === 'bind_order_checkout_session') {
+        return { data: { status: 'bound' }, error: null };
+      }
       return { data: null, error: null };
     },
     from: (table: string) => {
@@ -149,6 +152,16 @@ describe('createOrReuseOrderCheckoutSession attempt claim', () => {
         paymentId: 'pay_1',
         totalGrosz: 14900,
         idempotencyKey: 'checkout-order-ord_1-attempt_1',
+      })
+    );
+    expect(
+      rpcCalls.find((call) => call.name === 'bind_order_checkout_session')?.args
+    ).toEqual(
+      expect.objectContaining({
+        p_order_id: 'ord_1',
+        p_payment_id: 'pay_1',
+        p_provider_checkout_id: 'cs_test_1',
+        p_amount_gross_grosz: 14900,
       })
     );
   });

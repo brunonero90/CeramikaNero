@@ -6,37 +6,42 @@ Audit branch: `audit/booking-payment-release-20260729`
 
 ## Decision
 
-**NO-GO pending business/operational decisions, dependency review, and external
-acceptance testing.**
+**GO for merge and test deployment. CONDITIONAL GO for live payment
+activation.**
 
-No unresolved path that can charge a customer twice was reproduced after the
-migration 19 repairs. The code and focused tests now enforce exclusive webhook
-claims, authoritative amount/currency/mode validation, state-safe event
-reordering, atomic manual payment and shipping transitions, recoverable
-Checkout creation, truthful refund state, and a fixed `pg_catalog` search path
-for the shared `SECURITY DEFINER` update trigger.
+There are no unresolved P0/P1 code or business-rule findings. Migrations 19 and
+20 plus the matching application now enforce exclusive webhook claims,
+authoritative amount/currency/mode validation, state-safe event reordering,
+atomic manual payment and shipping transitions, recoverable Checkout creation,
+exact-attempt expiry, exact-once resource release, explicit unified-order
+refund semantics, dispute-aware analytics, and fixed function search paths.
 
-Release is nevertheless blocked by:
+The former NO-GO conditions are closed:
 
-1. **P1 — abandoned unified orders:** an expired Stripe Checkout does not
-   release workshop capacity or product inventory. Migration 19 provides an
-   atomic `cancel_unpaid_order` operation, but no automatic duration was chosen.
-   The owner must approve the hold/cancellation rule.
-2. **P1 — mixed/unified-order refund allocation:** Stripe's cumulative refund is
-   now recorded correctly, but the application cannot safely infer which order
-   line, linked booking, seat, or product unit a partial refund belongs to.
-   Migration 19 flags these cases for review instead of inventing semantics.
-3. A full Supabase migration run and the Stripe sandbox scenarios remain
-   external evidence requirements. Without actual sandbox execution the maximum
-   possible result would be `CONDITIONAL GO`.
-4. `npm audit --omit=dev` reports three high-severity and one moderate
-   production-dependency advisories. Exposure and a framework-supported upgrade
-   path must be assessed before release; this audit did not auto-change
-   dependencies.
+1. Abandoned Stripe orders use a 15-minute pre-Checkout hold and then the
+   authoritative Checkout Session expiry. Bank-transfer and shipping-quote
+   orders use 24 hours. The cron fails closed if a bound Session is not
+   authoritatively expired.
+2. The application offers only a full remaining refund for a paid,
+   unfulfilled unified order. A direct partial Stripe refund is recorded and
+   flagged without releasing any line, seat, or inventory.
+3. Disputes are separate from refunds. Real open/lost disputes reduce net
+   collected revenue; won disputes restore it; warning inquiries remain
+   actionable without reducing revenue.
+4. Production dependency advisories are resolved by the supported Next patch,
+   current `file-type`, and pinned safe PostCSS/Sharp transitive versions.
+   `npm audit --omit=dev` reports zero vulnerabilities.
 
-Disputes/chargebacks are not implemented. They must be handled manually in
-Stripe and do not currently reduce application analytics. This is a documented
-operational limitation, not a refund.
+The two remaining conditions require external systems and therefore cannot be
+proved in this isolated checkout:
+
+- run migrations `00→20` and `19→20` in a disposable Supabase project and run
+  the 25 remote Supabase tests;
+- complete the Stripe sandbox acceptance guide against the deployed webhook.
+
+Per the audit's release rule, live activation cannot be labeled unconditional
+`GO` until those checks pass. They are deployment acceptance conditions, not
+open implementation defects.
 
 ## Initial repository state
 
@@ -45,9 +50,9 @@ operational limitation, not a refund.
 | Remote                  | `brunonero90/CeramikaNero`                                             |
 | Baseline branch/commit  | `main` / `01aed6ca35b53c5b945e0db3a1ca13f9af6397d2`                    |
 | Initial worktree        | Clean isolated clone                                                   |
-| Relevant dependencies   | Next `16.2.11`, React `19.2.4`, Stripe `22.3.2`, Vitest `3.0.0`        |
+| Relevant dependencies   | Next `16.2.12`, React `19.2.4`, Stripe `22.3.2`, Vitest `3.0.0`        |
 | Stripe API version      | No version is pinned in `new Stripe(...)`; SDK/account default applies |
-| Existing migrations     | `00`–`18`, treated as frozen                                           |
+| Existing migrations     | `00`–`20`; `00`–`19` remain frozen                                     |
 | Local database tooling  | No Docker, Supabase CLI, `psql`, or PostgreSQL server                  |
 | Remote-test environment | Supabase test variables absent                                         |
 
@@ -63,24 +68,27 @@ operational limitation, not a refund.
 | Booking       | `pending`, `awaiting_payment`, `confirmed`, `cancelled`, `expired`, `refunded`, `partially_refunded`                   |
 | Payment       | `created`, `pending`, `paid`, `failed`, `cancelled`, `partially_refunded`, `refunded`                                  |
 | Stripe event  | `received`, `processed`, `failed`; migration 19 adds an exclusive processing lease                                     |
+| Dispute       | Stripe dispute statuses, held separately in `payment_disputes`; warning inquiries have no financial deduction          |
 | Booking email | `confirmation`, `cancellation`, `refund`, `manual_confirmation`, `payment_problem`, `admin_notification`               |
 | Order email   | creation/admin, shipping, payment, fulfilment, cancellation, refund, and payment-problem types defined by migration 15 |
 
 ### State transitions and authorities
 
-| Operation                      | Permitted transition                             | Capacity/inventory                                                             | Email/event effect                                                |
-| ------------------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
-| `submit_cart_order_v2`         | none → awaiting payment                          | Reserves all lines atomically once                                             | Creation/admin outbox; safe token ledger                          |
-| `begin_booking`                | none → pending/awaiting payment                  | Reserves seats once                                                            | Reserved event                                                    |
-| Stripe Checkout creation       | payment created/failed → pending                 | No new reservation                                                             | Attempt binding only                                              |
-| `confirm_*_from_stripe`        | pending/failed → paid; booking/order → confirmed | Reacquires a standalone expired booking only when safe                         | Confirmation once; manual-resolution event for terminal conflicts |
-| Failure/expiry webhook         | matching active attempt → failed                 | No second mutation                                                             | Failure/expiry outbox once                                        |
-| Manual payment RPC             | pending bank transfer → paid/confirmed           | No second reservation                                                          | Audit and confirmation once                                       |
-| `set_order_shipping_quote`     | quote-required → payable                         | No reservation change                                                          | Recalculates order and payment atomically                         |
-| Customer/staff cancellation    | active unpaid/eligible booking → cancelled       | Releases once                                                                  | Cancellation/audit event                                          |
-| `cancel_unpaid_order`          | unpaid active order → cancelled                  | Releases linked seats and inventory once                                       | Cancellation event                                                |
-| Stripe refund synchronization  | paid → partially/full refunded                   | Standalone full refund releases once; unified order requires allocation review | Refund/admin-review event                                         |
-| Attendance/analytics exclusion | Operational metadata only                        | Must not change transactional state                                            | Audited                                                           |
+| Operation                      | Permitted transition                             | Capacity/inventory                                                            | Email/event effect                                                |
+| ------------------------------ | ------------------------------------------------ | ----------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `submit_cart_order_v2`         | none → awaiting payment                          | Reserves all lines atomically once                                            | Creation/admin outbox; safe token ledger                          |
+| `begin_booking`                | none → pending/awaiting payment                  | Reserves seats once                                                           | Reserved event                                                    |
+| Stripe Checkout creation       | payment created/failed → pending                 | No new reservation                                                            | Attempt binding only                                              |
+| `confirm_*_from_stripe`        | pending/failed → paid; booking/order → confirmed | Reacquires a standalone expired booking only when safe                        | Confirmation once; manual-resolution event for terminal conflicts |
+| Failure/expiry webhook         | matching active attempt → failed/expired         | Migration 20 releases unified-order resources once on authoritative expiry    | Failure/expiry outbox once                                        |
+| Manual payment RPC             | pending bank transfer → paid/confirmed           | No second reservation                                                         | Audit and confirmation once                                       |
+| `set_order_shipping_quote`     | quote-required → payable                         | No reservation change                                                         | Recalculates order and payment atomically                         |
+| Customer/staff cancellation    | active unpaid/eligible booking → cancelled       | Releases once                                                                 | Cancellation/audit event                                          |
+| `expire_unpaid_order`          | exact unpaid attempt → expired                   | Releases linked seats and inventory once                                      | Expiry event                                                      |
+| `cancel_unpaid_order`          | unpaid active order → cancelled                  | Releases linked seats and inventory once                                      | Cancellation event                                                |
+| Stripe refund synchronization  | paid → partially/full refunded                   | Full unfulfilled refund releases once; partial/fulfilled refund releases none | Refund or explicit admin-review event                             |
+| Stripe dispute synchronization | paid amount financially disputed/won             | No booking, inventory, capacity, or refund mutation                           | Separate dispute ledger and admin signal                          |
+| Attendance/analytics exclusion | Operational metadata only                        | Must not change transactional state                                           | Audited                                                           |
 
 The browser never owns totals or confirmation. Stripe webhooks are primary;
 the return page retrieves the Checkout Session with the secret key and invokes
@@ -124,11 +132,11 @@ Coverage totals:
 
 | Classification       | Scenarios |
 | -------------------- | --------: |
-| `PROVED_AUTOMATED`   |        50 |
-| `PROVED_INTEGRATION` |        13 |
-| `MANUAL_REQUIRED`    |        28 |
+| `PROVED_AUTOMATED`   |        49 |
+| `PROVED_INTEGRATION` |        18 |
+| `MANUAL_REQUIRED`    |        27 |
 | `BLOCKED_EXTERNAL`   |        19 |
-| `FAILED`             |         3 |
+| `FAILED`             |         0 |
 | **Total**            |   **113** |
 
 ### A. Provider configuration
@@ -168,84 +176,84 @@ Coverage totals:
 
 ### C–G. Stripe success, failure, concurrency, webhook, and return recovery
 
-| ID  | Scenario / action/event order                                        | O                                          | B                                      | P                                    | C/I                                | Email / customer and admin UI                  | Evidence                            | Result               | Manual                                    | Severity    |
-| --- | -------------------------------------------------------------------- | ------------------------------------------ | -------------------------------------- | ------------------------------------ | ---------------------------------- | ---------------------------------------------- | ----------------------------------- | -------------------- | ----------------------------------------- | ----------- |
-| C01 | Card success                                                         | confirmed                                  | confirmed                              | paid                                 | unchanged after original reserve   | Paid UI; one success email                     | webhook tests                       | `MANUAL_REQUIRED`    | Sandbox card                              | P0          |
-| C02 | Successful 3DS card                                                  | confirmed                                  | confirmed                              | paid                                 | same                               | Same success result                            | strict generic success path         | `MANUAL_REQUIRED`    | Sandbox 3DS                               | P0          |
-| C03 | BLIK success                                                         | confirmed                                  | confirmed                              | paid                                 | same                               | Same; async UI may process first               | async webhook tests                 | `MANUAL_REQUIRED`    | Sandbox BLIK                              | P0          |
-| C04 | P24 success when enabled                                             | confirmed                                  | confirmed                              | paid                                 | same                               | Same                                           | generic async path                  | `MANUAL_REQUIRED`    | Sandbox P24                               | P0          |
-| C05 | Webhook before return / browser closed                               | confirmed                                  | confirmed                              | paid                                 | same                               | Return later already paid; one email           | webhook replay tests                | `PROVED_AUTOMATED`   | Stripe delivery                           | P1          |
-| C06 | Return before webhook / webhook unavailable                          | confirmed after verified Session           | confirmed                              | paid                                 | same                               | Reconciliation then paid; one email            | reconciliation tests                | `PROVED_AUTOMATED`   | Sandbox outage simulation                 | P1          |
-| C07 | Webhook and return race / two success event types                    | confirmed once                             | confirmed once                         | paid once                            | no second mutation                 | one email/event                                | exclusive RPC/PGlite + unit tests   | `PROVED_INTEGRATION` | Provider-level replay                     | P0          |
-| C08 | Refresh/second tab after payment                                     | confirmed                                  | confirmed                              | paid                                 | same                               | CTA absent, scoped status only                 | eligibility/status tests            | `PROVED_AUTOMATED`   | Browser                                   | —           |
-| C09 | Authoritative `livemode` on success                                  | confirmed                                  | confirmed                              | paid, mode stamped                   | same                               | Analytics classifies correctly                 | webhook/reconcile tests             | `PROVED_AUTOMATED`   | Test/live deploy check                    | P1          |
-| D01 | Ordinary/insufficient/invalid card decline                           | awaiting                                   | awaiting                               | failed/retryable                     | original hold only                 | No success email; safe decline UI              | failure tests                       | `MANUAL_REQUIRED`    | Sandbox cards                             | P1          |
-| D02 | 3DS issuer decline/auth failure                                      | awaiting                                   | awaiting                               | failed/retryable                     | same                               | No success email                               | state-safe failure handler          | `MANUAL_REQUIRED`    | Sandbox cards                             | P1          |
-| D03 | Customer exits Checkout/P24 cancellation                             | awaiting                                   | awaiting                               | pending until expiry/retry           | same                               | Cancel page; pay remains eligible              | eligibility code                    | `MANUAL_REQUIRED`    | Browser                                   | —           |
-| D04 | BLIK invalid code                                                    | awaiting                                   | awaiting                               | failed/retryable                     | same                               | Safe failure, no success email                 | async failure tests                 | `MANUAL_REQUIRED`    | Sandbox BLIK                              | P1          |
-| D05 | BLIK delayed decline/timeout                                         | awaiting                                   | awaiting                               | failed/retryable                     | same                               | Processing then failure                        | async failure tests                 | `MANUAL_REQUIRED`    | Sandbox BLIK                              | P1          |
-| D06 | Checkout expiry                                                      | awaiting                                   | awaiting                               | matching attempt failed              | hold remains until explicit cancel | Expired notice/no success email                | webhook tests                       | `PROVED_AUTOMATED`   | Approve auto-cancel rule                  | **P1 open** |
-| D07 | Network loss after Checkout creation                                 | awaiting                                   | awaiting                               | pending with persisted claim/key     | no extra reserve                   | Retry recovers Session or safely resumes       | attempt tests/PGlite                | `PROVED_INTEGRATION` | Stripe sandbox interruption               | P1          |
-| D08 | `checkout=success` but unpaid/missing Session                        | unchanged                                  | unchanged                              | not paid                             | unchanged                          | Safe processing/error; no confirmation         | reconciliation tests                | `PROVED_AUTOMATED`   | Browser                                   | P1          |
-| D09 | Session for another order / wrong token                              | unchanged                                  | unchanged                              | unchanged                            | unchanged                          | No cross-order data                            | mismatch tests                      | `PROVED_AUTOMATED`   | Manual stolen-ID attempt                  | P0          |
-| D10 | Failed attempt(s), then successful retry                             | confirmed                                  | confirmed                              | paid                                 | no second reserve                  | One success email                              | attempt/failure/success tests       | `PROVED_AUTOMATED`   | Sandbox sequence                          | P0          |
-| D11 | Old failure after newer success                                      | confirmed                                  | confirmed                              | paid                                 | unchanged                          | No false failure email                         | stale-event tests/PGlite            | `PROVED_INTEGRATION` | —                                         | P0          |
-| D12 | Old success after failure                                            | confirmed if valid/current relationship    | confirmed                              | paid                                 | unchanged                          | One success email                              | strict success tests                | `PROVED_AUTOMATED`   | —                                         | P1          |
-| D13 | Expired old Session after new success                                | confirmed                                  | confirmed                              | paid                                 | unchanged                          | Old event ignored                              | exact attempt binding tests         | `PROVED_AUTOMATED`   | —                                         | P0          |
-| E01 | Double-click/two tabs race before Checkout creation                  | awaiting                                   | awaiting                               | one claimed attempt                  | unchanged                          | One redirect; competitor receives processing   | PGlite + attempt tests              | `PROVED_INTEGRATION` | Browser two-tab                           | P0          |
-| E02 | Existing open Session / processing PI                                | awaiting                                   | awaiting                               | existing pending attempt             | unchanged                          | Existing URL/status reused                     | checkout attempt code/tests         | `PROVED_AUTOMATED`   | Stripe API                                | P0          |
-| E03 | Stripe paid while local unpaid / reconciliation race                 | confirmed through strict recovery          | confirmed                              | paid                                 | unchanged                          | Manual-resolution route if terminal            | reconciliation/webhook tests        | `PROVED_AUTOMATED`   | Sandbox recovery                          | P1          |
-| E04 | Second Checkout after confirmation/refund/terminal state             | terminal state unchanged                   | unchanged                              | no new payable attempt               | unchanged                          | CTA blocked                                    | eligibility and RPC tests           | `PROVED_AUTOMATED`   | —                                         | P0          |
-| E05 | Genuine failed attempt retry/idempotency-key lifecycle               | awaiting → confirmed                       | same                                   | failed → pending → paid              | unchanged                          | Retry not permanently blocked                  | persisted per-attempt key tests     | `PROVED_INTEGRATION` | Stripe API                                | P0          |
-| F01 | Seven original subscribed events: signature, validation, idempotency | state by verified event                    | state by verified event                | state by verified event              | guarded                            | Correct 2xx/5xx; safe logs                     | webhook route/unit tests            | `PROVED_AUTOMATED`   | Stripe CLI/sandbox                        | P0          |
-| F02 | `refund.updated` succeeded / `refund.failed`                         | refund synchronized / unchanged on failure | standalone full closes; unified review | cumulative refund / failure recorded | release only standalone full       | Refund/admin-problem evidence                  | refund webhook tests/PGlite         | `PROVED_INTEGRATION` | Subscribe two events, sandbox async cards | P1          |
-| F03 | Invalid/missing signature or malformed JSON                          | unchanged                                  | unchanged                              | unchanged                            | unchanged                          | 400, no details/secrets                        | route implementation                | `MANUAL_REQUIRED`    | Signed/unsigned HTTP calls                | P0          |
-| F04 | Unsupported event                                                    | unchanged                                  | unchanged                              | unchanged                            | unchanged                          | safe 2xx after verified claim                  | handler tests/source                | `PROVED_AUTOMATED`   | —                                         | —           |
-| F05 | Duplicate same ID / two IDs same object                              | one transition                             | one transition                         | one transition                       | once                               | one email                                      | event and entity idempotency tests  | `PROVED_INTEGRATION` | Stripe replay                             | P0          |
-| F06 | Concurrent/out-of-order delivery                                     | terminal truth preserved                   | truth preserved                        | truth preserved                      | once                               | owner gets retryable 503 for in-progress claim | PGlite/ordering tests               | `PROVED_INTEGRATION` | Provider replay                           | P0          |
-| F07 | Handler/DB exception then retry                                      | initially unchanged; later correct         | same                                   | failed claim then recovered          | unchanged until success            | 5xx then 2xx; no lost event                    | webhook retry tests                 | `PROVED_AUTOMATED`   | —                                         | P1          |
-| F08 | Amount/currency/metadata/entity/relation mismatch or unknown ID      | no confirmation                            | no confirmation                        | pending/manual resolution            | unchanged                          | Safe failure/admin evidence                    | strict RPC/tests                    | `PROVED_AUTOMATED`   | —                                         | P0          |
-| F09 | Test/live classification and PII-safe logging                        | valid mode only                            | valid mode only                        | mode stamped                         | unchanged                          | No PII/secrets                                 | privacy/provider tests              | `PROVED_AUTOMATED`   | deployed log review                       | P0          |
-| F10 | Dispute/chargeback event                                             | application unchanged                      | unchanged                              | incorrectly remains collected in app | unchanged                          | Must be handled manually in Stripe             | no handler exists                   | `FAILED`             | Define manual procedure or future feature | **P1 open** |
-| G01 | Browser flags alone / unpaid or expired Session                      | unchanged                                  | unchanged                              | not paid                             | unchanged                          | No paid UI/email                               | reconciliation tests                | `PROVED_AUTOMATED`   | —                                         | P0          |
-| G02 | Paid Session, matching opaque token/metadata/amount/currency         | confirmed                                  | confirmed                              | paid                                 | unchanged                          | Bounded refresh to paid state                  | reconciliation tests                | `PROVED_AUTOMATED`   | Sandbox                                   | P1          |
-| G03 | Stripe temporarily unavailable                                       | unchanged                                  | unchanged                              | unchanged                            | unchanged                          | Safe retry, no infinite polling                | bounded reconciliation source/tests | `MANUAL_REQUIRED`    | Network simulation                        | P2          |
-| G04 | Guessed/stolen Session ID or token substitution                      | unchanged                                  | unchanged                              | unchanged                            | unchanged                          | No private cross-order data                    | mismatch test + hashed lookup       | `MANUAL_REQUIRED`    | Browser substitution                      | P0          |
+| ID  | Scenario / action/event order                                   | O                                          | B                                       | P                                                               | C/I                              | Email / customer and admin UI                        | Evidence                                        | Result               | Manual                                | Severity  |
+| --- | --------------------------------------------------------------- | ------------------------------------------ | --------------------------------------- | --------------------------------------------------------------- | -------------------------------- | ---------------------------------------------------- | ----------------------------------------------- | -------------------- | ------------------------------------- | --------- |
+| C01 | Card success                                                    | confirmed                                  | confirmed                               | paid                                                            | unchanged after original reserve | Paid UI; one success email                           | webhook tests                                   | `MANUAL_REQUIRED`    | Sandbox card                          | P0        |
+| C02 | Successful 3DS card                                             | confirmed                                  | confirmed                               | paid                                                            | same                             | Same success result                                  | strict generic success path                     | `MANUAL_REQUIRED`    | Sandbox 3DS                           | P0        |
+| C03 | BLIK success                                                    | confirmed                                  | confirmed                               | paid                                                            | same                             | Same; async UI may process first                     | async webhook tests                             | `MANUAL_REQUIRED`    | Sandbox BLIK                          | P0        |
+| C04 | P24 success when enabled                                        | confirmed                                  | confirmed                               | paid                                                            | same                             | Same                                                 | generic async path                              | `MANUAL_REQUIRED`    | Sandbox P24                           | P0        |
+| C05 | Webhook before return / browser closed                          | confirmed                                  | confirmed                               | paid                                                            | same                             | Return later already paid; one email                 | webhook replay tests                            | `PROVED_AUTOMATED`   | Stripe delivery                       | P1        |
+| C06 | Return before webhook / webhook unavailable                     | confirmed after verified Session           | confirmed                               | paid                                                            | same                             | Reconciliation then paid; one email                  | reconciliation tests                            | `PROVED_AUTOMATED`   | Sandbox outage simulation             | P1        |
+| C07 | Webhook and return race / two success event types               | confirmed once                             | confirmed once                          | paid once                                                       | no second mutation               | one email/event                                      | exclusive RPC/PGlite + unit tests               | `PROVED_INTEGRATION` | Provider-level replay                 | P0        |
+| C08 | Refresh/second tab after payment                                | confirmed                                  | confirmed                               | paid                                                            | same                             | CTA absent, scoped status only                       | eligibility/status tests                        | `PROVED_AUTOMATED`   | Browser                               | —         |
+| C09 | Authoritative `livemode` on success                             | confirmed                                  | confirmed                               | paid, mode stamped                                              | same                             | Analytics classifies correctly                       | webhook/reconcile tests                         | `PROVED_AUTOMATED`   | Test/live deploy check                | P1        |
+| D01 | Ordinary/insufficient/invalid card decline                      | awaiting                                   | awaiting                                | failed/retryable                                                | original hold only               | No success email; safe decline UI                    | failure tests                                   | `MANUAL_REQUIRED`    | Sandbox cards                         | P1        |
+| D02 | 3DS issuer decline/auth failure                                 | awaiting                                   | awaiting                                | failed/retryable                                                | same                             | No success email                                     | state-safe failure handler                      | `MANUAL_REQUIRED`    | Sandbox cards                         | P1        |
+| D03 | Customer exits Checkout/P24 cancellation                        | awaiting                                   | awaiting                                | pending until expiry/retry                                      | same                             | Cancel page; pay remains eligible                    | eligibility code                                | `MANUAL_REQUIRED`    | Browser                               | —         |
+| D04 | BLIK invalid code                                               | awaiting                                   | awaiting                                | failed/retryable                                                | same                             | Safe failure, no success email                       | async failure tests                             | `MANUAL_REQUIRED`    | Sandbox BLIK                          | P1        |
+| D05 | BLIK delayed decline/timeout                                    | awaiting                                   | awaiting                                | failed/retryable                                                | same                             | Processing then failure                              | async failure tests                             | `MANUAL_REQUIRED`    | Sandbox BLIK                          | P1        |
+| D06 | Checkout expiry                                                 | expired                                    | expired                                 | matching attempt cancelled/failed                               | exact hold released once         | Expired notice/no success email                      | webhook + PGlite expiry/replay tests            | `PROVED_INTEGRATION` | Sandbox expiry                        | P1 closed |
+| D07 | Network loss after Checkout creation                            | awaiting                                   | awaiting                                | pending with persisted claim/key                                | no extra reserve                 | Retry recovers Session or safely resumes             | attempt tests/PGlite                            | `PROVED_INTEGRATION` | Stripe sandbox interruption           | P1        |
+| D08 | `checkout=success` but unpaid/missing Session                   | unchanged                                  | unchanged                               | not paid                                                        | unchanged                        | Safe processing/error; no confirmation               | reconciliation tests                            | `PROVED_AUTOMATED`   | Browser                               | P1        |
+| D09 | Session for another order / wrong token                         | unchanged                                  | unchanged                               | unchanged                                                       | unchanged                        | No cross-order data                                  | mismatch tests                                  | `PROVED_AUTOMATED`   | Manual stolen-ID attempt              | P0        |
+| D10 | Failed attempt(s), then successful retry                        | confirmed                                  | confirmed                               | paid                                                            | no second reserve                | One success email                                    | attempt/failure/success tests                   | `PROVED_AUTOMATED`   | Sandbox sequence                      | P0        |
+| D11 | Old failure after newer success                                 | confirmed                                  | confirmed                               | paid                                                            | unchanged                        | No false failure email                               | stale-event tests/PGlite                        | `PROVED_INTEGRATION` | —                                     | P0        |
+| D12 | Old success after failure                                       | confirmed if valid/current relationship    | confirmed                               | paid                                                            | unchanged                        | One success email                                    | strict success tests                            | `PROVED_AUTOMATED`   | —                                     | P1        |
+| D13 | Expired old Session after new success                           | confirmed                                  | confirmed                               | paid                                                            | unchanged                        | Old event ignored                                    | exact attempt binding tests                     | `PROVED_AUTOMATED`   | —                                     | P0        |
+| E01 | Double-click/two tabs race before Checkout creation             | awaiting                                   | awaiting                                | one claimed attempt                                             | unchanged                        | One redirect; competitor receives processing         | PGlite + attempt tests                          | `PROVED_INTEGRATION` | Browser two-tab                       | P0        |
+| E02 | Existing open Session / processing PI                           | awaiting                                   | awaiting                                | existing pending attempt                                        | unchanged                        | Existing URL/status reused                           | checkout attempt code/tests                     | `PROVED_AUTOMATED`   | Stripe API                            | P0        |
+| E03 | Stripe paid while local unpaid / reconciliation race            | confirmed through strict recovery          | confirmed                               | paid                                                            | unchanged                        | Manual-resolution route if terminal                  | reconciliation/webhook tests                    | `PROVED_AUTOMATED`   | Sandbox recovery                      | P1        |
+| E04 | Second Checkout after confirmation/refund/terminal state        | terminal state unchanged                   | unchanged                               | no new payable attempt                                          | unchanged                        | CTA blocked                                          | eligibility and RPC tests                       | `PROVED_AUTOMATED`   | —                                     | P0        |
+| E05 | Genuine failed attempt retry/idempotency-key lifecycle          | awaiting → confirmed                       | same                                    | failed → pending → paid                                         | unchanged                        | Retry not permanently blocked                        | persisted per-attempt key tests                 | `PROVED_INTEGRATION` | Stripe API                            | P0        |
+| F01 | Twelve subscribed events: signature, validation, idempotency    | state by verified event                    | state by verified event                 | state by verified event                                         | guarded                          | Correct 2xx/5xx; safe logs                           | webhook route/unit tests                        | `PROVED_AUTOMATED`   | Stripe CLI/sandbox                    | P0        |
+| F02 | `refund.updated` succeeded / `refund.failed`                    | refund synchronized / unchanged on failure | full unfulfilled closes; partial review | cumulative refund / failure recorded                            | release only on safe full refund | Refund/admin-problem evidence                        | refund webhook tests/PGlite                     | `PROVED_INTEGRATION` | Subscribe events, sandbox async cards | P1        |
+| F03 | Invalid/missing signature or malformed JSON                     | unchanged                                  | unchanged                               | unchanged                                                       | unchanged                        | 400, no details/secrets                              | route implementation                            | `MANUAL_REQUIRED`    | Signed/unsigned HTTP calls            | P0        |
+| F04 | Unsupported event                                               | unchanged                                  | unchanged                               | unchanged                                                       | unchanged                        | safe 2xx after verified claim                        | handler tests/source                            | `PROVED_AUTOMATED`   | —                                     | —         |
+| F05 | Duplicate same ID / two IDs same object                         | one transition                             | one transition                          | one transition                                                  | once                             | one email                                            | event and entity idempotency tests              | `PROVED_INTEGRATION` | Stripe replay                         | P0        |
+| F06 | Concurrent/out-of-order delivery                                | terminal truth preserved                   | truth preserved                         | truth preserved                                                 | once                             | owner gets retryable 503 for in-progress claim       | PGlite/ordering tests                           | `PROVED_INTEGRATION` | Provider replay                       | P0        |
+| F07 | Handler/DB exception then retry                                 | initially unchanged; later correct         | same                                    | failed claim then recovered                                     | unchanged until success          | 5xx then 2xx; no lost event                          | webhook retry tests                             | `PROVED_AUTOMATED`   | —                                     | P1        |
+| F08 | Amount/currency/metadata/entity/relation mismatch or unknown ID | no confirmation                            | no confirmation                         | pending/manual resolution                                       | unchanged                        | Safe failure/admin evidence                          | strict RPC/tests                                | `PROVED_AUTOMATED`   | —                                     | P0        |
+| F09 | Test/live classification and PII-safe logging                   | valid mode only                            | valid mode only                         | mode stamped                                                    | unchanged                        | No PII/secrets                                       | privacy/provider tests                          | `PROVED_AUTOMATED`   | deployed log review                   | P0        |
+| F10 | Dispute/chargeback/warning lifecycle                            | transactional state unchanged              | unchanged                               | separate dispute ledger; net adjusted only when funds withdrawn | unchanged                        | Actionable admin signal; analytics restored when won | webhook tests + PGlite dispute/warning sequence | `PROVED_INTEGRATION` | Stripe sandbox lifecycle              | P1 closed |
+| G01 | Browser flags alone / unpaid or expired Session                 | unchanged                                  | unchanged                               | not paid                                                        | unchanged                        | No paid UI/email                                     | reconciliation tests                            | `PROVED_AUTOMATED`   | —                                     | P0        |
+| G02 | Paid Session, matching opaque token/metadata/amount/currency    | confirmed                                  | confirmed                               | paid                                                            | unchanged                        | Bounded refresh to paid state                        | reconciliation tests                            | `PROVED_AUTOMATED`   | Sandbox                               | P1        |
+| G03 | Stripe temporarily unavailable                                  | unchanged                                  | unchanged                               | unchanged                                                       | unchanged                        | Safe retry, no infinite polling                      | bounded reconciliation source/tests             | `MANUAL_REQUIRED`    | Network simulation                    | P2        |
+| G04 | Guessed/stolen Session ID or token substitution                 | unchanged                                  | unchanged                               | unchanged                                                       | unchanged                        | No private cross-order data                          | mismatch test + hashed lookup                   | `MANUAL_REQUIRED`    | Browser substitution                  | P0        |
 
 ### H–K. Manual transfer, shipping, cancellation/refunds, and booking lifecycle
 
-| ID  | Scenario / action                                    | O                                                                               | B                                           | P                                                       | C/I                                    | Email / customer and admin UI          | Evidence                                      | Result               | Manual                       | Severity    |
-| --- | ---------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------- | -------------------------------------- | -------------------------------------- | --------------------------------------------- | -------------------- | ---------------------------- | ----------- |
-| H01 | Known-total transfer with complete settings          | awaiting → confirmed by owner/manager                                           | same                                        | pending → paid/manual                                   | reserve once                           | Correct recipient/account/title/amount | bank/admin tests                              | `MANUAL_REQUIRED`    | Full UI/email                | P1          |
-| H02 | Incomplete settings or malformed provider            | no payment demand                                                               | unchanged                                   | unchanged                                               | unchanged                              | No partial bank data                   | provider/bank tests                           | `PROVED_AUTOMATED`   | —                            | P1          |
-| H03 | Owner/manager marks transfer paid twice              | confirmed once                                                                  | confirmed once                              | paid once                                               | unchanged                              | One history/email                      | atomic manual RPC                             | `BLOCKED_EXTERNAL`   | Supabase role/idempotency    | P0          |
-| H04 | Editor/anonymous attempts mark paid                  | unchanged                                                                       | unchanged                                   | unchanged                                               | unchanged                              | Forbidden                              | server role check/RPC grant                   | `MANUAL_REQUIRED`    | Role matrix                  | P0          |
-| H05 | Stripe-selected/already paid order marked manual     | unchanged                                                                       | unchanged                                   | unchanged                                               | unchanged                              | Action rejected                        | manual RPC/tests                              | `PROVED_AUTOMATED`   | —                            | P0          |
-| H06 | Transfer cancellation before/after payment           | unpaid may cancel; paid requires explicit refund path                           | linked state consistent                     | pending cancelled; paid protected                       | release once only unpaid cancel        | Audit/email                            | cancellation RPC                              | `BLOCKED_EXTERNAL`   | Supabase workflow            | P1          |
-| H07 | Manual-transfer expiration policy                    | no timed hold by design                                                         | remains held                                | pending                                                 | remains reserved                       | Admin must cancel manually             | documented behavior                           | `MANUAL_REQUIRED`    | Owner accepts policy         | **P1 open** |
-| H08 | Analytics and NRB formatting                         | transactional state unaffected                                                  | unaffected                                  | paid/manual classified                                  | unchanged                              | Correct transfer value                 | analytics/bank tests                          | `PROVED_AUTOMATED`   | Dashboard check              | —           |
-| I01 | Shipping order before quote                          | awaiting quote                                                                  | linked workshop remains awaiting            | not payable                                             | reserved once                          | No CTA/account/email demand            | eligibility tests                             | `PROVED_AUTOMATED`   | UI                           | P0          |
-| I02 | Authorized quote confirmation                        | awaiting payment                                                                | unchanged                                   | pending at exact new total                              | unchanged                              | Correct method-specific action/email   | PGlite quote test                             | `PROVED_INTEGRATION` | Role/UI                      | P1          |
-| I03 | Duplicate/concurrent quote confirmation              | one total                                                                       | unchanged                                   | one matching total                                      | unchanged                              | Idempotent or safe conflict            | atomic row-lock RPC                           | `BLOCKED_EXTERNAL`   | Supabase concurrency         | P0          |
-| I04 | Negative, overflow, exponent, malformed quote        | unchanged                                                                       | unchanged                                   | unchanged                                               | unchanged                              | Validation error                       | `admin-money.test.ts`                         | `PROVED_AUTOMATED`   | —                            | P0          |
-| I05 | Cancel before/after quote, before payment            | cancelled by atomic unpaid transition                                           | linked cancelled                            | cancelled                                               | releases once                          | Cancellation status                    | RPC needs full schema                         | `BLOCKED_EXTERNAL`   | Supabase                     | P1          |
-| I06 | Stripe/transfer payment after quote                  | confirmed                                                                       | confirmed                                   | paid at quoted total                                    | unchanged                              | Correct success/instructions           | strict amount binding                         | `MANUAL_REQUIRED`    | Sandbox/manual               | P1          |
-| J01 | Customer cancellation outside/inside 24-hour window  | eligible cancels; ineligible unchanged                                          | eligible cancelled                          | refund pending/succeeded truthfully                     | eligible release once                  | Exact policy UI/email                  | datetime/cancellation tests                   | `MANUAL_REQUIRED`    | Europe/Warsaw UI             | P1          |
-| J02 | Admin cancellation before payment / repeated         | cancelled once                                                                  | cancelled once                              | cancelled                                               | release once                           | One audit/email                        | cancellation RPC                              | `BLOCKED_EXTERNAL`   | Supabase                     | P1          |
-| J03 | Cancellation while processing / after paid           | no unsafe generic state mutation                                                | no false cancellation                       | processing/paid preserved until explicit refund outcome | no premature release                   | Admin must use dedicated action        | admin guards                                  | `PROVED_AUTOMATED`   | Workflow                     | P0          |
-| J04 | Late payment after cancellation                      | terminal order/booking not resurrected                                          | terminal                                    | paid flagged for manual resolution                      | not reacquired silently                | Admin payment problem                  | strict confirmation RPC                       | `PROVED_INTEGRATION` | Sandbox                      | P1          |
-| J05 | Pending cleanup/Stripe expiry/orphan unified order   | awaiting until explicit cancel                                                  | awaiting                                    | failed/pending                                          | continues holding                      | Diagnostic identifies hold             | diagnostic SQL and source                     | `FAILED`             | Approve expiry rule          | **P1 open** |
-| J06 | Full standalone Stripe refund                        | —                                                                               | refunded                                    | refunded                                                | releases seats once                    | Refund status/email                    | PGlite/refund tests                           | `PROVED_INTEGRATION` | Sandbox                      | P1          |
-| J07 | Partial/multiple standalone refunds to full          | —                                                                               | active until cumulative full, then refunded | partial → full                                          | release only at full                   | Truthful cumulative status             | safe refund RPC; full DB sequence unavailable | `BLOCKED_EXTERNAL`   | Supabase + sandbox           | P1          |
-| J08 | Duplicate/out-of-order/pending/failed refund events  | financial truth never advances on pending/failure; cumulative Stripe total wins | no false close                              | synchronized only on success                            | no false release                       | Failure/admin evidence                 | webhook/admin tests                           | `PROVED_AUTOMATED`   | Async sandbox cards          | P1          |
-| J09 | Refund one part of mixed/multi-booking order         | order financially partial/full and flagged                                      | allocation intentionally unchanged          | cumulative amount correct                               | intentionally unchanged pending review | Admin review required                  | migration 19 explicit event                   | `FAILED`             | Approve allocation semantics | **P1 open** |
-| J10 | Revenue analytics after refund                       | net collected subtracts recorded refund                                         | —                                           | correct cumulative refund                               | —                                      | Dashboard net/refund values            | migration 18 tests + sync RPC                 | `PROVED_AUTOMATED`   | Dashboard sandbox            | P1          |
-| K01 | Participant/purchaser validation and note round-trip | valid aggregate                                                                 | linked correctly                            | —                                                       | exact seats                            | Names/phone required; notes separate   | checkout tests                                | `PROVED_AUTOMATED`   | UI                           | —           |
-| K02 | Booking statuses, unique reference, order link       | consistent                                                                      | lifecycle constrained                       | linked                                                  | guarded                                | Correct detail/status                  | schema/tests                                  | `BLOCKED_EXTERNAL`   | Supabase constraints         | P1          |
-| K03 | Manual/complimentary booking                         | —                                                                               | pending/confirmed as chosen                 | manual/complimentary                                    | exact seats                            | Admin audit/email                      | existing booking tests remote                 | `BLOCKED_EXTERNAL`   | Supabase                     | P1          |
-| K04 | Europe/Warsaw 24-hour/DST boundaries                 | —                                                                               | eligibility correct                         | unchanged                                               | unchanged                              | Correct Polish time/policy             | datetime tests                                | `PROVED_AUTOMATED`   | Browser timezone             | —           |
-| K05 | Capacity boundary/cancel/failure retry               | —                                                                               | consistent                                  | failure does not reserve again                          | exact/release once                     | Correct availability                   | full DB concurrency unavailable               | `BLOCKED_EXTERNAL`   | Supabase                     | P0          |
-| K06 | Attendance/exclusion/session completion              | order unchanged                                                                 | booking unchanged                           | payment unchanged                                       | unchanged                              | Audited operational-only changes       | migration 18 tests                            | `PROVED_AUTOMATED`   | Admin mobile                 | P1          |
+| ID  | Scenario / action                                    | O                                                                               | B                                              | P                                                       | C/I                                       | Email / customer and admin UI                | Evidence                                      | Result               | Manual                      | Severity  |
+| --- | ---------------------------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------- | ----------------------------------------- | -------------------------------------------- | --------------------------------------------- | -------------------- | --------------------------- | --------- |
+| H01 | Known-total transfer with complete settings          | awaiting → confirmed by owner/manager                                           | same                                           | pending → paid/manual                                   | reserve once                              | Correct recipient/account/title/amount       | bank/admin tests                              | `MANUAL_REQUIRED`    | Full UI/email               | P1        |
+| H02 | Incomplete settings or malformed provider            | no payment demand                                                               | unchanged                                      | unchanged                                               | unchanged                                 | No partial bank data                         | provider/bank tests                           | `PROVED_AUTOMATED`   | —                           | P1        |
+| H03 | Owner/manager marks transfer paid twice              | confirmed once                                                                  | confirmed once                                 | paid once                                               | unchanged                                 | One history/email                            | atomic manual RPC                             | `BLOCKED_EXTERNAL`   | Supabase role/idempotency   | P0        |
+| H04 | Editor/anonymous attempts mark paid                  | unchanged                                                                       | unchanged                                      | unchanged                                               | unchanged                                 | Forbidden                                    | server role check/RPC grant                   | `MANUAL_REQUIRED`    | Role matrix                 | P0        |
+| H05 | Stripe-selected/already paid order marked manual     | unchanged                                                                       | unchanged                                      | unchanged                                               | unchanged                                 | Action rejected                              | manual RPC/tests                              | `PROVED_AUTOMATED`   | —                           | P0        |
+| H06 | Transfer cancellation before/after payment           | unpaid may cancel; paid requires explicit refund path                           | linked state consistent                        | pending cancelled; paid protected                       | release once only unpaid cancel           | Audit/email                                  | cancellation RPC                              | `BLOCKED_EXTERNAL`   | Supabase workflow           | P1        |
+| H07 | Manual-transfer expiration policy                    | expires after 24 hours if still unpaid                                          | linked bookings expire                         | cancelled/failed                                        | released exactly once                     | Expired state; no payment demand             | migration 20 expiry RPC/PGlite                | `PROVED_INTEGRATION` | Sandbox cron                | P1 closed |
+| H08 | Analytics and NRB formatting                         | transactional state unaffected                                                  | unaffected                                     | paid/manual classified                                  | unchanged                                 | Correct transfer value                       | analytics/bank tests                          | `PROVED_AUTOMATED`   | Dashboard check             | —         |
+| I01 | Shipping order before quote                          | awaiting quote                                                                  | linked workshop remains awaiting               | not payable                                             | reserved once                             | No CTA/account/email demand                  | eligibility tests                             | `PROVED_AUTOMATED`   | UI                          | P0        |
+| I02 | Authorized quote confirmation                        | awaiting payment                                                                | unchanged                                      | pending at exact new total                              | unchanged                                 | Correct method-specific action/email         | PGlite quote test                             | `PROVED_INTEGRATION` | Role/UI                     | P1        |
+| I03 | Duplicate/concurrent quote confirmation              | one total                                                                       | unchanged                                      | one matching total                                      | unchanged                                 | Idempotent or safe conflict                  | atomic row-lock RPC                           | `BLOCKED_EXTERNAL`   | Supabase concurrency        | P0        |
+| I04 | Negative, overflow, exponent, malformed quote        | unchanged                                                                       | unchanged                                      | unchanged                                               | unchanged                                 | Validation error                             | `admin-money.test.ts`                         | `PROVED_AUTOMATED`   | —                           | P0        |
+| I05 | Cancel before/after quote, before payment            | cancelled by atomic unpaid transition                                           | linked cancelled                               | cancelled                                               | releases once                             | Cancellation status                          | RPC needs full schema                         | `BLOCKED_EXTERNAL`   | Supabase                    | P1        |
+| I06 | Stripe/transfer payment after quote                  | confirmed                                                                       | confirmed                                      | paid at quoted total                                    | unchanged                                 | Correct success/instructions                 | strict amount binding                         | `MANUAL_REQUIRED`    | Sandbox/manual              | P1        |
+| J01 | Customer cancellation outside/inside 24-hour window  | eligible cancels; ineligible unchanged                                          | eligible cancelled                             | refund pending/succeeded truthfully                     | eligible release once                     | Exact policy UI/email                        | datetime/cancellation tests                   | `MANUAL_REQUIRED`    | Europe/Warsaw UI            | P1        |
+| J02 | Admin cancellation before payment / repeated         | cancelled once                                                                  | cancelled once                                 | cancelled                                               | release once                              | One audit/email                              | cancellation RPC                              | `BLOCKED_EXTERNAL`   | Supabase                    | P1        |
+| J03 | Cancellation while processing / after paid           | no unsafe generic state mutation                                                | no false cancellation                          | processing/paid preserved until explicit refund outcome | no premature release                      | Admin must use dedicated action              | admin guards                                  | `PROVED_AUTOMATED`   | Workflow                    | P0        |
+| J04 | Late payment after cancellation                      | terminal order/booking not resurrected                                          | terminal                                       | paid flagged for manual resolution                      | not reacquired silently                   | Admin payment problem                        | strict confirmation RPC                       | `PROVED_INTEGRATION` | Sandbox                     | P1        |
+| J05 | Pending cleanup/Stripe expiry/orphan unified order   | exact unpaid attempt expires                                                    | linked bookings expire                         | cancelled/failed                                        | seats/stock released exactly once         | Diagnostic shows only deferred/problem holds | expiry unit tests + PGlite replay             | `PROVED_INTEGRATION` | Sandbox cron/Session state  | P1 closed |
+| J06 | Full standalone Stripe refund                        | —                                                                               | refunded                                       | refunded                                                | releases seats once                       | Refund status/email                          | PGlite/refund tests                           | `PROVED_INTEGRATION` | Sandbox                     | P1        |
+| J07 | Partial/multiple standalone refunds to full          | —                                                                               | active until cumulative full, then refunded    | partial → full                                          | release only at full                      | Truthful cumulative status                   | safe refund RPC; full DB sequence unavailable | `BLOCKED_EXTERNAL`   | Supabase + sandbox          | P1        |
+| J08 | Duplicate/out-of-order/pending/failed refund events  | financial truth never advances on pending/failure; cumulative Stripe total wins | no false close                                 | synchronized only on success                            | no false release                          | Failure/admin evidence                       | webhook/admin tests                           | `PROVED_AUTOMATED`   | Async sandbox cards         | P1        |
+| J09 | Unified/mixed-order refund                           | admin permits full remaining only; direct partial is flagged                    | full closes linked bookings; partial unchanged | cumulative amount correct                               | full releases once; partial releases none | Exact full action or admin review            | migration 20 refund/replay/partial sequence   | `PROVED_INTEGRATION` | Sandbox full/direct partial | P1 closed |
+| J10 | Revenue analytics after refund/dispute               | net collected subtracts recorded refund and real disputed funds                 | —                                              | correct cumulative financial facts                      | —                                         | Dashboard net/refund/dispute values          | analytics tests + migration 20 RPC            | `PROVED_AUTOMATED`   | Dashboard sandbox           | P1        |
+| K01 | Participant/purchaser validation and note round-trip | valid aggregate                                                                 | linked correctly                               | —                                                       | exact seats                               | Names/phone required; notes separate         | checkout tests                                | `PROVED_AUTOMATED`   | UI                          | —         |
+| K02 | Booking statuses, unique reference, order link       | consistent                                                                      | lifecycle constrained                          | linked                                                  | guarded                                   | Correct detail/status                        | schema/tests                                  | `BLOCKED_EXTERNAL`   | Supabase constraints        | P1        |
+| K03 | Manual/complimentary booking                         | —                                                                               | pending/confirmed as chosen                    | manual/complimentary                                    | exact seats                               | Admin audit/email                            | existing booking tests remote                 | `BLOCKED_EXTERNAL`   | Supabase                    | P1        |
+| K04 | Europe/Warsaw 24-hour/DST boundaries                 | —                                                                               | eligibility correct                            | unchanged                                               | unchanged                                 | Correct Polish time/policy                   | datetime tests                                | `PROVED_AUTOMATED`   | Browser timezone            | —         |
+| K05 | Capacity boundary/cancel/failure retry               | —                                                                               | consistent                                     | failure does not reserve again                          | exact/release once                        | Correct availability                         | full DB concurrency unavailable               | `BLOCKED_EXTERNAL`   | Supabase                    | P0        |
+| K06 | Attendance/exclusion/session completion              | order unchanged                                                                 | booking unchanged                              | payment unchanged                                       | unchanged                                 | Audited operational-only changes             | migration 18 tests                            | `PROVED_AUTOMATED`   | Admin mobile                | P1        |
 
 ### L. Email outboxes
 
@@ -326,14 +334,22 @@ No unresolved P0 was reproduced after repairs.
 
 Every repair is additive. Migrations `00`–`18` were not edited.
 
-### Open P1
+### P1 closed by migration 20 and release-rule implementation
 
-- Automatic expiration/release policy for abandoned unified orders.
-- Refund allocation across mixed/unified order lines and linked bookings.
-- Chargeback/dispute operational and analytics policy.
-- Production dependency advisories, especially the Sharp/libvips findings,
-  pending exposure and supported-upgrade assessment.
-- Full Supabase migration/concurrency evidence and Stripe sandbox acceptance.
+1. Abandoned unified orders now have explicit 15-minute/24-hour deadlines,
+   authoritative Stripe Session checks, and exact-once release.
+2. Unified-order refunds are unambiguous in the application: full remaining
+   refund only for an unfulfilled order. Direct Stripe partial refunds are
+   synchronized but never allocate or release resources automatically.
+3. Stripe disputes now use a separate ledger and webhook lifecycle. Real
+   withdrawn funds reduce analytics; won disputes restore them; warning
+   inquiries do not reduce revenue.
+4. The production dependency report is clear after upgrading Next and
+   `file-type` and pinning safe PostCSS/Sharp versions.
+
+There are no open P0/P1 implementation findings. Full Supabase
+migration/concurrency evidence and Stripe sandbox acceptance remain external
+release conditions.
 
 ### P2/P3
 
@@ -346,15 +362,16 @@ Every repair is additive. Migrations `00`–`18` were not edited.
 
 ## Files changed
 
-| Area                     | Files                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Database                 | `supabase/migrations/00000000000019_payment_release_hardening.sql`                                                                                                                                                                                                                                                                                                                                                                        |
-| Stripe/reconciliation    | `lib/booking/payment.ts`, `lib/booking/stripe-webhook.ts`, `lib/cart/order-checkout.ts`, `lib/cart/reconcile-order-checkout.ts`                                                                                                                                                                                                                                                                                                           |
-| Cart/provider            | `lib/cart/checkout.ts`, `components/clone/checkout-page-client.tsx`, `lib/payments/provider.ts`, `lib/payments/admin-money.ts`, `lib/database/schema.ts`                                                                                                                                                                                                                                                                                  |
-| Admin/customer mutations | `app/admin/(protected)/rezerwacje/actions.ts`, `app/admin/(protected)/rezerwacje/[id]/BookingDetailActions.tsx`, `app/admin/(protected)/zamowienia/actions.ts`, `app/rezerwacja/anulowanie/actions.ts`                                                                                                                                                                                                                                    |
-| Email                    | `lib/booking/email-transport.ts`, `lib/cart/order-email.ts`, `lib/cart/order-email-dispatch.ts`                                                                                                                                                                                                                                                                                                                                           |
-| Tests                    | `lib/booking/__tests__/payment.test.ts`, `lib/booking/__tests__/schemas.test.ts`, `lib/booking/__tests__/stripe-webhook.test.ts`, `lib/cart/__tests__/order-stripe-webhook.test.ts`, `lib/cart/__tests__/reconcile-order-checkout.test.ts`, `lib/cart/__tests__/order-checkout-attempt.test.ts`, `lib/cart/__tests__/privacy-boundaries.test.ts`, `lib/payments/__tests__/provider.test.ts`, `lib/payments/__tests__/admin-money.test.ts` |
-| Operations/docs          | `scripts/audit-booking-payment-consistency.sql`, `docs/BOOKING-PAYMENT-RELEASE-AUDIT.md`, `docs/MANUAL-PAYMENT-ACCEPTANCE.md`, `docs/PAYMENT-FLOWS.md`, `docs/BOOKINGS.md`, `package.json`                                                                                                                                                                                                                                                |
+| Area                     | Files                                                                                                                                                                                                                                                                                    |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Database                 | `supabase/migrations/00000000000019_payment_release_hardening.sql`, `supabase/migrations/00000000000020_payment_release_go.sql`                                                                                                                                                          |
+| Stripe/reconciliation    | `lib/booking/payment.ts`, `lib/booking/stripe-webhook.ts`, `lib/cart/order-checkout.ts`, `lib/cart/reconcile-order-checkout.ts`, `lib/payments/order-expiry.ts`                                                                                                                          |
+| Cart/provider            | `lib/cart/checkout.ts`, `components/clone/checkout-page-client.tsx`, `lib/payments/provider.ts`, `lib/payments/admin-money.ts`, `lib/database/schema.ts`                                                                                                                                 |
+| Admin/customer mutations | `app/admin/(protected)/rezerwacje/actions.ts`, `app/admin/(protected)/rezerwacje/[id]/BookingDetailActions.tsx`, `app/admin/(protected)/zamowienia/actions.ts`, `app/admin/(protected)/zamowienia/[id]/page.tsx`, `app/api/cron/expiry/route.ts`, `app/rezerwacja/anulowanie/actions.ts` |
+| Email                    | `lib/booking/email-transport.ts`, `lib/cart/order-email.ts`, `lib/cart/order-email-dispatch.ts`                                                                                                                                                                                          |
+| Tests                    | Existing payment/booking suites plus `lib/payments/__tests__/order-expiry.test.ts` and `scripts/test-migrations-pglite.mjs`                                                                                                                                                              |
+| Analytics                | `lib/admin/analytics.ts`, `lib/admin/__tests__/analytics-exclusions.test.ts`, `app/admin/(protected)/analityka/page.tsx`                                                                                                                                                                 |
+| Operations/docs          | `scripts/audit-booking-payment-consistency.sql`, `docs/BOOKING-PAYMENT-RELEASE-AUDIT.md`, `docs/MANUAL-PAYMENT-ACCEPTANCE.md`, `docs/PAYMENT-FLOWS.md`, `docs/BOOKINGS.md`, `docs/ANALYTICS.md`, `package.json`, `package-lock.json`                                                     |
 
 ## Migration 19
 
@@ -375,14 +392,29 @@ Every repair is additive. Migrations `00`–`18` were not edited.
 - atomic order-email dispatch claims;
 - fixed `search_path`, service-role grants, and revocation from public roles.
 
-It deliberately does not auto-expire orders or allocate unified-order refunds.
+## Migration 20
+
+`00000000000020_payment_release_go.sql` adds:
+
+- explicit Stripe, bank-transfer, and shipping-quote payment deadlines;
+- atomic Checkout Session binding to the exact order/payment/amount/mode;
+- read-only expired-order selection and exact-attempt, exact-once order expiry;
+- a durable resource-release ledger shared by expiry and refunds;
+- a full-remaining unified-order refund RPC and safe Stripe refund
+  synchronization;
+- a separate dispute ledger and dispute-aware analytics facts;
+- service-role-only grants and RLS for the new operational ledgers.
+
+The application never guesses the allocation of a direct partial unified-order
+refund. It records the financial fact, releases nothing, and requires admin
+review.
 
 ## Test evidence and skipped inventory
 
 ### Automated
 
 - Focused command: `npm run test:payments`
-- Focused result: 113 passed, 11 skipped.
+- Focused result: 123 passed, 11 skipped.
 - Full-suite result and final gates are recorded below after the final run.
 - Added/expanded tests cover authoritative confirmation fields, stale events,
   webhook lease contention/retry, async refund failure, order Checkout attempt
@@ -390,20 +422,24 @@ It deliberately does not auto-expire orders or allocate unified-order refunds.
 
 ### PostgreSQL-compatible harness
 
-A temporary PGlite harness executed migration 19 against a representative
-migration-18 schema and proved:
+A committed PGlite PostgreSQL-compatible harness applies migrations `00`–`20`
+and the upgrade `19`→`20`. Migration 12 is an operational seed migration, so
+the harness inserts its minimum category/instructor prerequisite after
+migration 11 and labels that fixture in the output. It then proves:
 
-- first webhook claim wins and the concurrent claim returns `in_progress`;
-- strict standalone confirmation reaches paid/confirmed once;
-- stale failure cannot regress paid state;
-- quote confirmation synchronizes order and payment totals;
-- one Checkout creator wins a competing claim;
-- full standalone refund closes the booking and releases its seat;
-- replaying the same refund operation does not increment the cumulative refund;
-- the read-only consistency diagnostic parses and executes.
+- a mixed workshop/product order reserves both resources atomically;
+- exact Checkout binding and expiry release both resources once;
+- an expiry replay does not release twice;
+- a full unified-order refund closes and releases once;
+- refund replay is idempotent;
+- a direct partial unified-order refund releases nothing and is flagged;
+- an open real dispute reduces net collected revenue and a won dispute restores
+  it;
+- a warning inquiry requests admin action without reducing revenue.
 
-This is useful SQL execution evidence, but it is not presented as a substitute
-for applying migrations `00`–`19` in Supabase.
+This is real PostgreSQL-compatible SQL execution evidence, but it is not
+presented as a substitute for the disposable Supabase run because Supabase role,
+extension, and concurrency behavior still needs that environment.
 
 ### Skipped tests
 
@@ -424,8 +460,9 @@ before migration/deployment and after the test deployment. It returns only
 counts and non-PII references for payment/order/booking mismatches, duplicate
 successful payments, capacity/inventory problems, payable terminal records,
 retryable webhook events, email-key duplicates, unclassified Stripe rows,
-analytics-exclusion mismatches, expired holds, and unified refunds requiring
-allocation review. It performs no writes.
+analytics-exclusion mismatches, expired holds, unified refunds requiring
+allocation review, and active disputes/warning inquiries. It performs no
+writes.
 
 ## Operational recovery: Stripe paid, application unpaid
 
@@ -449,49 +486,48 @@ Never force database status fields independently.
 
 ## Quality gates
 
-| Gate                    | Result                                                                       |
-| ----------------------- | ---------------------------------------------------------------------------- |
-| Dependency install      | Pass (`npm ci`)                                                              |
-| Baseline full tests     | 277 passed, 25 skipped                                                       |
-| Baseline typecheck      | Pass                                                                         |
-| Baseline lint           | Pass with two pre-existing stub warnings                                     |
-| Baseline build          | Pass                                                                         |
-| Baseline format check   | Fail: 34 pre-existing files                                                  |
-| Migration 19 PGlite     | Pass                                                                         |
-| Focused payment tests   | 113 passed, 11 skipped                                                       |
-| Changed-file formatting | Pass                                                                         |
-| Final format check      | Fail: 31 unrelated pre-existing files                                        |
-| Final lint              | Pass with the same two pre-existing stub warnings                            |
-| Final typecheck         | Pass                                                                         |
-| Final full tests        | 301 passed, 25 explicitly skipped                                            |
-| Final production build  | Pass                                                                         |
-| `git diff --check`      | Pass                                                                         |
-| `npm audit --omit=dev`  | Report-only failure: 3 high, 1 moderate; no automatic dependency fix applied |
+| Gate                    | Result                                                              |
+| ----------------------- | ------------------------------------------------------------------- |
+| Dependency install      | Pass (`npm ci`)                                                     |
+| Baseline full tests     | 277 passed, 25 skipped                                              |
+| Baseline typecheck      | Pass                                                                |
+| Baseline lint           | Pass with two pre-existing stub warnings                            |
+| Baseline build          | Pass                                                                |
+| Baseline format check   | Fail: 34 pre-existing files                                         |
+| Migrations 00→20/19→20  | Pass in PostgreSQL-compatible PGlite, including behavior assertions |
+| Focused payment tests   | 123 passed, 11 explicitly skipped                                   |
+| Changed-file formatting | Pass                                                                |
+| Final format check      | Fail: 27 unrelated pre-existing files; no changed file fails        |
+| Final lint              | Pass with the same two pre-existing stub warnings                   |
+| Final typecheck         | Pass                                                                |
+| Final full tests        | 311 passed, 25 explicitly skipped                                   |
+| Final production build  | Pass                                                                |
+| `git diff --check`      | Pass                                                                |
+| `npm audit --omit=dev`  | Pass: zero vulnerabilities                                          |
 
-The dependency report identifies high-severity advisories in Next's transitive
-PostCSS and Sharp dependencies and a moderate `file-type` advisory. It reports
-no fix for the PostCSS or `file-type` findings and an available `npm audit fix`
-for Sharp. Dependency changes were intentionally not made automatically; review
-the framework-supported upgrade path separately.
+Dependency remediation upgraded Next to `16.2.12`, `file-type` to the current
+compatible release, and pins remediated PostCSS/Sharp transitive versions.
+Typecheck, the complete test suite, and the production bundle pass with those
+versions.
 
 ## Required release/deployment order
 
-Do not deploy while the decision is `NO-GO`.
-
-After the open business rules are resolved and tested:
+The branch is approved for merge and test deployment. Preserve this order
+because the application selects columns introduced by migration 20:
 
 1. Back up the database and run the read-only diagnostic.
-2. Exercise a staging/test database upgrade from migration 18 to 19 and a fresh
-   migration `00`→`19`.
-3. Apply migration 19 to Supabase.
-4. Deploy the matching application build.
-5. Add `refund.updated` and `refund.failed` to the existing Stripe webhook
-   destination (nine events in total). Keep the matching mode-specific
-   `whsec_...`.
-6. Run `docs/MANUAL-PAYMENT-ACCEPTANCE.md` with test keys.
+2. In a disposable Supabase project, exercise a fresh `00`→`20` and the
+   production-equivalent `19`→`20` upgrade, then run all 25 remote tests.
+3. Apply migration 20 to the target Supabase project. Migration 19 must already
+   be present.
+4. Deploy the exact matching application build.
+5. Subscribe the Stripe webhook to all twelve events in
+   `docs/PAYMENT-FLOWS.md`, preserving the matching mode-specific `whsec_...`.
+6. Run `docs/MANUAL-PAYMENT-ACCEPTANCE.md` with test keys. Any stop condition
+   returns the release to NO-GO.
 7. Re-run the diagnostic and resolve every P0/P1 inconsistency.
-8. Only then repeat the smallest real-payment smoke test after switching to
-   live keys.
+8. When all test evidence is green, activate live keys and perform one small
+   real-payment/refund smoke test.
 
 No migration was applied, no remote data/configuration was changed, and nothing
-was pushed or deployed during this audit.
+was deployed during this audit.

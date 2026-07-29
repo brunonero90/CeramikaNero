@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { getStripeServerClient } from '@/lib/stripe/server';
+import { expireDueOrderHolds } from '@/lib/payments/order-expiry';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -21,9 +23,25 @@ async function runExpiry(): Promise<NextResponse> {
       { status: 500 }
     );
   }
+
+  let orders;
+  try {
+    orders = await expireDueOrderHolds(
+      supabase as unknown as Parameters<typeof expireDueOrderHolds>[0],
+      getStripeServerClient
+    );
+  } catch (err) {
+    console.error('order expiry processing failed', err);
+    return NextResponse.json(
+      { error: 'Order expiry processing failed' },
+      { status: 500 }
+    );
+  }
+
   return NextResponse.json({
     ok: true,
-    expired: data ?? [],
+    expired_bookings: data ?? [],
+    orders,
     processed_at: new Date().toISOString(),
   });
 }

@@ -5,6 +5,8 @@ import { redirect } from 'next/navigation';
 import { createCartAdminClient } from '@/lib/supabase/cart-admin';
 import { requireAnyRole } from '@/lib/admin/auth';
 import { parsePlnToGrosz } from '@/lib/payments/admin-money';
+import { createStripeRefund } from '@/lib/booking/payment';
+import { requiresExternalRefundConfirmation } from '@/lib/payments/order-refund-policy';
 
 const PAYMENT_STATUSES = [
   'pending',
@@ -301,6 +303,171 @@ export async function setOrderAnalyticsExcludedAction(
       : 'Order included in default analytics',
     changedFields: { excluded, hasReason: Boolean(reason) },
   });
+
+  revalidatePath('/admin/zamowienia');
+  revalidatePath(`/admin/zamowienia/${orderId}`);
+  revalidatePath('/admin/analityka');
+  redirect(`/admin/zamowienia/${orderId}`);
+}
+
+export async function refundOrderAction(formData: FormData): Promise<void> {
+  const admin = await requireAnyRole(['owner', 'manager']);
+  const orderId = String(formData.get('orderId') ?? '');
+  const reason = String(formData.get('reason') ?? '')
+    .trim()
+    .slice(0, 1000);
+  const operationKey = String(formData.get('operationKey') ?? '').trim();
+  const manualRefundConfirmed = formData.get('manualRefundConfirmed') === 'on';
+
+  if (
+    !orderId ||
+    !reason ||
+    !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+      operationKey
+    )
+  ) {
+    throw new Error('Nieprawidłowe dane zwrotu.');
+  }
+
+  const supabase = createCartAdminClient();
+  const { data: order } = await supabase
+    .from('orders')
+    .select('id, status, payment_status, fulfillment_status, total_gross_grosz')
+    .eq('id', orderId)
+    .maybeSingle();
+
+  if (
+    !order ||
+    !['paid', 'partially_refunded'].includes(order.payment_status) ||
+    order.fulfillment_status !== 'unfulfilled'
+  ) {
+    throw new Error(
+      'Pełny zwrot jest dostępny tylko dla opłaconego, niezrealizowanego zamówienia.'
+    );
+  }
+
+  const { data: payment } = await supabase
+    .from('payments')
+    .select(
+      'id, provider, status, provider_payment_id, amount_gross_grosz, refunded_amount_grosz'
+    )
+    .eq('order_id', orderId)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (!payment || !['paid', 'partially_refunded'].includes(payment.status)) {
+    throw new Error('Brak płatności dostępnej do zwrotu.');
+  }
+  if (
+    requiresExternalRefundConfirmation(payment.provider) &&
+    !manualRefundConfirmed
+  ) {
+    throw new Error(
+      'Najpierw wykonaj zwrot poza systemem i potwierdź jego realizację.'
+    );
+  }
+
+  const remaining = payment.amount_gross_grosz - payment.refunded_amount_grosz;
+  if (
+    remaining <= 0 ||
+    payment.amount_gross_grosz !== order.total_gross_grosz
+  ) {
+    throw new Error('Saldo płatności wymaga ręcznej weryfikacji.');
+  }
+
+  let refundOperationKey = `refund-order-${payment.id}-${operationKey}`;
+  let stripeRefundPending = false;
+  if (payment.provider === 'stripe') {
+    if (!payment.provider_payment_id) {
+      throw new Error('Brak identyfikatora płatności Stripe.');
+    }
+    try {
+      const stripeRefund = await createStripeRefund({
+        paymentId: payment.id,
+        paymentIntentId: payment.provider_payment_id,
+        amountGrosz: remaining,
+        reason,
+        idempotencyKey: refundOperationKey,
+      });
+      if (
+        stripeRefund.status === 'failed' ||
+        stripeRefund.status === 'canceled'
+      ) {
+        throw new Error('Stripe returned a failed refund');
+      }
+      if (stripeRefund.status !== 'succeeded') {
+        stripeRefundPending = true;
+      } else {
+        refundOperationKey = stripeRefund.id;
+      }
+    } catch (err) {
+      console.error('order Stripe refund failed', err);
+      throw new Error(
+        'Zwrot przez Stripe nie powiódł się. Sprawdź Stripe przed ponowieniem.'
+      );
+    }
+  }
+
+  if (stripeRefundPending) {
+    try {
+      const { notifyOrderRefundEvent } = await import('@/lib/cart/order-email');
+      await notifyOrderRefundEvent(orderId, 'refund_initiated', remaining);
+    } catch (err) {
+      console.error('refund initiated email failed', err);
+    }
+    revalidatePath('/admin/zamowienia');
+    revalidatePath(`/admin/zamowienia/${orderId}`);
+    redirect(`/admin/zamowienia/${orderId}`);
+  }
+
+  const { data: recorded, error } = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
+    }
+  ).rpc('record_order_refund_safe', {
+    p_order_id: orderId,
+    p_payment_id: payment.id,
+    p_refund_amount_grosz: remaining,
+    p_expected_refunded_total_grosz: payment.amount_gross_grosz,
+    p_reason: reason,
+    p_operation_key: refundOperationKey,
+    p_actor_id: admin.userId,
+    p_actor_role: admin.role,
+  });
+
+  if (error) {
+    console.error('record_order_refund_safe failed', error.message);
+    throw new Error(
+      'Zwrot został zlecony, ale zapis lokalny wymaga weryfikacji. Nie ponawiaj go przed sprawdzeniem Stripe.'
+    );
+  }
+
+  const { recordAuditEventWithCurrentClient } =
+    await import('@/lib/admin/audit');
+  await recordAuditEventWithCurrentClient({
+    actorUserId: admin.userId,
+    actorRole: admin.role,
+    action: 'order.refunded',
+    entityType: 'order',
+    entityId: orderId,
+    summary: 'Full unfulfilled order refund completed',
+    changedFields: {
+      refund_amount_grosz: remaining,
+      hasReason: Boolean(reason),
+      status: (recorded as { status?: string } | null)?.status ?? 'refunded',
+    },
+  });
+
+  try {
+    const { notifyOrderRefundEvent } = await import('@/lib/cart/order-email');
+    await notifyOrderRefundEvent(orderId, 'refund_completed', remaining);
+  } catch (err) {
+    console.error('refund completed email failed', err);
+  }
 
   revalidatePath('/admin/zamowienia');
   revalidatePath(`/admin/zamowienia/${orderId}`);

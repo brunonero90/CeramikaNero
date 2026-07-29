@@ -1,5 +1,6 @@
 import 'server-only';
 import { randomUUID } from 'node:crypto';
+import type Stripe from 'stripe';
 import { createCartAdminClient } from '@/lib/supabase/cart-admin';
 import { createEntityStripeCheckoutSession } from '@/lib/payments/stripe-checkout';
 import { isStripeConfigured } from '@/lib/booking/local-mode';
@@ -28,6 +29,42 @@ export type OrderCheckoutSessionResult =
     };
 
 const RETRYABLE_PAYMENT_STATUSES = new Set(['created', 'pending', 'failed']);
+
+async function bindCheckoutSession(
+  supabase: ReturnType<typeof createCartAdminClient>,
+  input: {
+    orderId: string;
+    paymentId: string;
+    totalGrosz: number;
+    session: Stripe.Checkout.Session;
+  }
+): Promise<boolean> {
+  const expiresAt = input.session.expires_at
+    ? new Date(input.session.expires_at * 1000).toISOString()
+    : new Date(Date.now() + 30 * 60 * 1000).toISOString();
+  const { data, error } = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
+    }
+  ).rpc('bind_order_checkout_session', {
+    p_order_id: input.orderId,
+    p_payment_id: input.paymentId,
+    p_provider_checkout_id: input.session.id,
+    p_expires_at: expiresAt,
+    p_amount_gross_grosz: input.totalGrosz,
+    p_currency: input.session.currency ?? 'pln',
+    p_livemode: Boolean(input.session.livemode),
+  });
+
+  if (error || (data as { status?: string } | null)?.status !== 'bound') {
+    console.error('bind_order_checkout_session failed', error?.message);
+    return false;
+  }
+  return true;
+}
 
 /**
  * Create or reuse a Stripe Checkout session for a server-authoritative order.
@@ -219,6 +256,20 @@ export async function createOrReuseOrderCheckoutSession(input: {
 
       if (session.status === 'open' && session.url) {
         if (Number(session.amount_total) === total) {
+          const bound = await bindCheckoutSession(supabase, {
+            orderId: order.id,
+            paymentId: p.id,
+            totalGrosz: total,
+            session,
+          });
+          if (!bound) {
+            return {
+              ok: false,
+              error:
+                'Nie udało się bezpiecznie powiązać płatności. Spróbuj ponownie.',
+              code: 'not_eligible',
+            };
+          }
           return {
             ok: true,
             checkoutUrl: session.url,
@@ -457,49 +508,20 @@ export async function createOrReuseOrderCheckoutSession(input: {
     };
   }
 
-  const expiresAtIso = session.expires_at
-    ? new Date(session.expires_at * 1000).toISOString()
-    : new Date(Date.now() + 30 * 60 * 1000).toISOString();
-
-  await (
-    supabase as unknown as {
-      from: (t: string) => {
-        update: (p: Record<string, unknown>) => {
-          eq: (c: string, v: string) => Promise<unknown>;
-        };
-      };
-    }
-  )
-    .from('payments')
-    .update({
-      provider: 'stripe',
-      status: 'pending',
-      provider_checkout_id: session.id,
-      amount_gross_grosz: total,
-      failure_code: null,
-      failure_message: null,
-      livemode: Boolean(session.livemode),
-      updated_at: new Date().toISOString(),
-    })
-    .eq('id', paymentId);
-
-  await supabase
-    .from('orders')
-    .update({
-      selected_payment_method: 'stripe',
-      expires_at: expiresAtIso,
-      updated_at: new Date().toISOString(),
-    })
-    .eq('id', order.id);
-
-  await supabase
-    .from('bookings')
-    .update({
-      expires_at: expiresAtIso,
-      updated_at: new Date().toISOString(),
-    })
-    .eq('order_id', order.id)
-    .in('status', ['pending', 'awaiting_payment']);
+  const bound = await bindCheckoutSession(supabase, {
+    orderId: order.id,
+    paymentId,
+    totalGrosz: total,
+    session,
+  });
+  if (!bound) {
+    return {
+      ok: false,
+      error:
+        'Płatność została utworzona, ale wymaga bezpiecznego ponowienia. Nie płać z innej karty.',
+      code: 'reconciling',
+    };
+  }
 
   return {
     ok: true,
