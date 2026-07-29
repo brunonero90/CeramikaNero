@@ -56,8 +56,30 @@ Webhook endpoint: `https://ceramikanero.pl/api/webhooks/stripe`
 
 - Manual bank-transfer cart orders: no timed hold (`expires_at` null).
 - Stripe cart Checkout: order/booking `expires_at` aligned to Checkout session
-  (~30 minutes, Stripe minimum). Session expiry fails the payment attempt only;
-  capacity is not released until the order is cancelled.
+  (~30 minutes, Stripe minimum).
+- Cron / `expire_pending_bookings` (migration 19): expires `pending` **and**
+  `awaiting_payment` bookings past `expires_at`, releases capacity once, fails
+  open payment attempts, expires unpaid `awaiting_payment` orders and restores
+  tracked product inventory once.
+- Stripe `checkout.session.expired` fails the payment attempt; seats/inventory
+  follow the expire/cancel path above rather than a second independent release.
+
+## Cancellation
+
+- Admin order cancel uses `cancel_order_and_release` (migration 19): cancels
+  active linked bookings via `cancel_booking` (capacity once), restores tracked
+  product inventory, cancels open payment attempts, writes an order event.
+- Customer/admin booking cancel continues to use `cancel_booking`.
+
+## Refunds (`charge.refunded`)
+
+- Webhook updates payment/order refund totals from Stripe `amount_refunded`
+  (delta vs local `refunded_amount_grosz`).
+- Booking-linked payments use `record_payment_refund`.
+- **Capacity and inventory are not auto-restored on refund.** Cancel the booking
+  or order explicitly when seats/stock should return.
+- Disputes/chargebacks are **not** handled by the app — resolve in Stripe Dashboard
+  and record operational notes manually (see release audit).
 
 ## Bank transfer settings
 

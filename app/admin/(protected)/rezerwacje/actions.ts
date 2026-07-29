@@ -230,11 +230,16 @@ export async function confirmManualPaymentAction(bookingId: string) {
   const supabase = createAdminClient();
   const { data: payment } = await supabase
     .from('payments')
-    .select('id, status, amount_gross_grosz')
+    .select('id, status, amount_gross_grosz, provider')
     .eq('booking_id', bookingId)
     .single();
   if (!payment || payment.status !== 'pending') {
     throw new Error('Brak oczekującej płatności do potwierdzenia.');
+  }
+  if (payment.provider === 'stripe') {
+    throw new Error(
+      'Ta rezerwacja używa Stripe. Ręczne potwierdzenie jest zablokowane — poczekaj na webhook albo zweryfikuj płatność w Stripe.'
+    );
   }
 
   await supabase

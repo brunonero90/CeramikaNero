@@ -481,8 +481,22 @@ describe('processStripeEvent', () => {
     });
   });
 
-  it('acknowledges charge.refunded without recording a refund in app state', async () => {
-    const supabase = createSupabaseMock({});
+  it('records charge.refunded as incremental payment refund without confirming', async () => {
+    const supabase = createSupabaseMock({
+      paymentsByIntent: new Map([
+        [
+          'pi_1',
+          {
+            id: 'pay_1',
+            booking_id: 'book_1',
+            order_id: null,
+            amount_gross_grosz: 10000,
+            refunded_amount_grosz: 0,
+            status: 'succeeded',
+          },
+        ],
+      ]),
+    });
     const { processStripeEvent } = await import('../stripe-webhook');
 
     const result = await processStripeEvent(
@@ -490,16 +504,92 @@ describe('processStripeEvent', () => {
       {
         id: 'evt_refund',
         type: 'charge.refunded',
-        data: { object: { id: 'ch_1', payment_intent: 'pi_1' } },
+        data: {
+          object: {
+            id: 'ch_1',
+            amount: 10000,
+            amount_refunded: 10000,
+            payment_intent: 'pi_1',
+          },
+        },
       } as Stripe.Event
     );
 
     expect(result).toEqual({ ok: true });
     expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeUndefined();
-    expect(rpcNamed(supabase, 'claim_stripe_event')?.args.p_event_id).toBe(
-      'evt_refund'
+    expect(rpcNamed(supabase, 'record_payment_refund')?.args).toEqual(
+      expect.objectContaining({
+        p_payment_id: 'pay_1',
+        p_refund_amount_grosz: 10000,
+      })
     );
     expect(rpcNamed(supabase, 'complete_stripe_event')).toBeTruthy();
+  });
+
+  it('passes Stripe PaymentIntent.amount into confirm (not DB amount)', async () => {
+    const supabase = createSupabaseMock({
+      paymentsById: new Map([
+        [
+          'pay_1',
+          {
+            id: 'pay_1',
+            booking_id: 'book_1',
+            amount_gross_grosz: 99999,
+            status: 'created',
+          },
+        ],
+      ]),
+      confirmResult: { status: 'confirmed' },
+    });
+    const { processStripeEvent } = await import('../stripe-webhook');
+
+    const result = await processStripeEvent(
+      supabase as never,
+      intentEvent('payment_intent.succeeded', { amount: 10000 })
+    );
+
+    expect(result).toEqual({ ok: true });
+    expect(
+      rpcNamed(supabase, 'confirm_booking_from_payment')?.args
+        .p_amount_gross_grosz
+    ).toBe(10000);
+  });
+
+  it('is idempotent when charge.refunded repeats the same cumulative total', async () => {
+    const supabase = createSupabaseMock({
+      paymentsByIntent: new Map([
+        [
+          'pi_1',
+          {
+            id: 'pay_1',
+            booking_id: 'book_1',
+            amount_gross_grosz: 10000,
+            refunded_amount_grosz: 10000,
+            status: 'refunded',
+          },
+        ],
+      ]),
+    });
+    const { processStripeEvent } = await import('../stripe-webhook');
+
+    const result = await processStripeEvent(
+      supabase as never,
+      {
+        id: 'evt_refund_dup',
+        type: 'charge.refunded',
+        data: {
+          object: {
+            id: 'ch_1',
+            amount: 10000,
+            amount_refunded: 10000,
+            payment_intent: 'pi_1',
+          },
+        },
+      } as Stripe.Event
+    );
+
+    expect(result).toEqual({ ok: true });
+    expect(rpcNamed(supabase, 'record_payment_refund')).toBeUndefined();
   });
 });
 

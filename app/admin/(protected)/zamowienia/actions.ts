@@ -142,17 +142,9 @@ export async function updateOrderOperationalStateAction(
     (previous as { selected_payment_method?: string | null } | null)
       ?.selected_payment_method === 'stripe'
   ) {
-    const { data: stripePayment } = await supabase
-      .from('payments')
-      .select('id, provider, status')
-      .eq('order_id', orderId)
-      .eq('provider', 'stripe')
-      .maybeSingle();
-    if (stripePayment && stripePayment.status !== 'paid') {
-      throw new Error(
-        'To zamówienie używa Stripe. Oznaczanie jako opłacone ręcznie jest zablokowane — poczekaj na webhook albo rozwiąż ręcznie po weryfikacji w Stripe.'
-      );
-    }
+    throw new Error(
+      'To zamówienie używa Stripe. Oznaczanie jako opłacone ręcznie jest zablokowane — poczekaj na webhook albo rozwiąż ręcznie po weryfikacji w Stripe.'
+    );
   }
 
   const patch: Record<string, unknown> = {
@@ -166,21 +158,77 @@ export async function updateOrderOperationalStateAction(
   if (orderStatus === 'confirmed') {
     patch.confirmed_at = new Date().toISOString();
   }
-  if (orderStatus === 'cancelled') {
-    patch.cancelled_at = new Date().toISOString();
-  }
 
-  let { error } = await supabase.from('orders').update(patch).eq('id', orderId);
+  // Authoritative cancel releases capacity + inventory (migration 19 RPC).
+  if (orderStatus === 'cancelled' && previous?.status !== 'cancelled') {
+    const { data: cancelResult, error: cancelError } = await (
+      supabase as unknown as {
+        rpc: (
+          name: string,
+          args: Record<string, unknown>
+        ) => Promise<{ data: unknown; error: { message: string } | null }>;
+      }
+    ).rpc('cancel_order_and_release', {
+      p_order_id: orderId,
+      p_reason: internalNotes || 'Order cancelled by admin',
+      p_actor_user_id: admin.userId,
+      p_actor_role: admin.role,
+    });
+    if (cancelError) {
+      console.error('cancel_order_and_release failed', cancelError.message);
+      throw new Error(
+        'Nie udało się anulować zamówienia i zwolnić miejsc/magazynu.'
+      );
+    }
+    // Apply remaining non-cancel fields (notes, tracking, fulfillment) after RPC.
+    const postCancel: Record<string, unknown> = {
+      internal_notes: internalNotes || null,
+      tracking_reference: trackingReference || null,
+      fulfillment_status: fulfillmentStatus,
+      payment_status: paymentStatus === 'pending' ? 'cancelled' : paymentStatus,
+      updated_at: new Date().toISOString(),
+    };
+    let { error: postErr } = await supabase
+      .from('orders')
+      .update(postCancel)
+      .eq('id', orderId);
+    if (postErr?.message?.includes('tracking_reference')) {
+      delete postCancel.tracking_reference;
+      ({ error: postErr } = await supabase
+        .from('orders')
+        .update(postCancel)
+        .eq('id', orderId));
+    }
+    if (postErr) {
+      console.error('order post-cancel update failed', postErr.message);
+      throw new Error(
+        'Zamówienie anulowano, ale nie udało się zapisać notatek.'
+      );
+    }
+    void cancelResult;
+  } else {
+    if (orderStatus === 'cancelled') {
+      patch.cancelled_at = new Date().toISOString();
+    }
 
-  // Migration 14 may not be applied yet — retry without tracking column.
-  if (error?.message?.includes('tracking_reference')) {
-    delete patch.tracking_reference;
-    ({ error } = await supabase.from('orders').update(patch).eq('id', orderId));
-  }
+    let { error } = await supabase
+      .from('orders')
+      .update(patch)
+      .eq('id', orderId);
 
-  if (error) {
-    console.error('order state update failed', error.message);
-    throw new Error('Nie udało się zaktualizować zamówienia.');
+    // Migration 14 may not be applied yet — retry without tracking column.
+    if (error?.message?.includes('tracking_reference')) {
+      delete patch.tracking_reference;
+      ({ error } = await supabase
+        .from('orders')
+        .update(patch)
+        .eq('id', orderId));
+    }
+
+    if (error) {
+      console.error('order state update failed', error.message);
+      throw new Error('Nie udało się zaktualizować zamówienia.');
+    }
   }
 
   await supabase.from('order_events').insert({

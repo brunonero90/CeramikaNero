@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:payments": "vitest run lib/booking/__tests__/stripe-webhook.test.ts lib/booking/__tests__/payment.test.ts lib/booking/__tests__/schemas.test.ts lib/booking/__tests__/state.test.ts lib/booking/__tests__/urls.test.ts lib/cart/__tests__",
     "test:e2e": "playwright test",
     "test:e2e:local-booking": "node scripts/e2e-local-booking.js",
     "db:types": "node scripts/generate-db-types.js",

@@ -266,13 +266,15 @@ async function handleUnpaidCheckoutSession(
     patch.provider_payment_id = paymentIntentId;
   }
 
-  await (supabase as unknown as {
-    from: (t: string) => {
-      update: (p: Record<string, unknown>) => {
-        eq: (c: string, v: string) => Promise<unknown>;
+  await (
+    supabase as unknown as {
+      from: (t: string) => {
+        update: (p: Record<string, unknown>) => {
+          eq: (c: string, v: string) => Promise<unknown>;
+        };
       };
-    };
-  })
+    }
+  )
     .from('payments')
     .update(patch)
     .eq('id', paymentId);
@@ -481,7 +483,7 @@ async function handlePaymentIntentSucceeded(
       paymentId: payment.id,
       eventId: event.id,
       providerPaymentId: paymentIntent.id,
-      amountGrossGrosz: payment.amount_gross_grosz,
+      amountGrossGrosz: paymentIntent.amount,
     });
     if (!confirmed.ok) {
       return { ok: false, status: 500, error: confirmed.error };
@@ -499,7 +501,7 @@ async function handlePaymentIntentSucceeded(
     paymentId: payment.id,
     eventId: event.id,
     providerPaymentId: paymentIntent.id,
-    amountGrossGrosz: payment.amount_gross_grosz,
+    amountGrossGrosz: paymentIntent.amount,
   });
 
   if (!confirmed.ok) {
@@ -507,6 +509,106 @@ async function handlePaymentIntentSucceeded(
   }
 
   await notifyBookingConfirmOutcome(bookingId, confirmed.result);
+  return { ok: true };
+}
+
+async function handleChargeRefunded(
+  supabase: AdminClient,
+  event: Stripe.Event,
+  charge: Stripe.Charge
+): Promise<StripeWebhookResult> {
+  const piId =
+    typeof charge.payment_intent === 'string'
+      ? charge.payment_intent
+      : (charge.payment_intent?.id ?? null);
+  if (!piId) {
+    // Acknowledge — cannot map charge without PaymentIntent.
+    return { ok: true };
+  }
+
+  const stripeRefunded = Number(charge.amount_refunded) || 0;
+  const amount = Number(charge.amount) || 0;
+  if (stripeRefunded <= 0) return { ok: true };
+
+  // Generated booking types predate order_id on payments — use a loose query.
+  const loose = supabase as unknown as {
+    from: (t: string) => {
+      select: (cols: string) => {
+        eq: (
+          c: string,
+          v: string
+        ) => {
+          maybeSingle: () => Promise<{
+            data: {
+              id: string;
+              order_id: string | null;
+              booking_id: string | null;
+              amount_gross_grosz: number;
+              refunded_amount_grosz: number;
+              status: string;
+            } | null;
+          }>;
+        };
+      };
+      update: (p: Record<string, unknown>) => {
+        eq: (c: string, v: string) => Promise<unknown>;
+      };
+    };
+    rpc: (name: string, args: Record<string, unknown>) => Promise<unknown>;
+  };
+
+  const { data: payment } = await loose
+    .from('payments')
+    .select(
+      'id, order_id, booking_id, amount_gross_grosz, refunded_amount_grosz, status'
+    )
+    .eq('provider_payment_id', piId)
+    .maybeSingle();
+
+  if (!payment) return { ok: true };
+
+  const alreadyRefunded = Number(payment.refunded_amount_grosz) || 0;
+  // Stripe amount_refunded is cumulative; record_payment_refund adds a delta.
+  const delta = Math.max(0, stripeRefunded - alreadyRefunded);
+  if (delta <= 0) return { ok: true };
+
+  const nextRefunded = alreadyRefunded + delta;
+  const fullyRefunded =
+    nextRefunded >= Number(payment.amount_gross_grosz || amount);
+  const nextStatus = fullyRefunded ? 'refunded' : 'partially_refunded';
+
+  // Prefer existing RPC when booking-linked; always sync payment row for orders.
+  if (payment.booking_id) {
+    await loose.rpc('record_payment_refund', {
+      p_payment_id: payment.id,
+      p_refund_amount_grosz: delta,
+      p_reason: `stripe_charge_refunded:${event.id}`,
+    });
+  } else {
+    await loose
+      .from('payments')
+      .update({
+        refunded_amount_grosz: nextRefunded,
+        status: nextStatus,
+        refund_reason: `stripe_charge_refunded:${event.id}`,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', payment.id);
+
+    if (payment.order_id) {
+      await loose
+        .from('orders')
+        .update({
+          payment_status: nextStatus,
+          status: fullyRefunded ? 'refunded' : 'partially_refunded',
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', payment.order_id);
+    }
+  }
+
+  // Capacity/inventory are NOT auto-restored on refund — studio cancels bookings
+  // explicitly when seats should return.
   return { ok: true };
 }
 
@@ -525,10 +627,7 @@ async function handlePaymentIntentFailed(
   const paymentsLoose = supabase as unknown as {
     from: (t: string) => {
       update: (p: Record<string, unknown>) => {
-        eq: (
-          c: string,
-          v: string
-        ) => Promise<unknown>;
+        eq: (c: string, v: string) => Promise<unknown>;
       };
     };
   };
@@ -684,6 +783,8 @@ export async function processStripeEvent(
         break;
       }
       case 'charge.refunded': {
+        const charge = event.data.object as Stripe.Charge;
+        result = await handleChargeRefunded(supabase, event, charge);
         break;
       }
       default:
