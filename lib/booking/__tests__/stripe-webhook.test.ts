@@ -22,6 +22,12 @@ function createSupabaseMock(state: {
   paymentsByCheckout?: Map<string, Row>;
   confirmResult?: Row | null;
   confirmError?: { message: string } | null;
+  failureResult?: Row;
+  refundResult?: Row;
+  disputeResult?: Row;
+  claimStatus?: string;
+  claimError?: boolean;
+  completeError?: boolean;
 }) {
   const insertedEvents: Array<{ event_id: string; event_type: string }> = [];
   const rpcCalls: Array<{ name: string; args: Record<string, unknown> }> = [];
@@ -131,16 +137,27 @@ function createSupabaseMock(state: {
     rpc: async (name: string, args: Record<string, unknown>) => {
       rpcCalls.push({ name, args });
       if (name === 'claim_stripe_event') {
+        if (state.claimError) {
+          return { data: null, error: { message: 'claim unavailable' } };
+        }
+        if (state.claimStatus) {
+          return { data: { status: state.claimStatus }, error: null };
+        }
         if (existing.has(String(args.p_event_id))) {
           return { data: { status: 'already_processed' }, error: null };
         }
         existing.add(String(args.p_event_id));
         return { data: { status: 'claimed' }, error: null };
       }
-      if (name === 'complete_stripe_event' || name === 'fail_stripe_event') {
+      if (name === 'complete_stripe_event') {
+        return state.completeError
+          ? { data: null, error: { message: 'completion unavailable' } }
+          : { data: null, error: null };
+      }
+      if (name === 'fail_stripe_event') {
         return { data: null, error: null };
       }
-      if (name === 'confirm_booking_from_payment') {
+      if (name === 'confirm_booking_from_stripe') {
         if (state.confirmError) {
           return { data: null, error: state.confirmError };
         }
@@ -149,12 +166,40 @@ function createSupabaseMock(state: {
           error: null,
         };
       }
-      if (name === 'confirm_order_from_payment') {
+      if (name === 'confirm_order_from_stripe') {
         if (state.confirmError) {
           return { data: null, error: state.confirmError };
         }
         return {
           data: state.confirmResult ?? { status: 'confirmed' },
+          error: null,
+        };
+      }
+      if (name === 'fail_stripe_payment_attempt') {
+        return {
+          data: state.failureResult ?? {
+            status: 'failed',
+            updated: true,
+            order_id: null,
+          },
+          error: null,
+        };
+      }
+      if (name === 'sync_stripe_refund') {
+        return {
+          data: state.refundResult ?? {
+            status: 'refunded',
+            refunded_amount_grosz: 10000,
+          },
+          error: null,
+        };
+      }
+      if (name === 'sync_stripe_dispute') {
+        return {
+          data: state.disputeResult ?? {
+            status: 'needs_response',
+            disputed_amount_grosz: 10000,
+          },
           error: null,
         };
       }
@@ -181,6 +226,8 @@ function sessionEvent(
         id: 'cs_test_1',
         object: 'checkout.session',
         amount_total: 10000,
+        currency: 'pln',
+        livemode: false,
         payment_status: 'paid',
         payment_intent: 'pi_test_1',
         metadata: {
@@ -207,6 +254,9 @@ function intentEvent(
         id: 'pi_test_1',
         object: 'payment_intent',
         amount: 10000,
+        amount_received: 10000,
+        currency: 'pln',
+        livemode: false,
         metadata: {
           booking_id: 'book_1',
           payment_id: 'pay_1',
@@ -258,9 +308,16 @@ describe('processStripeEvent', () => {
       'evt_session_1'
     );
     expect(
-      rpcNamed(supabase, 'confirm_booking_from_payment')?.args
+      rpcNamed(supabase, 'confirm_booking_from_stripe')?.args
         .p_amount_gross_grosz
     ).toBe(10000);
+    expect(rpcNamed(supabase, 'confirm_booking_from_stripe')?.args).toEqual(
+      expect.objectContaining({
+        p_provider_checkout_id: 'cs_test_1',
+        p_currency: 'pln',
+        p_livemode: false,
+      })
+    );
     expect(rpcNamed(supabase, 'complete_stripe_event')).toBeTruthy();
     expect(sendConfirmation).toHaveBeenCalled();
   });
@@ -278,7 +335,7 @@ describe('processStripeEvent', () => {
 
     expect(result).toEqual({ ok: true, duplicate: true });
     expect(rpcNamed(supabase, 'claim_stripe_event')).toBeTruthy();
-    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeUndefined();
+    expect(rpcNamed(supabase, 'confirm_booking_from_stripe')).toBeUndefined();
     expect(sendConfirmation).not.toHaveBeenCalled();
   });
 
@@ -295,7 +352,7 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeUndefined();
+    expect(rpcNamed(supabase, 'confirm_booking_from_stripe')).toBeUndefined();
     expect(rpcNamed(supabase, 'complete_stripe_event')).toBeTruthy();
     expect(supabase.__updates).toEqual(
       expect.arrayContaining([
@@ -324,7 +381,7 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeTruthy();
+    expect(rpcNamed(supabase, 'confirm_booking_from_stripe')).toBeTruthy();
     expect(sendConfirmation).toHaveBeenCalled();
   });
 
@@ -342,8 +399,11 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(supabase.__updates[0]?.patch).toEqual(
-      expect.objectContaining({ status: 'failed' })
+    expect(rpcNamed(supabase, 'fail_stripe_payment_attempt')?.args).toEqual(
+      expect.objectContaining({
+        p_payment_id: 'pay_1',
+        p_provider_checkout_id: 'cs_test_1',
+      })
     );
     expect(rpcNamed(supabase, 'cancel_booking')).toEqual(
       expect.objectContaining({
@@ -366,9 +426,7 @@ describe('processStripeEvent', () => {
 
     expect(result).toEqual({ ok: true });
     expect(rpcNamed(supabase, 'cancel_booking')?.name).toBe('cancel_booking');
-    expect(supabase.__updates.some((u) => u.patch.status === 'failed')).toBe(
-      true
-    );
+    expect(rpcNamed(supabase, 'fail_stripe_payment_attempt')).toBeTruthy();
   });
 
   it('handles payment_intent.succeeded via metadata when intent id is not stored yet', async () => {
@@ -395,8 +453,12 @@ describe('processStripeEvent', () => {
 
     expect(result).toEqual({ ok: true });
     expect(
-      rpcNamed(supabase, 'confirm_booking_from_payment')?.args.p_payment_id
+      rpcNamed(supabase, 'confirm_booking_from_stripe')?.args.p_payment_id
     ).toBe('pay_1');
+    expect(
+      rpcNamed(supabase, 'confirm_booking_from_stripe')?.args
+        .p_amount_gross_grosz
+    ).toBe(10000);
     expect(sendConfirmation).toHaveBeenCalled();
   });
 
@@ -415,12 +477,12 @@ describe('processStripeEvent', () => {
     );
 
     expect(result).toEqual({ ok: true });
-    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeUndefined();
+    expect(rpcNamed(supabase, 'confirm_booking_from_stripe')).toBeUndefined();
     expect(rpcNamed(supabase, 'complete_stripe_event')).toBeTruthy();
-    expect(supabase.__updates[0]?.patch).toEqual(
+    expect(rpcNamed(supabase, 'fail_stripe_payment_attempt')?.args).toEqual(
       expect.objectContaining({
-        status: 'failed',
-        failure_code: 'card_declined',
+        p_provider_payment_id: 'pi_test_1',
+        p_failure_code: 'card_declined',
       })
     );
   });
@@ -481,7 +543,7 @@ describe('processStripeEvent', () => {
     });
   });
 
-  it('acknowledges charge.refunded without recording a refund in app state', async () => {
+  it('synchronizes charge.refunded into the payment ledger', async () => {
     const supabase = createSupabaseMock({});
     const { processStripeEvent } = await import('../stripe-webhook');
 
@@ -490,16 +552,174 @@ describe('processStripeEvent', () => {
       {
         id: 'evt_refund',
         type: 'charge.refunded',
-        data: { object: { id: 'ch_1', payment_intent: 'pi_1' } },
-      } as Stripe.Event
+        data: {
+          object: {
+            id: 'ch_1',
+            payment_intent: 'pi_1',
+            amount_refunded: 10000,
+            currency: 'pln',
+            livemode: false,
+          },
+        },
+      } as unknown as Stripe.Event
     );
 
     expect(result).toEqual({ ok: true });
-    expect(rpcNamed(supabase, 'confirm_booking_from_payment')).toBeUndefined();
+    expect(rpcNamed(supabase, 'sync_stripe_refund')?.args).toEqual(
+      expect.objectContaining({
+        p_provider_payment_id: 'pi_1',
+        p_refunded_amount_grosz: 10000,
+        p_currency: 'pln',
+        p_livemode: false,
+      })
+    );
     expect(rpcNamed(supabase, 'claim_stripe_event')?.args.p_event_id).toBe(
       'evt_refund'
     );
     expect(rpcNamed(supabase, 'complete_stripe_event')).toBeTruthy();
+  });
+
+  it('records an asynchronous Stripe refund failure for manual recovery', async () => {
+    const supabase = createSupabaseMock({});
+    const { processStripeEvent } = await import('../stripe-webhook');
+
+    const result = await processStripeEvent(
+      supabase as never,
+      {
+        id: 'evt_refund_failed',
+        type: 'refund.failed',
+        data: {
+          object: {
+            id: 're_1',
+            object: 'refund',
+            status: 'failed',
+            failure_reason: 'lost_or_stolen_card',
+            payment_intent: 'pi_1',
+            metadata: { payment_id: 'pay_1' },
+          },
+        },
+      } as unknown as Stripe.Event
+    );
+
+    expect(result).toEqual({ ok: true });
+    expect(rpcNamed(supabase, 'record_stripe_refund_failure')?.args).toEqual(
+      expect.objectContaining({
+        p_payment_id: 'pay_1',
+        p_provider_payment_id: 'pi_1',
+        p_stripe_event_id: 'evt_refund_failed',
+      })
+    );
+  });
+
+  it('tracks a dispute separately from refunds', async () => {
+    const supabase = createSupabaseMock({});
+    const { processStripeEvent } = await import('../stripe-webhook');
+
+    const result = await processStripeEvent(
+      supabase as never,
+      {
+        id: 'evt_dispute',
+        type: 'charge.dispute.created',
+        data: {
+          object: {
+            id: 'dp_1',
+            object: 'dispute',
+            amount: 10000,
+            currency: 'pln',
+            livemode: false,
+            payment_intent: 'pi_1',
+            charge: 'ch_1',
+            status: 'needs_response',
+          },
+        },
+      } as unknown as Stripe.Event
+    );
+
+    expect(result).toEqual({ ok: true });
+    expect(rpcNamed(supabase, 'sync_stripe_dispute')?.args).toEqual(
+      expect.objectContaining({
+        p_provider_payment_id: 'pi_1',
+        p_dispute_id: 'dp_1',
+        p_amount_gross_grosz: 10000,
+        p_status: 'needs_response',
+        p_livemode: false,
+      })
+    );
+  });
+
+  it('returns retryable 503 while the same event is processing', async () => {
+    const supabase = createSupabaseMock({ claimStatus: 'in_progress' });
+    const { processStripeEvent } = await import('../stripe-webhook');
+
+    const result = await processStripeEvent(
+      supabase as never,
+      sessionEvent('checkout.session.completed', {})
+    );
+
+    expect(result).toEqual({
+      ok: false,
+      status: 503,
+      error: 'Stripe event is already being processed',
+    });
+    expect(rpcNamed(supabase, 'confirm_booking_from_stripe')).toBeUndefined();
+  });
+
+  it('returns 500 instead of consuming an event when the claim RPC fails', async () => {
+    const supabase = createSupabaseMock({ claimError: true });
+    const { processStripeEvent } = await import('../stripe-webhook');
+
+    const result = await processStripeEvent(
+      supabase as never,
+      sessionEvent('checkout.session.completed', {})
+    );
+
+    expect(result).toEqual({
+      ok: false,
+      status: 500,
+      error: 'Stripe event claim failed',
+    });
+    expect(rpcNamed(supabase, 'confirm_booking_from_stripe')).toBeUndefined();
+  });
+
+  it('returns 500 and marks the claim failed when completion cannot be recorded', async () => {
+    const supabase = createSupabaseMock({ completeError: true });
+    const { processStripeEvent } = await import('../stripe-webhook');
+
+    const result = await processStripeEvent(
+      supabase as never,
+      {
+        id: 'evt_unsupported',
+        type: 'customer.created',
+        data: { object: {} },
+      } as unknown as Stripe.Event
+    );
+
+    expect(result).toEqual({
+      ok: false,
+      status: 500,
+      error: 'Stripe event completion failed: customer.created',
+    });
+    expect(rpcNamed(supabase, 'fail_stripe_event')).toBeTruthy();
+  });
+
+  it('does not regress state for a stale failure event', async () => {
+    const supabase = createSupabaseMock({
+      failureResult: { status: 'stale_event', updated: false },
+    });
+    const { processStripeEvent } = await import('../stripe-webhook');
+
+    const result = await processStripeEvent(
+      supabase as never,
+      intentEvent('payment_intent.payment_failed', {
+        last_payment_error: {
+          code: 'card_declined',
+          message: 'Declined.',
+        } as Stripe.PaymentIntent.LastPaymentError,
+      })
+    );
+
+    expect(result).toEqual({ ok: true });
+    expect(rpcNamed(supabase, 'fail_stripe_payment_attempt')).toBeTruthy();
   });
 });
 

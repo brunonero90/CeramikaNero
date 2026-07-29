@@ -146,8 +146,8 @@ export async function reconcileOrderCheckoutFromSession(params: {
     return { ok: true, status: 'unpaid' };
   }
 
-  const amount =
-    session.amount_total ?? pi?.amount ?? Number(order.total_gross_grosz) ?? 0;
+  const amount = session.amount_total ?? pi?.amount ?? 0;
+  const currency = session.currency ?? pi?.currency ?? '';
 
   // Stable synthetic event id — distinct from Stripe evt_*; webhook remains idempotent.
   const reconcileEventId = `return_reconcile_${session.id}`;
@@ -159,16 +159,19 @@ export async function reconcileOrderCheckoutFromSession(params: {
         args: Record<string, unknown>
       ) => Promise<{ data: unknown; error: { message: string } | null }>;
     }
-  ).rpc('confirm_order_from_payment', {
+  ).rpc('confirm_order_from_stripe', {
     p_order_id: order.id,
     p_payment_id: paymentId,
     p_stripe_event_id: reconcileEventId,
+    p_provider_checkout_id: session.id,
     p_provider_payment_id: piId ?? '',
     p_amount_gross_grosz: amount,
+    p_currency: currency,
+    p_livemode: Boolean(session.livemode),
   });
 
   if (confirmError) {
-    console.error('reconcile: confirm_order_from_payment failed', confirmError);
+    console.error('reconcile: confirm_order_from_stripe failed', confirmError);
     return { ok: false, error: 'confirm_failed' };
   }
 
@@ -182,6 +185,7 @@ export async function reconcileOrderCheckoutFromSession(params: {
     .update({
       provider_checkout_id: session.id,
       provider_payment_id: piId,
+      livemode: Boolean(session.livemode),
       failure_message: null,
       updated_at: new Date().toISOString(),
     })

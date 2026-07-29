@@ -17,7 +17,9 @@ Stripe webhook: `https://ceramikanero.pl/api/webhooks/stripe`
 
 Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`,
 `checkout.session.async_payment_failed`, `checkout.session.expired`,
-`payment_intent.succeeded`, `payment_intent.payment_failed`, `charge.refunded`.
+`payment_intent.succeeded`, `payment_intent.payment_failed`, `charge.refunded`,
+`refund.updated`, `refund.failed`, `charge.dispute.created`,
+`charge.dispute.updated`, `charge.dispute.closed`.
 
 ## Checkout flow (unified cart — CN-O)
 
@@ -25,9 +27,11 @@ Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`
 2. Cart is held in browser `localStorage` without PII.
 3. Checkout collects purchaser details, participants, delivery address (if shipping),
    and — when `PAYMENTS_PROVIDER=both` — an explicit payment method.
-4. Server revalidates prices/availability and calls `submit_cart_order`.
+4. Server revalidates prices/availability and calls `submit_cart_order_v2` with
+   a client-generated, per-submission idempotency key.
 5. Capacity and inventory change atomically inside the RPC (once).
-6. App persists `orders.selected_payment_method` and updates the payment row.
+6. The RPC atomically persists the selected payment method, initial payment
+   state, and recoverable portal token.
 7. **Known total + Stripe:** create/reuse Checkout Session and redirect to Stripe.
 8. **Known total + bank transfer:** redirect to `/zamowienie/[token]` with full
    transfer instructions (recipient, account, title, amount).
@@ -36,7 +40,7 @@ Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`
 
 ## Confirmation paths
 
-1. **Primary:** verified Stripe webhook → `confirm_order_from_payment`
+1. **Primary:** verified Stripe webhook → `confirm_order_from_stripe`
 2. **Return-path backup:** success URL includes `session_id`; the order page
    retrieves the Checkout Session with the Stripe secret key and confirms when
    `payment_status=paid`. Browser flags alone never mark an order paid.
@@ -54,10 +58,18 @@ Webhook endpoint: `https://ceramikanero.pl/api/webhooks/stripe`
 
 ## Holds
 
-- Manual bank-transfer cart orders: no timed hold (`expires_at` null).
-- Stripe cart Checkout: order/booking `expires_at` aligned to Checkout session
-  (~30 minutes, Stripe minimum). Session expiry fails the payment attempt only;
-  capacity is not released until the order is cancelled.
+- Stripe cart orders have a 15-minute pre-Checkout creation deadline. Once a
+  Checkout Session is bound, the order and linked bookings use Stripe's
+  authoritative Session expiry (minimum 30 minutes).
+- Manual bank-transfer and shipping-quote orders have a 24-hour deadline.
+  Confirming a quote starts a fresh 24-hour bank-transfer window or a
+  15-minute Stripe pre-Checkout window.
+- `/api/cron/expiry` finds past-due unpaid unified orders. It retrieves any
+  bound Stripe Session before releasing the order: an open, processing, paid,
+  or temporarily unavailable Session is never cancelled by the cron.
+- `checkout.session.expired` and the cron use `expire_unpaid_order`, which
+  atomically closes the exact active payment attempt and releases every linked
+  seat and product unit once. Replays are harmless.
 
 ## Bank transfer settings
 
@@ -78,6 +90,27 @@ partial instructions.
 
 Branded HTML + plain text via `lib/email` (React Email). Outboxes:
 `order_emails`, `booking_emails`. Cron: `/api/cron/email-dispatch`.
+
+## Unified-order refunds and disputes
+
+- The admin application offers only a **full remaining refund** for a paid,
+  unfulfilled unified order. This removes ambiguity across mixed workshop and
+  product lines.
+- Stripe refunds are executed by the application. For bank-transfer or other
+  offline payments, staff must first return the money outside the application
+  and explicitly confirm that fact before the application records the refund
+  or sends the completed-refund email.
+- A completed full refund closes the linked bookings and releases all
+  unfulfilled seats/inventory exactly once.
+- A partial refund made directly in Stripe is still synchronized financially,
+  but the application releases no item or seat and creates an admin-review
+  signal. Staff must decide the allocation; the system never guesses.
+- Pending and failed refunds remain pending/failed locally until Stripe sends
+  an authoritative successful refund update.
+- Stripe disputes use a separate ledger. Real open/lost disputes reduce net
+  collected revenue; a won dispute restores it. Warning inquiries are visible
+  for staff action but do not reduce revenue because Stripe has not withdrawn
+  the funds.
 
 ## Stripe sandbox test matrix
 

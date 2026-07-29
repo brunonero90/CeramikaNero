@@ -35,11 +35,7 @@ const checkoutSchema = z.object({
   purchaserFirstName: z.string().min(1).max(80),
   purchaserLastName: z.string().min(1).max(80),
   purchaserEmail: z.string().email().max(200),
-  purchaserPhone: z
-    .string()
-    .trim()
-    .min(5, 'Podaj numer telefonu')
-    .max(40),
+  purchaserPhone: z.string().trim().min(5, 'Podaj numer telefonu').max(40),
   customerNotes: z.string().max(1000).optional().default(''),
   marketingConsent: z.boolean(),
   termsAccepted: z.literal(true),
@@ -47,6 +43,7 @@ const checkoutSchema = z.object({
   participantsBySession: z.record(z.array(participantSchema)),
   shipping: shippingSchema.optional().nullable(),
   lines: z.array(z.any()).min(1).max(20),
+  submissionKey: z.string().uuid(),
   /** Explicit when PAYMENTS_PROVIDER=both; ignored for manual/stripe-only modes. */
   paymentMethod: z.enum(['stripe', 'bank_transfer']).optional().nullable(),
 });
@@ -94,29 +91,9 @@ function mapSubmitCartOrderError(message: string | undefined): string {
   return 'Nie udało się złożyć zamówienia. Dostępność mogła się zmienić — odśwież koszyk.';
 }
 
-function orderIdempotencyKey(input: {
-  email: string;
-  lines: CartLine[];
-  firstName: string;
-  lastName: string;
-}): string {
-  const fingerprint = input.lines
-    .map((l) =>
-      l.type === 'workshop_session'
-        ? `w:${l.sessionId}:${l.quantity}`
-        : `p:${l.productId}:${l.fulfillment}:${l.quantity}`
-    )
-    .sort()
-    .join('|');
+function orderIdempotencyKey(submissionKey: string): string {
   return createHash('sha256')
-    .update(
-      [
-        input.email.trim().toLowerCase(),
-        input.firstName.trim().toLowerCase(),
-        input.lastName.trim().toLowerCase(),
-        fingerprint,
-      ].join('|')
-    )
+    .update(`cart-submit:${submissionKey}`)
     .digest('hex');
 }
 
@@ -268,15 +245,20 @@ export async function submitCartOrder(
     };
   });
 
-  const idempotencyKey = orderIdempotencyKey({
-    email: data.purchaserEmail,
-    lines: revalidated.lines,
-    firstName: data.purchaserFirstName,
-    lastName: data.purchaserLastName,
-  });
+  const idempotencyKey = orderIdempotencyKey(data.submissionKey);
 
   const supabase = createCartAdminClient();
-  const { data: result, error } = await supabase.rpc('submit_cart_order', {
+  const { data: result, error } = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{
+        data: unknown;
+        error: { message: string; code?: string } | null;
+      }>;
+    }
+  ).rpc('submit_cart_order_v2', {
     p_idempotency_key: idempotencyKey,
     p_customer_email: data.purchaserEmail,
     p_customer_first_name: data.purchaserFirstName,
@@ -291,6 +273,7 @@ export async function submitCartOrder(
       ? (data.shipping as unknown as Json)
       : null,
     p_source: 'website',
+    p_selected_payment_method: paymentResolved.method,
   });
 
   if (error || !result) {
@@ -314,47 +297,6 @@ export async function submitCartOrder(
     public_lookup_token?: string;
     reused?: boolean;
   };
-
-  // Persist explicit payment method (migration 15). Tolerate missing column.
-  {
-    const methodPatch: Record<string, unknown> = {
-      updated_at: new Date().toISOString(),
-    };
-    methodPatch.selected_payment_method = paymentResolved.method;
-    const { error: methodError } = await supabase
-      .from('orders')
-      .update(methodPatch)
-      .eq('id', payload.order_id);
-    if (methodError?.message?.includes('selected_payment_method')) {
-      console.warn(
-        'selected_payment_method column missing — apply migration 15'
-      );
-    }
-
-    if (payload.payment_id) {
-      await supabase
-        .from('payments')
-        .update({
-          provider:
-            paymentResolved.method === 'stripe' ? 'stripe' : 'bank_transfer',
-          status: paymentResolved.method === 'stripe' ? 'created' : 'pending',
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', payload.payment_id);
-    }
-
-    if (payload.public_lookup_token) {
-      await supabase.from('order_events').insert({
-        order_id: payload.order_id,
-        event_type: 'portal_token_issued',
-        actor_type: 'system',
-        metadata: {
-          // Opaque portal token — equivalent security to the URL itself.
-          public_lookup_token: payload.public_lookup_token,
-        },
-      });
-    }
-  }
 
   let checkoutUrl: string | undefined;
 

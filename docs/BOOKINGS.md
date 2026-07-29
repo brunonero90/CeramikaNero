@@ -82,27 +82,42 @@ Stripe is always the authoritative source of truth. The success page is presenta
 ## Expiry workflow
 
 1. `public.begin_booking` sets `bookings.expires_at` to `now() + 15 minutes` for `pending` bookings.
-2. The protected cron endpoint `/api/cron/expiry` runs `public.expire_pending_bookings()`.
-3. The function marks eligible bookings as `expired` and decrements `reserved_count` exactly once.
-4. The function is safe under concurrent calls and simultaneous webhook processing.
-5. In production, schedule the cron at least every 5 minutes. Actual release can therefore occur shortly after `expires_at`.
+2. Unified Stripe orders start with a 15-minute pre-Checkout hold; a bound
+   Checkout Session replaces it with Stripe's authoritative expiry. Manual
+   transfer and shipping-quote orders use a 24-hour deadline.
+3. The protected cron endpoint `/api/cron/expiry` expires both standalone
+   bookings and eligible unified orders.
+4. Before expiring a bound Stripe order, the server retrieves the Session.
+   Open, processing, paid, or temporarily unverifiable Sessions are deferred.
+5. `public.expire_unpaid_order()` closes only the exact unpaid attempt and
+   releases its capacity and inventory exactly once. Concurrent calls and
+   webhook replays are idempotent.
+6. In production, schedule the cron at least every 5 minutes. Actual release
+   can therefore occur shortly after `expires_at`.
 
 ## Webhook idempotency
 
 - Every Stripe event ID is recorded in `public.stripe_events`.
-- Duplicate event IDs are ignored.
+- Each event ID is claimed atomically. A concurrent delivery receives a
+  retryable response while the first handler owns the claim; processed events
+  are ignored.
+- Failed claims may be reclaimed on a later Stripe retry.
 - Database functions are atomic and use row locks, so duplicate events cannot:
   - confirm a booking twice,
   - release capacity twice,
   - send a confirmation email twice,
   - apply a refund twice.
-- Out-of-order events are handled by explicit state checks.
+- Out-of-order failures and expired attempts cannot regress a paid or refunded
+  payment, and stale attempts cannot invalidate a newer attempt.
+- Stripe amount, currency, entity relationship, Checkout/PaymentIntent binding,
+  and `livemode` are validated before confirmation.
 
 ## Late-payment recovery
 
 If a `checkout.session.completed` webhook arrives after the booking expired:
 
-1. `public.confirm_booking_from_payment` attempts to reacquire capacity.
+1. `public.confirm_booking_from_stripe` validates the Stripe relationship,
+   amount, currency, and mode, then attempts to reacquire capacity.
 2. If capacity is available, the booking is confirmed.
 3. If capacity is unavailable, the payment is marked as `paid` but the booking remains expired. The payment record receives a `failure_message` stating that manual resolution is required and a payment-problem email is sent.
 4. Staff must resolve the situation manually (refund, move to another session, or release a spot).
@@ -121,9 +136,25 @@ If a `checkout.session.completed` webhook arrives after the booking expired:
 
 - Managers and owners can cancel a booking from the admin panel.
 - A reason is required and recorded in the audit log.
-- Staff can issue full or partial refunds through Stripe.
+- Staff can issue full or partial refunds for standalone bookings through
+  Stripe.
 - The cumulative refunded amount cannot exceed the captured amount.
 - A failed Stripe refund does not mark the booking as refunded.
+- `charge.refunded` and successful `refund.updated` webhooks synchronize the
+  cumulative amount actually refunded by Stripe.
+- `refund.failed` records an operational failure without pretending that money
+  was returned.
+- A full refund of a standalone booking closes the booking and releases seats
+  once. A partial refund leaves the booking active.
+- The unified-order admin action offers only a full remaining refund for a
+  paid, unfulfilled order. A completed full refund closes linked bookings and
+  releases all unfulfilled seats and inventory exactly once.
+- Partial unified-order refunds made directly in Stripe are recorded
+  financially and flagged for staff review. They release nothing because the
+  application cannot safely infer their line allocation.
+- Disputes are distinct from refunds. Real open/lost disputes reduce net
+  collected revenue; won disputes restore it. Warning inquiries require
+  attention without reducing revenue.
 
 ## Manual bookings
 
@@ -204,4 +235,4 @@ If a `checkout.session.completed` webhook arrives after the booking expired:
 
 ## Unified cart path (2026)
 
-Scheduled fixed-price workshops can be added to the cart from `/warsztaty/{slug}/rezerwacja` (session + quantity). Purchaser/participant details are collected at `/cart/checkout`. Submission calls `submit_cart_order`, which creates one `orders` row and one `bookings` row per workshop line (capacity reserved only then). Enquiry-only offers must not use this path.
+Scheduled fixed-price workshops can be added to the cart from `/warsztaty/{slug}/rezerwacja` (session + quantity). Purchaser/participant details are collected at `/cart/checkout`. Submission calls `submit_cart_order_v2`, which atomically creates one `orders` row and one `bookings` row per workshop line, reserves capacity, records the selected payment method, and stores a per-submission idempotency key. Enquiry-only offers must not use this path.

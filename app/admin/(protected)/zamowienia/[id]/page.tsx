@@ -1,12 +1,15 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { randomUUID } from 'node:crypto';
 import { createClient } from '@/lib/supabase/server';
 import { formatPrice } from '@/lib/utils/price';
 import {
   setOrderShippingQuoteAction,
   updateOrderOperationalStateAction,
   setOrderAnalyticsExcludedAction,
+  refundOrderAction,
 } from '../actions';
+import { requiresExternalRefundConfirmation } from '@/lib/payments/order-refund-policy';
 
 export const dynamic = 'force-dynamic';
 
@@ -59,18 +62,44 @@ export default async function AdminOrderDetailPage({
     booking_id: string | null;
   }>;
 
-  const [{ data: bookings }, { data: events }] = await Promise.all([
-    supabase
-      .from('bookings')
-      .select('id, booking_reference, status')
-      .eq('order_id', id),
-    supabase
-      .from('order_events')
-      .select('id, event_type, actor_type, metadata, created_at')
-      .eq('order_id', id)
-      .order('created_at', { ascending: false })
-      .limit(40),
-  ]);
+  const [{ data: bookings }, { data: events }, { data: payments }] =
+    await Promise.all([
+      supabase
+        .from('bookings')
+        .select('id, booking_reference, status')
+        .eq('order_id', id),
+      supabase
+        .from('order_events')
+        .select('id, event_type, actor_type, metadata, created_at')
+        .eq('order_id', id)
+        .order('created_at', { ascending: false })
+        .limit(40),
+      supabase
+        .from('payments')
+        .select(
+          'id, provider, status, amount_gross_grosz, refunded_amount_grosz, provider_payment_id, disputed_amount_grosz, latest_dispute_status'
+        )
+        .eq('order_id', id)
+        .order('created_at', { ascending: false }),
+    ]);
+
+  const payment = payments?.[0] as
+    | {
+        id: string;
+        provider: string;
+        status: string;
+        amount_gross_grosz: number;
+        refunded_amount_grosz: number;
+        disputed_amount_grosz?: number;
+        latest_dispute_status?: string | null;
+      }
+    | undefined;
+  const remainingRefund = payment
+    ? payment.amount_gross_grosz - payment.refunded_amount_grosz
+    : 0;
+  const externalRefundConfirmation = payment
+    ? requiresExternalRefundConfirmation(payment.provider)
+    : false;
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -229,6 +258,66 @@ export default async function AdminOrderDetailPage({
             <br />
             {address.country}
           </p>
+        </section>
+      ) : null}
+
+      {payment ? (
+        <section className="rounded border bg-white p-4 text-sm">
+          <h2 className="mb-2 font-semibold">Płatność i zwroty</h2>
+          <p>
+            {payment.provider} · {payment.status} · wpłacono{' '}
+            {formatPrice(payment.amount_gross_grosz)} · zwrócono{' '}
+            {formatPrice(payment.refunded_amount_grosz)}
+          </p>
+          {Number(payment.disputed_amount_grosz ?? 0) > 0 ? (
+            <p className="mt-2 rounded bg-red-50 p-2 text-red-900">
+              Spór Stripe: {payment.latest_dispute_status ?? 'otwarty'} ·{' '}
+              {formatPrice(Number(payment.disputed_amount_grosz))}
+            </p>
+          ) : null}
+          {remainingRefund > 0 &&
+          ['paid', 'partially_refunded'].includes(payment.status) &&
+          order.fulfillment_status === 'unfulfilled' ? (
+            <form action={refundOrderAction} className="mt-4 space-y-2">
+              <input type="hidden" name="orderId" value={order.id} />
+              <input type="hidden" name="operationKey" value={randomUUID()} />
+              <label className="block">
+                Powód pełnego zwrotu
+                <input
+                  name="reason"
+                  required
+                  maxLength={1000}
+                  className="mt-1 w-full rounded border px-2 py-2"
+                />
+              </label>
+              <p className="text-gray-600">
+                {externalRefundConfirmation
+                  ? 'System nie wykonuje przelewu zwrotnego. Najpierw zwróć klientowi pełne pozostałe saldo poza systemem: '
+                  : 'Stripe zwróci całe pozostałe saldo: '}
+                {formatPrice(remainingRefund)}. Powiązane miejsca i
+                niezrealizowany magazyn zostaną zwolnione dokładnie raz.
+              </p>
+              {externalRefundConfirmation ? (
+                <label className="flex items-start gap-2 text-gray-700">
+                  <input
+                    type="checkbox"
+                    name="manualRefundConfirmed"
+                    required
+                    className="mt-1"
+                  />
+                  Potwierdzam, że pełny zwrot został już wykonany poza systemem.
+                </label>
+              ) : null}
+              <button
+                type="submit"
+                className="rounded bg-red-700 px-4 py-2 text-white"
+              >
+                {externalRefundConfirmation
+                  ? 'Zapisz wykonany pełny zwrot'
+                  : 'Wykonaj pełny zwrot'}
+              </button>
+            </form>
+          ) : null}
         </section>
       ) : null}
 

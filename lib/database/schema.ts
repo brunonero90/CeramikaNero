@@ -177,6 +177,7 @@ export type ManualBookingInput = z.infer<typeof manualBookingInputSchema>;
 export const refundInputSchema = z.object({
   amountGrossGrosz: z.coerce.number().int().positive(),
   reason: z.string().min(1).max(1000),
+  operationKey: z.string().uuid(),
 });
 
 export type RefundInput = z.infer<typeof refundInputSchema>;

@@ -228,41 +228,42 @@ export async function createManualBookingAction(
 export async function confirmManualPaymentAction(bookingId: string) {
   const admin = await requireAnyRole(['owner', 'manager']);
   const supabase = createAdminClient();
-  const { data: payment } = await supabase
-    .from('payments')
-    .select('id, status, amount_gross_grosz')
-    .eq('booking_id', bookingId)
-    .single();
-  if (!payment || payment.status !== 'pending') {
-    throw new Error('Brak oczekującej płatności do potwierdzenia.');
+  const { data, error } = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
+    }
+  ).rpc('confirm_manual_booking_payment', {
+    p_booking_id: bookingId,
+    p_actor_id: admin.userId,
+    p_actor_role: admin.role,
+  });
+  if (error) {
+    console.error('confirm_manual_booking_payment failed', error.message);
+    throw new Error(
+      error.message.includes('Stripe')
+        ? 'Płatność Stripe nie może być potwierdzona ręcznie.'
+        : 'Brak oczekującej płatności ręcznej do potwierdzenia.'
+    );
   }
 
-  await supabase
-    .from('payments')
-    .update({ status: 'paid', paid_at: new Date().toISOString() })
-    .eq('id', payment.id);
-  await supabase
-    .from('bookings')
-    .update({
-      status: 'confirmed',
-      confirmed_at: new Date().toISOString(),
-      expires_at: null,
-    })
-    .eq('id', bookingId);
+  if (!(data as { already_confirmed?: boolean } | null)?.already_confirmed) {
+    await recordAuditEvent(supabase, {
+      actorUserId: admin.userId,
+      actorRole: admin.role,
+      action: 'booking.payment_confirmed',
+      entityType: 'booking',
+      entityId: bookingId,
+      summary: 'Manual payment confirmed',
+      changedFields: { payment_status: 'paid' } as Record<string, unknown>,
+    });
 
-  await recordAuditEvent(supabase, {
-    actorUserId: admin.userId,
-    actorRole: admin.role,
-    action: 'booking.payment_confirmed',
-    entityType: 'booking',
-    entityId: bookingId,
-    summary: 'Manual payment confirmed',
-    changedFields: { payment_status: 'paid' } as Record<string, unknown>,
-  });
-
-  const ctx = await getBookingEmailContext(bookingId);
-  if (ctx) {
-    await sendBookingConfirmationEmail(ctx);
+    const ctx = await getBookingEmailContext(bookingId);
+    if (ctx) {
+      await sendBookingConfirmationEmail(ctx);
+    }
   }
 
   revalidatePath('/admin/rezerwacje');
@@ -335,15 +336,38 @@ export async function refundBookingAction(
     throw new Error('Kwota zwrotu przekracza dostępny saldo.');
   }
 
+  const expectedRefundedTotal =
+    payment.refunded_amount_grosz + refund.amountGrossGrosz;
+  let refundOperationKey = `refund-${payment.id}-${refund.operationKey}`;
   if (payment.provider === 'stripe' && payment.provider_payment_id) {
     try {
-      await createStripeRefund({
+      const stripeRefund = await createStripeRefund({
         paymentId: payment.id,
         paymentIntentId: payment.provider_payment_id,
         amountGrosz: refund.amountGrossGrosz,
         reason: refund.reason,
-        idempotencyKey: `refund-${payment.id}-${refund.amountGrossGrosz}`,
+        idempotencyKey: refundOperationKey,
       });
+      if (stripeRefund.status === 'failed') {
+        throw new Error('Stripe returned a failed refund');
+      }
+      if (stripeRefund.status !== 'succeeded') {
+        await recordAuditEvent(supabase, {
+          actorUserId: admin.userId,
+          actorRole: admin.role,
+          action: 'booking.refund_pending',
+          entityType: 'booking',
+          entityId: bookingId,
+          summary: 'Stripe refund is pending',
+          changedFields: {
+            refund_amount_grosz: refund.amountGrossGrosz,
+          } as Record<string, unknown>,
+        });
+        revalidatePath('/admin/rezerwacje');
+        revalidatePath('/admin/rezerwacje/' + bookingId);
+        return { ok: true, pending: true };
+      }
+      refundOperationKey = stripeRefund.id;
     } catch (err) {
       console.error('Stripe refund failed', err);
       throw new Error(
@@ -352,11 +376,29 @@ export async function refundBookingAction(
     }
   }
 
-  await supabase.rpc('record_payment_refund', {
+  const { error: recordError } = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
+    }
+  ).rpc('record_booking_refund_safe', {
     p_payment_id: payment.id,
     p_refund_amount_grosz: refund.amountGrossGrosz,
+    p_expected_refunded_total_grosz: expectedRefundedTotal,
     p_reason: refund.reason,
+    p_operation_key: refundOperationKey,
+    p_actor_type: 'admin',
+    p_actor_id: admin.userId,
+    p_actor_role: admin.role,
   });
+  if (recordError) {
+    console.error('record_booking_refund_safe failed', recordError.message);
+    throw new Error(
+      'Zwrot został zlecony, ale lokalny zapis wymaga weryfikacji. Nie ponawiaj zwrotu przed sprawdzeniem Stripe.'
+    );
+  }
 
   await recordAuditEvent(supabase, {
     actorUserId: admin.userId,

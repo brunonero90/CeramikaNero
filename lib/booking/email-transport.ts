@@ -91,8 +91,6 @@ export async function deliverBookingEmail(
       });
       console.info('[email-outbox]', {
         id: record.id,
-        to: email.to,
-        subject: email.subject,
         type: email.type,
         bookingId: email.bookingId,
       });
@@ -115,7 +113,7 @@ export async function deliverBookingEmail(
 
   console.warn(
     '[email] RESEND is not configured in production; confirmation recorded in booking_emails ledger only.',
-    { bookingId: email.bookingId, type: email.type, to: email.to }
+    { bookingId: email.bookingId, type: email.type }
   );
   return {
     ok: false,

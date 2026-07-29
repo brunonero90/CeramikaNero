@@ -14,7 +14,8 @@ function paymentEligible(
   excludedOrders: Set<string>,
   excludedBookings: Set<string>
 ): boolean {
-  if (p.order_id && excludedOrders.has(p.order_id) && !includeTest) return false;
+  if (p.order_id && excludedOrders.has(p.order_id) && !includeTest)
+    return false;
   if (p.booking_id && excludedBookings.has(p.booking_id) && !includeTest)
     return false;
   if (!includeTest && p.provider === 'stripe') {
@@ -87,6 +88,7 @@ describe('analytics exclusions', () => {
   it('exposes no PII keys in dashboard contract sample', () => {
     const sample = {
       netCollectedRevenueGrosz: 0,
+      disputedRevenueGrosz: 0,
       paidOrders: 0,
       series: [{ day: '2026-07-01', revenueGrosz: 0, paidParticipants: 0 }],
     };

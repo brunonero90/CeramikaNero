@@ -9,15 +9,16 @@ rates before order creation, or profit/contribution margin.
 
 ## Source tables
 
-| Domain | Tables |
-|--------|--------|
-| Money | `payments` (`amount_gross_grosz`, `refunded_amount_grosz`, `paid_at`, `status`, `provider`, `livemode`) |
-| Orders | `orders` (`analytics_excluded`, `selected_payment_method`, `payment_status`) |
-| Bookings | `bookings` (`status`, `quantity`, `analytics_excluded`, `created_at`, `cancelled_at`) |
-| Attendance | `booking_participants` (`attendance_status`, …) |
-| Sessions | `workshop_sessions` (`capacity`, `reserved_count`, `starts_at`, `attendance_reviewed_at`) |
+| Domain     | Tables                                                                                                                                                  |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Money      | `payments` (`amount_gross_grosz`, `refunded_amount_grosz`, `disputed_amount_grosz`, `paid_at`, `status`, `provider`, `livemode`) and `payment_disputes` |
+| Orders     | `orders` (`analytics_excluded`, `selected_payment_method`, `payment_status`)                                                                            |
+| Bookings   | `bookings` (`status`, `quantity`, `analytics_excluded`, `created_at`, `cancelled_at`)                                                                   |
+| Attendance | `booking_participants` (`attendance_status`, …)                                                                                                         |
+| Sessions   | `workshop_sessions` (`capacity`, `reserved_count`, `starts_at`, `attendance_reviewed_at`)                                                               |
 
-Semantic helper view: `analytics_payment_facts` (migration 18, service_role).
+Semantic helper view: `analytics_payment_facts` (introduced in migration 18 and
+extended by migration 20, service role only).
 
 ## Exclusions (default dashboard)
 
@@ -34,18 +35,19 @@ forward (`event.livemode` / session.livemode) or an audited admin exclusion.
 
 ## Metric definitions
 
-| KPI | Formula |
-|-----|---------|
-| Net collected revenue | Σ (`amount_gross_grosz` − `refunded_amount_grosz`) for eligible paid/partially_refunded/refunded payments with `paid_at` in range |
-| Refunds | Σ `refunded_amount_grosz` for those payments |
-| Paid orders | Distinct `order_id` among eligible paid payments in range |
-| Operational occupancy | Σ `reserved_count` / Σ `capacity` for sessions starting in range |
-| Realised attendance | Checked-in participants / Σ capacity (sessions in range) |
-| Cancellation rate | Cancelled bookings (`cancelled_at` in range) / bookings created in range |
-| No-show rate | `no_show` participants / expected participants on sessions with `attendance_reviewed_at` set |
-| Average booking value | Net collected revenue / paid orders |
-| Repeat customer | Documented for a later refinement; v1 UI may show placeholder until cohort query is completed |
-| Lead time | Days between booking `created_at` and session `starts_at` (bucketed in later iterations) |
+| KPI                   | Formula                                                                                                                                                     |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Net collected revenue | Σ (`amount_gross_grosz` − `refunded_amount_grosz` − `disputed_amount_grosz`) for eligible paid/partially_refunded/refunded payments with `paid_at` in range |
+| Refunds               | Σ `refunded_amount_grosz` for those payments                                                                                                                |
+| Funds under dispute   | Σ `disputed_amount_grosz`; includes real open/lost disputes, excludes won disputes and warning inquiries                                                    |
+| Paid orders           | Distinct `order_id` among eligible paid payments in range                                                                                                   |
+| Operational occupancy | Σ `reserved_count` / Σ `capacity` for sessions starting in range                                                                                            |
+| Realised attendance   | Checked-in participants / Σ capacity (sessions in range)                                                                                                    |
+| Cancellation rate     | Cancelled bookings (`cancelled_at` in range) / bookings created in range                                                                                    |
+| No-show rate          | `no_show` participants / expected participants on sessions with `attendance_reviewed_at` set                                                                |
+| Average booking value | Net collected revenue / paid orders                                                                                                                         |
+| Repeat customer       | Documented for a later refinement; v1 UI may show placeholder until cohort query is completed                                                               |
+| Lead time             | Days between booking `created_at` and session `starts_at` (bucketed in later iterations)                                                                    |
 
 Revenue is **never** labeled as profit. Profitability requires explicit session
 costs (instructor, venue, materials, refreshments) in a later phase.
@@ -101,4 +103,6 @@ deletes for auditability.
 ## Deployment notes
 
 Apply migration `00000000000018_studio_operations_analytics.sql` before relying on
-attendance RPCs or `livemode` / `analytics_excluded` columns.
+attendance RPCs or `livemode` / `analytics_excluded` columns. Apply migration
+`00000000000020_payment_release_go.sql` before deploying the dispute-aware
+dashboard.

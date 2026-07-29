@@ -60,6 +60,7 @@ export function BookingDetailActions({
       await refundBookingAction(bookingId, {
         amountGrossGrosz: Number(amount),
         reason,
+        operationKey: crypto.randomUUID(),
       });
       router.refresh();
     });

@@ -99,21 +99,46 @@ export async function cancelBookingWithToken(
     .single();
 
   let refunded = false;
+  let refundPending = false;
   if (payment && payment.provider === 'stripe' && payment.provider_payment_id) {
     try {
-      await createStripeRefund({
+      const stripeRefund = await createStripeRefund({
         paymentId: payment.id,
         paymentIntentId: payment.provider_payment_id,
         amountGrosz: payment.amount_gross_grosz,
         reason: 'Customer cancellation within refund window',
         idempotencyKey: `refund-${payment.id}`,
       });
-      await supabase.rpc('record_payment_refund', {
-        p_payment_id: payment.id,
-        p_refund_amount_grosz: payment.amount_gross_grosz,
-        p_reason: 'Customer cancellation within 24h refund window',
-      });
-      refunded = true;
+      if (stripeRefund.status === 'succeeded') {
+        const { error: recordError } = await (
+          supabase as unknown as {
+            rpc: (
+              name: string,
+              args: Record<string, unknown>
+            ) => Promise<{ data: unknown; error: { message: string } | null }>;
+          }
+        ).rpc('record_booking_refund_safe', {
+          p_payment_id: payment.id,
+          p_refund_amount_grosz: payment.amount_gross_grosz,
+          p_expected_refunded_total_grosz: payment.amount_gross_grosz,
+          p_reason: 'Customer cancellation within 24h refund window',
+          p_operation_key: stripeRefund.id,
+          p_actor_type: 'customer',
+          p_actor_id: null,
+          p_actor_role: null,
+        });
+        if (recordError) {
+          console.error(
+            'Customer refund local synchronization failed',
+            recordError.message
+          );
+          refundPending = true;
+        } else {
+          refunded = true;
+        }
+      } else if (stripeRefund.status !== 'failed') {
+        refundPending = true;
+      }
     } catch (err) {
       console.error('Customer refund failed', err);
     }
@@ -132,6 +157,8 @@ export async function cancelBookingWithToken(
     refunded,
     message: refunded
       ? 'Rezerwacja została anulowana, a środki zostaną zwrócone.'
-      : 'Rezerwacja została anulowana.',
+      : refundPending
+        ? 'Rezerwacja została anulowana. Zwrot jest przetwarzany przez operatora płatności.'
+        : 'Rezerwacja została anulowana.',
   };
 }
