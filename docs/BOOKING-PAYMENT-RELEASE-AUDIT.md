@@ -529,5 +529,6 @@ because the application selects columns introduced by migration 20:
 8. When all test evidence is green, activate live keys and perform one small
    real-payment/refund smoke test.
 
-No migration was applied, no remote data/configuration was changed, and nothing
-was deployed during this audit.
+No migration was applied and no remote data/configuration or production
+deployment was changed. Publishing the draft PR created an automatic Netlify
+deploy preview only.
