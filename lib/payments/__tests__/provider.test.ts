@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   getPaymentsProviderMode,
+  getPublicPaymentOptions,
   resolveCheckoutPaymentMethod,
   shouldCreateStripeCheckoutNow,
 } from '@/lib/payments/provider';
@@ -13,6 +14,24 @@ describe('payments provider', () => {
   it('defaults to manual', () => {
     vi.stubEnv('PAYMENTS_PROVIDER', undefined);
     expect(getPaymentsProviderMode()).toBe('manual');
+  });
+
+  it('fails closed for an unsupported explicit provider value', () => {
+    vi.stubEnv('PAYMENTS_PROVIDER', 'stripee');
+    expect(() => getPaymentsProviderMode()).toThrow(
+      'Invalid PAYMENTS_PROVIDER configuration'
+    );
+    expect(
+      resolveCheckoutPaymentMethod({ shippingQuoteRequired: false })
+    ).toEqual({
+      ok: false,
+      error: 'Płatności są tymczasowo niedostępne. Skontaktuj się z pracownią.',
+    });
+    expect(getPublicPaymentOptions()).toEqual({
+      mode: 'unavailable',
+      stripeAvailable: false,
+      showMethodSelector: false,
+    });
   });
 
   it('resolves stripe mode only when configured', () => {

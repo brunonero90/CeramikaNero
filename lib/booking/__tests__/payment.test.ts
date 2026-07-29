@@ -96,6 +96,28 @@ describe('createStripeCheckoutSession', () => {
 
     expect(refundsCreateMock).toHaveBeenCalledTimes(1);
   });
+
+  it('keeps the free-text refund reason out of Stripe metadata', async () => {
+    refundsCreateMock.mockResolvedValue({
+      id: 're_1',
+      status: 'succeeded',
+    });
+    const { createStripeRefund } = await import('../payment');
+
+    await createStripeRefund({
+      paymentId: 'pay_1',
+      paymentIntentId: 'pi_1',
+      amountGrosz: 1000,
+      reason: 'Customer name and private context must remain local',
+      idempotencyKey: 'refund-pay_1',
+    });
+
+    const [params] = refundsCreateMock.mock.calls[0] as [
+      Record<string, unknown>,
+    ];
+    expect(params.metadata).toEqual({ payment_id: 'pay_1' });
+    expect(JSON.stringify(params)).not.toContain('Customer name');
+  });
 });
 
 describe('isStripeConfigured', () => {

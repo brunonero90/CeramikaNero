@@ -37,4 +37,24 @@ describe('privacy / token boundaries (source)', () => {
     expect(m11).toContain('orders');
     expect(m11).toContain('order_emails');
   });
+
+  it('keeps recoverable raw order tokens in a service-only table, not event metadata', () => {
+    const m19 = readFileSync(
+      join(
+        process.cwd(),
+        'supabase/migrations/00000000000019_payment_release_hardening.sql'
+      ),
+      'utf8'
+    );
+    expect(m19).toContain(
+      'order_portal_token_recovery enable row level security'
+    );
+    expect(m19).toMatch(
+      /revoke all on table public\.order_portal_token_recovery\s+from public, anon, authenticated/
+    );
+    expect(m19).toContain("jsonb_build_object('token_relocated', true)");
+    expect(m19).not.toContain(
+      "jsonb_build_object('public_lookup_token', v_public_token)"
+    );
+  });
 });

@@ -1,4 +1,5 @@
 import 'server-only';
+import { randomUUID } from 'node:crypto';
 import { createCartAdminClient } from '@/lib/supabase/cart-admin';
 import { createEntityStripeCheckoutSession } from '@/lib/payments/stripe-checkout';
 import { isStripeConfigured } from '@/lib/booking/local-mode';
@@ -309,55 +310,66 @@ export async function createOrReuseOrderCheckoutSession(input: {
     }
   }
 
-  // Reuse an eligible payment row or insert a new attempt.
-  let paymentId =
-    rows.find(
-      (p) =>
-        RETRYABLE_PAYMENT_STATUSES.has(p.status) &&
-        Number(p.amount_gross_grosz) === total &&
-        p.failure_message !== 'stripe_checkout_reconciling'
-    )?.id ?? null;
-
-  if (!paymentId) {
-    const attemptKey = `order-pay-${order.id}-${total}-${Date.now()}`;
-    const { data: inserted, error: insertError } = await supabase
-      .from('payments')
-      .insert({
-        booking_id: null,
-        order_id: order.id,
-        provider: 'stripe',
-        status: 'created',
-        amount_gross_grosz: total,
-        currency: 'PLN',
-        idempotency_key: attemptKey,
-      })
-      .select('id')
-      .maybeSingle();
-    if (insertError || !inserted?.id) {
-      console.error('order payment insert failed', insertError?.message);
-      return {
-        ok: false,
-        error: 'Nie udało się przygotować płatności.',
-        code: 'not_eligible',
-      };
+  // Migration 19 performs the final claim immediately before the Stripe API
+  // call. This prevents two callers from generating competing fresh attempts,
+  // while preserving one stable Stripe idempotency key after a process crash.
+  const requestedAttemptKey = `checkout-order-${order.id}-${randomUUID()}`;
+  const { data: preparedData, error: preparedError } = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
     }
-    paymentId = inserted.id as string;
-  } else {
-    await supabase
-      .from('payments')
-      .update({
-        provider: 'stripe',
-        status: 'created',
-        amount_gross_grosz: total,
-        provider_checkout_id: null,
-        failure_code: null,
-        failure_message: null,
-        // New Stripe idempotency namespace for a fresh attempt after failure/expiry.
-        idempotency_key: `checkout-${paymentId}-${Date.now()}`,
-        updated_at: new Date().toISOString(),
-      })
-      .eq('id', paymentId);
+  ).rpc('prepare_order_checkout_attempt', {
+    p_order_id: order.id,
+    p_attempt_key: requestedAttemptKey,
+  });
+
+  if (preparedError || !preparedData || typeof preparedData !== 'object') {
+    console.error(
+      'prepare_order_checkout_attempt failed',
+      preparedError?.message
+    );
+    return {
+      ok: false,
+      error: 'Nie udało się przygotować płatności.',
+      code: 'not_eligible',
+    };
   }
+
+  const prepared = preparedData as {
+    status?: string;
+    payment_id?: string;
+    stripe_idempotency_key?: string;
+  };
+  if (prepared.status === 'already_paid') {
+    return {
+      ok: false,
+      error: 'Zamówienie jest już opłacone.',
+      code: 'already_paid',
+    };
+  }
+  if (prepared.status === 'creating') {
+    return {
+      ok: false,
+      error: 'Płatność jest już przygotowywana. Odśwież stronę za chwilę.',
+      code: 'reconciling',
+    };
+  }
+  if (
+    prepared.status !== 'claimed' ||
+    !prepared.payment_id ||
+    !prepared.stripe_idempotency_key
+  ) {
+    return {
+      ok: false,
+      error: 'Zamówienie nie przyjmuje teraz płatności online.',
+      code: prepared.status === 'terminal' ? 'terminal' : 'not_eligible',
+    };
+  }
+
+  const paymentId = prepared.payment_id;
 
   const items = (order.order_items ?? []) as Array<{
     title_snapshot: string;
@@ -381,8 +393,7 @@ export async function createOrReuseOrderCheckoutSession(input: {
     ? `${siteUrl}/zamowienie/${encodeURIComponent(token)}?checkout=cancelled`
     : `${siteUrl}/cart?checkout=cancelled`;
 
-  // Fresh idempotency key per attempt (never reuse key of a completed session).
-  const stripeIdempotencyKey = `checkout-order-${paymentId}-${total}`;
+  const stripeIdempotencyKey = prepared.stripe_idempotency_key;
 
   let session;
   try {
@@ -401,14 +412,9 @@ export async function createOrReuseOrderCheckoutSession(input: {
     });
   } catch (err) {
     console.error('order stripe checkout create failed', err);
-    await supabase
-      .from('payments')
-      .update({
-        status: 'failed',
-        failure_message: 'Stripe Checkout session creation failed',
-        updated_at: new Date().toISOString(),
-      })
-      .eq('id', paymentId);
+    // Preserve the durable claim and its Stripe idempotency key. A network
+    // exception can occur after Stripe created the Session; resetting the key
+    // here could create a second payable Session on retry.
     return {
       ok: false,
       error: 'Nie udało się otworzyć płatności online. Spróbuj ponownie.',
@@ -434,6 +440,16 @@ export async function createOrReuseOrderCheckoutSession(input: {
         code: 'reconciling',
       };
     }
+    await supabase
+      .from('payments')
+      .update({
+        provider_checkout_id: session.id,
+        status: 'failed',
+        failure_code: 'checkout_not_payable',
+        failure_message: 'Stripe Checkout session has no payable URL',
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', paymentId);
     return {
       ok: false,
       error: 'Stripe nie zwrócił adresu płatności.',
@@ -445,13 +461,15 @@ export async function createOrReuseOrderCheckoutSession(input: {
     ? new Date(session.expires_at * 1000).toISOString()
     : new Date(Date.now() + 30 * 60 * 1000).toISOString();
 
-  await (supabase as unknown as {
-    from: (t: string) => {
-      update: (p: Record<string, unknown>) => {
-        eq: (c: string, v: string) => Promise<unknown>;
+  await (
+    supabase as unknown as {
+      from: (t: string) => {
+        update: (p: Record<string, unknown>) => {
+          eq: (c: string, v: string) => Promise<unknown>;
+        };
       };
-    };
-  })
+    }
+  )
     .from('payments')
     .update({
       provider: 'stripe',

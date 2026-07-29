@@ -1,0 +1,98 @@
+# Ceramika Nero — manual payment acceptance
+
+This is the smallest human test set that cannot be replaced by unit tests. Run
+it only with Stripe sandbox keys and disposable/test orders. Never use a real
+card.
+
+## Before you start
+
+- [ ] Migration 19 is applied to the test database.
+- [ ] The test deployment uses `sk_test_...` and the matching sandbox
+      `whsec_...`.
+- [ ] The webhook destination is subscribed to the nine events listed in
+      `docs/PAYMENT-FLOWS.md`.
+- [ ] `PAYMENTS_PROVIDER=both` if bank transfer is part of launch.
+- [ ] BLIK and, if intended, Przelewy24 are enabled in Stripe sandbox.
+- [ ] Open one normal browser and one private/incognito browser.
+- [ ] For every test, save the order reference, one customer screenshot, one
+      admin screenshot, the Stripe event ID, its webhook HTTP status, and the
+      email subject.
+
+Stripe's official test data used below:
+
+- Cards: [Stripe test cards](https://docs.stripe.com/testing)
+- BLIK patterns and delays:
+  [Stripe BLIK sandbox failures](https://docs.stripe.com/payments/blik/accept-a-payment?payment-ui=direct-api)
+- P24:
+  [Stripe P24 testing](https://docs.stripe.com/payments/p24/accept-a-payment)
+- Replaying events:
+  [Stripe webhook retries](https://docs.stripe.com/webhooks)
+
+Use any future expiry date and any three-digit CVC unless a row says otherwise.
+Never enter these card numbers outside Stripe's sandbox Checkout.
+
+## Expected result vocabulary
+
+- **Paid:** the public order page says the order is paid, the payment button is
+  gone, the order is `confirmed` in admin, workshop bookings are confirmed,
+  and one payment-received email is sent.
+- **Unpaid/retryable:** no confirmation email, no extra seat or product is
+  reserved, and the same public order page still offers a safe retry.
+- **Capacity unchanged:** retrying payment never reserves the workshop/product
+  a second time.
+- **Webhook OK:** the relevant delivery returns HTTP `2xx`. A deliberately
+  concurrent delivery may first receive `503`; its later retry must receive
+  `2xx` without duplicate effects.
+
+## Acceptance checklist
+
+| #   | Test and exact action                                                                                                                                                                     | Sandbox data                                                                                     | What must be visible                                                                                                                                                                                                                  | Stripe/webhook and capacity                                                                                                                           | Result/evidence                                                     |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| 1   | **Standard card success.** Add one workshop, complete checkout, click **“Złóż zamówienie i rezerwację”**, choose card and pay.                                                            | Card `4242 4242 4242 4242`; future date; any CVC.                                                | Immediate Stripe return may briefly say reconciliation. It must settle to **Paid**. Admin shows one paid payment and one confirmed booking. Exactly one payment email.                                                                | `checkout.session.completed` and/or `payment_intent.succeeded`; deliveries `2xx`. Capacity increases once at order creation and not again at payment. | [ ] PASS [ ] FAIL — order: ____ event: ____ screenshots/email: ____ |
+| 2   | **3DS success.** Repeat test 1 and complete the Stripe challenge.                                                                                                                         | Card `4000 0000 0000 3220`.                                                                      | Challenge appears; after approving, outcome is **Paid**.                                                                                                                                                                              | Successful Checkout/PaymentIntent webhook `2xx`; one reservation only.                                                                                | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 3   | **Ordinary decline.** Submit an order and try to pay.                                                                                                                                     | Card `4000 0000 0000 0002`.                                                                      | Stripe shows a safe decline. Ceramika Nero remains **Unpaid/retryable**; no “payment received” email.                                                                                                                                 | `payment_intent.payment_failed` delivery `2xx`; existing reservation is not duplicated.                                                               | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 4   | **3DS decline and processing error.** Run once per card and complete any challenge shown.                                                                                                 | Decline after 3DS: `4000 0084 0000 1629`. 3DS processing error: `4000 0084 0000 1280`.           | Both remain **Unpaid/retryable**. Error text must not reveal keys, IDs, stack traces or configuration.                                                                                                                                | Failure webhook `2xx`; no confirmation email; capacity unchanged.                                                                                     | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 5   | **BLIK success.** Choose BLIK in Stripe Checkout, enter any six digits and complete the sandbox approval.                                                                                 | Normal customer email; any six-digit BLIK code.                                                  | It may show processing briefly, then **Paid**.                                                                                                                                                                                        | Async success and/or PaymentIntent success `2xx`; one confirmation and one reservation.                                                               | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 6   | **BLIK immediate invalid code.** Use the trigger email while placing the order; choose BLIK and any six digits.                                                                           | Customer email `invalid_code@example.com`.                                                       | Immediate error; order remains **Unpaid/retryable**; no success email.                                                                                                                                                                | Failure event if Stripe creates one must be `2xx`; no extra reservation.                                                                              | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 7   | **BLIK delayed bank decline.** Use the trigger email and wait at least 10 seconds.                                                                                                        | `bank_declined@example.com` (also optionally `insufficient_funds@example.com`).                  | Processing may appear first; it must end **Unpaid/retryable**, never paid.                                                                                                                                                            | `payment_intent.payment_failed` or async failure `2xx`; no success email.                                                                             | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 8   | **BLIK timeout.** Use the trigger email and wait at least 65 seconds.                                                                                                                     | `customer_timeout@example.com` (also optionally `bank_timeout@example.com`).                     | It must leave processing and become **Unpaid/retryable**.                                                                                                                                                                             | Timeout failure webhook `2xx`; capacity unchanged.                                                                                                    | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 9   | **Cancel Checkout, retry, succeed.** Open Stripe, use the back/cancel action, then use the public order page to pay again with card `4242…`.                                              | Standard success card on the retry.                                                              | Cancellation does not confirm. Retry opens an eligible Checkout and then becomes **Paid**.                                                                                                                                            | Old expiry/failure events must not regress the new paid payment. One success email; one reservation.                                                  | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 10  | **Replay a successful webhook.** In Stripe Workbench open the successful `checkout.session.completed` event and click **Resend** twice.                                                   | Event from test 1.                                                                               | Order, booking, payment, email history and capacity do not change after the first success.                                                                                                                                            | Every completed replay returns `2xx`; no second email or payment event effect.                                                                        | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 11  | **Full standalone-booking refund.** Use a legacy/standalone paid booking if that flow is still exposed; in admin use the refund action for the full remaining amount.                     | Paid sandbox booking.                                                                            | Payment and booking show refunded. The participant is no longer expected. One refund email.                                                                                                                                           | `charge.refunded` returns `2xx`; capacity is released exactly once.                                                                                   | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 12  | **Partial refunds.** For a standalone booking, issue the same smaller amount twice (while enough remains). For a unified order, perform one partial refund only as a limitation test.     | Each amount must be positive and below the remaining paid total.                                 | Standalone: Stripe and admin show the exact cumulative sum, each action records once, and the booking remains active until fully refunded. Unified order: admin must show/manual process allocation; do not expect seat/item release. | Each `charge.refunded` is `2xx`; net analytics drops by the cumulative amount; capacity does not change for an unallocated partial refund.            | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 13  | **P24 success and cancel/fail** — only if Przelewy24 appears in sandbox Checkout and will be launched. Select any test bank; run once with success and once with **“Fail test payment”**. | Stripe P24 sandbox redirect page.                                                                | Success becomes **Paid**. Failure remains **Unpaid/retryable**.                                                                                                                                                                       | Corresponding success/failure webhooks `2xx`; one reservation.                                                                                        | [ ] PASS [ ] FAIL [ ] NOT ENABLED — evidence: ____                  |
+| 14  | **Manual bank transfer.** With `PAYMENTS_PROVIDER=both`, explicitly choose **“Przelew bankowy”** and submit. In admin mark it paid once, then try again.                                  | Test order only; do not transfer money.                                                          | Before admin action, full recipient/account/title/amount instructions appear. After the first admin action, order/payment/bookings are paid/confirmed and one email is sent. Second action is harmless.                               | No Stripe event. Capacity reserved once. A Stripe-selected order must reject this admin action.                                                       | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 15  | **Shipping quote then Stripe.** Order a shipped product, verify no payment request, set the quote in admin, then pay.                                                                     | Quote such as `19,00`; standard success card.                                                    | Before quote: no Stripe button and no bank demand. After quote: exact total is subtotal + quote. Stripe charges that exact total and order becomes **Paid**.                                                                          | Success webhook `2xx`; payment ledger amount equals quoted total; inventory changes once.                                                             | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 16  | **Mixed workshop + product cart.** Add one workshop and one product, then pay by card.                                                                                                    | Standard success card.                                                                           | One CN-O order links the booking and product. Both are confirmed under one paid total.                                                                                                                                                | One successful payment; workshop capacity and product inventory each change once.                                                                     | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 17  | **Double-click and two tabs.** Open the same public order in two tabs and click **“Zapłać online”** at nearly the same time. Complete only the Checkout that opens.                       | Standard success card.                                                                           | At most one usable new Checkout opens; the other tab says payment is being prepared/reconciled. Final outcome **Paid**.                                                                                                               | One successful payment row and one success email. No duplicate charge.                                                                                | [ ] PASS [ ] FAIL — evidence: ____                                  |
+| 18  | **Final workshop place race.** Put the last available place into two separate browsers and submit both within a few seconds.                                                              | Any payment method; do not complete both payments unless both orders were legitimately accepted. | Exactly one order gets the final place. The other receives the Polish “no places” message and no partial product/order reservation.                                                                                                   | Session never exceeds capacity. The losing mixed cart does not decrement inventory.                                                                   | [ ] PASS [ ] FAIL — evidence: ____                                  |
+
+## Additional recovery test: “Stripe paid, local unpaid”
+
+Use only a sandbox order.
+
+1. Confirm in Stripe that the Checkout Session is `paid` and note its
+   `cs_...`, `pi_...`, amount, currency and event ID.
+2. Do **not** mark the order paid manually.
+3. Open the order's normal public URL with
+   `?checkout=success&session_id=cs_...`.
+4. The server must retrieve that Session from Stripe and reconcile only if the
+   opaque order token, order metadata, payment, amount, currency and mode all
+   match.
+5. If it still does not reconcile, run
+   `scripts/audit-booking-payment-consistency.sql`, save only the relevant
+   non-PII row, and escalate for technical repair. Do not create another
+   payment or issue a refund until the existing Stripe payment is identified.
+
+## Stop conditions
+
+Stop the release and report FAIL immediately if any test shows:
+
+- two successful Stripe payments for one order;
+- a paid Stripe order manually marked paid;
+- an unpaid order/booking shown as confirmed;
+- an amount or currency different from the admin order;
+- capacity above session capacity or inventory below zero;
+- a failure/expiry event changing a later paid state;
+- a repeated success email or webhook replay changing state;
+- private customer data, keys or internal errors in a public message.

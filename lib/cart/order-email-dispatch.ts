@@ -34,15 +34,27 @@ export async function dispatchPendingOrderEmails(
   };
 
   const supabase = createCartAdminClient();
-  const now = new Date().toISOString();
-
-  const { data: rows, error } = await supabase
-    .from('order_emails')
-    .select('id, order_id, email_type, recipient, status, attempt_count')
-    .in('status', ['pending', 'failed'])
-    .or(`next_attempt_at.is.null,next_attempt_at.lte.${now}`)
-    .order('created_at', { ascending: true })
-    .limit(limit);
+  const { data: rows, error } = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{
+        data: Array<{
+          id: string;
+          order_id: string;
+          email_type: string;
+          recipient: string;
+          status: string;
+          attempt_count: number;
+        }> | null;
+        error: { message: string } | null;
+      }>;
+    }
+  ).rpc('claim_order_emails_for_dispatch', {
+    p_limit: limit,
+    p_claim_seconds: 120,
+  });
 
   if (error) {
     console.error('order email claim failed', error.message);
@@ -56,14 +68,6 @@ export async function dispatchPendingOrderEmails(
       summary.skipped += 1;
       continue;
     }
-
-    await supabase
-      .from('order_emails')
-      .update({
-        claimed_at: now,
-        updated_at: now,
-      })
-      .eq('id', row.id);
 
     // Rebuild/send via notify helpers for known types; otherwise generic retry.
     try {

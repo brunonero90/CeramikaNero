@@ -90,19 +90,26 @@ Stripe is always the authoritative source of truth. The success page is presenta
 ## Webhook idempotency
 
 - Every Stripe event ID is recorded in `public.stripe_events`.
-- Duplicate event IDs are ignored.
+- Each event ID is claimed atomically. A concurrent delivery receives a
+  retryable response while the first handler owns the claim; processed events
+  are ignored.
+- Failed claims may be reclaimed on a later Stripe retry.
 - Database functions are atomic and use row locks, so duplicate events cannot:
   - confirm a booking twice,
   - release capacity twice,
   - send a confirmation email twice,
   - apply a refund twice.
-- Out-of-order events are handled by explicit state checks.
+- Out-of-order failures and expired attempts cannot regress a paid or refunded
+  payment, and stale attempts cannot invalidate a newer attempt.
+- Stripe amount, currency, entity relationship, Checkout/PaymentIntent binding,
+  and `livemode` are validated before confirmation.
 
 ## Late-payment recovery
 
 If a `checkout.session.completed` webhook arrives after the booking expired:
 
-1. `public.confirm_booking_from_payment` attempts to reacquire capacity.
+1. `public.confirm_booking_from_stripe` validates the Stripe relationship,
+   amount, currency, and mode, then attempts to reacquire capacity.
 2. If capacity is available, the booking is confirmed.
 3. If capacity is unavailable, the payment is marked as `paid` but the booking remains expired. The payment record receives a `failure_message` stating that manual resolution is required and a payment-problem email is sent.
 4. Staff must resolve the situation manually (refund, move to another session, or release a spot).
@@ -124,6 +131,15 @@ If a `checkout.session.completed` webhook arrives after the booking expired:
 - Staff can issue full or partial refunds through Stripe.
 - The cumulative refunded amount cannot exceed the captured amount.
 - A failed Stripe refund does not mark the booking as refunded.
+- `charge.refunded` and successful `refund.updated` webhooks synchronize the
+  cumulative amount actually refunded by Stripe.
+- `refund.failed` records an operational failure without pretending that money
+  was returned.
+- A full refund of a standalone booking closes the booking and releases seats
+  once. A partial refund leaves the booking active.
+- Unified/mixed-order refunds are recorded financially but remain flagged for
+  staff review because migration 19 does not guess how to allocate them among
+  order lines and linked bookings.
 
 ## Manual bookings
 
@@ -204,4 +220,4 @@ If a `checkout.session.completed` webhook arrives after the booking expired:
 
 ## Unified cart path (2026)
 
-Scheduled fixed-price workshops can be added to the cart from `/warsztaty/{slug}/rezerwacja` (session + quantity). Purchaser/participant details are collected at `/cart/checkout`. Submission calls `submit_cart_order`, which creates one `orders` row and one `bookings` row per workshop line (capacity reserved only then). Enquiry-only offers must not use this path.
+Scheduled fixed-price workshops can be added to the cart from `/warsztaty/{slug}/rezerwacja` (session + quantity). Purchaser/participant details are collected at `/cart/checkout`. Submission calls `submit_cart_order_v2`, which atomically creates one `orders` row and one `bookings` row per workshop line, reserves capacity, records the selected payment method, and stores a per-submission idempotency key. Enquiry-only offers must not use this path.

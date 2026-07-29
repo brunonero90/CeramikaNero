@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createCartAdminClient } from '@/lib/supabase/cart-admin';
 import { requireAnyRole } from '@/lib/admin/auth';
+import { parsePlnToGrosz } from '@/lib/payments/admin-money';
 
 const PAYMENT_STATUSES = [
   'pending',
@@ -37,62 +38,40 @@ export async function setOrderShippingQuoteAction(
 
   const orderId = String(formData.get('orderId') ?? '');
   const feeRaw = String(formData.get('shippingFeePln') ?? '').trim();
-  const feePln = Number(feeRaw.replace(',', '.'));
+  const shippingGrosz = parsePlnToGrosz(feeRaw);
 
-  if (!orderId || !Number.isFinite(feePln) || feePln < 0) {
+  if (!orderId || shippingGrosz === null) {
     throw new Error('Nieprawidłowa wycena wysyłki.');
   }
 
-  const shippingGrosz = Math.round(feePln * 100);
   const supabase = createCartAdminClient();
+  const { data, error } = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
+    }
+  ).rpc('set_order_shipping_quote', {
+    p_order_id: orderId,
+    p_shipping_gross_grosz: shippingGrosz,
+    p_actor_id: admin.userId,
+    p_actor_role: admin.role,
+  });
 
-  const { data: order, error: loadError } = await supabase
-    .from('orders')
-    .select('id, subtotal_gross_grosz')
-    .eq('id', orderId)
-    .maybeSingle();
-
-  if (loadError || !order) {
-    console.error('setOrderShippingQuote load failed', loadError?.message);
-    throw new Error('Nie znaleziono zamówienia.');
-  }
-
-  const total = Number(order.subtotal_gross_grosz) + shippingGrosz;
-
-  const { error: updateError } = await supabase
-    .from('orders')
-    .update({
-      shipping_gross_grosz: shippingGrosz,
-      total_gross_grosz: total,
-      shipping_quote_required: false,
-      updated_at: new Date().toISOString(),
-    })
-    .eq('id', orderId);
-
-  if (updateError) {
-    console.error('setOrderShippingQuote update failed', updateError.message);
+  if (error) {
+    console.error('set_order_shipping_quote failed', error.message);
     throw new Error('Nie udało się zapisać kosztu wysyłki.');
   }
 
-  await supabase.from('order_events').insert({
-    order_id: orderId,
-    event_type: 'shipping_quote_confirmed',
-    actor_type: 'admin',
-    actor_id: admin.userId,
-    metadata: {
-      shipping_gross_grosz: shippingGrosz,
-      total_gross_grosz: total,
-      quoted_by: admin.displayName,
-      quoted_by_email: admin.email,
-    },
-  });
-
-  try {
-    const { notifyShippingQuoteConfirmed } =
-      await import('@/lib/cart/order-email');
-    await notifyShippingQuoteConfirmed(orderId);
-  } catch (err) {
-    console.error('shipping quote email failed', err);
+  if (!(data as { already_confirmed?: boolean } | null)?.already_confirmed) {
+    try {
+      const { notifyShippingQuoteConfirmed } =
+        await import('@/lib/cart/order-email');
+      await notifyShippingQuoteConfirmed(orderId);
+    } catch (err) {
+      console.error('shipping quote email failed', err);
+    }
   }
 
   revalidatePath('/admin/zamowienia');
@@ -135,40 +114,86 @@ export async function updateOrderOperationalStateAction(
     .eq('id', orderId)
     .maybeSingle();
 
-  // Manual "Mark paid" is for bank transfers only — never silently confirm Stripe.
-  if (
-    previous?.payment_status !== 'paid' &&
-    paymentStatus === 'paid' &&
-    (previous as { selected_payment_method?: string | null } | null)
-      ?.selected_payment_method === 'stripe'
-  ) {
-    const { data: stripePayment } = await supabase
-      .from('payments')
-      .select('id, provider, status')
-      .eq('order_id', orderId)
-      .eq('provider', 'stripe')
-      .maybeSingle();
-    if (stripePayment && stripePayment.status !== 'paid') {
+  if (!previous) {
+    throw new Error('Nie znaleziono zamówienia.');
+  }
+
+  const markingPaid =
+    previous.payment_status !== 'paid' && paymentStatus === 'paid';
+  const cancelling =
+    previous.status !== 'cancelled' && orderStatus === 'cancelled';
+
+  if (markingPaid && cancelling) {
+    throw new Error('Nie można jednocześnie opłacić i anulować zamówienia.');
+  }
+
+  if (markingPaid) {
+    if (orderStatus !== 'confirmed') {
+      throw new Error('Opłacone zamówienie musi mieć status potwierdzone.');
+    }
+    const { error: confirmError } = await (
+      supabase as unknown as {
+        rpc: (
+          name: string,
+          args: Record<string, unknown>
+        ) => Promise<{ data: unknown; error: { message: string } | null }>;
+      }
+    ).rpc('confirm_manual_order_payment', {
+      p_order_id: orderId,
+      p_actor_id: admin.userId,
+      p_actor_role: admin.role,
+    });
+    if (confirmError) {
+      console.error(
+        'confirm_manual_order_payment failed',
+        confirmError.message
+      );
       throw new Error(
-        'To zamówienie używa Stripe. Oznaczanie jako opłacone ręcznie jest zablokowane — poczekaj na webhook albo rozwiąż ręcznie po weryfikacji w Stripe.'
+        previous.selected_payment_method === 'stripe'
+          ? 'To zamówienie używa Stripe. Ręczne potwierdzenie płatności jest zablokowane.'
+          : 'Nie udało się atomowo potwierdzić płatności.'
       );
     }
+  } else if (cancelling) {
+    if (paymentStatus !== 'cancelled' || fulfillmentStatus !== 'cancelled') {
+      throw new Error(
+        'Anulowane zamówienie musi mieć anulowaną płatność i realizację.'
+      );
+    }
+    const { error: cancelError } = await (
+      supabase as unknown as {
+        rpc: (
+          name: string,
+          args: Record<string, unknown>
+        ) => Promise<{ data: unknown; error: { message: string } | null }>;
+      }
+    ).rpc('cancel_unpaid_order', {
+      p_order_id: orderId,
+      p_actor_id: admin.userId,
+      p_actor_role: admin.role,
+      p_reason: 'Order cancelled by administrator',
+    });
+    if (cancelError) {
+      console.error('cancel_unpaid_order failed', cancelError.message);
+      throw new Error(
+        'Nie można automatycznie anulować opłaconego lub częściowo zrealizowanego zamówienia.'
+      );
+    }
+  } else if (
+    paymentStatus !== previous.payment_status ||
+    orderStatus !== previous.status
+  ) {
+    throw new Error(
+      'Ta zmiana finansowa wymaga dedykowanej operacji płatności, anulowania lub zwrotu.'
+    );
   }
 
   const patch: Record<string, unknown> = {
-    payment_status: paymentStatus,
     fulfillment_status: fulfillmentStatus,
-    status: orderStatus,
     internal_notes: internalNotes || null,
     tracking_reference: trackingReference || null,
     updated_at: new Date().toISOString(),
   };
-  if (orderStatus === 'confirmed') {
-    patch.confirmed_at = new Date().toISOString();
-  }
-  if (orderStatus === 'cancelled') {
-    patch.cancelled_at = new Date().toISOString();
-  }
 
   let { error } = await supabase.from('orders').update(patch).eq('id', orderId);
 
@@ -193,7 +218,6 @@ export async function updateOrderOperationalStateAction(
       fulfillment_status: fulfillmentStatus,
       status: orderStatus,
       tracking_reference: trackingReference || null,
-      by: admin.displayName,
     },
   });
 

@@ -74,7 +74,6 @@ export async function createStripeRefund(params: {
       reason: 'requested_by_customer',
       metadata: {
         payment_id: params.paymentId,
-        internal_reason: params.reason,
       },
     },
     { idempotencyKey: params.idempotencyKey }

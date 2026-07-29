@@ -16,7 +16,7 @@ export function getPaymentsProviderMode(): PaymentsProviderMode {
   if (raw === 'stripe' || raw === 'both' || raw === 'manual') {
     return raw;
   }
-  return 'manual';
+  throw new Error('Invalid PAYMENTS_PROVIDER configuration');
 }
 
 export function isStripePaymentsEnabled(): boolean {
@@ -35,7 +35,15 @@ export function resolveCheckoutPaymentMethod(input: {
   requested?: string | null;
   shippingQuoteRequired: boolean;
 }): ResolvePaymentMethodResult {
-  const mode = getPaymentsProviderMode();
+  let mode: PaymentsProviderMode;
+  try {
+    mode = getPaymentsProviderMode();
+  } catch {
+    return {
+      ok: false,
+      error: 'Płatności są tymczasowo niedostępne. Skontaktuj się z pracownią.',
+    };
+  }
   const requested = (input.requested ?? '').trim().toLowerCase();
 
   if (mode === 'manual') {
@@ -92,11 +100,20 @@ export function shouldCreateStripeCheckoutNow(input: {
 
 /** Public checkout UI hints — never expose internal config errors as a method. */
 export function getPublicPaymentOptions(): {
-  mode: PaymentsProviderMode;
+  mode: PaymentsProviderMode | 'unavailable';
   stripeAvailable: boolean;
   showMethodSelector: boolean;
 } {
-  const mode = getPaymentsProviderMode();
+  let mode: PaymentsProviderMode;
+  try {
+    mode = getPaymentsProviderMode();
+  } catch {
+    return {
+      mode: 'unavailable',
+      stripeAvailable: false,
+      showMethodSelector: false,
+    };
+  }
   const stripeAvailable = isStripePaymentsEnabled();
   return {
     mode,

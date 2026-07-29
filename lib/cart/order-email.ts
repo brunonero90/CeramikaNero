@@ -745,24 +745,27 @@ export async function dispatchAwaitingStripeReminder(
 
 async function loadManageOrderUrl(orderId: string): Promise<string | null> {
   const supabase = createCartAdminClient();
-  const { data } = await supabase
-    .from('order_events')
-    .select('metadata')
+  const { data } = await (
+    supabase as unknown as {
+      from: (table: string) => {
+        select: (columns: string) => {
+          eq: (
+            column: string,
+            value: string
+          ) => {
+            maybeSingle: () => Promise<{
+              data: { public_lookup_token?: string } | null;
+            }>;
+          };
+        };
+      };
+    }
+  )
+    .from('order_portal_token_recovery')
+    .select('public_lookup_token')
     .eq('order_id', orderId)
-    .eq('event_type', 'portal_token_issued')
-    .order('created_at', { ascending: false })
-    .limit(1)
     .maybeSingle();
-  const token =
-    data &&
-    typeof data.metadata === 'object' &&
-    data.metadata &&
-    'public_lookup_token' in data.metadata
-      ? String(
-          (data.metadata as { public_lookup_token?: string })
-            .public_lookup_token ?? ''
-        )
-      : '';
+  const token = data?.public_lookup_token ?? '';
   if (!token) return null;
   return `${getEmailSiteUrl()}/zamowienie/${encodeURIComponent(token)}`;
 }

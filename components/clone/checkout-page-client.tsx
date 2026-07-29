@@ -18,7 +18,7 @@ type Participant = {
 };
 
 type PaymentOptions = {
-  mode: 'manual' | 'stripe' | 'both';
+  mode: 'manual' | 'stripe' | 'both' | 'unavailable';
   stripeAvailable: boolean;
   showMethodSelector: boolean;
 };
@@ -33,6 +33,15 @@ export function CheckoutPageClient({
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [redirecting, setRedirecting] = useState(false);
+  const [submissionKey] = useState(() => {
+    const storageKey = 'ceramika-checkout-submission-key';
+    if (typeof window === 'undefined') return crypto.randomUUID();
+    const existing = window.sessionStorage.getItem(storageKey);
+    if (existing) return existing;
+    const created = crypto.randomUUID();
+    window.sessionStorage.setItem(storageKey, created);
+    return created;
+  });
   const [paymentMethod, setPaymentMethod] = useState<
     'stripe' | 'bank_transfer'
   >(
@@ -107,6 +116,12 @@ export function CheckoutPageClient({
       setError('Koszyk zawiera niedostępne pozycje.');
       return;
     }
+    if (paymentOptions.mode === 'unavailable') {
+      setError(
+        'Płatności są tymczasowo niedostępne. Skontaktuj się z pracownią.'
+      );
+      return;
+    }
     if (!terms) {
       setError('Zaakceptuj regulamin i politykę prywatności.');
       return;
@@ -123,6 +138,7 @@ export function CheckoutPageClient({
         marketingConsent: marketing,
         termsAccepted: true as const,
         privacyPolicyVersion: '1.0',
+        submissionKey,
         participantsBySession,
         paymentMethod:
           paymentOptions.mode === 'both'
@@ -152,6 +168,7 @@ export function CheckoutPageClient({
       // Mark redirecting before clearing the cart so the empty-cart screen
       // cannot flash and swallow the success navigation.
       setRedirecting(true);
+      window.sessionStorage.removeItem('ceramika-checkout-submission-key');
       const destination = result.checkoutUrl
         ? result.checkoutUrl
         : result.publicLookupToken
@@ -202,11 +219,13 @@ export function CheckoutPageClient({
     <main className="mx-auto max-w-2xl px-4 py-12 md:px-6">
       <h1 className="font-heading text-3xl font-semibold">Zamówienie</h1>
       <p className="mt-2 text-sm text-text-muted">
-        {paymentOptions.mode === 'stripe' && paymentOptions.stripeAvailable
-          ? 'Po złożeniu zamówienia przejdziesz do bezpiecznej płatności online (karta, BLIK, Przelewy24).'
-          : paymentOptions.showMethodSelector
-            ? 'Wybierz metodę płatności poniżej. Kwoty i dostępność weryfikujemy po stronie serwera.'
-            : 'Składasz zamówienie z płatnością przelewem bankowym. Dokładne dane do przelewu znajdziesz w e-mailu potwierdzającym.'}
+        {paymentOptions.mode === 'unavailable'
+          ? 'Płatności są tymczasowo niedostępne. Skontaktuj się z pracownią.'
+          : paymentOptions.mode === 'stripe' && paymentOptions.stripeAvailable
+            ? 'Po złożeniu zamówienia przejdziesz do bezpiecznej płatności online (karta, BLIK, Przelewy24).'
+            : paymentOptions.showMethodSelector
+              ? 'Wybierz metodę płatności poniżej. Kwoty i dostępność weryfikujemy po stronie serwera.'
+              : 'Składasz zamówienie z płatnością przelewem bankowym. Dokładne dane do przelewu znajdziesz w e-mailu potwierdzającym.'}
       </p>
 
       <form onSubmit={onSubmit} className="mt-8 space-y-6">
@@ -514,7 +533,11 @@ export function CheckoutPageClient({
 
         <button
           type="submit"
-          disabled={isPending || !validated?.canCheckout}
+          disabled={
+            isPending ||
+            !validated?.canCheckout ||
+            paymentOptions.mode === 'unavailable'
+          }
           className="w-full bg-accent-primary px-4 py-3 text-sm font-semibold text-white disabled:bg-gray-400"
         >
           {isPending ? 'Składanie zamówienia…' : 'Złóż zamówienie i rezerwację'}

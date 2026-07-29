@@ -20,19 +20,6 @@ type ConfirmRpcResult = {
   already_processed?: boolean;
 };
 
-async function recordStripeEvent(
-  supabase: AdminClient,
-  event: Stripe.Event
-): Promise<void> {
-  await supabase.from('stripe_events').upsert(
-    {
-      event_id: event.id,
-      event_type: event.type,
-    },
-    { onConflict: 'event_id', ignoreDuplicates: true }
-  );
-}
-
 function paymentIntentIdFromSession(
   session: Stripe.Checkout.Session
 ): string | null {
@@ -67,25 +54,32 @@ async function confirmFromBookingPayment(
     bookingId: string;
     paymentId: string;
     eventId: string;
+    providerCheckoutId: string;
     providerPaymentId: string;
     amountGrossGrosz: number;
+    currency: string;
+    livemode: boolean;
   }
 ): Promise<
   { ok: true; result: ConfirmRpcResult } | { ok: false; error: string }
 > {
-  const { data: confirmResult, error: confirmError } = await supabase.rpc(
-    'confirm_booking_from_payment',
+  const { data: confirmResult, error: confirmError } = await rpcLoose(
+    supabase,
+    'confirm_booking_from_stripe',
     {
       p_booking_id: params.bookingId,
       p_payment_id: params.paymentId,
       p_stripe_event_id: params.eventId,
+      p_provider_checkout_id: params.providerCheckoutId,
       p_provider_payment_id: params.providerPaymentId,
       p_amount_gross_grosz: params.amountGrossGrosz,
+      p_currency: params.currency,
+      p_livemode: params.livemode,
     }
   );
 
   if (confirmError) {
-    console.error('confirm_booking_from_payment failed', confirmError);
+    console.error('confirm_booking_from_stripe failed', confirmError);
     return { ok: false, error: 'Confirmation failed' };
   }
 
@@ -98,8 +92,11 @@ async function confirmFromOrderPayment(
     orderId: string;
     paymentId: string;
     eventId: string;
+    providerCheckoutId: string;
     providerPaymentId: string;
     amountGrossGrosz: number;
+    currency: string;
+    livemode: boolean;
   }
 ): Promise<
   { ok: true; result: ConfirmRpcResult } | { ok: false; error: string }
@@ -112,16 +109,19 @@ async function confirmFromOrderPayment(
         args: Record<string, unknown>
       ) => Promise<{ data: unknown; error: { message: string } | null }>;
     }
-  ).rpc('confirm_order_from_payment', {
+  ).rpc('confirm_order_from_stripe', {
     p_order_id: params.orderId,
     p_payment_id: params.paymentId,
     p_stripe_event_id: params.eventId,
+    p_provider_checkout_id: params.providerCheckoutId,
     p_provider_payment_id: params.providerPaymentId,
     p_amount_gross_grosz: params.amountGrossGrosz,
+    p_currency: params.currency,
+    p_livemode: params.livemode,
   });
 
   if (confirmError) {
-    console.error('confirm_order_from_payment failed', confirmError);
+    console.error('confirm_order_from_stripe failed', confirmError);
     return { ok: false, error: 'Order confirmation failed' };
   }
 
@@ -210,6 +210,7 @@ async function handlePaidCheckoutSession(
   }
 
   const amount = session.amount_total ?? 0;
+  const currency = session.currency ?? '';
   const paymentIntentId = paymentIntentIdFromSession(session);
 
   if (entity.entityType === 'order' && entity.orderId) {
@@ -217,8 +218,11 @@ async function handlePaidCheckoutSession(
       orderId: entity.orderId,
       paymentId,
       eventId: event.id,
+      providerCheckoutId: session.id,
       providerPaymentId: paymentIntentId ?? '',
       amountGrossGrosz: amount,
+      currency,
+      livemode: Boolean(session.livemode),
     });
     if (!confirmed.ok) {
       return { ok: false, status: 500, error: confirmed.error };
@@ -232,8 +236,11 @@ async function handlePaidCheckoutSession(
       bookingId: entity.bookingId,
       paymentId,
       eventId: event.id,
+      providerCheckoutId: session.id,
       providerPaymentId: paymentIntentId ?? '',
       amountGrossGrosz: amount,
+      currency,
+      livemode: Boolean(session.livemode),
     });
     if (!confirmed.ok) {
       return { ok: false, status: 500, error: confirmed.error };
@@ -266,13 +273,15 @@ async function handleUnpaidCheckoutSession(
     patch.provider_payment_id = paymentIntentId;
   }
 
-  await (supabase as unknown as {
-    from: (t: string) => {
-      update: (p: Record<string, unknown>) => {
-        eq: (c: string, v: string) => Promise<unknown>;
+  await (
+    supabase as unknown as {
+      from: (t: string) => {
+        update: (p: Record<string, unknown>) => {
+          eq: (c: string, v: string) => Promise<unknown>;
+        };
       };
-    };
-  })
+    }
+  )
     .from('payments')
     .update(patch)
     .eq('id', paymentId);
@@ -309,14 +318,15 @@ async function handleCheckoutSessionExpired(
   session: Stripe.Checkout.Session
 ): Promise<void> {
   const entity = resolveEntity(session);
-
-  await supabase
-    .from('payments')
-    .update({
-      status: 'failed',
-      failure_message: 'Checkout session expired',
-    })
-    .eq('provider_checkout_id', session.id);
+  const failure = await markStripeAttemptFailed(supabase, {
+    paymentId: entity.paymentId,
+    providerCheckoutId: session.id,
+    providerPaymentId: paymentIntentIdFromSession(session),
+    failureCode: 'checkout_expired',
+    failureMessage: 'Checkout session expired',
+    livemode: Boolean(session.livemode),
+  });
+  if (!failure.updated) return;
 
   if (entity.entityType === 'booking' && entity.bookingId) {
     const { data: booking } = await supabase
@@ -351,14 +361,15 @@ async function handleAsyncPaymentFailed(
   session: Stripe.Checkout.Session
 ): Promise<void> {
   const entity = resolveEntity(session);
-
-  await supabase
-    .from('payments')
-    .update({
-      status: 'failed',
-      failure_message: 'Async Checkout payment failed',
-    })
-    .eq('provider_checkout_id', session.id);
+  const failure = await markStripeAttemptFailed(supabase, {
+    paymentId: entity.paymentId,
+    providerCheckoutId: session.id,
+    providerPaymentId: paymentIntentIdFromSession(session),
+    failureCode: 'async_payment_failed',
+    failureMessage: 'Async Checkout payment failed',
+    livemode: Boolean(session.livemode),
+  });
+  if (!failure.updated) return;
 
   if (entity.entityType === 'booking' && entity.bookingId) {
     const { data: booking } = await supabase
@@ -476,12 +487,19 @@ async function handlePaymentIntentSucceeded(
     payment.booking_id ?? paymentIntent.metadata?.booking_id ?? null;
 
   if (orderId) {
+    const amount =
+      paymentIntent.amount_received > 0
+        ? paymentIntent.amount_received
+        : paymentIntent.amount;
     const confirmed = await confirmFromOrderPayment(supabase, {
       orderId,
       paymentId: payment.id,
       eventId: event.id,
+      providerCheckoutId: '',
       providerPaymentId: paymentIntent.id,
-      amountGrossGrosz: payment.amount_gross_grosz,
+      amountGrossGrosz: amount,
+      currency: paymentIntent.currency,
+      livemode: Boolean(paymentIntent.livemode),
     });
     if (!confirmed.ok) {
       return { ok: false, status: 500, error: confirmed.error };
@@ -498,8 +516,14 @@ async function handlePaymentIntentSucceeded(
     bookingId,
     paymentId: payment.id,
     eventId: event.id,
+    providerCheckoutId: '',
     providerPaymentId: paymentIntent.id,
-    amountGrossGrosz: payment.amount_gross_grosz,
+    amountGrossGrosz:
+      paymentIntent.amount_received > 0
+        ? paymentIntent.amount_received
+        : paymentIntent.amount,
+    currency: paymentIntent.currency,
+    livemode: Boolean(paymentIntent.livemode),
   });
 
   if (!confirmed.ok) {
@@ -514,44 +538,21 @@ async function handlePaymentIntentFailed(
   supabase: AdminClient,
   paymentIntent: Stripe.PaymentIntent
 ): Promise<void> {
-  const update = {
-    status: 'failed' as const,
-    failure_code: paymentIntent.last_payment_error?.code ?? null,
-    failure_message:
+  const paymentId = paymentIntent.metadata?.payment_id;
+  const checkoutSessionId = paymentIntent.metadata?.checkout_session_id ?? null;
+  const failure = await markStripeAttemptFailed(supabase, {
+    paymentId: paymentId ?? null,
+    providerCheckoutId: checkoutSessionId,
+    providerPaymentId: paymentIntent.id,
+    failureCode: paymentIntent.last_payment_error?.code ?? null,
+    failureMessage:
       paymentIntent.last_payment_error?.message ?? 'Payment failed',
     livemode: Boolean(paymentIntent.livemode),
-  };
+  });
+  if (!failure.updated) return;
 
-  const paymentsLoose = supabase as unknown as {
-    from: (t: string) => {
-      update: (p: Record<string, unknown>) => {
-        eq: (
-          c: string,
-          v: string
-        ) => Promise<unknown>;
-      };
-    };
-  };
-
-  await paymentsLoose
-    .from('payments')
-    .update(update)
-    .eq('provider_payment_id', paymentIntent.id);
-
-  const paymentId = paymentIntent.metadata?.payment_id;
-  if (paymentId) {
-    await paymentsLoose.from('payments').update(update).eq('id', paymentId);
-  }
-
-  const checkoutSessionId = paymentIntent.metadata?.checkout_session_id ?? null;
-  if (checkoutSessionId) {
-    await paymentsLoose
-      .from('payments')
-      .update(update)
-      .eq('provider_checkout_id', checkoutSessionId);
-  }
-
-  const orderId = paymentIntent.metadata?.order_id;
+  const orderId =
+    failure.orderId ?? paymentIntent.metadata?.order_id ?? undefined;
   if (orderId) {
     try {
       const { notifyOrderPaymentFailed } =
@@ -561,6 +562,126 @@ async function handlePaymentIntentFailed(
       console.error('payment intent failed email failed', err);
     }
   }
+}
+
+async function markStripeAttemptFailed(
+  supabase: AdminClient,
+  params: {
+    paymentId: string | null;
+    providerCheckoutId: string | null;
+    providerPaymentId: string | null;
+    failureCode: string | null;
+    failureMessage: string;
+    livemode: boolean;
+  }
+): Promise<{ updated: boolean; orderId: string | null }> {
+  const { data, error } = await rpcLoose(
+    supabase,
+    'fail_stripe_payment_attempt',
+    {
+      p_payment_id: params.paymentId,
+      p_provider_checkout_id: params.providerCheckoutId,
+      p_provider_payment_id: params.providerPaymentId,
+      p_failure_code: params.failureCode,
+      p_failure_message: params.failureMessage,
+      p_livemode: params.livemode,
+    }
+  );
+  if (error) {
+    throw new Error('Failed to record Stripe payment failure');
+  }
+  const result = (data ?? {}) as {
+    updated?: boolean;
+    order_id?: string | null;
+  };
+  return {
+    updated: result.updated === true,
+    orderId: result.order_id ?? null,
+  };
+}
+
+async function handleChargeRefunded(
+  supabase: AdminClient,
+  event: Stripe.Event,
+  charge: Stripe.Charge
+): Promise<StripeWebhookResult> {
+  const paymentIntentId =
+    typeof charge.payment_intent === 'string'
+      ? charge.payment_intent
+      : (charge.payment_intent?.id ?? null);
+  if (!paymentIntentId) {
+    return { ok: false, status: 400, error: 'Missing PaymentIntent on refund' };
+  }
+
+  const { data, error } = await rpcLoose(supabase, 'sync_stripe_refund', {
+    p_provider_payment_id: paymentIntentId,
+    p_refunded_amount_grosz: charge.amount_refunded,
+    p_currency: charge.currency,
+    p_livemode: Boolean(charge.livemode),
+    p_stripe_event_id: event.id,
+  });
+  if (error) {
+    console.error('sync_stripe_refund failed', error);
+    return { ok: false, status: 500, error: 'Refund synchronization failed' };
+  }
+  if ((data as { status?: string } | null)?.status === 'unknown_payment') {
+    return { ok: false, status: 500, error: 'Refund payment not found' };
+  }
+  return { ok: true };
+}
+
+async function handleRefundLifecycleEvent(
+  supabase: AdminClient,
+  event: Stripe.Event,
+  refund: Stripe.Refund
+): Promise<StripeWebhookResult> {
+  if (refund.status === 'failed') {
+    const paymentId = refund.metadata?.payment_id ?? null;
+    const providerPaymentId =
+      typeof refund.payment_intent === 'string'
+        ? refund.payment_intent
+        : (refund.payment_intent?.id ?? null);
+    if (!paymentId && !providerPaymentId) {
+      return { ok: false, status: 500, error: 'Refund payment not found' };
+    }
+    const { data, error } = await rpcLoose(
+      supabase,
+      'record_stripe_refund_failure',
+      {
+        p_payment_id: paymentId,
+        p_provider_payment_id: providerPaymentId,
+        p_stripe_event_id: event.id,
+        p_failure_message: refund.failure_reason ?? 'unknown',
+      }
+    );
+    if (
+      error ||
+      (data as { status?: string } | null)?.status === 'unknown_payment'
+    ) {
+      return {
+        ok: false,
+        status: 500,
+        error: 'Refund failure synchronization failed',
+      };
+    }
+    return { ok: true };
+  }
+
+  if (refund.status !== 'succeeded') {
+    return { ok: true };
+  }
+
+  const chargeId =
+    typeof refund.charge === 'string'
+      ? refund.charge
+      : (refund.charge?.id ?? null);
+  if (!chargeId) {
+    return { ok: false, status: 500, error: 'Refund charge not found' };
+  }
+
+  const { getStripeServerClient } = await import('@/lib/stripe/server');
+  const charge = await getStripeServerClient().charges.retrieve(chargeId);
+  return handleChargeRefunded(supabase, event, charge);
 }
 
 async function rpcLoose(
@@ -581,7 +702,7 @@ async function rpcLoose(
 async function claimStripeEvent(
   supabase: AdminClient,
   event: Stripe.Event
-): Promise<'claimed' | 'already_processed' | 'legacy_skip'> {
+): Promise<'claimed' | 'already_processed' | 'in_progress' | 'claim_failed'> {
   const { data, error } = await rpcLoose(supabase, 'claim_stripe_event', {
     p_event_id: event.id,
     p_event_type: event.type,
@@ -589,17 +710,10 @@ async function claimStripeEvent(
   if (!error && data && typeof data === 'object') {
     const status = (data as { status?: string }).status;
     if (status === 'already_processed') return 'already_processed';
+    if (status === 'in_progress') return 'in_progress';
     if (status === 'claimed') return 'claimed';
   }
-
-  // Pre-migration-16 fallback: existence check (cannot retry failed inserts).
-  const alreadyProcessed = await supabase
-    .from('stripe_events')
-    .select('id')
-    .eq('event_id', event.id)
-    .maybeSingle();
-  if (alreadyProcessed.data) return 'already_processed';
-  return 'legacy_skip';
+  return 'claim_failed';
 }
 
 async function completeStripeEvent(
@@ -611,10 +725,7 @@ async function completeStripeEvent(
     p_event_id: eventId,
   });
   if (error) {
-    await recordStripeEvent(supabase, {
-      id: eventId,
-      type: eventType,
-    } as Stripe.Event);
+    throw new Error(`Stripe event completion failed: ${eventType}`);
   }
 }
 
@@ -643,6 +754,20 @@ export async function processStripeEvent(
   const claim = await claimStripeEvent(supabase, event);
   if (claim === 'already_processed') {
     return { ok: true, duplicate: true };
+  }
+  if (claim === 'in_progress') {
+    return {
+      ok: false,
+      status: 503,
+      error: 'Stripe event is already being processed',
+    };
+  }
+  if (claim === 'claim_failed') {
+    return {
+      ok: false,
+      status: 500,
+      error: 'Stripe event claim failed',
+    };
   }
 
   try {
@@ -684,6 +809,14 @@ export async function processStripeEvent(
         break;
       }
       case 'charge.refunded': {
+        const charge = event.data.object as Stripe.Charge;
+        result = await handleChargeRefunded(supabase, event, charge);
+        break;
+      }
+      case 'refund.updated':
+      case 'refund.failed': {
+        const refund = event.data.object as Stripe.Refund;
+        result = await handleRefundLifecycleEvent(supabase, event, refund);
         break;
       }
       default:
@@ -696,10 +829,6 @@ export async function processStripeEvent(
     }
 
     await completeStripeEvent(supabase, event.id, event.type);
-    // Legacy path when claim RPC missing: still record success.
-    if (claim === 'legacy_skip') {
-      await recordStripeEvent(supabase, event);
-    }
     return { ok: true };
   } catch (err) {
     const message =

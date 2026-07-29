@@ -136,6 +136,7 @@ describe('refund schema', () => {
     const result = refundInputSchema.safeParse({
       amountGrossGrosz: 10000,
       reason: 'Customer request',
+      operationKey: '00000000-0000-4000-8000-000000000001',
     });
     expect(result.success).toBe(true);
   });
@@ -144,6 +145,7 @@ describe('refund schema', () => {
     const result = refundInputSchema.safeParse({
       amountGrossGrosz: 0,
       reason: 'Customer request',
+      operationKey: '00000000-0000-4000-8000-000000000001',
     });
     expect(result.success).toBe(false);
   });

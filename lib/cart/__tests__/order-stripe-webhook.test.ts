@@ -163,7 +163,7 @@ function createSupabaseMock(state: {
       if (name === 'fail_stripe_event') {
         return { data: null, error: null };
       }
-      if (name === 'confirm_order_from_payment') {
+      if (name === 'confirm_order_from_stripe') {
         confirmAttempts += 1;
         if (state.failConfirmOnce && confirmAttempts === 1) {
           return { data: null, error: { message: 'transient' } };
@@ -173,6 +173,16 @@ function createSupabaseMock(state: {
         }
         return {
           data: state.confirmResult ?? { status: 'confirmed' },
+          error: null,
+        };
+      }
+      if (name === 'fail_stripe_payment_attempt') {
+        return {
+          data: {
+            status: 'failed',
+            updated: true,
+            order_id: 'ord_1',
+          },
           error: null,
         };
       }
@@ -199,6 +209,8 @@ function orderSessionEvent(
         id: 'cs_order_1',
         object: 'checkout.session',
         amount_total: 18900,
+        currency: 'pln',
+        livemode: false,
         payment_status: 'paid',
         payment_intent: 'pi_order_1',
         status: 'complete',
@@ -235,7 +247,7 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
     );
     expect(result).toEqual({ ok: true });
     expect(
-      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_payment')
+      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_stripe')
     ).toHaveLength(1);
     expect(notifyPaymentReceived).toHaveBeenCalledWith('ord_1');
   });
@@ -250,7 +262,7 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
     );
     expect(result).toEqual({ ok: true, duplicate: true });
     expect(
-      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_payment')
+      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_stripe')
     ).toHaveLength(0);
     expect(notifyPaymentReceived).not.toHaveBeenCalled();
   });
@@ -285,16 +297,18 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
     expect(first).toEqual({ ok: true });
     expect(second).toEqual({ ok: true, duplicate: true });
     expect(
-      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_payment')
+      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_stripe')
     ).toHaveLength(0);
-    expect(supabase.__updates).toContainEqual({
-      table: 'payments',
-      patch: {
-        status: 'failed',
-        failure_message: 'Async Checkout payment failed',
-      },
-      filters: { provider_checkout_id: 'cs_order_1' },
-    });
+    expect(
+      supabase.__rpcCalls.find((c) => c.name === 'fail_stripe_payment_attempt')
+        ?.args
+    ).toEqual(
+      expect.objectContaining({
+        p_payment_id: 'pay_order_1',
+        p_provider_checkout_id: 'cs_order_1',
+        p_failure_code: 'async_payment_failed',
+      })
+    );
     expect(notifyPaymentFailed).toHaveBeenCalledTimes(1);
     expect(notifyPaymentFailed).toHaveBeenCalledWith('ord_1', 'payment_failed');
     expect(notifyPaymentReceived).not.toHaveBeenCalled();
@@ -311,6 +325,9 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
           id: 'pi_order_1',
           object: 'payment_intent',
           amount: 18900,
+          amount_received: 0,
+          currency: 'pln',
+          livemode: false,
           status: 'requires_payment_method',
           metadata: {
             entity_type: 'order',
@@ -332,18 +349,18 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
     expect(first).toEqual({ ok: true });
     expect(second).toEqual({ ok: true, duplicate: true });
     expect(
-      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_payment')
+      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_stripe')
     ).toHaveLength(0);
-    expect(supabase.__updates).toContainEqual({
-      table: 'payments',
-      patch: {
-        status: 'failed',
-        failure_code: 'card_declined',
-        failure_message: 'Your card was declined.',
-        livemode: false,
-      },
-      filters: { provider_payment_id: 'pi_order_1' },
-    });
+    expect(
+      supabase.__rpcCalls.find((c) => c.name === 'fail_stripe_payment_attempt')
+        ?.args
+    ).toEqual(
+      expect.objectContaining({
+        p_payment_id: 'pay_order_1',
+        p_provider_payment_id: 'pi_order_1',
+        p_failure_code: 'card_declined',
+      })
+    );
     expect(notifyPaymentFailed).toHaveBeenCalledTimes(1);
     expect(notifyPaymentFailed).toHaveBeenCalledWith('ord_1', 'payment_failed');
     expect(notifyPaymentReceived).not.toHaveBeenCalled();
@@ -388,6 +405,9 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
           id: 'pi_order_1',
           object: 'payment_intent',
           amount: 18900,
+          amount_received: 18900,
+          currency: 'pln',
+          livemode: false,
           status: 'succeeded',
           metadata: {
             entity_type: 'order',
@@ -419,7 +439,7 @@ describe('unified CN-O Stripe webhook (BLIK)', () => {
     );
     expect(result.ok).toBe(true);
     expect(
-      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_payment')
+      supabase.__rpcCalls.filter((c) => c.name === 'confirm_order_from_stripe')
     ).toHaveLength(0);
     expect(notifyPaymentReceived).not.toHaveBeenCalled();
   });

@@ -104,6 +104,8 @@ describe('reconcileOrderCheckoutFromSession', () => {
       payment_status: 'paid',
       status: 'complete',
       amount_total: 14900,
+      currency: 'pln',
+      livemode: false,
       payment_intent: 'pi_test_1',
       metadata: {
         entity_type: 'order',
@@ -127,13 +129,15 @@ describe('reconcileOrderCheckoutFromSession', () => {
 
     expect(result).toEqual({ ok: true, status: 'confirmed' });
     expect(rpc).toHaveBeenCalledWith(
-      'confirm_order_from_payment',
+      'confirm_order_from_stripe',
       expect.objectContaining({
         p_order_id: 'ord_1',
         p_payment_id: 'pay_1',
         p_stripe_event_id: 'return_reconcile_cs_test_paid',
         p_provider_payment_id: 'pi_test_1',
         p_amount_gross_grosz: 14900,
+        p_currency: 'pln',
+        p_livemode: false,
       })
     );
     expect(notifyPaymentReceived).toHaveBeenCalledWith('ord_1');
