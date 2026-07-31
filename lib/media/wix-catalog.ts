@@ -133,17 +133,30 @@ const workshopImageMap: Record<string, string> = {
   'glina-do-wina-w-poznaniu-w-ptasim-radiu':
     'wix-747d6f_b5e3aff7de8743c88922dac0ed1c8629',
   'ceramika-dla-dzieci': 'wix-747d6f_af946e4dbc8d40208b3d1c05be4cebbe',
+  'kurs-rysunku-malarstwa-ceramiki-6-10-lat':
+    'wix-747d6f_31092dec535d44fda01b193d542727de',
+  'kurs-ceramiki-dla-mlodziezy-11':
+    'wix-747d6f_f560d7a2e95a49aebcda0065309a0783',
   'kurs-rysunku-dla-mlodziezy': 'wix-747d6f_2234cc741bd5422eb5d92705a021219a',
   'kurs-rysunku-i-architektury': 'wix-747d6f_da600fb92cac4d629b7833190b681fa2',
   'glina-i-rodzina': 'wix-747d6f_565523d2b38546f582a8ddb7f0a5dd67',
   'urodziny-ceramiczne': 'wix-747d6f_27032db4ff7642f185f09f10408c5e0f',
   'warsztaty-dla-firm': 'wix-747d6f_8e0a38114728487bade7b52335892f5a',
+  'wieczory-panienskie': 'wix-747d6f_f7dbb82b083943689efa367416eb192a',
 };
 
 export function getWorkshopImage(
   slug: string,
+  featuredMedia?: MediaAsset | null,
   featuredMediaId?: string | null
 ): SiteImage | null {
+  const isSeedPlaceholder =
+    featuredMedia?.storageBucket === 'public' &&
+    featuredMedia.storagePath.startsWith('placeholders/');
+  const selectedMedia =
+    featuredMedia && !isSeedPlaceholder ? toSiteImage(featuredMedia) : null;
+  if (selectedMedia) return selectedMedia;
+
   if (featuredMediaId) {
     const fromFeatured = getMigratedImageById(featuredMediaId);
     if (fromFeatured) return fromFeatured;

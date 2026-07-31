@@ -214,6 +214,7 @@ export type AdminAuditLog = {
 
 export type WorkshopWithCategory = Workshop & {
   category: WorkshopCategory | null;
+  featuredMedia: MediaAsset | null;
 };
 
 export type WorkshopWithSessions = WorkshopWithCategory & {

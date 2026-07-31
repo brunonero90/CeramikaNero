@@ -1,4 +1,10 @@
-import { categories, workshops, sessions, instructors } from './data';
+import {
+  categories,
+  workshops,
+  sessions,
+  instructors,
+  mediaAssets,
+} from './data';
 import type {
   Workshop,
   WorkshopWithCategory,
@@ -7,7 +13,9 @@ import type {
 
 function withCategory(workshop: Workshop): WorkshopWithCategory {
   const category = categories.find((c) => c.id === workshop.categoryId) ?? null;
-  return { ...workshop, category };
+  const featuredMedia =
+    mediaAssets.find((asset) => asset.id === workshop.featuredMediaId) ?? null;
+  return { ...workshop, category, featuredMedia };
 }
 
 function isPublic(workshop: Workshop): boolean {

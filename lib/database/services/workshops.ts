@@ -7,6 +7,8 @@ import {
   mapWorkshopSession,
 } from '@/lib/database/mappers';
 import type {
+  DbWorkshop,
+  MediaAsset,
   Workshop,
   WorkshopWithCategory,
   WorkshopWithSessions,
@@ -14,6 +16,33 @@ import type {
 
 function isPublic(workshop: Workshop): boolean {
   return workshop.status === 'published' && workshop.archivedAt === null;
+}
+
+async function getFeaturedMediaMap(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  workshopRows: DbWorkshop[]
+): Promise<Map<string, MediaAsset>> {
+  const mediaIds = [
+    ...new Set(
+      workshopRows
+        .map((workshop) => workshop.featured_media_id)
+        .filter((id): id is string => Boolean(id))
+    ),
+  ];
+
+  if (mediaIds.length === 0) return new Map();
+
+  const { data: mediaRows, error } = await supabase
+    .from('media_assets')
+    .select('*')
+    .in('id', mediaIds)
+    .is('archived_at', null);
+
+  if (error) throw error;
+
+  return new Map(
+    (mediaRows ?? []).map((media) => [media.id, mapMediaAsset(media)])
+  );
 }
 
 export async function getAll(): Promise<WorkshopWithCategory[]> {
@@ -37,11 +66,18 @@ export async function getAll(): Promise<WorkshopWithCategory[]> {
   const categoryMap = new Map(
     (categoryRows ?? []).map((category) => [category.id, mapCategory(category)])
   );
+  const featuredMediaMap = await getFeaturedMediaMap(
+    supabase,
+    workshopRows ?? []
+  );
 
   return (workshopRows ?? [])
     .map((workshop) => ({
       ...mapWorkshop(workshop),
       category: categoryMap.get(workshop.category_id) ?? null,
+      featuredMedia: workshop.featured_media_id
+        ? (featuredMediaMap.get(workshop.featured_media_id) ?? null)
+        : null,
     }))
     .filter((workshop) => isPublic(workshop))
     .sort((a, b) => a.title.localeCompare(b.title, 'pl'));
@@ -69,8 +105,18 @@ export async function getByCategorySlug(
   if (error) throw error;
 
   const category = mapCategory(categoryRow);
+  const featuredMediaMap = await getFeaturedMediaMap(
+    supabase,
+    workshopRows ?? []
+  );
   return (workshopRows ?? [])
-    .map((workshop) => ({ ...mapWorkshop(workshop), category }))
+    .map((workshop) => ({
+      ...mapWorkshop(workshop),
+      category,
+      featuredMedia: workshop.featured_media_id
+        ? (featuredMediaMap.get(workshop.featured_media_id) ?? null)
+        : null,
+    }))
     .filter((workshop) => isPublic(workshop))
     .sort((a, b) => a.title.localeCompare(b.title, 'pl'));
 }
@@ -134,8 +180,14 @@ export async function getBySlug(
     .eq('workshop_id', workshopRow.id)
     .order('display_order', { ascending: true });
 
-  const mediaAssetIds = [
+  const galleryMediaAssetIds = [
     ...new Set((mediaLinkRows ?? []).map((row) => row.media_asset_id)),
+  ];
+  const mediaAssetIds = [
+    ...new Set([
+      ...galleryMediaAssetIds,
+      ...(workshopRow.featured_media_id ? [workshopRow.featured_media_id] : []),
+    ]),
   ];
   const { data: mediaRows } =
     mediaAssetIds.length > 0
@@ -146,12 +198,21 @@ export async function getBySlug(
           .is('archived_at', null)
       : { data: [] };
 
+  const mediaMap = new Map(
+    (mediaRows ?? []).map((media) => [media.id, mapMediaAsset(media)])
+  );
+
   return {
     ...workshop,
     category: categoryRow ? mapCategory(categoryRow) : null,
+    featuredMedia: workshopRow.featured_media_id
+      ? (mediaMap.get(workshopRow.featured_media_id) ?? null)
+      : null,
     sessions: (sessionRows ?? []).map(mapWorkshopSession),
     instructors: (instructorRows ?? []).map(mapInstructor),
-    media: (mediaRows ?? []).map(mapMediaAsset),
+    media: galleryMediaAssetIds
+      .map((id) => mediaMap.get(id))
+      .filter((media): media is MediaAsset => Boolean(media)),
   };
 }
 
@@ -177,11 +238,18 @@ export async function getFeatured(): Promise<WorkshopWithCategory[]> {
   const categoryMap = new Map(
     (categoryRows ?? []).map((category) => [category.id, mapCategory(category)])
   );
+  const featuredMediaMap = await getFeaturedMediaMap(
+    supabase,
+    workshopRows ?? []
+  );
 
   return (workshopRows ?? [])
     .map((workshop) => ({
       ...mapWorkshop(workshop),
       category: categoryMap.get(workshop.category_id) ?? null,
+      featuredMedia: workshop.featured_media_id
+        ? (featuredMediaMap.get(workshop.featured_media_id) ?? null)
+        : null,
     }))
     .filter((workshop) => isPublic(workshop))
     .sort((a, b) => a.title.localeCompare(b.title, 'pl'));

@@ -15,7 +15,11 @@ export function WorkshopDetail({
   const cta = isEnquiry ? 'Zapytaj o termin' : 'Zarezerwuj warsztat';
   const enquiryHref = `/kontakt?oferta=${encodeURIComponent(workshop.slug)}`;
   const bookHref = `/warsztaty/${workshop.slug}/rezerwacja`;
-  const image = getWorkshopImage(workshop.slug, workshop.featuredMediaId);
+  const image = getWorkshopImage(
+    workshop.slug,
+    workshop.featuredMedia,
+    workshop.featuredMediaId
+  );
 
   return (
     <div className="mx-auto max-w-4xl">

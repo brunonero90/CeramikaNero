@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { requireAnyRole } from '@/lib/admin/auth';
 import { recordAuditEvent } from '@/lib/admin/audit';
 import {
@@ -22,6 +23,11 @@ export async function uploadMediaAction(
 ): Promise<MediaUploadActionState> {
   const admin = await requireAnyRole(['editor', 'manager']);
   const supabase = await createClient();
+  // Authorization is verified above with the cookie-backed user client. Use the
+  // server-only client for the Storage write so Storage does not have to derive
+  // an object owner UUID from the SSR session (the source of the production
+  // "Invalid uuid" response). The secret key is never exposed to the browser.
+  const storageAdmin = createAdminClient();
 
   const file = formData.get('file') as File | null;
   const altText = formData.get('altText')?.toString() ?? '';
@@ -40,7 +46,7 @@ export async function uploadMediaAction(
   }
 
   const path = generateStoragePath(file.name);
-  const upload = await uploadMediaToStorage(supabase, {
+  const upload = await uploadMediaToStorage(storageAdmin, {
     buffer: validation.buffer,
     path,
     mimeType: validation.mimeType,
@@ -67,6 +73,12 @@ export async function uploadMediaAction(
     .single();
 
   if (insertError || !inserted) {
+    const { error: cleanupError } = await storageAdmin.storage
+      .from('media')
+      .remove([path]);
+    if (cleanupError) {
+      console.error('Media upload cleanup failed:', cleanupError.message);
+    }
     return {
       ok: false,
       error: 'Nie udało się zapisać metadanych pliku.',

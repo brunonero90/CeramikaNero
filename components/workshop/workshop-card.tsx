@@ -10,7 +10,11 @@ export function WorkshopCard({ workshop }: { workshop: WorkshopWithCategory }) {
   const href = isEnquiry
     ? `/kontakt?oferta=${encodeURIComponent(workshop.slug)}`
     : `/warsztaty/${workshop.slug}`;
-  const image = getWorkshopImage(workshop.slug, workshop.featuredMediaId);
+  const image = getWorkshopImage(
+    workshop.slug,
+    workshop.featuredMedia,
+    workshop.featuredMediaId
+  );
   const locationLabel =
     workshop.slug === 'glina-do-wina-w-poznaniu-w-ptasim-radiu'
       ? 'Ptasie Radio, Poznań'
