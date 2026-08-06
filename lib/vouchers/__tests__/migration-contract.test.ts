@@ -12,19 +12,34 @@ const migration = readFileSync(
 
 describe('gift voucher migration contract', () => {
   it('stores only a code hash and masked suffix in the voucher ledger', () => {
-    expect(migration).toContain('code_hash text not null unique');
-    expect(migration).toContain('code_last4 text not null');
+    const voucherTable = migration.match(
+      /create table if not exists public\.gift_vouchers\s*\(([\s\S]*?)\n\);/i
+    )?.[1];
+
+    expect(voucherTable).toBeDefined();
+    expect(voucherTable).toContain('code_hash text not null unique');
+    expect(voucherTable).toContain('code_last4 text not null');
+    expect(voucherTable).not.toMatch(/\braw_code\b/i);
     expect(migration).toContain('public.voucher_code_hash');
-    expect(migration).not.toMatch(/gift_vouchers[\s\S]{0,900}raw_code text/i);
+    expect(migration).toContain(
+      'create table if not exists public.voucher_issue_secrets'
+    );
+    expect(migration).toContain(
+      'revoke all on table public.voucher_issue_secrets'
+    );
   });
 
   it('applies the voucher inside the atomic cart transaction', () => {
-    expect(migration).toContain(
-      'create or replace function public.submit_cart_order_v3'
+    const submitV3 = migration.match(
+      /create or replace function public\.submit_cart_order_v3\([\s\S]*?revoke all on function public\.submit_cart_order_v3\(/i
+    )?.[0];
+
+    expect(submitV3).toBeDefined();
+    expect(submitV3).toMatch(
+      /select \* into v_voucher[\s\S]*?from public\.gift_vouchers[\s\S]*?where code_hash = public\.voucher_code_hash\(p_voucher_code\)\s+for update;/i
     );
-    expect(migration).toContain('for update of v');
-    expect(migration).toContain("p_idempotency_key || ':voucher'");
-    expect(migration).toContain('voucher_fully_paid');
+    expect(submitV3).toContain("p_idempotency_key || ':voucher'");
+    expect(submitV3).toContain('voucher_fully_paid');
   });
 
   it('restores or replaces voucher value through the order lifecycle', () => {
