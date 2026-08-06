@@ -16,6 +16,9 @@ describe('linked workshop checkout UX contract', () => {
   const optionalMigration = source(
     'supabase/migrations/00000000000029_optional_followup_sessions.sql'
   );
+  const sameEventMigration = source(
+    'supabase/migrations/00000000000032_glina_same_event_included_followup.sql'
+  );
 
   it('reuses the purchaser name for the first adult and never requires adult age', () => {
     expect(checkoutUi).toContain(
@@ -50,6 +53,8 @@ describe('linked workshop checkout UX contract', () => {
     expect(checkoutUi).toContain("linkRole: 'followup'");
     expect(checkoutUi).toContain('lines: expandedLines');
     expect(checkoutUi).toContain('required={line.requiresFollowupSession}');
+    expect(checkoutUi).toContain('includedFollowup: selected.includedInPrice');
+    expect(checkoutServer).toContain('included_followup');
     expect(checkoutServer).toContain(
       'Wybierz obowiązkowy termin drugiego etapu'
     );
@@ -67,5 +72,12 @@ describe('linked workshop checkout UX contract', () => {
     expect(optionalMigration).toContain(
       'if v_primary_workshop.requires_followup_session then'
     );
+    expect(revalidation).toContain('followup_included_in_price');
+    expect(revalidation).toContain('option?.includedInPrice');
+    expect(revalidation).toContain('if (maxDays != null)');
+    expect(sameEventMigration).toContain('followup_min_days = 14');
+    expect(sameEventMigration).toContain('followup_max_days = null');
+    expect(sameEventMigration).toContain('followup_included_in_price = true');
+    expect(sameEventMigration).toContain("relationship = 'optional_followup'");
   });
 });

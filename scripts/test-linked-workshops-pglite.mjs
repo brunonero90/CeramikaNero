@@ -175,7 +175,11 @@ function primaryOnlyLines(primarySessionId) {
   ]);
 }
 
-function linkedLines(primarySessionId, followupSessionId) {
+function linkedLines(
+  primarySessionId,
+  followupSessionId,
+  includedFollowup = false
+) {
   const participant = {
     display_name: 'Bruno Nero',
     age: null,
@@ -199,6 +203,7 @@ function linkedLines(primarySessionId, followupSessionId) {
       link_role: 'followup',
       linked_primary_session_id: primarySessionId,
       link_group_key: groupKey,
+      included_followup: includedFollowup,
       participants: [participant],
     },
   ]);
@@ -427,6 +432,221 @@ async function exerciseLinkedCheckout(db) {
   );
 }
 
+async function createIncludedSameWorkshopFixture(db) {
+  const result = await db.query(`
+    with category as (
+      select id from public.workshop_categories where slug = 'linked-fixture'
+    ), workshop as (
+      insert into public.workshops (
+        category_id, title, slug, minimum_age, default_duration_minutes,
+        default_capacity, default_price_gross_grosz, currency, booking_mode,
+        status, participant_audience, collect_participant_age, workshop_type,
+        offers_followup_session, requires_followup_session,
+        followup_workshop_type, followup_min_days, followup_max_days,
+        followup_included_in_price
+      )
+      select category.id, 'Glina do Wina included test',
+        'glina-do-wina-included-test', 18, 120, 10, 18900, 'PLN',
+        'scheduled', 'published', 'adult', false, 'glina-do-wina-included-test',
+        true, false, 'glina-do-wina-included-test', 14, null, true
+      from category
+      returning id
+    ), primary_session as (
+      insert into public.workshop_sessions (
+        workshop_id, starts_at, ends_at, timezone, capacity, reserved_count,
+        price_gross_grosz, currency, status
+      )
+      select workshop.id, timezone('utc'::text, now()) + interval '30 days',
+        timezone('utc'::text, now()) + interval '30 days 2 hours',
+        'Europe/Warsaw', 10, 0, 18900, 'PLN', 'scheduled'
+      from workshop
+      returning id
+    ), early_session as (
+      insert into public.workshop_sessions (
+        workshop_id, starts_at, ends_at, timezone, capacity, reserved_count,
+        price_gross_grosz, currency, status
+      )
+      select workshop.id, timezone('utc'::text, now()) + interval '43 days',
+        timezone('utc'::text, now()) + interval '43 days 2 hours',
+        'Europe/Warsaw', 10, 0, 18900, 'PLN', 'scheduled'
+      from workshop
+      returning id
+    ), eligible_session as (
+      insert into public.workshop_sessions (
+        workshop_id, starts_at, ends_at, timezone, capacity, reserved_count,
+        price_gross_grosz, currency, status
+      )
+      select workshop.id, timezone('utc'::text, now()) + interval '44 days',
+        timezone('utc'::text, now()) + interval '44 days 2 hours',
+        'Europe/Warsaw', 10, 0, 18900, 'PLN', 'scheduled'
+      from workshop
+      returning id
+    ), far_session as (
+      insert into public.workshop_sessions (
+        workshop_id, starts_at, ends_at, timezone, capacity, reserved_count,
+        price_gross_grosz, currency, status
+      )
+      select workshop.id, timezone('utc'::text, now()) + interval '400 days',
+        timezone('utc'::text, now()) + interval '400 days 2 hours',
+        'Europe/Warsaw', 10, 0, 18900, 'PLN', 'scheduled'
+      from workshop
+      returning id
+    )
+    select workshop.id as workshop_id,
+      primary_session.id as primary_session_id,
+      early_session.id as early_session_id,
+      eligible_session.id as eligible_session_id,
+      far_session.id as far_session_id
+    from workshop
+    cross join primary_session
+    cross join early_session
+    cross join eligible_session
+    cross join far_session
+  `);
+  return result.rows[0];
+}
+
+async function exerciseIncludedSameWorkshopFollowup(db) {
+  const fixture = await createIncludedSameWorkshopFixture(db);
+  const includedLines = linkedLines(
+    fixture.primary_session_id,
+    fixture.eligible_session_id,
+    true
+  );
+
+  const first = await db.query(
+    `select public.submit_cart_order_v6(
+      $1, $2, $3, $4, $5, $6, false,
+      timezone('utc'::text, now()), 'test', $7::jsonb,
+      null, 'website', 'stripe', null
+    ) as result`,
+    [
+      'glina-included-followup',
+      'glina-included@example.com',
+      'Bruno',
+      'Nero',
+      '500600700',
+      '',
+      includedLines,
+    ]
+  );
+  const result = first.rows[0].result;
+  assert(
+    result.booking_references.length === 2,
+    'Included follow-up did not create two bookings'
+  );
+  assert(
+    result.total_gross_grosz === 18900,
+    'Included follow-up increased the order price'
+  );
+
+  const state = await db.query(
+    `select
+      o.subtotal_gross_grosz,
+      o.total_gross_grosz,
+      p.amount_gross_grosz as payment_amount,
+      fb.unit_price_gross_grosz as followup_unit_price,
+      fb.total_price_gross_grosz as followup_total_price,
+      oi.line_total_gross_grosz as followup_order_item_total,
+      coalesce((oi.metadata->>'included_followup')::boolean, false) as included_marker,
+      bl.relationship,
+      ps.reserved_count as primary_reserved,
+      fs.reserved_count as followup_reserved
+     from public.orders o
+     join public.payments p on p.order_id = o.id and p.provider <> 'voucher'
+     join public.bookings fb on fb.order_id = o.id
+       and fb.workshop_session_id = $2
+     join public.order_items oi on oi.booking_id = fb.id
+     join public.booking_links bl on bl.order_id = o.id
+     join public.workshop_sessions ps on ps.id = $3
+     join public.workshop_sessions fs on fs.id = $2
+     where o.id = $1
+     limit 1`,
+    [result.order_id, fixture.eligible_session_id, fixture.primary_session_id]
+  );
+  const row = state.rows[0];
+  assert(
+    row.subtotal_gross_grosz === 18900,
+    'Included follow-up remained in subtotal'
+  );
+  assert(
+    row.total_gross_grosz === 18900,
+    'Included follow-up remained in total'
+  );
+  assert(
+    row.payment_amount === 18900,
+    'Payment includes the glazing visit price'
+  );
+  assert(
+    row.followup_unit_price === 0,
+    'Follow-up booking unit price is not zero'
+  );
+  assert(row.followup_total_price === 0, 'Follow-up booking total is not zero');
+  assert(
+    row.followup_order_item_total === 0,
+    'Follow-up order item total is not zero'
+  );
+  assert(
+    row.included_marker === true,
+    'Included follow-up audit marker is missing'
+  );
+  assert(
+    row.relationship === 'optional_followup',
+    'Optional relationship was not persisted'
+  );
+  assert(row.primary_reserved === 1, 'Primary capacity was not reserved');
+  assert(
+    row.followup_reserved === 1,
+    'Included follow-up capacity was not reserved'
+  );
+
+  let earlyRejected = false;
+  try {
+    await db.query(
+      `select public.submit_cart_order_v6(
+        $1, $2, $3, $4, $5, $6, false,
+        timezone('utc'::text, now()), 'test', $7::jsonb,
+        null, 'website', 'stripe', null
+      ) as result`,
+      [
+        'glina-too-early-followup',
+        'glina-early@example.com',
+        'Bruno',
+        'Nero',
+        '500600700',
+        '',
+        linkedLines(fixture.primary_session_id, fixture.early_session_id, true),
+      ]
+    );
+  } catch (error) {
+    earlyRejected = String(error)
+      .toLowerCase()
+      .includes('outside the configured date window');
+  }
+  assert(earlyRejected, 'A glazing session earlier than 14 days was accepted');
+
+  const far = await db.query(
+    `select public.submit_cart_order_v6(
+      $1, $2, $3, $4, $5, $6, false,
+      timezone('utc'::text, now()), 'test', $7::jsonb,
+      null, 'website', 'stripe', null
+    ) as result`,
+    [
+      'glina-open-ended-followup',
+      'glina-far@example.com',
+      'Bruno',
+      'Nero',
+      '500600700',
+      '',
+      linkedLines(fixture.primary_session_id, fixture.far_session_id, true),
+    ]
+  );
+  assert(
+    far.rows[0].result.total_gross_grosz === 18900,
+    'A later Glina do Wina event was not accepted as included glazing'
+  );
+}
+
 async function createReminderBooking(
   db,
   provider,
@@ -595,9 +815,10 @@ async function main() {
     await scaffoldSupabase(db);
     await applyMigrations(db);
     await exerciseLinkedCheckout(db);
+    await exerciseIncludedSameWorkshopFollowup(db);
     await exerciseReminders(db);
     console.log(
-      'LINKED WORKSHOPS PASS adult-name/optional-followup/atomic-capacity/idempotency/cancellation/reminder invariants'
+      'LINKED WORKSHOPS PASS adult-name/optional-followup/same-event-included-price/14-day-window/atomic-capacity/idempotency/cancellation/reminder invariants'
     );
   } finally {
     await db.close();

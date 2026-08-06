@@ -153,6 +153,7 @@ export function CheckoutPageClient({
         linkRole: 'followup',
         linkedPrimarySessionId: line.sessionId,
         linkGroupKey: groupKey,
+        includedFollowup: selected.includedInPrice,
       };
       result.push(followup);
     }

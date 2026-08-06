@@ -383,6 +383,7 @@ export async function submitCartOrder(
         link_role: line.linkRole ?? 'primary',
         linked_primary_session_id: line.linkedPrimarySessionId ?? null,
         link_group_key: line.linkGroupKey ?? null,
+        included_followup: Boolean(line.includedFollowup),
         participants: (data.participantsBySession[line.sessionId] ?? []).map(
           (participant) => ({
             display_name: participant.display_name ?? '',

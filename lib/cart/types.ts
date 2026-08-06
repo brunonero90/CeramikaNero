@@ -20,6 +20,8 @@ export type CartLineWorkshop = {
   linkRole?: 'primary' | 'followup';
   linkedPrimarySessionId?: string;
   linkGroupKey?: string;
+  /** Server-validated follow-up included in the primary workshop price. */
+  includedFollowup?: boolean;
 };
 
 export type CartLineProduct = {

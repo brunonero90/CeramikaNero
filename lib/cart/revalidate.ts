@@ -16,6 +16,7 @@ export type FollowupSessionOption = {
   locationAddress: string | null;
   remainingCapacity: number;
   unitPriceGrosz: number;
+  includedInPrice: boolean;
 };
 
 export type RevalidatedCartLine = CartLine & {
@@ -35,6 +36,7 @@ export type RevalidatedCartLine = CartLine & {
   followupWorkshopType?: string | null;
   followupMinDays?: number | null;
   followupMaxDays?: number | null;
+  followupIncludedInPrice?: boolean;
   followupOptions?: FollowupSessionOption[];
 };
 
@@ -57,12 +59,14 @@ type WorkshopMeta = {
   maximum_age: number | null;
   participant_audience?: 'adult' | 'child' | 'mixed' | null;
   collect_participant_age?: boolean | null;
+  workshop_type?: string | null;
   offers_followup_session?: boolean | null;
   requires_followup_session?: boolean | null;
   followup_workshop_id?: string | null;
   followup_workshop_type?: string | null;
   followup_min_days?: number | null;
   followup_max_days?: number | null;
+  followup_included_in_price?: boolean | null;
 };
 
 function addDays(value: string, days: number): string {
@@ -78,6 +82,9 @@ async function findFollowupWorkshopId(
   if (workshop.followup_workshop_id) return workshop.followup_workshop_id;
   const type = workshop.followup_workshop_type?.trim();
   if (!type) return null;
+  if (type === workshop.workshop_type?.trim() || type === workshop.slug) {
+    return workshop.id;
+  }
 
   const byType = await supabase
     .from('workshops')
@@ -113,11 +120,10 @@ async function loadFollowupOptions(
   if (!targetWorkshopId) return [];
 
   const minDays = workshop.followup_min_days ?? 0;
-  const maxDays = workshop.followup_max_days ?? 90;
+  const maxDays = workshop.followup_max_days;
   const start = addDays(primaryStartsAt, minDays);
-  const end = addDays(primaryStartsAt, maxDays);
 
-  const { data } = await supabase
+  let query = supabase
     .from('workshop_sessions')
     .select(
       'id, workshop_id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, default_price_gross_grosz)'
@@ -125,8 +131,11 @@ async function loadFollowupOptions(
     .eq('workshop_id', targetWorkshopId)
     .in('status', ['scheduled', 'sold_out'])
     .gte('starts_at', start)
-    .lte('starts_at', end)
     .order('starts_at', { ascending: true });
+  if (maxDays != null) {
+    query = query.lte('starts_at', addDays(primaryStartsAt, maxDays));
+  }
+  const { data } = await query;
 
   return (
     (data ?? []) as unknown as Array<{
@@ -178,8 +187,10 @@ async function loadFollowupOptions(
         locationName: session.location_name,
         locationAddress: session.location_address,
         remainingCapacity: remaining,
-        unitPriceGrosz:
-          session.price_gross_grosz ?? target.default_price_gross_grosz,
+        unitPriceGrosz: workshop.followup_included_in_price
+          ? 0
+          : (session.price_gross_grosz ?? target.default_price_gross_grosz),
+        includedInPrice: Boolean(workshop.followup_included_in_price),
       },
     ];
   });
@@ -207,7 +218,7 @@ export async function revalidateCartLines(
       const { data: session } = await supabase
         .from('workshop_sessions')
         .select(
-          'id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, booking_mode, default_price_gross_grosz, minimum_age, maximum_age, participant_audience, collect_participant_age, offers_followup_session, requires_followup_session, followup_workshop_id, followup_workshop_type, followup_min_days, followup_max_days)'
+          'id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, booking_mode, default_price_gross_grosz, minimum_age, maximum_age, participant_audience, collect_participant_age, workshop_type, offers_followup_session, requires_followup_session, followup_workshop_id, followup_workshop_type, followup_min_days, followup_max_days, followup_included_in_price)'
         )
         .eq('id', line.sessionId)
         .maybeSingle();
@@ -317,6 +328,7 @@ export async function revalidateCartLines(
         followupWorkshopType: workshop?.followup_workshop_type ?? null,
         followupMinDays: workshop?.followup_min_days ?? null,
         followupMaxDays: workshop?.followup_max_days ?? null,
+        followupIncludedInPrice: Boolean(workshop?.followup_included_in_price),
         followupOptions,
       });
       continue;
@@ -387,6 +399,34 @@ export async function revalidateCartLines(
       unitPriceGrosz,
       lineTotalGrosz: unitPriceGrosz * line.quantity,
     });
+  }
+
+  // A follow-up can use a normally priced public session while being included
+  // in the primary workshop price. Derive that override only from the
+  // server-loaded primary workshop configuration and eligible option list.
+  for (const line of result) {
+    if (
+      line.type !== 'workshop_session' ||
+      line.linkRole !== 'followup' ||
+      !line.linkedPrimarySessionId
+    ) {
+      continue;
+    }
+    const primary = result.find(
+      (candidate) =>
+        candidate.type === 'workshop_session' &&
+        candidate.sessionId === line.linkedPrimarySessionId &&
+        candidate.linkRole !== 'followup'
+    );
+    const option = primary?.followupOptions?.find(
+      (candidate) => candidate.sessionId === line.sessionId
+    );
+    if (option?.includedInPrice) {
+      line.includedFollowup = true;
+      line.unitPriceHintGrosz = 0;
+      line.unitPriceGrosz = 0;
+      line.lineTotalGrosz = 0;
+    }
   }
 
   const blocking = result.some(
