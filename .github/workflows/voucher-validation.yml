@@ -15,6 +15,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Inspect checkout SQL
+        run: |
+          grep -R -n "create or replace function public.submit_cart_order_v2" supabase/migrations || true
+          grep -R -n "create or replace function public.submit_cart_order_v[0-9]" supabase/migrations || true
+
+      - name: Package workspace
+        run: tar --exclude=.git -czf workspace.tgz .
+
+      - name: Upload workspace
+        uses: actions/upload-artifact@v4
+        with:
+          name: glina-followup-workspace
+          path: workspace.tgz
+          retention-days: 1
+
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
