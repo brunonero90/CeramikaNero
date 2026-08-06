@@ -380,7 +380,7 @@ export async function submitCartOrder(
         type: 'workshop_session',
         session_id: line.sessionId,
         quantity: line.quantity,
-        link_role: line.linkRole ?? null,
+        link_role: line.linkRole ?? 'primary',
         linked_primary_session_id: line.linkedPrimarySessionId ?? null,
         link_group_key: line.linkGroupKey ?? null,
         participants: (data.participantsBySession[line.sessionId] ?? []).map(
@@ -413,7 +413,7 @@ export async function submitCartOrder(
         error: { message: string; code?: string } | null;
       }>;
     }
-  ).rpc('submit_cart_order_v5', {
+  ).rpc('submit_cart_order_v6', {
     p_idempotency_key: idempotencyKey,
     p_customer_email: data.purchaserEmail,
     p_customer_first_name: data.purchaserFirstName,
@@ -435,7 +435,7 @@ export async function submitCartOrder(
   });
 
   if (error || !result) {
-    console.error('submit_cart_order_v5 failed', {
+    console.error('submit_cart_order_v6 failed', {
       message: error?.message,
       code: error?.code,
     });

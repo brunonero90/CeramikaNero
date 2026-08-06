@@ -213,7 +213,7 @@ async function exerciseLinkedCheckout(db) {
   );
 
   const first = await db.query(
-    `select public.submit_cart_order_v5(
+    `select public.submit_cart_order_v6(
       $1, $2, $3, $4, $5, $6, false,
       timezone('utc'::text, now()), 'test', $7::jsonb,
       null, 'website', 'stripe', null
@@ -263,7 +263,7 @@ async function exerciseLinkedCheckout(db) {
   assert(row.followup_reserved === 1, 'Follow-up capacity was not reserved');
 
   const replay = await db.query(
-    `select public.submit_cart_order_v5(
+    `select public.submit_cart_order_v6(
       $1, $2, $3, $4, $5, $6, false,
       timezone('utc'::text, now()), 'test', $7::jsonb,
       null, 'website', 'stripe', null
@@ -366,7 +366,7 @@ async function exerciseLinkedCheckout(db) {
   let unavailableRejected = false;
   try {
     await db.query(
-      `select public.submit_cart_order_v5(
+      `select public.submit_cart_order_v6(
         $1, $2, $3, $4, $5, $6, false,
         timezone('utc'::text, now()), 'test', $7::jsonb,
         null, 'website', 'stripe', null
@@ -402,7 +402,7 @@ async function exerciseLinkedCheckout(db) {
     [fixture.primary_workshop_id]
   );
   const optional = await db.query(
-    `select public.submit_cart_order_v5(
+    `select public.submit_cart_order_v6(
       $1, $2, $3, $4, $5, $6, false,
       timezone('utc'::text, now()), 'test', $7::jsonb,
       null, 'website', 'stripe', null

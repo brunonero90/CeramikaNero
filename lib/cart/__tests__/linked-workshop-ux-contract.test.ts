@@ -51,7 +51,7 @@ describe('linked workshop checkout UX contract', () => {
     expect(checkoutServer).toContain(
       'Wybierz obowiązkowy termin drugiego etapu'
     );
-    expect(checkoutServer).toContain(".rpc('submit_cart_order_v5'");
+    expect(checkoutServer).toContain(".rpc('submit_cart_order_v6'");
     expect(revalidation).toContain('loadFollowupOptions');
     expect(revalidation).toContain('remaining < quantity');
     expect(migration).toContain(
