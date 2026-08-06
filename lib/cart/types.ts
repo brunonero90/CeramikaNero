@@ -16,6 +16,10 @@ export type CartLineWorkshop = {
   quantity: number;
   /** Display-only hint; server recalculates. */
   unitPriceHintGrosz: number;
+  /** Checkout-only relationship metadata. Never trusted without server revalidation. */
+  linkRole?: 'primary' | 'followup';
+  linkedPrimarySessionId?: string;
+  linkGroupKey?: string;
 };
 
 export type CartLineProduct = {
