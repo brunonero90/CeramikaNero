@@ -6,12 +6,10 @@ const result = spawnSync('npm', ['run', 'typecheck', '--', '--pretty', 'false'],
   env: process.env,
 });
 const output = `${result.stdout ?? ''}\n${result.stderr ?? ''}`.trim();
+const matchesUi = /app\/admin\/\(protected\)\/vouchery|components\/clone\/checkout-page-client\.tsx/.test(output);
 
 await mkdir('public', { recursive: true });
-await writeFile(
-  'public/typecheck.txt',
-  `${output || 'TYPECHECK PASSED'}\nExit code: ${result.status ?? 'unknown'}\n`
-);
-
+await writeFile('public/index.html', '<p>TypeScript probe completed.</p>');
 console.log(`TypeScript exit code: ${result.status ?? 'unknown'}`);
-console.log('Diagnostics captured in public/typecheck.txt for this temporary preview.');
+console.log(`UI/admin diagnostics present: ${matchesUi}`);
+process.exit(matchesUi ? 0 : 1);
