@@ -1,10 +1,9 @@
 'use client';
 
 import { useActionState } from 'react';
-import {
-  initialVoucherIssueState,
-  issueVoucherAction,
-} from './actions';
+import { issueVoucherAction, type VoucherIssueState } from './actions';
+
+const initialVoucherIssueState: VoucherIssueState = { ok: false };
 
 export function VoucherIssueForm() {
   const [state, action, pending] = useActionState(
