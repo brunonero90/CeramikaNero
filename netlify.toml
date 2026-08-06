@@ -6,7 +6,7 @@
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
   # Never enable local booking fixtures in Netlify production builds.
   BOOKING_LOCAL_MODE = ""
   FIDELITY_FIXTURES = ""

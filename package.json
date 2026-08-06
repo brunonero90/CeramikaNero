@@ -13,6 +13,7 @@
     "test": "vitest run",
     "test:payments": "vitest run lib/booking/__tests__ lib/cart/__tests__ lib/payments/__tests__ lib/database/__tests__/bookings.remote.test.ts",
     "test:migrations": "node scripts/test-migrations-pglite.mjs",
+    "test:vouchers:pglite": "node scripts/test-voucher-lifecycle-pglite.mjs",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:local-booking": "node scripts/e2e-local-booking.js",
