@@ -27,6 +27,7 @@ type WorkshopFormData = {
   participantAudience: 'adult' | 'child' | 'mixed';
   collectParticipantAge: boolean;
   workshopType: string;
+  offersFollowupSession: boolean;
   requiresFollowupSession: boolean;
   followupWorkshopType: string;
   followupMinDays: string;
@@ -71,8 +72,14 @@ export function WorkshopForm({
   const [bookingMode, setBookingMode] = useState<BookingMode>(
     initialData?.bookingMode ?? 'scheduled'
   );
-  const [requiresFollowupSession, setRequiresFollowupSession] = useState(
-    initialData?.requiresFollowupSession ?? false
+  const [followupMode, setFollowupMode] = useState<
+    'none' | 'optional' | 'required'
+  >(
+    initialData?.requiresFollowupSession
+      ? 'required'
+      : initialData?.offersFollowupSession
+        ? 'optional'
+        : 'none'
   );
   const [featuredMediaId, setFeaturedMediaId] = useState<string | null>(
     initialData?.featuredMediaId ?? null
@@ -96,6 +103,7 @@ export function WorkshopForm({
     participantAudience: 'adult',
     collectParticipantAge: false,
     workshopType: '',
+    offersFollowupSession: false,
     requiresFollowupSession: false,
     followupWorkshopType: '',
     followupMinDays: '5',
@@ -489,18 +497,27 @@ export function WorkshopForm({
             />
             Zbieraj wiek dzieci
           </label>
-          <label className="flex items-center gap-2 text-sm">
-            <input
-              name="requiresFollowupSession"
-              type="checkbox"
-              checked={requiresFollowupSession}
+          <div>
+            <label htmlFor="followupMode" className="block text-sm font-medium">
+              Drugi etap
+            </label>
+            <select
+              id="followupMode"
+              name="followupMode"
+              value={followupMode}
               onChange={(event) =>
-                setRequiresFollowupSession(event.target.checked)
+                setFollowupMode(
+                  event.target.value as 'none' | 'optional' | 'required'
+                )
               }
-            />
-            Wymaga drugiego terminu
-          </label>
-          {requiresFollowupSession ? (
+              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+            >
+              <option value="none">Brak</option>
+              <option value="optional">Opcjonalny — klient może wybrać</option>
+              <option value="required">Obowiązkowy</option>
+            </select>
+          </div>
+          {followupMode !== 'none' ? (
             <>
               <div className="sm:col-span-2">
                 <label

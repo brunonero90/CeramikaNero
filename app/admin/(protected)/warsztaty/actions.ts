@@ -62,6 +62,8 @@ async function validateWorkshopForm(
     return { ok: false, errors: { slug: 'Ten slug jest już używany.' } };
   }
 
+  const followupMode = String(formData.get('followupMode') || 'none');
+
   const parsed = workshopInputSchema.safeParse({
     categoryId: formData.get('categoryId'),
     title,
@@ -74,7 +76,8 @@ async function validateWorkshopForm(
     participantAudience: formData.get('participantAudience') || 'adult',
     collectParticipantAge: formData.get('collectParticipantAge') === 'on',
     workshopType: formData.get('workshopType') || slug,
-    requiresFollowupSession: formData.get('requiresFollowupSession') === 'on',
+    offersFollowupSession: followupMode !== 'none',
+    requiresFollowupSession: followupMode === 'required',
     followupWorkshopType: formData.get('followupWorkshopType') || null,
     followupMinDays: numberOrNull(formData.get('followupMinDays')),
     followupMaxDays: numberOrNull(formData.get('followupMaxDays')),
@@ -201,11 +204,12 @@ export async function createWorkshopAction(
         error: { message: string } | null;
       }>;
     }
-  ).rpc('set_workshop_operational_metadata', {
+  ).rpc('set_workshop_operational_metadata_v2', {
     p_workshop_id: workshopId,
     p_participant_audience: data.participantAudience,
     p_collect_participant_age: data.collectParticipantAge,
     p_workshop_type: data.workshopType,
+    p_offers_followup_session: data.offersFollowupSession,
     p_requires_followup_session: data.requiresFollowupSession,
     p_followup_workshop_type: data.followupWorkshopType,
     p_followup_min_days: data.followupMinDays,
@@ -304,11 +308,12 @@ export async function updateWorkshopAction(
         error: { message: string } | null;
       }>;
     }
-  ).rpc('set_workshop_operational_metadata', {
+  ).rpc('set_workshop_operational_metadata_v2', {
     p_workshop_id: id,
     p_participant_audience: data.participantAudience,
     p_collect_participant_age: data.collectParticipantAge,
     p_workshop_type: data.workshopType,
+    p_offers_followup_session: data.offersFollowupSession,
     p_requires_followup_session: data.requiresFollowupSession,
     p_followup_workshop_type: data.followupWorkshopType,
     p_followup_min_days: data.followupMinDays,

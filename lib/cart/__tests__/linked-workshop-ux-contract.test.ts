@@ -13,6 +13,9 @@ describe('linked workshop checkout UX contract', () => {
   const migration = source(
     'supabase/migrations/00000000000026_linked_workshops_and_reminders.sql'
   );
+  const optionalMigration = source(
+    'supabase/migrations/00000000000029_optional_followup_sessions.sql'
+  );
 
   it('reuses the purchaser name for the first adult and never requires adult age', () => {
     expect(checkoutUi).toContain(
@@ -40,17 +43,27 @@ describe('linked workshop checkout UX contract', () => {
     );
   });
 
-  it('requires and revalidates a second session in the unified order', () => {
+  it('offers optional follow-up sessions and still supports required stages', () => {
     expect(checkoutUi).toContain('Wybierz termin szkliwienia');
+    expect(checkoutUi).toContain('Nie rezerwuję teraz');
+    expect(checkoutUi).toContain('offersFollowupSession');
     expect(checkoutUi).toContain("linkRole: 'followup'");
     expect(checkoutServer).toContain(
       'Wybierz obowiązkowy termin drugiego etapu'
     );
-    expect(checkoutServer).toContain(".rpc('submit_cart_order_v5'");
+    expect(checkoutServer).toContain(".rpc('submit_cart_order_v6'");
     expect(revalidation).toContain('loadFollowupOptions');
     expect(revalidation).toContain('remaining < quantity');
     expect(migration).toContain(
       'create table if not exists public.booking_links'
+    );
+    expect(optionalMigration).toContain('offers_followup_session');
+    expect(optionalMigration).toContain(
+      'v_primary_workshop.offers_followup_session or v_primary_workshop.requires_followup_session'
+    );
+    expect(optionalMigration).toContain('if v_followup_count = 0 then');
+    expect(optionalMigration).toContain(
+      'if v_primary_workshop.requires_followup_session then'
     );
   });
 });

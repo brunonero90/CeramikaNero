@@ -30,6 +30,7 @@ export type RevalidatedCartLine = CartLine & {
   ageRequired?: boolean;
   participantAudience?: 'adult' | 'child' | 'mixed';
   collectParticipantAge?: boolean;
+  offersFollowupSession?: boolean;
   requiresFollowupSession?: boolean;
   followupWorkshopType?: string | null;
   followupMinDays?: number | null;
@@ -56,6 +57,7 @@ type WorkshopMeta = {
   maximum_age: number | null;
   participant_audience?: 'adult' | 'child' | 'mixed' | null;
   collect_participant_age?: boolean | null;
+  offers_followup_session?: boolean | null;
   requires_followup_session?: boolean | null;
   followup_workshop_id?: string | null;
   followup_workshop_type?: string | null;
@@ -126,29 +128,31 @@ async function loadFollowupOptions(
     .lte('starts_at', end)
     .order('starts_at', { ascending: true });
 
-  return ((data ?? []) as unknown as Array<{
-    id: string;
-    workshop_id: string;
-    starts_at: string;
-    timezone: string;
-    capacity: number;
-    reserved_count: number;
-    price_gross_grosz: number | null;
-    status: string;
-    location_name: string | null;
-    location_address: string | null;
-    venue_key: string | null;
-    booking_opens_at: string | null;
-    booking_closes_at: string | null;
-    workshops: {
+  return (
+    (data ?? []) as unknown as Array<{
       id: string;
-      title: string;
-      slug: string;
+      workshop_id: string;
+      starts_at: string;
+      timezone: string;
+      capacity: number;
+      reserved_count: number;
+      price_gross_grosz: number | null;
       status: string;
-      archived_at: string | null;
-      default_price_gross_grosz: number;
-    };
-  }>).flatMap((session) => {
+      location_name: string | null;
+      location_address: string | null;
+      venue_key: string | null;
+      booking_opens_at: string | null;
+      booking_closes_at: string | null;
+      workshops: {
+        id: string;
+        title: string;
+        slug: string;
+        status: string;
+        archived_at: string | null;
+        default_price_gross_grosz: number;
+      };
+    }>
+  ).flatMap((session) => {
     const target = session.workshops;
     const remaining = session.capacity - session.reserved_count;
     if (
@@ -203,7 +207,7 @@ export async function revalidateCartLines(
       const { data: session } = await supabase
         .from('workshop_sessions')
         .select(
-          'id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, booking_mode, default_price_gross_grosz, minimum_age, maximum_age, participant_audience, collect_participant_age, requires_followup_session, followup_workshop_id, followup_workshop_type, followup_min_days, followup_max_days)'
+          'id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, booking_mode, default_price_gross_grosz, minimum_age, maximum_age, participant_audience, collect_participant_age, offers_followup_session, requires_followup_session, followup_workshop_id, followup_workshop_type, followup_min_days, followup_max_days)'
         )
         .eq('id', line.sessionId)
         .maybeSingle();
@@ -261,8 +265,12 @@ export async function revalidateCartLines(
       const requiresFollowupSession = Boolean(
         workshop?.requires_followup_session && line.linkRole !== 'followup'
       );
+      const offersFollowupSession = Boolean(
+        (workshop?.offers_followup_session || requiresFollowupSession) &&
+        line.linkRole !== 'followup'
+      );
       const followupOptions =
-        requiresFollowupSession && session && workshop
+        offersFollowupSession && session && workshop
           ? await loadFollowupOptions(
               supabase,
               workshop,
@@ -304,6 +312,7 @@ export async function revalidateCartLines(
         ageRequired: participantAudience === 'child' && collectParticipantAge,
         participantAudience,
         collectParticipantAge,
+        offersFollowupSession,
         requiresFollowupSession,
         followupWorkshopType: workshop?.followup_workshop_type ?? null,
         followupMinDays: workshop?.followup_min_days ?? null,
@@ -384,8 +393,7 @@ export async function revalidateCartLines(
     (line) =>
       !line.available ||
       line.issues.some(
-        (issue) =>
-          issue !== 'Cena uległa zmianie — pokazujemy aktualną cenę.'
+        (issue) => issue !== 'Cena uległa zmianie — pokazujemy aktualną cenę.'
       )
   );
   const subtotalGrosz = result.reduce(

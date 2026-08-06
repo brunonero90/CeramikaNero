@@ -113,12 +113,12 @@ async function createLinkedFixture(db) {
         category_id, title, slug, minimum_age, default_duration_minutes,
         default_capacity, default_price_gross_grosz, currency, booking_mode,
         status, participant_audience, collect_participant_age, workshop_type,
-        requires_followup_session, followup_workshop_id,
+        offers_followup_session, requires_followup_session, followup_workshop_id,
         followup_workshop_type, followup_min_days, followup_max_days
       )
       select category.id, 'Glina do Wina test', 'glina-do-wina-test', 18,
         120, 10, 10000, 'PLN', 'scheduled', 'published', 'adult', false,
-        'glina-do-wina', true, followup.id, 'szkliwienie', 5, 45
+        'glina-do-wina', true, true, followup.id, 'szkliwienie', 5, 45
       from category cross join followup
       returning id
     ),
@@ -155,6 +155,24 @@ async function createLinkedFixture(db) {
     cross join followup_session
   `);
   return result.rows[0];
+}
+
+function primaryOnlyLines(primarySessionId) {
+  return JSON.stringify([
+    {
+      type: 'workshop_session',
+      session_id: primarySessionId,
+      quantity: 1,
+      participants: [
+        {
+          display_name: 'Bruno Nero',
+          age: null,
+          participant_type: 'adult',
+          accessibility_notes: null,
+        },
+      ],
+    },
+  ]);
 }
 
 function linkedLines(primarySessionId, followupSessionId) {
@@ -195,7 +213,7 @@ async function exerciseLinkedCheckout(db) {
   );
 
   const first = await db.query(
-    `select public.submit_cart_order_v5(
+    `select public.submit_cart_order_v6(
       $1, $2, $3, $4, $5, $6, false,
       timezone('utc'::text, now()), 'test', $7::jsonb,
       null, 'website', 'stripe', null
@@ -245,7 +263,7 @@ async function exerciseLinkedCheckout(db) {
   assert(row.followup_reserved === 1, 'Follow-up capacity was not reserved');
 
   const replay = await db.query(
-    `select public.submit_cart_order_v5(
+    `select public.submit_cart_order_v6(
       $1, $2, $3, $4, $5, $6, false,
       timezone('utc'::text, now()), 'test', $7::jsonb,
       null, 'website', 'stripe', null
@@ -348,7 +366,7 @@ async function exerciseLinkedCheckout(db) {
   let unavailableRejected = false;
   try {
     await db.query(
-      `select public.submit_cart_order_v5(
+      `select public.submit_cart_order_v6(
         $1, $2, $3, $4, $5, $6, false,
         timezone('utc'::text, now()), 'test', $7::jsonb,
         null, 'website', 'stripe', null
@@ -375,6 +393,37 @@ async function exerciseLinkedCheckout(db) {
   await db.query(
     `update public.workshop_sessions set reserved_count = 0 where id = $1`,
     [fixture.followup_session_id]
+  );
+
+  await db.query(
+    `update public.workshops
+     set offers_followup_session = true, requires_followup_session = false
+     where id = $1`,
+    [fixture.primary_workshop_id]
+  );
+  const optional = await db.query(
+    `select public.submit_cart_order_v6(
+      $1, $2, $3, $4, $5, $6, false,
+      timezone('utc'::text, now()), 'test', $7::jsonb,
+      null, 'website', 'stripe', null
+    ) as result`,
+    [
+      'linked-workshops-optional-skip',
+      'optional@example.com',
+      'Bruno',
+      'Nero',
+      '500600700',
+      '',
+      primaryOnlyLines(fixture.primary_session_id),
+    ]
+  );
+  assert(
+    optional.rows[0].result.booking_references.length === 1,
+    'Optional follow-up could not be skipped'
+  );
+  assert(
+    optional.rows[0].result.total_gross_grosz === 10000,
+    'Skipped optional follow-up changed the primary price'
   );
 }
 
@@ -548,7 +597,7 @@ async function main() {
     await exerciseLinkedCheckout(db);
     await exerciseReminders(db);
     console.log(
-      'LINKED WORKSHOPS PASS adult-name/atomic-capacity/idempotency/cancellation/reminder invariants'
+      'LINKED WORKSHOPS PASS adult-name/optional-followup/atomic-capacity/idempotency/cancellation/reminder invariants'
     );
   } finally {
     await db.close();

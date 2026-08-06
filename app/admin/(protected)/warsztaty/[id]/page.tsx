@@ -67,6 +67,7 @@ export default async function EditWorkshopPage({
     participant_audience?: 'adult' | 'child' | 'mixed';
     collect_participant_age?: boolean;
     workshop_type?: string | null;
+    offers_followup_session?: boolean;
     requires_followup_session?: boolean;
     followup_workshop_type?: string | null;
     followup_min_days?: number | null;
@@ -82,6 +83,10 @@ export default async function EditWorkshopPage({
     participantAudience: operational.participant_audience ?? 'adult',
     collectParticipantAge: operational.collect_participant_age ?? false,
     workshopType: operational.workshop_type ?? mapped.slug,
+    offersFollowupSession:
+      operational.offers_followup_session ??
+      operational.requires_followup_session ??
+      false,
     requiresFollowupSession: operational.requires_followup_session ?? false,
     followupWorkshopType: operational.followup_workshop_type ?? '',
     followupMinDays: operational.followup_min_days?.toString() ?? '5',

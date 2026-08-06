@@ -32,6 +32,7 @@ export const workshopInputSchema = z
     participantAudience: z.enum(['adult', 'child', 'mixed']).default('adult'),
     collectParticipantAge: z.boolean().default(false),
     workshopType: z.string().trim().min(1).max(120).default('workshop'),
+    offersFollowupSession: z.boolean().default(false),
     requiresFollowupSession: z.boolean().default(false),
     followupWorkshopType: z.string().trim().max(120).optional().nullable(),
     followupMinDays: z.number().int().min(0).max(365).optional().nullable(),
@@ -71,7 +72,8 @@ export const workshopInputSchema = z
   )
   .refine(
     (data) =>
-      !data.requiresFollowupSession || Boolean(data.followupWorkshopType),
+      (!data.offersFollowupSession && !data.requiresFollowupSession) ||
+      Boolean(data.followupWorkshopType),
     {
       message: 'Podaj typ lub slug warsztatu drugiego etapu.',
       path: ['followupWorkshopType'],

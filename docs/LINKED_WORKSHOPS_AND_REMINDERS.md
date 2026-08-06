@@ -152,3 +152,9 @@ The linked-workshop PGlite test verifies:
 10. Perform one disposable two-stage Stripe booking and one manual booking.
 11. Check `booking_emails`, `booking_events`, both capacities and the admin linked
     booking display.
+
+## Optional follow-up stages
+
+Migration 29 adds an explicit offered-but-optional mode. Glina do Wina uses this mode: checkout displays available glazing sessions and a **Nie rezerwuję teraz** choice. Leaving the choice empty creates only the first booking; selecting a date creates and links both bookings in the same order. Required multi-stage courses remain supported separately.
+
+Migration 30 normalizes any workshop line without an explicit link role to `primary` before linked-checkout validation. This prevents PostgreSQL NULL comparison semantics from misclassifying a normal one-stage booking as a follow-up.
