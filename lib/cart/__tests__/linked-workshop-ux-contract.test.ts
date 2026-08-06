@@ -59,7 +59,11 @@ describe('linked workshop checkout UX contract', () => {
     );
     expect(optionalMigration).toContain('offers_followup_session');
     expect(optionalMigration).toContain(
-      'not v_primary_workshop.requires_followup_session'
+      'v_primary_workshop.offers_followup_session or v_primary_workshop.requires_followup_session'
+    );
+    expect(optionalMigration).toContain('if v_followup_count = 0 then');
+    expect(optionalMigration).toContain(
+      'if v_primary_workshop.requires_followup_session then'
     );
   });
 });
