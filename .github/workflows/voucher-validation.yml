@@ -33,6 +33,9 @@ jobs:
       - name: Migration harness
         run: npm run test:migrations
 
+      - name: Voucher lifecycle integration
+        run: npm run test:vouchers:pglite
+
       - name: Unit tests
         run: npm test
 
