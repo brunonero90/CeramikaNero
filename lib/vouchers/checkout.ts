@@ -9,10 +9,8 @@ import {
   checkBookingRateLimit,
   getRateLimitKeys,
 } from '@/lib/booking/rate-limit';
-import {
-  ensureExternalVoucherLoaded,
-  normalizeVoucherCode,
-} from '@/lib/vouchers/providers';
+import { ensureExternalVoucherLoaded } from '@/lib/vouchers/providers';
+import { mapVoucherError, normalizeVoucherCode } from '@/lib/vouchers/helpers';
 
 const voucherInputSchema = z.object({
   code: z.string().trim().min(4).max(120),
@@ -38,29 +36,6 @@ export type VoucherCheckoutPreview = {
 export type ValidateVoucherResult =
   | { ok: true; voucher: VoucherCheckoutPreview }
   | { ok: false; error: string };
-
-export function mapVoucherError(message?: string): string {
-  const value = (message ?? '').toLowerCase();
-  if (value.includes('not found') || value.includes('invalid')) {
-    return 'Nie znaleziono bonu o takim kodzie.';
-  }
-  if (value.includes('expired')) return 'Ten bon stracił ważność.';
-  if (value.includes('cancelled')) return 'Ten bon został anulowany.';
-  if (value.includes('not active yet')) return 'Ten bon nie jest jeszcze aktywny.';
-  if (value.includes('already been redeemed')) {
-    return 'Ten bon został już wykorzystany.';
-  }
-  if (value.includes('workshop type') || value.includes('selected workshops')) {
-    return 'Ten bon nie obejmuje wybranego warsztatu.';
-  }
-  if (value.includes('only be used for workshop')) {
-    return 'Bon można wykorzystać wyłącznie na rezerwację warsztatów.';
-  }
-  if (value.includes('provider_') || value.includes('provider ')) {
-    return 'Nie udało się teraz sprawdzić bonu u partnera. Bon nie został wykorzystany — spróbuj ponownie później.';
-  }
-  return 'Nie udało się sprawdzić bonu. Spróbuj ponownie.';
-}
 
 export async function validateVoucherForCheckout(
   input: z.infer<typeof voucherInputSchema>
