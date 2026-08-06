@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import Link from 'next/link';
 import { requireAnyRole } from '@/lib/admin/auth';
 import { createCartAdminClient } from '@/lib/supabase/cart-admin';
@@ -6,6 +6,7 @@ import { formatPrice } from '@/lib/utils/price';
 import {
   cancelVoucherAction,
   extendVoucherAction,
+  refundVoucherOrderAction,
 } from './actions';
 import { VoucherIssueForm } from './VoucherIssueForm';
 
@@ -61,7 +62,7 @@ export default async function AdminVouchersPage({
       voucher_redemptions (
         id, order_id, amount_grosz, status, remaining_after_grosz,
         reserved_at, committed_at, released_at, refunded_at,
-        orders (order_reference)
+        orders (order_reference, status, payment_status, selected_payment_method, fulfillment_status)
       )
     `
     )
@@ -248,7 +249,31 @@ export default async function AdminVouchersPage({
                               <td className="py-2 pr-3">
                                 {formatPrice(redemption.amount_grosz)}
                               </td>
-                              <td className="py-2 pr-3">{redemption.status}</td>
+                              <td className="py-2 pr-3">
+                                {redemption.status}
+                                {redemption.status === 'committed' &&
+                                order?.selected_payment_method === 'voucher' &&
+                                order?.status === 'confirmed' &&
+                                order?.fulfillment_status === 'unfulfilled' ? (
+                                  <form
+                                    action={refundVoucherOrderAction}
+                                    className="mt-2 flex min-w-64 gap-2"
+                                  >
+                                    <input type="hidden" name="orderId" value={redemption.order_id} />
+                                    <input type="hidden" name="operationKey" value={randomUUID()} />
+                                    <input
+                                      required
+                                      name="reason"
+                                      maxLength={1000}
+                                      placeholder="Powód zwrotu"
+                                      className="min-w-0 flex-1 border px-2 py-1"
+                                    />
+                                    <button className="border border-red-300 px-2 py-1 font-semibold text-red-700">
+                                      Zwróć bon
+                                    </button>
+                                  </form>
+                                ) : null}
+                              </td>
                               <td className="py-2">
                                 {formatDate(redemption.reserved_at)}
                               </td>
