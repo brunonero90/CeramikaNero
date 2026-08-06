@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run typecheck",
+    "build": "node scripts/netlify-typecheck-diagnostics.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
