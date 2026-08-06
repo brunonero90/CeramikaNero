@@ -1,8 +1,21 @@
 [build]
-  command = "node scripts/netlify-typecheck-diagnostics.mjs"
-  publish = "diagnostics"
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [build.environment]
   NODE_VERSION = "20"
+  # Never enable local booking fixtures in Netlify production builds.
   BOOKING_LOCAL_MODE = ""
   FIDELITY_FIXTURES = ""
+
+[functions]
+  directory = "netlify/functions"
+
+[functions."booking-expiry"]
+  schedule = "*/10 * * * *"
+
+[functions."booking-email-dispatch"]
+  schedule = "*/5 * * * *"
