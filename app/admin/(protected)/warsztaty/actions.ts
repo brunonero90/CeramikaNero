@@ -71,6 +71,13 @@ async function validateWorkshopForm(
     practicalInformation: formData.get('practicalInformation') || null,
     minimumAge: numberOrNull(formData.get('minimumAge')),
     maximumAge: numberOrNull(formData.get('maximumAge')),
+    participantAudience: formData.get('participantAudience') || 'adult',
+    collectParticipantAge: formData.get('collectParticipantAge') === 'on',
+    workshopType: formData.get('workshopType') || slug,
+    requiresFollowupSession: formData.get('requiresFollowupSession') === 'on',
+    followupWorkshopType: formData.get('followupWorkshopType') || null,
+    followupMinDays: numberOrNull(formData.get('followupMinDays')),
+    followupMaxDays: numberOrNull(formData.get('followupMaxDays')),
     defaultDurationMinutes: Number(formData.get('defaultDurationMinutes') || 0),
     defaultCapacity: Number(formData.get('defaultCapacity') || 0),
     defaultPriceGrossPln: Number(formData.get('defaultPriceGrossPln') || 0),
@@ -185,6 +192,34 @@ export async function createWorkshopAction(
     };
   }
 
+  const metadataResult = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{
+        error: { message: string } | null;
+      }>;
+    }
+  ).rpc('set_workshop_operational_metadata', {
+    p_workshop_id: workshopId,
+    p_participant_audience: data.participantAudience,
+    p_collect_participant_age: data.collectParticipantAge,
+    p_workshop_type: data.workshopType,
+    p_requires_followup_session: data.requiresFollowupSession,
+    p_followup_workshop_type: data.followupWorkshopType,
+    p_followup_min_days: data.followupMinDays,
+    p_followup_max_days: data.followupMaxDays,
+  });
+  if (metadataResult.error) {
+    return {
+      ok: false,
+      formError:
+        'Warsztat zapisano, ale nie udało się zapisać ustawień etapów.',
+      errors: {},
+    };
+  }
+
   await recordAuditEvent(supabase, {
     actorUserId: admin.userId,
     actorRole: admin.role,
@@ -256,6 +291,34 @@ export async function updateWorkshopAction(
     return {
       ok: false,
       formError: 'Nie udało się zaktualizować warsztatu.',
+      errors: {},
+    };
+  }
+
+  const metadataResult = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{
+        error: { message: string } | null;
+      }>;
+    }
+  ).rpc('set_workshop_operational_metadata', {
+    p_workshop_id: id,
+    p_participant_audience: data.participantAudience,
+    p_collect_participant_age: data.collectParticipantAge,
+    p_workshop_type: data.workshopType,
+    p_requires_followup_session: data.requiresFollowupSession,
+    p_followup_workshop_type: data.followupWorkshopType,
+    p_followup_min_days: data.followupMinDays,
+    p_followup_max_days: data.followupMaxDays,
+  });
+  if (metadataResult.error) {
+    return {
+      ok: false,
+      formError:
+        'Warsztat zapisano, ale nie udało się zapisać ustawień etapów.',
       errors: {},
     };
   }

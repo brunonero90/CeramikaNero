@@ -239,6 +239,39 @@ export function buildBookingPaymentProblem(
   );
 }
 
+export function buildBookingReminder(
+  ctx: BookingEmailContext
+): EmailTemplateResult {
+  const subject = `Przypomnienie o warsztacie — ${ctx.workshopTitle}`;
+  const preheader = `Do zobaczenia jutro. Rezerwacja ${ctx.reference}.`;
+  const detail =
+    'Przypominamy o warsztacie zaplanowanym na jutro. Poniżej znajdziesz termin, miejsce i listę uczestników.';
+
+  return pack(
+    subject,
+    preheader,
+    <EmailLayout
+      preview={preheader}
+      siteUrl={ctx.siteUrl}
+      greeting={greet(ctx.customerName)}
+      bannerTitle="Warsztat już jutro"
+      bannerTone="info"
+      bannerBody={detail}
+      payment={{ mode: 'none' }}
+    >
+      <BookingBody
+        ctx={{ ...ctx, cancellationUrl: null, payment: { mode: 'none' } }}
+      />
+    </EmailLayout>,
+    buildBookingPlainText({
+      greeting: greet(ctx.customerName),
+      status: 'Warsztat już jutro',
+      detail,
+      ctx: { ...ctx, cancellationUrl: null, payment: { mode: 'none' } },
+    })
+  );
+}
+
 export function buildBookingAdminNotification(
   ctx: BookingEmailContext
 ): EmailTemplateResult {

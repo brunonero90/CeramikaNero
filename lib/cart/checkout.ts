@@ -87,13 +87,19 @@ function mapSubmitCartOrderError(message: string | undefined): string {
   if (msg.includes('participant age is outside')) {
     return 'Wiek uczestnika jest poza limitem warsztatu.';
   }
+  if (msg.includes('follow-up') || msg.includes('linked bookings')) {
+    return 'Wybrany termin drugiego etapu nie jest już dostępny. Wybierz inny termin i spróbuj ponownie.';
+  }
   if (msg.includes('insufficient capacity')) {
     return 'Brak wolnych miejsc. Odśwież koszyk i spróbuj ponownie.';
   }
   if (msg.includes('inventory')) {
     return 'Niewystarczający stan magazynowy. Odśwież koszyk.';
   }
-  if (msg.includes('voucher not found') || msg.includes('voucher code is invalid')) {
+  if (
+    msg.includes('voucher not found') ||
+    msg.includes('voucher code is invalid')
+  ) {
     return 'Nie znaleziono bonu o takim kodzie.';
   }
   if (msg.includes('voucher is expired')) return 'Ten bon stracił ważność.';
@@ -148,6 +154,47 @@ export async function submitCartOrder(
     };
   }
 
+  const workshopLines = revalidated.lines.filter(
+    (line) => line.type === 'workshop_session'
+  );
+  for (const primary of workshopLines) {
+    if (
+      primary.type !== 'workshop_session' ||
+      !primary.requiresFollowupSession
+    ) {
+      continue;
+    }
+    const followup = workshopLines.find(
+      (candidate) =>
+        candidate.type === 'workshop_session' &&
+        candidate.linkRole === 'followup' &&
+        candidate.linkedPrimarySessionId === primary.sessionId
+    );
+    if (!followup || followup.type !== 'workshop_session') {
+      return {
+        ok: false,
+        error: 'Wybierz obowiązkowy termin drugiego etapu warsztatu.',
+      };
+    }
+    if (followup.quantity !== primary.quantity) {
+      return {
+        ok: false,
+        error: 'Liczba miejsc musi być taka sama w obu etapach warsztatu.',
+      };
+    }
+    if (
+      !(primary.followupOptions ?? []).some(
+        (option) => option.sessionId === followup.sessionId
+      )
+    ) {
+      return {
+        ok: false,
+        error:
+          'Wybrany termin drugiego etapu nie jest już dostępny. Odśwież stronę.',
+      };
+    }
+  }
+
   const needsShipping = revalidated.lines.some(
     (line) =>
       (line.type === 'physical_product' || line.type === 'studio_service') &&
@@ -179,30 +226,44 @@ export async function submitCartOrder(
         error: 'Uzupełnij dane uczestników dla każdego warsztatu.',
       };
     }
-    if (line.ageRequired) {
-      for (const [index, part] of parts.entries()) {
-        const age = normalizeParticipantAge(part.age);
-        if (age == null) {
-          return {
-            ok: false,
-            error: `Podaj wiek uczestnika ${index + 1} dla warsztatu „${line.workshopTitle}”.`,
-          };
-        }
-        if (
-          (line.minimumAge != null && age < line.minimumAge) ||
-          (line.maximumAge != null && age > line.maximumAge)
-        ) {
-          const range =
-            line.minimumAge != null && line.maximumAge != null
-              ? `${line.minimumAge}–${line.maximumAge}`
-              : line.minimumAge != null
-                ? `${line.minimumAge}+`
-                : `do ${line.maximumAge}`;
-          return {
-            ok: false,
-            error: `Wiek uczestnika ${index + 1} jest poza limitem warsztatu (${range}).`,
-          };
-        }
+    const audience = line.participantAudience ?? 'adult';
+    for (const [index, part] of parts.entries()) {
+      const participantType =
+        audience === 'adult'
+          ? 'adult'
+          : audience === 'child'
+            ? 'child'
+            : part.participant_type;
+      if (audience === 'mixed' && participantType === 'unspecified') {
+        return {
+          ok: false,
+          error: `Wybierz, czy uczestnik ${index + 1} jest dorosły czy jest dzieckiem.`,
+        };
+      }
+      if (participantType !== 'child' || !line.collectParticipantAge) {
+        continue;
+      }
+      const age = normalizeParticipantAge(part.age);
+      if (age == null) {
+        return {
+          ok: false,
+          error: `Podaj wiek dziecka ${index + 1} dla warsztatu „${line.workshopTitle}”.`,
+        };
+      }
+      if (
+        (line.minimumAge != null && age < line.minimumAge) ||
+        (line.maximumAge != null && age > line.maximumAge)
+      ) {
+        const range =
+          line.minimumAge != null && line.maximumAge != null
+            ? `${line.minimumAge}–${line.maximumAge}`
+            : line.minimumAge != null
+              ? `${line.minimumAge}+`
+              : `do ${line.maximumAge}`;
+        return {
+          ok: false,
+          error: `Wiek dziecka ${index + 1} jest poza limitem warsztatu (${range}).`,
+        };
       }
     }
   }
@@ -316,6 +377,9 @@ export async function submitCartOrder(
         type: 'workshop_session',
         session_id: line.sessionId,
         quantity: line.quantity,
+        link_role: line.linkRole ?? null,
+        linked_primary_session_id: line.linkedPrimarySessionId ?? null,
+        link_group_key: line.linkGroupKey ?? null,
         participants: (data.participantsBySession[line.sessionId] ?? []).map(
           (participant) => ({
             display_name: participant.display_name ?? '',
@@ -346,7 +410,7 @@ export async function submitCartOrder(
         error: { message: string; code?: string } | null;
       }>;
     }
-  ).rpc('submit_cart_order_v3', {
+  ).rpc('submit_cart_order_v5', {
     p_idempotency_key: idempotencyKey,
     p_customer_email: data.purchaserEmail,
     p_customer_first_name: data.purchaserFirstName,
@@ -368,7 +432,7 @@ export async function submitCartOrder(
   });
 
   if (error || !result) {
-    console.error('submit_cart_order_v3 failed', {
+    console.error('submit_cart_order_v5 failed', {
       message: error?.message,
       code: error?.code,
     });

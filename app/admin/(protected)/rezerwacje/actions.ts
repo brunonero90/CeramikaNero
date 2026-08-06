@@ -561,3 +561,33 @@ export async function setBookingAnalyticsExcludedAction(
   revalidatePath(`/admin/rezerwacje/${bookingId}`);
   revalidatePath('/admin/analityka');
 }
+
+export async function getLinkedBookingsAction(bookingId: string) {
+  await requireAnyRole(['owner', 'manager']);
+  const supabase = createAdminClient() as unknown as {
+    rpc: (
+      name: string,
+      args: Record<string, unknown>
+    ) => Promise<{
+      data: unknown;
+      error: { message: string } | null;
+    }>;
+  };
+  const { data, error } = await supabase.rpc('get_linked_booking_summary', {
+    p_booking_id: bookingId,
+  });
+  if (error) {
+    console.error('get_linked_booking_summary failed', error.message);
+    return [];
+  }
+  return (
+    (data as Array<{
+      id: string;
+      reference: string;
+      relationship: string;
+      workshop_title: string;
+      starts_at: string;
+      status: string;
+    }> | null) ?? []
+  );
+}

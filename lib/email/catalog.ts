@@ -31,6 +31,7 @@ import {
   buildBookingManualConfirmation,
   buildBookingPaymentProblem,
   buildBookingRefund,
+  buildBookingReminder,
 } from '@/lib/email/templates/bookings';
 
 /**
@@ -71,6 +72,7 @@ export const bookingEmailCatalog: {
   manual_confirmation: buildBookingManualConfirmation,
   payment_problem: buildBookingPaymentProblem,
   admin_notification: buildBookingAdminNotification,
+  reminder: buildBookingReminder,
 };
 
 export function buildOrderEmail(

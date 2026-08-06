@@ -29,6 +29,13 @@ export const workshopInputSchema = z
     practicalInformation: z.string().max(5000).optional().nullable(),
     minimumAge: z.number().int().min(0).max(120).optional().nullable(),
     maximumAge: z.number().int().min(0).max(120).optional().nullable(),
+    participantAudience: z.enum(['adult', 'child', 'mixed']).default('adult'),
+    collectParticipantAge: z.boolean().default(false),
+    workshopType: z.string().trim().min(1).max(120).default('workshop'),
+    requiresFollowupSession: z.boolean().default(false),
+    followupWorkshopType: z.string().trim().max(120).optional().nullable(),
+    followupMinDays: z.number().int().min(0).max(365).optional().nullable(),
+    followupMaxDays: z.number().int().min(0).max(365).optional().nullable(),
     defaultDurationMinutes: z.number().int().min(1).max(1440),
     defaultCapacity: z.number().int().min(1),
     defaultPriceGrossPln: z.number().nonnegative().transform(zlotyToGrosz),
@@ -60,6 +67,24 @@ export const workshopInputSchema = z
     {
       message: 'Wiek minimalny nie może przekraczać wieku maksymalnego.',
       path: ['maximumAge'],
+    }
+  )
+  .refine(
+    (data) =>
+      !data.requiresFollowupSession || Boolean(data.followupWorkshopType),
+    {
+      message: 'Podaj typ lub slug warsztatu drugiego etapu.',
+      path: ['followupWorkshopType'],
+    }
+  )
+  .refine(
+    (data) =>
+      data.followupMinDays == null ||
+      data.followupMaxDays == null ||
+      data.followupMinDays <= data.followupMaxDays,
+    {
+      message: 'Maksymalna liczba dni nie może być mniejsza od minimalnej.',
+      path: ['followupMaxDays'],
     }
   )
   .refine(

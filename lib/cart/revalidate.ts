@@ -4,16 +4,37 @@ import 'server-only';
 import { createCartAdminClient } from '@/lib/supabase/cart-admin';
 import type { CartLine } from '@/lib/cart/types';
 
+export type FollowupSessionOption = {
+  sessionId: string;
+  workshopId: string;
+  workshopSlug: string;
+  workshopTitle: string;
+  startsAt: string;
+  timezone: string;
+  venueKey: string | null;
+  locationName: string | null;
+  locationAddress: string | null;
+  remainingCapacity: number;
+  unitPriceGrosz: number;
+};
+
 export type RevalidatedCartLine = CartLine & {
   available: boolean;
   issues: string[];
   unitPriceGrosz: number;
   lineTotalGrosz: number;
   remainingCapacity?: number;
-  /** When set, checkout must collect a participant age for each seat. */
   minimumAge?: number | null;
   maximumAge?: number | null;
+  /** Backwards-compatible flag for child-only workshops. */
   ageRequired?: boolean;
+  participantAudience?: 'adult' | 'child' | 'mixed';
+  collectParticipantAge?: boolean;
+  requiresFollowupSession?: boolean;
+  followupWorkshopType?: string | null;
+  followupMinDays?: number | null;
+  followupMaxDays?: number | null;
+  followupOptions?: FollowupSessionOption[];
 };
 
 export type RevalidatedCart = {
@@ -22,6 +43,143 @@ export type RevalidatedCart = {
   shippingQuoteRequired: boolean;
   canCheckout: boolean;
 };
+
+type WorkshopMeta = {
+  id: string;
+  title: string;
+  slug: string;
+  status: string;
+  archived_at: string | null;
+  booking_mode: string;
+  default_price_gross_grosz: number;
+  minimum_age: number | null;
+  maximum_age: number | null;
+  participant_audience?: 'adult' | 'child' | 'mixed' | null;
+  collect_participant_age?: boolean | null;
+  requires_followup_session?: boolean | null;
+  followup_workshop_id?: string | null;
+  followup_workshop_type?: string | null;
+  followup_min_days?: number | null;
+  followup_max_days?: number | null;
+};
+
+function addDays(value: string, days: number): string {
+  const date = new Date(value);
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString();
+}
+
+async function findFollowupWorkshopId(
+  supabase: ReturnType<typeof createCartAdminClient>,
+  workshop: WorkshopMeta
+): Promise<string | null> {
+  if (workshop.followup_workshop_id) return workshop.followup_workshop_id;
+  const type = workshop.followup_workshop_type?.trim();
+  if (!type) return null;
+
+  const byType = await supabase
+    .from('workshops')
+    .select('id')
+    .eq('workshop_type' as never, type as never)
+    .eq('status', 'published')
+    .is('archived_at', null)
+    .limit(1)
+    .maybeSingle();
+  if ((byType.data as { id?: string } | null)?.id) {
+    return (byType.data as { id: string }).id;
+  }
+
+  const bySlug = await supabase
+    .from('workshops')
+    .select('id')
+    .eq('slug', type)
+    .eq('status', 'published')
+    .is('archived_at', null)
+    .limit(1)
+    .maybeSingle();
+  return (bySlug.data as { id?: string } | null)?.id ?? null;
+}
+
+async function loadFollowupOptions(
+  supabase: ReturnType<typeof createCartAdminClient>,
+  workshop: WorkshopMeta,
+  primaryStartsAt: string,
+  quantity: number,
+  now: string
+): Promise<FollowupSessionOption[]> {
+  const targetWorkshopId = await findFollowupWorkshopId(supabase, workshop);
+  if (!targetWorkshopId) return [];
+
+  const minDays = workshop.followup_min_days ?? 0;
+  const maxDays = workshop.followup_max_days ?? 90;
+  const start = addDays(primaryStartsAt, minDays);
+  const end = addDays(primaryStartsAt, maxDays);
+
+  const { data } = await supabase
+    .from('workshop_sessions')
+    .select(
+      'id, workshop_id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, default_price_gross_grosz)'
+    )
+    .eq('workshop_id', targetWorkshopId)
+    .in('status', ['scheduled', 'sold_out'])
+    .gte('starts_at', start)
+    .lte('starts_at', end)
+    .order('starts_at', { ascending: true });
+
+  return ((data ?? []) as unknown as Array<{
+    id: string;
+    workshop_id: string;
+    starts_at: string;
+    timezone: string;
+    capacity: number;
+    reserved_count: number;
+    price_gross_grosz: number | null;
+    status: string;
+    location_name: string | null;
+    location_address: string | null;
+    venue_key: string | null;
+    booking_opens_at: string | null;
+    booking_closes_at: string | null;
+    workshops: {
+      id: string;
+      title: string;
+      slug: string;
+      status: string;
+      archived_at: string | null;
+      default_price_gross_grosz: number;
+    };
+  }>).flatMap((session) => {
+    const target = session.workshops;
+    const remaining = session.capacity - session.reserved_count;
+    if (
+      !target ||
+      target.status !== 'published' ||
+      target.archived_at ||
+      session.starts_at <= now ||
+      (session.booking_opens_at && session.booking_opens_at > now) ||
+      (session.booking_closes_at && session.booking_closes_at < now) ||
+      remaining < quantity
+    ) {
+      return [];
+    }
+    return [
+      {
+        sessionId: session.id,
+        workshopId: target.id,
+        workshopSlug: target.slug,
+        workshopTitle: target.title,
+        startsAt: session.starts_at,
+        timezone: session.timezone,
+        venueKey: session.venue_key,
+        locationName: session.location_name,
+        locationAddress: session.location_address,
+        remainingCapacity: remaining,
+        unitPriceGrosz:
+          session.price_gross_grosz ?? target.default_price_gross_grosz,
+      },
+    ];
+  });
+}
 
 export async function revalidateCartLines(
   lines: CartLine[]
@@ -45,23 +203,12 @@ export async function revalidateCartLines(
       const { data: session } = await supabase
         .from('workshop_sessions')
         .select(
-          'id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, booking_mode, default_price_gross_grosz, minimum_age, maximum_age)'
+          'id, starts_at, timezone, capacity, reserved_count, price_gross_grosz, status, location_name, location_address, venue_key, booking_opens_at, booking_closes_at, workshops!inner(id, title, slug, status, archived_at, booking_mode, default_price_gross_grosz, minimum_age, maximum_age, participant_audience, collect_participant_age, requires_followup_session, followup_workshop_id, followup_workshop_type, followup_min_days, followup_max_days)'
         )
         .eq('id', line.sessionId)
         .maybeSingle();
 
-      const workshop = session?.workshops as unknown as {
-        id: string;
-        title: string;
-        slug: string;
-        status: string;
-        archived_at: string | null;
-        booking_mode: string;
-        default_price_gross_grosz: number;
-        minimum_age: number | null;
-        maximum_age: number | null;
-      } | null;
-
+      const workshop = session?.workshops as unknown as WorkshopMeta | null;
       const issues: string[] = [];
       if (!session || !workshop) {
         issues.push('Termin nie istnieje lub został usunięty.');
@@ -106,13 +253,33 @@ export async function revalidateCartLines(
         issues.push('Cena uległa zmianie — pokazujemy aktualną cenę.');
       }
 
-      const available = issues.every(
-        (i) => i === 'Cena uległa zmianie — pokazujemy aktualną cenę.'
-      );
-
       const minimumAge = workshop?.minimum_age ?? null;
       const maximumAge = workshop?.maximum_age ?? null;
-      const ageRequired = minimumAge != null || maximumAge != null;
+      const participantAudience = workshop?.participant_audience ?? 'adult';
+      const collectParticipantAge =
+        workshop?.collect_participant_age ?? participantAudience === 'child';
+      const requiresFollowupSession = Boolean(
+        workshop?.requires_followup_session && line.linkRole !== 'followup'
+      );
+      const followupOptions =
+        requiresFollowupSession && session && workshop
+          ? await loadFollowupOptions(
+              supabase,
+              workshop,
+              session.starts_at,
+              line.quantity,
+              now
+            )
+          : [];
+      if (requiresFollowupSession && followupOptions.length === 0) {
+        issues.push(
+          'Brak dostępnego terminu obowiązkowego szkliwienia. Wybierz inny termin lub skontaktuj się z pracownią.'
+        );
+      }
+
+      const available = issues.every(
+        (issue) => issue === 'Cena uległa zmianie — pokazujemy aktualną cenę.'
+      );
 
       result.push({
         ...line,
@@ -134,7 +301,14 @@ export async function revalidateCartLines(
           : 0,
         minimumAge,
         maximumAge,
-        ageRequired,
+        ageRequired: participantAudience === 'child' && collectParticipantAge,
+        participantAudience,
+        collectParticipantAge,
+        requiresFollowupSession,
+        followupWorkshopType: workshop?.followup_workshop_type ?? null,
+        followupMinDays: workshop?.followup_min_days ?? null,
+        followupMaxDays: workshop?.followup_max_days ?? null,
+        followupOptions,
       });
       continue;
     }
@@ -185,7 +359,7 @@ export async function revalidateCartLines(
     }
 
     const available = issues.every(
-      (i) => i === 'Cena uległa zmianie — pokazujemy aktualną cenę.'
+      (issue) => issue === 'Cena uległa zmianie — pokazujemy aktualną cenę.'
     );
 
     result.push({
@@ -207,13 +381,17 @@ export async function revalidateCartLines(
   }
 
   const blocking = result.some(
-    (l) =>
-      !l.available ||
-      l.issues.some(
-        (i) => i !== 'Cena uległa zmianie — pokazujemy aktualną cenę.'
+    (line) =>
+      !line.available ||
+      line.issues.some(
+        (issue) =>
+          issue !== 'Cena uległa zmianie — pokazujemy aktualną cenę.'
       )
   );
-  const subtotalGrosz = result.reduce((s, l) => s + l.lineTotalGrosz, 0);
+  const subtotalGrosz = result.reduce(
+    (sum, line) => sum + line.lineTotalGrosz,
+    0
+  );
 
   return {
     lines: result,

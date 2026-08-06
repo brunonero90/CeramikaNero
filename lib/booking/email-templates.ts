@@ -125,6 +125,34 @@ export function buildCustomerConfirmationEmail(
   return { subject, html, text };
 }
 
+export function buildReminderEmail(ctx: BookingEmailTemplateContext) {
+  const date = formatWarsawDate(ctx.sessionStartsAt);
+  const subject = `Przypomnienie: ${ctx.workshopTitle} już jutro`;
+  const participants = participantList(ctx);
+  const html = `
+    <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; color: #222;">
+      <h1 style="font-size: 22px;">Warsztat już jutro</h1>
+      <p>Dzień dobry ${ctx.customerName},</p>
+      <p>Przypominamy o rezerwacji <strong>${ctx.reference}</strong>.</p>
+      <p><strong>${ctx.workshopTitle}</strong><br>Termin: ${date}<br>Miejsce: ${ctx.sessionLocation || '—'}</p>
+      <p>Uczestnicy:<br>${participants.replace(/\n/g, '<br>')}</p>
+      <p>Do zobaczenia!<br>${siteContact.brand}</p>
+    </div>
+  `;
+  const text = [
+    'Warsztat już jutro',
+    `Rezerwacja: ${ctx.reference}`,
+    `Warsztat: ${ctx.workshopTitle}`,
+    `Termin: ${date}`,
+    `Miejsce: ${ctx.sessionLocation || '—'}`,
+    'Uczestnicy:',
+    participants,
+    'Do zobaczenia!',
+    siteContact.brand,
+  ].join('\n');
+  return { subject, html, text };
+}
+
 export function buildAdminNotificationEmail(ctx: BookingEmailTemplateContext) {
   const date = formatWarsawDate(ctx.sessionStartsAt);
   const total = formatPrice(ctx.totalGrossGrosz);
