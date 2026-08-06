@@ -1,8 +1,12 @@
 import 'server-only';
 
-import { createHash } from 'node:crypto';
 import { z } from 'zod';
 import { createCartAdminClient } from '@/lib/supabase/cart-admin';
+import {
+  isAllowedVoucherProviderUrl,
+  normalizeVoucherCode,
+  voucherRequestFingerprint,
+} from '@/lib/vouchers/helpers';
 
 export type VoucherProviderCode = string;
 
@@ -76,37 +80,6 @@ type ProviderRow = {
   config: Record<string, unknown> | null;
   is_active: boolean;
 };
-
-export function normalizeVoucherCode(code: string): string {
-  return code.trim().replace(/\s+/g, '').toUpperCase();
-}
-
-export function maskVoucherCode(code: string): string {
-  const normalized = normalizeVoucherCode(code);
-  return `••••${normalized.slice(-4)}`;
-}
-
-export function voucherRequestFingerprint(code: string): string {
-  return createHash('sha256')
-    .update(normalizeVoucherCode(code))
-    .digest('hex')
-    .slice(0, 16);
-}
-
-export function isAllowedVoucherProviderUrl(
-  url: string,
-  allowedHosts: string[]
-): boolean {
-  try {
-    const parsed = new URL(url);
-    return (
-      parsed.protocol === 'https:' &&
-      allowedHosts.some((host) => parsed.hostname === host.toLowerCase())
-    );
-  } catch {
-    return false;
-  }
-}
 
 class HttpJsonVoucherProvider implements VoucherProvider {
   readonly code: string;
