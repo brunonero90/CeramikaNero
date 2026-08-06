@@ -50,8 +50,7 @@ jobs:
             'app/admin/(protected)/rezerwacje/actions.ts' \
             'app/admin/(protected)/rezerwacje/[id]/page.tsx' \
             package.json \
-            scripts/test-linked-workshops-pglite.mjs \
-            supabase/migrations/00000000000026_linked_workshops_and_reminders.sql
+            scripts/test-linked-workshops-pglite.mjs
 
       - name: Publish implementation commit
         if: ${{ hashFiles('scripts/apply-linked-workshops-sprint.mjs') != '' }}
