@@ -46,6 +46,11 @@ const navItems: NavItem[] = [
     allowedRoles: ['owner', 'manager'],
   },
   {
+    href: '/admin/vouchery',
+    label: 'Bony upominkowe',
+    allowedRoles: ['owner', 'manager'],
+  },
+  {
     href: '/admin/produkty',
     label: 'Produkty',
     allowedRoles: ['owner', 'manager'],
