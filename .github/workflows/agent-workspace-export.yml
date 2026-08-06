@@ -1,0 +1,24 @@
+name: Agent workspace export
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Package workspace
+        run: tar --exclude=.git -czf workspace.tgz .
+      - name: Upload workspace
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-workspace
+          path: workspace.tgz
+          retention-days: 1
