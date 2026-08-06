@@ -38,6 +38,18 @@ jobs:
             git push origin HEAD:${{ github.head_ref }}
           fi
 
+      - name: Apply pending migration fix once
+        run: |
+          if [ -f scripts/fix-voucher-migration-composites.py ]; then
+            python scripts/fix-voucher-migration-composites.py
+            rm scripts/fix-voucher-migration-composites.py
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "Fix voucher migration composite assignments"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
