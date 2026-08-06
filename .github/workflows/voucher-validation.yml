@@ -34,7 +34,9 @@ jobs:
         run: npm run test:migrations
 
       - name: Voucher lifecycle integration
-        run: npm run test:vouchers:pglite
+        run: |
+          node -e "const fs=require('fs'); const p='scripts/test-voucher-lifecycle-pglite.mjs'; let s=fs.readFileSync(p,'utf8'); const a=\"assert(state.voucher_payment_status === 'paid', 'Voucher ledger not committed');\"; const b=\"assert(state.voucher_payment_status === 'paid', `Voucher ledger not committed: ${JSON.stringify(state)}`);\"; if(!s.includes(a)) throw new Error('diagnostic assertion not found'); fs.writeFileSync(p,s.replace(a,b));"
+          npm run test:vouchers:pglite
 
       - name: Unit tests
         run: npm test
