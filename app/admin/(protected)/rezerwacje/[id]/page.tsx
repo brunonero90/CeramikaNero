@@ -5,6 +5,7 @@ import {
   getBookingDetailAction,
   getBookingEventsAction,
   getBookingEmailsAction,
+  getLinkedBookingsAction,
   updateBookingNotesAction,
   setBookingAnalyticsExcludedAction,
 } from '../actions';
@@ -34,9 +35,10 @@ export default async function BookingDetailPage({
     notFound();
   }
 
-  const [events, emails] = await Promise.all([
+  const [events, emails, linkedBookings] = await Promise.all([
     getBookingEventsAction(id),
     getBookingEmailsAction(id),
+    getLinkedBookingsAction(id),
   ]);
 
   const profile = booking.customer_profiles as {
@@ -278,6 +280,31 @@ export default async function BookingDetailPage({
           </dl>
         </section>
       </div>
+
+      {linkedBookings.length ? (
+        <section className="rounded-lg border border-accent-primary/30 bg-white p-4">
+          <h2 className="mb-3 font-semibold">Powiązane etapy rezerwacji</h2>
+          <ul className="space-y-2 text-sm">
+            {linkedBookings.map((linked) => (
+              <li
+                key={linked.id}
+                className="flex flex-wrap items-center justify-between gap-2"
+              >
+                <span>
+                  {linked.relationship} · {linked.workshop_title} ·{' '}
+                  {formatWarsawDateTime(linked.starts_at)} · {linked.status}
+                </span>
+                <Link
+                  href={`/admin/rezerwacje/${linked.id}`}
+                  className="underline"
+                >
+                  {linked.reference}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <section className="rounded-lg border bg-white p-4">
         <h2 className="mb-3 font-semibold">Notatki wewnętrzne</h2>

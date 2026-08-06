@@ -9,6 +9,7 @@ import {
 import {
   buildAdminNotificationEmail,
   buildCustomerConfirmationEmail,
+  buildReminderEmail,
   getBookingAdminEmail,
 } from '@/lib/booking/email-templates';
 import { emailTypeSchema } from '@/lib/database/schema';
@@ -34,6 +35,7 @@ export type DispatchSummary = {
   failed: number;
   skipped: number;
   resendConfigured: boolean;
+  remindersQueued: number;
 };
 
 type ClaimedEmail = {
@@ -67,6 +69,12 @@ async function buildPayload(row: ClaimedEmail): Promise<{
       ...buildCustomerConfirmationEmail(ctx),
     };
   }
+  if (type === 'reminder') {
+    return {
+      to: ctx.customerEmail,
+      ...buildReminderEmail(ctx),
+    };
+  }
   if (type === 'admin_notification') {
     const adminTo = getBookingAdminEmail();
     if (!adminTo) return null;
@@ -89,9 +97,32 @@ export async function dispatchPendingBookingEmails(
     failed: 0,
     skipped: 0,
     resendConfigured: isResendConfigured(),
+    remindersQueued: 0,
   };
 
   const supabase = createAdminClient();
+  const reminderQueue = await (
+    supabase as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{
+        data: { queued?: number } | null;
+        error: { message: string } | null;
+      }>;
+    }
+  ).rpc('enqueue_booking_reminders', {
+    p_window_start: null,
+    p_window_end: null,
+  });
+  if (reminderQueue.error) {
+    console.warn(
+      'enqueue_booking_reminders failed',
+      reminderQueue.error.message
+    );
+  } else {
+    summary.remindersQueued = Number(reminderQueue.data?.queued ?? 0);
+  }
   // RPC added in migration 00000000000010_booking_email_admin_retry.
   let rows: ClaimedEmail[] = [];
   const claimed = await supabase.rpc(
@@ -111,19 +142,21 @@ export async function dispatchPendingBookingEmails(
       .from('booking_emails')
       .select('id, booking_id, email_type, status')
       .in('status', ['pending', 'failed'])
-      .in('email_type', ['confirmation', 'admin_notification'])
+      .in('email_type', ['confirmation', 'admin_notification', 'reminder'])
       .order('created_at', { ascending: true })
       .limit(limit);
     if (fallback.error) {
       console.error('email dispatch fallback select failed', fallback.error);
       throw new Error('Email claim failed');
     }
-    rows = ((fallback.data ?? []) as Array<{
-      id: string;
-      booking_id: string;
-      email_type: string;
-      status: string;
-    }>).map((row) => ({
+    rows = (
+      (fallback.data ?? []) as Array<{
+        id: string;
+        booking_id: string;
+        email_type: string;
+        status: string;
+      }>
+    ).map((row) => ({
       ...row,
       attempt_count: 0,
     }));
@@ -133,6 +166,45 @@ export async function dispatchPendingBookingEmails(
   summary.claimed = rows.length;
 
   for (const row of rows) {
+    if (row.email_type === 'reminder') {
+      const eligibility = await supabase
+        .from('bookings')
+        .select('status, workshop_sessions!inner(starts_at, status)')
+        .eq('id', row.booking_id)
+        .maybeSingle();
+      const booking = eligibility.data as unknown as {
+        status: string;
+        workshop_sessions: { starts_at: string; status: string };
+      } | null;
+      if (
+        !booking ||
+        booking.status !== 'confirmed' ||
+        !['scheduled', 'sold_out'].includes(booking.workshop_sessions.status) ||
+        booking.workshop_sessions.starts_at <= new Date().toISOString()
+      ) {
+        await supabase
+          .from('booking_emails')
+          .update(
+            emailRowUpdate({
+              status: 'failed',
+              claimed_at: null,
+              error_message:
+                'permanent: booking no longer eligible for reminder',
+              next_attempt_at: null,
+            })
+          )
+          .eq('id', row.id);
+        await supabase.from('booking_events').insert({
+          booking_id: row.booking_id,
+          event_type: 'reminder_skipped',
+          actor_type: 'system',
+          metadata: { reason: 'booking_not_eligible_at_dispatch' },
+        } as never);
+        summary.skipped += 1;
+        continue;
+      }
+    }
+
     const attempts = (row.attempt_count ?? 0) + 1;
     if (attempts > MAX_ATTEMPTS) {
       await supabase
@@ -221,6 +293,19 @@ export async function dispatchPendingBookingEmails(
           })
         )
         .eq('id', row.id);
+      if (row.email_type === 'reminder') {
+        await supabase.from('booking_events').insert({
+          booking_id: row.booking_id,
+          event_type: 'reminder_sent',
+          actor_type: 'system',
+          metadata: { provider_message_id: result.providerMessageId ?? null },
+        } as never);
+        console.info('[booking-reminder] sent', {
+          bookingId: row.booking_id,
+          emailId: row.id,
+          providerMessageId: result.providerMessageId ?? null,
+        });
+      }
       summary.sent += 1;
       continue;
     }

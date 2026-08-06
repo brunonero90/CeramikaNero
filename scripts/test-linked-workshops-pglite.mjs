@@ -208,7 +208,10 @@ async function exerciseLinkedCheckout(db) {
   const firstResult = first.rows[0].result;
   const orderId = firstResult.order_id;
   assert(orderId, 'Linked checkout did not return an order');
-  assert(firstResult.total_gross_grosz === 15000, 'Both stages were not priced');
+  assert(
+    firstResult.total_gross_grosz === 15000,
+    'Both stages were not priced'
+  );
   assert(firstResult.booking_references.length === 2, 'Expected two bookings');
 
   const state = await db.query(
@@ -224,8 +227,14 @@ async function exerciseLinkedCheckout(db) {
     [orderId, fixture.primary_session_id, fixture.followup_session_id]
   );
   const row = state.rows[0];
-  assert(row.booking_count === 2, 'Linked checkout did not create two bookings');
-  assert(row.link_count === 1, 'Linked checkout did not persist one booking link');
+  assert(
+    row.booking_count === 2,
+    'Linked checkout did not create two bookings'
+  );
+  assert(
+    row.link_count === 1,
+    'Linked checkout did not persist one booking link'
+  );
   assert(row.adult_without_age === 2, 'Adult ages were persisted unexpectedly');
   assert(row.primary_reserved === 1, 'Primary capacity was not reserved');
   assert(row.followup_reserved === 1, 'Follow-up capacity was not reserved');
@@ -246,7 +255,10 @@ async function exerciseLinkedCheckout(db) {
       lines,
     ]
   );
-  assert(replay.rows[0].result.reused === true, 'Checkout replay was not reused');
+  assert(
+    replay.rows[0].result.reused === true,
+    'Checkout replay was not reused'
+  );
 
   const replayState = await db.query(
     `select
@@ -257,9 +269,18 @@ async function exerciseLinkedCheckout(db) {
     [orderId, fixture.primary_session_id, fixture.followup_session_id]
   );
   assert(replayState.rows[0].booking_count === 2, 'Replay duplicated bookings');
-  assert(replayState.rows[0].link_count === 1, 'Replay duplicated booking links');
-  assert(replayState.rows[0].primary_reserved === 1, 'Replay doubled primary capacity');
-  assert(replayState.rows[0].followup_reserved === 1, 'Replay doubled follow-up capacity');
+  assert(
+    replayState.rows[0].link_count === 1,
+    'Replay duplicated booking links'
+  );
+  assert(
+    replayState.rows[0].primary_reserved === 1,
+    'Replay doubled primary capacity'
+  );
+  assert(
+    replayState.rows[0].followup_reserved === 1,
+    'Replay doubled follow-up capacity'
+  );
 
   const bookings = await db.query(
     `select id from public.bookings where order_id = $1 order by created_at asc`,
@@ -278,12 +299,26 @@ async function exerciseLinkedCheckout(db) {
       (select reserved_count from public.workshop_sessions where id = $3) as followup_reserved`,
     [orderId, fixture.primary_session_id, fixture.followup_session_id]
   );
-  assert(cancelled.rows[0].cancelled_count === 2, 'Linked cancellation missed a stage');
-  assert(cancelled.rows[0].primary_reserved === 0, 'Primary capacity was not released');
-  assert(cancelled.rows[0].followup_reserved === 0, 'Follow-up capacity was not released');
+  assert(
+    cancelled.rows[0].cancelled_count === 2,
+    'Linked cancellation missed a stage'
+  );
+  assert(
+    cancelled.rows[0].primary_reserved === 0,
+    'Primary capacity was not released'
+  );
+  assert(
+    cancelled.rows[0].followup_reserved === 0,
+    'Follow-up capacity was not released'
+  );
 }
 
-async function createReminderBooking(db, provider, email, status = 'confirmed') {
+async function createReminderBooking(
+  db,
+  provider,
+  email,
+  status = 'confirmed'
+) {
   const result = await db.query(
     `with category as (
       select id from public.workshop_categories where slug = 'linked-fixture'
@@ -365,12 +400,18 @@ async function exerciseReminders(db) {
   const first = await db.query(
     `select public.enqueue_booking_reminders(null, null) as result`
   );
-  assert(first.rows[0].result.queued === 2, 'Stripe/manual reminders were not queued');
+  assert(
+    first.rows[0].result.queued === 2,
+    'Stripe/manual reminders were not queued'
+  );
 
   const second = await db.query(
     `select public.enqueue_booking_reminders(null, null) as result`
   );
-  assert(second.rows[0].result.queued === 0, 'Reminder rerun queued duplicates');
+  assert(
+    second.rows[0].result.queued === 0,
+    'Reminder rerun queued duplicates'
+  );
 
   const counts = await db.query(
     `select
@@ -380,8 +421,14 @@ async function exerciseReminders(db) {
        where booking_id = $3 and email_type = 'reminder') as cancelled_count`,
     [stripeBooking, manualBooking, cancelledBooking]
   );
-  assert(counts.rows[0].eligible_count === 2, 'Expected one reminder per eligible booking');
-  assert(counts.rows[0].cancelled_count === 0, 'Cancelled booking received a reminder');
+  assert(
+    counts.rows[0].eligible_count === 2,
+    'Expected one reminder per eligible booking'
+  );
+  assert(
+    counts.rows[0].cancelled_count === 0,
+    'Cancelled booking received a reminder'
+  );
 
   await db.query(
     `select public.cancel_booking($1, 'staff', 'cancel before reminder', null, null)`,
@@ -390,14 +437,20 @@ async function exerciseReminders(db) {
   const cleanup = await db.query(
     `select public.enqueue_booking_reminders(null, null) as result`
   );
-  assert(cleanup.rows[0].result.skipped >= 1, 'Cancelled queued reminder was not skipped');
+  assert(
+    cleanup.rows[0].result.skipped >= 1,
+    'Cancelled queued reminder was not skipped'
+  );
 
   const cancelledRow = await db.query(
     `select status, error_message from public.booking_emails
      where booking_id = $1 and email_type = 'reminder'`,
     [stripeBooking]
   );
-  assert(cancelledRow.rows[0].status === 'failed', 'Cancelled reminder stayed dispatchable');
+  assert(
+    cancelledRow.rows[0].status === 'failed',
+    'Cancelled reminder stayed dispatchable'
+  );
   assert(
     String(cancelledRow.rows[0].error_message).includes('permanent'),
     'Cancelled reminder was not permanently closed'

@@ -63,6 +63,15 @@ export default async function EditWorkshopPage({
   const baseUrl = data.publicUrl.replace(/\/$/, '');
 
   const mapped = mapWorkshop(workshop);
+  const operational = workshop as typeof workshop & {
+    participant_audience?: 'adult' | 'child' | 'mixed';
+    collect_participant_age?: boolean;
+    workshop_type?: string | null;
+    requires_followup_session?: boolean;
+    followup_workshop_type?: string | null;
+    followup_min_days?: number | null;
+    followup_max_days?: number | null;
+  };
   const initialData = {
     ...mapped,
     shortDescription: mapped.shortDescription ?? '',
@@ -70,6 +79,13 @@ export default async function EditWorkshopPage({
     practicalInformation: mapped.practicalInformation ?? '',
     minimumAge: mapped.minimumAge?.toString() ?? '',
     maximumAge: mapped.maximumAge?.toString() ?? '',
+    participantAudience: operational.participant_audience ?? 'adult',
+    collectParticipantAge: operational.collect_participant_age ?? false,
+    workshopType: operational.workshop_type ?? mapped.slug,
+    requiresFollowupSession: operational.requires_followup_session ?? false,
+    followupWorkshopType: operational.followup_workshop_type ?? '',
+    followupMinDays: operational.followup_min_days?.toString() ?? '5',
+    followupMaxDays: operational.followup_max_days?.toString() ?? '45',
     defaultPriceGrossPln: Number(groszToZloty(mapped.defaultPriceGrossGrosz)),
     externalBookingUrl: mapped.externalBookingUrl ?? '',
     seoTitle: mapped.seoTitle ?? '',

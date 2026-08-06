@@ -28,6 +28,7 @@ export const BOOKING_EMAIL_TYPES = [
   'manual_confirmation',
   'payment_problem',
   'admin_notification',
+  'reminder',
 ] as const;
 
 export type BookingEmailType = (typeof BOOKING_EMAIL_TYPES)[number];

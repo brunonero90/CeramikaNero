@@ -24,6 +24,13 @@ type WorkshopFormData = {
   practicalInformation: string;
   minimumAge: string;
   maximumAge: string;
+  participantAudience: 'adult' | 'child' | 'mixed';
+  collectParticipantAge: boolean;
+  workshopType: string;
+  requiresFollowupSession: boolean;
+  followupWorkshopType: string;
+  followupMinDays: string;
+  followupMaxDays: string;
   defaultDurationMinutes: number;
   defaultCapacity: number;
   defaultPriceGrossPln: number;
@@ -64,6 +71,9 @@ export function WorkshopForm({
   const [bookingMode, setBookingMode] = useState<BookingMode>(
     initialData?.bookingMode ?? 'scheduled'
   );
+  const [requiresFollowupSession, setRequiresFollowupSession] = useState(
+    initialData?.requiresFollowupSession ?? false
+  );
   const [featuredMediaId, setFeaturedMediaId] = useState<string | null>(
     initialData?.featuredMediaId ?? null
   );
@@ -83,6 +93,13 @@ export function WorkshopForm({
     practicalInformation: '',
     minimumAge: '',
     maximumAge: '',
+    participantAudience: 'adult',
+    collectParticipantAge: false,
+    workshopType: '',
+    requiresFollowupSession: false,
+    followupWorkshopType: '',
+    followupMinDays: '5',
+    followupMaxDays: '45',
     defaultDurationMinutes: 120,
     defaultCapacity: 10,
     defaultPriceGrossPln: 0,
@@ -428,6 +445,112 @@ export function WorkshopForm({
               )}
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="rounded-lg border bg-white p-4">
+        <h2 className="mb-3 text-lg font-medium">Uczestnicy i etapy</h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label
+              htmlFor="participantAudience"
+              className="block text-sm font-medium"
+            >
+              Grupa uczestników
+            </label>
+            <select
+              id="participantAudience"
+              name="participantAudience"
+              defaultValue={defaultData.participantAudience}
+              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+            >
+              <option value="adult">Dorośli</option>
+              <option value="child">Dzieci / młodzież</option>
+              <option value="mixed">Grupa mieszana</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="workshopType" className="block text-sm font-medium">
+              Typ operacyjny warsztatu
+            </label>
+            <input
+              id="workshopType"
+              name="workshopType"
+              defaultValue={defaultData.workshopType || slug}
+              required
+              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+            />
+          </div>
+          <label className="flex items-center gap-2 text-sm">
+            <input
+              name="collectParticipantAge"
+              type="checkbox"
+              defaultChecked={defaultData.collectParticipantAge}
+            />
+            Zbieraj wiek dzieci
+          </label>
+          <label className="flex items-center gap-2 text-sm">
+            <input
+              name="requiresFollowupSession"
+              type="checkbox"
+              checked={requiresFollowupSession}
+              onChange={(event) =>
+                setRequiresFollowupSession(event.target.checked)
+              }
+            />
+            Wymaga drugiego terminu
+          </label>
+          {requiresFollowupSession ? (
+            <>
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="followupWorkshopType"
+                  className="block text-sm font-medium"
+                >
+                  Typ lub slug warsztatu drugiego etapu
+                </label>
+                <input
+                  id="followupWorkshopType"
+                  name="followupWorkshopType"
+                  defaultValue={defaultData.followupWorkshopType}
+                  required
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="followupMinDays"
+                  className="block text-sm font-medium"
+                >
+                  Najwcześniej po (dni)
+                </label>
+                <input
+                  id="followupMinDays"
+                  name="followupMinDays"
+                  type="number"
+                  min={0}
+                  defaultValue={defaultData.followupMinDays}
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="followupMaxDays"
+                  className="block text-sm font-medium"
+                >
+                  Najpóźniej po (dni)
+                </label>
+                <input
+                  id="followupMaxDays"
+                  name="followupMaxDays"
+                  type="number"
+                  min={0}
+                  defaultValue={defaultData.followupMaxDays}
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+                />
+              </div>
+            </>
+          ) : null}
         </div>
       </section>
 

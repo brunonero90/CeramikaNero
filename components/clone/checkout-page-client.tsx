@@ -13,6 +13,7 @@ import {
   type VoucherCheckoutPreview,
 } from '@/lib/vouchers/checkout';
 import { formatPrice } from '@/lib/utils/price';
+import type { CartLine, CartLineWorkshop } from '@/lib/cart/types';
 
 type Participant = {
   display_name: string;
@@ -35,6 +36,14 @@ function formatExpiry(value: string | null): string {
   if (!value) return 'bez terminu ważności';
   return new Intl.DateTimeFormat('pl-PL', {
     dateStyle: 'long',
+    timeZone: 'Europe/Warsaw',
+  }).format(new Date(value));
+}
+
+function formatFollowupDate(value: string): string {
+  return new Intl.DateTimeFormat('pl-PL', {
+    dateStyle: 'full',
+    timeStyle: 'short',
     timeZone: 'Europe/Warsaw',
   }).format(new Date(value));
 }
@@ -77,6 +86,9 @@ export function CheckoutPageClient({
   const [participantsBySession, setParticipantsBySession] = useState<
     Record<string, Participant[]>
   >({});
+  const [followupByPrimary, setFollowupByPrimary] = useState<
+    Record<string, string>
+  >({});
 
   const [hasVoucher, setHasVoucher] = useState(false);
   const [voucherProvider, setVoucherProvider] = useState('auto');
@@ -96,20 +108,80 @@ export function CheckoutPageClient({
     () =>
       (validated?.lines ?? lines).some(
         (line) =>
-          (line.type === 'physical_product' || line.type === 'studio_service') &&
+          (line.type === 'physical_product' ||
+            line.type === 'studio_service') &&
           line.fulfillment === 'shipping' &&
           ('requiresShipping' in line ? line.requiresShipping : true)
       ),
     [validated, lines]
   );
 
+  const expandedLines = useMemo<CartLine[]>(() => {
+    if (!validated) return [];
+    const result: CartLine[] = [];
+    for (const line of validated.lines) {
+      if (line.type !== 'workshop_session' || !line.requiresFollowupSession) {
+        result.push(line);
+        continue;
+      }
+      const selected = (line.followupOptions ?? []).find(
+        (option) => option.sessionId === followupByPrimary[line.sessionId]
+      );
+      if (!selected) {
+        result.push({ ...line, linkRole: 'primary' });
+        continue;
+      }
+      const groupKey = `${line.sessionId}:${selected.sessionId}`;
+      result.push({ ...line, linkRole: 'primary', linkGroupKey: groupKey });
+      const followup: CartLineWorkshop = {
+        type: 'workshop_session',
+        key: `followup:${line.sessionId}:${selected.sessionId}`,
+        sessionId: selected.sessionId,
+        workshopId: selected.workshopId,
+        workshopSlug: selected.workshopSlug,
+        workshopTitle: selected.workshopTitle,
+        startsAt: selected.startsAt,
+        timezone: selected.timezone,
+        venueKey: selected.venueKey,
+        locationName: selected.locationName,
+        locationAddress: selected.locationAddress,
+        quantity: line.quantity,
+        unitPriceHintGrosz: selected.unitPriceGrosz,
+        linkRole: 'followup',
+        linkedPrimarySessionId: line.sessionId,
+        linkGroupKey: groupKey,
+      };
+      result.push(followup);
+    }
+    return result;
+  }, [validated, followupByPrimary]);
+
+  const followupComplete = useMemo(
+    () =>
+      (validated?.lines ?? []).every(
+        (line) =>
+          line.type !== 'workshop_session' ||
+          !line.requiresFollowupSession ||
+          Boolean(followupByPrimary[line.sessionId])
+      ),
+    [validated, followupByPrimary]
+  );
+
+  const checkoutSubtotalGrosz = useMemo(
+    () =>
+      expandedLines.reduce(
+        (sum, line) => sum + line.unitPriceHintGrosz * line.quantity,
+        0
+      ),
+    [expandedLines]
+  );
+
   const voucherEligibleCart = useMemo(
     () =>
-      (validated?.lines ?? []).length > 0 &&
-      (validated?.lines ?? []).every(
-        (line) => line.type === 'workshop_session'
-      ),
-    [validated]
+      followupComplete &&
+      expandedLines.length > 0 &&
+      expandedLines.every((line) => line.type === 'workshop_session'),
+    [expandedLines, followupComplete]
   );
 
   const voucherFullyPays = voucherPreview?.amountDueGrosz === 0;
@@ -132,6 +204,13 @@ export function CheckoutPageClient({
         }));
       }
       setParticipantsBySession(next);
+      const followups: Record<string, string> = {};
+      for (const line of result.lines) {
+        if (line.type === 'workshop_session' && line.requiresFollowupSession) {
+          followups[line.sessionId] = '';
+        }
+      }
+      setFollowupByPrimary(followups);
       setVoucherPreview(null);
       setValidatedVoucherCode('');
       setVoucherError(null);
@@ -162,6 +241,10 @@ export function CheckoutPageClient({
       setVoucherError('Najpierw popraw niedostępne pozycje w koszyku.');
       return;
     }
+    if (!followupComplete) {
+      setVoucherError('Wybierz obowiązkowy termin drugiego etapu warsztatu.');
+      return;
+    }
     if (!voucherEligibleCart) {
       setVoucherError('Bon można wykorzystać wyłącznie na warsztaty.');
       return;
@@ -178,7 +261,7 @@ export function CheckoutPageClient({
         code: normalized,
         providerCode: voucherProvider,
         purchaserEmail: email || null,
-        lines: validated.lines,
+        lines: expandedLines,
       });
       if (!result.ok) {
         setVoucherPreview(null);
@@ -195,6 +278,12 @@ export function CheckoutPageClient({
     event.preventDefault();
     if (!validated?.canCheckout) {
       setError('Koszyk zawiera niedostępne pozycje.');
+      return;
+    }
+    if (!followupComplete) {
+      setError(
+        'Wybierz obowiązkowy termin szkliwienia przed złożeniem rezerwacji.'
+      );
       return;
     }
     if (paymentUnavailable) {
@@ -217,6 +306,38 @@ export function CheckoutPageClient({
 
     startTransition(async () => {
       setError(null);
+      const checkoutParticipants: Record<string, Participant[]> = {};
+      for (const line of validated.lines) {
+        if (line.type !== 'workshop_session') continue;
+        const source = participantsBySession[line.sessionId] ?? [];
+        const participants = source.map((participant, index) => {
+          if (line.participantAudience === 'adult') {
+            return {
+              ...participant,
+              display_name:
+                index === 0
+                  ? `${firstName} ${lastName}`.trim()
+                  : participant.display_name,
+              age: '',
+              participant_type: 'adult' as const,
+            };
+          }
+          if (line.participantAudience === 'child') {
+            return { ...participant, participant_type: 'child' as const };
+          }
+          return participant;
+        });
+        checkoutParticipants[line.sessionId] = participants;
+        const selectedFollowup = followupByPrimary[line.sessionId];
+        if (selectedFollowup) {
+          checkoutParticipants[selectedFollowup] = participants.map(
+            (participant) => ({
+              ...participant,
+            })
+          );
+        }
+      }
+
       const result = await submitCartOrder({
         purchaserFirstName: firstName,
         purchaserLastName: lastName,
@@ -227,7 +348,7 @@ export function CheckoutPageClient({
         termsAccepted: true as const,
         privacyPolicyVersion: '1.0',
         submissionKey,
-        participantsBySession,
+        participantsBySession: checkoutParticipants,
         voucherCode:
           hasVoucher && voucherPreview
             ? normalizeVoucherCode(voucherCode)
@@ -412,33 +533,73 @@ export function CheckoutPageClient({
 
         {(validated?.lines ?? [])
           .filter((line) => line.type === 'workshop_session')
-          .map((line) =>
-            line.type === 'workshop_session' ? (
+          .map((line) => {
+            if (line.type !== 'workshop_session') return null;
+            const participants = participantsBySession[line.sessionId] ?? [];
+            const adult = line.participantAudience === 'adult';
+            if (adult && line.quantity === 1) {
+              return (
+                <section
+                  key={line.key}
+                  className="space-y-2 rounded border p-3"
+                >
+                  <h2 className="text-lg font-semibold">
+                    Uczestnik — {line.workshopTitle}
+                  </h2>
+                  <p className="text-sm text-text-muted">
+                    Użyjemy imienia i nazwiska z danych kupującego. Nie musisz
+                    wpisywać ich drugi raz.
+                  </p>
+                </section>
+              );
+            }
+            return (
               <section key={line.key} className="space-y-3">
                 <h2 className="text-lg font-semibold">
-                  Uczestnicy — {line.workshopTitle}
+                  {adult ? 'Pozostali uczestnicy' : 'Uczestnicy'} —{' '}
+                  {line.workshopTitle}
                 </h2>
-                {line.ageRequired ? (
+                {adult ? (
                   <p className="text-sm text-text-muted">
-                    Wiek jest wymagany
-                    {line.minimumAge != null && line.maximumAge != null
-                      ? ` (limit ${line.minimumAge}–${line.maximumAge} lat)`
-                      : line.minimumAge != null
-                        ? ` (od ${line.minimumAge} lat)`
-                        : line.maximumAge != null
-                          ? ` (do ${line.maximumAge} lat)`
-                          : ''}
-                    .
+                    Pierwsze miejsce przypisujemy osobie kupującej. Podaj tylko
+                    pozostałych uczestników.
                   </p>
                 ) : null}
-                {(participantsBySession[line.sessionId] ?? []).map(
-                  (participant, index) => (
+                {participants.map((participant, index) => {
+                  if (adult && index === 0) return null;
+                  const child =
+                    line.participantAudience === 'child' ||
+                    (line.participantAudience === 'mixed' &&
+                      participant.participant_type === 'child');
+                  return (
                     <div
                       key={`${line.sessionId}-${index}`}
                       className="grid gap-2 border p-3 sm:grid-cols-2"
                     >
+                      {line.participantAudience === 'mixed' ? (
+                        <label className="text-sm">
+                          Uczestnik
+                          <select
+                            required
+                            className="mt-1 w-full border px-3 py-2"
+                            value={participant.participant_type}
+                            onChange={(event) =>
+                              updateParticipant(
+                                line.sessionId,
+                                index,
+                                'participant_type',
+                                event.target.value
+                              )
+                            }
+                          >
+                            <option value="unspecified">Wybierz</option>
+                            <option value="adult">Dorosły</option>
+                            <option value="child">Dziecko</option>
+                          </select>
+                        </label>
+                      ) : null}
                       <label className="text-sm">
-                        Imię / oznaczenie
+                        Imię uczestnika
                         <input
                           required
                           className="mt-1 w-full border px-3 py-2"
@@ -453,13 +614,13 @@ export function CheckoutPageClient({
                           }
                         />
                       </label>
-                      {line.ageRequired ? (
+                      {line.collectParticipantAge && child ? (
                         <label className="text-sm">
-                          Wiek (wymagany)
+                          Wiek dziecka
                           <input
                             type="number"
                             min={line.minimumAge ?? 0}
-                            max={line.maximumAge ?? 120}
+                            max={line.maximumAge ?? 17}
                             required
                             className="mt-1 w-full border px-3 py-2"
                             value={participant.age}
@@ -490,14 +651,58 @@ export function CheckoutPageClient({
                             )
                           }
                         />
-                        <span className="mt-1 block text-xs text-text-muted">
-                          Podaj tylko informacje potrzebne do organizacji
-                          warsztatu. Nie wysyłaj diagnoz ani numerów dokumentów.
-                        </span>
                       </label>
                     </div>
-                  )
-                )}
+                  );
+                })}
+              </section>
+            );
+          })}
+
+        {(validated?.lines ?? [])
+          .filter(
+            (line) =>
+              line.type === 'workshop_session' && line.requiresFollowupSession
+          )
+          .map((line) =>
+            line.type === 'workshop_session' ? (
+              <section
+                key={`followup-picker-${line.sessionId}`}
+                className="space-y-3 rounded border border-accent-primary/30 bg-surface-raised p-4"
+              >
+                <h2 className="text-lg font-semibold">
+                  Drugi etap — szkliwienie
+                </h2>
+                <p className="text-sm text-text-muted">
+                  Ten warsztat wymaga drugiego spotkania. Zarezerwujemy tę samą
+                  liczbę miejsc w obu terminach w jednym zamówieniu.
+                </p>
+                <label className="block text-sm">
+                  Wybierz termin szkliwienia
+                  <select
+                    required
+                    className="mt-1 w-full border px-3 py-2"
+                    value={followupByPrimary[line.sessionId] ?? ''}
+                    onChange={(event) => {
+                      setFollowupByPrimary((previous) => ({
+                        ...previous,
+                        [line.sessionId]: event.target.value,
+                      }));
+                      resetVoucherValidation();
+                    }}
+                  >
+                    <option value="">Wybierz termin</option>
+                    {(line.followupOptions ?? []).map((option) => (
+                      <option key={option.sessionId} value={option.sessionId}>
+                        {formatFollowupDate(option.startsAt)} ·{' '}
+                        {option.workshopTitle} ·{' '}
+                        {option.unitPriceGrosz > 0
+                          ? formatPrice(option.unitPriceGrosz * line.quantity)
+                          : 'w cenie'}
+                      </option>
+                    ))}
+                  </select>
+                </label>
               </section>
             ) : null
           )}
@@ -594,13 +799,15 @@ export function CheckoutPageClient({
                   <p>Ważny: {formatExpiry(voucherPreview.validUntil)}</p>
                   {voucherPreview.allowedWorkshopTypes.length ? (
                     <p>
-                      Ograniczenia: {voucherPreview.allowedWorkshopTypes.join(', ')}
+                      Ograniczenia:{' '}
+                      {voucherPreview.allowedWorkshopTypes.join(', ')}
                     </p>
                   ) : (
                     <p>Bez ograniczeń typu warsztatu.</p>
                   )}
                   <p>
-                    Dostępne saldo: {formatPrice(voucherPreview.remainingValueGrosz)}
+                    Dostępne saldo:{' '}
+                    {formatPrice(voucherPreview.remainingValueGrosz)}
                   </p>
                 </div>
               ) : null}
@@ -661,7 +868,8 @@ export function CheckoutPageClient({
               </label>
             </div>
             <p className="text-sm text-amber-900">
-              Wysyłka na terenie Polski. Koszt dostawy — wycena przed płatnością.
+              Wysyłka na terenie Polski. Koszt dostawy — wycena przed
+              płatnością.
             </p>
           </section>
         ) : null}
@@ -708,7 +916,7 @@ export function CheckoutPageClient({
           <p className="flex justify-between gap-3">
             <span>Suma pozycji</span>
             <span className="font-semibold">
-              {formatPrice(validated?.subtotalGrosz ?? 0)}
+              {formatPrice(checkoutSubtotalGrosz)}
             </span>
           </p>
           {voucherPreview ? (
@@ -729,12 +937,12 @@ export function CheckoutPageClient({
             </>
           ) : (
             <p className="flex justify-between gap-3 text-base font-semibold">
-              <span>{voucherFullyPays ? 'Pozostało do zapłaty' : 'Do zapłaty'}</span>
+              <span>
+                {voucherFullyPays ? 'Pozostało do zapłaty' : 'Do zapłaty'}
+              </span>
               <span>
                 {formatPrice(
-                  voucherPreview?.amountDueGrosz ??
-                    validated?.subtotalGrosz ??
-                    0
+                  voucherPreview?.amountDueGrosz ?? checkoutSubtotalGrosz
                 )}
               </span>
             </p>
@@ -753,6 +961,7 @@ export function CheckoutPageClient({
             isPending ||
             voucherChecking ||
             !validated?.canCheckout ||
+            !followupComplete ||
             paymentUnavailable
           }
           className="w-full bg-accent-primary px-4 py-3 text-sm font-semibold text-white disabled:bg-gray-400"

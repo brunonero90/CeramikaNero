@@ -670,3 +670,77 @@ comment on function public.submit_cart_order_v4(
   text, jsonb, jsonb, text, text, text
 ) is
   'Unified checkout with adult-name reuse, child-only age collection and atomic linked booking records.';
+
+
+-- Admin helper for metadata not present in the original workshop upsert RPC.
+create or replace function public.set_workshop_operational_metadata(
+  p_workshop_id uuid,
+  p_participant_audience text,
+  p_collect_participant_age boolean,
+  p_workshop_type text,
+  p_requires_followup_session boolean,
+  p_followup_workshop_type text,
+  p_followup_min_days integer,
+  p_followup_max_days integer
+)
+returns void
+language plpgsql
+security invoker
+set search_path = public
+as $$
+begin
+  update public.workshops
+  set participant_audience = p_participant_audience,
+      collect_participant_age = coalesce(p_collect_participant_age, false),
+      workshop_type = nullif(trim(p_workshop_type), ''),
+      requires_followup_session = coalesce(p_requires_followup_session, false),
+      followup_workshop_type = nullif(trim(coalesce(p_followup_workshop_type, '')), ''),
+      followup_min_days = p_followup_min_days,
+      followup_max_days = p_followup_max_days,
+      updated_at = timezone('utc'::text, now())
+  where id = p_workshop_id;
+  if not found then raise exception 'Workshop not found'; end if;
+end;
+$$;
+
+revoke all on function public.set_workshop_operational_metadata(
+  uuid, text, boolean, text, boolean, text, integer, integer
+) from public, anon;
+grant execute on function public.set_workshop_operational_metadata(
+  uuid, text, boolean, text, boolean, text, integer, integer
+) to authenticated, service_role;
+
+create or replace function public.get_linked_booking_summary(p_booking_id uuid)
+returns jsonb
+language sql
+security invoker
+set search_path = public
+as $$
+  select coalesce(jsonb_agg(result order by result.starts_at), '[]'::jsonb)
+  from (
+    select
+      b.id,
+      b.booking_reference as reference,
+      case
+        when bl.primary_booking_id = p_booking_id then 'drugi etap'
+        else 'pierwszy etap'
+      end as relationship,
+      w.title as workshop_title,
+      s.starts_at,
+      b.status
+    from public.booking_links bl
+    join public.bookings b
+      on b.id = case
+        when bl.primary_booking_id = p_booking_id then bl.followup_booking_id
+        else bl.primary_booking_id
+      end
+    join public.workshop_sessions s on s.id = b.workshop_session_id
+    join public.workshops w on w.id = s.workshop_id
+    where bl.primary_booking_id = p_booking_id
+       or bl.followup_booking_id = p_booking_id
+  ) result;
+$$;
+
+revoke all on function public.get_linked_booking_summary(uuid) from public, anon;
+grant execute on function public.get_linked_booking_summary(uuid)
+  to authenticated, service_role;
