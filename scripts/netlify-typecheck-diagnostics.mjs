@@ -6,10 +6,14 @@ const result = spawnSync('npm', ['run', 'typecheck', '--', '--pretty', 'false'],
   env: process.env,
 });
 const output = `${result.stdout ?? ''}\n${result.stderr ?? ''}`.trim();
-const matches = /lib\/cart\/checkout\.ts/.test(output);
+const checkoutLines = output
+  .split('\n')
+  .filter((line) => line.includes('lib/cart/checkout.ts'))
+  .join('\n');
+const matches = /TS(?:2322|2339|2345|2769)\b/.test(checkoutLines);
 
 await mkdir('public', { recursive: true });
 await writeFile('public/index.html', '<p>TypeScript probe completed.</p>');
 console.log(`TypeScript exit code: ${result.status ?? 'unknown'}`);
-console.log(`Unified checkout diagnostics present: ${matches}`);
+console.log(`Checkout diagnostic group A present: ${matches}`);
 process.exit(matches ? 0 : 1);
