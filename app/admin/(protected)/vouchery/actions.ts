@@ -164,3 +164,33 @@ export async function extendVoucherAction(formData: FormData): Promise<void> {
   if (error) throw new Error('Nie udało się przedłużyć bonu.');
   revalidatePath('/admin/vouchery');
 }
+
+export async function refundVoucherOrderAction(formData: FormData): Promise<void> {
+  const admin = await requireAnyRole(['owner', 'manager']);
+  const orderId = z.string().uuid().parse(String(formData.get('orderId')));
+  const reason = String(formData.get('reason') ?? '').trim().slice(0, 1000);
+  const operationKey = z.string().uuid().parse(String(formData.get('operationKey')));
+  if (!reason) throw new Error('Podaj powód zwrotu.');
+
+  const supabase = createCartAdminClient() as unknown as {
+    rpc: (
+      name: string,
+      args: Record<string, unknown>
+    ) => Promise<{ data: unknown; error: { message: string } | null }>;
+  };
+  const { error } = await supabase.rpc('refund_voucher_only_order', {
+    p_order_id: orderId,
+    p_reason: reason,
+    p_operation_key: `voucher-refund-${operationKey}`,
+    p_actor_id: admin.userId,
+    p_actor_role: admin.role,
+  });
+  if (error) {
+    console.error('refund_voucher_only_order failed', error.message);
+    throw new Error('Nie udało się zwrócić bonu i zwolnić miejsc.');
+  }
+
+  revalidatePath('/admin/vouchery');
+  revalidatePath(`/admin/zamowienia/${orderId}`);
+  revalidatePath('/admin/zamowienia');
+}
