@@ -1,0 +1,281 @@
+ayment row is missing for reused voucher order';
++    end if;
++
++    v_result := jsonb_set(
++      v_result,
++      '{payment_id}',
++      to_jsonb(v_payment_id),
++      true
++    );
++  end if;
++
++  if v_order.selected_payment_method is distinct from 'voucher' then
++    update public.orders
++    set selected_payment_method = p_selected_payment_method,
++        updated_at = v_now
++    where id = v_order_id;
++
++    if v_payment_id is not null then
++      update public.payments
++      set provider = case
++            when p_selected_payment_method = 'stripe' then 'stripe'
++            else 'bank_transfer'
++          end,
++          status = case
++            when v_reused then status
++            when p_selected_payment_method = 'stripe' then 'created'
++            else 'pending'
++          end,
++          updated_at = v_now
++      where id = v_payment_id
++        and status in ('created', 'pending');
++    end if;
++  end if;
++
++  if v_public_token is not null then
++    insert into public.order_portal_token_recovery (
++      order_id,
++      public_lookup_token
++    )
++    values (
++      v_order_id,
++      v_public_token
++    )
++    on conflict (order_id) do nothing;
++  else
++    select nullif(t.public_lookup_token, '') into v_public_token
++    from public.order_portal_token_recovery t
++    where t.order_id = v_order_id;
++
++    if v_public_token is not null then
++      v_result := jsonb_set(
++        v_result,
++        '{public_lookup_token}',
++        to_jsonb(v_public_token),
++        true
++      );
++    end if;
++  end if;
++
++  return v_result;
++end;
++$$;
++
++revoke all on function public.submit_cart_order_v2(
++  text, text, text, text, text, text, boolean, timestamptz, text,
++  jsonb, jsonb, text, text
++) from public, anon, authenticated;
++
++grant execute on function public.submit_cart_order_v2(
++  text, text, text, text, text, text, boolean, timestamptz, text,
++  jsonb, jsonb, text, text
++) to service_role;
++
++comment on function public.submit_cart_order_v2 is
++  'Applies validated included follow-up pricing before vouchers and preserves mixed-payment replay selection.';
++
++
++create or replace function public.submit_cart_order_v5(
++  p_idempotency_key text,
++  p_customer_email text,
++  p_customer_first_name text,
++  p_customer_last_name text,
++  p_customer_phone text,
++  p_customer_notes text,
++  p_marketing_consent boolean,
++  p_terms_accepted_at timestamptz,
++  p_privacy_policy_version text,
++  p_lines jsonb,
++  p_shipping_address jsonb,
++  p_source text,
++  p_selected_payment_method text,
++  p_voucher_code text default null
++)
++returns jsonb
++language plpgsql
++security invoker
++set search_path = public
++as $$
++declare
++  v_now timestamptz := timezone('utc'::text, now());
++  v_sid uuid;
++  v_line jsonb;
++  v_followup_line jsonb;
++  v_primary_session public.workshop_sessions;
++  v_primary_workshop public.workshops;
++  v_followup_session public.workshop_sessions;
++  v_followup_workshop public.workshops;
++  v_followup_count integer;
++  v_quantity integer;
++  v_expected_type text;
++  v_included_requested boolean;
++  v_min_start timestamptz;
++  v_max_start timestamptz;
++  v_result jsonb;
++  v_order_id uuid;
++begin
++  if p_lines is null or jsonb_typeof(p_lines) <> 'array' then
++    raise exception 'Cart lines must be an array';
++  end if;
++
++  -- Lock every workshop session once, in UUID order, before checking any pair.
++  for v_sid in
++    select distinct (elem->>'session_id')::uuid
++    from jsonb_array_elements(p_lines) elem
++    where elem->>'type' = 'workshop_session'
++      and nullif(elem->>'session_id', '') is not null
++    order by 1
++  loop
++    perform 1
++    from public.workshop_sessions
++    where id = v_sid
++    for update;
++    if not found then raise exception 'Session not found'; end if;
++  end loop;
++
++  for v_line in
++    select value
++    from jsonb_array_elements(p_lines)
++    where value->>'type' = 'workshop_session'
++      and coalesce(value->>'link_role', 'primary') <> 'followup'
++  loop
++    select * into v_primary_session
++    from public.workshop_sessions
++    where id = (v_line->>'session_id')::uuid;
++
++    select * into v_primary_workshop
++    from public.workshops
++    where id = v_primary_session.workshop_id;
++
++    if not (v_primary_workshop.offers_followup_session or v_primary_workshop.requires_followup_session) then
++      continue;
++    end if;
++
++    select count(*) into v_followup_count
++    from jsonb_array_elements(p_lines) candidate
++    where candidate->>'type' = 'workshop_session'
++      and candidate->>'link_role' = 'followup'
++      and candidate->>'linked_primary_session_id' = v_primary_session.id::text;
++
++    if v_followup_count > 1 then
++      raise exception 'Follow-up session may be selected at most once';
++    end if;
++
++    if v_followup_count = 0 then
++      if v_primary_workshop.requires_followup_session then
++        raise exception 'Follow-up session is required exactly once';
++      end if;
++      continue;
++    end if;
++
++    select value into v_followup_line
++    from jsonb_array_elements(p_lines)
++    where value->>'type' = 'workshop_session'
++      and value->>'link_role' = 'followup'
++      and value->>'linked_primary_session_id' = v_primary_session.id::text
++    limit 1;
++
++    if (v_followup_line->>'session_id')::uuid = v_primary_session.id then
++      raise exception 'Follow-up session must differ from the primary session';
++    end if;
++
++    v_quantity := coalesce((v_line->>'quantity')::integer, 0);
++    if coalesce((v_followup_line->>'quantity')::integer, 0) <> v_quantity then
++      raise exception 'Follow-up quantity must match the primary quantity';
++    end if;
++
++    select * into v_followup_session
++    from public.workshop_sessions
++    where id = (v_followup_line->>'session_id')::uuid;
++
++    select * into v_followup_workshop
++    from public.workshops
++    where id = v_followup_session.workshop_id;
++
++    if v_primary_workshop.followup_workshop_id is not null then
++      if v_followup_workshop.id <> v_primary_workshop.followup_workshop_id then
++        raise exception 'Follow-up session does not match the configured workshop';
++      end if;
++    else
++      v_expected_type := nullif(trim(v_primary_workshop.followup_workshop_type), '');
++      if v_expected_type is null
++         or (
++           v_followup_workshop.workshop_type is distinct from v_expected_type
++           and v_followup_workshop.slug is distinct from v_expected_type
++         ) then
++        raise exception 'Follow-up session does not match the configured workshop type';
++      end if;
++    end if;
++
++    v_included_requested := coalesce(
++      (v_followup_line->>'included_followup')::boolean,
++      false
++    );
++    if v_included_requested is distinct from
++       coalesce(v_primary_workshop.followup_included_in_price, false) then
++      raise exception 'Follow-up price mode does not match workshop configuration';
++    end if;
++
++    v_min_start := v_primary_session.starts_at
++      + make_interval(days => coalesce(v_primary_workshop.followup_min_days, 0));
++    v_max_start := case
++      when v_primary_workshop.followup_max_days is null then null
++      else v_primary_session.starts_at
++        + make_interval(days => v_primary_workshop.followup_max_days)
++    end;
++
++    if v_followup_session.starts_at < v_min_start
++       or (v_max_start is not null and v_followup_session.starts_at > v_max_start) then
++      raise exception 'Follow-up session is outside the configured date window';
++    end if;
++
++    if v_followup_workshop.status <> 'published'
++       or v_followup_workshop.archived_at is not null
++       or v_followup_workshop.booking_mode <> 'scheduled'
++       or v_followup_session.status not in ('scheduled', 'sold_out')
++       or v_followup_session.starts_at <= v_now
++       or (
++         v_followup_session.booking_opens_at is not null
++         and v_followup_session.booking_opens_at > v_now
++       )
++       or (
++         v_followup_session.booking_closes_at is not null
++         and v_followup_session.booking_closes_at < v_now
++       )
++       or v_followup_session.capacity - v_followup_session.reserved_count < v_quantity then
++      raise exception 'Follow-up session is no longer available';
++    end if;
++  end loop;
++
++  -- Reject orphan/forged follow-up lines even though this RPC is service-only.
++  for v_line in
++    select value
++    from jsonb_array_elements(p_lines)
++    where value->>'type' = 'workshop_session'
++      and value->>'link_role' = 'followup'
++  loop
++    select count(*) into v_followup_count
++    from jsonb_array_elements(p_lines) primary_line
++    join public.workshop_sessions primary_session
++      on primary_session.id = nullif(primary_line->>'session_id', '')::uuid
++    join public.workshops primary_workshop
++      on primary_workshop.id = primary_session.workshop_id
++    where primary_line->>'type' = 'workshop_session'
++      and coalesce(primary_line->>'link_role', 'primary') <> 'followup'
++      and primary_line->>'session_id' = v_line->>'linked_primary_session_id'
++      and (primary_workshop.offers_followup_session or primary_workshop.requires_followup_session);
++
++    if v_followup_count <> 1 then
++      raise exception 'Follow-up session has no configured primary workshop';
++    end if;
++  end loop;
++
++  v_result := public.submit_cart_order_v4(
++    p_idempotency_key,
++    p_customer_email,
++    p_customer_first_name,
++    p_customer_last_name,
++    p_customer_phone,
++    p_customer_notes,
++    p_marketing_consent,
++    p_term
