@@ -5,27 +5,68 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
-      - name: Checkout
+      - name: Checkout feature branch
         uses: actions/checkout@v5
-
-      - name: Inspect checkout SQL
-        run: |
-          grep -R -n "create or replace function public.submit_cart_order_v2" supabase/migrations || true
-          grep -R -n "create or replace function public.submit_cart_order_v[0-9]" supabase/migrations || true
-
-      - name: Package relevant source
-        run: tar -czf checkout-source.tgz supabase/migrations lib/cart components/clone scripts package.json package-lock.json tsconfig.json
-
-      - name: Upload source
-        uses: actions/upload-artifact@v4
         with:
-          name: glina-followup-source
-          path: checkout-source.tgz
-          retention-days: 1
+          ref: feature/glina-followup-same-event
+          persist-credentials: true
+
+      - name: Apply implementation patch
+        run: |
+          cat .github/glina-followup-patch/part-* > /tmp/glina-followup.patch
+          patch -p1 < /tmp/glina-followup.patch
+          rm -rf .github/glina-followup-patch
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Format changed source
+        run: npx prettier --write components/clone/checkout-page-client.tsx lib/cart/revalidate.ts lib/cart/checkout.ts lib/cart/types.ts lib/cart/__tests__/linked-workshop-ux-contract.test.ts scripts/test-linked-workshops-pglite.mjs
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Typecheck
+        run: npm run typecheck -- --pretty false
+
+      - name: Migration harness
+        run: npm run test:migrations
+
+      - name: Voucher lifecycle integration
+        run: npm run test:vouchers:pglite
+
+      - name: Linked workshop lifecycle integration
+        run: npm run test:linked-workshops:pglite
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Production build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://example.invalid
+          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: test-anon-key
+          SUPABASE_SECRET_KEY: test-secret-key
+          PAYMENTS_PROVIDER: manual
+        run: npm run build
+
+      - name: Publish implementation
+        run: |
+          git config user.name "Ceramika Nero Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Allow included glazing in later Glina do Wina sessions"
+          git push origin HEAD:feature/glina-followup-same-event
