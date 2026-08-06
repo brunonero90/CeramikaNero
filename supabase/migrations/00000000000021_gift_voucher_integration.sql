@@ -469,7 +469,7 @@ begin
     raise exception 'Idempotency key belongs to a different payment method';
   end if;
 
-  if v_order.selected_payment_method <> 'voucher' then
+  if v_order.selected_payment_method is distinct from 'voucher' then
     update public.orders
     set selected_payment_method = p_selected_payment_method, updated_at = v_now
     where id = v_order_id;
