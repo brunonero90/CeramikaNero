@@ -12,9 +12,6 @@ export type VoucherIssueState = {
   issuedCode?: string;
 };
 
-const initialState: VoucherIssueState = { ok: false };
-export { initialState as initialVoucherIssueState };
-
 const issueSchema = z.object({
   providerCode: z.enum(['ceramika_nero', 'prezent_marzen']),
   code: z.string().trim().max(120).optional(),
