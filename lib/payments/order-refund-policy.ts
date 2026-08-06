@@ -1,3 +1,3 @@
 export function requiresExternalRefundConfirmation(provider: string): boolean {
-  return provider !== 'stripe';
+  return provider !== 'stripe' && provider !== 'voucher';
 }
