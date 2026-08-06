@@ -20,12 +20,12 @@ jobs:
           grep -R -n "create or replace function public.submit_cart_order_v2" supabase/migrations || true
           grep -R -n "create or replace function public.submit_cart_order_v[0-9]" supabase/migrations || true
 
-      - name: Package workspace
-        run: tar --exclude=.git --exclude=workspace.tgz -czf workspace.tgz .
+      - name: Package relevant source
+        run: tar -czf checkout-source.tgz supabase/migrations lib/cart components/clone scripts package.json package-lock.json tsconfig.json
 
-      - name: Upload workspace
+      - name: Upload source
         uses: actions/upload-artifact@v4
         with:
-          name: glina-followup-workspace
-          path: workspace.tgz
+          name: glina-followup-source
+          path: checkout-source.tgz
           retention-days: 1
