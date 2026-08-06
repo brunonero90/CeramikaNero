@@ -1,0 +1,733 @@
+00
++++ glina-followup/scripts/test-linked-workshops-pglite.mjs	2026-08-06 13:35:58.528249498 +0000
+@@ -175,7 +175,7 @@
+   ]);
+ }
+ 
+-function linkedLines(primarySessionId, followupSessionId) {
++function linkedLines(primarySessionId, followupSessionId, includedFollowup = false) {
+   const participant = {
+     display_name: 'Bruno Nero',
+     age: null,
+@@ -199,6 +199,7 @@
+       link_role: 'followup',
+       linked_primary_session_id: primarySessionId,
+       link_group_key: groupKey,
++      included_followup: includedFollowup,
+       participants: [participant],
+     },
+   ]);
+@@ -427,6 +428,192 @@
+   );
+ }
+ 
++
++async function createIncludedSameWorkshopFixture(db) {
++  const result = await db.query(`
++    with category as (
++      select id from public.workshop_categories where slug = 'linked-fixture'
++    ), workshop as (
++      insert into public.workshops (
++        category_id, title, slug, minimum_age, default_duration_minutes,
++        default_capacity, default_price_gross_grosz, currency, booking_mode,
++        status, participant_audience, collect_participant_age, workshop_type,
++        offers_followup_session, requires_followup_session,
++        followup_workshop_type, followup_min_days, followup_max_days,
++        followup_included_in_price
++      )
++      select category.id, 'Glina do Wina included test',
++        'glina-do-wina-included-test', 18, 120, 10, 18900, 'PLN',
++        'scheduled', 'published', 'adult', false, 'glina-do-wina-included-test',
++        true, false, 'glina-do-wina-included-test', 14, null, true
++      from category
++      returning id
++    ), primary_session as (
++      insert into public.workshop_sessions (
++        workshop_id, starts_at, ends_at, timezone, capacity, reserved_count,
++        price_gross_grosz, currency, status
++      )
++      select workshop.id, timezone('utc'::text, now()) + interval '30 days',
++        timezone('utc'::text, now()) + interval '30 days 2 hours',
++        'Europe/Warsaw', 10, 0, 18900, 'PLN', 'scheduled'
++      from workshop
++      returning id
++    ), early_session as (
++      insert into public.workshop_sessions (
++        workshop_id, starts_at, ends_at, timezone, capacity, reserved_count,
++        price_gross_grosz, currency, status
++      )
++      select workshop.id, timezone('utc'::text, now()) + interval '43 days',
++        timezone('utc'::text, now()) + interval '43 days 2 hours',
++        'Europe/Warsaw', 10, 0, 18900, 'PLN', 'scheduled'
++      from workshop
++      returning id
++    ), eligible_session as (
++      insert into public.workshop_sessions (
++        workshop_id, starts_at, ends_at, timezone, capacity, reserved_count,
++        price_gross_grosz, currency, status
++      )
++      select workshop.id, timezone('utc'::text, now()) + interval '44 days',
++        timezone('utc'::text, now()) + interval '44 days 2 hours',
++        'Europe/Warsaw', 10, 0, 18900, 'PLN', 'scheduled'
++      from workshop
++      returning id
++    ), far_session as (
++      insert into public.workshop_sessions (
++        workshop_id, starts_at, ends_at, timezone, capacity, reserved_count,
++        price_gross_grosz, currency, status
++      )
++      select workshop.id, timezone('utc'::text, now()) + interval '400 days',
++        timezone('utc'::text, now()) + interval '400 days 2 hours',
++        'Europe/Warsaw', 10, 0, 18900, 'PLN', 'scheduled'
++      from workshop
++      returning id
++    )
++    select workshop.id as workshop_id,
++      primary_session.id as primary_session_id,
++      early_session.id as early_session_id,
++      eligible_session.id as eligible_session_id,
++      far_session.id as far_session_id
++    from workshop
++    cross join primary_session
++    cross join early_session
++    cross join eligible_session
++    cross join far_session
++  `);
++  return result.rows[0];
++}
++
++async function exerciseIncludedSameWorkshopFollowup(db) {
++  const fixture = await createIncludedSameWorkshopFixture(db);
++  const includedLines = linkedLines(
++    fixture.primary_session_id,
++    fixture.eligible_session_id,
++    true
++  );
++
++  const first = await db.query(
++    `select public.submit_cart_order_v6(
++      $1, $2, $3, $4, $5, $6, false,
++      timezone('utc'::text, now()), 'test', $7::jsonb,
++      null, 'website', 'stripe', null
++    ) as result`,
++    [
++      'glina-included-followup',
++      'glina-included@example.com',
++      'Bruno',
++      'Nero',
++      '500600700',
++      '',
++      includedLines,
++    ]
++  );
++  const result = first.rows[0].result;
++  assert(result.booking_references.length === 2, 'Included follow-up did not create two bookings');
++  assert(result.total_gross_grosz === 18900, 'Included follow-up increased the order price');
++
++  const state = await db.query(
++    `select
++      o.subtotal_gross_grosz,
++      o.total_gross_grosz,
++      p.amount_gross_grosz as payment_amount,
++      fb.unit_price_gross_grosz as followup_unit_price,
++      fb.total_price_gross_grosz as followup_total_price,
++      oi.line_total_gross_grosz as followup_order_item_total,
++      coalesce((oi.metadata->>'included_followup')::boolean, false) as included_marker,
++      bl.relationship,
++      ps.reserved_count as primary_reserved,
++      fs.reserved_count as followup_reserved
++     from public.orders o
++     join public.payments p on p.order_id = o.id and p.provider <> 'voucher'
++     join public.bookings fb on fb.order_id = o.id
++       and fb.workshop_session_id = $2
++     join public.order_items oi on oi.booking_id = fb.id
++     join public.booking_links bl on bl.order_id = o.id
++     join public.workshop_sessions ps on ps.id = $3
++     join public.workshop_sessions fs on fs.id = $2
++     where o.id = $1
++     limit 1`,
++    [result.order_id, fixture.eligible_session_id, fixture.primary_session_id]
++  );
++  const row = state.rows[0];
++  assert(row.subtotal_gross_grosz === 18900, 'Included follow-up remained in subtotal');
++  assert(row.total_gross_grosz === 18900, 'Included follow-up remained in total');
++  assert(row.payment_amount === 18900, 'Payment includes the glazing visit price');
++  assert(row.followup_unit_price === 0, 'Follow-up booking unit price is not zero');
++  assert(row.followup_total_price === 0, 'Follow-up booking total is not zero');
++  assert(row.followup_order_item_total === 0, 'Follow-up order item total is not zero');
++  assert(row.included_marker === true, 'Included follow-up audit marker is missing');
++  assert(row.relationship === 'optional_followup', 'Optional relationship was not persisted');
++  assert(row.primary_reserved === 1, 'Primary capacity was not reserved');
++  assert(row.followup_reserved === 1, 'Included follow-up capacity was not reserved');
++
++  let earlyRejected = false;
++  try {
++    await db.query(
++      `select public.submit_cart_order_v6(
++        $1, $2, $3, $4, $5, $6, false,
++        timezone('utc'::text, now()), 'test', $7::jsonb,
++        null, 'website', 'stripe', null
++      ) as result`,
++      [
++        'glina-too-early-followup',
++        'glina-early@example.com',
++        'Bruno',
++        'Nero',
++        '500600700',
++        '',
++        linkedLines(fixture.primary_session_id, fixture.early_session_id, true),
++      ]
++    );
++  } catch (error) {
++    earlyRejected = String(error)
++      .toLowerCase()
++      .includes('outside the configured date window');
++  }
++  assert(earlyRejected, 'A glazing session earlier than 14 days was accepted');
++
++  const far = await db.query(
++    `select public.submit_cart_order_v6(
++      $1, $2, $3, $4, $5, $6, false,
++      timezone('utc'::text, now()), 'test', $7::jsonb,
++      null, 'website', 'stripe', null
++    ) as result`,
++    [
++      'glina-open-ended-followup',
++      'glina-far@example.com',
++      'Bruno',
++      'Nero',
++      '500600700',
++      '',
++      linkedLines(fixture.primary_session_id, fixture.far_session_id, true),
++    ]
++  );
++  assert(
++    far.rows[0].result.total_gross_grosz === 18900,
++    'A later Glina do Wina event was not accepted as included glazing'
++  );
++}
++
+ async function createReminderBooking(
+   db,
+   provider,
+@@ -595,9 +782,10 @@
+     await scaffoldSupabase(db);
+     await applyMigrations(db);
+     await exerciseLinkedCheckout(db);
++    await exerciseIncludedSameWorkshopFollowup(db);
+     await exerciseReminders(db);
+     console.log(
+-      'LINKED WORKSHOPS PASS adult-name/optional-followup/atomic-capacity/idempotency/cancellation/reminder invariants'
++      'LINKED WORKSHOPS PASS adult-name/optional-followup/same-event-included-price/14-day-window/atomic-capacity/idempotency/cancellation/reminder invariants'
+     );
+   } finally {
+     await db.close();
+diff -ruN glina-base/supabase/migrations/00000000000032_glina_same_event_included_followup.sql glina-followup/supabase/migrations/00000000000032_glina_same_event_included_followup.sql
+--- glina-base/supabase/migrations/00000000000032_glina_same_event_included_followup.sql	1970-01-01 00:00:00.000000000 +0000
++++ glina-followup/supabase/migrations/00000000000032_glina_same_event_included_followup.sql	2026-08-06 13:34:27.476250102 +0000
+@@ -0,0 +1,600 @@
++-- Ceramika Nero — same-event Glina do Wina glazing follow-up.
++-- Apply after migration 31.
++
++alter table public.workshops
++  add column if not exists followup_included_in_price boolean not null default false;
++
++alter table public.workshops
++  drop constraint if exists workshops_followup_included_requires_offer_check;
++alter table public.workshops
++  add constraint workshops_followup_included_requires_offer_check
++  check (not followup_included_in_price or offers_followup_session);
++
++comment on column public.workshops.followup_included_in_price is
++  'When true, the linked follow-up reserves capacity but contributes zero additional price.';
++
++-- The glazing visit for Glina do Wina takes place during a later Glina do Wina
++-- event. The piece is ready after 14 days; there is no artificial upper limit.
++update public.workshops
++set offers_followup_session = true,
++    requires_followup_session = false,
++    followup_workshop_id = null,
++    followup_workshop_type = coalesce(nullif(trim(workshop_type), ''), slug),
++    followup_min_days = 14,
++    followup_max_days = null,
++    followup_included_in_price = true,
++    updated_at = timezone('utc'::text, now())
++where slug in ('glina-do-wina', 'glinadowina')
++   or lower(trim(title)) = 'glina do wina';
++
++create or replace function public.set_workshop_operational_metadata_v2(
++  p_workshop_id uuid,
++  p_participant_audience text,
++  p_collect_participant_age boolean,
++  p_workshop_type text,
++  p_offers_followup_session boolean,
++  p_requires_followup_session boolean,
++  p_followup_workshop_type text,
++  p_followup_min_days integer,
++  p_followup_max_days integer
++)
++returns void
++language plpgsql
++security invoker
++set search_path = public
++as $$
++declare
++  v_offers boolean := coalesce(p_offers_followup_session, false)
++    or coalesce(p_requires_followup_session, false);
++begin
++  update public.workshops
++  set participant_audience = p_participant_audience,
++      collect_participant_age = coalesce(p_collect_participant_age, false),
++      workshop_type = nullif(trim(p_workshop_type), ''),
++      offers_followup_session = v_offers,
++      requires_followup_session = coalesce(p_requires_followup_session, false),
++      followup_workshop_id = case
++        when not v_offers then null
++        when nullif(trim(coalesce(p_followup_workshop_type, '')), '')
++             is distinct from followup_workshop_type then null
++        else followup_workshop_id
++      end,
++      followup_workshop_type = case
++        when v_offers then nullif(trim(coalesce(p_followup_workshop_type, '')), '')
++        else null
++      end,
++      followup_min_days = case when v_offers then p_followup_min_days else null end,
++      followup_max_days = case when v_offers then p_followup_max_days else null end,
++      followup_included_in_price = case
++        when not v_offers then false
++        when nullif(trim(coalesce(p_followup_workshop_type, '')), '')
++             is distinct from followup_workshop_type then false
++        else followup_included_in_price
++      end,
++      updated_at = timezone('utc'::text, now())
++  where id = p_workshop_id;
++
++  if not found then raise exception 'Workshop not found'; end if;
++end;
++$$;
++
++revoke all on function public.set_workshop_operational_metadata_v2(
++  uuid, text, boolean, text, boolean, boolean, text, integer, integer
++) from public, anon;
++grant execute on function public.set_workshop_operational_metadata_v2(
++  uuid, text, boolean, text, boolean, boolean, text, integer, integer
++) to authenticated, service_role;
++
++-- Price included follow-up lines at zero before voucher reservation is applied.
++-- Relationship and date/capacity rules are still validated by submit_cart_order_v5.
++create or replace function public.submit_cart_order_v2(
++  p_idempotency_key text,
++  p_customer_email text,
++  p_customer_first_name text,
++  p_customer_last_name text,
++  p_customer_phone text,
++  p_customer_notes text,
++  p_marketing_consent boolean,
++  p_terms_accepted_at timestamptz,
++  p_privacy_policy_version text,
++  p_lines jsonb,
++  p_shipping_address jsonb,
++  p_source text,
++  p_selected_payment_method text
++)
++returns jsonb
++language plpgsql
++security invoker
++set search_path = public
++as $$
++declare
++  v_result jsonb;
++  v_order_id uuid;
++  v_payment_id uuid;
++  v_reused boolean;
++  v_line jsonb;
++  v_item public.order_items;
++  v_booking public.bookings;
++  v_reduction integer := 0;
++  v_now timestamptz := timezone('utc'::text, now());
++begin
++  v_result := public.submit_cart_order(
++    p_idempotency_key,
++    p_customer_email,
++    p_customer_first_name,
++    p_customer_last_name,
++    p_customer_phone,
++    p_customer_notes,
++    p_marketing_consent,
++    p_terms_accepted_at,
++    p_privacy_policy_version,
++    p_lines,
++    p_shipping_address,
++    p_source
++  );
++
++  v_order_id := (v_result ->> 'order_id')::uuid;
++  v_payment_id := nullif(v_result ->> 'payment_id', '')::uuid;
++  v_reused := coalesce((v_result ->> 'reused')::boolean, false);
++
++  if not v_reused then
++    for v_line in
++      select value
++      from jsonb_array_elements(p_lines)
++      where value->>'type' = 'workshop_session'
++        and value->>'link_role' = 'followup'
++        and coalesce((value->>'included_followup')::boolean, false)
++    loop
++      select oi.* into v_item
++      from public.order_items oi
++      where oi.order_id = v_order_id
++        and oi.item_type = 'workshop_session'
++        and oi.workshop_session_id = (v_line->>'session_id')::uuid
++        and oi.line_total_gross_grosz > 0
++      order by oi.created_at asc
++      limit 1
++      for update;
++
++      if not found then
++        raise exception 'Included follow-up order item is missing';
++      end if;
++
++      select b.* into v_booking
++      from public.bookings b
++      where b.id = v_item.booking_id
++      for update;
++
++      if not found then
++        raise exception 'Included follow-up booking is missing';
++      end if;
++
++      v_reduction := v_reduction + v_item.line_total_gross_grosz;
++
++      update public.bookings
++      set unit_price_gross_grosz = 0,
++          total_price_gross_grosz = 0,
++          updated_at = v_now
++      where id = v_booking.id;
++
++      update public.order_items
++      set unit_price_gross_grosz = 0,
++          line_total_gross_grosz = 0,
++          metadata = coalesce(metadata, '{}'::jsonb) || jsonb_build_object(
++            'included_followup', true,
++            'original_unit_price_gross_grosz', v_item.unit_price_gross_grosz,
++            'original_line_total_gross_grosz', v_item.line_total_gross_grosz
++          )
++      where id = v_item.id;
++
++      update public.booking_events
++      set metadata = coalesce(metadata, '{}'::jsonb) || jsonb_build_object(
++        'included_followup', true,
++        'original_total_gross_grosz', v_item.line_total_gross_grosz
++      )
++      where booking_id = v_booking.id
++        and event_type = 'reserved';
++    end loop;
++
++    if v_reduction > 0 then
++      update public.orders
++      set subtotal_gross_grosz = greatest(0, subtotal_gross_grosz - v_reduction),
++          total_gross_grosz = greatest(0, total_gross_grosz - v_reduction),
++          selected_payment_method = p_selected_payment_method,
++          updated_at = v_now
++      where id = v_order_id;
++
++      if v_payment_id is not null then
++        update public.payments
++        set amount_gross_grosz = greatest(0, amount_gross_grosz - v_reduction),
++            updated_at = v_now
++        where id = v_payment_id;
++      end if;
++
++      update public.order_events
++      set metadata = coalesce(metadata, '{}'::jsonb) || jsonb_build_object(
++        'included_followup_reduction_grosz', v_reduction
++      )
++      where order_id = v_order_id
++        and event_type = 'created';
++
++      select jsonb_set(
++        v_result,
++        '{total_gross_grosz}',
++        to_jsonb(greatest(0, o.total_gross_grosz)),
++        true
++      ) into v_result
++      from public.orders o
++      where o.id = v_order_id;
++    end if;
++  end if;
++
++  if p_selected_payment_method is not null then
++    update public.orders
++    set selected_payment_method = p_selected_payment_method,
++        updated_at = timezone('utc'::text, now())
++    where id = v_order_id
++      and selected_payment_method is distinct from p_selected_payment_method;
++  end if;
++
++  return v_result;
++end;
++$$;
++
++revoke all on function public.submit_cart_order_v2(
++  text, text, text, text, text, text, boolean, timestamptz,
++  text, jsonb, jsonb, text, text
++) from public, anon, authenticated;
++grant execute on function public.submit_cart_order_v2(
++  text, text, text, text, text, text, boolean, timestamptz,
++  text, jsonb, jsonb, text, text
++) to service_role;
++
++comment on function public.submit_cart_order_v2(
++  text, text, text, text, text, text, boolean, timestamptz,
++  text, jsonb, jsonb, text, text
++) is
++  'Creates the atomic order, prices server-approved included follow-ups at zero, and applies the selected payment method.';
++
++create or replace function public.submit_cart_order_v5(
++  p_idempotency_key text,
++  p_customer_email text,
++  p_customer_first_name text,
++  p_customer_last_name text,
++  p_customer_phone text,
++  p_customer_notes text,
++  p_marketing_consent boolean,
++  p_terms_accepted_at timestamptz,
++  p_privacy_policy_version text,
++  p_lines jsonb,
++  p_shipping_address jsonb,
++  p_source text,
++  p_selected_payment_method text,
++  p_voucher_code text default null
++)
++returns jsonb
++language plpgsql
++security invoker
++set search_path = public
++as $$
++declare
++  v_now timestamptz := timezone('utc'::text, now());
++  v_sid uuid;
++  v_line jsonb;
++  v_followup_line jsonb;
++  v_primary_session public.workshop_sessions;
++  v_primary_workshop public.workshops;
++  v_followup_session public.workshop_sessions;
++  v_followup_workshop public.workshops;
++  v_followup_count integer;
++  v_quantity integer;
++  v_expected_type text;
++  v_min_start timestamptz;
++  v_max_start timestamptz;
++  v_result jsonb;
++begin
++  if p_lines is null or jsonb_typeof(p_lines) <> 'array' then
++    raise exception 'Cart lines must be an array';
++  end if;
++
++  -- Lock every workshop session once, in UUID order, before checking any pair.
++  for v_sid in
++    select distinct (elem->>'session_id')::uuid
++    from jsonb_array_elements(p_lines) elem
++    where elem->>'type' = 'workshop_session'
++      and nullif(elem->>'session_id', '') is not null
++    order by 1
++  loop
++    perform 1
++    from public.workshop_sessions
++    where id = v_sid
++    for update;
++    if not found then raise exception 'Session not found'; end if;
++  end loop;
++
++  for v_line in
++    select value
++    from jsonb_array_elements(p_lines)
++    where value->>'type' = 'workshop_session'
++      and coalesce(value->>'link_role', 'primary') <> 'followup'
++  loop
++    select * into v_primary_session
++    from public.workshop_sessions
++    where id = (v_line->>'session_id')::uuid;
++
++    select * into v_primary_workshop
++    from public.workshops
++    where id = v_primary_session.workshop_id;
++
++    if not (v_primary_workshop.offers_followup_session or v_primary_workshop.requires_followup_session) then
++      continue;
++    end if;
++
++    select count(*) into v_followup_count
++    from jsonb_array_elements(p_lines) candidate
++    where candidate->>'type' = 'workshop_session'
++      and candidate->>'link_role' = 'followup'
++      and candidate->>'linked_primary_session_id' = v_primary_session.id::text;
++
++    if v_followup_count > 1 then
++      raise exception 'Follow-up session may be selected at most once';
++    end if;
++
++    if v_followup_count = 0 then
++      if v_primary_workshop.requires_followup_session then
++        raise exception 'Follow-up session is required exactly once';
++      end if;
++      continue;
++    end if;
++
++    select value into v_followup_line
++    from jsonb_array_elements(p_lines)
++    where value->>'type' = 'workshop_session'
++      and value->>'link_role' = 'followup'
++      and value->>'linked_primary_session_id' = v_primary_session.id::text
++    limit 1;
++
++    if coalesce((v_followup_line->>'included_followup')::boolean, false)
++       is distinct from v_primary_workshop.followup_included_in_price then
++      raise exception 'Included follow-up pricing does not match workshop configuration';
++    end if;
++
++    if (v_followup_line->>'session_id')::uuid = v_primary_session.id then
++      raise exception 'Follow-up session must differ from the primary session';
++    end if;
++
++    v_quantity := coalesce((v_line->>'quantity')::integer, 0);
++    if coalesce((v_followup_line->>'quantity')::integer, 0) <> v_quantity then
++      raise exception 'Follow-up quantity must match the primary quantity';
++    end if;
++
++    select * into v_followup_session
++    from public.workshop_sessions
++    where id = (v_followup_line->>'session_id')::uuid;
++
++    select * into v_followup_workshop
++    from public.workshops
++    where id = v_followup_session.workshop_id;
++
++    if v_primary_workshop.followup_workshop_id is not null then
++      if v_followup_workshop.id <> v_primary_workshop.followup_workshop_id then
++        raise exception 'Follow-up session does not match the configured workshop';
++      end if;
++    else
++      v_expected_type := nullif(trim(v_primary_workshop.followup_workshop_type), '');
++      if v_expected_type is null
++         or (
++           v_followup_workshop.workshop_type is distinct from v_expected_type
++           and v_followup_workshop.slug is distinct from v_expected_type
++         ) then
++        raise exception 'Follow-up session does not match the configured workshop type';
++      end if;
++    end if;
++
++    v_min_start := v_primary_session.starts_at
++      + make_interval(days => coalesce(v_primary_workshop.followup_min_days, 0));
++    v_max_start := case
++      when v_primary_workshop.followup_max_days is null then null
++      else v_primary_session.starts_at
++        + make_interval(days => v_primary_workshop.followup_max_days)
++    end;
++
++    if v_followup_session.starts_at < v_min_start
++       or (v_max_start is not null and v_followup_session.starts_at > v_max_start) then
++      raise exception 'Follow-up session is outside the configured date window';
++    end if;
++
++    if v_followup_workshop.status <> 'published'
++       or v_followup_workshop.archived_at is not null
++       or v_followup_workshop.booking_mode <> 'scheduled'
++       or v_followup_session.status not in ('scheduled', 'sold_out')
++       or v_followup_session.starts_at <= v_now
++       or (
++         v_followup_session.booking_opens_at is not null
++         and v_followup_session.booking_opens_at > v_now
++       )
++       or (
++         v_followup_session.booking_closes_at is not null
++         and v_followup_session.booking_closes_at < v_now
++       )
++       or v_followup_session.capacity - v_followup_session.reserved_count < v_quantity then
++      raise exception 'Follow-up session is no longer available';
++    end if;
++  end loop;
++
++  -- Reject orphan/forged follow-up lines even though this RPC is service-only.
++  for v_line in
++    select value
++    from jsonb_array_elements(p_lines)
++    where value->>'type' = 'workshop_session'
++      and value->>'link_role' = 'followup'
++  loop
++    select count(*) into v_followup_count
++    from jsonb_array_elements(p_lines) primary_line
++    join public.workshop_sessions primary_session
++      on primary_session.id = nullif(primary_line->>'session_id', '')::uuid
++    join public.workshops primary_workshop
++      on primary_workshop.id = primary_session.workshop_id
++    where primary_line->>'type' = 'workshop_session'
++      and coalesce(primary_line->>'link_role', 'primary') <> 'followup'
++      and primary_line->>'session_id' = v_line->>'linked_primary_session_id'
++      and (primary_workshop.offers_followup_session or primary_workshop.requires_followup_session);
++
++    if v_followup_count <> 1 then
++      raise exception 'Follow-up session has no configured primary workshop';
++    end if;
++  end loop;
++
++  v_result := public.submit_cart_order_v4(
++    p_idempotency_key,
++    p_customer_email,
++    p_customer_first_name,
++    p_customer_last_name,
++    p_customer_phone,
++    p_customer_notes,
++    p_marketing_consent,
++    p_terms_accepted_at,
++    p_privacy_policy_version,
++    p_lines,
++    p_shipping_address,
++    p_source,
++    p_selected_payment_method,
++    p_voucher_code
++  );
++
++  -- v4 writes a generic mandatory relationship. Correct it from the primary
++  -- workshop configuration and keep the linked event audit metadata aligned.
++  update public.booking_links bl
++  set relationship = case
++    when primary_workshop.requires_followup_session then 'mandatory_followup'
++    else 'optional_followup'
++  end
++  from public.bookings primary_booking
++  join public.workshop_sessions primary_session
++    on primary_session.id = primary_booking.workshop_session_id
++  join public.workshops primary_workshop
++    on primary_workshop.id = primary_session.workshop_id
++  where bl.order_id = (v_result->>'order_id')::uuid
++    and bl.primary_booking_id = primary_booking.id;
++
++  update public.booking_events e
++  set metadata = coalesce(e.metadata, '{}'::jsonb) || jsonb_build_object(
++    'relationship', bl.relationship
++  )
++  from public.booking_links bl
++  where e.booking_id = bl.primary_booking_id
++    and e.event_type = 'linked'
++    and bl.order_id = (v_result->>'order_id')::uuid;
++
++  return v_result;
++end;
++$$;
++
++revoke all on function public.submit_cart_order_v5(
++  text, text, text, text, text, text, boolean, timestamptz,
++  text, jsonb, jsonb, text, text, text
++) from public, anon, authenticated;
++grant execute on function public.submit_cart_order_v5(
++  text, text, text, text, text, text, boolean, timestamptz,
++  text, jsonb, jsonb, text, text, text
++) to service_role;
++
++comment on function public.submit_cart_order_v5(
++  text, text, text, text, text, text, boolean, timestamptz,
++  text, jsonb, jsonb, text, text, text
++) is
++  'Validates optional or required linked sessions, including open-ended date windows and server-approved included follow-up pricing.';
