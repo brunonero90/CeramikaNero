@@ -113,12 +113,12 @@ async function createLinkedFixture(db) {
         category_id, title, slug, minimum_age, default_duration_minutes,
         default_capacity, default_price_gross_grosz, currency, booking_mode,
         status, participant_audience, collect_participant_age, workshop_type,
-        requires_followup_session, followup_workshop_id,
+        offers_followup_session, requires_followup_session, followup_workshop_id,
         followup_workshop_type, followup_min_days, followup_max_days
       )
       select category.id, 'Glina do Wina test', 'glina-do-wina-test', 18,
         120, 10, 10000, 'PLN', 'scheduled', 'published', 'adult', false,
-        'glina-do-wina', true, followup.id, 'szkliwienie', 5, 45
+        'glina-do-wina', true, true, followup.id, 'szkliwienie', 5, 45
       from category cross join followup
       returning id
     ),
