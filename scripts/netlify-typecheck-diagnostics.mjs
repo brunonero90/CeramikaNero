@@ -6,16 +6,12 @@ const result = spawnSync('npm', ['run', 'typecheck', '--', '--pretty', 'false'],
   env: process.env,
 });
 const output = `${result.stdout ?? ''}\n${result.stderr ?? ''}`.trim();
-const escaped = output
-  .replaceAll('&', '&amp;')
-  .replaceAll('<', '&lt;')
-  .replaceAll('>', '&gt;');
 
-await mkdir('diagnostics', { recursive: true });
+await mkdir('public', { recursive: true });
 await writeFile(
-  'diagnostics/index.html',
-  `<!doctype html><meta charset="utf-8"><title>TypeScript diagnostics</title><pre>${escaped || 'TYPECHECK PASSED'}</pre>`
+  'public/typecheck.txt',
+  `${output || 'TYPECHECK PASSED'}\nExit code: ${result.status ?? 'unknown'}\n`
 );
 
 console.log(`TypeScript exit code: ${result.status ?? 'unknown'}`);
-console.log('Diagnostics published for this temporary preview.');
+console.log('Diagnostics captured in public/typecheck.txt for this temporary preview.');
