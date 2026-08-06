@@ -48,6 +48,8 @@ describe('linked workshop checkout UX contract', () => {
     expect(checkoutUi).toContain('Nie rezerwuję teraz');
     expect(checkoutUi).toContain('offersFollowupSession');
     expect(checkoutUi).toContain("linkRole: 'followup'");
+    expect(checkoutUi).toContain('lines: expandedLines');
+    expect(checkoutUi).toContain('required={line.requiresFollowupSession}');
     expect(checkoutServer).toContain(
       'Wybierz obowiązkowy termin drugiego etapu'
     );

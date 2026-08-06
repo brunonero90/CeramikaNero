@@ -378,7 +378,7 @@ export function CheckoutPageClient({
               phone: phone || null,
             }
           : null,
-        lines: validated.lines,
+        lines: expandedLines,
       });
 
       if (!result.ok) {
@@ -739,7 +739,7 @@ export function CheckoutPageClient({
                 <label className="block text-sm">
                   Wybierz termin szkliwienia
                   <select
-                    required
+                    required={line.requiresFollowupSession}
                     className="mt-1 w-full border px-3 py-2"
                     value={followupByPrimary[line.sessionId] ?? ''}
                     onChange={(event) => {
