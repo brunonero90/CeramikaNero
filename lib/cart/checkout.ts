@@ -160,7 +160,7 @@ export async function submitCartOrder(
   for (const primary of workshopLines) {
     if (
       primary.type !== 'workshop_session' ||
-      !primary.requiresFollowupSession
+      (!primary.offersFollowupSession && !primary.requiresFollowupSession)
     ) {
       continue;
     }
@@ -171,10 +171,13 @@ export async function submitCartOrder(
         candidate.linkedPrimarySessionId === primary.sessionId
     );
     if (!followup || followup.type !== 'workshop_session') {
-      return {
-        ok: false,
-        error: 'Wybierz obowiązkowy termin drugiego etapu warsztatu.',
-      };
+      if (primary.requiresFollowupSession) {
+        return {
+          ok: false,
+          error: 'Wybierz obowiązkowy termin drugiego etapu warsztatu.',
+        };
+      }
+      continue;
     }
     if (followup.quantity !== primary.quantity) {
       return {

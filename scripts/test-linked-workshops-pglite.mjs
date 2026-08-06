@@ -157,6 +157,24 @@ async function createLinkedFixture(db) {
   return result.rows[0];
 }
 
+function primaryOnlyLines(primarySessionId) {
+  return JSON.stringify([
+    {
+      type: 'workshop_session',
+      session_id: primarySessionId,
+      quantity: 1,
+      participants: [
+        {
+          display_name: 'Bruno Nero',
+          age: null,
+          participant_type: 'adult',
+          accessibility_notes: null,
+        },
+      ],
+    },
+  ]);
+}
+
 function linkedLines(primarySessionId, followupSessionId) {
   const participant = {
     display_name: 'Bruno Nero',
@@ -376,6 +394,37 @@ async function exerciseLinkedCheckout(db) {
     `update public.workshop_sessions set reserved_count = 0 where id = $1`,
     [fixture.followup_session_id]
   );
+
+  await db.query(
+    `update public.workshops
+     set offers_followup_session = true, requires_followup_session = false
+     where id = $1`,
+    [fixture.primary_workshop_id]
+  );
+  const optional = await db.query(
+    `select public.submit_cart_order_v5(
+      $1, $2, $3, $4, $5, $6, false,
+      timezone('utc'::text, now()), 'test', $7::jsonb,
+      null, 'website', 'stripe', null
+    ) as result`,
+    [
+      'linked-workshops-optional-skip',
+      'optional@example.com',
+      'Bruno',
+      'Nero',
+      '500600700',
+      '',
+      primaryOnlyLines(fixture.primary_session_id),
+    ]
+  );
+  assert(
+    optional.rows[0].result.booking_references.length === 1,
+    'Optional follow-up could not be skipped'
+  );
+  assert(
+    optional.rows[0].result.total_gross_grosz === 10000,
+    'Skipped optional follow-up changed the primary price'
+  );
 }
 
 async function createReminderBooking(
@@ -548,7 +597,7 @@ async function main() {
     await exerciseLinkedCheckout(db);
     await exerciseReminders(db);
     console.log(
-      'LINKED WORKSHOPS PASS adult-name/atomic-capacity/idempotency/cancellation/reminder invariants'
+      'LINKED WORKSHOPS PASS adult-name/optional-followup/atomic-capacity/idempotency/cancellation/reminder invariants'
     );
   } finally {
     await db.close();

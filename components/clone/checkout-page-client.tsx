@@ -120,7 +120,10 @@ export function CheckoutPageClient({
     if (!validated) return [];
     const result: CartLine[] = [];
     for (const line of validated.lines) {
-      if (line.type !== 'workshop_session' || !line.requiresFollowupSession) {
+      if (
+        line.type !== 'workshop_session' ||
+        (!line.offersFollowupSession && !line.requiresFollowupSession)
+      ) {
         result.push(line);
         continue;
       }
@@ -206,7 +209,10 @@ export function CheckoutPageClient({
       setParticipantsBySession(next);
       const followups: Record<string, string> = {};
       for (const line of result.lines) {
-        if (line.type === 'workshop_session' && line.requiresFollowupSession) {
+        if (
+          line.type === 'workshop_session' &&
+          (line.offersFollowupSession || line.requiresFollowupSession)
+        ) {
           followups[line.sessionId] = '';
         }
       }
@@ -711,7 +717,8 @@ export function CheckoutPageClient({
         {(validated?.lines ?? [])
           .filter(
             (line) =>
-              line.type === 'workshop_session' && line.requiresFollowupSession
+              line.type === 'workshop_session' &&
+              (line.offersFollowupSession || line.requiresFollowupSession)
           )
           .map((line) =>
             line.type === 'workshop_session' ? (
@@ -720,11 +727,14 @@ export function CheckoutPageClient({
                 className="space-y-3 rounded border border-accent-primary/30 bg-surface-raised p-4"
               >
                 <h2 className="text-lg font-semibold">
-                  Drugi etap — szkliwienie
+                  {line.requiresFollowupSession
+                    ? 'Drugi etap — szkliwienie'
+                    : 'Opcjonalne szkliwienie'}
                 </h2>
                 <p className="text-sm text-text-muted">
-                  Ten warsztat wymaga drugiego spotkania. Zarezerwujemy tę samą
-                  liczbę miejsc w obu terminach w jednym zamówieniu.
+                  {line.requiresFollowupSession
+                    ? 'Ten warsztat wymaga drugiego spotkania. Zarezerwujemy tę samą liczbę miejsc w obu terminach w jednym zamówieniu.'
+                    : 'Możesz od razu zarezerwować późniejszy termin szkliwienia albo wrócić do tego później.'}
                 </p>
                 <label className="block text-sm">
                   Wybierz termin szkliwienia
@@ -740,7 +750,11 @@ export function CheckoutPageClient({
                       resetVoucherValidation();
                     }}
                   >
-                    <option value="">Wybierz termin</option>
+                    <option value="">
+                      {line.requiresFollowupSession
+                        ? 'Wybierz termin'
+                        : 'Nie rezerwuję teraz'}
+                    </option>
                     {(line.followupOptions ?? []).map((option) => (
                       <option key={option.sessionId} value={option.sessionId}>
                         {formatFollowupDate(option.startsAt)} ·{' '}
@@ -752,6 +766,13 @@ export function CheckoutPageClient({
                     ))}
                   </select>
                 </label>
+                {!line.requiresFollowupSession &&
+                (line.followupOptions ?? []).length === 0 ? (
+                  <p className="text-sm text-text-muted">
+                    Obecnie nie ma dostępnych terminów szkliwienia. Możesz
+                    zarezerwować pierwszy etap bez drugiego spotkania.
+                  </p>
+                ) : null}
               </section>
             ) : null
           )}
