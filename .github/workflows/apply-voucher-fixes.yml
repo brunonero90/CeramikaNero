@@ -1,0 +1,52 @@
+name: Apply voucher branch fixes
+
+on:
+  push:
+    branches:
+      - agent/gift-voucher-integration
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/gift-voucher-integration
+          fetch-depth: 0
+
+      - name: Apply exact fixes and remove diagnostics
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          checkout = Path('lib/cart/checkout.ts')
+          text = checkout.read_text()
+          old = """import {
+            ensureExternalVoucherLoaded,
+            normalizeVoucherCode,
+          } from '@/lib/vouchers/providers';"""
+          new = """import { ensureExternalVoucherLoaded } from '@/lib/vouchers/providers';
+          import { normalizeVoucherCode } from '@/lib/vouchers/helpers';"""
+          if old not in text:
+              raise SystemExit('Expected voucher import block not found')
+          checkout.write_text(text.replace(old, new, 1))
+          PY
+
+          git show origin/main:next.config.ts > next.config.ts
+          git show origin/main:netlify.toml > netlify.toml
+          sed -i 's/NODE_VERSION = "20"/NODE_VERSION = "22"/' netlify.toml
+          sed -i 's/node-version: 20/node-version: 22/' .github/workflows/voucher-validation.yml
+          rm -f scripts/netlify-typecheck-diagnostics.mjs
+          rm -f .github/workflows/apply-voucher-fixes.yml
+
+      - name: Commit fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix voucher typecheck and restore deployment config"
+          git push origin HEAD:agent/gift-voucher-integration
