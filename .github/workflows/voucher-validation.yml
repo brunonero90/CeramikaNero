@@ -1,22 +1,19 @@
-name: Voucher validation
+name: Booking validation
 
 on:
   pull_request:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout branch
+      - name: Checkout
         uses: actions/checkout@v5
-        with:
-          ref: ${{ github.head_ref }}
-          persist-credentials: true
 
       - name: Setup Node
         uses: actions/setup-node@v5
@@ -24,45 +21,8 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Apply linked workshop sprint
-        if: ${{ hashFiles('scripts/apply-linked-workshops-sprint.mjs') != '' }}
-        run: node scripts/apply-linked-workshops-sprint.mjs
-
       - name: Install dependencies
         run: npm ci
-
-      - name: Format implementation
-        if: ${{ hashFiles('scripts/apply-linked-workshops-sprint.mjs') != '' }}
-        run: |
-          npx prettier --write \
-            components/clone/checkout-page-client.tsx \
-            lib/cart/checkout.ts \
-            lib/booking/email-dispatch.ts \
-            lib/booking/email-templates.ts \
-            lib/database/schema.ts \
-            lib/email/types.ts \
-            lib/email/catalog.ts \
-            lib/email/templates/bookings.tsx \
-            lib/admin/schemas.ts \
-            'app/admin/(protected)/warsztaty/actions.ts' \
-            'app/admin/(protected)/warsztaty/workshop-form.tsx' \
-            'app/admin/(protected)/warsztaty/[id]/page.tsx' \
-            'app/admin/(protected)/rezerwacje/actions.ts' \
-            'app/admin/(protected)/rezerwacje/[id]/page.tsx' \
-            package.json \
-            scripts/test-linked-workshops-pglite.mjs
-
-      - name: Publish implementation commit
-        if: ${{ hashFiles('scripts/apply-linked-workshops-sprint.mjs') != '' }}
-        run: |
-          git diff --check
-          git config user.name "OpenAI Agent"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "Implement linked workshop booking and reminders"
-            git push origin HEAD:${{ github.head_ref }}
-          fi
 
       - name: Audit production dependencies
         run: npm audit --omit=dev --audit-level=high
