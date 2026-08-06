@@ -21,7 +21,10 @@ jobs:
       - name: Apply pending branch cleanup once
         run: |
           if [ -f scripts/netlify-typecheck-diagnostics.mjs ]; then
-            python -c 'from pathlib import Path; p=Path("lib/cart/checkout.ts"); t=p.read_text(); old="import {\n  ensureExternalVoucherLoaded,\n  normalizeVoucherCode,\n} from \'@/lib/vouchers/providers\';"; new="import { ensureExternalVoucherLoaded } from \'@/lib/vouchers/providers\';\nimport { normalizeVoucherCode } from \'@/lib/vouchers/helpers\';"; assert old in t, "Expected voucher import block not found"; p.write_text(t.replace(old, new, 1))'
+            sed -i '/^  normalizeVoucherCode,$/d' lib/cart/checkout.ts
+            sed -i "/^} from '@\/lib\/vouchers\/providers';$/a import { normalizeVoucherCode } from '@/lib/vouchers/helpers';" lib/cart/checkout.ts
+            grep -q "from '@/lib/vouchers/helpers'" lib/cart/checkout.ts
+
             git show origin/main:next.config.ts > next.config.ts
             git show origin/main:netlify.toml > netlify.toml
             sed -i 's/NODE_VERSION = "20"/NODE_VERSION = "22"/' netlify.toml
