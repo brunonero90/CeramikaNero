@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import {
   isAllowedVoucherProviderUrl,
+  mapVoucherError,
   maskVoucherCode,
   normalizeVoucherCode,
   voucherRequestFingerprint,
-} from '@/lib/vouchers/providers';
-import { mapVoucherError } from '@/lib/vouchers/checkout';
+} from '@/lib/vouchers/helpers';
 
 describe('voucher provider helpers', () => {
   it('normalizes and masks codes without logging the full value', () => {
