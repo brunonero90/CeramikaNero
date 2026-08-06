@@ -5,24 +5,15 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout feature branch
+      - name: Checkout
         uses: actions/checkout@v5
-        with:
-          ref: feature/glina-followup-same-event
-          persist-credentials: true
-
-      - name: Apply implementation patch
-        run: |
-          cat .github/glina-followup-patch/part-* > /tmp/glina-followup.patch
-          patch -p1 < /tmp/glina-followup.patch
-          rm -rf .github/glina-followup-patch
 
       - name: Setup Node
         uses: actions/setup-node@v5
@@ -32,9 +23,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Format changed source
-        run: npx prettier --write components/clone/checkout-page-client.tsx lib/cart/revalidate.ts lib/cart/checkout.ts lib/cart/types.ts lib/cart/__tests__/linked-workshop-ux-contract.test.ts scripts/test-linked-workshops-pglite.mjs
 
       - name: Audit production dependencies
         run: npm audit --omit=dev --audit-level=high
@@ -62,11 +50,3 @@ jobs:
           SUPABASE_SECRET_KEY: test-secret-key
           PAYMENTS_PROVIDER: manual
         run: npm run build
-
-      - name: Publish implementation
-        run: |
-          git config user.name "Ceramika Nero Automation"
-          git config user.email "actions@users.noreply.github.com"
-          git add -A
-          git commit -m "Allow included glazing in later Glina do Wina sessions"
-          git push origin HEAD:feature/glina-followup-same-event
