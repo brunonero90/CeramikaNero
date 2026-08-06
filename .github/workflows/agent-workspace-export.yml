@@ -3,7 +3,6 @@ name: Agent workspace export
 on:
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
   contents: read
