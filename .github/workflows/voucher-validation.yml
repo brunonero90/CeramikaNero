@@ -50,6 +50,18 @@ jobs:
             git push origin HEAD:${{ github.head_ref }}
           fi
 
+      - name: Apply pending payment-method fix once
+        run: |
+          if [ -f scripts/fix-voucher-payment-method-null.py ]; then
+            python scripts/fix-voucher-payment-method-null.py
+            rm scripts/fix-voucher-payment-method-null.py
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "Fix null-safe voucher payment method selection"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
