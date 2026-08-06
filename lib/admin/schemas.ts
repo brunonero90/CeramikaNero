@@ -31,7 +31,7 @@ export const workshopInputSchema = z
     maximumAge: z.number().int().min(0).max(120).optional().nullable(),
     participantAudience: z.enum(['adult', 'child', 'mixed']).default('adult'),
     collectParticipantAge: z.boolean().default(false),
-    workshopType: z.string().trim().min(1).max(120),
+    workshopType: z.string().trim().min(1).max(120).default('workshop'),
     requiresFollowupSession: z.boolean().default(false),
     followupWorkshopType: z.string().trim().max(120).optional().nullable(),
     followupMinDays: z.number().int().min(0).max(365).optional().nullable(),
