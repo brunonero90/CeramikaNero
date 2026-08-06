@@ -34,9 +34,7 @@ jobs:
         run: npm run test:migrations
 
       - name: Voucher lifecycle integration
-        run: |
-          node -e "const fs=require('fs'); const p='scripts/test-voucher-lifecycle-pglite.mjs'; let s=fs.readFileSync(p,'utf8'); const a=\"assert(state.voucher_payment_status === 'paid', 'Voucher ledger not committed');\"; const b=\"if (state.voucher_payment_status !== 'paid') { const debugPayments = await db.query('select id, order_id, booking_id, provider, status, amount_gross_grosz, provider_payment_id, idempotency_key from public.payments order by created_at'); console.error('PARTIAL STATE', JSON.stringify(state)); console.error('PAYMENTS', JSON.stringify(debugPayments.rows)); }\\n  assert(state.voucher_payment_status === 'paid', 'Voucher ledger not committed');\"; if(!s.includes(a)) throw new Error('diagnostic assertion not found'); fs.writeFileSync(p,s.replace(a,b));"
-          npm run test:vouchers:pglite
+        run: npm run test:vouchers:pglite
 
       - name: Unit tests
         run: npm test
