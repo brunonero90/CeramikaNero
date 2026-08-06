@@ -8,6 +8,10 @@ import {
   revalidateCartLines,
   type RevalidatedCart,
 } from '@/lib/cart/revalidate';
+import {
+  validateVoucherForCheckout,
+  type VoucherCheckoutPreview,
+} from '@/lib/vouchers/checkout';
 import { formatPrice } from '@/lib/utils/price';
 
 type Participant = {
@@ -23,6 +27,18 @@ type PaymentOptions = {
   showMethodSelector: boolean;
 };
 
+function normalizeVoucherCode(code: string): string {
+  return code.trim().replace(/\s+/g, '').toUpperCase();
+}
+
+function formatExpiry(value: string | null): string {
+  if (!value) return 'bez terminu ważności';
+  return new Intl.DateTimeFormat('pl-PL', {
+    dateStyle: 'long',
+    timeZone: 'Europe/Warsaw',
+  }).format(new Date(value));
+}
+
 export function CheckoutPageClient({
   paymentOptions,
 }: {
@@ -31,6 +47,7 @@ export function CheckoutPageClient({
   const { lines, clear, ready } = useLocalCart();
   const [validated, setValidated] = useState<RevalidatedCart | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [voucherChecking, startVoucherTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [redirecting, setRedirecting] = useState(false);
   const [submissionKey] = useState(() => {
@@ -61,6 +78,14 @@ export function CheckoutPageClient({
     Record<string, Participant[]>
   >({});
 
+  const [hasVoucher, setHasVoucher] = useState(false);
+  const [voucherProvider, setVoucherProvider] = useState('auto');
+  const [voucherCode, setVoucherCode] = useState('');
+  const [voucherPreview, setVoucherPreview] =
+    useState<VoucherCheckoutPreview | null>(null);
+  const [validatedVoucherCode, setValidatedVoucherCode] = useState('');
+  const [voucherError, setVoucherError] = useState<string | null>(null);
+
   const [recipientName, setRecipientName] = useState('');
   const [street, setStreet] = useState('');
   const [street2, setStreet2] = useState('');
@@ -70,13 +95,26 @@ export function CheckoutPageClient({
   const needsShipping = useMemo(
     () =>
       (validated?.lines ?? lines).some(
-        (l) =>
-          (l.type === 'physical_product' || l.type === 'studio_service') &&
-          l.fulfillment === 'shipping' &&
-          ('requiresShipping' in l ? l.requiresShipping : true)
+        (line) =>
+          (line.type === 'physical_product' || line.type === 'studio_service') &&
+          line.fulfillment === 'shipping' &&
+          ('requiresShipping' in line ? line.requiresShipping : true)
       ),
     [validated, lines]
   );
+
+  const voucherEligibleCart = useMemo(
+    () =>
+      (validated?.lines ?? []).length > 0 &&
+      (validated?.lines ?? []).every(
+        (line) => line.type === 'workshop_session'
+      ),
+    [validated]
+  );
+
+  const voucherFullyPays = voucherPreview?.amountDueGrosz === 0;
+  const paymentUnavailable =
+    paymentOptions.mode === 'unavailable' && !voucherFullyPays;
 
   useEffect(() => {
     if (!ready || redirecting) return;
@@ -94,6 +132,9 @@ export function CheckoutPageClient({
         }));
       }
       setParticipantsBySession(next);
+      setVoucherPreview(null);
+      setValidatedVoucherCode('');
+      setVoucherError(null);
     });
   }, [ready, lines, redirecting]);
 
@@ -103,24 +144,71 @@ export function CheckoutPageClient({
     field: keyof Participant,
     value: string
   ) {
-    setParticipantsBySession((prev) => {
-      const list = [...(prev[sessionId] ?? [])];
+    setParticipantsBySession((previous) => {
+      const list = [...(previous[sessionId] ?? [])];
       list[index] = { ...list[index], [field]: value };
-      return { ...prev, [sessionId]: list };
+      return { ...previous, [sessionId]: list };
     });
   }
 
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  function resetVoucherValidation() {
+    setVoucherPreview(null);
+    setValidatedVoucherCode('');
+    setVoucherError(null);
+  }
+
+  function checkVoucher() {
+    if (!validated?.canCheckout) {
+      setVoucherError('Najpierw popraw niedostępne pozycje w koszyku.');
+      return;
+    }
+    if (!voucherEligibleCart) {
+      setVoucherError('Bon można wykorzystać wyłącznie na warsztaty.');
+      return;
+    }
+    const normalized = normalizeVoucherCode(voucherCode);
+    if (normalized.length < 4) {
+      setVoucherError('Wpisz kod bonu.');
+      return;
+    }
+
+    startVoucherTransition(async () => {
+      setVoucherError(null);
+      const result = await validateVoucherForCheckout({
+        code: normalized,
+        providerCode: voucherProvider,
+        purchaserEmail: email || null,
+        lines: validated.lines,
+      });
+      if (!result.ok) {
+        setVoucherPreview(null);
+        setValidatedVoucherCode('');
+        setVoucherError(result.error);
+        return;
+      }
+      setVoucherPreview(result.voucher);
+      setValidatedVoucherCode(normalized);
+    });
+  }
+
+  function onSubmit(event: React.FormEvent) {
+    event.preventDefault();
     if (!validated?.canCheckout) {
       setError('Koszyk zawiera niedostępne pozycje.');
       return;
     }
-    if (paymentOptions.mode === 'unavailable') {
+    if (paymentUnavailable) {
       setError(
-        'Płatności są tymczasowo niedostępne. Skontaktuj się z pracownią.'
+        'Płatności są tymczasowo niedostępne. Bon musi pokrywać całą kwotę.'
       );
       return;
+    }
+    if (hasVoucher) {
+      const normalized = normalizeVoucherCode(voucherCode);
+      if (!voucherPreview || validatedVoucherCode !== normalized) {
+        setError('Sprawdź bon przed złożeniem rezerwacji.');
+        return;
+      }
     }
     if (!terms) {
       setError('Zaakceptuj regulamin i politykę prywatności.');
@@ -140,6 +228,12 @@ export function CheckoutPageClient({
         privacyPolicyVersion: '1.0',
         submissionKey,
         participantsBySession,
+        voucherCode:
+          hasVoucher && voucherPreview
+            ? normalizeVoucherCode(voucherCode)
+            : null,
+        voucherProviderCode:
+          hasVoucher && voucherPreview ? voucherPreview.providerCode : null,
         paymentMethod:
           paymentOptions.mode === 'both'
             ? paymentMethod
@@ -165,8 +259,6 @@ export function CheckoutPageClient({
         return;
       }
 
-      // Mark redirecting before clearing the cart so the empty-cart screen
-      // cannot flash and swallow the success navigation.
       setRedirecting(true);
       window.sessionStorage.removeItem('ceramika-checkout-submission-key');
       const destination = result.checkoutUrl
@@ -181,13 +273,16 @@ export function CheckoutPageClient({
               if (result.bookingReferences.length) {
                 params.set('bookings', result.bookingReferences.join(','));
               }
-              if (result.shippingQuoteRequired)
+              if (result.shippingQuoteRequired) {
                 params.set('shipping_quote', '1');
+              }
+              if (result.voucherAppliedGrosz) {
+                params.set('voucher', String(result.voucherAppliedGrosz));
+              }
               return `/cart/sukces?${params.toString()}`;
             })();
 
       clear();
-      // Hard navigation avoids deferred router.push inside startTransition.
       window.location.assign(destination);
     });
   }
@@ -219,17 +314,19 @@ export function CheckoutPageClient({
     <main className="mx-auto max-w-2xl px-4 py-12 md:px-6">
       <h1 className="font-heading text-3xl font-semibold">Zamówienie</h1>
       <p className="mt-2 text-sm text-text-muted">
-        {paymentOptions.mode === 'unavailable'
-          ? 'Płatności są tymczasowo niedostępne. Skontaktuj się z pracownią.'
-          : paymentOptions.mode === 'stripe' && paymentOptions.stripeAvailable
-            ? 'Po złożeniu zamówienia przejdziesz do bezpiecznej płatności online (karta, BLIK, Przelewy24).'
-            : paymentOptions.showMethodSelector
-              ? 'Wybierz metodę płatności poniżej. Kwoty i dostępność weryfikujemy po stronie serwera.'
-              : 'Składasz zamówienie z płatnością przelewem bankowym. Dokładne dane do przelewu znajdziesz w e-mailu potwierdzającym.'}
+        {voucherFullyPays
+          ? 'Bon pokrywa całą kwotę. Rezerwacja zostanie potwierdzona bez dodatkowej płatności.'
+          : paymentOptions.mode === 'unavailable'
+            ? 'Płatności są tymczasowo niedostępne. Możesz użyć bonu pokrywającego całą kwotę.'
+            : paymentOptions.mode === 'stripe' && paymentOptions.stripeAvailable
+              ? 'Po złożeniu zamówienia przejdziesz do bezpiecznej płatności online (karta, BLIK, Przelewy24).'
+              : paymentOptions.showMethodSelector
+                ? 'Wybierz metodę płatności. Kwoty i dostępność weryfikujemy po stronie serwera.'
+                : 'Składasz zamówienie z płatnością przelewem bankowym.'}
       </p>
 
       <form onSubmit={onSubmit} className="mt-8 space-y-6">
-        {paymentOptions.showMethodSelector ? (
+        {paymentOptions.showMethodSelector && !voucherFullyPays ? (
           <section className="space-y-3">
             <h2 className="text-lg font-semibold">Metoda płatności</h2>
             <label className="flex items-start gap-3 text-sm">
@@ -272,18 +369,20 @@ export function CheckoutPageClient({
               Imię
               <input
                 required
+                autoComplete="given-name"
                 className="mt-1 w-full border px-3 py-2"
                 value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(event) => setFirstName(event.target.value)}
               />
             </label>
             <label className="text-sm">
               Nazwisko
               <input
                 required
+                autoComplete="family-name"
                 className="mt-1 w-full border px-3 py-2"
                 value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={(event) => setLastName(event.target.value)}
               />
             </label>
           </div>
@@ -292,9 +391,10 @@ export function CheckoutPageClient({
             <input
               required
               type="email"
+              autoComplete="email"
               className="mt-1 w-full border px-3 py-2"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </label>
           <label className="block text-sm">
@@ -305,13 +405,13 @@ export function CheckoutPageClient({
               autoComplete="tel"
               className="mt-1 w-full border px-3 py-2"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(event) => setPhone(event.target.value)}
             />
           </label>
         </section>
 
         {(validated?.lines ?? [])
-          .filter((l) => l.type === 'workshop_session')
+          .filter((line) => line.type === 'workshop_session')
           .map((line) =>
             line.type === 'workshop_session' ? (
               <section key={line.key} className="space-y-3">
@@ -331,75 +431,182 @@ export function CheckoutPageClient({
                     .
                   </p>
                 ) : null}
-                {(participantsBySession[line.sessionId] ?? []).map((p, idx) => (
-                  <div
-                    key={`${line.sessionId}-${idx}`}
-                    className="grid gap-2 border p-3 sm:grid-cols-2"
-                  >
-                    <label className="text-sm">
-                      Imię / oznaczenie
-                      <input
-                        required
-                        className="mt-1 w-full border px-3 py-2"
-                        value={p.display_name}
-                        onChange={(e) =>
-                          updateParticipant(
-                            line.sessionId,
-                            idx,
-                            'display_name',
-                            e.target.value
-                          )
-                        }
-                      />
-                    </label>
-                    <label className="text-sm">
-                      {line.ageRequired
-                        ? 'Wiek (wymagany)'
-                        : 'Wiek (opcjonalnie)'}
-                      <input
-                        type="number"
-                        min={line.minimumAge ?? 0}
-                        max={line.maximumAge ?? 120}
-                        required={Boolean(line.ageRequired)}
-                        className="mt-1 w-full border px-3 py-2"
-                        value={p.age}
-                        onChange={(e) =>
-                          updateParticipant(
-                            line.sessionId,
-                            idx,
-                            'age',
-                            e.target.value
-                          )
-                        }
-                      />
-                    </label>
-                    <label className="text-sm sm:col-span-2">
-                      Ważne informacje organizacyjne / potrzeby dostępności
-                      <textarea
-                        className="mt-1 w-full border px-3 py-2"
-                        rows={2}
-                        maxLength={500}
-                        value={p.accessibility_notes}
-                        onChange={(e) =>
-                          updateParticipant(
-                            line.sessionId,
-                            idx,
-                            'accessibility_notes',
-                            e.target.value
-                          )
-                        }
-                      />
-                      <span className="mt-1 block text-xs text-text-muted">
-                        Podaj tylko informacje potrzebne do organizacji
-                        warsztatu (np. dostępność przestrzeni). Nie wysyłaj
-                        diagnoz ani numerów dokumentów.
-                      </span>
-                    </label>
-                  </div>
-                ))}
+                {(participantsBySession[line.sessionId] ?? []).map(
+                  (participant, index) => (
+                    <div
+                      key={`${line.sessionId}-${index}`}
+                      className="grid gap-2 border p-3 sm:grid-cols-2"
+                    >
+                      <label className="text-sm">
+                        Imię / oznaczenie
+                        <input
+                          required
+                          className="mt-1 w-full border px-3 py-2"
+                          value={participant.display_name}
+                          onChange={(event) =>
+                            updateParticipant(
+                              line.sessionId,
+                              index,
+                              'display_name',
+                              event.target.value
+                            )
+                          }
+                        />
+                      </label>
+                      {line.ageRequired ? (
+                        <label className="text-sm">
+                          Wiek (wymagany)
+                          <input
+                            type="number"
+                            min={line.minimumAge ?? 0}
+                            max={line.maximumAge ?? 120}
+                            required
+                            className="mt-1 w-full border px-3 py-2"
+                            value={participant.age}
+                            onChange={(event) =>
+                              updateParticipant(
+                                line.sessionId,
+                                index,
+                                'age',
+                                event.target.value
+                              )
+                            }
+                          />
+                        </label>
+                      ) : null}
+                      <label className="text-sm sm:col-span-2">
+                        Ważne informacje organizacyjne / potrzeby dostępności
+                        <textarea
+                          className="mt-1 w-full border px-3 py-2"
+                          rows={2}
+                          maxLength={500}
+                          value={participant.accessibility_notes}
+                          onChange={(event) =>
+                            updateParticipant(
+                              line.sessionId,
+                              index,
+                              'accessibility_notes',
+                              event.target.value
+                            )
+                          }
+                        />
+                        <span className="mt-1 block text-xs text-text-muted">
+                          Podaj tylko informacje potrzebne do organizacji
+                          warsztatu. Nie wysyłaj diagnoz ani numerów dokumentów.
+                        </span>
+                      </label>
+                    </div>
+                  )
+                )}
               </section>
             ) : null
           )}
+
+        <section className="space-y-3 rounded border border-surface-subtle bg-surface-raised p-4">
+          <label className="flex items-start gap-3 text-sm font-medium">
+            <input
+              type="checkbox"
+              className="mt-1"
+              checked={hasVoucher}
+              disabled={!voucherEligibleCart}
+              onChange={(event) => {
+                setHasVoucher(event.target.checked);
+                if (!event.target.checked) {
+                  setVoucherCode('');
+                  resetVoucherValidation();
+                }
+              }}
+            />
+            <span>
+              Mam bon upominkowy
+              {!voucherEligibleCart ? (
+                <span className="block font-normal text-text-muted">
+                  Bony można obecnie stosować tylko do warsztatów.
+                </span>
+              ) : null}
+            </span>
+          </label>
+
+          {hasVoucher ? (
+            <div className="space-y-3">
+              <label className="block text-sm">
+                Wystawca bonu
+                <select
+                  className="mt-1 w-full border px-3 py-2"
+                  value={voucherProvider}
+                  onChange={(event) => {
+                    setVoucherProvider(event.target.value);
+                    resetVoucherValidation();
+                  }}
+                >
+                  <option value="auto">Rozpoznaj automatycznie</option>
+                  <option value="ceramika_nero">Ceramika Nero</option>
+                  <option value="prezent_marzen">Prezent Marzeń</option>
+                </select>
+              </label>
+              <div className="flex gap-2">
+                <label className="min-w-0 flex-1 text-sm">
+                  Kod bonu
+                  <input
+                    className="mt-1 w-full border px-3 py-2 font-mono uppercase"
+                    value={voucherCode}
+                    autoComplete="off"
+                    onChange={(event) => {
+                      setVoucherCode(event.target.value);
+                      resetVoucherValidation();
+                    }}
+                    onBlur={() => {
+                      if (
+                        normalizeVoucherCode(voucherCode).length >= 4 &&
+                        !voucherPreview &&
+                        !voucherChecking
+                      ) {
+                        checkVoucher();
+                      }
+                    }}
+                  />
+                </label>
+                <button
+                  type="button"
+                  disabled={voucherChecking || !voucherCode.trim()}
+                  onClick={checkVoucher}
+                  className="self-end border border-accent-primary px-4 py-2 text-sm font-semibold text-accent-primary disabled:opacity-50"
+                >
+                  {voucherChecking ? 'Sprawdzanie…' : 'Sprawdź bon'}
+                </button>
+              </div>
+
+              {voucherError ? (
+                <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-800">
+                  {voucherError}
+                </p>
+              ) : null}
+
+              {voucherPreview ? (
+                <div className="space-y-1 rounded bg-green-50 px-3 py-3 text-sm text-green-950">
+                  <p className="font-semibold">Bon został zastosowany</p>
+                  <p>
+                    {voucherPreview.providerName} · {voucherPreview.maskedCode}
+                  </p>
+                  {voucherPreview.description ? (
+                    <p>{voucherPreview.description}</p>
+                  ) : null}
+                  <p>Ważny: {formatExpiry(voucherPreview.validUntil)}</p>
+                  {voucherPreview.allowedWorkshopTypes.length ? (
+                    <p>
+                      Ograniczenia: {voucherPreview.allowedWorkshopTypes.join(', ')}
+                    </p>
+                  ) : (
+                    <p>Bez ograniczeń typu warsztatu.</p>
+                  )}
+                  <p>
+                    Dostępne saldo: {formatPrice(voucherPreview.remainingValueGrosz)}
+                  </p>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+        </section>
 
         {needsShipping ? (
           <section className="space-y-3">
@@ -413,7 +620,7 @@ export function CheckoutPageClient({
                 required
                 className="mt-1 w-full border px-3 py-2"
                 value={recipientName}
-                onChange={(e) => setRecipientName(e.target.value)}
+                onChange={(event) => setRecipientName(event.target.value)}
               />
             </label>
             <label className="block text-sm">
@@ -422,7 +629,7 @@ export function CheckoutPageClient({
                 required
                 className="mt-1 w-full border px-3 py-2"
                 value={street}
-                onChange={(e) => setStreet(e.target.value)}
+                onChange={(event) => setStreet(event.target.value)}
               />
             </label>
             <label className="block text-sm">
@@ -430,7 +637,7 @@ export function CheckoutPageClient({
               <input
                 className="mt-1 w-full border px-3 py-2"
                 value={street2}
-                onChange={(e) => setStreet2(e.target.value)}
+                onChange={(event) => setStreet2(event.target.value)}
               />
             </label>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -440,7 +647,7 @@ export function CheckoutPageClient({
                   required
                   className="mt-1 w-full border px-3 py-2"
                   value={postal}
-                  onChange={(e) => setPostal(e.target.value)}
+                  onChange={(event) => setPostal(event.target.value)}
                 />
               </label>
               <label className="text-sm">
@@ -449,13 +656,12 @@ export function CheckoutPageClient({
                   required
                   className="mt-1 w-full border px-3 py-2"
                   value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  onChange={(event) => setCity(event.target.value)}
                 />
               </label>
             </div>
             <p className="text-sm text-amber-900">
-              Wysyłka na terenie Polski. Koszt dostawy — wycena przed płatnością
-              (nie jest doliczany automatycznie).
+              Wysyłka na terenie Polski. Koszt dostawy — wycena przed płatnością.
             </p>
           </section>
         ) : null}
@@ -466,7 +672,7 @@ export function CheckoutPageClient({
             className="mt-1 w-full border px-3 py-2"
             rows={3}
             value={notes}
-            onChange={(e) => setNotes(e.target.value)}
+            onChange={(event) => setNotes(event.target.value)}
           />
         </label>
 
@@ -474,7 +680,7 @@ export function CheckoutPageClient({
           <input
             type="checkbox"
             checked={terms}
-            onChange={(e) => setTerms(e.target.checked)}
+            onChange={(event) => setTerms(event.target.checked)}
             required
           />
           <span>
@@ -493,7 +699,7 @@ export function CheckoutPageClient({
           <input
             type="checkbox"
             checked={marketing}
-            onChange={(e) => setMarketing(e.target.checked)}
+            onChange={(event) => setMarketing(event.target.checked)}
           />
           <span>Chcę otrzymywać informacje o warsztatach (opcjonalnie).</span>
         </label>
@@ -505,6 +711,12 @@ export function CheckoutPageClient({
               {formatPrice(validated?.subtotalGrosz ?? 0)}
             </span>
           </p>
+          {voucherPreview ? (
+            <p className="flex justify-between gap-3 text-green-800">
+              <span>Bon {voucherPreview.maskedCode}</span>
+              <span>−{formatPrice(voucherPreview.applicableGrosz)}</span>
+            </p>
+          ) : null}
           {needsShipping ? (
             <>
               <p className="flex justify-between gap-3 text-amber-900">
@@ -512,15 +724,19 @@ export function CheckoutPageClient({
                 <span>do potwierdzenia</span>
               </p>
               <p className="text-amber-900">
-                Koszt wysyłki zostanie potwierdzony przed płatnością. Kwota do
-                zapłaty zostanie potwierdzona po ustaleniu kosztu wysyłki — nie
-                przelewaj środków, dopóki nie otrzymasz finalnej kwoty.
+                Koszt wysyłki zostanie potwierdzony przed płatnością.
               </p>
             </>
           ) : (
             <p className="flex justify-between gap-3 text-base font-semibold">
-              <span>Do zapłaty</span>
-              <span>{formatPrice(validated?.subtotalGrosz ?? 0)}</span>
+              <span>{voucherFullyPays ? 'Pozostało do zapłaty' : 'Do zapłaty'}</span>
+              <span>
+                {formatPrice(
+                  voucherPreview?.amountDueGrosz ??
+                    validated?.subtotalGrosz ??
+                    0
+                )}
+              </span>
             </p>
           )}
         </div>
@@ -535,12 +751,17 @@ export function CheckoutPageClient({
           type="submit"
           disabled={
             isPending ||
+            voucherChecking ||
             !validated?.canCheckout ||
-            paymentOptions.mode === 'unavailable'
+            paymentUnavailable
           }
           className="w-full bg-accent-primary px-4 py-3 text-sm font-semibold text-white disabled:bg-gray-400"
         >
-          {isPending ? 'Składanie zamówienia…' : 'Złóż zamówienie i rezerwację'}
+          {isPending
+            ? 'Składanie zamówienia…'
+            : voucherFullyPays
+              ? 'Potwierdź rezerwację z bonem'
+              : 'Złóż zamówienie i rezerwację'}
         </button>
       </form>
     </main>
