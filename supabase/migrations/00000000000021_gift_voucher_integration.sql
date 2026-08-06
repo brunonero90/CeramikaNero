@@ -266,13 +266,18 @@ begin
   if length(trim(coalesce(p_code, ''))) < 4 then raise exception 'Voucher code is invalid'; end if;
   if coalesce(p_subtotal_grosz, 0) <= 0 then raise exception 'Voucher order total is invalid'; end if;
 
-  select v, p into v_voucher, v_provider
-  from public.gift_vouchers v
-  join public.gift_voucher_providers p on p.code = v.provider_code
-  where v.code_hash = public.voucher_code_hash(p_code)
-    and p.is_active = true;
+  select * into v_voucher
+  from public.gift_vouchers
+  where code_hash = public.voucher_code_hash(p_code);
 
   if not found then raise exception 'Voucher not found'; end if;
+
+  select * into v_provider
+  from public.gift_voucher_providers
+  where code = v_voucher.provider_code
+    and is_active = true;
+
+  if not found then raise exception 'Voucher provider is unavailable'; end if;
   if v_voucher.status = 'cancelled' then raise exception 'Voucher is cancelled'; end if;
   if v_voucher.valid_from > v_now then raise exception 'Voucher is not active yet'; end if;
   if v_voucher.valid_until is not null and v_voucher.valid_until < v_now then
@@ -563,10 +568,16 @@ begin
 
   if found then
     if not v_reused then raise exception 'Order already has a voucher redemption'; end if;
-    select v, p into v_voucher, v_provider
-    from public.gift_vouchers v
-    join public.gift_voucher_providers p on p.code = v.provider_code
-    where v.id = v_existing_redemption.voucher_id;
+    select * into v_voucher
+    from public.gift_vouchers
+    where id = v_existing_redemption.voucher_id;
+    if not found then raise exception 'Voucher not found'; end if;
+
+    select * into v_provider
+    from public.gift_voucher_providers
+    where code = v_voucher.provider_code;
+    if not found then raise exception 'Voucher provider is unavailable'; end if;
+
     if v_voucher.code_hash <> public.voucher_code_hash(p_voucher_code) then
       raise exception 'Idempotency key belongs to a different voucher';
     end if;
@@ -581,14 +592,19 @@ begin
     );
   end if;
 
-  select v, p into v_voucher, v_provider
-  from public.gift_vouchers v
-  join public.gift_voucher_providers p on p.code = v.provider_code
-  where v.code_hash = public.voucher_code_hash(p_voucher_code)
-    and p.is_active = true
-  for update of v;
+  select * into v_voucher
+  from public.gift_vouchers
+  where code_hash = public.voucher_code_hash(p_voucher_code)
+  for update;
 
   if not found then raise exception 'Voucher not found'; end if;
+
+  select * into v_provider
+  from public.gift_voucher_providers
+  where code = v_voucher.provider_code
+    and is_active = true;
+
+  if not found then raise exception 'Voucher provider is unavailable'; end if;
   if v_voucher.status = 'cancelled' then raise exception 'Voucher is cancelled'; end if;
   if v_voucher.valid_from > v_now then raise exception 'Voucher is not active yet'; end if;
   if v_voucher.valid_until is not null and v_voucher.valid_until < v_now then
