@@ -550,6 +550,27 @@ export function CheckoutPageClient({
                     Użyjemy imienia i nazwiska z danych kupującego. Nie musisz
                     wpisywać ich drugi raz.
                   </p>
+                  <label className="block text-sm">
+                    Ważne informacje organizacyjne / potrzeby dostępności
+                    <textarea
+                      className="mt-1 w-full border px-3 py-2"
+                      rows={2}
+                      maxLength={500}
+                      value={participants[0]?.accessibility_notes ?? ''}
+                      onChange={(event) =>
+                        updateParticipant(
+                          line.sessionId,
+                          0,
+                          'accessibility_notes',
+                          event.target.value
+                        )
+                      }
+                    />
+                    <span className="mt-1 block text-xs text-text-muted">
+                      Podaj tylko informacje potrzebne do organizacji warsztatu.
+                      Nie wysyłaj diagnoz ani numerów dokumentów.
+                    </span>
+                  </label>
                 </section>
               );
             }
@@ -560,10 +581,38 @@ export function CheckoutPageClient({
                   {line.workshopTitle}
                 </h2>
                 {adult ? (
-                  <p className="text-sm text-text-muted">
-                    Pierwsze miejsce przypisujemy osobie kupującej. Podaj tylko
-                    pozostałych uczestników.
-                  </p>
+                  <>
+                    <p className="text-sm text-text-muted">
+                      Pierwsze miejsce przypisujemy osobie kupującej. Podaj
+                      tylko pozostałych uczestników.
+                    </p>
+                    <div className="rounded border p-3">
+                      <p className="mb-2 text-sm font-medium">
+                        Osoba kupująca: {firstName || '—'} {lastName || ''}
+                      </p>
+                      <label className="block text-sm">
+                        Ważne informacje organizacyjne / potrzeby dostępności
+                        <textarea
+                          className="mt-1 w-full border px-3 py-2"
+                          rows={2}
+                          maxLength={500}
+                          value={participants[0]?.accessibility_notes ?? ''}
+                          onChange={(event) =>
+                            updateParticipant(
+                              line.sessionId,
+                              0,
+                              'accessibility_notes',
+                              event.target.value
+                            )
+                          }
+                        />
+                        <span className="mt-1 block text-xs text-text-muted">
+                          Podaj tylko informacje potrzebne do organizacji
+                          warsztatu. Nie wysyłaj diagnoz ani numerów dokumentów.
+                        </span>
+                      </label>
+                    </div>
+                  </>
                 ) : null}
                 {participants.map((participant, index) => {
                   if (adult && index === 0) return null;

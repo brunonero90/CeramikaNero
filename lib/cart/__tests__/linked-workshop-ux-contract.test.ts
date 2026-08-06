@@ -21,8 +21,11 @@ describe('linked workshop checkout UX contract', () => {
     expect(checkoutUi).toContain("participantAudience === 'adult'");
     expect(checkoutUi).toContain("participant_type: 'adult' as const");
     expect(checkoutUi).toContain("age: ''");
+    expect(checkoutUi).toContain(
+      'Ważne informacje organizacyjne / potrzeby dostępności'
+    );
     expect(checkoutServer).toContain("participantType !== 'child'");
-    expect(migration).toContain("set age = null");
+    expect(migration).toContain('set age = null');
   });
 
   it('collects age only for child participants and supports mixed groups', () => {
@@ -32,16 +35,22 @@ describe('linked workshop checkout UX contract', () => {
     expect(checkoutServer).toContain(
       "audience === 'mixed' && participantType === 'unspecified'"
     );
-    expect(migration).toContain("participant_audience in ('adult', 'child', 'mixed')");
+    expect(migration).toContain(
+      "participant_audience in ('adult', 'child', 'mixed')"
+    );
   });
 
   it('requires and revalidates a second session in the unified order', () => {
     expect(checkoutUi).toContain('Wybierz termin szkliwienia');
     expect(checkoutUi).toContain("linkRole: 'followup'");
-    expect(checkoutServer).toContain('Wybierz obowiązkowy termin drugiego etapu');
-    expect(checkoutServer).toContain(".rpc('submit_cart_order_v4'");
+    expect(checkoutServer).toContain(
+      'Wybierz obowiązkowy termin drugiego etapu'
+    );
+    expect(checkoutServer).toContain(".rpc('submit_cart_order_v5'");
     expect(revalidation).toContain('loadFollowupOptions');
     expect(revalidation).toContain('remaining < quantity');
-    expect(migration).toContain('create table if not exists public.booking_links');
+    expect(migration).toContain(
+      'create table if not exists public.booking_links'
+    );
   });
 });

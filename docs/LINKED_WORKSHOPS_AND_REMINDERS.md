@@ -86,8 +86,8 @@ The production scheduler was audited and is enabled in `netlify.toml`:
 
 Each run calls `enqueue_booking_reminders` before dispatching email retries.
 Reminders are queued for confirmed bookings whose session starts between 23 and
-25 hours from processing time. The five-minute schedule therefore sends them
-approximately one day before the workshop.
+25 hours from processing time. The five-minute schedule discovers them in a recovery window, while
+`next_attempt_at` holds delivery until the precise 24-hour point.
 
 The implementation is payment-provider neutral. A confirmed manual booking and
 a confirmed Stripe booking are selected by the same query.
@@ -143,11 +143,12 @@ The linked-workshop PGlite test verifies:
 2. Apply voucher migrations 20–25 first if they are not already applied.
 3. Apply `00000000000026_linked_workshops_and_reminders.sql`.
 4. Apply `00000000000027_linked_workshop_hardening.sql`.
-5. Deploy the application commit.
-6. Confirm `BOOKING_CRON_SECRET` exists in Netlify and the scheduled function is
+5. Apply `00000000000028_linked_checkout_database_guard.sql`.
+6. Deploy the application commit.
+7. Confirm `BOOKING_CRON_SECRET` exists in Netlify and the scheduled function is
    enabled.
-7. Review adult/child/mixed settings in the workshop admin.
-8. Configure the real glazing workshop and Glina do Wina relationship.
-9. Perform one disposable two-stage Stripe booking and one manual booking.
-10. Check `booking_emails`, `booking_events`, both capacities and the admin linked
+8. Review adult/child/mixed settings in the workshop admin.
+9. Configure the real glazing workshop and Glina do Wina relationship.
+10. Perform one disposable two-stage Stripe booking and one manual booking.
+11. Check `booking_emails`, `booking_events`, both capacities and the admin linked
     booking display.

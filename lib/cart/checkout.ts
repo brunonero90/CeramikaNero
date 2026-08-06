@@ -410,7 +410,7 @@ export async function submitCartOrder(
         error: { message: string; code?: string } | null;
       }>;
     }
-  ).rpc('submit_cart_order_v4', {
+  ).rpc('submit_cart_order_v5', {
     p_idempotency_key: idempotencyKey,
     p_customer_email: data.purchaserEmail,
     p_customer_first_name: data.purchaserFirstName,
@@ -432,7 +432,7 @@ export async function submitCartOrder(
   });
 
   if (error || !result) {
-    console.error('submit_cart_order_v4 failed', {
+    console.error('submit_cart_order_v5 failed', {
       message: error?.message,
       code: error?.code,
     });

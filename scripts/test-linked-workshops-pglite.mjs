@@ -145,9 +145,14 @@ async function createLinkedFixture(db) {
       returning id
     )
     select
+      primary_workshop.id as primary_workshop_id,
+      followup.id as followup_workshop_id,
       primary_session.id as primary_session_id,
       followup_session.id as followup_session_id
-    from primary_session cross join followup_session
+    from primary_workshop
+    cross join followup
+    cross join primary_session
+    cross join followup_session
   `);
   return result.rows[0];
 }
@@ -190,7 +195,7 @@ async function exerciseLinkedCheckout(db) {
   );
 
   const first = await db.query(
-    `select public.submit_cart_order_v4(
+    `select public.submit_cart_order_v5(
       $1, $2, $3, $4, $5, $6, false,
       timezone('utc'::text, now()), 'test', $7::jsonb,
       null, 'website', 'stripe', null
@@ -240,7 +245,7 @@ async function exerciseLinkedCheckout(db) {
   assert(row.followup_reserved === 1, 'Follow-up capacity was not reserved');
 
   const replay = await db.query(
-    `select public.submit_cart_order_v4(
+    `select public.submit_cart_order_v5(
       $1, $2, $3, $4, $5, $6, false,
       timezone('utc'::text, now()), 'test', $7::jsonb,
       null, 'website', 'stripe', null
@@ -310,6 +315,66 @@ async function exerciseLinkedCheckout(db) {
   assert(
     cancelled.rows[0].followup_reserved === 0,
     'Follow-up capacity was not released'
+  );
+
+  await db.query(
+    `insert into public.booking_events (
+       booking_id, event_type, actor_type, metadata
+     ) values ($1, 'attendance_updated', 'system', '{}'::jsonb)`,
+    [bookings.rows[0].id]
+  );
+
+  let selfLinkRejected = false;
+  try {
+    await db.query(
+      `update public.workshops
+       set followup_workshop_id = id
+       where id = $1`,
+      [fixture.primary_workshop_id]
+    );
+  } catch (error) {
+    selfLinkRejected = String(error).includes(
+      'workshops_followup_not_self_check'
+    );
+  }
+  assert(selfLinkRejected, 'A workshop was allowed to follow itself');
+
+  await db.query(
+    `update public.workshop_sessions
+     set reserved_count = capacity
+     where id = $1`,
+    [fixture.followup_session_id]
+  );
+  let unavailableRejected = false;
+  try {
+    await db.query(
+      `select public.submit_cart_order_v5(
+        $1, $2, $3, $4, $5, $6, false,
+        timezone('utc'::text, now()), 'test', $7::jsonb,
+        null, 'website', 'stripe', null
+      ) as result`,
+      [
+        'linked-workshops-unavailable-followup',
+        'unavailable@example.com',
+        'Bruno',
+        'Nero',
+        '500600700',
+        '',
+        lines,
+      ]
+    );
+  } catch (error) {
+    unavailableRejected = String(error)
+      .toLowerCase()
+      .includes('follow-up session is no longer available');
+  }
+  assert(
+    unavailableRejected,
+    'Full follow-up capacity did not produce the dedicated error'
+  );
+  await db.query(
+    `update public.workshop_sessions set reserved_count = 0 where id = $1`,
+    [fixture.followup_session_id]
   );
 }
 
@@ -454,6 +519,24 @@ async function exerciseReminders(db) {
   assert(
     String(cancelledRow.rows[0].error_message).includes('permanent'),
     'Cancelled reminder was not permanently closed'
+  );
+
+  const repeatedCleanup = await db.query(
+    `select public.enqueue_booking_reminders(null, null) as result`
+  );
+  assert(
+    repeatedCleanup.rows[0].result.skipped === 0,
+    'Permanent reminder skip was logged more than once'
+  );
+  const skipEvents = await db.query(
+    `select count(*)::int as count
+     from public.booking_events
+     where booking_id = $1 and event_type = 'reminder_skipped'`,
+    [stripeBooking]
+  );
+  assert(
+    skipEvents.rows[0].count === 1,
+    'Expected exactly one reminder_skipped audit event'
   );
 }
 
