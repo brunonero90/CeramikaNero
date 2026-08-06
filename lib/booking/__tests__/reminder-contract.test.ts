@@ -15,7 +15,7 @@ describe('booking reminder production contract', () => {
   );
 
   it('runs the authenticated email dispatcher every five minutes', () => {
-    expect(netlify).toContain('function = "booking-email-dispatch"');
+    expect(netlify).toContain('[functions."booking-email-dispatch"]');
     expect(netlify).toContain('schedule = "*/5 * * * *"');
     expect(scheduledFunction).toContain('BOOKING_CRON_SECRET');
     expect(scheduledFunction).toContain('/api/cron/email-dispatch');
