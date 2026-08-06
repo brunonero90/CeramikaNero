@@ -28,170 +28,35 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import base64
 
           checkout = Path('components/clone/checkout-page-client.tsx')
           text = checkout.read_text()
-
           old_lines = '        lines: validated.lines,'
           if text.count(old_lines) != 1:
               raise SystemExit(f'Expected one checkout submission anchor, found {text.count(old_lines)}')
           text = text.replace(old_lines, '        lines: expandedLines,')
 
-          old_required = '''                  <select
-                    required
-                    className="mt-1 w-full border px-3 py-2"
-                    value={followupByPrimary[line.sessionId] ?? ''}'''
-          new_required = '''                  <select
-                    required={line.requiresFollowupSession}
-                    className="mt-1 w-full border px-3 py-2"
-                    value={followupByPrimary[line.sessionId] ?? ''}'''
+          old_required = '                  <select\n                    required\n                    className="mt-1 w-full border px-3 py-2"\n                    value={followupByPrimary[line.sessionId] ?? \'\'}'
+          new_required = '                  <select\n                    required={line.requiresFollowupSession}\n                    className="mt-1 w-full border px-3 py-2"\n                    value={followupByPrimary[line.sessionId] ?? \'\'}'
           if text.count(old_required) != 1:
               raise SystemExit(f'Expected one follow-up select anchor, found {text.count(old_required)}')
           checkout.write_text(text.replace(old_required, new_required))
 
           contract = Path('lib/cart/__tests__/linked-workshop-ux-contract.test.ts')
           test = contract.read_text()
-          anchor = '''    expect(checkoutUi).toContain("linkRole: 'followup'");
-'''
-          addition = '''    expect(checkoutUi).toContain("linkRole: 'followup'");
-    expect(checkoutUi).toContain('lines: expandedLines');
-    expect(checkoutUi).toContain(
-      'required={line.requiresFollowupSession}'
-    );
-'''
+          anchor = '    expect(checkoutUi).toContain("linkRole: \'followup\'");\n'
+          addition = anchor + "    expect(checkoutUi).toContain('lines: expandedLines');\n    expect(checkoutUi).toContain(\n      'required={line.requiresFollowupSession}'\n    );\n"
           if test.count(anchor) != 1:
               raise SystemExit(f'Expected one contract anchor, found {test.count(anchor)}')
           contract.write_text(test.replace(anchor, addition))
 
-          migration = Path('supabase/migrations/00000000000031_glina_do_wina_optional_followup_repair.sql')
-          migration.write_text(r'''-- Ceramika Nero — repair production Glina do Wina optional glazing configuration.
--- Apply after migration 30.
-
--- Migration 26 configured Glina do Wina only when a glazing workshop already
--- existed at that exact migration moment. Production workshops can be created
--- later through the admin portal, so resolve the relationship from current data.
-do $$
-declare
-  v_primary uuid;
-  v_existing_followup uuid;
-  v_followup uuid;
-  v_followup_type text;
-begin
-  select id, followup_workshop_id
-    into v_primary, v_existing_followup
-  from public.workshops
-  where slug in ('glina-do-wina', 'glinadowina')
-     or lower(trim(title)) = 'glina do wina'
-  order by created_at asc
-  limit 1;
-
-  if v_primary is null then
-    raise notice 'Glina do Wina workshop not found; optional follow-up repair skipped';
-    return;
-  end if;
-
-  select w.id,
-         coalesce(nullif(trim(w.workshop_type), ''), w.slug, 'szkliwienie')
-    into v_followup, v_followup_type
-  from public.workshops w
-  where w.id <> v_primary
-    and w.status = 'published'
-    and w.archived_at is null
-    and w.booking_mode = 'scheduled'
-    and (
-      w.id = v_existing_followup
-      or lower(w.slug) like '%szkliw%'
-      or lower(w.title) like '%szkliw%'
-      or lower(coalesce(w.workshop_type, '')) like '%szkliw%'
-    )
-  order by
-    case when w.id = v_existing_followup then 0 else 1 end,
-    case when exists (
-      select 1
-      from public.workshop_sessions s
-      where s.workshop_id = w.id
-        and s.starts_at > timezone('utc'::text, now())
-        and s.status in ('scheduled', 'sold_out')
-    ) then 0 else 1 end,
-    w.created_at asc
-  limit 1;
-
-  update public.workshops
-  set offers_followup_session = true,
-      requires_followup_session = false,
-      followup_workshop_id = coalesce(v_followup, followup_workshop_id),
-      followup_workshop_type = coalesce(
-        v_followup_type,
-        nullif(trim(followup_workshop_type), ''),
-        'szkliwienie'
-      ),
-      followup_min_days = coalesce(followup_min_days, 5),
-      followup_max_days = coalesce(followup_max_days, 45),
-      updated_at = timezone('utc'::text, now())
-  where id = v_primary;
-
-  if v_followup is null then
-    raise notice 'Glina do Wina now offers optional glazing, but no published glazing workshop was auto-detected';
-  end if;
-end
-$$;
-''')
-
-          canonical = '''name: Booking validation
-
-on:
-  pull_request:
-    branches: [main]
-
-permissions:
-  contents: read
-
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Setup Node
-        uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Audit production dependencies
-        run: npm audit --omit=dev --audit-level=high
-
-      - name: Typecheck
-        run: npm run typecheck -- --pretty false
-
-      - name: Migration harness
-        run: npm run test:migrations
-
-      - name: Voucher lifecycle integration
-        run: npm run test:vouchers:pglite
-
-      - name: Linked workshop lifecycle integration
-        run: npm run test:linked-workshops:pglite
-
-      - name: Unit tests
-        run: npm test
-
-      - name: Production build
-        env:
-          NEXT_PUBLIC_SITE_URL: https://example.invalid
-          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: test-anon-key
-          SUPABASE_SECRET_KEY: test-secret-key
-          PAYMENTS_PROVIDER: manual
-        run: npm run build
-'''
-          Path('.github/workflows/voucher-validation.yml').write_text(canonical)
+          migration_b64 = 'LS0gQ2VyYW1pa2EgTmVybyDigJQgcmVwYWlyIHByb2R1Y3Rpb24gR2xpbmEgZG8gV2luYSBvcHRpb25hbCBnbGF6aW5nIGNvbmZpZ3VyYXRpb24uCi0tIEFwcGx5IGFmdGVyIG1pZ3JhdGlvbiAzMC4KCi0tIE1pZ3JhdGlvbiAyNiBjb25maWd1cmVkIEdsaW5hIGRvIFdpbmEgb25seSB3aGVuIGEgZ2xhemluZyB3b3Jrc2hvcCBhbHJlYWR5Ci0tIGV4aXN0ZWQgYXQgdGhhdCBleGFjdCBtaWdyYXRpb24gbW9tZW50LiBQcm9kdWN0aW9uIHdvcmtzaG9wcyBjYW4gYmUgY3JlYXRlZAotLSBsYXRlciB0aHJvdWdoIHRoZSBhZG1pbiBwb3J0YWwsIHNvIHJlc29sdmUgdGhlIHJlbGF0aW9uc2hpcCBmcm9tIGN1cnJlbnQgZGF0YS4KZG8gJCQKZGVjbGFyZQogIHZfcHJpbWFyeSB1dWlkOwogIHZfZXhpc3RpbmdfZm9sbG93dXAgdXVpZDsKICB2X2ZvbGxvd3VwIHV1aWQ7CiAgdl9mb2xsb3d1cF90eXBlIHRleHQ7CmJlZ2luCiAgc2VsZWN0IGlkLCBmb2xsb3d1cF93b3Jrc2hvcF9pZAogICAgaW50byB2X3ByaW1hcnksIHZfZXhpc3RpbmdfZm9sbG93dXAKICBmcm9tIHB1YmxpYy53b3Jrc2hvcHMKICB3aGVyZSBzbHVnIGluICgnZ2xpbmEtZG8td2luYScsICdnbGluYWRvd2luYScpCiAgICAgb3IgbG93ZXIodHJpbSh0aXRsZSkpID0gJ2dsaW5hIGRvIHdpbmEnCiAgb3JkZXIgYnkgY3JlYXRlZF9hdCBhc2MKICBsaW1pdCAxOwoKICBpZiB2X3ByaW1hcnkgaXMgbnVsbCB0aGVuCiAgICByYWlzZSBub3RpY2UgJ0dsaW5hIGRvIFdpbmEgd29ya3Nob3Agbm90IGZvdW5kOyBvcHRpb25hbCBmb2xsb3ctdXAgcmVwYWlyIHNraXBwZWQnOwogICAgcmV0dXJuOwogIGVuZCBpZjsKCiAgc2VsZWN0IHcuaWQsCiAgICAgICAgIGNvYWxlc2NlKG51bGxpZih0cmltKHcud29ya3Nob3BfdHlwZSksICcnKSwgdy5zbHVnLCAnc3prbGl3aWVuaWUnKQogICAgaW50byB2X2ZvbGxvd3VwLCB2X2ZvbGxvd3VwX3R5cGUKICBmcm9tIHB1YmxpYy53b3Jrc2hvcHMgdwogIHdoZXJlIHcuaWQgPD4gdl9wcmltYXJ5CiAgICBhbmQgdy5zdGF0dXMgPSAncHVibGlzaGVkJwogICAgYW5kIHcuYXJjaGl2ZWRfYXQgaXMgbnVsbAogICAgYW5kIHcuYm9va2luZ19tb2RlID0gJ3NjaGVkdWxlZCcKICAgIGFuZCAoCiAgICAgIHcuaWQgPSB2X2V4aXN0aW5nX2ZvbGxvd3VwCiAgICAgIG9yIGxvd2VyKHcuc2x1ZykgbGlrZSAnJXN6a2xpdyUnCiAgICAgIG9yIGxvd2VyKHcudGl0bGUpIGxpa2UgJyVzemtsaXclJwogICAgICBvciBsb3dlcihjb2FsZXNjZSh3LndvcmtzaG9wX3R5cGUsICcnKSkgbGlrZSAnJXN6a2xpdyUnCiAgICApCiAgb3JkZXIgYnkKICAgIGNhc2Ugd2hlbiB3LmlkID0gdl9leGlzdGluZ19mb2xsb3d1cCB0aGVuIDAgZWxzZSAxIGVuZCwKICAgIGNhc2Ugd2hlbiBleGlzdHMgKAogICAgICBzZWxlY3QgMQogICAgICBmcm9tIHB1YmxpYy53b3Jrc2hvcF9zZXNzaW9ucyBzCiAgICAgIHdoZXJlIHMud29ya3Nob3BfaWQgPSB3LmlkCiAgICAgICAgYW5kIHMuc3RhcnRzX2F0ID4gdGltZXpvbmUoJ3V0Yyc6OnRleHQsIG5vdygpKQogICAgICAgIGFuZCBzLnN0YXR1cyBpbiAoJ3NjaGVkdWxlZCcsICdzb2xkX291dCcpCiAgICApIHRoZW4gMCBlbHNlIDEgZW5kLAogICAgdy5jcmVhdGVkX2F0IGFzYwogIGxpbWl0IDE7CgogIHVwZGF0ZSBwdWJsaWMud29ya3Nob3BzCiAgc2V0IG9mZmVyc19mb2xsb3d1cF9zZXNzaW9uID0gdHJ1ZSwKICAgICAgcmVxdWlyZXNfZm9sbG93dXBfc2Vzc2lvbiA9IGZhbHNlLAogICAgICBmb2xsb3d1cF93b3Jrc2hvcF9pZCA9IGNvYWxlc2NlKHZfZm9sbG93dXAsIGZvbGxvd3VwX3dvcmtzaG9wX2lkKSwKICAgICAgZm9sbG93dXBfd29ya3Nob3BfdHlwZSA9IGNvYWxlc2NlKAogICAgICAgIHZfZm9sbG93dXBfdHlwZSwKICAgICAgICBudWxsaWYodHJpbShmb2xsb3d1cF93b3Jrc2hvcF90eXBlKSwgJycpLAogICAgICAgICdzemtsaXdpZW5pZScKICAgICAgKSwKICAgICAgZm9sbG93dXBfbWluX2RheXMgPSBjb2FsZXNjZShmb2xsb3d1cF9taW5fZGF5cywgNSksCiAgICAgIGZvbGxvd3VwX21heF9kYXlzID0gY29hbGVzY2UoZm9sbG93dXBfbWF4X2RheXMsIDQ1KSwKICAgICAgdXBkYXRlZF9hdCA9IHRpbWV6b25lKCd1dGMnOjp0ZXh0LCBub3coKSkKICB3aGVyZSBpZCA9IHZfcHJpbWFyeTsKCiAgaWYgdl9mb2xsb3d1cCBpcyBudWxsIHRoZW4KICAgIHJhaXNlIG5vdGljZSAnR2xpbmEgZG8gV2luYSBub3cgb2ZmZXJzIG9wdGlvbmFsIGdsYXppbmcsIGJ1dCBubyBwdWJsaXNoZWQgZ2xhemluZyB3b3Jrc2hvcCB3YXMgYXV0by1kZXRlY3RlZCc7CiAgZW5kIGlmOwplbmQKJCQ7Cg=='
+          canonical_b64 = 'bmFtZTogQm9va2luZyB2YWxpZGF0aW9uCgpvbjoKICBwdWxsX3JlcXVlc3Q6CiAgICBicmFuY2hlczogW21haW5dCgpwZXJtaXNzaW9uczoKICBjb250ZW50czogcmVhZAoKam9iczoKICB2YWxpZGF0ZToKICAgIHJ1bnMtb246IHVidW50dS1sYXRlc3QKICAgIHRpbWVvdXQtbWludXRlczogMzAKICAgIHN0ZXBzOgogICAgICAtIG5hbWU6IENoZWNrb3V0CiAgICAgICAgdXNlczogYWN0aW9ucy9jaGVja291dEB2NQoKICAgICAgLSBuYW1lOiBTZXR1cCBOb2RlCiAgICAgICAgdXNlczogYWN0aW9ucy9zZXR1cC1ub2RlQHY1CiAgICAgICAgd2l0aDoKICAgICAgICAgIG5vZGUtdmVyc2lvbjogMjIKICAgICAgICAgIGNhY2hlOiBucG0KCiAgICAgIC0gbmFtZTogSW5zdGFsbCBkZXBlbmRlbmNpZXMKICAgICAgICBydW46IG5wbSBjaQoKICAgICAgLSBuYW1lOiBBdWRpdCBwcm9kdWN0aW9uIGRlcGVuZGVuY2llcwogICAgICAgIHJ1bjogbnBtIGF1ZGl0IC0tb21pdD1kZXYgLS1hdWRpdC1sZXZlbD1oaWdoCgogICAgICAtIG5hbWU6IFR5cGVjaGVjawogICAgICAgIHJ1bjogbnBtIHJ1biB0eXBlY2hlY2sgLS0gLS1wcmV0dHkgZmFsc2UKCiAgICAgIC0gbmFtZTogTWlncmF0aW9uIGhhcm5lc3MKICAgICAgICBydW46IG5wbSBydW4gdGVzdDptaWdyYXRpb25zCgogICAgICAtIG5hbWU6IFZvdWNoZXIgbGlmZWN5Y2xlIGludGVncmF0aW9uCiAgICAgICAgcnVuOiBucG0gcnVuIHRlc3Q6dm91Y2hlcnM6cGdsaXRlCgogICAgICAtIG5hbWU6IExpbmtlZCB3b3Jrc2hvcCBsaWZlY3ljbGUgaW50ZWdyYXRpb24KICAgICAgICBydW46IG5wbSBydW4gdGVzdDpsaW5rZWQtd29ya3Nob3BzOnBnbGl0ZQoKICAgICAgLSBuYW1lOiBVbml0IHRlc3RzCiAgICAgICAgcnVuOiBucG0gdGVzdAoKICAgICAgLSBuYW1lOiBQcm9kdWN0aW9uIGJ1aWxkCiAgICAgICAgZW52OgogICAgICAgICAgTkVYVF9QVUJMSUNfU0lURV9VUkw6IGh0dHBzOi8vZXhhbXBsZS5pbnZhbGlkCiAgICAgICAgICBORVhUX1BVQkxJQ19TVVBBQkFTRV9VUkw6IGh0dHBzOi8vZXhhbXBsZS5zdXBhYmFzZS5jbwogICAgICAgICAgTkVYVF9QVUJMSUNfU1VQQUJBU0VfQU5PTl9LRVk6IHRlc3QtYW5vbi1rZXkKICAgICAgICAgIFNVUEFCQVNFX1NFQ1JFVF9LRVk6IHRlc3Qtc2VjcmV0LWtleQogICAgICAgICAgUEFZTUVOVFNfUFJPVklERVI6IG1hbnVhbAogICAgICAgIHJ1bjogbnBtIHJ1biBidWlsZAo='
+          Path('supabase/migrations/00000000000031_glina_do_wina_optional_followup_repair.sql').write_bytes(base64.b64decode(migration_b64))
+          Path('.github/workflows/voucher-validation.yml').write_bytes(base64.b64decode(canonical_b64))
           Path('.github/workflows/apply-followup-picker-hotfix.yml').unlink(missing_ok=True)
+          Path('tmp/followup-picker-trigger.txt').unlink(missing_ok=True)
           PY
 
       - name: Install dependencies
