@@ -1,0 +1,54 @@
+s_accepted_at,
++    p_privacy_policy_version,
++    p_lines,
++    p_shipping_address,
++    p_source,
++    p_selected_payment_method,
++    p_voucher_code
++  );
++
++  v_order_id := (v_result->>'order_id')::uuid;
++  update public.booking_links bl
++  set relationship = 'optional_followup'
++  from public.bookings primary_booking
++  join public.workshop_sessions primary_session
++    on primary_session.id = primary_booking.workshop_session_id
++  join public.workshops primary_workshop
++    on primary_workshop.id = primary_session.workshop_id
++  where bl.order_id = v_order_id
++    and bl.primary_booking_id = primary_booking.id
++    and not primary_workshop.requires_followup_session;
++
++  update public.booking_events event
++  set metadata = jsonb_set(
++        coalesce(event.metadata, '{}'::jsonb),
++        '{relationship}',
++        to_jsonb('optional_followup'::text),
++        true
++      )
++  from public.bookings booking
++  join public.booking_links link
++    on link.primary_booking_id = booking.id
++  where booking.order_id = v_order_id
++    and event.booking_id = booking.id
++    and event.event_type = 'linked'
++    and link.relationship = 'optional_followup';
++
++  return v_result;
++end;
++$$;
++
++revoke all on function public.submit_cart_order_v5(
++  text, text, text, text, text, text, boolean, timestamptz,
++  text, jsonb, jsonb, text, text, text
++) from public, anon, authenticated;
++grant execute on function public.submit_cart_order_v5(
++  text, text, text, text, text, text, boolean, timestamptz,
++  text, jsonb, jsonb, text, text, text
++) to service_role;
++
++comment on function public.submit_cart_order_v5(
++  text, text, text, text, text, text, boolean, timestamptz,
++  text, jsonb, jsonb, text, text, text
++) is
++  'Locks and validates optional/required follow-ups, open-ended date windows and included-price mode before atomic checkout.';
