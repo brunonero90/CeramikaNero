@@ -5,9 +5,6 @@ const storageHostname = supabaseUrl ? new URL(supabaseUrl).hostname : undefined;
 const isNetlify = process.env.NETLIFY === 'true';
 
 const nextConfig: NextConfig = {
-  // Temporary on the voucher branch only: the build captures tsc output in
-  // public/typecheck.txt before Next runs. This flag is removed before merge.
-  typescript: { ignoreBuildErrors: true },
   // Standalone is for Docker/self-host. On Netlify it inflates the server
   // handler beyond upload limits — the Next runtime plugin packages instead.
   ...(isNetlify ? {} : { output: 'standalone' as const }),

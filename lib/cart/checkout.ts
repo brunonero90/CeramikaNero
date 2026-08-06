@@ -11,10 +11,8 @@ import {
   checkBookingRateLimit,
 } from '@/lib/booking/rate-limit';
 import type { Json } from '@/lib/database/types';
-import {
-  ensureExternalVoucherLoaded,
-  normalizeVoucherCode,
-} from '@/lib/vouchers/providers';
+import { ensureExternalVoucherLoaded } from '@/lib/vouchers/providers';
+import { normalizeVoucherCode } from '@/lib/vouchers/helpers';
 
 const participantSchema = z.object({
   display_name: z.string().trim().min(1, 'Podaj imię uczestnika').max(120),
