@@ -5,71 +5,27 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - name: Checkout feature branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-
-      - name: Apply pending branch cleanup once
-        run: |
-          if [ -f scripts/netlify-typecheck-diagnostics.mjs ]; then
-            sed -i '/^  normalizeVoucherCode,$/d' lib/cart/checkout.ts
-            sed -i "/^} from '@\/lib\/vouchers\/providers';$/a import { normalizeVoucherCode } from '@/lib/vouchers/helpers';" lib/cart/checkout.ts
-            grep -q "from '@/lib/vouchers/helpers'" lib/cart/checkout.ts
-
-            git show origin/main:next.config.ts > next.config.ts
-            git show origin/main:netlify.toml > netlify.toml
-            sed -i 's/NODE_VERSION = "20"/NODE_VERSION = "22"/' netlify.toml
-            rm -f scripts/netlify-typecheck-diagnostics.mjs
-            rm -f .github/workflows/apply-voucher-fixes.yml
-
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add -A
-            git commit -m "Fix voucher typecheck and restore deployment config"
-            git push origin HEAD:${{ github.head_ref }}
-          fi
-
-      - name: Apply pending migration fix once
-        run: |
-          if [ -f scripts/fix-voucher-migration-composites.py ]; then
-            python scripts/fix-voucher-migration-composites.py
-            rm scripts/fix-voucher-migration-composites.py
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add -A
-            git commit -m "Fix voucher migration composite assignments"
-            git push origin HEAD:${{ github.head_ref }}
-          fi
-
-      - name: Apply pending payment-method fix once
-        run: |
-          if [ -f scripts/fix-voucher-payment-method-null.py ]; then
-            python scripts/fix-voucher-payment-method-null.py
-            rm scripts/fix-voucher-payment-method-null.py
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add -A
-            git commit -m "Fix null-safe voucher payment method selection"
-            git push origin HEAD:${{ github.head_ref }}
-          fi
+      - name: Checkout
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
 
       - name: Typecheck
         run: npm run typecheck -- --pretty false
