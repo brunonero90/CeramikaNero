@@ -11,6 +11,10 @@ import {
   checkBookingRateLimit,
 } from '@/lib/booking/rate-limit';
 import type { Json } from '@/lib/database/types';
+import {
+  ensureExternalVoucherLoaded,
+  normalizeVoucherCode,
+} from '@/lib/vouchers/providers';
 
 const participantSchema = z.object({
   display_name: z.string().trim().min(1, 'Podaj imię uczestnika').max(120),
@@ -44,8 +48,9 @@ const checkoutSchema = z.object({
   shipping: shippingSchema.optional().nullable(),
   lines: z.array(z.any()).min(1).max(20),
   submissionKey: z.string().uuid(),
-  /** Explicit when PAYMENTS_PROVIDER=both; ignored for manual/stripe-only modes. */
   paymentMethod: z.enum(['stripe', 'bank_transfer']).optional().nullable(),
+  voucherCode: z.string().trim().min(4).max(120).optional().nullable(),
+  voucherProviderCode: z.string().trim().max(80).optional().nullable(),
 });
 
 export type SubmitCartResult =
@@ -57,8 +62,13 @@ export type SubmitCartResult =
       shippingQuoteRequired: boolean;
       publicLookupToken?: string;
       reused?: boolean;
-      paymentMethod: 'stripe' | 'bank_transfer';
+      paymentMethod: 'stripe' | 'bank_transfer' | 'voucher';
       checkoutUrl?: string;
+      voucherAppliedGrosz?: number;
+      voucherMaskedCode?: string;
+      voucherProviderName?: string;
+      voucherRemainingGrosz?: number;
+      voucherFullyPaid?: boolean;
     }
   | { ok: false; error: string; fieldErrors?: Record<string, string[]> };
 
@@ -84,6 +94,23 @@ function mapSubmitCartOrderError(message: string | undefined): string {
   }
   if (msg.includes('inventory')) {
     return 'Niewystarczający stan magazynowy. Odśwież koszyk.';
+  }
+  if (msg.includes('voucher not found') || msg.includes('voucher code is invalid')) {
+    return 'Nie znaleziono bonu o takim kodzie.';
+  }
+  if (msg.includes('voucher is expired')) return 'Ten bon stracił ważność.';
+  if (msg.includes('voucher is cancelled')) return 'Ten bon został anulowany.';
+  if (msg.includes('already been redeemed')) {
+    return 'Ten bon został już wykorzystany.';
+  }
+  if (
+    msg.includes('voucher is not valid') ||
+    msg.includes('voucher can only be used')
+  ) {
+    return 'Ten bon nie obejmuje wybranego warsztatu.';
+  }
+  if (msg.includes('different voucher') || msg.includes('voucher order')) {
+    return 'Dane koszyka lub bonu zmieniły się. Odśwież stronę i spróbuj ponownie.';
   }
   if (msg.includes('session is not open') || msg.includes('booking')) {
     return 'Termin nie jest już dostępny do rezerwacji. Odśwież koszyk.';
@@ -124,15 +151,24 @@ export async function submitCartOrder(
   }
 
   const needsShipping = revalidated.lines.some(
-    (l) =>
-      (l.type === 'physical_product' || l.type === 'studio_service') &&
-      l.fulfillment === 'shipping' &&
-      l.requiresShipping
+    (line) =>
+      (line.type === 'physical_product' || line.type === 'studio_service') &&
+      line.fulfillment === 'shipping' &&
+      line.requiresShipping
   );
   if (needsShipping && !data.shipping) {
     return {
       ok: false,
       error: 'Podaj adres dostawy dla produktów wysyłkowych.',
+    };
+  }
+  if (
+    data.voucherCode &&
+    revalidated.lines.some((line) => line.type !== 'workshop_session')
+  ) {
+    return {
+      ok: false,
+      error: 'Bon można wykorzystać wyłącznie na rezerwację warsztatów.',
     };
   }
 
@@ -186,38 +222,93 @@ export async function submitCartOrder(
   }
 
   const shippingQuoteRequiredPreview = revalidated.lines.some(
-    (l) =>
-      (l.type === 'physical_product' || l.type === 'studio_service') &&
-      l.fulfillment === 'shipping' &&
-      l.requiresShipping
+    (line) =>
+      (line.type === 'physical_product' || line.type === 'studio_service') &&
+      line.fulfillment === 'shipping' &&
+      line.requiresShipping
   );
+
+  let voucherAmountDuePreview: number | null = null;
+  if (data.voucherCode) {
+    try {
+      await ensureExternalVoucherLoaded({
+        providerCode: data.voucherProviderCode,
+        code: normalizeVoucherCode(data.voucherCode),
+      });
+    } catch (providerError) {
+      console.error('voucher provider validation failed', providerError);
+      return {
+        ok: false,
+        error:
+          'Nie udało się teraz sprawdzić bonu u partnera. Bon nie został wykorzystany — spróbuj ponownie później.',
+      };
+    }
+    const voucherSupabase = createCartAdminClient() as unknown as {
+      rpc: (
+        name: string,
+        args: Record<string, unknown>
+      ) => Promise<{ data: unknown; error: { message: string } | null }>;
+    };
+    const voucherLines = revalidated.lines.map((line) => {
+      if (line.type !== 'workshop_session') {
+        throw new Error('Voucher cart must contain workshops only');
+      }
+      return {
+        type: 'workshop_session',
+        session_id: line.sessionId,
+        quantity: line.quantity,
+      };
+    });
+    const { data: voucherPreview, error: voucherPreviewError } =
+      await voucherSupabase.rpc('validate_checkout_voucher', {
+        p_code: normalizeVoucherCode(data.voucherCode),
+        p_lines: voucherLines,
+        p_subtotal_grosz: revalidated.subtotalGrosz,
+      });
+    if (voucherPreviewError || !voucherPreview) {
+      return {
+        ok: false,
+        error: mapSubmitCartOrderError(voucherPreviewError?.message),
+      };
+    }
+    voucherAmountDuePreview = Number(
+      (voucherPreview as { amount_due_grosz?: number }).amount_due_grosz ?? 0
+    );
+  }
 
   const { resolveCheckoutPaymentMethod, shouldCreateStripeCheckoutNow } =
     await import('@/lib/payments/provider');
-  const paymentResolved = resolveCheckoutPaymentMethod({
-    requested: data.paymentMethod,
-    shippingQuoteRequired: shippingQuoteRequiredPreview,
-  });
+  const paymentResolved =
+    voucherAmountDuePreview === 0
+      ? ({
+          ok: true as const,
+          method: data.paymentMethod ?? ('bank_transfer' as const),
+        } as const)
+      : resolveCheckoutPaymentMethod({
+          requested: data.paymentMethod,
+          shippingQuoteRequired: shippingQuoteRequiredPreview,
+        });
   if (!paymentResolved.ok) {
     return { ok: false, error: paymentResolved.error };
   }
 
-  if (paymentResolved.method === 'bank_transfer') {
+  if (
+    paymentResolved.method === 'bank_transfer' &&
+    !shippingQuoteRequiredPreview &&
+    (voucherAmountDuePreview == null || voucherAmountDuePreview > 0)
+  ) {
     const { loadBankTransferConfig } =
       await import('@/lib/payments/bank-transfer');
-    // Known-total manual orders require complete bank details up front.
-    if (!shippingQuoteRequiredPreview) {
-      const bank = await loadBankTransferConfig();
-      if (!bank.ok) {
-        console.error('checkout blocked: incomplete bank transfer config', {
-          error: bank.error,
-        });
-        return {
-          ok: false,
-          error:
-            'Płatność przelewem jest tymczasowo niedostępna. Skontaktuj się z pracownią.',
-        };
-      }
+    const bank = await loadBankTransferConfig();
+    if (!bank.ok) {
+      console.error('checkout blocked: incomplete bank transfer config', {
+        error: bank.error,
+      });
+      return {
+        ok: false,
+        error:
+          'Płatność przelewem jest tymczasowo niedostępna. Skontaktuj się z pracownią.',
+      };
     }
   }
 
@@ -228,11 +319,11 @@ export async function submitCartOrder(
         session_id: line.sessionId,
         quantity: line.quantity,
         participants: (data.participantsBySession[line.sessionId] ?? []).map(
-          (p) => ({
-            display_name: p.display_name ?? '',
-            age: normalizeParticipantAge(p.age),
-            participant_type: p.participant_type,
-            accessibility_notes: p.accessibility_notes ?? null,
+          (participant) => ({
+            display_name: participant.display_name ?? '',
+            age: normalizeParticipantAge(participant.age),
+            participant_type: participant.participant_type,
+            accessibility_notes: participant.accessibility_notes ?? null,
           })
         ),
       };
@@ -246,7 +337,6 @@ export async function submitCartOrder(
   });
 
   const idempotencyKey = orderIdempotencyKey(data.submissionKey);
-
   const supabase = createCartAdminClient();
   const { data: result, error } = await (
     supabase as unknown as {
@@ -258,7 +348,7 @@ export async function submitCartOrder(
         error: { message: string; code?: string } | null;
       }>;
     }
-  ).rpc('submit_cart_order_v2', {
+  ).rpc('submit_cart_order_v3', {
     p_idempotency_key: idempotencyKey,
     p_customer_email: data.purchaserEmail,
     p_customer_first_name: data.purchaserFirstName,
@@ -274,10 +364,13 @@ export async function submitCartOrder(
       : null,
     p_source: 'website',
     p_selected_payment_method: paymentResolved.method,
+    p_voucher_code: data.voucherCode
+      ? normalizeVoucherCode(data.voucherCode)
+      : null,
   });
 
   if (error || !result) {
-    console.error('submit_cart_order failed', {
+    console.error('submit_cart_order_v3 failed', {
       message: error?.message,
       code: error?.code,
     });
@@ -296,10 +389,14 @@ export async function submitCartOrder(
     shipping_quote_required: boolean;
     public_lookup_token?: string;
     reused?: boolean;
+    voucher_applied_grosz?: number;
+    voucher_masked_code?: string;
+    voucher_provider_name?: string;
+    voucher_remaining_grosz?: number;
+    voucher_fully_paid?: boolean;
   };
 
   let checkoutUrl: string | undefined;
-
   if (
     !payload.reused &&
     shouldCreateStripeCheckoutNow({
@@ -318,24 +415,22 @@ export async function submitCartOrder(
       if (session.ok) {
         checkoutUrl = session.checkoutUrl;
       } else {
-        // Order already reserved — send customer to status page to retry pay.
         console.error(
           'stripe checkout after cart submit failed; order kept for retry',
           session.error
         );
       }
-    } catch (err) {
+    } catch (stripeError) {
       console.error(
         'stripe checkout after cart submit threw; order kept for retry',
-        err
+        stripeError
       );
     }
   }
 
-  // Ensure admin notification ledger row exists (recipient from env).
   if (!payload.reused) {
     const adminEmail = process.env.BOOKING_ADMIN_EMAIL?.trim();
-    if (adminEmail) {
+    if (adminEmail && !payload.voucher_fully_paid) {
       await supabase.from('order_emails').insert({
         order_id: payload.order_id,
         email_type: 'admin_notification',
@@ -344,12 +439,18 @@ export async function submitCartOrder(
       });
     }
     try {
-      const { notifyOrderCreated } = await import('@/lib/cart/order-email');
-      await notifyOrderCreated(payload.order_id, {
-        publicLookupToken: payload.public_lookup_token,
-      });
-    } catch (err) {
-      console.error('order email notify failed', err);
+      if (payload.voucher_fully_paid) {
+        const { notifyOrderPaymentReceived } =
+          await import('@/lib/cart/order-email');
+        await notifyOrderPaymentReceived(payload.order_id);
+      } else {
+        const { notifyOrderCreated } = await import('@/lib/cart/order-email');
+        await notifyOrderCreated(payload.order_id, {
+          publicLookupToken: payload.public_lookup_token,
+        });
+      }
+    } catch (emailError) {
+      console.error('order email notify failed', emailError);
     }
   }
 
@@ -361,7 +462,14 @@ export async function submitCartOrder(
     shippingQuoteRequired: payload.shipping_quote_required,
     publicLookupToken: payload.public_lookup_token,
     reused: payload.reused,
-    paymentMethod: paymentResolved.method,
+    paymentMethod: payload.voucher_fully_paid
+      ? 'voucher'
+      : paymentResolved.method,
     checkoutUrl,
+    voucherAppliedGrosz: payload.voucher_applied_grosz,
+    voucherMaskedCode: payload.voucher_masked_code,
+    voucherProviderName: payload.voucher_provider_name,
+    voucherRemainingGrosz: payload.voucher_remaining_grosz,
+    voucherFullyPaid: payload.voucher_fully_paid,
   };
 }
