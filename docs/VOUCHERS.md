@@ -1,8 +1,9 @@
 # Gift vouchers
 
 Gift vouchers are implemented as a payment instrument in the unified order flow.
-They are not discount coupons. Migration 21 adds the voucher ledger, provider
-registry, redemption history, audit logs, checkout RPC and lifecycle triggers.
+They are not discount coupons. Migrations 20-voucher through 25 add the voucher
+ledger, provider registry, redemption history, audit logs, checkout RPC,
+lifecycle synchronization and idempotent mixed-payment replay handling.
 
 ## Supported providers
 
@@ -37,13 +38,16 @@ workshop capacity.
 
 A voucher redemption is `reserved`, `committed`, `released` or `refunded`.
 
-- payment confirmation commits a partial voucher reservation;
+- payment confirmation commits a partial voucher reservation and synchronizes
+  the voucher payment ledger;
 - cancellation or payment expiry restores the balance;
 - a full order refund either restores the original voucher or creates a new
   Ceramika Nero replacement, according to `refund_policy`;
 - generated/replacement raw codes are held in the service-only
   `voucher_issue_secrets` table and shown only in the protected voucher admin
-  page.
+  page;
+- idempotent checkout retries always resolve the non-voucher payment row and
+  cannot rewrite the voucher ledger as Stripe or bank transfer.
 
 The existing full-refund policy remains unchanged. A partial Stripe refund does
 not guess how to allocate value between participants or voucher/cash components;
@@ -110,11 +114,29 @@ idempotency and cancellation behaviour have been verified in a sandbox.
 ## Deployment
 
 1. Back up the database.
-2. Run the migration harness through migration 21.
-3. Apply `00000000000021_gift_voucher_integration.sql`.
+2. Run `npm run test:migrations` and `npm run test:vouchers:pglite`.
+3. Apply the following additive migrations in filename order:
+   - `00000000000020_voucher_pgcrypto_compat.sql`
+   - `00000000000021_gift_voucher_integration.sql`
+   - `00000000000022_voucher_refund_compatibility.sql`
+   - `00000000000023_voucher_payment_method_constraint.sql`
+   - `00000000000024_voucher_payment_ledger_sync.sql`
+   - `00000000000025_voucher_replay_payment_selection.sql`
 4. Deploy the application commit containing the checkout/admin changes.
 5. Import a disposable test voucher in `/admin/vouchery`.
 6. Test full voucher, partial Stripe, expiry restoration and full refund.
+
+## Automated lifecycle coverage
+
+`npm run test:vouchers:pglite` applies the complete migration chain and executes:
+
+- full Prezent Marzeń voucher confirmation without cash payment;
+- partial Ceramika Nero voucher plus the exact Stripe remainder;
+- replay idempotency without duplicate value or capacity consumption;
+- rejection of a second order using an exhausted voucher;
+- voucher ledger commitment after Stripe confirmation;
+- full and mixed-payment refund restoration;
+- unpaid expiry restoration and replay safety.
 
 ## Manual acceptance checklist
 
